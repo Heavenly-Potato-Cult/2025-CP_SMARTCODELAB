@@ -31,5 +31,35 @@ namespace SmartCodeLab
         {
 
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialTabSelector1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void openFile1_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFile = new OpenFileDialog())
+            {
+                openFile.Title = "Select a file";
+                openFile.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+
+                if (openFile.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFilePath = openFile.FileName;
+                    MessageBox.Show("You selected: " + selectedFilePath);
+                }
+            }
+        }
     }
 }

@@ -13,6 +13,19 @@ namespace SmartCodeLab.CustomComponents
             this.DoubleBuffered = true;
             this.UpdateStyles();
         }
+
+        // 🔹 Add this override
+        protected override void OnPaintBackground(PaintEventArgs e)
+        {
+            // Prevent flickering background redraw
+            base.OnPaintBackground(e);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            base.OnPaint(e);
+        }
     }
 
 

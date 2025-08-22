@@ -37,6 +37,25 @@
             imageList1 = new ImageList(components);
             tabPage4 = new TabPage();
             tabPage3 = new TabPage();
+            smoothTabControl2 = new SmartCodeLab.CustomComponents.SmoothTabControl();
+            tabPage5 = new TabPage();
+            openFile1 = new MaterialSkin.Controls.MaterialButton();
+            materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
+            materialButton4 = new MaterialSkin.Controls.MaterialButton();
+            materialMultiLineTextBox1 = new MaterialSkin.Controls.MaterialMultiLineTextBox();
+            materialTextBox2 = new MaterialSkin.Controls.MaterialTextBox();
+            materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
+            tabPage6 = new TabPage();
+            materialCard7 = new MaterialSkin.Controls.MaterialCard();
+            materialListBox3 = new MaterialSkin.Controls.MaterialListBox();
+            menuStrip1 = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            openFolderToolStripMenuItem = new ToolStripMenuItem();
+            openFolderToolStripMenuItem1 = new ToolStripMenuItem();
+            materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
             tabPage2 = new TabPage();
             materialCard6 = new MaterialSkin.Controls.MaterialCard();
             textBox2 = new TextBox();
@@ -61,6 +80,14 @@
             materialListBox1 = new MaterialSkin.Controls.MaterialListBox();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             smoothTabControl1 = new SmartCodeLab.CustomComponents.SmoothTabControl();
+            openFileDialog1 = new OpenFileDialog();
+            materialButton5 = new MaterialSkin.Controls.MaterialButton();
+            materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
+            tabPage3.SuspendLayout();
+            smoothTabControl2.SuspendLayout();
+            tabPage5.SuspendLayout();
+            materialCard7.SuspendLayout();
+            menuStrip1.SuspendLayout();
             tabPage2.SuspendLayout();
             materialCard6.SuspendLayout();
             materialCard5.SuspendLayout();
@@ -109,33 +136,290 @@
             tabPage4.ImageKey = "logout_white.png";
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1262, 652);
+            tabPage4.Size = new Size(1261, 652);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Exit";
             tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            tabPage3.ImageKey = "file_white.png";
+            tabPage3.BackColor = Color.White;
+            tabPage3.Controls.Add(smoothTabControl2);
+            tabPage3.Controls.Add(materialCard7);
+            tabPage3.Controls.Add(menuStrip1);
+            tabPage3.Controls.Add(materialTabSelector1);
+            tabPage3.ImageKey = "instruction_white.png";
             tabPage3.Location = new Point(4, 24);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1262, 652);
+            tabPage3.Size = new Size(1261, 652);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "Files";
-            tabPage3.UseVisualStyleBackColor = true;
+            tabPage3.Text = "Instructions";
+            // 
+            // smoothTabControl2
+            // 
+            smoothTabControl2.Anchor = AnchorStyles.None;
+            smoothTabControl2.Controls.Add(tabPage5);
+            smoothTabControl2.Controls.Add(tabPage6);
+            smoothTabControl2.Depth = 0;
+            smoothTabControl2.Location = new Point(257, 75);
+            smoothTabControl2.MouseState = MaterialSkin.MouseState.HOVER;
+            smoothTabControl2.Multiline = true;
+            smoothTabControl2.Name = "smoothTabControl2";
+            smoothTabControl2.SelectedIndex = 0;
+            smoothTabControl2.Size = new Size(932, 413);
+            smoothTabControl2.TabIndex = 3;
+            // 
+            // tabPage5
+            // 
+            tabPage5.BackColor = Color.White;
+            tabPage5.Controls.Add(materialButton5);
+            tabPage5.Controls.Add(materialLabel12);
+            tabPage5.Controls.Add(openFile1);
+            tabPage5.Controls.Add(materialLabel11);
+            tabPage5.Controls.Add(materialButton4);
+            tabPage5.Controls.Add(materialMultiLineTextBox1);
+            tabPage5.Controls.Add(materialTextBox2);
+            tabPage5.Controls.Add(materialTextBox1);
+            tabPage5.Controls.Add(materialLabel10);
+            tabPage5.Controls.Add(materialLabel9);
+            tabPage5.Controls.Add(materialLabel8);
+            tabPage5.ForeColor = SystemColors.ControlText;
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(924, 385);
+            tabPage5.TabIndex = 0;
+            tabPage5.Text = "task1";
+            // 
+            // openFile1
+            // 
+            openFile1.AutoSize = false;
+            openFile1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            openFile1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            openFile1.Depth = 0;
+            openFile1.HighEmphasis = true;
+            openFile1.Icon = null;
+            openFile1.Location = new Point(768, 6);
+            openFile1.Margin = new Padding(4, 6, 4, 6);
+            openFile1.MouseState = MaterialSkin.MouseState.HOVER;
+            openFile1.Name = "openFile1";
+            openFile1.NoAccentTextColor = Color.Empty;
+            openFile1.Size = new Size(98, 36);
+            openFile1.TabIndex = 10;
+            openFile1.Text = "Open File";
+            openFile1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            openFile1.UseAccentColor = false;
+            openFile1.UseVisualStyleBackColor = true;
+            openFile1.Click += openFile1_Click;
+            // 
+            // materialLabel11
+            // 
+            materialLabel11.AutoSize = true;
+            materialLabel11.Depth = 0;
+            materialLabel11.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel11.Location = new Point(645, 10);
+            materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel11.Name = "materialLabel11";
+            materialLabel11.Size = new Size(107, 19);
+            materialLabel11.TabIndex = 9;
+            materialLabel11.Text = "Associate Files";
+            // 
+            // materialButton4
+            // 
+            materialButton4.AutoSize = false;
+            materialButton4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton4.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton4.Depth = 0;
+            materialButton4.HighEmphasis = true;
+            materialButton4.Icon = null;
+            materialButton4.Location = new Point(39, 279);
+            materialButton4.Margin = new Padding(4, 6, 4, 6);
+            materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton4.Name = "materialButton4";
+            materialButton4.NoAccentTextColor = Color.Empty;
+            materialButton4.Size = new Size(147, 36);
+            materialButton4.TabIndex = 8;
+            materialButton4.Text = "Add Test Case";
+            materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton4.UseAccentColor = false;
+            materialButton4.UseVisualStyleBackColor = true;
+            // 
+            // materialMultiLineTextBox1
+            // 
+            materialMultiLineTextBox1.BackColor = Color.FromArgb(255, 255, 255);
+            materialMultiLineTextBox1.BorderStyle = BorderStyle.FixedSingle;
+            materialMultiLineTextBox1.Depth = 0;
+            materialMultiLineTextBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialMultiLineTextBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialMultiLineTextBox1.Location = new Point(48, 129);
+            materialMultiLineTextBox1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialMultiLineTextBox1.Name = "materialMultiLineTextBox1";
+            materialMultiLineTextBox1.Size = new Size(519, 96);
+            materialMultiLineTextBox1.TabIndex = 7;
+            materialMultiLineTextBox1.Text = "";
+            // 
+            // materialTextBox2
+            // 
+            materialTextBox2.AnimateReadOnly = false;
+            materialTextBox2.BorderStyle = BorderStyle.None;
+            materialTextBox2.Depth = 0;
+            materialTextBox2.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialTextBox2.LeadingIcon = null;
+            materialTextBox2.Location = new Point(330, 32);
+            materialTextBox2.MaxLength = 50;
+            materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
+            materialTextBox2.Multiline = false;
+            materialTextBox2.Name = "materialTextBox2";
+            materialTextBox2.Size = new Size(237, 50);
+            materialTextBox2.TabIndex = 6;
+            materialTextBox2.Text = "";
+            materialTextBox2.TrailingIcon = null;
+            // 
+            // materialTextBox1
+            // 
+            materialTextBox1.AnimateReadOnly = false;
+            materialTextBox1.BorderStyle = BorderStyle.None;
+            materialTextBox1.Depth = 0;
+            materialTextBox1.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialTextBox1.LeadingIcon = null;
+            materialTextBox1.Location = new Point(48, 32);
+            materialTextBox1.MaxLength = 50;
+            materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
+            materialTextBox1.Multiline = false;
+            materialTextBox1.Name = "materialTextBox1";
+            materialTextBox1.Size = new Size(237, 50);
+            materialTextBox1.TabIndex = 5;
+            materialTextBox1.Text = "";
+            materialTextBox1.TrailingIcon = null;
+            // 
+            // materialLabel10
+            // 
+            materialLabel10.AutoSize = true;
+            materialLabel10.Depth = 0;
+            materialLabel10.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel10.Location = new Point(48, 107);
+            materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel10.Name = "materialLabel10";
+            materialLabel10.Size = new Size(76, 19);
+            materialLabel10.TabIndex = 4;
+            materialLabel10.Text = "Instruction";
+            // 
+            // materialLabel9
+            // 
+            materialLabel9.AutoSize = true;
+            materialLabel9.Depth = 0;
+            materialLabel9.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel9.Location = new Point(330, 10);
+            materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel9.Name = "materialLabel9";
+            materialLabel9.Size = new Size(72, 19);
+            materialLabel9.TabIndex = 2;
+            materialLabel9.Text = "Language";
+            // 
+            // materialLabel8
+            // 
+            materialLabel8.AutoSize = true;
+            materialLabel8.Depth = 0;
+            materialLabel8.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel8.Location = new Point(48, 10);
+            materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel8.Name = "materialLabel8";
+            materialLabel8.Size = new Size(99, 19);
+            materialLabel8.TabIndex = 0;
+            materialLabel8.Text = "Activity Name";
+            // 
+            // tabPage6
+            // 
+            tabPage6.BackColor = Color.White;
+            tabPage6.Location = new Point(4, 24);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Padding = new Padding(3);
+            tabPage6.Size = new Size(924, 385);
+            tabPage6.TabIndex = 1;
+            tabPage6.Text = "task2";
+            // 
+            // materialCard7
+            // 
+            materialCard7.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard7.Controls.Add(materialListBox3);
+            materialCard7.Depth = 0;
+            materialCard7.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard7.Location = new Point(63, 62);
+            materialCard7.Margin = new Padding(14);
+            materialCard7.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard7.Name = "materialCard7";
+            materialCard7.Padding = new Padding(14);
+            materialCard7.Size = new Size(129, 422);
+            materialCard7.TabIndex = 1;
+            // 
+            // materialListBox3
+            // 
+            materialListBox3.BackColor = Color.White;
+            materialListBox3.BorderColor = Color.LightGray;
+            materialListBox3.Depth = 0;
+            materialListBox3.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialListBox3.Location = new Point(0, 0);
+            materialListBox3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialListBox3.Name = "materialListBox3";
+            materialListBox3.SelectedIndex = -1;
+            materialListBox3.SelectedItem = null;
+            materialListBox3.Size = new Size(129, 23);
+            materialListBox3.TabIndex = 0;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1261, 24);
+            menuStrip1.TabIndex = 4;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openFolderToolStripMenuItem, openFolderToolStripMenuItem1 });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Text = "File";
+            // 
+            // openFolderToolStripMenuItem
+            // 
+            openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
+            openFolderToolStripMenuItem.Size = new Size(139, 22);
+            openFolderToolStripMenuItem.Text = "New File";
+            openFolderToolStripMenuItem.Click += openFolderToolStripMenuItem_Click;
+            // 
+            // openFolderToolStripMenuItem1
+            // 
+            openFolderToolStripMenuItem1.Name = "openFolderToolStripMenuItem1";
+            openFolderToolStripMenuItem1.Size = new Size(139, 22);
+            openFolderToolStripMenuItem1.Text = "Open Folder";
+            // 
+            // materialTabSelector1
+            // 
+            materialTabSelector1.BaseTabControl = smoothTabControl2;
+            materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
+            materialTabSelector1.Depth = 0;
+            materialTabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialTabSelector1.Location = new Point(257, 62);
+            materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialTabSelector1.Name = "materialTabSelector1";
+            materialTabSelector1.Size = new Size(925, 23);
+            materialTabSelector1.TabIndex = 2;
+            materialTabSelector1.Text = "materialTabSelector1";
+            materialTabSelector1.Click += materialTabSelector1_Click;
             // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.White;
             tabPage2.Controls.Add(materialCard6);
             tabPage2.Controls.Add(materialCard5);
-            tabPage2.ImageKey = "instruction_white.png";
+            tabPage2.ImageKey = "file_white.png";
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1262, 652);
+            tabPage2.Size = new Size(1261, 652);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "Instructions";
+            tabPage2.Text = "Files";
             // 
             // materialCard6
             // 
@@ -464,6 +748,42 @@
             smoothTabControl1.Size = new Size(1269, 680);
             smoothTabControl1.TabIndex = 1;
             // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // materialButton5
+            // 
+            materialButton5.AutoSize = false;
+            materialButton5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton5.Depth = 0;
+            materialButton5.HighEmphasis = true;
+            materialButton5.Icon = null;
+            materialButton5.Location = new Point(768, 103);
+            materialButton5.Margin = new Padding(4, 6, 4, 6);
+            materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton5.Name = "materialButton5";
+            materialButton5.NoAccentTextColor = Color.Empty;
+            materialButton5.Size = new Size(98, 36);
+            materialButton5.TabIndex = 12;
+            materialButton5.Text = "Open File";
+            materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton5.UseAccentColor = false;
+            materialButton5.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel12
+            // 
+            materialLabel12.AutoSize = true;
+            materialLabel12.Depth = 0;
+            materialLabel12.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel12.Location = new Point(645, 107);
+            materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel12.Name = "materialLabel12";
+            materialLabel12.Size = new Size(107, 19);
+            materialLabel12.TabIndex = 11;
+            materialLabel12.Text = "Associate Files";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -474,8 +794,18 @@
             DrawerIsOpen = true;
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = smoothTabControl1;
+            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "SmartCodeLab";
+            Load += Form1_Load;
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            smoothTabControl2.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            materialCard7.ResumeLayout(false);
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             tabPage2.ResumeLayout(false);
             materialCard6.ResumeLayout(false);
             materialCard6.PerformLayout();
@@ -524,5 +854,27 @@
         private MaterialSkin.Controls.MaterialListBox materialListBox1;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private SmartCodeLab.CustomComponents.SmoothTabControl smoothTabControl1;
+        private MaterialSkin.Controls.MaterialCard materialCard7;
+        private MaterialSkin.Controls.MaterialListBox materialListBox3;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem openFolderToolStripMenuItem;
+        private ToolStripMenuItem openFolderToolStripMenuItem1;
+        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
+        private CustomComponents.SmoothTabControl smoothTabControl2;
+        private TabPage tabPage5;
+        private MaterialSkin.Controls.MaterialButton materialButton4;
+        private MaterialSkin.Controls.MaterialMultiLineTextBox materialMultiLineTextBox1;
+        private MaterialSkin.Controls.MaterialTextBox materialTextBox2;
+        private MaterialSkin.Controls.MaterialTextBox materialTextBox1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel10;
+        private MaterialSkin.Controls.MaterialLabel materialLabel9;
+        private MaterialSkin.Controls.MaterialLabel materialLabel8;
+        private TabPage tabPage6;
+        private MaterialSkin.Controls.MaterialLabel materialLabel11;
+        private MaterialSkin.Controls.MaterialButton openFile1;
+        private OpenFileDialog openFileDialog1;
+        private MaterialSkin.Controls.MaterialButton materialButton5;
+        private MaterialSkin.Controls.MaterialLabel materialLabel12;
     }
 }
