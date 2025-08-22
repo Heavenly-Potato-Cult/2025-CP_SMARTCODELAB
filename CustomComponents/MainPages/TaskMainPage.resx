@@ -117,41 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="imageList1.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAEZTeXN0ZW0uV2luZG93cy5Gb3JtcywgQ3VsdHVyZT1uZXV0cmFs
-        LCBQdWJsaWNLZXlUb2tlbj1iNzdhNWM1NjE5MzRlMDg5BQEAAAAmU3lzdGVtLldpbmRvd3MuRm9ybXMu
-        SW1hZ2VMaXN0U3RyZWFtZXIBAAAABERhdGEHAgIAAAAJAwAAAA8DAAAAMgQAAAJNU0Z0AUkBTAIBAQQB
-        AAEoAQIBKAECARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMAASADAAEBAQABIAYAASD/
-        AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/AP8A/wD/ACYAMP9YACz/EAADCwEOEP8oACT/BAAI/wwAAx4B
-        Kwz/BAAc/wQADP8MACz/CAADCgENGP8oACT/CAADVQGtBP8DHQEpBAAQ/wQAHP8EAAz/DAAI/wQAIP8I
-        ACj/A2kB+xgAFP8cAAMIAQoE/wMEAQUQ/wQAHP8EAAz/DAAM/wQABP8DagH5A2IB7gNiAe4DYgHuCP8I
-        ABz/DAAE/xgAFP8cAANpAfsE/wQAEP8EABz/BAAM/wwALP8IABz/DAAE/xgAJP8IAAj/CAADRgF/DP8E
-        ABz/BAAM/wwACP8EACD/CAAc/wwABP8YACT/BAEI/xAADP8EABz/BAAI/wNcAcEMAAz/BAAE/wNOAZQD
-        SQGIA0kBiANJAYgI/wgAHP8MAAT/BAAI/wwAMP8gABj/A0sBjBwALP8IABz/FAAM/wgAMP8UAAz/GAAD
-        HQEoDP8QAAj/BAAg/wgAHP8IAAOAAf4Y/wQAMP8QAANZAbkM/wNVAa0DIQEvDP8EABD/EAAM/wQABP8D
-        HgEqAxkBIgMZASIDGQEiCP8IABz/CAADXwHQGP8EADD/EAADKAE7DP8DJAE0JP8QACz/CAAc/xQADP8I
-        ACz/GAADWQG7BP8DWQG2Aw8BExT/BAAI/wMbASUQACz/CAAc/wwABP8EAAj/DAAk/wM8AWYEAANcAcEk
-        ABT/IAAI/wMqAT8DWQG7A1kBuwNZAbsDWQG7A1kBuwQACP8IABz/DAAE/xgAIP8IAAT/KAADbgH1DP8D
-        JAE0IAADNQFVAzUBVQNcAb4U/wQAAzUBVQMpAT4IABz/DAAE/xgAIP8EAAT/AxsBJjAAAxMBGTgACP8D
-        OgFhGAADaQHoKP8YAANJAYgDSQGIA0kBiANJAYgDSQGIA0kBiANJAYgDSQGIAxUBHAMxAU2YAANpAegc
-        /wNcAcMYAAFCAU0BPgcAAT4DAAEoAwABQAMAASADAAEBAQABAQYAAQEWAAP/gQABgAEHAv8B4AEDAcEB
-        /wGAAScCCAHgAQMBAQH/AYABMQIIAeQBAwEAAR8BgwH4AggB4gEDAQEB3wGDAfkCCAHgAQMBAQHfAYAB
-        MwIIAeQBAwEBAd8BgAEHAYgBCAHiAQMBAQHTAYABBwH4AQ8B4AEDAQEB8QGAAQcBxwHhAeQBAwEBAoAB
-        BwGAASEB4gEDAQECgAEHAYABAQHgAQMBAQHxAYABDwHAAREB4AEDAQEB0wGAARcB/AEfAeABEwEBAd8B
-        gAFvAfwBHwHgARMBAQHfAYABTwH/AX8B/gE/AQABHwGAAR8E/wGAAT8L
-</value>
-  </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>128, 17</value>
-  </metadata>
-  <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>243, 17</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>144</value>
   </metadata>
 </root>

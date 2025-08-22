@@ -37,8 +37,11 @@
             imageList1 = new ImageList(components);
             tabPage4 = new TabPage();
             tabPage3 = new TabPage();
+            fileTree = new TreeView();
             smoothTabControl2 = new SmartCodeLab.CustomComponents.SmoothTabControl();
             tabPage5 = new TabPage();
+            materialButton5 = new MaterialSkin.Controls.MaterialButton();
+            materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
             openFile1 = new MaterialSkin.Controls.MaterialButton();
             materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
             materialButton4 = new MaterialSkin.Controls.MaterialButton();
@@ -49,8 +52,6 @@
             materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             tabPage6 = new TabPage();
-            materialCard7 = new MaterialSkin.Controls.MaterialCard();
-            materialListBox3 = new MaterialSkin.Controls.MaterialListBox();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             openFolderToolStripMenuItem = new ToolStripMenuItem();
@@ -81,12 +82,11 @@
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             smoothTabControl1 = new SmartCodeLab.CustomComponents.SmoothTabControl();
             openFileDialog1 = new OpenFileDialog();
-            materialButton5 = new MaterialSkin.Controls.MaterialButton();
-            materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
+            taskMainPage1 = new SmartCodeLab.CustomComponents.MainPages.TaskMainPage();
+            tabPage4.SuspendLayout();
             tabPage3.SuspendLayout();
             smoothTabControl2.SuspendLayout();
             tabPage5.SuspendLayout();
-            materialCard7.SuspendLayout();
             menuStrip1.SuspendLayout();
             tabPage2.SuspendLayout();
             materialCard6.SuspendLayout();
@@ -108,12 +108,12 @@
             materialButton1.Depth = 0;
             materialButton1.HighEmphasis = true;
             materialButton1.Icon = null;
-            materialButton1.Location = new Point(743, 585);
-            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.Location = new Point(849, 780);
+            materialButton1.Margin = new Padding(5, 8, 5, 8);
             materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton1.Name = "materialButton1";
             materialButton1.NoAccentTextColor = Color.Empty;
-            materialButton1.Size = new Size(144, 36);
+            materialButton1.Size = new Size(165, 48);
             materialButton1.TabIndex = 0;
             materialButton1.Text = "Enter";
             materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -133,10 +133,12 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(taskMainPage1);
             tabPage4.ImageKey = "logout_white.png";
-            tabPage4.Location = new Point(4, 24);
+            tabPage4.Location = new Point(4, 29);
+            tabPage4.Margin = new Padding(3, 4, 3, 4);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1261, 652);
+            tabPage4.Size = new Size(1443, 874);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Exit";
             tabPage4.UseVisualStyleBackColor = true;
@@ -144,16 +146,24 @@
             // tabPage3
             // 
             tabPage3.BackColor = Color.White;
+            tabPage3.Controls.Add(fileTree);
             tabPage3.Controls.Add(smoothTabControl2);
-            tabPage3.Controls.Add(materialCard7);
             tabPage3.Controls.Add(menuStrip1);
             tabPage3.Controls.Add(materialTabSelector1);
             tabPage3.ImageKey = "instruction_white.png";
-            tabPage3.Location = new Point(4, 24);
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Margin = new Padding(3, 4, 3, 4);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1261, 652);
+            tabPage3.Size = new Size(1443, 874);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Instructions";
+            // 
+            // fileTree
+            // 
+            fileTree.Location = new Point(3, 33);
+            fileTree.Name = "fileTree";
+            fileTree.Size = new Size(285, 617);
+            fileTree.TabIndex = 5;
             // 
             // smoothTabControl2
             // 
@@ -161,12 +171,13 @@
             smoothTabControl2.Controls.Add(tabPage5);
             smoothTabControl2.Controls.Add(tabPage6);
             smoothTabControl2.Depth = 0;
-            smoothTabControl2.Location = new Point(257, 75);
+            smoothTabControl2.Location = new Point(285, 64);
+            smoothTabControl2.Margin = new Padding(3, 4, 3, 4);
             smoothTabControl2.MouseState = MaterialSkin.MouseState.HOVER;
             smoothTabControl2.Multiline = true;
             smoothTabControl2.Name = "smoothTabControl2";
             smoothTabControl2.SelectedIndex = 0;
-            smoothTabControl2.Size = new Size(932, 413);
+            smoothTabControl2.Size = new Size(1065, 551);
             smoothTabControl2.TabIndex = 3;
             // 
             // tabPage5
@@ -184,11 +195,44 @@
             tabPage5.Controls.Add(materialLabel9);
             tabPage5.Controls.Add(materialLabel8);
             tabPage5.ForeColor = SystemColors.ControlText;
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Margin = new Padding(3, 4, 3, 4);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(924, 385);
+            tabPage5.Size = new Size(1057, 518);
             tabPage5.TabIndex = 0;
             tabPage5.Text = "task1";
+            // 
+            // materialButton5
+            // 
+            materialButton5.AutoSize = false;
+            materialButton5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton5.Depth = 0;
+            materialButton5.HighEmphasis = true;
+            materialButton5.Icon = null;
+            materialButton5.Location = new Point(878, 137);
+            materialButton5.Margin = new Padding(5, 8, 5, 8);
+            materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton5.Name = "materialButton5";
+            materialButton5.NoAccentTextColor = Color.Empty;
+            materialButton5.Size = new Size(112, 48);
+            materialButton5.TabIndex = 12;
+            materialButton5.Text = "Open File";
+            materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton5.UseAccentColor = false;
+            materialButton5.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel12
+            // 
+            materialLabel12.AutoSize = true;
+            materialLabel12.Depth = 0;
+            materialLabel12.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel12.Location = new Point(737, 143);
+            materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel12.Name = "materialLabel12";
+            materialLabel12.Size = new Size(107, 19);
+            materialLabel12.TabIndex = 11;
+            materialLabel12.Text = "Associate Files";
             // 
             // openFile1
             // 
@@ -198,12 +242,12 @@
             openFile1.Depth = 0;
             openFile1.HighEmphasis = true;
             openFile1.Icon = null;
-            openFile1.Location = new Point(768, 6);
-            openFile1.Margin = new Padding(4, 6, 4, 6);
+            openFile1.Location = new Point(878, 8);
+            openFile1.Margin = new Padding(5, 8, 5, 8);
             openFile1.MouseState = MaterialSkin.MouseState.HOVER;
             openFile1.Name = "openFile1";
             openFile1.NoAccentTextColor = Color.Empty;
-            openFile1.Size = new Size(98, 36);
+            openFile1.Size = new Size(112, 48);
             openFile1.TabIndex = 10;
             openFile1.Text = "Open File";
             openFile1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -216,7 +260,7 @@
             materialLabel11.AutoSize = true;
             materialLabel11.Depth = 0;
             materialLabel11.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel11.Location = new Point(645, 10);
+            materialLabel11.Location = new Point(737, 13);
             materialLabel11.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel11.Name = "materialLabel11";
             materialLabel11.Size = new Size(107, 19);
@@ -231,12 +275,12 @@
             materialButton4.Depth = 0;
             materialButton4.HighEmphasis = true;
             materialButton4.Icon = null;
-            materialButton4.Location = new Point(39, 279);
-            materialButton4.Margin = new Padding(4, 6, 4, 6);
+            materialButton4.Location = new Point(45, 372);
+            materialButton4.Margin = new Padding(5, 8, 5, 8);
             materialButton4.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton4.Name = "materialButton4";
             materialButton4.NoAccentTextColor = Color.Empty;
-            materialButton4.Size = new Size(147, 36);
+            materialButton4.Size = new Size(168, 48);
             materialButton4.TabIndex = 8;
             materialButton4.Text = "Add Test Case";
             materialButton4.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -250,10 +294,11 @@
             materialMultiLineTextBox1.Depth = 0;
             materialMultiLineTextBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialMultiLineTextBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialMultiLineTextBox1.Location = new Point(48, 129);
+            materialMultiLineTextBox1.Location = new Point(55, 172);
+            materialMultiLineTextBox1.Margin = new Padding(3, 4, 3, 4);
             materialMultiLineTextBox1.MouseState = MaterialSkin.MouseState.HOVER;
             materialMultiLineTextBox1.Name = "materialMultiLineTextBox1";
-            materialMultiLineTextBox1.Size = new Size(519, 96);
+            materialMultiLineTextBox1.Size = new Size(593, 127);
             materialMultiLineTextBox1.TabIndex = 7;
             materialMultiLineTextBox1.Text = "";
             // 
@@ -264,12 +309,13 @@
             materialTextBox2.Depth = 0;
             materialTextBox2.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialTextBox2.LeadingIcon = null;
-            materialTextBox2.Location = new Point(330, 32);
+            materialTextBox2.Location = new Point(377, 43);
+            materialTextBox2.Margin = new Padding(3, 4, 3, 4);
             materialTextBox2.MaxLength = 50;
             materialTextBox2.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox2.Multiline = false;
             materialTextBox2.Name = "materialTextBox2";
-            materialTextBox2.Size = new Size(237, 50);
+            materialTextBox2.Size = new Size(271, 50);
             materialTextBox2.TabIndex = 6;
             materialTextBox2.Text = "";
             materialTextBox2.TrailingIcon = null;
@@ -281,12 +327,13 @@
             materialTextBox1.Depth = 0;
             materialTextBox1.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialTextBox1.LeadingIcon = null;
-            materialTextBox1.Location = new Point(48, 32);
+            materialTextBox1.Location = new Point(55, 43);
+            materialTextBox1.Margin = new Padding(3, 4, 3, 4);
             materialTextBox1.MaxLength = 50;
             materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
             materialTextBox1.Multiline = false;
             materialTextBox1.Name = "materialTextBox1";
-            materialTextBox1.Size = new Size(237, 50);
+            materialTextBox1.Size = new Size(271, 50);
             materialTextBox1.TabIndex = 5;
             materialTextBox1.Text = "";
             materialTextBox1.TrailingIcon = null;
@@ -296,7 +343,7 @@
             materialLabel10.AutoSize = true;
             materialLabel10.Depth = 0;
             materialLabel10.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel10.Location = new Point(48, 107);
+            materialLabel10.Location = new Point(55, 143);
             materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel10.Name = "materialLabel10";
             materialLabel10.Size = new Size(76, 19);
@@ -308,7 +355,7 @@
             materialLabel9.AutoSize = true;
             materialLabel9.Depth = 0;
             materialLabel9.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel9.Location = new Point(330, 10);
+            materialLabel9.Location = new Point(377, 13);
             materialLabel9.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel9.Name = "materialLabel9";
             materialLabel9.Size = new Size(72, 19);
@@ -320,7 +367,7 @@
             materialLabel8.AutoSize = true;
             materialLabel8.Depth = 0;
             materialLabel8.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel8.Location = new Point(48, 10);
+            materialLabel8.Location = new Point(55, 13);
             materialLabel8.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel8.Name = "materialLabel8";
             materialLabel8.Size = new Size(99, 19);
@@ -330,47 +377,22 @@
             // tabPage6
             // 
             tabPage6.BackColor = Color.White;
-            tabPage6.Location = new Point(4, 24);
+            tabPage6.Location = new Point(4, 29);
+            tabPage6.Margin = new Padding(3, 4, 3, 4);
             tabPage6.Name = "tabPage6";
-            tabPage6.Padding = new Padding(3);
-            tabPage6.Size = new Size(924, 385);
+            tabPage6.Padding = new Padding(3, 4, 3, 4);
+            tabPage6.Size = new Size(1057, 518);
             tabPage6.TabIndex = 1;
             tabPage6.Text = "task2";
             // 
-            // materialCard7
-            // 
-            materialCard7.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard7.Controls.Add(materialListBox3);
-            materialCard7.Depth = 0;
-            materialCard7.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard7.Location = new Point(63, 62);
-            materialCard7.Margin = new Padding(14);
-            materialCard7.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard7.Name = "materialCard7";
-            materialCard7.Padding = new Padding(14);
-            materialCard7.Size = new Size(129, 422);
-            materialCard7.TabIndex = 1;
-            // 
-            // materialListBox3
-            // 
-            materialListBox3.BackColor = Color.White;
-            materialListBox3.BorderColor = Color.LightGray;
-            materialListBox3.Depth = 0;
-            materialListBox3.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialListBox3.Location = new Point(0, 0);
-            materialListBox3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialListBox3.Name = "materialListBox3";
-            materialListBox3.SelectedIndex = -1;
-            materialListBox3.SelectedItem = null;
-            materialListBox3.Size = new Size(129, 23);
-            materialListBox3.TabIndex = 0;
-            // 
             // menuStrip1
             // 
+            menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1261, 24);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(1443, 30);
             menuStrip1.TabIndex = 4;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -378,20 +400,20 @@
             // 
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openFolderToolStripMenuItem, openFolderToolStripMenuItem1 });
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "File";
             // 
             // openFolderToolStripMenuItem
             // 
             openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            openFolderToolStripMenuItem.Size = new Size(139, 22);
+            openFolderToolStripMenuItem.Size = new Size(174, 26);
             openFolderToolStripMenuItem.Text = "New File";
             openFolderToolStripMenuItem.Click += openFolderToolStripMenuItem_Click;
             // 
             // openFolderToolStripMenuItem1
             // 
             openFolderToolStripMenuItem1.Name = "openFolderToolStripMenuItem1";
-            openFolderToolStripMenuItem1.Size = new Size(139, 22);
+            openFolderToolStripMenuItem1.Size = new Size(174, 26);
             openFolderToolStripMenuItem1.Text = "Open Folder";
             // 
             // materialTabSelector1
@@ -400,10 +422,11 @@
             materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
             materialTabSelector1.Depth = 0;
             materialTabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTabSelector1.Location = new Point(257, 62);
+            materialTabSelector1.Location = new Point(285, 34);
+            materialTabSelector1.Margin = new Padding(3, 4, 3, 4);
             materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
             materialTabSelector1.Name = "materialTabSelector1";
-            materialTabSelector1.Size = new Size(925, 23);
+            materialTabSelector1.Size = new Size(1057, 31);
             materialTabSelector1.TabIndex = 2;
             materialTabSelector1.Text = "materialTabSelector1";
             materialTabSelector1.Click += materialTabSelector1_Click;
@@ -414,10 +437,11 @@
             tabPage2.Controls.Add(materialCard6);
             tabPage2.Controls.Add(materialCard5);
             tabPage2.ImageKey = "file_white.png";
-            tabPage2.Location = new Point(4, 24);
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Margin = new Padding(3, 4, 3, 4);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1261, 652);
+            tabPage2.Padding = new Padding(3, 4, 3, 4);
+            tabPage2.Size = new Size(1443, 874);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Files";
             // 
@@ -428,21 +452,22 @@
             materialCard6.Controls.Add(materialLabel7);
             materialCard6.Depth = 0;
             materialCard6.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard6.Location = new Point(488, 62);
-            materialCard6.Margin = new Padding(14);
+            materialCard6.Location = new Point(558, 83);
+            materialCard6.Margin = new Padding(16, 19, 16, 19);
             materialCard6.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard6.Name = "materialCard6";
-            materialCard6.Padding = new Padding(14);
-            materialCard6.Size = new Size(503, 341);
+            materialCard6.Padding = new Padding(16, 19, 16, 19);
+            materialCard6.Size = new Size(575, 455);
             materialCard6.TabIndex = 4;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(17, 39);
+            textBox2.Location = new Point(19, 52);
+            textBox2.Margin = new Padding(3, 4, 3, 4);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
-            textBox2.Size = new Size(469, 272);
+            textBox2.Size = new Size(535, 361);
             textBox2.TabIndex = 4;
             // 
             // materialLabel7
@@ -450,7 +475,7 @@
             materialLabel7.AutoSize = true;
             materialLabel7.Depth = 0;
             materialLabel7.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel7.Location = new Point(17, 14);
+            materialLabel7.Location = new Point(19, 19);
             materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel7.Name = "materialLabel7";
             materialLabel7.Size = new Size(56, 19);
@@ -466,12 +491,12 @@
             materialCard5.Controls.Add(materialLabel6);
             materialCard5.Depth = 0;
             materialCard5.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard5.Location = new Point(63, 62);
-            materialCard5.Margin = new Padding(14);
+            materialCard5.Location = new Point(72, 83);
+            materialCard5.Margin = new Padding(16, 19, 16, 19);
             materialCard5.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard5.Name = "materialCard5";
-            materialCard5.Padding = new Padding(14);
-            materialCard5.Size = new Size(351, 341);
+            materialCard5.Padding = new Padding(16, 19, 16, 19);
+            materialCard5.Size = new Size(401, 455);
             materialCard5.TabIndex = 2;
             // 
             // materialButton3
@@ -482,12 +507,12 @@
             materialButton3.Depth = 0;
             materialButton3.HighEmphasis = true;
             materialButton3.Icon = null;
-            materialButton3.Location = new Point(18, 237);
-            materialButton3.Margin = new Padding(4, 6, 4, 6);
+            materialButton3.Location = new Point(21, 316);
+            materialButton3.Margin = new Padding(5, 8, 5, 8);
             materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton3.Name = "materialButton3";
             materialButton3.NoAccentTextColor = Color.Empty;
-            materialButton3.Size = new Size(147, 36);
+            materialButton3.Size = new Size(168, 48);
             materialButton3.TabIndex = 3;
             materialButton3.Text = "Delete File";
             materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -500,12 +525,13 @@
             materialListBox2.BorderColor = Color.LightGray;
             materialListBox2.Depth = 0;
             materialListBox2.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialListBox2.Location = new Point(17, 36);
+            materialListBox2.Location = new Point(19, 48);
+            materialListBox2.Margin = new Padding(3, 4, 3, 4);
             materialListBox2.MouseState = MaterialSkin.MouseState.HOVER;
             materialListBox2.Name = "materialListBox2";
             materialListBox2.SelectedIndex = -1;
             materialListBox2.SelectedItem = null;
-            materialListBox2.Size = new Size(317, 128);
+            materialListBox2.Size = new Size(362, 171);
             materialListBox2.TabIndex = 2;
             // 
             // materialButton2
@@ -516,12 +542,12 @@
             materialButton2.Depth = 0;
             materialButton2.HighEmphasis = true;
             materialButton2.Icon = null;
-            materialButton2.Location = new Point(18, 189);
-            materialButton2.Margin = new Padding(4, 6, 4, 6);
+            materialButton2.Location = new Point(21, 252);
+            materialButton2.Margin = new Padding(5, 8, 5, 8);
             materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
             materialButton2.Name = "materialButton2";
             materialButton2.NoAccentTextColor = Color.Empty;
-            materialButton2.Size = new Size(147, 36);
+            materialButton2.Size = new Size(168, 48);
             materialButton2.TabIndex = 1;
             materialButton2.Text = "Add Files";
             materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -533,7 +559,7 @@
             materialLabel6.AutoSize = true;
             materialLabel6.Depth = 0;
             materialLabel6.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel6.Location = new Point(17, 14);
+            materialLabel6.Location = new Point(19, 19);
             materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel6.Name = "materialLabel6";
             materialLabel6.Size = new Size(108, 19);
@@ -548,10 +574,11 @@
             tabPage1.Controls.Add(materialCard2);
             tabPage1.Controls.Add(materialCard1);
             tabPage1.ImageKey = "group_white.png";
-            tabPage1.Location = new Point(4, 24);
+            tabPage1.Location = new Point(4, 29);
+            tabPage1.Margin = new Padding(3, 4, 3, 4);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1261, 652);
+            tabPage1.Padding = new Padding(3, 4, 3, 4);
+            tabPage1.Size = new Size(1443, 874);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Students";
             // 
@@ -561,12 +588,12 @@
             materialCard4.Controls.Add(materialLabel5);
             materialCard4.Depth = 0;
             materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard4.Location = new Point(63, 444);
-            materialCard4.Margin = new Padding(14);
+            materialCard4.Location = new Point(72, 592);
+            materialCard4.Margin = new Padding(16, 19, 16, 19);
             materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard4.Name = "materialCard4";
-            materialCard4.Padding = new Padding(14);
-            materialCard4.Size = new Size(1086, 204);
+            materialCard4.Padding = new Padding(16, 19, 16, 19);
+            materialCard4.Size = new Size(1241, 272);
             materialCard4.TabIndex = 3;
             // 
             // materialLabel5
@@ -574,7 +601,7 @@
             materialLabel5.AutoSize = true;
             materialLabel5.Depth = 0;
             materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel5.Location = new Point(492, 14);
+            materialLabel5.Location = new Point(562, 19);
             materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel5.Name = "materialLabel5";
             materialLabel5.Size = new Size(61, 19);
@@ -591,27 +618,29 @@
             materialCard3.Controls.Add(materialLabel3);
             materialCard3.Depth = 0;
             materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(881, 62);
-            materialCard3.Margin = new Padding(14);
+            materialCard3.Location = new Point(1007, 83);
+            materialCard3.Margin = new Padding(16, 19, 16, 19);
             materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard3.Name = "materialCard3";
-            materialCard3.Padding = new Padding(14);
-            materialCard3.Size = new Size(268, 341);
+            materialCard3.Padding = new Padding(16, 19, 16, 19);
+            materialCard3.Size = new Size(306, 455);
             materialCard3.TabIndex = 4;
             // 
             // listView2
             // 
-            listView2.Location = new Point(17, 227);
+            listView2.Location = new Point(19, 303);
+            listView2.Margin = new Padding(3, 4, 3, 4);
             listView2.Name = "listView2";
-            listView2.Size = new Size(234, 97);
+            listView2.Size = new Size(267, 128);
             listView2.TabIndex = 7;
             listView2.UseCompatibleStateImageBehavior = false;
             // 
             // listView1
             // 
-            listView1.Location = new Point(17, 52);
+            listView1.Location = new Point(19, 69);
+            listView1.Margin = new Padding(3, 4, 3, 4);
             listView1.Name = "listView1";
-            listView1.Size = new Size(234, 97);
+            listView1.Size = new Size(267, 128);
             listView1.TabIndex = 6;
             listView1.UseCompatibleStateImageBehavior = false;
             // 
@@ -620,7 +649,7 @@
             materialLabel4.AutoSize = true;
             materialLabel4.Depth = 0;
             materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel4.Location = new Point(17, 201);
+            materialLabel4.Location = new Point(19, 268);
             materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel4.Name = "materialLabel4";
             materialLabel4.Size = new Size(138, 19);
@@ -632,7 +661,7 @@
             materialLabel3.AutoSize = true;
             materialLabel3.Depth = 0;
             materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(17, 14);
+            materialLabel3.Location = new Point(19, 19);
             materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel3.Name = "materialLabel3";
             materialLabel3.Size = new Size(71, 19);
@@ -646,21 +675,22 @@
             materialCard2.Controls.Add(materialLabel2);
             materialCard2.Depth = 0;
             materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(374, 62);
-            materialCard2.Margin = new Padding(14);
+            materialCard2.Location = new Point(427, 83);
+            materialCard2.Margin = new Padding(16, 19, 16, 19);
             materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard2.Name = "materialCard2";
-            materialCard2.Padding = new Padding(14);
-            materialCard2.Size = new Size(460, 341);
+            materialCard2.Padding = new Padding(16, 19, 16, 19);
+            materialCard2.Size = new Size(526, 455);
             materialCard2.TabIndex = 3;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(17, 36);
+            textBox1.Location = new Point(19, 48);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(426, 288);
+            textBox1.Size = new Size(486, 383);
             textBox1.TabIndex = 3;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
@@ -669,7 +699,7 @@
             materialLabel2.AutoSize = true;
             materialLabel2.Depth = 0;
             materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(17, 14);
+            materialLabel2.Location = new Point(19, 19);
             materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel2.Name = "materialLabel2";
             materialLabel2.Size = new Size(144, 19);
@@ -683,13 +713,13 @@
             materialCard1.Controls.Add(materialLabel1);
             materialCard1.Depth = 0;
             materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(63, 62);
-            materialCard1.Margin = new Padding(14);
+            materialCard1.Location = new Point(72, 83);
+            materialCard1.Margin = new Padding(16, 19, 16, 19);
             materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
+            materialCard1.Padding = new Padding(16, 19, 16, 19);
             materialCard1.RightToLeft = RightToLeft.No;
-            materialCard1.Size = new Size(283, 341);
+            materialCard1.Size = new Size(323, 455);
             materialCard1.TabIndex = 1;
             // 
             // materialListBox1
@@ -710,13 +740,14 @@
             materialListBox1.Items.Add(materialListBoxItem1);
             materialListBox1.Items.Add(materialListBoxItem2);
             materialListBox1.Items.Add(materialListBoxItem3);
-            materialListBox1.Location = new Point(17, 36);
+            materialListBox1.Location = new Point(19, 48);
+            materialListBox1.Margin = new Padding(3, 4, 3, 4);
             materialListBox1.MouseState = MaterialSkin.MouseState.HOVER;
             materialListBox1.Name = "materialListBox1";
             materialListBox1.RightToLeft = RightToLeft.No;
             materialListBox1.SelectedIndex = -1;
             materialListBox1.SelectedItem = null;
-            materialListBox1.Size = new Size(249, 128);
+            materialListBox1.Size = new Size(285, 171);
             materialListBox1.TabIndex = 2;
             // 
             // materialLabel1
@@ -724,7 +755,7 @@
             materialLabel1.AutoSize = true;
             materialLabel1.Depth = 0;
             materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(17, 14);
+            materialLabel1.Location = new Point(19, 19);
             materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel1.Name = "materialLabel1";
             materialLabel1.Size = new Size(100, 19);
@@ -740,70 +771,48 @@
             smoothTabControl1.Depth = 0;
             smoothTabControl1.Dock = DockStyle.Fill;
             smoothTabControl1.ImageList = imageList1;
-            smoothTabControl1.Location = new Point(3, 64);
+            smoothTabControl1.Location = new Point(3, 85);
+            smoothTabControl1.Margin = new Padding(3, 4, 3, 4);
             smoothTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             smoothTabControl1.Multiline = true;
             smoothTabControl1.Name = "smoothTabControl1";
             smoothTabControl1.SelectedIndex = 0;
-            smoothTabControl1.Size = new Size(1269, 680);
+            smoothTabControl1.Size = new Size(1451, 907);
             smoothTabControl1.TabIndex = 1;
             // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
             // 
-            // materialButton5
+            // taskMainPage1
             // 
-            materialButton5.AutoSize = false;
-            materialButton5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            materialButton5.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
-            materialButton5.Depth = 0;
-            materialButton5.HighEmphasis = true;
-            materialButton5.Icon = null;
-            materialButton5.Location = new Point(768, 103);
-            materialButton5.Margin = new Padding(4, 6, 4, 6);
-            materialButton5.MouseState = MaterialSkin.MouseState.HOVER;
-            materialButton5.Name = "materialButton5";
-            materialButton5.NoAccentTextColor = Color.Empty;
-            materialButton5.Size = new Size(98, 36);
-            materialButton5.TabIndex = 12;
-            materialButton5.Text = "Open File";
-            materialButton5.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            materialButton5.UseAccentColor = false;
-            materialButton5.UseVisualStyleBackColor = true;
-            // 
-            // materialLabel12
-            // 
-            materialLabel12.AutoSize = true;
-            materialLabel12.Depth = 0;
-            materialLabel12.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel12.Location = new Point(645, 107);
-            materialLabel12.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel12.Name = "materialLabel12";
-            materialLabel12.Size = new Size(107, 19);
-            materialLabel12.TabIndex = 11;
-            materialLabel12.Text = "Associate Files";
+            taskMainPage1.Location = new Point(3, 3);
+            taskMainPage1.Name = "taskMainPage1";
+            taskMainPage1.Size = new Size(1443, 874);
+            taskMainPage1.TabIndex = 0;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1275, 747);
+            ClientSize = new Size(1457, 996);
             Controls.Add(smoothTabControl1);
             Controls.Add(materialButton1);
             DrawerIsOpen = true;
             DrawerShowIconsWhenHidden = true;
             DrawerTabControl = smoothTabControl1;
             MainMenuStrip = menuStrip1;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
+            Padding = new Padding(3, 85, 3, 4);
             Text = "SmartCodeLab";
             Load += Form1_Load;
+            tabPage4.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             smoothTabControl2.ResumeLayout(false);
             tabPage5.ResumeLayout(false);
             tabPage5.PerformLayout();
-            materialCard7.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             tabPage2.ResumeLayout(false);
@@ -854,8 +863,6 @@
         private MaterialSkin.Controls.MaterialListBox materialListBox1;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private SmartCodeLab.CustomComponents.SmoothTabControl smoothTabControl1;
-        private MaterialSkin.Controls.MaterialCard materialCard7;
-        private MaterialSkin.Controls.MaterialListBox materialListBox3;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem openFolderToolStripMenuItem;
@@ -876,5 +883,7 @@
         private OpenFileDialog openFileDialog1;
         private MaterialSkin.Controls.MaterialButton materialButton5;
         private MaterialSkin.Controls.MaterialLabel materialLabel12;
+        private TreeView fileTree;
+        private CustomComponents.MainPages.TaskMainPage taskMainPage1;
     }
 }

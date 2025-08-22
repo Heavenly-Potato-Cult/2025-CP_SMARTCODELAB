@@ -12,6 +12,7 @@ namespace SmartCodeLab
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+            TabPage tabPage = new TabPage();
         }
     }
 }
