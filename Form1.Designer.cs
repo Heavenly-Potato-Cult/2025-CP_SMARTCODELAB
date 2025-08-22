@@ -1,0 +1,528 @@
+﻿namespace SmartCodeLab
+{
+    partial class Form1
+    {
+        /// <summary>
+        ///  Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        ///  Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            MaterialSkin.MaterialListBoxItem materialListBoxItem1 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem2 = new MaterialSkin.MaterialListBoxItem();
+            MaterialSkin.MaterialListBoxItem materialListBoxItem3 = new MaterialSkin.MaterialListBoxItem();
+            materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            imageList1 = new ImageList(components);
+            tabPage4 = new TabPage();
+            tabPage3 = new TabPage();
+            tabPage2 = new TabPage();
+            materialCard6 = new MaterialSkin.Controls.MaterialCard();
+            textBox2 = new TextBox();
+            materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            materialCard5 = new MaterialSkin.Controls.MaterialCard();
+            materialButton3 = new MaterialSkin.Controls.MaterialButton();
+            materialListBox2 = new MaterialSkin.Controls.MaterialListBox();
+            materialButton2 = new MaterialSkin.Controls.MaterialButton();
+            materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            tabPage1 = new TabPage();
+            materialCard4 = new MaterialSkin.Controls.MaterialCard();
+            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            materialCard3 = new MaterialSkin.Controls.MaterialCard();
+            listView2 = new ListView();
+            listView1 = new ListView();
+            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            textBox1 = new TextBox();
+            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            materialListBox1 = new MaterialSkin.Controls.MaterialListBox();
+            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            smoothTabControl1 = new SmartCodeLab.CustomComponents.SmoothTabControl();
+            tabPage2.SuspendLayout();
+            materialCard6.SuspendLayout();
+            materialCard5.SuspendLayout();
+            tabPage1.SuspendLayout();
+            materialCard4.SuspendLayout();
+            materialCard3.SuspendLayout();
+            materialCard2.SuspendLayout();
+            materialCard1.SuspendLayout();
+            smoothTabControl1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // materialButton1
+            // 
+            materialButton1.AutoSize = false;
+            materialButton1.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton1.BackColor = SystemColors.ControlDark;
+            materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton1.Depth = 0;
+            materialButton1.HighEmphasis = true;
+            materialButton1.Icon = null;
+            materialButton1.Location = new Point(743, 585);
+            materialButton1.Margin = new Padding(4, 6, 4, 6);
+            materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton1.Name = "materialButton1";
+            materialButton1.NoAccentTextColor = Color.Empty;
+            materialButton1.Size = new Size(144, 36);
+            materialButton1.TabIndex = 0;
+            materialButton1.Text = "Enter";
+            materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton1.UseAccentColor = false;
+            materialButton1.UseVisualStyleBackColor = false;
+            materialButton1.Click += materialButton1_Click_1;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth32Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "file_white.png");
+            imageList1.Images.SetKeyName(1, "group_white.png");
+            imageList1.Images.SetKeyName(2, "instruction_white.png");
+            imageList1.Images.SetKeyName(3, "logout_white.png");
+            // 
+            // tabPage4
+            // 
+            tabPage4.ImageKey = "logout_white.png";
+            tabPage4.Location = new Point(4, 24);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(1262, 652);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "Exit";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.ImageKey = "file_white.png";
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(1262, 652);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Files";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.BackColor = Color.White;
+            tabPage2.Controls.Add(materialCard6);
+            tabPage2.Controls.Add(materialCard5);
+            tabPage2.ImageKey = "instruction_white.png";
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1262, 652);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Instructions";
+            // 
+            // materialCard6
+            // 
+            materialCard6.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard6.Controls.Add(textBox2);
+            materialCard6.Controls.Add(materialLabel7);
+            materialCard6.Depth = 0;
+            materialCard6.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard6.Location = new Point(488, 62);
+            materialCard6.Margin = new Padding(14);
+            materialCard6.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard6.Name = "materialCard6";
+            materialCard6.Padding = new Padding(14);
+            materialCard6.Size = new Size(503, 341);
+            materialCard6.TabIndex = 4;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(17, 39);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(469, 272);
+            textBox2.TabIndex = 4;
+            // 
+            // materialLabel7
+            // 
+            materialLabel7.AutoSize = true;
+            materialLabel7.Depth = 0;
+            materialLabel7.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel7.Location = new Point(17, 14);
+            materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel7.Name = "materialLabel7";
+            materialLabel7.Size = new Size(56, 19);
+            materialLabel7.TabIndex = 1;
+            materialLabel7.Text = "Preview";
+            // 
+            // materialCard5
+            // 
+            materialCard5.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard5.Controls.Add(materialButton3);
+            materialCard5.Controls.Add(materialListBox2);
+            materialCard5.Controls.Add(materialButton2);
+            materialCard5.Controls.Add(materialLabel6);
+            materialCard5.Depth = 0;
+            materialCard5.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard5.Location = new Point(63, 62);
+            materialCard5.Margin = new Padding(14);
+            materialCard5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard5.Name = "materialCard5";
+            materialCard5.Padding = new Padding(14);
+            materialCard5.Size = new Size(351, 341);
+            materialCard5.TabIndex = 2;
+            // 
+            // materialButton3
+            // 
+            materialButton3.AutoSize = false;
+            materialButton3.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton3.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton3.Depth = 0;
+            materialButton3.HighEmphasis = true;
+            materialButton3.Icon = null;
+            materialButton3.Location = new Point(18, 237);
+            materialButton3.Margin = new Padding(4, 6, 4, 6);
+            materialButton3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton3.Name = "materialButton3";
+            materialButton3.NoAccentTextColor = Color.Empty;
+            materialButton3.Size = new Size(147, 36);
+            materialButton3.TabIndex = 3;
+            materialButton3.Text = "Delete File";
+            materialButton3.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton3.UseAccentColor = false;
+            materialButton3.UseVisualStyleBackColor = true;
+            // 
+            // materialListBox2
+            // 
+            materialListBox2.BackColor = Color.White;
+            materialListBox2.BorderColor = Color.LightGray;
+            materialListBox2.Depth = 0;
+            materialListBox2.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialListBox2.Location = new Point(17, 36);
+            materialListBox2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialListBox2.Name = "materialListBox2";
+            materialListBox2.SelectedIndex = -1;
+            materialListBox2.SelectedItem = null;
+            materialListBox2.Size = new Size(317, 128);
+            materialListBox2.TabIndex = 2;
+            // 
+            // materialButton2
+            // 
+            materialButton2.AutoSize = false;
+            materialButton2.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            materialButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            materialButton2.Depth = 0;
+            materialButton2.HighEmphasis = true;
+            materialButton2.Icon = null;
+            materialButton2.Location = new Point(18, 189);
+            materialButton2.Margin = new Padding(4, 6, 4, 6);
+            materialButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialButton2.Name = "materialButton2";
+            materialButton2.NoAccentTextColor = Color.Empty;
+            materialButton2.Size = new Size(147, 36);
+            materialButton2.TabIndex = 1;
+            materialButton2.Text = "Add Files";
+            materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            materialButton2.UseAccentColor = false;
+            materialButton2.UseVisualStyleBackColor = true;
+            // 
+            // materialLabel6
+            // 
+            materialLabel6.AutoSize = true;
+            materialLabel6.Depth = 0;
+            materialLabel6.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel6.Location = new Point(17, 14);
+            materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel6.Name = "materialLabel6";
+            materialLabel6.Size = new Size(108, 19);
+            materialLabel6.TabIndex = 1;
+            materialLabel6.Text = "Reference Files";
+            // 
+            // tabPage1
+            // 
+            tabPage1.BackColor = Color.White;
+            tabPage1.Controls.Add(materialCard4);
+            tabPage1.Controls.Add(materialCard3);
+            tabPage1.Controls.Add(materialCard2);
+            tabPage1.Controls.Add(materialCard1);
+            tabPage1.ImageKey = "group_white.png";
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1261, 652);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Students";
+            // 
+            // materialCard4
+            // 
+            materialCard4.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard4.Controls.Add(materialLabel5);
+            materialCard4.Depth = 0;
+            materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard4.Location = new Point(63, 444);
+            materialCard4.Margin = new Padding(14);
+            materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard4.Name = "materialCard4";
+            materialCard4.Padding = new Padding(14);
+            materialCard4.Size = new Size(1086, 204);
+            materialCard4.TabIndex = 3;
+            // 
+            // materialLabel5
+            // 
+            materialLabel5.AutoSize = true;
+            materialLabel5.Depth = 0;
+            materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel5.Location = new Point(492, 14);
+            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel5.Name = "materialLabel5";
+            materialLabel5.Size = new Size(61, 19);
+            materialLabel5.TabIndex = 1;
+            materialLabel5.Text = "Analysis";
+            materialLabel5.Click += materialLabel5_Click;
+            // 
+            // materialCard3
+            // 
+            materialCard3.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard3.Controls.Add(listView2);
+            materialCard3.Controls.Add(listView1);
+            materialCard3.Controls.Add(materialLabel4);
+            materialCard3.Controls.Add(materialLabel3);
+            materialCard3.Depth = 0;
+            materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard3.Location = new Point(881, 62);
+            materialCard3.Margin = new Padding(14);
+            materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard3.Name = "materialCard3";
+            materialCard3.Padding = new Padding(14);
+            materialCard3.Size = new Size(268, 341);
+            materialCard3.TabIndex = 4;
+            // 
+            // listView2
+            // 
+            listView2.Location = new Point(17, 227);
+            listView2.Name = "listView2";
+            listView2.Size = new Size(234, 97);
+            listView2.TabIndex = 7;
+            listView2.UseCompatibleStateImageBehavior = false;
+            // 
+            // listView1
+            // 
+            listView1.Location = new Point(17, 52);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(234, 97);
+            listView1.TabIndex = 6;
+            listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // materialLabel4
+            // 
+            materialLabel4.AutoSize = true;
+            materialLabel4.Depth = 0;
+            materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel4.Location = new Point(17, 201);
+            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel4.Name = "materialLabel4";
+            materialLabel4.Size = new Size(138, 19);
+            materialLabel4.TabIndex = 5;
+            materialLabel4.Text = "Copy-Pasted Codes";
+            // 
+            // materialLabel3
+            // 
+            materialLabel3.AutoSize = true;
+            materialLabel3.Depth = 0;
+            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel3.Location = new Point(17, 14);
+            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel3.Name = "materialLabel3";
+            materialLabel3.Size = new Size(71, 19);
+            materialLabel3.TabIndex = 1;
+            materialLabel3.Text = "Functions";
+            // 
+            // materialCard2
+            // 
+            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard2.Controls.Add(textBox1);
+            materialCard2.Controls.Add(materialLabel2);
+            materialCard2.Depth = 0;
+            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard2.Location = new Point(374, 62);
+            materialCard2.Margin = new Padding(14);
+            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard2.Name = "materialCard2";
+            materialCard2.Padding = new Padding(14);
+            materialCard2.Size = new Size(460, 341);
+            materialCard2.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(17, 36);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(426, 288);
+            textBox1.TabIndex = 3;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // materialLabel2
+            // 
+            materialLabel2.AutoSize = true;
+            materialLabel2.Depth = 0;
+            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel2.Location = new Point(17, 14);
+            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel2.Name = "materialLabel2";
+            materialLabel2.Size = new Size(144, 19);
+            materialLabel2.TabIndex = 1;
+            materialLabel2.Text = "Code Review From : ";
+            // 
+            // materialCard1
+            // 
+            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
+            materialCard1.Controls.Add(materialListBox1);
+            materialCard1.Controls.Add(materialLabel1);
+            materialCard1.Depth = 0;
+            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialCard1.Location = new Point(63, 62);
+            materialCard1.Margin = new Padding(14);
+            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialCard1.Name = "materialCard1";
+            materialCard1.Padding = new Padding(14);
+            materialCard1.RightToLeft = RightToLeft.No;
+            materialCard1.Size = new Size(283, 341);
+            materialCard1.TabIndex = 1;
+            // 
+            // materialListBox1
+            // 
+            materialListBox1.BackColor = Color.White;
+            materialListBox1.BorderColor = Color.LightGray;
+            materialListBox1.Depth = 0;
+            materialListBox1.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialListBoxItem1.SecondaryText = "";
+            materialListBoxItem1.Tag = null;
+            materialListBoxItem1.Text = "Jimmuel";
+            materialListBoxItem2.SecondaryText = "";
+            materialListBoxItem2.Tag = null;
+            materialListBoxItem2.Text = "Clifford";
+            materialListBoxItem3.SecondaryText = "";
+            materialListBoxItem3.Tag = null;
+            materialListBoxItem3.Text = "Angelo";
+            materialListBox1.Items.Add(materialListBoxItem1);
+            materialListBox1.Items.Add(materialListBoxItem2);
+            materialListBox1.Items.Add(materialListBoxItem3);
+            materialListBox1.Location = new Point(17, 36);
+            materialListBox1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialListBox1.Name = "materialListBox1";
+            materialListBox1.RightToLeft = RightToLeft.No;
+            materialListBox1.SelectedIndex = -1;
+            materialListBox1.SelectedItem = null;
+            materialListBox1.Size = new Size(249, 128);
+            materialListBox1.TabIndex = 2;
+            // 
+            // materialLabel1
+            // 
+            materialLabel1.AutoSize = true;
+            materialLabel1.Depth = 0;
+            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialLabel1.Location = new Point(17, 14);
+            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialLabel1.Name = "materialLabel1";
+            materialLabel1.Size = new Size(100, 19);
+            materialLabel1.TabIndex = 1;
+            materialLabel1.Text = "Connected PC";
+            // 
+            // smoothTabControl1
+            // 
+            smoothTabControl1.Controls.Add(tabPage1);
+            smoothTabControl1.Controls.Add(tabPage2);
+            smoothTabControl1.Controls.Add(tabPage3);
+            smoothTabControl1.Controls.Add(tabPage4);
+            smoothTabControl1.Depth = 0;
+            smoothTabControl1.Dock = DockStyle.Fill;
+            smoothTabControl1.ImageList = imageList1;
+            smoothTabControl1.Location = new Point(3, 64);
+            smoothTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
+            smoothTabControl1.Multiline = true;
+            smoothTabControl1.Name = "smoothTabControl1";
+            smoothTabControl1.SelectedIndex = 0;
+            smoothTabControl1.Size = new Size(1269, 680);
+            smoothTabControl1.TabIndex = 1;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1275, 747);
+            Controls.Add(smoothTabControl1);
+            Controls.Add(materialButton1);
+            DrawerIsOpen = true;
+            DrawerShowIconsWhenHidden = true;
+            DrawerTabControl = smoothTabControl1;
+            Name = "Form1";
+            Text = "SmartCodeLab";
+            tabPage2.ResumeLayout(false);
+            materialCard6.ResumeLayout(false);
+            materialCard6.PerformLayout();
+            materialCard5.ResumeLayout(false);
+            materialCard5.PerformLayout();
+            tabPage1.ResumeLayout(false);
+            materialCard4.ResumeLayout(false);
+            materialCard4.PerformLayout();
+            materialCard3.ResumeLayout(false);
+            materialCard3.PerformLayout();
+            materialCard2.ResumeLayout(false);
+            materialCard2.PerformLayout();
+            materialCard1.ResumeLayout(false);
+            materialCard1.PerformLayout();
+            smoothTabControl1.ResumeLayout(false);
+            ResumeLayout(false);
+        }
+
+        #endregion
+
+        private MaterialSkin.Controls.MaterialButton materialButton1;
+        private ImageList imageList1;
+        private TabPage tabPage4;
+        private TabPage tabPage3;
+        private TabPage tabPage2;
+        private MaterialSkin.Controls.MaterialCard materialCard6;
+        private TextBox textBox2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private MaterialSkin.Controls.MaterialCard materialCard5;
+        private MaterialSkin.Controls.MaterialButton materialButton3;
+        private MaterialSkin.Controls.MaterialListBox materialListBox2;
+        private MaterialSkin.Controls.MaterialButton materialButton2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private TabPage tabPage1;
+        private MaterialSkin.Controls.MaterialCard materialCard4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private MaterialSkin.Controls.MaterialCard materialCard3;
+        private ListView listView2;
+        private ListView listView1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private MaterialSkin.Controls.MaterialCard materialCard2;
+        private TextBox textBox1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
+        private MaterialSkin.Controls.MaterialListBox materialListBox1;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private SmartCodeLab.CustomComponents.SmoothTabControl smoothTabControl1;
+    }
+}
