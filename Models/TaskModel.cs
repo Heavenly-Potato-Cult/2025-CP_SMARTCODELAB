@@ -34,8 +34,8 @@ namespace SmartCodeLab.Models
             } }
 
         //will be provided by the user(most probably a teacher) to test the students code
-        private KeyValuePair<string, string> _referenceFile; // the file that will be provided by the user as a quality reference of the students code
-        private Dictionary<string, string> _externalResources; // the file that contains the functions and properties needed to complete the task
+        public KeyValuePair<string, string>? _referenceFile { get; set; } // the file that will be provided by the user as a quality reference of the students code
+        public Dictionary<string, string>? _externalResources; // the file that contains the functions and properties needed to complete the task
 
         private Dictionary<string, string> _testCases; // will be provided by the user to test the students code
 
@@ -63,7 +63,7 @@ namespace SmartCodeLab.Models
 
         public override string? ToString()
         {
-            return _taskName + "\n" + _instructions + "\n" + _language;
+            return _taskName + "\n" + _instructions + "\n" + _language +"\n" +_referenceFile + "\n" + string.Join(", ", _externalResources.Values);
         }
     }
 }

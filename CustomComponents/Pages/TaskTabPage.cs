@@ -27,7 +27,10 @@ namespace SmartCodeLab.CustomComponents.Pages
                         taskModel._taskName = actName.Text;
                         taskModel._instructions = instruction.Text;
                         taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
+                        taskModel._referenceFile = associateContainer.getFile();
+                        taskModel._externalResources = externalResourceCon.getFiles();
                         MessageBox.Show(taskModel.ToString());
+                        MessageBox.Show(SystemSingleton.Instance.currentTaskPath ?? "no path set");
                     }
                 };
             }
