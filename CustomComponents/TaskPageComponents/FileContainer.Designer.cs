@@ -1,6 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents
+﻿namespace SmartCodeLab.CustomComponents.TaskPageComponents
 {
-    partial class CustomTabHeader
+    partial class FileContainer
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,45 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            button1 = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             SuspendLayout();
             // 
-            // label1
+            // flowLayoutPanel1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.BorderStyle = BorderStyle.FixedSingle;
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Margin = new Padding(0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(343, 244);
+            flowLayoutPanel1.TabIndex = 0;
             // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(112, 1);
-            button1.Name = "button1";
-            button1.Size = new Size(35, 29);
-            button1.TabIndex = 1;
-            button1.Text = "X";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // CustomTabHeader
+            // FileContainer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button1);
-            Controls.Add(label1);
-            Name = "CustomTabHeader";
-            Size = new Size(150, 30);
+            Controls.Add(flowLayoutPanel1);
+            Name = "FileContainer";
+            Size = new Size(343, 244);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private Button button1;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,12 +21,17 @@ namespace SmartCodeLab.CustomComponents
             tabControl1.ItemSize = new Size(0, 1);
         }
 
-        public void addTab()
+        public void addTab(TabPageModel tabPageModel)
         {
-            var newTab = new TabPage("New Tab");
+            var newTab = tabPageModel;
             tabControl1.TabPages.Add(newTab);
 
-            flowLayoutPanel1.Controls.Add(new CustomTabHeader());
+            flowLayoutPanel1.Controls.Add(tabPageModel._customTabHeader);
+        }
+
+        public TabControl getTabControl()
+        {
+            return tabControl1;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.CustomComponents.TaskPageComponents;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,21 @@ namespace SmartCodeLab.CustomComponents.Pages
         public TaskTabPage()
         {
             InitializeComponent();
+        }
+
+        private void materialButton4_Click(object sender, EventArgs e)
+        {
+            testContainer.Controls.Add(new TestCase());
+        }
+
+        private void openFile1_Click(object sender, EventArgs e)
+        {
+            associateContainer.addFile("testing");
+        }
+
+        private void materialButton5_Click(object sender, EventArgs e)
+        {
+            externalResourceCon.addFile("example");
         }
     }
 }

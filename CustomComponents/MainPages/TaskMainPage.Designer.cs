@@ -81,7 +81,7 @@
             // 
             customTabControl1.Location = new Point(217, 33);
             customTabControl1.Name = "customTabControl1";
-            customTabControl1.Size = new Size(1525, 1051);
+            customTabControl1.Size = new Size(1209, 838);
             customTabControl1.TabIndex = 7;
             // 
             // TaskMainPage

@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.Models;
+﻿using SmartCodeLab.CustomComponents.Pages;
+using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,10 +42,10 @@ namespace SmartCodeLab.CustomComponents.MainPages
         {
             string selectedPath = (e.Node.Tag as FileItem).FullPath;
             // will check if the selected path is not null, is a file that exists, and is not already opened
-            //if (selectedPath != null && File.Exists(selectedPath) && !openedFiles.Contains(selectedPath)) {
+            if (selectedPath != null && File.Exists(selectedPath) && !openedFiles.Contains(selectedPath)) {
                 openedFiles.Add(selectedPath);
-                customTabControl1.addTab();
-            //}
+                customTabControl1.addTab(new TabPageModel(selectedPath, customTabControl1.getTabControl(),new TaskTabPage()));
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents
+﻿namespace SmartCodeLab.CustomComponents.TaskPageComponents
 {
-    partial class CustomTabHeader
+    partial class FIleVisualDisplay
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,45 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             button1 = new Button();
+            fileName = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
             // 
             // button1
             // 
-            button1.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(112, 1);
+            button1.Location = new Point(192, -2);
             button1.Name = "button1";
-            button1.Size = new Size(35, 29);
+            button1.Size = new Size(28, 29);
             button1.TabIndex = 1;
             button1.Text = "X";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
-            // CustomTabHeader
+            // fileName
+            // 
+            fileName.AutoSize = true;
+            fileName.BackColor = SystemColors.ActiveCaption;
+            fileName.Location = new Point(3, 7);
+            fileName.Name = "fileName";
+            fileName.Size = new Size(50, 20);
+            fileName.TabIndex = 2;
+            fileName.Text = "label1";
+            // 
+            // FIleVisualDisplay
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(fileName);
             Controls.Add(button1);
-            Controls.Add(label1);
-            Name = "CustomTabHeader";
-            Size = new Size(150, 30);
+            Name = "FIleVisualDisplay";
+            Size = new Size(220, 34);
+            Load += FIleVisualDisplay_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private Button button1;
+        private Label fileName;
     }
 }
