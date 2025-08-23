@@ -61,5 +61,11 @@ namespace SmartCodeLab
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MonitoringForm monitoringForm = new MonitoringForm();
+            monitoringForm.ShowDialog();
+        }
     }
 }
