@@ -34,16 +34,23 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             return file;
         }
 
-        public List<KeyValuePair<string, string>>? getFiles()
+        public Dictionary<string, string>? getFiles()
         {
             if (flowLayoutPanel1.Controls.Count == 0)
                 return null;
 
-            List<KeyValuePair<string, string>> file = default;
+            Dictionary<string, string> file = new Dictionary<string, string>();
 
             foreach (FIleVisualDisplay control in flowLayoutPanel1.Controls)
             {
-                file.Add(control.getFile());
+                try
+                {
+                    file.Add(control.getFile().Key, control.getFile().Value);
+                }
+                catch(ArgumentException)
+                {
+                    //do not add the same key
+                }
             }
 
             return file;

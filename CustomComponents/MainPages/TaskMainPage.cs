@@ -29,10 +29,10 @@ namespace SmartCodeLab.CustomComponents.MainPages
             if (result == DialogResult.OK)
             {
                 fileTree.Nodes.Clear();
-
-                var rootItem = new FileItem(folderBrowserDialog.SelectedPath)
+                var rootItem = new FileItem(folderBrowserDialog.SelectedPath);
+                SystemSingleton.Instance.currentTaskPath = rootItem.FullPath;
                 {
-                    Name = new DirectoryInfo(folderBrowserDialog.SelectedPath).Name
+                    Name = new DirectoryInfo(folderBrowserDialog.SelectedPath).Name;
                 };
                 fileTree.Nodes.Add(rootItem.ToTreeNode());
             }

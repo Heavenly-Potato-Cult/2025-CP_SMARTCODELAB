@@ -26,11 +26,12 @@ namespace SmartCodeLab.CustomComponents
             {
                 Debug.WriteLine("I lost focus");
             };
-        }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Dispose();
+            button1.Click += (sender, e) =>
+            {
+                tabControl.TabPages.Remove(tabPage);
+                Dispose();
+            };
         }
     }
 }
