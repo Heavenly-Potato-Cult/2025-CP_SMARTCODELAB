@@ -75,7 +75,7 @@ namespace SmartCodeLab.Models
         }
         public override string ToString()
         {
-            return Name;
+            return FullPath;
         }
     }
 }

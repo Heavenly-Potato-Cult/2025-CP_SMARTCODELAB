@@ -15,6 +15,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
 {
     public partial class TaskMainPage : UserControl
     {
+        private ISet<string> openedFiles = new HashSet<string>();
         public TaskMainPage()
         {
             InitializeComponent();
@@ -38,7 +39,12 @@ namespace SmartCodeLab.CustomComponents.MainPages
 
         private void fileTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            smoothTabControl2.TabPages.Add(new TabPage("New Tab"));
+            string selectedPath = (e.Node.Tag as FileItem).FullPath;
+            // will check if the selected path is not null, is a file that exists, and is not already opened
+            //if (selectedPath != null && File.Exists(selectedPath) && !openedFiles.Contains(selectedPath)) {
+                openedFiles.Add(selectedPath);
+                customTabControl1.addTab();
+            //}
         }
     }
 }

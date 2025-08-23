@@ -33,11 +33,8 @@
             openFolderToolStripMenuItem = new ToolStripMenuItem();
             openFolderToolStripMenuItem1 = new ToolStripMenuItem();
             fileTree = new TreeView();
-            smoothTabControl2 = new SmoothTabControl();
-            tabPage6 = new TabPage();
-            materialTabSelector1 = new MaterialSkin.Controls.MaterialTabSelector();
+            customTabControl1 = new CustomTabControl();
             menuStrip1.SuspendLayout();
-            smoothTabControl2.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
@@ -80,58 +77,24 @@
             fileTree.TabIndex = 6;
             fileTree.AfterSelect += fileTree_AfterSelect;
             // 
-            // smoothTabControl2
+            // customTabControl1
             // 
-            smoothTabControl2.Anchor = AnchorStyles.None;
-            smoothTabControl2.Controls.Add(tabPage6);
-            smoothTabControl2.Depth = 0;
-            smoothTabControl2.Location = new Point(217, 64);
-            smoothTabControl2.Margin = new Padding(3, 4, 3, 4);
-            smoothTabControl2.MouseState = MaterialSkin.MouseState.HOVER;
-            smoothTabControl2.Multiline = true;
-            smoothTabControl2.Name = "smoothTabControl2";
-            smoothTabControl2.SelectedIndex = 0;
-            smoothTabControl2.Size = new Size(1220, 787);
-            smoothTabControl2.TabIndex = 8;
-            // 
-            // tabPage6
-            // 
-            tabPage6.BackColor = Color.White;
-            tabPage6.Location = new Point(4, 29);
-            tabPage6.Margin = new Padding(3, 4, 3, 4);
-            tabPage6.Name = "tabPage6";
-            tabPage6.Padding = new Padding(3, 4, 3, 4);
-            tabPage6.Size = new Size(1212, 754);
-            tabPage6.TabIndex = 1;
-            tabPage6.Text = "task2";
-            // 
-            // materialTabSelector1
-            // 
-            materialTabSelector1.BaseTabControl = smoothTabControl2;
-            materialTabSelector1.CharacterCasing = MaterialSkin.Controls.MaterialTabSelector.CustomCharacterCasing.Normal;
-            materialTabSelector1.Depth = 0;
-            materialTabSelector1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTabSelector1.Location = new Point(217, 34);
-            materialTabSelector1.Margin = new Padding(3, 4, 3, 4);
-            materialTabSelector1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialTabSelector1.Name = "materialTabSelector1";
-            materialTabSelector1.Size = new Size(1223, 31);
-            materialTabSelector1.TabIndex = 0;
-            materialTabSelector1.Text = "materialTabSelector1";
+            customTabControl1.Location = new Point(217, 33);
+            customTabControl1.Name = "customTabControl1";
+            customTabControl1.Size = new Size(1525, 1051);
+            customTabControl1.TabIndex = 7;
             // 
             // TaskMainPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(smoothTabControl2);
-            Controls.Add(materialTabSelector1);
+            Controls.Add(customTabControl1);
             Controls.Add(fileTree);
             Controls.Add(menuStrip1);
             Name = "TaskMainPage";
             Size = new Size(1440, 874);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            smoothTabControl2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -143,8 +106,6 @@
         private ToolStripMenuItem openFolderToolStripMenuItem;
         private ToolStripMenuItem openFolderToolStripMenuItem1;
         private TreeView fileTree;
-        private SmoothTabControl smoothTabControl2;
-        private TabPage tabPage6;
-        private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
+        private CustomTabControl customTabControl1;
     }
 }
