@@ -25,14 +25,14 @@ namespace SmartCodeLab
         private void btnMenu2_Click(object sender, EventArgs e)
         {
             student_Panel.Visible = true;
-            files_Panel.Visible = false;
+
             instructions_Panel.Visible = false;
         }
 
         private void btnMenu1_Click(object sender, EventArgs e)
         {
             student_Panel.Visible = false;
-            files_Panel.Visible = true;
+
             instructions_Panel.Visible = false;
 
         }
@@ -41,7 +41,22 @@ namespace SmartCodeLab
         {
             instructions_Panel.Visible = true;
             student_Panel.Visible = false;
-            files_Panel.Visible = false;
+
+        }
+
+        private void customCard1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void materialCard1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void student_Panel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
