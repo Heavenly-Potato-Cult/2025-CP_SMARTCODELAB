@@ -39,6 +39,9 @@ namespace SmartCodeLab.CustomComponents.Pages
                 actName.Text = taskModel._taskName;
                 instruction.Text = taskModel._instructions;
                 languageUsed.SelectedItem = taskModel.language;
+                KeyValuePair<string, string>? referenceFile = taskModel._referenceFile;
+                if (referenceFile.HasValue)
+                    associateContainer.addFile(referenceFile.Value.Key, referenceFile.Value.Value);
             }
         }
 
@@ -56,6 +59,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                         taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
                         taskModel._referenceFile = associateContainer.getFile();
                         taskModel._externalResources = externalResourceCon.getFiles();
+                        //taskModel._testCases = testContainer.getFiles();
                         MessageBox.Show(taskModel.ToString());
                         save_File(taskModel);
                     }
@@ -98,7 +102,17 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void materialButton5_Click(object sender, EventArgs e)
         {
-            externalResourceCon.addFile("example");
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Multiselect = true;
+            if(fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string[] filePaths = fileDialog.FileNames;
+                foreach (string filePath in filePaths)
+                {
+                    MessageBox.Show(filePath);
+                }
+            }
+            //externalResourceCon.addFile("example");
         }
     }
 }

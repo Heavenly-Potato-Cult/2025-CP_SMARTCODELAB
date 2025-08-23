@@ -62,7 +62,15 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
                 flowLayoutPanel1.Controls.Clear();
 
             flowLayoutPanel1.Controls.Add(new FIleVisualDisplay(filePath));
+        }
 
+        // planning to merge this with the addFile method by utilizing boolean flags
+        public void addFile(string fileName, string fileContent)
+        {
+            if (!AcceptMultipleFiles)
+                flowLayoutPanel1.Controls.Clear();
+
+            flowLayoutPanel1.Controls.Add(new FIleVisualDisplay(fileName, fileContent));
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]

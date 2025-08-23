@@ -20,9 +20,15 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             _fileName = Path.GetFileName(filePath);
             fileName.Text = _fileName;
             _fileContent = File.ReadAllText(filePath);
-            MessageBox.Show(_fileContent);
         }
 
+        public FIleVisualDisplay(string _fileName, string fileContent)
+        {
+            InitializeComponent();
+            this._fileName = _fileName;
+            fileName.Text = _fileName;
+            _fileContent = fileContent;
+        }
         private void FIleVisualDisplay_Load(object sender, EventArgs e)
         {
 
