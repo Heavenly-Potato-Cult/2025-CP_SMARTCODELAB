@@ -9,10 +9,10 @@ namespace SmartCodeLab
         public Form1()
         {
             InitializeComponent();
-            var skin = MaterialSkinManager.Instance;
-            skin.AddFormToManage(this);
-            skin.Theme = MaterialSkinManager.Themes.DARK;
-            skin.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
+            //var skin = MaterialSkinManager.Instance;
+            //skin.AddFormToManage(this);
+            //skin.Theme = MaterialSkinManager.Themes.DARK;
+            //skin.ColorScheme = new ColorScheme(Primary.BlueGrey800, Primary.BlueGrey900, Primary.BlueGrey500, Accent.LightBlue200, TextShade.WHITE);
         }
 
 

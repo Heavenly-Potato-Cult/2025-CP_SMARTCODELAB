@@ -1,5 +1,6 @@
 ﻿using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +15,38 @@ namespace SmartCodeLab.CustomComponents.Pages
 {
     public partial class TaskTabPage : UserControl
     {
+        private bool _newFile;
+        private string? _filePath;
+
+        //this is for opening a new file
         public TaskTabPage()
         {
             InitializeComponent();
-            foreach(Control control in Controls)
+            initialize_Save_Shortcut();
+            _newFile = true;
+        }
+
+        public TaskTabPage(string _filePath)
+        {
+            InitializeComponent();
+            initialize_Save_Shortcut();
+            _newFile = false;
+            this._filePath = _filePath;
+            TaskModel taskModel = JsonFileService.LoadFromFile<TaskModel>(_filePath);
+
+            if (taskModel != null)
             {
-                control.KeyUp += (sender, k) => 
+                actName.Text = taskModel._taskName;
+                instruction.Text = taskModel._instructions;
+                languageUsed.SelectedItem = taskModel.language;
+            }
+        }
+
+        private void initialize_Save_Shortcut()
+        {
+            foreach (Control control in Controls)
+            {
+                control.KeyUp += (sender, k) =>
                 {
                     if (k.KeyCode == Keys.S && k.Control)
                     {
@@ -30,9 +57,25 @@ namespace SmartCodeLab.CustomComponents.Pages
                         taskModel._referenceFile = associateContainer.getFile();
                         taskModel._externalResources = externalResourceCon.getFiles();
                         MessageBox.Show(taskModel.ToString());
-                        MessageBox.Show(SystemSingleton.Instance.currentTaskPath ?? "no path set");
+                        save_File(taskModel);
                     }
                 };
+            }
+        }
+
+        private void save_File(TaskModel taskModel)
+        {
+            if (_newFile)
+            {
+                _filePath = SystemSingleton.Instance.currentTaskPath + "\\" + (taskModel._taskName).Replace(' ', '_') + ".task";
+                JsonFileService.SaveToFile(taskModel,_filePath);
+                _newFile = false;
+                MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                JsonFileService.SaveToFile(taskModel, _filePath);
+                MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -43,7 +86,14 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void openFile1_Click(object sender, EventArgs e)
         {
-            associateContainer.addFile("testing");
+            FileDialog fileDialog = new OpenFileDialog();
+            DialogResult result = fileDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                string filePath = fileDialog.FileName;
+                string fileName = Path.GetFileName(filePath);
+                associateContainer.addFile(filePath);
+            }
         }
 
         private void materialButton5_Click(object sender, EventArgs e)

@@ -75,7 +75,7 @@
             fileTree.Name = "fileTree";
             fileTree.Size = new Size(208, 438);
             fileTree.TabIndex = 6;
-            fileTree.AfterSelect += fileTree_AfterSelect;
+            fileTree.NodeMouseClick += fileTree_NodeMouseClick;
             // 
             // customTabControl1
             // 

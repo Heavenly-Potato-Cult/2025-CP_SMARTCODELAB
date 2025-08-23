@@ -16,6 +16,8 @@ namespace SmartCodeLab.CustomComponents
         public CustomTabHeader(string headerText,TabControl tabControl, TabPage tabPage)
         {
             InitializeComponent();
+
+            label1.Text = headerText;
             label1.Click += (sender, e) =>
             {
                 Focus();
@@ -26,12 +28,8 @@ namespace SmartCodeLab.CustomComponents
             {
                 Debug.WriteLine("I lost focus");
             };
-
-            button1.Click += (sender, e) =>
-            {
-                tabControl.TabPages.Remove(tabPage);
-                Dispose();
-            };
         }
+
+        public Button CloseButton { get { return button1; } }
     }
 }

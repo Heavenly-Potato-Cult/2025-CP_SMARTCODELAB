@@ -202,6 +202,7 @@
             // 
             // languageUsed
             // 
+            languageUsed.AutoCompleteCustomSource.AddRange(new string[] { "Cpp", "Java", "Python" });
             languageUsed.AutoResize = false;
             languageUsed.BackColor = Color.FromArgb(255, 255, 255);
             languageUsed.Depth = 0;
@@ -214,7 +215,7 @@
             languageUsed.FormattingEnabled = true;
             languageUsed.IntegralHeight = false;
             languageUsed.ItemHeight = 43;
-            languageUsed.Items.AddRange(new object[] { "C++", "Java", "Python" });
+            languageUsed.Items.AddRange(new object[] { "Cpp", "Java", "Python" });
             languageUsed.Location = new Point(380, 54);
             languageUsed.MaxDropDownItems = 4;
             languageUsed.MouseState = MaterialSkin.MouseState.OUT;

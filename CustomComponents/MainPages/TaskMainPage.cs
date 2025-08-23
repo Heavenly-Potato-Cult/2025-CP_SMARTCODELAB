@@ -1,5 +1,6 @@
 ﻿using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.Models;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,19 +34,30 @@ namespace SmartCodeLab.CustomComponents.MainPages
                 SystemSingleton.Instance.currentTaskPath = rootItem.FullPath;
                 {
                     Name = new DirectoryInfo(folderBrowserDialog.SelectedPath).Name;
-                };
+                }
+                ;
                 fileTree.Nodes.Add(rootItem.ToTreeNode());
             }
         }
 
-        private void fileTree_AfterSelect(object sender, TreeViewEventArgs e)
+        private void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             string selectedPath = (e.Node.Tag as FileItem).FullPath;
             // will check if the selected path is not null, is a file that exists, and is not already opened
-            if (selectedPath != null && File.Exists(selectedPath) && !openedFiles.Contains(selectedPath)) {
+            if (selectedPath != null && File.Exists(selectedPath) && !openedFiles.Contains(selectedPath))
+            {
+                TaskModel taskModel = JsonFileService.LoadFromFile<TaskModel>(selectedPath);
+                    
+                if(taskModel == null)
+                {
+                    MessageBox.Show("The selected file is not a valid task file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 openedFiles.Add(selectedPath);
-                customTabControl1.addTab(new TabPageModel(selectedPath, customTabControl1.getTabControl(),new TaskTabPage()));
+                customTabControl1.addTab(new TabPageModel(selectedPath, customTabControl1.getTabControl(), new TaskTabPage(selectedPath), openedFiles));
             }
+            else if(!Path.Exists(selectedPath) && !File.Exists(selectedPath)) //checks if the path is a folder
+                MessageBox.Show("File does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

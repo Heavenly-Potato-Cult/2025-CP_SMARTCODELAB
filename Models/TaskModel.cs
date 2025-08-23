@@ -11,7 +11,7 @@ namespace SmartCodeLab.Models
     {
         private static readonly Dictionary<string, LanguageSupported> languageMap = new()
         {
-            { "C++", LanguageSupported.Cpp },
+            { "Cpp", LanguageSupported.Cpp },
             { "Python", LanguageSupported.Python },
             { "Java", LanguageSupported.Java }
         };
@@ -21,7 +21,7 @@ namespace SmartCodeLab.Models
 
         private LanguageSupported? _language;
         public string language { 
-            get { return _language?.ToString() ?? ""; }
+            get { return _language?.ToString() ?? "none"; }
             set {
                 if (value != null && languageMap.TryGetValue(value, out var mappedValue))
                 {
@@ -35,9 +35,9 @@ namespace SmartCodeLab.Models
 
         //will be provided by the user(most probably a teacher) to test the students code
         public KeyValuePair<string, string>? _referenceFile { get; set; } // the file that will be provided by the user as a quality reference of the students code
-        public Dictionary<string, string>? _externalResources; // the file that contains the functions and properties needed to complete the task
+        public Dictionary<string, string>? _externalResources { get; set; } // the file that contains the functions and properties needed to complete the task
 
-        private Dictionary<string, string> _testCases; // will be provided by the user to test the students code
+        private Dictionary<string, string> _testCases { get; set; } // will be provided by the user to test the students code
 
         public TaskModel() { }
 
@@ -63,7 +63,7 @@ namespace SmartCodeLab.Models
 
         public override string? ToString()
         {
-            return _taskName + "\n" + _instructions + "\n" + _language +"\n" +_referenceFile + "\n" + string.Join(", ", _externalResources.Values);
+            return _taskName + "\n" + _instructions + "\n" + language +"\n" +_referenceFile + "\n" + (_externalResources != null ? string.Join(", ", _externalResources.Values) : "");
         }
     }
 }

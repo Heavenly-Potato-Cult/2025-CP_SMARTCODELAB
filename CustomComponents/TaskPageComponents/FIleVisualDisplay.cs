@@ -12,14 +12,15 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
 {
     public partial class FIleVisualDisplay : UserControl
     {
-        string _filePath { get; set; }
+        string _fileContent { get; set; }
         string _fileName { get; set; }
         public FIleVisualDisplay(string filePath)
         {
             InitializeComponent();
-            fileName.Text = Path.GetFileName(filePath);
-            _filePath = filePath;
             _fileName = Path.GetFileName(filePath);
+            fileName.Text = _fileName;
+            _fileContent = File.ReadAllText(filePath);
+            MessageBox.Show(_fileContent);
         }
 
         private void FIleVisualDisplay_Load(object sender, EventArgs e)
@@ -29,7 +30,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
 
         public KeyValuePair<string, string> getFile()
         {
-            return new KeyValuePair<string, string>(_fileName, _filePath);
+            return new KeyValuePair<string, string>(_fileName, _fileContent);
         }
 
         private void button1_Click(object sender, EventArgs e)
