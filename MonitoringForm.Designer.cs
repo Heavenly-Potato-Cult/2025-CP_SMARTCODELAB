@@ -36,28 +36,28 @@
             btnMenu2 = new Button();
             instructions_Panel = new Panel();
             taskMainPage2 = new CustomComponents.MainPages.TaskMainPage();
-            materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            materialListBox1 = new MaterialSkin.Controls.MaterialListBox();
-            materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            materialCard2 = new MaterialSkin.Controls.MaterialCard();
-            materialCard3 = new MaterialSkin.Controls.MaterialCard();
-            listView2 = new ListView();
-            listView1 = new ListView();
-            materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
-            materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            textBox1 = new TextBox();
-            materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
-            materialCard4 = new MaterialSkin.Controls.MaterialCard();
-            materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             student_Panel = new Panel();
+            customCard2 = new CustomComponents.CustomCard();
+            textBox1 = new TextBox();
+            label2 = new Label();
+            customCard1 = new CustomComponents.CustomCard();
+            materialListBox2 = new MaterialSkin.Controls.MaterialListBox();
+            label1 = new Label();
+            customCard3 = new CustomComponents.CustomCard();
+            label3 = new Label();
+            label4 = new Label();
+            listView3 = new ListView();
+            listView4 = new ListView();
+            customCard4 = new CustomComponents.CustomCard();
+            label5 = new Label();
             headerPanel.SuspendLayout();
             sideMenuPanel.SuspendLayout();
             instructions_Panel.SuspendLayout();
-            materialCard1.SuspendLayout();
-            materialCard2.SuspendLayout();
-            materialCard3.SuspendLayout();
-            materialCard4.SuspendLayout();
             student_Panel.SuspendLayout();
+            customCard2.SuspendLayout();
+            customCard1.SuspendLayout();
+            customCard3.SuspendLayout();
+            customCard4.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -96,6 +96,7 @@
             btnClose.TabIndex = 1;
             btnClose.Text = "X";
             btnClose.UseVisualStyleBackColor = false;
+            btnClose.Click += btnClose_Click;
             // 
             // sideMenuPanel
             // 
@@ -172,29 +173,70 @@
             taskMainPage2.Size = new Size(1260, 656);
             taskMainPage2.TabIndex = 0;
             // 
-            // materialCard1
+            // student_Panel
             // 
-            materialCard1.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard1.Controls.Add(materialListBox1);
-            materialCard1.Controls.Add(materialLabel1);
-            materialCard1.Depth = 0;
-            materialCard1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard1.Location = new Point(41, 44);
-            materialCard1.Margin = new Padding(14);
-            materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard1.Name = "materialCard1";
-            materialCard1.Padding = new Padding(14);
-            materialCard1.RightToLeft = RightToLeft.No;
-            materialCard1.Size = new Size(283, 341);
-            materialCard1.TabIndex = 5;
-            materialCard1.Paint += materialCard1_Paint;
+            student_Panel.Controls.Add(customCard4);
+            student_Panel.Controls.Add(customCard3);
+            student_Panel.Controls.Add(customCard2);
+            student_Panel.Controls.Add(customCard1);
+            student_Panel.Location = new Point(206, 46);
+            student_Panel.Name = "student_Panel";
+            student_Panel.Size = new Size(1168, 674);
+            student_Panel.TabIndex = 2;
+            student_Panel.Paint += student_Panel_Paint;
             // 
-            // materialListBox1
+            // customCard2
             // 
-            materialListBox1.BackColor = Color.White;
-            materialListBox1.BorderColor = Color.LightGray;
-            materialListBox1.Depth = 0;
-            materialListBox1.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            customCard2.BackColor = Color.White;
+            customCard2.BorderColor = Color.Gray;
+            customCard2.BorderRadius = 2;
+            customCard2.BorderSize = 0;
+            customCard2.Controls.Add(textBox1);
+            customCard2.Controls.Add(label2);
+            customCard2.Location = new Point(321, 44);
+            customCard2.Name = "customCard2";
+            customCard2.Size = new Size(476, 341);
+            customCard2.TabIndex = 6;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = Color.White;
+            textBox1.Location = new Point(11, 52);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(452, 272);
+            textBox1.TabIndex = 5;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(11, 16);
+            label2.Name = "label2";
+            label2.Size = new Size(142, 21);
+            label2.TabIndex = 4;
+            label2.Text = "Code View From : ";
+            // 
+            // customCard1
+            // 
+            customCard1.BackColor = Color.White;
+            customCard1.BorderColor = Color.Gray;
+            customCard1.BorderRadius = 2;
+            customCard1.BorderSize = 0;
+            customCard1.Controls.Add(materialListBox2);
+            customCard1.Controls.Add(label1);
+            customCard1.Location = new Point(41, 44);
+            customCard1.Name = "customCard1";
+            customCard1.Size = new Size(243, 341);
+            customCard1.TabIndex = 4;
+            // 
+            // materialListBox2
+            // 
+            materialListBox2.BackColor = Color.Transparent;
+            materialListBox2.BorderColor = Color.Transparent;
+            materialListBox2.Depth = 0;
+            materialListBox2.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialListBoxItem1.SecondaryText = "";
             materialListBoxItem1.Tag = null;
             materialListBoxItem1.Text = "Jimmuel";
@@ -204,160 +246,100 @@
             materialListBoxItem3.SecondaryText = "";
             materialListBoxItem3.Tag = null;
             materialListBoxItem3.Text = "Angelo";
-            materialListBox1.Items.Add(materialListBoxItem1);
-            materialListBox1.Items.Add(materialListBoxItem2);
-            materialListBox1.Items.Add(materialListBoxItem3);
-            materialListBox1.Location = new Point(17, 36);
-            materialListBox1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialListBox1.Name = "materialListBox1";
-            materialListBox1.RightToLeft = RightToLeft.No;
-            materialListBox1.SelectedIndex = -1;
-            materialListBox1.SelectedItem = null;
-            materialListBox1.Size = new Size(249, 128);
-            materialListBox1.TabIndex = 2;
+            materialListBox2.Items.Add(materialListBoxItem1);
+            materialListBox2.Items.Add(materialListBoxItem2);
+            materialListBox2.Items.Add(materialListBoxItem3);
+            materialListBox2.Location = new Point(11, 52);
+            materialListBox2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialListBox2.Name = "materialListBox2";
+            materialListBox2.RightToLeft = RightToLeft.No;
+            materialListBox2.SelectedIndex = -1;
+            materialListBox2.SelectedItem = null;
+            materialListBox2.Size = new Size(215, 128);
+            materialListBox2.TabIndex = 5;
             // 
-            // materialLabel1
+            // label1
             // 
-            materialLabel1.AutoSize = true;
-            materialLabel1.Depth = 0;
-            materialLabel1.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel1.Location = new Point(17, 14);
-            materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel1.Name = "materialLabel1";
-            materialLabel1.Size = new Size(100, 19);
-            materialLabel1.TabIndex = 1;
-            materialLabel1.Text = "Connected PC";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(11, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(113, 21);
+            label1.TabIndex = 4;
+            label1.Text = "Connected PC";
             // 
-            // materialCard2
+            // customCard3
             // 
-            materialCard2.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard2.Controls.Add(textBox1);
-            materialCard2.Controls.Add(materialLabel2);
-            materialCard2.Depth = 0;
-            materialCard2.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard2.Location = new Point(352, 44);
-            materialCard2.Margin = new Padding(14);
-            materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard2.Name = "materialCard2";
-            materialCard2.Padding = new Padding(14);
-            materialCard2.Size = new Size(460, 341);
-            materialCard2.TabIndex = 7;
+            customCard3.BackColor = Color.White;
+            customCard3.BorderColor = Color.Gray;
+            customCard3.BorderRadius = 2;
+            customCard3.BorderSize = 0;
+            customCard3.Controls.Add(listView4);
+            customCard3.Controls.Add(listView3);
+            customCard3.Controls.Add(label4);
+            customCard3.Controls.Add(label3);
+            customCard3.Location = new Point(841, 44);
+            customCard3.Name = "customCard3";
+            customCard3.Size = new Size(286, 341);
+            customCard3.TabIndex = 6;
             // 
-            // materialCard3
+            // label3
             // 
-            materialCard3.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard3.Controls.Add(listView2);
-            materialCard3.Controls.Add(listView1);
-            materialCard3.Controls.Add(materialLabel4);
-            materialCard3.Controls.Add(materialLabel3);
-            materialCard3.Depth = 0;
-            materialCard3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard3.Location = new Point(859, 44);
-            materialCard3.Margin = new Padding(14);
-            materialCard3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard3.Name = "materialCard3";
-            materialCard3.Padding = new Padding(14);
-            materialCard3.Size = new Size(268, 341);
-            materialCard3.TabIndex = 8;
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(11, 16);
+            label3.Name = "label3";
+            label3.Size = new Size(80, 21);
+            label3.TabIndex = 4;
+            label3.Text = "Functions";
             // 
-            // listView2
+            // label4
             // 
-            listView2.Location = new Point(17, 227);
-            listView2.Name = "listView2";
-            listView2.Size = new Size(234, 97);
-            listView2.TabIndex = 7;
-            listView2.UseCompatibleStateImageBehavior = false;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(11, 176);
+            label4.Name = "label4";
+            label4.Size = new Size(153, 21);
+            label4.TabIndex = 6;
+            label4.Text = "Copy-Pasted Codes";
             // 
-            // listView1
+            // listView3
             // 
-            listView1.Location = new Point(17, 52);
-            listView1.Name = "listView1";
-            listView1.Size = new Size(234, 97);
-            listView1.TabIndex = 6;
-            listView1.UseCompatibleStateImageBehavior = false;
+            listView3.Location = new Point(11, 40);
+            listView3.Name = "listView3";
+            listView3.Size = new Size(261, 97);
+            listView3.TabIndex = 7;
+            listView3.UseCompatibleStateImageBehavior = false;
             // 
-            // materialLabel4
+            // listView4
             // 
-            materialLabel4.AutoSize = true;
-            materialLabel4.Depth = 0;
-            materialLabel4.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel4.Location = new Point(17, 201);
-            materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel4.Name = "materialLabel4";
-            materialLabel4.Size = new Size(138, 19);
-            materialLabel4.TabIndex = 5;
-            materialLabel4.Text = "Copy-Pasted Codes";
+            listView4.Location = new Point(11, 200);
+            listView4.Name = "listView4";
+            listView4.Size = new Size(261, 97);
+            listView4.TabIndex = 8;
+            listView4.UseCompatibleStateImageBehavior = false;
             // 
-            // materialLabel3
+            // customCard4
             // 
-            materialLabel3.AutoSize = true;
-            materialLabel3.Depth = 0;
-            materialLabel3.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel3.Location = new Point(17, 14);
-            materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel3.Name = "materialLabel3";
-            materialLabel3.Size = new Size(71, 19);
-            materialLabel3.TabIndex = 1;
-            materialLabel3.Text = "Functions";
+            customCard4.BackColor = Color.White;
+            customCard4.BorderColor = Color.Gray;
+            customCard4.BorderRadius = 2;
+            customCard4.BorderSize = 0;
+            customCard4.Controls.Add(label5);
+            customCard4.Location = new Point(41, 428);
+            customCard4.Name = "customCard4";
+            customCard4.Size = new Size(1086, 226);
+            customCard4.TabIndex = 6;
             // 
-            // textBox1
+            // label5
             // 
-            textBox1.Location = new Point(17, 36);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(426, 288);
-            textBox1.TabIndex = 3;
-            // 
-            // materialLabel2
-            // 
-            materialLabel2.AutoSize = true;
-            materialLabel2.Depth = 0;
-            materialLabel2.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel2.Location = new Point(17, 14);
-            materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel2.Name = "materialLabel2";
-            materialLabel2.Size = new Size(144, 19);
-            materialLabel2.TabIndex = 1;
-            materialLabel2.Text = "Code Review From : ";
-            // 
-            // materialCard4
-            // 
-            materialCard4.BackColor = Color.FromArgb(255, 255, 255);
-            materialCard4.Controls.Add(materialLabel5);
-            materialCard4.Depth = 0;
-            materialCard4.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialCard4.Location = new Point(41, 426);
-            materialCard4.Margin = new Padding(14);
-            materialCard4.MouseState = MaterialSkin.MouseState.HOVER;
-            materialCard4.Name = "materialCard4";
-            materialCard4.Padding = new Padding(14);
-            materialCard4.Size = new Size(1086, 204);
-            materialCard4.TabIndex = 6;
-            // 
-            // materialLabel5
-            // 
-            materialLabel5.AutoSize = true;
-            materialLabel5.Depth = 0;
-            materialLabel5.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel5.Location = new Point(492, 14);
-            materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            materialLabel5.Name = "materialLabel5";
-            materialLabel5.Size = new Size(61, 19);
-            materialLabel5.TabIndex = 1;
-            materialLabel5.Text = "Analysis";
-            // 
-            // student_Panel
-            // 
-            student_Panel.Controls.Add(materialCard3);
-            student_Panel.Controls.Add(materialCard4);
-            student_Panel.Controls.Add(materialCard2);
-            student_Panel.Controls.Add(materialCard1);
-            student_Panel.Location = new Point(206, 46);
-            student_Panel.Name = "student_Panel";
-            student_Panel.Size = new Size(1168, 674);
-            student_Panel.TabIndex = 2;
-            student_Panel.Paint += student_Panel_Paint;
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(564, 9);
+            label5.Name = "label5";
+            label5.Size = new Size(68, 21);
+            label5.TabIndex = 4;
+            label5.Text = "Analysis";
             // 
             // MonitoringForm
             // 
@@ -377,15 +359,15 @@
             headerPanel.PerformLayout();
             sideMenuPanel.ResumeLayout(false);
             instructions_Panel.ResumeLayout(false);
-            materialCard1.ResumeLayout(false);
-            materialCard1.PerformLayout();
-            materialCard2.ResumeLayout(false);
-            materialCard2.PerformLayout();
-            materialCard3.ResumeLayout(false);
-            materialCard3.PerformLayout();
-            materialCard4.ResumeLayout(false);
-            materialCard4.PerformLayout();
             student_Panel.ResumeLayout(false);
+            customCard2.ResumeLayout(false);
+            customCard2.PerformLayout();
+            customCard1.ResumeLayout(false);
+            customCard1.PerformLayout();
+            customCard3.ResumeLayout(false);
+            customCard3.PerformLayout();
+            customCard4.ResumeLayout(false);
+            customCard4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -394,21 +376,20 @@
         private Button button1;
         private Panel instructions_Panel;
         private CustomComponents.MainPages.TaskMainPage taskMainPage1;
-        private CustomComponents.CustomCard customCard1;
-        private MaterialSkin.Controls.MaterialCard materialCard1;
-        private MaterialSkin.Controls.MaterialListBox materialListBox1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private MaterialSkin.Controls.MaterialCard materialCard2;
-        private MaterialSkin.Controls.MaterialCard materialCard3;
-        private ListView listView2;
-        private ListView listView1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel4;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
-        private TextBox textBox1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialCard materialCard4;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private Panel student_Panel;
         private CustomComponents.MainPages.TaskMainPage taskMainPage2;
+        private CustomComponents.CustomCard customCard1;
+        private Label label1;
+        private MaterialSkin.Controls.MaterialListBox materialListBox2;
+        private CustomComponents.CustomCard customCard2;
+        private TextBox textBox1;
+        private Label label2;
+        private CustomComponents.CustomCard customCard3;
+        private Label label3;
+        private CustomComponents.CustomCard customCard4;
+        private Label label5;
+        private ListView listView4;
+        private ListView listView3;
+        private Label label4;
     }
 }
