@@ -14,6 +14,9 @@ namespace SmartCodeLab.Models
         {
             Controls.Add(_content);
             _customTabHeader = new CustomTabHeader(headerText,tabControl, this);
+
+            TaskModel task = new TaskModel();
+            task._taskName = headerText;
         }
     }
 }

@@ -33,12 +33,12 @@
             openFile1 = new MaterialSkin.Controls.MaterialButton();
             materialLabel11 = new MaterialSkin.Controls.MaterialLabel();
             materialButton4 = new MaterialSkin.Controls.MaterialButton();
-            materialMultiLineTextBox1 = new MaterialSkin.Controls.MaterialMultiLineTextBox();
-            materialTextBox1 = new MaterialSkin.Controls.MaterialTextBox();
+            instruction = new MaterialSkin.Controls.MaterialMultiLineTextBox();
+            actName = new MaterialSkin.Controls.MaterialTextBox();
             materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel9 = new MaterialSkin.Controls.MaterialLabel();
             materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
-            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            languageUsed = new MaterialSkin.Controls.MaterialComboBox();
             testContainer = new FlowLayoutPanel();
             associateContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             externalResourceCon = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
@@ -131,38 +131,38 @@
             materialButton4.UseVisualStyleBackColor = true;
             materialButton4.Click += materialButton4_Click;
             // 
-            // materialMultiLineTextBox1
+            // instruction
             // 
-            materialMultiLineTextBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialMultiLineTextBox1.BorderStyle = BorderStyle.FixedSingle;
-            materialMultiLineTextBox1.Depth = 0;
-            materialMultiLineTextBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialMultiLineTextBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialMultiLineTextBox1.Location = new Point(42, 182);
-            materialMultiLineTextBox1.Margin = new Padding(3, 4, 3, 4);
-            materialMultiLineTextBox1.MouseState = MaterialSkin.MouseState.HOVER;
-            materialMultiLineTextBox1.Name = "materialMultiLineTextBox1";
-            materialMultiLineTextBox1.Size = new Size(593, 127);
-            materialMultiLineTextBox1.TabIndex = 18;
-            materialMultiLineTextBox1.Text = "";
+            instruction.BackColor = Color.FromArgb(255, 255, 255);
+            instruction.BorderStyle = BorderStyle.FixedSingle;
+            instruction.Depth = 0;
+            instruction.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            instruction.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            instruction.Location = new Point(42, 182);
+            instruction.Margin = new Padding(3, 4, 3, 4);
+            instruction.MouseState = MaterialSkin.MouseState.HOVER;
+            instruction.Name = "instruction";
+            instruction.Size = new Size(593, 127);
+            instruction.TabIndex = 18;
+            instruction.Text = "";
             // 
-            // materialTextBox1
+            // actName
             // 
-            materialTextBox1.AnimateReadOnly = false;
-            materialTextBox1.BorderStyle = BorderStyle.None;
-            materialTextBox1.Depth = 0;
-            materialTextBox1.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialTextBox1.LeadingIcon = null;
-            materialTextBox1.Location = new Point(42, 53);
-            materialTextBox1.Margin = new Padding(3, 4, 3, 4);
-            materialTextBox1.MaxLength = 50;
-            materialTextBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialTextBox1.Multiline = false;
-            materialTextBox1.Name = "materialTextBox1";
-            materialTextBox1.Size = new Size(271, 50);
-            materialTextBox1.TabIndex = 16;
-            materialTextBox1.Text = "";
-            materialTextBox1.TrailingIcon = null;
+            actName.AnimateReadOnly = false;
+            actName.BorderStyle = BorderStyle.None;
+            actName.Depth = 0;
+            actName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
+            actName.LeadingIcon = null;
+            actName.Location = new Point(42, 53);
+            actName.Margin = new Padding(3, 4, 3, 4);
+            actName.MaxLength = 50;
+            actName.MouseState = MaterialSkin.MouseState.OUT;
+            actName.Multiline = false;
+            actName.Name = "actName";
+            actName.Size = new Size(271, 50);
+            actName.TabIndex = 16;
+            actName.Text = "";
+            actName.TrailingIcon = null;
             // 
             // materialLabel10
             // 
@@ -200,28 +200,28 @@
             materialLabel8.TabIndex = 13;
             materialLabel8.Text = "Activity Name";
             // 
-            // materialComboBox1
+            // languageUsed
             // 
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 174;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 43;
-            materialComboBox1.Items.AddRange(new object[] { "C++", "Java", "Python" });
-            materialComboBox1.Location = new Point(380, 54);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(255, 49);
-            materialComboBox1.StartIndex = 0;
-            materialComboBox1.TabIndex = 24;
+            languageUsed.AutoResize = false;
+            languageUsed.BackColor = Color.FromArgb(255, 255, 255);
+            languageUsed.Depth = 0;
+            languageUsed.DrawMode = DrawMode.OwnerDrawVariable;
+            languageUsed.DropDownHeight = 174;
+            languageUsed.DropDownStyle = ComboBoxStyle.DropDownList;
+            languageUsed.DropDownWidth = 121;
+            languageUsed.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            languageUsed.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            languageUsed.FormattingEnabled = true;
+            languageUsed.IntegralHeight = false;
+            languageUsed.ItemHeight = 43;
+            languageUsed.Items.AddRange(new object[] { "C++", "Java", "Python" });
+            languageUsed.Location = new Point(380, 54);
+            languageUsed.MaxDropDownItems = 4;
+            languageUsed.MouseState = MaterialSkin.MouseState.OUT;
+            languageUsed.Name = "languageUsed";
+            languageUsed.Size = new Size(255, 49);
+            languageUsed.StartIndex = 0;
+            languageUsed.TabIndex = 24;
             // 
             // testContainer
             // 
@@ -256,14 +256,14 @@
             Controls.Add(externalResourceCon);
             Controls.Add(associateContainer);
             Controls.Add(testContainer);
-            Controls.Add(materialComboBox1);
+            Controls.Add(languageUsed);
             Controls.Add(materialButton5);
             Controls.Add(materialLabel12);
             Controls.Add(openFile1);
             Controls.Add(materialLabel11);
             Controls.Add(materialButton4);
-            Controls.Add(materialMultiLineTextBox1);
-            Controls.Add(materialTextBox1);
+            Controls.Add(instruction);
+            Controls.Add(actName);
             Controls.Add(materialLabel10);
             Controls.Add(materialLabel9);
             Controls.Add(materialLabel8);
@@ -280,12 +280,12 @@
         private MaterialSkin.Controls.MaterialButton openFile1;
         private MaterialSkin.Controls.MaterialLabel materialLabel11;
         private MaterialSkin.Controls.MaterialButton materialButton4;
-        private MaterialSkin.Controls.MaterialMultiLineTextBox materialMultiLineTextBox1;
-        private MaterialSkin.Controls.MaterialTextBox materialTextBox1;
+        private MaterialSkin.Controls.MaterialMultiLineTextBox instruction;
+        private MaterialSkin.Controls.MaterialTextBox actName;
         private MaterialSkin.Controls.MaterialLabel materialLabel10;
         private MaterialSkin.Controls.MaterialLabel materialLabel9;
         private MaterialSkin.Controls.MaterialLabel materialLabel8;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
+        private MaterialSkin.Controls.MaterialComboBox languageUsed;
         private FlowLayoutPanel testContainer;
         private TaskPageComponents.FileContainer associateContainer;
         private TaskPageComponents.FileContainer externalResourceCon;

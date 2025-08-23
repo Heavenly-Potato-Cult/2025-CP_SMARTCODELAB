@@ -19,6 +19,36 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             _acceptMultipleFiles = false;
         }
 
+        public KeyValuePair<string, string>? getFile()
+        {
+            if (flowLayoutPanel1.Controls.Count == 0)
+                return null;
+
+            KeyValuePair<string, string> file = default;
+
+            foreach (FIleVisualDisplay control in flowLayoutPanel1.Controls)
+            {
+                file = control.getFile();
+            }
+
+            return file;
+        }
+
+        public List<KeyValuePair<string, string>>? getFiles()
+        {
+            if (flowLayoutPanel1.Controls.Count == 0)
+                return null;
+
+            List<KeyValuePair<string, string>> file = default;
+
+            foreach (FIleVisualDisplay control in flowLayoutPanel1.Controls)
+            {
+                file.Add(control.getFile());
+            }
+
+            return file;
+        }
+
         public void addFile(string filePath)
         {
             if(!AcceptMultipleFiles)

@@ -1,4 +1,5 @@
 ﻿using SmartCodeLab.CustomComponents.TaskPageComponents;
+using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,20 @@ namespace SmartCodeLab.CustomComponents.Pages
         public TaskTabPage()
         {
             InitializeComponent();
+            foreach(Control control in Controls)
+            {
+                control.KeyUp += (sender, k) => 
+                {
+                    if (k.KeyCode == Keys.S && k.Control)
+                    {
+                        var taskModel = new TaskModel();
+                        taskModel._taskName = actName.Text;
+                        taskModel._instructions = instruction.Text;
+                        taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
+                        MessageBox.Show(taskModel.ToString());
+                    }
+                };
+            }
         }
 
         private void materialButton4_Click(object sender, EventArgs e)
