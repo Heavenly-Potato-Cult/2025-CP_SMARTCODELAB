@@ -59,13 +59,14 @@
             // openFolderToolStripMenuItem
             // 
             openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            openFolderToolStripMenuItem.Size = new Size(174, 26);
+            openFolderToolStripMenuItem.Size = new Size(224, 26);
             openFolderToolStripMenuItem.Text = "New File";
+            openFolderToolStripMenuItem.Click += openFolderToolStripMenuItem_Click;
             // 
             // openFolderToolStripMenuItem1
             // 
             openFolderToolStripMenuItem1.Name = "openFolderToolStripMenuItem1";
-            openFolderToolStripMenuItem1.Size = new Size(174, 26);
+            openFolderToolStripMenuItem1.Size = new Size(224, 26);
             openFolderToolStripMenuItem1.Text = "Open Folder";
             openFolderToolStripMenuItem1.Click += openFolderToolStripMenuItem1_Click;
             // 

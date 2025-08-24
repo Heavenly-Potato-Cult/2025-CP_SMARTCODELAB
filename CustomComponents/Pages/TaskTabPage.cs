@@ -15,22 +15,11 @@ namespace SmartCodeLab.CustomComponents.Pages
 {
     public partial class TaskTabPage : UserControl
     {
-        private bool _newFile;
         private string? _filePath;
-
-        //this is for opening a new file
-        public TaskTabPage()
-        {
-            InitializeComponent();
-            initialize_Save_Shortcut(this);
-            _newFile = true;
-        }
-
         public TaskTabPage(string _filePath)
         {
             InitializeComponent();
             initialize_Save_Shortcut(this);
-            _newFile = false;
             this._filePath = _filePath;
             TaskModel taskModel = JsonFileService.LoadFromFile<TaskModel>(_filePath);
 
@@ -108,18 +97,18 @@ namespace SmartCodeLab.CustomComponents.Pages
             taskModel._externalResources = externalResourceCon.getFiles();
             taskModel._testCases = getTestCases();
 
-            if (_newFile)
-            {
-                _filePath = SystemSingleton.Instance.currentTaskPath + "\\" + (taskModel._taskName).Replace(' ', '_') + ".task";
-                JsonFileService.SaveToFile(taskModel,_filePath);
-                _newFile = false;
-                MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                JsonFileService.SaveToFile(taskModel, _filePath);
-                MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            //if (_newFile)
+            //{
+            //    _filePath = SystemSingleton.Instance.currentTaskPath + "\\" + (taskModel._taskName).Replace(' ', '_') + ".task";
+            //    JsonFileService.SaveToFile(taskModel,_filePath);
+            //    _newFile = false;
+            //    MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //else
+            //{
+            JsonFileService.SaveToFile(taskModel, _filePath);
+            MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
         }
 
         private void materialButton4_Click(object sender, EventArgs e)
