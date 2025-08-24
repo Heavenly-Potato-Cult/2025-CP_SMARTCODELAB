@@ -37,7 +37,7 @@ namespace SmartCodeLab.Models
         public KeyValuePair<string, string>? _referenceFile { get; set; } // the file that will be provided by the user as a quality reference of the students code
         public Dictionary<string, string>? _externalResources { get; set; } // the file that contains the functions and properties needed to complete the task
 
-        private Dictionary<string, string>? _testCases { get; set; } // will be provided by the user to test the students code
+        public Dictionary<string, string>? _testCases { get; set; } // will be provided by the user to test the students code
 
         public TaskModel() { }
 

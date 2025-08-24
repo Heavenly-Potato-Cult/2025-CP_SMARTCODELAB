@@ -22,14 +22,14 @@ namespace SmartCodeLab.CustomComponents.Pages
         public TaskTabPage()
         {
             InitializeComponent();
-            initialize_Save_Shortcut();
+            initialize_Save_Shortcut(this);
             _newFile = true;
         }
 
         public TaskTabPage(string _filePath)
         {
             InitializeComponent();
-            initialize_Save_Shortcut();
+            initialize_Save_Shortcut(this);
             _newFile = false;
             this._filePath = _filePath;
             TaskModel taskModel = JsonFileService.LoadFromFile<TaskModel>(_filePath);
@@ -42,33 +42,72 @@ namespace SmartCodeLab.CustomComponents.Pages
                 KeyValuePair<string, string>? referenceFile = taskModel._referenceFile;
                 if (referenceFile.HasValue)
                     associateContainer.addFile(referenceFile.Value.Key, referenceFile.Value.Value);
+
+                if(taskModel._externalResources != null && taskModel._externalResources.Count > 0)
+                {
+                    foreach (var resource in taskModel._externalResources)
+                    {
+                        externalResourceCon.addFile(resource.Key, resource.Value);
+                    }
+                }
+
+                if(taskModel._testCases != null && taskModel._testCases.Count > 0)
+                {
+                    foreach (var testCase in taskModel._testCases)
+                    {
+                        var test = new TestCase(testCase.Key, testCase.Value);
+                        initialize_Save_Shortcut(test);
+                        testContainer.Controls.Add(test);
+                    }
+                }
             }
         }
 
-        private void initialize_Save_Shortcut()
+        private void initialize_Save_Shortcut(UserControl container)
         {
-            foreach (Control control in Controls)
+            foreach (Control control in container.Controls)
             {
                 control.KeyUp += (sender, k) =>
                 {
                     if (k.KeyCode == Keys.S && k.Control)
                     {
-                        var taskModel = new TaskModel();
-                        taskModel._taskName = actName.Text;
-                        taskModel._instructions = instruction.Text;
-                        taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
-                        taskModel._referenceFile = associateContainer.getFile();
-                        taskModel._externalResources = externalResourceCon.getFiles();
-                        //taskModel._testCases = testContainer.getFiles();
-                        MessageBox.Show(taskModel.ToString());
-                        save_File(taskModel);
+                        save_File();
                     }
                 };
             }
         }
 
-        private void save_File(TaskModel taskModel)
+        private Dictionary<string, string> getTestCases()
         {
+            Dictionary<string, string> testCases = new Dictionary<string, string>();
+            foreach (TestCase testCase in testContainer.Controls)
+            {
+                KeyValuePair<string, string>? test = testCase.getTestCase();
+                if (test != null)
+                {
+                    try
+                    {
+                        testCases.Add(test.Value.Key, test.Value.Value);
+                    }
+                    catch (ArgumentException)
+                    {
+                        // Key already exists.. then do nothing
+                    }
+                }
+            }
+            return testCases;
+        }
+
+        private void save_File()
+        {
+            var taskModel = new TaskModel();
+            taskModel._taskName = actName.Text;
+            taskModel._instructions = instruction.Text;
+            taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
+            taskModel._referenceFile = associateContainer.getFile();
+            taskModel._externalResources = externalResourceCon.getFiles();
+            taskModel._testCases = getTestCases();
+
             if (_newFile)
             {
                 _filePath = SystemSingleton.Instance.currentTaskPath + "\\" + (taskModel._taskName).Replace(' ', '_') + ".task";
@@ -85,7 +124,9 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void materialButton4_Click(object sender, EventArgs e)
         {
-            testContainer.Controls.Add(new TestCase());
+            var testCaseContainer = new TestCase();
+            initialize_Save_Shortcut(testCaseContainer);
+            testContainer.Controls.Add(testCaseContainer);
         }
 
         private void openFile1_Click(object sender, EventArgs e)
@@ -109,7 +150,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                 string[] filePaths = fileDialog.FileNames;
                 foreach (string filePath in filePaths)
                 {
-                    MessageBox.Show(filePath);
+                    externalResourceCon.addFile(filePath);
                 }
             }
             //externalResourceCon.addFile("example");

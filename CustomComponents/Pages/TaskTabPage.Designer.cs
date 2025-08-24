@@ -227,9 +227,10 @@
             // testContainer
             // 
             testContainer.AutoScroll = true;
-            testContainer.Location = new Point(32, 492);
+            testContainer.BackColor = SystemColors.ButtonFace;
+            testContainer.Location = new Point(42, 492);
             testContainer.Name = "testContainer";
-            testContainer.Size = new Size(1159, 223);
+            testContainer.Size = new Size(1088, 223);
             testContainer.TabIndex = 25;
             // 
             // associateContainer
