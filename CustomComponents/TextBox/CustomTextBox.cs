@@ -26,6 +26,8 @@ namespace SmartCodeLab.CustomComponents
         public CustomTextBox()
         {
             InitializeComponent();
+            this.Enter += (s, e) => { isFocused = true; this.Invalidate(); };
+            this.Leave += (s, e) => { isFocused = false; this.Invalidate(); };
         }
 
         //Events
@@ -155,12 +157,22 @@ namespace SmartCodeLab.CustomComponents
             using (Pen penBorder = new Pen(borderColor, borderSize))
             {
                 penBorder.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
-                if (isFocused) penBorder.Color = borderFocusColor;
-
-                if (underlinedStyle) //Line Style
-                    graph.DrawLine(penBorder, 0, this.Height - 1, this.Width, this.Height - 1);
-                else //Normal Style
-                    graph.DrawRectangle(penBorder, 0, 0, this.Width - 0.5F, this.Height - 0.5F);
+                if (isFocused)
+                {
+                    penBorder.Color = borderFocusColor;  
+                    if (underlinedStyle)
+                        graph.DrawLine(penBorder, 0, this.Height - 1, this.Width, this.Height - 1);
+                    else
+                        graph.DrawRectangle(penBorder, 0, 0, this.Width - 0.5F, this.Height - 0.5F);
+                }
+                else
+                {
+                    // Normal border
+                    if (underlinedStyle)
+                        graph.DrawLine(penBorder, 0, this.Height - 1, this.Width, this.Height - 1);
+                    else
+                        graph.DrawRectangle(penBorder, 0, 0, this.Width - 0.5F, this.Height - 0.5F);
+                }
             }
         }
 
@@ -196,6 +208,7 @@ namespace SmartCodeLab.CustomComponents
         {
             if (_TextChanged != null)
                 _TextChanged.Invoke(sender, e);
+           
         }
 
         private void textBox1_Click(object sender, EventArgs e)
@@ -206,6 +219,7 @@ namespace SmartCodeLab.CustomComponents
         private void textBox1_MouseEnter(object sender, EventArgs e)
         {
             this.OnMouseEnter(e);
+
         }
 
         private void textBox1_MouseLeave(object sender, EventArgs e)

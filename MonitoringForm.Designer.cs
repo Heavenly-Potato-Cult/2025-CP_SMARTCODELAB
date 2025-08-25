@@ -348,8 +348,8 @@
             ClientSize = new Size(1386, 732);
             Controls.Add(sideMenuPanel);
             Controls.Add(headerPanel);
-            Controls.Add(instructions_Panel);
             Controls.Add(student_Panel);
+            Controls.Add(instructions_Panel);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "MonitoringForm";

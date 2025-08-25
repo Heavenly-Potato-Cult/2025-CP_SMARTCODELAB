@@ -40,6 +40,8 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(236, 22);
             textBox1.TabIndex = 0;
+            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.Enter += textBox1_MouseEnter;
             // 
             // CustomTextBox
             // 
