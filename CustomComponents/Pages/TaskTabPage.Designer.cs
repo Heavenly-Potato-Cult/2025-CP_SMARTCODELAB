@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            actName = new MaterialSkin.Controls.MaterialTextBox();
             materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             languageUsed = new MaterialSkin.Controls.MaterialComboBox();
             testContainer = new FlowLayoutPanel();
@@ -42,24 +41,8 @@
             smartButton1 = new SmartButton();
             Btn_AddTestCase = new SmartButton();
             txtbox_instruction = new TextBox();
+            actName = new CustomTextBox();
             SuspendLayout();
-            // 
-            // actName
-            // 
-            actName.AnimateReadOnly = false;
-            actName.BorderStyle = BorderStyle.None;
-            actName.Depth = 0;
-            actName.Font = new Font("Roboto", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            actName.LeadingIcon = null;
-            actName.Location = new Point(37, 40);
-            actName.MaxLength = 50;
-            actName.MouseState = MaterialSkin.MouseState.OUT;
-            actName.Multiline = false;
-            actName.Name = "actName";
-            actName.Size = new Size(234, 50);
-            actName.TabIndex = 16;
-            actName.Text = "";
-            actName.TrailingIcon = null;
             // 
             // materialLabel10
             // 
@@ -113,11 +96,10 @@
             // associateContainer
             // 
             associateContainer.AcceptMultipleFiles = false;
-            associateContainer.BorderStyle = BorderStyle.FixedSingle;
             associateContainer.Location = new Point(529, 41);
             associateContainer.Margin = new Padding(3, 2, 3, 2);
             associateContainer.Name = "associateContainer";
-            associateContainer.Size = new Size(222, 49);
+            associateContainer.Size = new Size(222, 36);
             associateContainer.TabIndex = 27;
             // 
             // externalResourceCon
@@ -230,11 +212,24 @@
             txtbox_instruction.Size = new Size(437, 95);
             txtbox_instruction.TabIndex = 36;
             // 
+            // actName
+            // 
+            actName.BackColor = SystemColors.Window;
+            actName.BorderColor = Color.Gray;
+            actName.BorderSize = 1;
+            actName.ForeColor = Color.DimGray;
+            actName.Location = new Point(37, 41);
+            actName.Name = "actName";
+            actName.Padding = new Padding(7);
+            actName.Size = new Size(250, 36);
+            actName.TabIndex = 37;
+            // 
             // TaskTabPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
+            Controls.Add(actName);
             Controls.Add(txtbox_instruction);
             Controls.Add(Btn_AddTestCase);
             Controls.Add(smartButton1);
@@ -247,7 +242,6 @@
             Controls.Add(associateContainer);
             Controls.Add(testContainer);
             Controls.Add(languageUsed);
-            Controls.Add(actName);
             Controls.Add(materialLabel10);
             Margin = new Padding(3, 2, 3, 2);
             Name = "TaskTabPage";
@@ -257,7 +251,6 @@
         }
 
         #endregion
-        private MaterialSkin.Controls.MaterialTextBox actName;
         private MaterialSkin.Controls.MaterialLabel materialLabel10;
         private MaterialSkin.Controls.MaterialComboBox languageUsed;
         private FlowLayoutPanel testContainer;
@@ -271,5 +264,6 @@
         private SmartButton smartButton1;
         private SmartButton Btn_AddTestCase;
         private TextBox txtbox_instruction;
+        private CustomTextBox actName;
     }
 }
