@@ -26,13 +26,13 @@ namespace SmartCodeLab.CustomComponents.Pages
             if (taskModel != null)
             {
                 actName.Text = taskModel._taskName;
-                instruction.Text = taskModel._instructions;
+                txtbox_instruction.Text = taskModel._instructions;
                 languageUsed.SelectedItem = taskModel.language;
                 KeyValuePair<string, string>? referenceFile = taskModel._referenceFile;
                 if (referenceFile.HasValue)
                     associateContainer.addFile(referenceFile.Value.Key, referenceFile.Value.Value);
 
-                if(taskModel._externalResources != null && taskModel._externalResources.Count > 0)
+                if (taskModel._externalResources != null && taskModel._externalResources.Count > 0)
                 {
                     foreach (var resource in taskModel._externalResources)
                     {
@@ -40,7 +40,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                     }
                 }
 
-                if(taskModel._testCases != null && taskModel._testCases.Count > 0)
+                if (taskModel._testCases != null && taskModel._testCases.Count > 0)
                 {
                     foreach (var testCase in taskModel._testCases)
                     {
@@ -91,7 +91,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             var taskModel = new TaskModel();
             taskModel._taskName = actName.Text;
-            taskModel._instructions = instruction.Text;
+            taskModel._instructions = txtbox_instruction.Text;
             taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
             taskModel._referenceFile = associateContainer.getFile();
             taskModel._externalResources = externalResourceCon.getFiles();
@@ -111,7 +111,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             //}
         }
 
-        private void materialButton4_Click(object sender, EventArgs e)
+        private void Btn_AddTestCase_Click(object sender, EventArgs e)
         {
             var testCaseContainer = new TestCase();
             initialize_Save_Shortcut(testCaseContainer);
@@ -122,7 +122,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             FileDialog fileDialog = new OpenFileDialog();
             DialogResult result = fileDialog.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 string filePath = fileDialog.FileName;
                 string fileName = Path.GetFileName(filePath);
@@ -134,7 +134,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Multiselect = true;
-            if(fileDialog.ShowDialog() == DialogResult.OK)
+            if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 string[] filePaths = fileDialog.FileNames;
                 foreach (string filePath in filePaths)
@@ -144,5 +144,12 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
             //externalResourceCon.addFile("example");
         }
+
+        private void languageUsed_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

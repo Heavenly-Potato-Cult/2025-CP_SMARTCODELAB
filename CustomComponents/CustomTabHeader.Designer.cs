@@ -35,30 +35,33 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = SystemColors.ActiveCaption;
             label1.Location = new Point(3, 0);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(38, 15);
             label1.TabIndex = 0;
             label1.Text = "label1";
             // 
             // button1
             // 
             button1.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(112, 1);
+            button1.Location = new Point(98, 1);
+            button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(35, 29);
+            button1.Size = new Size(31, 22);
             button1.TabIndex = 1;
             button1.Text = "X";
             button1.UseVisualStyleBackColor = true;
             // 
             // CustomTabHeader
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(button1);
             Controls.Add(label1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "CustomTabHeader";
-            Size = new Size(150, 30);
+            Size = new Size(131, 22);
             ResumeLayout(false);
             PerformLayout();
         }
