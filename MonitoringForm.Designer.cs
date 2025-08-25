@@ -50,6 +50,7 @@
             customCard1 = new SmartCodeLab.CustomComponents.CustomCard();
             materialListBox2 = new MaterialSkin.Controls.MaterialListBox();
             label1 = new Label();
+            customTextBox1 = new SmartCodeLab.CustomComponents.CustomTextBox();
             headerPanel.SuspendLayout();
             sideMenuPanel.SuspendLayout();
             instructions_Panel.SuspendLayout();
@@ -191,6 +192,7 @@
             customCard4.BorderColor = Color.Gray;
             customCard4.BorderRadius = 2;
             customCard4.BorderSize = 0;
+            customCard4.Controls.Add(customTextBox1);
             customCard4.Controls.Add(label5);
             customCard4.Location = new Point(41, 428);
             customCard4.Name = "customCard4";
@@ -341,6 +343,17 @@
             label1.TabIndex = 4;
             label1.Text = "Connected PC";
             // 
+            // customTextBox1
+            // 
+            customTextBox1.BackColor = SystemColors.Window;
+            customTextBox1.BorderRadius = 10;
+            customTextBox1.ForeColor = Color.DimGray;
+            customTextBox1.Location = new Point(43, 37);
+            customTextBox1.Name = "customTextBox1";
+            customTextBox1.Padding = new Padding(10, 7, 10, 7);
+            customTextBox1.Size = new Size(250, 36);
+            customTextBox1.TabIndex = 6;
+            // 
             // MonitoringForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -391,5 +404,6 @@
         private ListView listView4;
         private ListView listView3;
         private Label label4;
+        private CustomComponents.CustomTextBox customTextBox1;
     }
 }
