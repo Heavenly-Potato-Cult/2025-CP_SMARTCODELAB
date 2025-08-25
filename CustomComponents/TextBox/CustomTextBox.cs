@@ -102,7 +102,10 @@ namespace SmartCodeLab.CustomComponents
             set { textBox1.Multiline = value; }
         }
 
+
         [Category("Custom TextBox")]
+        [Description("Border color of the control.")]
+        [DefaultValue(typeof(Color), "MediumSlateBlue")]
         public override Color BackColor
         {
             get { return base.BackColor; }
@@ -114,6 +117,8 @@ namespace SmartCodeLab.CustomComponents
         }
 
         [Category("Custom TextBox")]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override Color ForeColor
         {
             get { return base.ForeColor; }
@@ -125,6 +130,8 @@ namespace SmartCodeLab.CustomComponents
         }
 
         [Category("Custom TextBox")]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override Font Font
         {
             get { return base.Font; }

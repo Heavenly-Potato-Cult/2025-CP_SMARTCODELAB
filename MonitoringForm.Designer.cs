@@ -35,22 +35,22 @@
             button1 = new Button();
             btnMenu2 = new Button();
             instructions_Panel = new Panel();
-            taskMainPage2 = new SmartCodeLab.CustomComponents.MainPages.TaskMainPage();
+            taskMainPage2 = new CustomComponents.MainPages.TaskMainPage();
             student_Panel = new Panel();
-            customCard4 = new SmartCodeLab.CustomComponents.CustomCard();
+            customCard4 = new CustomComponents.CustomCard();
+            customTextBox2 = new CustomComponents.CustomTextBox();
             label5 = new Label();
-            customCard3 = new SmartCodeLab.CustomComponents.CustomCard();
+            customCard3 = new CustomComponents.CustomCard();
             listView4 = new ListView();
             listView3 = new ListView();
             label4 = new Label();
             label3 = new Label();
-            customCard2 = new SmartCodeLab.CustomComponents.CustomCard();
+            customCard2 = new CustomComponents.CustomCard();
             textBox1 = new TextBox();
             label2 = new Label();
-            customCard1 = new SmartCodeLab.CustomComponents.CustomCard();
+            customCard1 = new CustomComponents.CustomCard();
             materialListBox2 = new MaterialSkin.Controls.MaterialListBox();
             label1 = new Label();
-            customTextBox1 = new SmartCodeLab.CustomComponents.CustomTextBox();
             headerPanel.SuspendLayout();
             sideMenuPanel.SuspendLayout();
             instructions_Panel.SuspendLayout();
@@ -192,12 +192,23 @@
             customCard4.BorderColor = Color.Gray;
             customCard4.BorderRadius = 2;
             customCard4.BorderSize = 0;
-            customCard4.Controls.Add(customTextBox1);
+            customCard4.Controls.Add(customTextBox2);
             customCard4.Controls.Add(label5);
             customCard4.Location = new Point(41, 428);
             customCard4.Name = "customCard4";
             customCard4.Size = new Size(1086, 226);
             customCard4.TabIndex = 6;
+            // 
+            // customTextBox2
+            // 
+            customTextBox2.BackColor = SystemColors.Window;
+            customTextBox2.BorderRadius = 5;
+            customTextBox2.ForeColor = Color.DimGray;
+            customTextBox2.Location = new Point(86, 30);
+            customTextBox2.Name = "customTextBox2";
+            customTextBox2.Padding = new Padding(10, 7, 10, 7);
+            customTextBox2.Size = new Size(250, 36);
+            customTextBox2.TabIndex = 6;
             // 
             // label5
             // 
@@ -343,17 +354,6 @@
             label1.TabIndex = 4;
             label1.Text = "Connected PC";
             // 
-            // customTextBox1
-            // 
-            customTextBox1.BackColor = SystemColors.Window;
-            customTextBox1.BorderRadius = 10;
-            customTextBox1.ForeColor = Color.DimGray;
-            customTextBox1.Location = new Point(43, 37);
-            customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(10, 7, 10, 7);
-            customTextBox1.Size = new Size(250, 36);
-            customTextBox1.TabIndex = 6;
-            // 
             // MonitoringForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -404,6 +404,6 @@
         private ListView listView4;
         private ListView listView3;
         private Label label4;
-        private CustomComponents.CustomTextBox customTextBox1;
+        private CustomComponents.CustomTextBox customTextBox2;
     }
 }

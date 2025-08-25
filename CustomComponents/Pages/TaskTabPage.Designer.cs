@@ -31,8 +31,8 @@
             materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             languageUsed = new MaterialSkin.Controls.MaterialComboBox();
             testContainer = new FlowLayoutPanel();
-            associateContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
-            externalResourceCon = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            associateContainer = new TaskPageComponents.FileContainer();
+            externalResourceCon = new TaskPageComponents.FileContainer();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -216,6 +216,7 @@
             // 
             actName.BackColor = SystemColors.Window;
             actName.BorderColor = Color.Gray;
+            actName.BorderFocusColor = SystemColors.ActiveCaption;
             actName.BorderSize = 1;
             actName.ForeColor = Color.DimGray;
             actName.Location = new Point(37, 41);
