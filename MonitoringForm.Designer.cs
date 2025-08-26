@@ -9,7 +9,7 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel sideMenuPanel;
-        private System.Windows.Forms.Button btnMenu2;
+        private System.Windows.Forms.Button btnSideMenu_Student;
 
         protected override void Dispose(bool disposing)
         {
@@ -31,9 +31,10 @@
             lblTitle = new Label();
             btnClose = new Button();
             sideMenuPanel = new Panel();
-            button2 = new Button();
-            button1 = new Button();
-            btnMenu2 = new Button();
+            button3 = new Button();
+            btnSideMenu_Settings = new Button();
+            btnSideMenu_Instruction = new Button();
+            btnSideMenu_Student = new Button();
             instructions_Panel = new Panel();
             taskMainPage2 = new SmartCodeLab.CustomComponents.MainPages.TaskMainPage();
             student_Panel = new Panel();
@@ -50,6 +51,17 @@
             customCard1 = new SmartCodeLab.CustomComponents.CustomCard();
             materialListBox2 = new MaterialSkin.Controls.MaterialListBox();
             label1 = new Label();
+            settings_Panel = new Panel();
+            customCard8 = new SmartCodeLab.CustomComponents.CustomCard();
+            label10 = new Label();
+            label6 = new Label();
+            customToggleButton1 = new SmartCodeLab.CustomComponents.CustomToggleButton();
+            customCard5 = new SmartCodeLab.CustomComponents.CustomCard();
+            customToggleButton2 = new SmartCodeLab.CustomComponents.CustomToggleButton();
+            label7 = new Label();
+            label8 = new Label();
+            customToggleButton3 = new SmartCodeLab.CustomComponents.CustomToggleButton();
+            label9 = new Label();
             headerPanel.SuspendLayout();
             sideMenuPanel.SuspendLayout();
             instructions_Panel.SuspendLayout();
@@ -58,6 +70,9 @@
             customCard3.SuspendLayout();
             customCard2.SuspendLayout();
             customCard1.SuspendLayout();
+            settings_Panel.SuspendLayout();
+            customCard8.SuspendLayout();
+            customCard5.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -101,61 +116,74 @@
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(60, 63, 65);
-            sideMenuPanel.Controls.Add(button2);
-            sideMenuPanel.Controls.Add(button1);
-            sideMenuPanel.Controls.Add(btnMenu2);
+            sideMenuPanel.Controls.Add(button3);
+            sideMenuPanel.Controls.Add(btnSideMenu_Settings);
+            sideMenuPanel.Controls.Add(btnSideMenu_Instruction);
+            sideMenuPanel.Controls.Add(btnSideMenu_Student);
             sideMenuPanel.Dock = DockStyle.Left;
             sideMenuPanel.Location = new Point(0, 40);
             sideMenuPanel.Name = "sideMenuPanel";
             sideMenuPanel.Size = new Size(200, 692);
             sideMenuPanel.TabIndex = 0;
             // 
-            // button2
+            // button3
             // 
-            button2.BackColor = Color.FromArgb(70, 70, 73);
-            button2.Dock = DockStyle.Top;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 10F);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(0, 90);
-            button2.Name = "button2";
-            button2.Size = new Size(200, 45);
-            button2.TabIndex = 3;
-            button2.Text = "Exit";
-            button2.UseVisualStyleBackColor = false;
+            button3.BackColor = Color.FromArgb(70, 70, 73);
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Segoe UI", 10F);
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(0, 135);
+            button3.Name = "button3";
+            button3.Size = new Size(200, 45);
+            button3.TabIndex = 4;
+            button3.Text = "Exit";
+            button3.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnSideMenu_Settings
             // 
-            button1.BackColor = Color.FromArgb(70, 70, 73);
-            button1.Dock = DockStyle.Top;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 10F);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 45);
-            button1.Name = "button1";
-            button1.Size = new Size(200, 45);
-            button1.TabIndex = 2;
-            button1.Text = "Instruction";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnSideMenu_Settings.BackColor = Color.FromArgb(70, 70, 73);
+            btnSideMenu_Settings.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Settings.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Settings.Font = new Font("Segoe UI", 10F);
+            btnSideMenu_Settings.ForeColor = Color.White;
+            btnSideMenu_Settings.Location = new Point(0, 90);
+            btnSideMenu_Settings.Name = "btnSideMenu_Settings";
+            btnSideMenu_Settings.Size = new Size(200, 45);
+            btnSideMenu_Settings.TabIndex = 3;
+            btnSideMenu_Settings.Text = "Settings";
+            btnSideMenu_Settings.UseVisualStyleBackColor = false;
+            btnSideMenu_Settings.Click += button2_Click;
             // 
-            // btnMenu2
+            // btnSideMenu_Instruction
             // 
-            btnMenu2.BackColor = Color.FromArgb(70, 70, 73);
-            btnMenu2.Dock = DockStyle.Top;
-            btnMenu2.FlatAppearance.BorderSize = 0;
-            btnMenu2.FlatStyle = FlatStyle.Flat;
-            btnMenu2.Font = new Font("Segoe UI", 10F);
-            btnMenu2.ForeColor = Color.White;
-            btnMenu2.Location = new Point(0, 0);
-            btnMenu2.Name = "btnMenu2";
-            btnMenu2.Size = new Size(200, 45);
-            btnMenu2.TabIndex = 1;
-            btnMenu2.Text = "Student";
-            btnMenu2.UseVisualStyleBackColor = false;
-            btnMenu2.Click += btnMenu2_Click;
+            btnSideMenu_Instruction.BackColor = Color.FromArgb(70, 70, 73);
+            btnSideMenu_Instruction.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Instruction.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Instruction.Font = new Font("Segoe UI", 10F);
+            btnSideMenu_Instruction.ForeColor = Color.White;
+            btnSideMenu_Instruction.Location = new Point(0, 45);
+            btnSideMenu_Instruction.Name = "btnSideMenu_Instruction";
+            btnSideMenu_Instruction.Size = new Size(200, 45);
+            btnSideMenu_Instruction.TabIndex = 2;
+            btnSideMenu_Instruction.Text = "Instruction";
+            btnSideMenu_Instruction.UseVisualStyleBackColor = false;
+            btnSideMenu_Instruction.Click += button1_Click;
+            // 
+            // btnSideMenu_Student
+            // 
+            btnSideMenu_Student.BackColor = Color.FromArgb(70, 70, 73);
+            btnSideMenu_Student.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Student.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Student.Font = new Font("Segoe UI", 10F);
+            btnSideMenu_Student.ForeColor = Color.White;
+            btnSideMenu_Student.Location = new Point(0, 0);
+            btnSideMenu_Student.Name = "btnSideMenu_Student";
+            btnSideMenu_Student.Size = new Size(200, 45);
+            btnSideMenu_Student.TabIndex = 1;
+            btnSideMenu_Student.Text = "Student";
+            btnSideMenu_Student.UseVisualStyleBackColor = false;
+            btnSideMenu_Student.Click += btnMenu2_Click;
             // 
             // instructions_Panel
             // 
@@ -175,6 +203,7 @@
             // 
             // student_Panel
             // 
+            student_Panel.Controls.Add(settings_Panel);
             student_Panel.Controls.Add(customCard4);
             student_Panel.Controls.Add(customCard3);
             student_Panel.Controls.Add(customCard2);
@@ -341,6 +370,137 @@
             label1.TabIndex = 4;
             label1.Text = "Connected PC";
             // 
+            // settings_Panel
+            // 
+            settings_Panel.Controls.Add(customCard5);
+            settings_Panel.Controls.Add(customCard8);
+            settings_Panel.Location = new Point(0, 0);
+            settings_Panel.Name = "settings_Panel";
+            settings_Panel.Size = new Size(1168, 674);
+            settings_Panel.TabIndex = 7;
+            // 
+            // customCard8
+            // 
+            customCard8.BackColor = Color.White;
+            customCard8.BorderColor = Color.Gray;
+            customCard8.BorderRadius = 2;
+            customCard8.BorderSize = 0;
+            customCard8.Controls.Add(customToggleButton1);
+            customCard8.Controls.Add(label6);
+            customCard8.Controls.Add(label10);
+            customCard8.Location = new Point(41, 44);
+            customCard8.Name = "customCard8";
+            customCard8.Size = new Size(243, 98);
+            customCard8.TabIndex = 4;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label10.Location = new Point(11, 16);
+            label10.Name = "label10";
+            label10.Size = new Size(101, 21);
+            label10.TabIndex = 4;
+            label10.Text = "Connections";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(11, 51);
+            label6.Name = "label6";
+            label6.Size = new Size(93, 20);
+            label6.TabIndex = 5;
+            label6.Text = "Start Session";
+            // 
+            // customToggleButton1
+            // 
+            customToggleButton1.AutoSize = true;
+            customToggleButton1.Location = new Point(181, 51);
+            customToggleButton1.MinimumSize = new Size(45, 22);
+            customToggleButton1.Name = "customToggleButton1";
+            customToggleButton1.OffBackColor = Color.Gray;
+            customToggleButton1.OffToggleColor = Color.Gainsboro;
+            customToggleButton1.OnBackColor = Color.MediumSlateBlue;
+            customToggleButton1.OnToggleColor = Color.WhiteSmoke;
+            customToggleButton1.Size = new Size(45, 22);
+            customToggleButton1.TabIndex = 6;
+            customToggleButton1.UseVisualStyleBackColor = true;
+            // 
+            // customCard5
+            // 
+            customCard5.BackColor = Color.White;
+            customCard5.BorderColor = Color.Gray;
+            customCard5.BorderRadius = 2;
+            customCard5.BorderSize = 0;
+            customCard5.Controls.Add(customToggleButton3);
+            customCard5.Controls.Add(label9);
+            customCard5.Controls.Add(customToggleButton2);
+            customCard5.Controls.Add(label7);
+            customCard5.Controls.Add(label8);
+            customCard5.Location = new Point(372, 44);
+            customCard5.Name = "customCard5";
+            customCard5.Size = new Size(322, 162);
+            customCard5.TabIndex = 7;
+            // 
+            // customToggleButton2
+            // 
+            customToggleButton2.AutoSize = true;
+            customToggleButton2.Location = new Point(181, 51);
+            customToggleButton2.MinimumSize = new Size(45, 22);
+            customToggleButton2.Name = "customToggleButton2";
+            customToggleButton2.OffBackColor = Color.Gray;
+            customToggleButton2.OffToggleColor = Color.Gainsboro;
+            customToggleButton2.OnBackColor = Color.MediumSlateBlue;
+            customToggleButton2.OnToggleColor = Color.WhiteSmoke;
+            customToggleButton2.Size = new Size(45, 22);
+            customToggleButton2.TabIndex = 6;
+            customToggleButton2.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(11, 51);
+            label7.Name = "label7";
+            label7.Size = new Size(83, 20);
+            label7.TabIndex = 5;
+            label7.Text = "Allow Hint ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(11, 16);
+            label8.Name = "label8";
+            label8.Size = new Size(162, 21);
+            label8.TabIndex = 4;
+            label8.Text = "Student IDE Features";
+            // 
+            // customToggleButton3
+            // 
+            customToggleButton3.AutoSize = true;
+            customToggleButton3.Location = new Point(181, 78);
+            customToggleButton3.MinimumSize = new Size(45, 22);
+            customToggleButton3.Name = "customToggleButton3";
+            customToggleButton3.OffBackColor = Color.Gray;
+            customToggleButton3.OffToggleColor = Color.Gainsboro;
+            customToggleButton3.OnBackColor = Color.MediumSlateBlue;
+            customToggleButton3.OnToggleColor = Color.WhiteSmoke;
+            customToggleButton3.Size = new Size(45, 22);
+            customToggleButton3.TabIndex = 8;
+            customToggleButton3.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(11, 78);
+            label9.Name = "label9";
+            label9.Size = new Size(164, 20);
+            label9.TabIndex = 7;
+            label9.Text = "Allow Suggestion Panel";
+            // 
             // MonitoringForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -368,12 +528,17 @@
             customCard2.PerformLayout();
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
+            settings_Panel.ResumeLayout(false);
+            customCard8.ResumeLayout(false);
+            customCard8.PerformLayout();
+            customCard5.ResumeLayout(false);
+            customCard5.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private Button button2;
-        private Button button1;
+        private Button btnSideMenu_Settings;
+        private Button btnSideMenu_Instruction;
         private Panel instructions_Panel;
         private CustomComponents.MainPages.TaskMainPage taskMainPage1;
         private Panel student_Panel;
@@ -391,5 +556,17 @@
         private ListView listView4;
         private ListView listView3;
         private Label label4;
+        private Button button3;
+        private Panel settings_Panel;
+        private CustomComponents.CustomCard customCard5;
+        private CustomComponents.CustomToggleButton customToggleButton3;
+        private Label label9;
+        private CustomComponents.CustomToggleButton customToggleButton2;
+        private Label label7;
+        private Label label8;
+        private CustomComponents.CustomCard customCard8;
+        private CustomComponents.CustomToggleButton customToggleButton1;
+        private Label label6;
+        private Label label10;
     }
 }
