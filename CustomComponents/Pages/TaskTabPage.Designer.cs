@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
-            languageUsed = new MaterialSkin.Controls.MaterialComboBox();
             testContainer = new FlowLayoutPanel();
-            associateContainer = new TaskPageComponents.FileContainer();
-            externalResourceCon = new TaskPageComponents.FileContainer();
+            associateContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            externalResourceCon = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -42,6 +41,7 @@
             Btn_AddTestCase = new SmartButton();
             txtbox_instruction = new TextBox();
             actName = new CustomTextBox();
+            languageUsed = new CustomComboBox();
             SuspendLayout();
             // 
             // materialLabel10
@@ -55,32 +55,6 @@
             materialLabel10.Size = new Size(76, 19);
             materialLabel10.TabIndex = 15;
             materialLabel10.Text = "Instruction";
-            // 
-            // languageUsed
-            // 
-            languageUsed.AutoCompleteCustomSource.AddRange(new string[] { "Cpp", "Java", "Python" });
-            languageUsed.AutoResize = false;
-            languageUsed.BackColor = Color.FromArgb(255, 255, 255);
-            languageUsed.Depth = 0;
-            languageUsed.DrawMode = DrawMode.OwnerDrawVariable;
-            languageUsed.DropDownHeight = 174;
-            languageUsed.DropDownStyle = ComboBoxStyle.DropDownList;
-            languageUsed.DropDownWidth = 121;
-            languageUsed.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            languageUsed.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            languageUsed.FormattingEnabled = true;
-            languageUsed.IntegralHeight = false;
-            languageUsed.ItemHeight = 43;
-            languageUsed.Items.AddRange(new object[] { "Cpp", "Java", "Python" });
-            languageUsed.Location = new Point(307, 41);
-            languageUsed.Margin = new Padding(3, 2, 3, 2);
-            languageUsed.MaxDropDownItems = 4;
-            languageUsed.MouseState = MaterialSkin.MouseState.OUT;
-            languageUsed.Name = "languageUsed";
-            languageUsed.Size = new Size(167, 49);
-            languageUsed.StartIndex = 0;
-            languageUsed.TabIndex = 24;
-            languageUsed.SelectedIndexChanged += languageUsed_SelectedIndexChanged;
             // 
             // testContainer
             // 
@@ -209,7 +183,7 @@
             txtbox_instruction.Location = new Point(37, 137);
             txtbox_instruction.Multiline = true;
             txtbox_instruction.Name = "txtbox_instruction";
-            txtbox_instruction.Size = new Size(437, 95);
+            txtbox_instruction.Size = new Size(456, 95);
             txtbox_instruction.TabIndex = 36;
             // 
             // actName
@@ -225,11 +199,32 @@
             actName.Size = new Size(250, 36);
             actName.TabIndex = 37;
             // 
+            // languageUsed
+            // 
+            languageUsed.BackColor = Color.WhiteSmoke;
+            languageUsed.BorderColor = Color.Gray;
+            languageUsed.BorderSize = 1;
+            languageUsed.DropDownStyle = ComboBoxStyle.DropDown;
+            languageUsed.Font = new Font("Segoe UI", 10F);
+            languageUsed.ForeColor = Color.DimGray;
+            languageUsed.IconColor = Color.RoyalBlue;
+            languageUsed.Items.AddRange(new object[] { "Cpp", "Java", "Python" });
+            languageUsed.ListBackColor = Color.FromArgb(230, 228, 245);
+            languageUsed.ListTextColor = Color.DimGray;
+            languageUsed.Location = new Point(293, 40);
+            languageUsed.MinimumSize = new Size(200, 30);
+            languageUsed.Name = "languageUsed";
+            languageUsed.Padding = new Padding(1);
+            languageUsed.Size = new Size(200, 37);
+            languageUsed.TabIndex = 38;
+            languageUsed.Texts = "";
+            // 
             // TaskTabPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
+            Controls.Add(languageUsed);
             Controls.Add(actName);
             Controls.Add(txtbox_instruction);
             Controls.Add(Btn_AddTestCase);
@@ -242,7 +237,6 @@
             Controls.Add(externalResourceCon);
             Controls.Add(associateContainer);
             Controls.Add(testContainer);
-            Controls.Add(languageUsed);
             Controls.Add(materialLabel10);
             Margin = new Padding(3, 2, 3, 2);
             Name = "TaskTabPage";
@@ -253,7 +247,6 @@
 
         #endregion
         private MaterialSkin.Controls.MaterialLabel materialLabel10;
-        private MaterialSkin.Controls.MaterialComboBox languageUsed;
         private FlowLayoutPanel testContainer;
         private TaskPageComponents.FileContainer associateContainer;
         private TaskPageComponents.FileContainer externalResourceCon;
@@ -266,5 +259,6 @@
         private SmartButton Btn_AddTestCase;
         private TextBox txtbox_instruction;
         private CustomTextBox actName;
+        private CustomComboBox languageUsed;
     }
 }
