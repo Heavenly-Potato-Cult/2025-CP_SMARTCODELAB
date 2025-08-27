@@ -13,6 +13,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
     public partial class FileContainer : UserControl
     {
         private bool _acceptMultipleFiles;
+        private List<string> fileNames = new List<string>();
         public FileContainer()
         {
             InitializeComponent();
@@ -47,7 +48,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
                 {
                     file.Add(control.getFile().Key, control.getFile().Value);
                 }
-                catch(ArgumentException)
+                catch (ArgumentException)
                 {
                     //do not add the same key
                 }
@@ -56,28 +57,76 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             return file;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public int ContainerHeight
+        {
+            get { return flowLayoutPanel1.Height; }
+            set { flowLayoutPanel1.Height = value; }
+        }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public string LabelText
+        {
+            get { return label1.Text; }
+            set { label1.Text = value; }
+        }
+
+        public void removeFile(string fileName)
+        {
+            fileNames.Remove(fileName);
+        }
+
         public void addFile(string filePath)
         {
-            if(!AcceptMultipleFiles)
+            if(fileNames.Contains(filePath))
+                return;
+
+            if (!AcceptMultipleFiles)
                 flowLayoutPanel1.Controls.Clear();
 
-            flowLayoutPanel1.Controls.Add(new FIleVisualDisplay(filePath));
+            fileNames.Add(Path.GetFileName(filePath));
+            flowLayoutPanel1.Controls.Add(new FIleVisualDisplay(filePath, this));
         }
 
         // planning to merge this with the addFile method by utilizing boolean flags
         public void addFile(string fileName, string fileContent)
         {
+            if (fileNames.Contains(fileName))
+                return;
+
             if (!AcceptMultipleFiles)
                 flowLayoutPanel1.Controls.Clear();
 
-            flowLayoutPanel1.Controls.Add(new FIleVisualDisplay(fileName, fileContent));
+            fileNames.Add(Path.GetFileName(fileName));
+            flowLayoutPanel1.Controls.Add(new FIleVisualDisplay(fileName, fileContent, this));
+        }
+
+        private void smartButton1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Multiselect = AcceptMultipleFiles;
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (AcceptMultipleFiles)
+                {
+                    foreach (var file in fileDialog.FileNames)
+                    {
+                        addFile(file);
+                    }
+                }
+                else
+                {
+                    addFile(fileDialog.FileName);
+                }
+            }
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AcceptMultipleFiles
         {
             get { return _acceptMultipleFiles; }
-            set { 
+            set
+            {
                 _acceptMultipleFiles = value;
                 flowLayoutPanel1.AutoScroll = value;
             }

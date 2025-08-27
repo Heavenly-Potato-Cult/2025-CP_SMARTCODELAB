@@ -30,18 +30,14 @@
         {
             materialLabel10 = new MaterialSkin.Controls.MaterialLabel();
             testContainer = new FlowLayoutPanel();
-            associateContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
-            externalResourceCon = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            openFile1 = new SmartButton();
-            smartButton1 = new SmartButton();
             Btn_AddTestCase = new SmartButton();
             txtbox_instruction = new TextBox();
-            actName = new CustomTextBox();
             languageUsed = new CustomComboBox();
+            actName = new CustomTextBox();
+            associateContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            externalResourceCon = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             SuspendLayout();
             // 
             // materialLabel10
@@ -49,7 +45,7 @@
             materialLabel10.AutoSize = true;
             materialLabel10.Depth = 0;
             materialLabel10.Font = new Font("Roboto", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialLabel10.Location = new Point(37, 115);
+            materialLabel10.Location = new Point(42, 153);
             materialLabel10.MouseState = MaterialSkin.MouseState.HOVER;
             materialLabel10.Name = "materialLabel10";
             materialLabel10.Size = new Size(76, 19);
@@ -61,37 +57,18 @@
             testContainer.AutoScroll = true;
             testContainer.BackColor = Color.White;
             testContainer.BorderStyle = BorderStyle.FixedSingle;
-            testContainer.Location = new Point(37, 352);
-            testContainer.Margin = new Padding(3, 2, 3, 2);
+            testContainer.Location = new Point(42, 469);
             testContainer.Name = "testContainer";
-            testContainer.Size = new Size(856, 184);
+            testContainer.Size = new Size(978, 245);
             testContainer.TabIndex = 25;
-            // 
-            // associateContainer
-            // 
-            associateContainer.AcceptMultipleFiles = false;
-            associateContainer.Location = new Point(529, 41);
-            associateContainer.Margin = new Padding(3, 2, 3, 2);
-            associateContainer.Name = "associateContainer";
-            associateContainer.Size = new Size(222, 36);
-            associateContainer.TabIndex = 27;
-            // 
-            // externalResourceCon
-            // 
-            externalResourceCon.AcceptMultipleFiles = true;
-            externalResourceCon.Location = new Point(529, 137);
-            externalResourceCon.Margin = new Padding(3, 2, 3, 2);
-            externalResourceCon.Name = "externalResourceCon";
-            externalResourceCon.Size = new Size(224, 95);
-            externalResourceCon.TabIndex = 28;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(37, 16);
+            label1.Location = new Point(42, 21);
             label1.Name = "label1";
-            label1.Size = new Size(112, 21);
+            label1.Size = new Size(138, 28);
             label1.TabIndex = 29;
             label1.Text = "Activity Name";
             // 
@@ -99,65 +76,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(307, 15);
+            label2.Location = new Point(351, 20);
             label2.Name = "label2";
-            label2.Size = new Size(81, 21);
+            label2.Size = new Size(101, 28);
             label2.TabIndex = 30;
             label2.Text = "Language";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(529, 16);
-            label3.Name = "label3";
-            label3.Size = new Size(116, 21);
-            label3.TabIndex = 31;
-            label3.Text = "Associate Files";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(529, 111);
-            label4.Name = "label4";
-            label4.Size = new Size(121, 21);
-            label4.TabIndex = 32;
-            label4.Text = "Resources Files";
-            // 
-            // openFile1
-            // 
-            openFile1.BackColor = Color.RoyalBlue;
-            openFile1.BackgroundColor = Color.RoyalBlue;
-            openFile1.BorderRadius = 5;
-            openFile1.Cursor = Cursors.Hand;
-            openFile1.FlatAppearance.BorderSize = 0;
-            openFile1.FlatStyle = FlatStyle.Flat;
-            openFile1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            openFile1.ForeColor = Color.White;
-            openFile1.Location = new Point(770, 40);
-            openFile1.Name = "openFile1";
-            openFile1.Size = new Size(123, 32);
-            openFile1.TabIndex = 33;
-            openFile1.Text = "OPEN FILE";
-            openFile1.UseVisualStyleBackColor = false;
-            // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.RoyalBlue;
-            smartButton1.BackgroundColor = Color.RoyalBlue;
-            smartButton1.BorderRadius = 5;
-            smartButton1.Cursor = Cursors.Hand;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(770, 136);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(123, 32);
-            smartButton1.TabIndex = 34;
-            smartButton1.Text = "OPEN FILE";
-            smartButton1.UseVisualStyleBackColor = false;
             // 
             // Btn_AddTestCase
             // 
@@ -169,9 +92,10 @@
             Btn_AddTestCase.FlatStyle = FlatStyle.Flat;
             Btn_AddTestCase.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             Btn_AddTestCase.ForeColor = Color.White;
-            Btn_AddTestCase.Location = new Point(37, 311);
+            Btn_AddTestCase.Location = new Point(42, 415);
+            Btn_AddTestCase.Margin = new Padding(3, 4, 3, 4);
             Btn_AddTestCase.Name = "Btn_AddTestCase";
-            Btn_AddTestCase.Size = new Size(140, 36);
+            Btn_AddTestCase.Size = new Size(160, 48);
             Btn_AddTestCase.TabIndex = 35;
             Btn_AddTestCase.Text = "ADD TEST CASE";
             Btn_AddTestCase.UseVisualStyleBackColor = false;
@@ -180,24 +104,12 @@
             // txtbox_instruction
             // 
             txtbox_instruction.BorderStyle = BorderStyle.FixedSingle;
-            txtbox_instruction.Location = new Point(37, 137);
+            txtbox_instruction.Location = new Point(42, 183);
+            txtbox_instruction.Margin = new Padding(3, 4, 3, 4);
             txtbox_instruction.Multiline = true;
             txtbox_instruction.Name = "txtbox_instruction";
-            txtbox_instruction.Size = new Size(456, 95);
+            txtbox_instruction.Size = new Size(521, 126);
             txtbox_instruction.TabIndex = 36;
-            // 
-            // actName
-            // 
-            actName.BackColor = SystemColors.Window;
-            actName.BorderColor = Color.Gray;
-            actName.BorderFocusColor = SystemColors.ActiveCaption;
-            actName.BorderSize = 1;
-            actName.ForeColor = Color.DimGray;
-            actName.Location = new Point(37, 41);
-            actName.Name = "actName";
-            actName.Padding = new Padding(7);
-            actName.Size = new Size(250, 36);
-            actName.TabIndex = 37;
             // 
             // languageUsed
             // 
@@ -211,36 +123,62 @@
             languageUsed.Items.AddRange(new object[] { "Cpp", "Java", "Python" });
             languageUsed.ListBackColor = Color.FromArgb(230, 228, 245);
             languageUsed.ListTextColor = Color.DimGray;
-            languageUsed.Location = new Point(293, 40);
-            languageUsed.MinimumSize = new Size(200, 30);
+            languageUsed.Location = new Point(335, 53);
+            languageUsed.Margin = new Padding(3, 4, 3, 4);
+            languageUsed.MinimumSize = new Size(229, 40);
             languageUsed.Name = "languageUsed";
             languageUsed.Padding = new Padding(1);
-            languageUsed.Size = new Size(200, 37);
+            languageUsed.Size = new Size(229, 49);
             languageUsed.TabIndex = 38;
             languageUsed.Texts = "";
             // 
+            // actName
+            // 
+            actName.BackColor = SystemColors.Window;
+            actName.ForeColor = Color.DimGray;
+            actName.Location = new Point(42, 55);
+            actName.Name = "actName";
+            actName.Padding = new Padding(10, 7, 10, 7);
+            actName.Size = new Size(276, 41);
+            actName.TabIndex = 39;
+            // 
+            // associateContainer
+            // 
+            associateContainer.AcceptMultipleFiles = false;
+            associateContainer.ContainerHeight = 50;
+            associateContainer.LabelText = "Associate Files";
+            associateContainer.Location = new Point(605, 21);
+            associateContainer.Name = "associateContainer";
+            associateContainer.Size = new Size(348, 88);
+            associateContainer.TabIndex = 40;
+            // 
+            // externalResourceCon
+            // 
+            externalResourceCon.AcceptMultipleFiles = true;
+            externalResourceCon.ContainerHeight = 115;
+            externalResourceCon.LabelText = "Exernal Files";
+            externalResourceCon.Location = new Point(605, 153);
+            externalResourceCon.Name = "externalResourceCon";
+            externalResourceCon.Size = new Size(348, 156);
+            externalResourceCon.TabIndex = 41;
+            // 
             // TaskTabPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            Controls.Add(languageUsed);
-            Controls.Add(actName);
-            Controls.Add(txtbox_instruction);
-            Controls.Add(Btn_AddTestCase);
-            Controls.Add(smartButton1);
-            Controls.Add(openFile1);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(externalResourceCon);
             Controls.Add(associateContainer);
+            Controls.Add(actName);
+            Controls.Add(languageUsed);
+            Controls.Add(txtbox_instruction);
+            Controls.Add(Btn_AddTestCase);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(testContainer);
             Controls.Add(materialLabel10);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TaskTabPage";
-            Size = new Size(1058, 548);
+            Size = new Size(1209, 731);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -248,17 +186,13 @@
         #endregion
         private MaterialSkin.Controls.MaterialLabel materialLabel10;
         private FlowLayoutPanel testContainer;
-        private TaskPageComponents.FileContainer associateContainer;
-        private TaskPageComponents.FileContainer externalResourceCon;
         private Label label1;
         private Label label2;
-        private Label label3;
-        private Label label4;
-        private SmartButton openFile1;
-        private SmartButton smartButton1;
         private SmartButton Btn_AddTestCase;
         private TextBox txtbox_instruction;
-        private CustomTextBox actName;
         private CustomComboBox languageUsed;
+        private CustomTextBox actName;
+        private TaskPageComponents.FileContainer associateContainer;
+        private TaskPageComponents.FileContainer externalResourceCon;
     }
 }

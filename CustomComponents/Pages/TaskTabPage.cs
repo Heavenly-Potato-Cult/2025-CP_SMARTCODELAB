@@ -25,7 +25,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
             if (taskModel != null)
             {
-                actName.Text = taskModel._taskName;
+                actName.Texts = taskModel._taskName;
                 txtbox_instruction.Text = taskModel._instructions;
                 languageUsed.SelectedItem = taskModel.language;
                 KeyValuePair<string, string>? referenceFile = taskModel._referenceFile;
@@ -90,7 +90,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private void save_File()
         {
             var taskModel = new TaskModel();
-            taskModel._taskName = actName.Text;
+            taskModel._taskName = actName.Texts;
             taskModel._instructions = txtbox_instruction.Text;
             taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
             taskModel._referenceFile = associateContainer.getFile();

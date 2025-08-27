@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.CustomComponents.MainPages;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,7 @@ namespace SmartCodeLab
 
         private void btnMenu2_Click(object sender, EventArgs e)
         {
-            student_Panel.Visible = true;
+            settings_Panel.Visible = true;
 
             instructions_Panel.Visible = false;
         }
@@ -65,6 +66,11 @@ namespace SmartCodeLab
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

@@ -14,20 +14,23 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
     {
         string _fileContent { get; set; }
         string _fileName { get; set; }
-        public FIleVisualDisplay(string filePath)
+        private FileContainer _container;
+        public FIleVisualDisplay(string filePath, FileContainer container)
         {
             InitializeComponent();
             _fileName = Path.GetFileName(filePath);
             fileName.Text = _fileName;
             _fileContent = File.ReadAllText(filePath);
+            _container = container;
         }
 
-        public FIleVisualDisplay(string _fileName, string fileContent)
+        public FIleVisualDisplay(string _fileName, string fileContent, FileContainer container)
         {
             InitializeComponent();
             this._fileName = _fileName;
             fileName.Text = _fileName;
             _fileContent = fileContent;
+            _container = container;
         }
         private void FIleVisualDisplay_Load(object sender, EventArgs e)
         {
@@ -41,6 +44,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
 
         private void button1_Click(object sender, EventArgs e)
         {
+            _container.removeFile(_fileName);
             Dispose();
         }
     }

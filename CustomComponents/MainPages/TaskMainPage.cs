@@ -69,10 +69,16 @@ namespace SmartCodeLab.CustomComponents.MainPages
 
         private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string fileName = Interaction.InputBox("Enter your name:", "Input Dialog", "Default value");
-            var newTask = new TaskModel();
-            JsonFileService.SaveToFile(newTask, SystemSingleton.Instance.currentTaskPath + "\\" + fileName.Replace(' ', '_') + ".task");
-            refreshFolder(SystemSingleton.Instance.currentTaskPath);
+            using (var stringForm = new StringInputDialog("New File","Filename"))
+            {
+                if(stringForm.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = stringForm.InputText;
+                    var newTask = new TaskModel();
+                    JsonFileService.SaveToFile(newTask, SystemSingleton.Instance.currentTaskPath + "\\" + fileName.Replace(' ', '_') + ".task");
+                    refreshFolder(SystemSingleton.Instance.currentTaskPath);
+                }
+            }
         }
     }
 }
