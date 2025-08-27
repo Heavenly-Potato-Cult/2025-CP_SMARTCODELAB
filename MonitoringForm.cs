@@ -1,4 +1,5 @@
 ﻿using SmartCodeLab.CustomComponents.MainPages;
+using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,48 +17,20 @@ namespace SmartCodeLab
         public MonitoringForm()
         {
             InitializeComponent();
-        }
-
-        private void MonitoringForm_Load(object sender, EventArgs e)
-        {
-
+            tabControl1.Appearance = TabAppearance.FlatButtons;
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl1.ItemSize = new Size(0, 1);
+            SystemSingleton.Instance.page1 = tabPage1;
         }
 
         private void btnMenu2_Click(object sender, EventArgs e)
         {
-            settings_Panel.Visible = true;
-
-            instructions_Panel.Visible = false;
-        }
-
-        private void btnMenu1_Click(object sender, EventArgs e)
-        {
-            student_Panel.Visible = false;
-
-            instructions_Panel.Visible = false;
-
+            tabControl1.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            instructions_Panel.Visible = true;
-            student_Panel.Visible = false;
-
-        }
-
-        private void customCard1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialCard1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void student_Panel_Paint(object sender, PaintEventArgs e)
-        {
-
+            tabControl1.SelectedIndex = 1;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -67,10 +40,10 @@ namespace SmartCodeLab
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            tabControl1.SelectedIndex = 2;
         }
 
-        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
+        private void serverSetUpPage1_Load(object sender, EventArgs e)
         {
 
         }

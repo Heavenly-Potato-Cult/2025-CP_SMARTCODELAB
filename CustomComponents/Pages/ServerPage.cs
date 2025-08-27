@@ -1,4 +1,4 @@
-﻿using SmartCodeLab.CustomComponents.Pages;
+﻿using SmartCodeLab.CustomComponents.MainPages;
 using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
@@ -10,18 +10,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SmartCodeLab.CustomComponents.MainPages
+namespace SmartCodeLab.CustomComponents.Pages
 {
-    public partial class ServerSetUpPage : UserControl
+    public partial class ServerPage : UserControl
     {
-        public ServerSetUpPage()
+        public ServerPage()
         {
             InitializeComponent();
         }
+
         private void smartButton1_Click(object sender, EventArgs e)
         {
             SystemSingleton.Instance.page1.Controls.Clear();
-            SystemSingleton.Instance.page1.Controls.Add(new ServerPage());
+            SystemSingleton.Instance.page1.Controls.Add(new ServerSetUpPage());
         }
     }
 }

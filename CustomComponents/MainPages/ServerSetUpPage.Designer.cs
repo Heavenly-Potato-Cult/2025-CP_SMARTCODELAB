@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            label8 = new Label();
-            fileContainer1 = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
-            fileContainer2 = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             smartButton1 = new SmartButton();
+            fileContainer2 = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            fileContainer1 = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            label8 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,36 +48,6 @@
             panel1.Size = new Size(368, 358);
             panel1.TabIndex = 0;
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(112, 11);
-            label8.Name = "label8";
-            label8.Size = new Size(137, 28);
-            label8.TabIndex = 5;
-            label8.Text = "Server Set Up";
-            // 
-            // fileContainer1
-            // 
-            fileContainer1.AcceptMultipleFiles = false;
-            fileContainer1.ContainerHeight = 39;
-            fileContainer1.LabelText = "Task File";
-            fileContainer1.Location = new Point(10, 72);
-            fileContainer1.Name = "fileContainer1";
-            fileContainer1.Size = new Size(355, 80);
-            fileContainer1.TabIndex = 6;
-            // 
-            // fileContainer2
-            // 
-            fileContainer2.AcceptMultipleFiles = false;
-            fileContainer2.ContainerHeight = 39;
-            fileContainer2.LabelText = "Student Credentials";
-            fileContainer2.Location = new Point(10, 197);
-            fileContainer2.Name = "fileContainer2";
-            fileContainer2.Size = new Size(348, 80);
-            fileContainer2.TabIndex = 7;
-            // 
             // smartButton1
             // 
             smartButton1.BackColor = Color.MediumSlateBlue;
@@ -91,6 +61,37 @@
             smartButton1.TabIndex = 8;
             smartButton1.Text = "Start Server";
             smartButton1.UseVisualStyleBackColor = false;
+            smartButton1.Click += smartButton1_Click;
+            // 
+            // fileContainer2
+            // 
+            fileContainer2.AcceptMultipleFiles = false;
+            fileContainer2.ContainerHeight = 39;
+            fileContainer2.LabelText = "Student Credentials";
+            fileContainer2.Location = new Point(10, 197);
+            fileContainer2.Name = "fileContainer2";
+            fileContainer2.Size = new Size(348, 80);
+            fileContainer2.TabIndex = 7;
+            // 
+            // fileContainer1
+            // 
+            fileContainer1.AcceptMultipleFiles = false;
+            fileContainer1.ContainerHeight = 39;
+            fileContainer1.LabelText = "Task File";
+            fileContainer1.Location = new Point(10, 72);
+            fileContainer1.Name = "fileContainer1";
+            fileContainer1.Size = new Size(355, 80);
+            fileContainer1.TabIndex = 6;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(112, 11);
+            label8.Name = "label8";
+            label8.Size = new Size(137, 28);
+            label8.TabIndex = 5;
+            label8.Text = "Server Set Up";
             // 
             // ServerSetUpPage
             // 
