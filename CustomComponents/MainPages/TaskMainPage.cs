@@ -42,8 +42,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
             var rootItem = new FileItem(path);
             {
                 Name = new DirectoryInfo(path).Name;
-            }
-                ;
+            };
             fileTree.Nodes.Add(rootItem.ToTreeNode());
         }
 

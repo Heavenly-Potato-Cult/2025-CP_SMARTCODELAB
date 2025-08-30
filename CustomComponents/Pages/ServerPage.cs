@@ -37,6 +37,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private async Task MessageReceiverAsync(TcpClient client)
         {
+            MessageBox.Show("Someone connected");
             NetworkStream networkStream = client.GetStream();
 
             //send the task to the new client

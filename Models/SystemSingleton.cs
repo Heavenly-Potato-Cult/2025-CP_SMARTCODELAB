@@ -15,8 +15,12 @@ namespace SmartCodeLab.Models
 
         public static SystemSingleton Instance => _instance.Value;
 
+
+        public bool? _loggedIn;
         public string? currentTaskPath { get; set; }
 
         public TabPage page1 {  get; set; }
+        public TabPage page2 { get; set; }
+        public TabPage page3 { get; set; }
     }
 }

@@ -13,5 +13,6 @@ namespace SmartCodeLab.Models.Enums
         StudentProgress,
         ServerTask,
         ServerTaskRequest,
+        UserProfile
     }
 }

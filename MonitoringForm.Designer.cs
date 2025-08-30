@@ -36,15 +36,12 @@
             tabPage1 = new TabPage();
             serverSetUpPage1 = new SmartCodeLab.CustomComponents.MainPages.ServerSetUpPage();
             tabPage2 = new TabPage();
-            button2 = new Button();
-            button1 = new Button();
             tabPage3 = new TabPage();
             taskMainPage2 = new SmartCodeLab.CustomComponents.MainPages.TaskMainPage();
             headerPanel.SuspendLayout();
             sideMenuPanel.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
             SuspendLayout();
             // 
@@ -129,7 +126,7 @@
             btnSideMenu_Settings.Name = "btnSideMenu_Settings";
             btnSideMenu_Settings.Size = new Size(229, 60);
             btnSideMenu_Settings.TabIndex = 3;
-            btnSideMenu_Settings.Text = "Settings";
+            btnSideMenu_Settings.Text = "Task Management";
             btnSideMenu_Settings.UseVisualStyleBackColor = false;
             btnSideMenu_Settings.Click += button2_Click;
             // 
@@ -145,7 +142,7 @@
             btnSideMenu_Instruction.Name = "btnSideMenu_Instruction";
             btnSideMenu_Instruction.Size = new Size(229, 60);
             btnSideMenu_Instruction.TabIndex = 2;
-            btnSideMenu_Instruction.Text = "Task Management";
+            btnSideMenu_Instruction.Text = "Join Server";
             btnSideMenu_Instruction.UseVisualStyleBackColor = false;
             btnSideMenu_Instruction.Click += button1_Click;
             // 
@@ -198,34 +195,12 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.DarkGray;
-            tabPage2.Controls.Add(button2);
-            tabPage2.Controls.Add(button1);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1329, 871);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(79, 256);
-            button2.Name = "button2";
-            button2.Size = new Size(151, 41);
-            button2.TabIndex = 1;
-            button2.Text = "Client";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click_1;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(79, 189);
-            button1.Name = "button1";
-            button1.Size = new Size(151, 41);
-            button1.TabIndex = 0;
-            button1.Text = "Server";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
             // 
             // tabPage3
             // 
@@ -264,7 +239,6 @@
             sideMenuPanel.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage2.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -280,7 +254,5 @@
         private TabPage tabPage3;
         private CustomComponents.MainPages.TaskMainPage taskMainPage2;
         private CustomComponents.MainPages.ServerSetUpPage serverSetUpPage1;
-        private Button button2;
-        private Button button1;
     }
 }

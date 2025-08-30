@@ -1,5 +1,7 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.MainPages;
+using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using System;
@@ -26,6 +28,7 @@ namespace SmartCodeLab
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.ItemSize = new Size(0, 1);
             SystemSingleton.Instance.page1 = tabPage1;
+            SystemSingleton.Instance.page2 = tabPage2;
         }
 
         private void btnMenu2_Click(object sender, EventArgs e)
@@ -35,6 +38,17 @@ namespace SmartCodeLab
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if(SystemSingleton.Instance._loggedIn == null || SystemSingleton.Instance._loggedIn == false)
+            {
+                var userLogIn = new UserLogInDIalog();
+                if (userLogIn.ShowDialog() == DialogResult.OK) 
+                {
+                    var studentProgramming = new ProgrammingEnvironment(userLogIn._folderLocation, userLogIn._userName);
+                    SystemSingleton.Instance.page2.Controls.Clear();
+                    SystemSingleton.Instance.page2.Controls.Add(studentProgramming);
+                }
+                userLogIn.Dispose();
+            }
             tabControl1.SelectedIndex = 1;
         }
 
@@ -46,62 +60,6 @@ namespace SmartCodeLab
         private void button2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 2;
-        }
-
-        private void serverSetUpPage1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            MsgForm msgForm = new MsgForm(IPAddress.Parse("127.0.0.1"));
-            msgForm.Show();
-        }
-
-        async private void button2_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                TaskModel task = null;
-                TcpClient client = new TcpClient();
-                await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1901);
-                NetworkStream networkStream = client.GetStream();
-
-                // Start receiving in a separate task
-                await Task.Run(() =>
-                {
-                    try
-                    {
-                        while (true)
-                        {
-                            var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(networkStream, PrefixStyle.Base128);
-
-                            if (msg == null)
-                                break;
-
-                                if (msg._messageType == Models.Enums.MessageType.ServerTask)
-                                {
-                                    Debug.WriteLine(msg._task.ToString());
-                                    task = msg._task;
-                                    break;
-                                }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Invoke(new Action(() =>
-                        {
-                            MessageBox.Show($"Error: {ex.Message}");
-                        }));
-                    }
-                });
-                await Task.Run(() => MessageBox.Show(task.ToString()));
-            }
-            catch (SocketException)
-            {
-                MessageBox.Show("No connection");
-            }
         }
 
     }
