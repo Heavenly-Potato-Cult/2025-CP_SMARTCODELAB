@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ProtoBuf;
+using SmartCodeLab.Models.Enums;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +9,25 @@ using System.Threading.Tasks;
 
 namespace SmartCodeLab.Models
 {
+    [ProtoContract]
     public class TaskModel
     {
+        [ProtoMember(1)]
         private static readonly Dictionary<string, LanguageSupported> languageMap = new()
         {
             { "Cpp", LanguageSupported.Cpp },
             { "Python", LanguageSupported.Python },
             { "Java", LanguageSupported.Java }
         };
-
+        [ProtoMember(2)]
         public string _taskName { get; set; }
+        [ProtoMember(3)]
         public string _instructions { get; set; }
 
+        [ProtoMember(4)]
         private LanguageSupported? _language;
+
+        [ProtoIgnore]
         public string language { 
             get { return _language?.ToString() ?? "none"; }
             set {
@@ -34,9 +42,12 @@ namespace SmartCodeLab.Models
             } }
 
         //will be provided by the user(most probably a teacher) to test the students code
+        [ProtoMember(5)]
         public KeyValuePair<string, string>? _referenceFile { get; set; } // the file that will be provided by the user as a quality reference of the students code
+        [ProtoMember(6)]
         public Dictionary<string, string>? _externalResources { get; set; } // the file that contains the functions and properties needed to complete the task
 
+        [ProtoMember(7)]
         public Dictionary<string, string>? _testCases { get; set; } // will be provided by the user to test the students code
 
         public TaskModel() { }

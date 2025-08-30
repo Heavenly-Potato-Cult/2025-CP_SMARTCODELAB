@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartCodeLab.Models
+namespace SmartCodeLab.Models.Enums
 {
     public enum LanguageSupported
     {

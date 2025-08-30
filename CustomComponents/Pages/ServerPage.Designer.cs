@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            MaterialSkin.MaterialListBoxItem materialListBoxItem4 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem5 = new MaterialSkin.MaterialListBoxItem();
-            MaterialSkin.MaterialListBoxItem materialListBoxItem6 = new MaterialSkin.MaterialListBoxItem();
             customCard4 = new CustomCard();
             label5 = new Label();
             customCard3 = new CustomCard();
@@ -42,9 +39,9 @@
             textBox1 = new TextBox();
             label2 = new Label();
             customCard1 = new CustomCard();
-            materialListBox2 = new MaterialSkin.Controls.MaterialListBox();
             label1 = new Label();
             smartButton1 = new SmartButton();
+            userProfilesContainer = new FlowLayoutPanel();
             customCard4.SuspendLayout();
             customCard3.SuspendLayout();
             customCard2.SuspendLayout();
@@ -136,10 +133,10 @@
             customCard2.BorderSize = 0;
             customCard2.Controls.Add(textBox1);
             customCard2.Controls.Add(label2);
-            customCard2.Location = new Point(367, 43);
+            customCard2.Location = new Point(287, 43);
             customCard2.Margin = new Padding(3, 4, 3, 4);
             customCard2.Name = "customCard2";
-            customCard2.Size = new Size(544, 455);
+            customCard2.Size = new Size(668, 455);
             customCard2.TabIndex = 10;
             // 
             // textBox1
@@ -150,7 +147,7 @@
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(516, 361);
+            textBox1.Size = new Size(652, 361);
             textBox1.TabIndex = 5;
             // 
             // label2
@@ -169,41 +166,13 @@
             customCard1.BorderColor = Color.Gray;
             customCard1.BorderRadius = 2;
             customCard1.BorderSize = 0;
-            customCard1.Controls.Add(materialListBox2);
+            customCard1.Controls.Add(userProfilesContainer);
             customCard1.Controls.Add(label1);
-            customCard1.Location = new Point(47, 43);
+            customCard1.Location = new Point(3, 43);
             customCard1.Margin = new Padding(3, 4, 3, 4);
             customCard1.Name = "customCard1";
             customCard1.Size = new Size(278, 455);
             customCard1.TabIndex = 7;
-            // 
-            // materialListBox2
-            // 
-            materialListBox2.BackColor = Color.Transparent;
-            materialListBox2.BorderColor = Color.Transparent;
-            materialListBox2.Depth = 0;
-            materialListBox2.Font = new Font("Microsoft Sans Serif", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialListBoxItem4.SecondaryText = "";
-            materialListBoxItem4.Tag = null;
-            materialListBoxItem4.Text = "Jimmuel";
-            materialListBoxItem5.SecondaryText = "";
-            materialListBoxItem5.Tag = null;
-            materialListBoxItem5.Text = "Clifford";
-            materialListBoxItem6.SecondaryText = "";
-            materialListBoxItem6.Tag = null;
-            materialListBoxItem6.Text = "Angelo";
-            materialListBox2.Items.Add(materialListBoxItem4);
-            materialListBox2.Items.Add(materialListBoxItem5);
-            materialListBox2.Items.Add(materialListBoxItem6);
-            materialListBox2.Location = new Point(13, 69);
-            materialListBox2.Margin = new Padding(3, 4, 3, 4);
-            materialListBox2.MouseState = MaterialSkin.MouseState.HOVER;
-            materialListBox2.Name = "materialListBox2";
-            materialListBox2.RightToLeft = RightToLeft.No;
-            materialListBox2.SelectedIndex = -1;
-            materialListBox2.SelectedItem = null;
-            materialListBox2.Size = new Size(246, 171);
-            materialListBox2.TabIndex = 5;
             // 
             // label1
             // 
@@ -228,6 +197,13 @@
             smartButton1.Text = "EXIT";
             smartButton1.UseVisualStyleBackColor = false;
             smartButton1.Click += smartButton1_Click;
+            // 
+            // userProfilesContainer
+            // 
+            userProfilesContainer.Location = new Point(13, 53);
+            userProfilesContainer.Name = "userProfilesContainer";
+            userProfilesContainer.Size = new Size(250, 377);
+            userProfilesContainer.TabIndex = 5;
             // 
             // ServerPage
             // 
@@ -264,8 +240,8 @@
         private TextBox textBox1;
         private Label label2;
         private CustomCard customCard1;
-        private MaterialSkin.Controls.MaterialListBox materialListBox2;
         private Label label1;
         private SmartButton smartButton1;
+        private FlowLayoutPanel userProfilesContainer;
     }
 }

@@ -1,11 +1,16 @@
-﻿using SmartCodeLab.CustomComponents.MainPages;
+﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.MainPages;
 using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -47,5 +52,57 @@ namespace SmartCodeLab
         {
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MsgForm msgForm = new MsgForm(IPAddress.Parse("127.0.0.1"));
+            msgForm.Show();
+        }
+
+        async private void button2_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                TaskModel task = null;
+                TcpClient client = new TcpClient();
+                await client.ConnectAsync(IPAddress.Parse("127.0.0.1"), 1901);
+                NetworkStream networkStream = client.GetStream();
+
+                // Start receiving in a separate task
+                await Task.Run(() =>
+                {
+                    try
+                    {
+                        while (true)
+                        {
+                            var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(networkStream, PrefixStyle.Base128);
+
+                            if (msg == null)
+                                break;
+
+                                if (msg._messageType == Models.Enums.MessageType.ServerTask)
+                                {
+                                    Debug.WriteLine(msg._task.ToString());
+                                    task = msg._task;
+                                    break;
+                                }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Invoke(new Action(() =>
+                        {
+                            MessageBox.Show($"Error: {ex.Message}");
+                        }));
+                    }
+                });
+                await Task.Run(() => MessageBox.Show(task.ToString()));
+            }
+            catch (SocketException)
+            {
+                MessageBox.Show("No connection");
+            }
+        }
+
     }
 }

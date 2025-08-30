@@ -31,7 +31,7 @@
             panel1 = new Panel();
             smartButton1 = new SmartButton();
             fileContainer2 = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
-            fileContainer1 = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            taskContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             label8 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -41,7 +41,7 @@
             panel1.BackColor = SystemColors.ButtonHighlight;
             panel1.Controls.Add(smartButton1);
             panel1.Controls.Add(fileContainer2);
-            panel1.Controls.Add(fileContainer1);
+            panel1.Controls.Add(taskContainer);
             panel1.Controls.Add(label8);
             panel1.Location = new Point(420, 297);
             panel1.Name = "panel1";
@@ -73,15 +73,15 @@
             fileContainer2.Size = new Size(348, 80);
             fileContainer2.TabIndex = 7;
             // 
-            // fileContainer1
+            // taskContainer
             // 
-            fileContainer1.AcceptMultipleFiles = false;
-            fileContainer1.ContainerHeight = 39;
-            fileContainer1.LabelText = "Task File";
-            fileContainer1.Location = new Point(10, 72);
-            fileContainer1.Name = "fileContainer1";
-            fileContainer1.Size = new Size(355, 80);
-            fileContainer1.TabIndex = 6;
+            taskContainer.AcceptMultipleFiles = false;
+            taskContainer.ContainerHeight = 39;
+            taskContainer.LabelText = "Task File";
+            taskContainer.Location = new Point(10, 72);
+            taskContainer.Name = "taskContainer";
+            taskContainer.Size = new Size(355, 80);
+            taskContainer.TabIndex = 6;
             // 
             // label8
             // 
@@ -110,7 +110,7 @@
 
         private Panel panel1;
         private TaskPageComponents.FileContainer fileContainer2;
-        private TaskPageComponents.FileContainer fileContainer1;
+        private TaskPageComponents.FileContainer taskContainer;
         private Label label8;
         private SmartButton smartButton1;
     }

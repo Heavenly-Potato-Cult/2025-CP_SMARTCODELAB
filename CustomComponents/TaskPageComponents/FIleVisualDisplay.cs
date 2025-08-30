@@ -37,6 +37,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
 
         }
 
+        //file name as the key, and file content as the value
         public KeyValuePair<string, string> getFile()
         {
             return new KeyValuePair<string, string>(_fileName, _fileContent);

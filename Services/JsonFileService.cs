@@ -45,5 +45,26 @@ namespace SmartCodeLab.Services
                 return default;
             }
         }
+
+        public static T LoadFromText<T>(string content)
+        {
+            try
+            {
+                return JsonSerializer.Deserialize<T>(content);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading file: {ex.Message}");
+                return default;
+            }
+        }
+
+        public static string GetObjectJsonText<T>(T obj) 
+        {
+            return JsonSerializer.Serialize(obj, new JsonSerializerOptions
+            {
+                WriteIndented = true // Makes the JSON human-readable
+            });
+        }
     }
 }
