@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,16 @@ namespace SmartCodeLab.Models
         public string _studentName { get; set; }
 
         [ProtoMember(2)]
-        public IPAddress _computerAddress { get; set; }
+        public string? _computerAddress { get; set; }
+
+        public UserProfile()
+        {
+        }
+
+        public UserProfile(string studentName)
+        {
+            _studentName = studentName;
+            _computerAddress = NetworkServices.GetIpv4();
+        }
     }
 }

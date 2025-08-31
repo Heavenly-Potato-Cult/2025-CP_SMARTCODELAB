@@ -33,13 +33,14 @@
             smartButton1 = new SmartButton();
             smartButton2 = new SmartButton();
             smartButton3 = new SmartButton();
+            label1 = new Label();
             SuspendLayout();
             // 
             // userName
             // 
             userName.BackColor = SystemColors.Window;
             userName.ForeColor = Color.DimGray;
-            userName.Location = new Point(12, 76);
+            userName.Location = new Point(12, 57);
             userName.Name = "userName";
             userName.Padding = new Padding(10, 7, 10, 7);
             userName.Size = new Size(360, 41);
@@ -99,11 +100,21 @@
             smartButton3.UseVisualStyleBackColor = false;
             smartButton3.Click += smartButton3_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(132, 18);
+            label1.Name = "label1";
+            label1.Size = new Size(119, 20);
+            label1.TabIndex = 5;
+            label1.Text = "User Log In Page";
+            // 
             // UserLogInDIalog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(384, 263);
+            Controls.Add(label1);
             Controls.Add(smartButton3);
             Controls.Add(smartButton2);
             Controls.Add(smartButton1);
@@ -113,6 +124,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UserLogInDIalog";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -122,5 +134,6 @@
         private SmartButton smartButton1;
         private SmartButton smartButton2;
         private SmartButton smartButton3;
+        private Label label1;
     }
 }

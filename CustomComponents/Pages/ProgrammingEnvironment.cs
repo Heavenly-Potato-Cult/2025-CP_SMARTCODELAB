@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,17 +16,16 @@ namespace SmartCodeLab.CustomComponents.Pages
 {
     public partial class ProgrammingEnvironment : UserControl
     {
-        public ProgrammingEnvironment(string folderPath, string userName)
+        private TcpClient _client;
+        public ProgrammingEnvironment(string folderPath, string userName, TaskModel task)
         {
             InitializeComponent();
             new Thread(() => {
                 System.Threading.Thread.Sleep(1000);
                 SystemSingleton.Instance._loggedIn = true;
             }).Start();
-            LoadingDialog loading = new LoadingDialog();
-            loading.ShowDialog();
             selectFolder(folderPath);
-            
+            MessageBox.Show(task.ToString());
         }
 
         private void selectFolder(string path)
