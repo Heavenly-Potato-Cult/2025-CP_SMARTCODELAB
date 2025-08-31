@@ -24,13 +24,14 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoringForm));
             headerPanel = new Panel();
             lblTitle = new Label();
             btnClose = new Button();
             sideMenuPanel = new Panel();
-            button3 = new Button();
+            btnSideMenu_Shutdown = new Button();
             btnSideMenu_Settings = new Button();
-            btnSideMenu_Instruction = new Button();
+            btnSideMenu_TaskManagement = new Button();
             btnSideMenu_Student = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
@@ -62,11 +63,11 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            lblTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(10, 10);
+            lblTitle.Location = new Point(10, 8);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(119, 20);
+            lblTitle.Size = new Size(154, 25);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Smart Code Lab";
             // 
@@ -90,9 +91,9 @@
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(13, 13, 13);
-            sideMenuPanel.Controls.Add(button3);
+            sideMenuPanel.Controls.Add(btnSideMenu_Shutdown);
             sideMenuPanel.Controls.Add(btnSideMenu_Settings);
-            sideMenuPanel.Controls.Add(btnSideMenu_Instruction);
+            sideMenuPanel.Controls.Add(btnSideMenu_TaskManagement);
             sideMenuPanel.Controls.Add(btnSideMenu_Student);
             sideMenuPanel.Dock = DockStyle.Left;
             sideMenuPanel.Location = new Point(0, 40);
@@ -100,62 +101,79 @@
             sideMenuPanel.Size = new Size(200, 692);
             sideMenuPanel.TabIndex = 0;
             // 
-            // button3
+            // btnSideMenu_Shutdown
             // 
-            button3.BackColor = Color.FromArgb(13, 13, 13);
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI", 10F);
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(0, 135);
-            button3.Name = "button3";
-            button3.Size = new Size(200, 45);
-            button3.TabIndex = 4;
-            button3.Text = "Exit";
-            button3.UseVisualStyleBackColor = false;
+            btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Shutdown.Cursor = Cursors.Hand;
+            btnSideMenu_Shutdown.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Shutdown.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Shutdown.Font = new Font("Segoe UI", 11.25F);
+            btnSideMenu_Shutdown.ForeColor = Color.White;
+            btnSideMenu_Shutdown.Image = (Image)resources.GetObject("btnSideMenu_Shutdown.Image");
+            btnSideMenu_Shutdown.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_Shutdown.Location = new Point(10, 157);
+            btnSideMenu_Shutdown.Name = "btnSideMenu_Shutdown";
+            btnSideMenu_Shutdown.Size = new Size(176, 45);
+            btnSideMenu_Shutdown.TabIndex = 4;
+            btnSideMenu_Shutdown.Text = "   Shutdown";
+            btnSideMenu_Shutdown.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_Shutdown.UseVisualStyleBackColor = false;
+            btnSideMenu_Shutdown.Click += btnSideMenu_Shutdown_Click;
             // 
             // btnSideMenu_Settings
             // 
             btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Settings.Cursor = Cursors.Hand;
             btnSideMenu_Settings.FlatAppearance.BorderSize = 0;
             btnSideMenu_Settings.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_Settings.Font = new Font("Segoe UI", 10F);
+            btnSideMenu_Settings.Font = new Font("Segoe UI", 11.25F);
             btnSideMenu_Settings.ForeColor = Color.White;
-            btnSideMenu_Settings.Location = new Point(0, 90);
+            btnSideMenu_Settings.Image = (Image)resources.GetObject("btnSideMenu_Settings.Image");
+            btnSideMenu_Settings.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_Settings.Location = new Point(10, 112);
             btnSideMenu_Settings.Name = "btnSideMenu_Settings";
-            btnSideMenu_Settings.Size = new Size(200, 45);
+            btnSideMenu_Settings.Size = new Size(176, 45);
             btnSideMenu_Settings.TabIndex = 3;
-            btnSideMenu_Settings.Text = "Settings";
+            btnSideMenu_Settings.Text = "  Settings";
+            btnSideMenu_Settings.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_Settings.UseVisualStyleBackColor = false;
             btnSideMenu_Settings.Click += button2_Click;
             // 
-            // btnSideMenu_Instruction
+            // btnSideMenu_TaskManagement
             // 
-            btnSideMenu_Instruction.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Instruction.FlatAppearance.BorderSize = 0;
-            btnSideMenu_Instruction.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_Instruction.Font = new Font("Segoe UI", 10F);
-            btnSideMenu_Instruction.ForeColor = Color.White;
-            btnSideMenu_Instruction.Location = new Point(0, 45);
-            btnSideMenu_Instruction.Name = "btnSideMenu_Instruction";
-            btnSideMenu_Instruction.Size = new Size(200, 45);
-            btnSideMenu_Instruction.TabIndex = 2;
-            btnSideMenu_Instruction.Text = "Task Management";
-            btnSideMenu_Instruction.UseVisualStyleBackColor = false;
-            btnSideMenu_Instruction.Click += button1_Click;
+            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_TaskManagement.Cursor = Cursors.Hand;
+            btnSideMenu_TaskManagement.FlatAppearance.BorderSize = 0;
+            btnSideMenu_TaskManagement.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_TaskManagement.Font = new Font("Segoe UI", 11.25F);
+            btnSideMenu_TaskManagement.ForeColor = Color.White;
+            btnSideMenu_TaskManagement.Image = (Image)resources.GetObject("btnSideMenu_TaskManagement.Image");
+            btnSideMenu_TaskManagement.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_TaskManagement.Location = new Point(10, 67);
+            btnSideMenu_TaskManagement.Name = "btnSideMenu_TaskManagement";
+            btnSideMenu_TaskManagement.Size = new Size(176, 45);
+            btnSideMenu_TaskManagement.TabIndex = 2;
+            btnSideMenu_TaskManagement.Text = "   Task Management";
+            btnSideMenu_TaskManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_TaskManagement.UseVisualStyleBackColor = false;
+            btnSideMenu_TaskManagement.Click += button1_Click;
             // 
             // btnSideMenu_Student
             // 
-            btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Student.BackColor = Color.FromArgb(26, 26, 26);
+            btnSideMenu_Student.Cursor = Cursors.Hand;
             btnSideMenu_Student.FlatAppearance.BorderSize = 0;
             btnSideMenu_Student.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_Student.Font = new Font("Segoe UI", 10F);
+            btnSideMenu_Student.Font = new Font("Segoe UI", 11.25F);
             btnSideMenu_Student.ForeColor = Color.White;
-            btnSideMenu_Student.Location = new Point(0, 0);
+            btnSideMenu_Student.Image = (Image)resources.GetObject("btnSideMenu_Student.Image");
+            btnSideMenu_Student.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_Student.Location = new Point(10, 22);
             btnSideMenu_Student.Name = "btnSideMenu_Student";
-            btnSideMenu_Student.Size = new Size(200, 45);
+            btnSideMenu_Student.Size = new Size(176, 45);
             btnSideMenu_Student.TabIndex = 1;
-            btnSideMenu_Student.Text = "Server";
+            btnSideMenu_Student.Text = "   Server";
+            btnSideMenu_Student.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_Student.UseVisualStyleBackColor = false;
             btnSideMenu_Student.Click += btnMenu2_Click;
             // 
@@ -272,9 +290,9 @@
 
         #endregion
         private Button btnSideMenu_Settings;
-        private Button btnSideMenu_Instruction;
+        private Button btnSideMenu_TaskManagement;
         private CustomComponents.MainPages.TaskMainPage taskMainPage1;
-        private Button button3;
+        private Button btnSideMenu_Shutdown;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;

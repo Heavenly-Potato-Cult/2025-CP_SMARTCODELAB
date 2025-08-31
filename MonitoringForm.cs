@@ -35,10 +35,28 @@ namespace SmartCodeLab
         private void btnMenu2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 0;
+
+            //change backcolor
+            btnSideMenu_Student.BackColor = Color.FromArgb(26, 26, 26);
+            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //change backcolor
+            btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(26, 26, 26);
+            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
+
+
+
+
+
+
+
 
             if (!SystemSingleton.Instance._loggedIn)
             {
@@ -79,7 +97,23 @@ namespace SmartCodeLab
         private void button2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 2;
+
+
+            //change backcolor
+            btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Settings.BackColor = Color.FromArgb(26, 26, 26);
+            btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
         }
 
+        private void btnSideMenu_Shutdown_Click(object sender, EventArgs e)
+        {
+            //change backcolor
+            btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Settings.BackColor = Color.FromArgb(13,13,13);
+            btnSideMenu_Shutdown.BackColor = Color.FromArgb(26, 26, 26);
+            
+        }
     }
 }
