@@ -46,6 +46,7 @@
             // 
             // button1
             // 
+            button1.Cursor = Cursors.Hand;
             button1.Font = new Font("Segoe UI", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(98, 1);
             button1.Margin = new Padding(3, 2, 3, 2);

@@ -73,6 +73,7 @@
             // btnClose
             // 
             btnClose.BackColor = Color.FromArgb(200, 50, 50);
+            btnClose.Cursor = Cursors.Hand;
             btnClose.Dock = DockStyle.Right;
             btnClose.FlatAppearance.BorderSize = 0;
             btnClose.FlatStyle = FlatStyle.Flat;

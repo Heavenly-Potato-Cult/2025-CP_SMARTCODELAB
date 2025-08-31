@@ -57,6 +57,7 @@
             // smartButton1
             // 
             smartButton1.BackColor = Color.MediumSlateBlue;
+            smartButton1.Cursor = Cursors.Hand;
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
