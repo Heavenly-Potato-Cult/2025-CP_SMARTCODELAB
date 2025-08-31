@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,8 +16,9 @@ namespace SmartCodeLab.Models
 
         public static SystemSingleton Instance => _instance.Value;
 
+        public TcpClient? client { get; set; }
 
-        public bool? _loggedIn;
+        public bool _loggedIn = false;
         public string? currentTaskPath { get; set; }
 
         public TabPage page1 {  get; set; }

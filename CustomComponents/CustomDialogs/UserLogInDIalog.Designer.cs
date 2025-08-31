@@ -33,18 +33,13 @@
             smartButton1 = new SmartButton();
             smartButton2 = new SmartButton();
             smartButton3 = new SmartButton();
-            lblTitle = new Label();
-            label1 = new Label();
             SuspendLayout();
             // 
             // userName
             // 
-            userName.BackColor = Color.FromArgb(13, 13, 13);
-            userName.BorderColor = Color.White;
-            userName.BorderFocusColor = Color.MediumSlateBlue;
-            userName.ForeColor = Color.FromArgb(179, 179, 179);
-            userName.Location = new Point(66, 48);
-            userName.Margin = new Padding(3, 2, 3, 2);
+            userName.BackColor = SystemColors.Window;
+            userName.ForeColor = Color.DimGray;
+            userName.Location = new Point(12, 76);
             userName.Name = "userName";
             userName.Padding = new Padding(9, 5, 9, 5);
             userName.Size = new Size(315, 32);
@@ -115,36 +110,11 @@
             smartButton3.UseVisualStyleBackColor = false;
             smartButton3.Click += smartButton3_Click;
             // 
-            // lblTitle
-            // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(65, 26);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(80, 20);
-            lblTitle.TabIndex = 5;
-            lblTitle.Text = "Username";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(66, 101);
-            label1.Name = "label1";
-            label1.Size = new Size(117, 20);
-            label1.TabIndex = 6;
-            label1.Text = "Folder Location";
-            // 
             // UserLogInDIalog
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(10, 10, 10);
-            ClientSize = new Size(447, 274);
-            Controls.Add(label1);
-            Controls.Add(lblTitle);
+            ClientSize = new Size(384, 263);
             Controls.Add(smartButton3);
             Controls.Add(smartButton2);
             Controls.Add(smartButton1);
@@ -168,7 +138,5 @@
         private SmartButton smartButton1;
         private SmartButton smartButton2;
         private SmartButton smartButton3;
-        private Label lblTitle;
-        private Label label1;
     }
 }

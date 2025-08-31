@@ -20,6 +20,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(3)]
         public StudentCodingProgress? _progress { get; set; }
 
+        [ProtoMember(4)]
+        public UserProfile? _userProfile { get; set; }
+
         public ServerMessage()
         {
         }
@@ -27,6 +30,19 @@ namespace SmartCodeLab.Models
         public class Builder
         {
             private readonly ServerMessage msg = new ServerMessage();
+
+            private readonly List<MessageType> messageTypesRequiringContent = new List<MessageType>
+            {
+                Enums.MessageType.ServerTask,
+                Enums.MessageType.StudentProgress,
+                Enums.MessageType.LogInSuccessful,
+                Enums.MessageType.UserProfile
+            };
+
+            public Builder(MessageType messageType)
+            {
+                msg._messageType = messageType;
+            }
 
             public Builder MessageType(MessageType messageType)
             {
@@ -46,15 +62,21 @@ namespace SmartCodeLab.Models
                 return this;
             }
 
+            public Builder UserProfile(UserProfile profile)
+            {
+                msg._userProfile = profile;
+                return this;
+            }
+
             public ServerMessage Build()
             {
                 // Validation can be added here
                 if (msg._messageType == null)
                     throw new InvalidOperationException("Message Type is required");
 
-                bool isNotRequest = msg._messageType != Enums.MessageType.ServerTaskRequest;
-
-                if (msg._progress == null && msg._messageType == null && isNotRequest)
+                bool isContentRequired = messageTypesRequiringContent.Contains(msg._messageType.Value);
+                bool hasContent = msg._task != null || msg._progress != null || msg._userProfile != null;
+                if (!hasContent && isContentRequired)
                     throw new InvalidOperationException("Message Content is required");
 
                 return msg;

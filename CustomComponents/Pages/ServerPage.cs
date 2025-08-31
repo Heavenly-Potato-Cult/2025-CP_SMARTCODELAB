@@ -19,11 +19,14 @@ namespace SmartCodeLab.CustomComponents.Pages
     public partial class ServerPage : UserControl
     {
         private TaskModel currentTask { get; set; }
+        private TcpListener _server;
+
+        private readonly List<string> studentNames = new List<string>() { "slimfordy","stagnant potato"};
         public ServerPage(TaskModel task)
         {
             InitializeComponent();
             currentTask = task;
-            TcpListener _server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1901);
+            _server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1901);
             _server.Start();
             Task.Run(() =>
             {
@@ -37,11 +40,10 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private async Task MessageReceiverAsync(TcpClient client)
         {
-            MessageBox.Show("Someone connected");
             NetworkStream networkStream = client.GetStream();
 
             //send the task to the new client
-            await Task.Run(() =>Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder().MessageType(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128));
+            await Task.Run(() =>Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128));
             await networkStream.FlushAsync();
             while (true)
             {
@@ -57,9 +59,20 @@ namespace SmartCodeLab.CustomComponents.Pages
                     switch (obj._messageType)
                     {
                         case MessageType.ServerTaskRequest:
-                            MessageBox.Show("Requesting");
                             await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                new ServerMessage.Builder().MessageType(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128));
+                                new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128));
+                            await networkStream.FlushAsync();
+                            break;
+                        case MessageType.UserProfile:
+                            if (obj._userProfile != null && studentNames.Contains(obj._userProfile._studentName))
+                            {
+                                await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                    new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128));
+                            }
+                            else
+                                await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                    new ServerMessage.Builder(MessageType.LogInFailed).Build(), PrefixStyle.Base128));
+
                             await networkStream.FlushAsync();
                             break;
                         default:
@@ -81,6 +94,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
+            _server.Stop();
             SystemSingleton.Instance.page1.Controls.Clear();
             SystemSingleton.Instance.page1.Controls.Add(new ServerSetUpPage());
         }

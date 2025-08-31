@@ -21,6 +21,7 @@ namespace SmartCodeLab
 {
     public partial class MonitoringForm : Form
     {
+
         public MonitoringForm()
         {
             InitializeComponent();
@@ -38,16 +39,34 @@ namespace SmartCodeLab
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(SystemSingleton.Instance._loggedIn == null || SystemSingleton.Instance._loggedIn == false)
+
+            if (!SystemSingleton.Instance._loggedIn)
             {
-                var userLogIn = new UserLogInDIalog();
-                if (userLogIn.ShowDialog() == DialogResult.OK) 
+                var searchServer = new LoadingDialog();
+                searchServer.ShowDialog();
+                TcpClient client = searchServer.client;
+                searchServer.Dispose();
+                if (client.Connected)
                 {
-                    var studentProgramming = new ProgrammingEnvironment(userLogIn._folderLocation, userLogIn._userName);
-                    SystemSingleton.Instance.page2.Controls.Clear();
-                    SystemSingleton.Instance.page2.Controls.Add(studentProgramming);
+                    searchServer.Dispose();
+                    var userLogIn = new UserLogInDIalog(client);
+                    if (userLogIn.ShowDialog() == DialogResult.OK)
+                    {
+                        var studentProgramming = new ProgrammingEnvironment(userLogIn._folderLocation, userLogIn._userName, userLogIn.serverTask);
+                        SystemSingleton.Instance.page2.Controls.Clear();
+                        SystemSingleton.Instance.page2.Controls.Add(studentProgramming);
+                        SystemSingleton.Instance._loggedIn = true;
+                    }
+                    else
+                    {
+                        SystemSingleton.Instance._loggedIn = false;
+                        userLogIn.Dispose();
+                        return;
+                    }
+                    userLogIn.Dispose();
                 }
-                userLogIn.Dispose();
+                else
+                    return;
             }
             tabControl1.SelectedIndex = 1;
         }
