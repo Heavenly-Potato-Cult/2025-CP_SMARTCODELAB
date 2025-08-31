@@ -89,6 +89,7 @@
             // listView4
             // 
             listView4.BackColor = Color.FromArgb(13, 13, 13);
+            listView4.BorderStyle = BorderStyle.FixedSingle;
             listView4.ForeColor = Color.White;
             listView4.Location = new Point(11, 200);
             listView4.Name = "listView4";
@@ -99,7 +100,8 @@
             // listView3
             // 
             listView3.BackColor = Color.FromArgb(13, 13, 13);
-            listView3.ForeColor = Color.White;
+            listView3.BorderStyle = BorderStyle.FixedSingle;
+            listView3.ForeColor = Color.Gray;
             listView3.Location = new Point(11, 40);
             listView3.Name = "listView3";
             listView3.Size = new Size(261, 97);
@@ -142,7 +144,6 @@
             customCard2.Name = "customCard2";
             customCard2.Size = new Size(584, 341);
             customCard2.TabIndex = 10;
-
             // 
             // textBox1
             // 

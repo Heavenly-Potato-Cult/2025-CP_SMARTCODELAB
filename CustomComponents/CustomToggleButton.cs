@@ -89,6 +89,8 @@ namespace SmartCodeLab.CustomComponents
         }
 
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+
         public override string Text
         {
             get

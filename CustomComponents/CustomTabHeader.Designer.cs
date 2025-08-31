@@ -35,8 +35,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.BackColor = SystemColors.ActiveCaption;
-            label1.Location = new Point(3, 0);
+            label1.BackColor = Color.Transparent;
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(3, 4);
+            label1.Margin = new Padding(10);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
             label1.TabIndex = 0;
@@ -57,6 +59,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(224, 224, 224);
             Controls.Add(button1);
             Controls.Add(label1);
             Margin = new Padding(3, 2, 3, 2);

@@ -61,6 +61,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
                 }
                 openedFiles.Add(selectedPath);
                 customTabControl1.addTab(new TabPageModel(selectedPath, customTabControl1.getTabControl(), new TaskTabPage(selectedPath), openedFiles));
+                panel_cover1.Visible = false;
             }
             else if (!Path.Exists(selectedPath) && !File.Exists(selectedPath)) //checks if the path is a folder
                 MessageBox.Show("File does not exist", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -68,9 +69,9 @@ namespace SmartCodeLab.CustomComponents.MainPages
 
         private void openFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var stringForm = new StringInputDialog("New File","Filename"))
+            using (var stringForm = new StringInputDialog("New File", "Filename"))
             {
-                if(stringForm.ShowDialog() == DialogResult.OK)
+                if (stringForm.ShowDialog() == DialogResult.OK)
                 {
                     string fileName = stringForm.InputText;
                     var newTask = new TaskModel();
@@ -78,6 +79,11 @@ namespace SmartCodeLab.CustomComponents.MainPages
                     refreshFolder(SystemSingleton.Instance.currentTaskPath);
                 }
             }
+        }
+
+        private void fileTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
     }
 }

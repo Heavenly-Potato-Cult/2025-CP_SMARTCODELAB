@@ -98,7 +98,6 @@
             sideMenuPanel.Name = "sideMenuPanel";
             sideMenuPanel.Size = new Size(200, 692);
             sideMenuPanel.TabIndex = 0;
-
             // 
             // button3
             // 
@@ -214,7 +213,6 @@
             button2.TabIndex = 1;
             button2.Text = "Client";
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click_1;
             // 
             // button1
             // 
@@ -225,11 +223,10 @@
             button1.TabIndex = 0;
             button1.Text = "Server";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
             // 
             // tabPage3
             // 
-            tabPage3.BackColor = Color.RosyBrown;
+            tabPage3.BackColor = Color.FromArgb(10, 10, 10);
             tabPage3.Controls.Add(taskMainPage2);
             tabPage3.Location = new Point(4, 24);
             tabPage3.Margin = new Padding(3, 2, 3, 2);
@@ -241,7 +238,8 @@
             // 
             // taskMainPage2
             // 
-            taskMainPage2.Location = new Point(3, 2);
+            taskMainPage2.BackColor = Color.FromArgb(10, 10, 10);
+            taskMainPage2.Location = new Point(0, 0);
             taskMainPage2.Margin = new Padding(3, 2, 3, 2);
             taskMainPage2.Name = "taskMainPage2";
             taskMainPage2.Size = new Size(1155, 709);
