@@ -128,6 +128,7 @@
             // 
             actName.BackColor = Color.FromArgb(13, 13, 13);
             actName.BorderColor = Color.DimGray;
+            actName.BorderFocusColor = Color.DimGray;
             actName.BorderSize = 1;
             actName.ForeColor = Color.FromArgb(179, 179, 179);
             actName.Location = new Point(37, 41);
