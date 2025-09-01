@@ -34,32 +34,30 @@
             // 
             // tabControl1
             // 
-            tabControl1.Location = new Point(0, 24);
-            tabControl1.Margin = new Padding(3, 2, 3, 2);
+            tabControl1.Location = new Point(0, 32);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(960, 606);
+            tabControl1.Size = new Size(1097, 808);
             tabControl1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Location = new Point(3, 2);
-            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
+            flowLayoutPanel1.BackColor = Color.White;
+            flowLayoutPanel1.Location = new Point(0, 3);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1062, 22);
+            flowLayoutPanel1.Size = new Size(1217, 29);
             flowLayoutPanel1.TabIndex = 1;
             // 
             // CustomTabControl
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 10, 10);
             Controls.Add(flowLayoutPanel1);
             Controls.Add(tabControl1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "CustomTabControl";
-            Size = new Size(960, 631);
+            Size = new Size(1097, 841);
             ResumeLayout(false);
         }
 

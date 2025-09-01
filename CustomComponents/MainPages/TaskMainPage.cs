@@ -39,7 +39,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
         private void refreshFolder(string path)
         {
             fileTree.Nodes.Clear();
-            var rootItem = new FileItem(path);
+            var rootItem = new FileItem(path,true);
             {
                 Name = new DirectoryInfo(path).Name;
             };

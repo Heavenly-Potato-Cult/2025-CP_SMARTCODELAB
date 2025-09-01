@@ -56,6 +56,9 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             foreach (Control control in container.Controls)
             {
+                if(control is UserControl)
+                    initialize_Save_Shortcut((UserControl)control);
+                else
                 control.KeyUp += (sender, k) =>
                 {
                     if (k.KeyCode == Keys.S && k.Control)
@@ -93,22 +96,11 @@ namespace SmartCodeLab.CustomComponents.Pages
             taskModel._taskName = actName.Texts;
             taskModel._instructions = txtbox_instruction.Text;
             taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
-            taskModel._referenceFile = associateContainer.getFile();
-            taskModel._externalResources = externalResourceCon.getFiles();
-            taskModel._testCases = getTestCases();
-
-            //if (_newFile)
-            //{
-            //    _filePath = SystemSingleton.Instance.currentTaskPath + "\\" + (taskModel._taskName).Replace(' ', '_') + ".task";
-            //    JsonFileService.SaveToFile(taskModel,_filePath);
-            //    _newFile = false;
-            //    MessageBox.Show("File saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //else
-            //{
+            taskModel._referenceFile = associateContainer.getFile() ?? null;
+            taskModel._externalResources = externalResourceCon.getFiles() ?? null;
+            taskModel._testCases = getTestCases() ?? null;
             JsonFileService.SaveToFile(taskModel, _filePath);
             MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
         }
 
         private void Btn_AddTestCase_Click(object sender, EventArgs e)

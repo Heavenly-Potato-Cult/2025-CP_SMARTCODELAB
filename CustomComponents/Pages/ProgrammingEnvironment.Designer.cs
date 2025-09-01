@@ -33,6 +33,7 @@
             menuStrip1 = new MenuStrip();
             runToolStripMenuItem = new ToolStripMenuItem();
             testToolStripMenuItem = new ToolStripMenuItem();
+            instructionToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,12 +51,13 @@
             fileTree.Name = "fileTree";
             fileTree.Size = new Size(208, 438);
             fileTree.TabIndex = 9;
+            fileTree.NodeMouseDoubleClick += fileTree_NodeMouseDoubleClick;
             // 
             // menuStrip1
             // 
             menuStrip1.BackColor = SystemColors.ControlDark;
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { runToolStripMenuItem, testToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { runToolStripMenuItem, testToolStripMenuItem, instructionToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 3, 0, 3);
@@ -76,6 +78,13 @@
             testToolStripMenuItem.Size = new Size(49, 24);
             testToolStripMenuItem.Text = "Test";
             testToolStripMenuItem.Click += testToolStripMenuItem_Click;
+            // 
+            // instructionToolStripMenuItem
+            // 
+            instructionToolStripMenuItem.Name = "instructionToolStripMenuItem";
+            instructionToolStripMenuItem.Size = new Size(92, 24);
+            instructionToolStripMenuItem.Text = "Instruction";
+            instructionToolStripMenuItem.Click += instructionToolStripMenuItem_Click;
             // 
             // ProgrammingEnvironment
             // 
@@ -100,5 +109,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem runToolStripMenuItem;
         private ToolStripMenuItem testToolStripMenuItem;
+        private ToolStripMenuItem instructionToolStripMenuItem;
     }
 }

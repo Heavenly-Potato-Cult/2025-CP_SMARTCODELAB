@@ -21,7 +21,8 @@ namespace SmartCodeLab.CustomComponents.Pages
         private TaskModel currentTask { get; set; }
         private TcpListener _server;
 
-        private readonly List<string> studentNames = new List<string>() { "slimfordy","stagnant potato"};
+        private readonly List<string> expectedStudentNames = new List<string>() { "slimfordy","stagnant potato"};
+        private List<string> currentStudents = new List<string>();
         public ServerPage(TaskModel task)
         {
             InitializeComponent();
@@ -64,15 +65,21 @@ namespace SmartCodeLab.CustomComponents.Pages
                             await networkStream.FlushAsync();
                             break;
                         case MessageType.UserProfile:
-                            if (obj._userProfile != null && studentNames.Contains(obj._userProfile._studentName))
+                            if (obj._userProfile != null && expectedStudentNames.Contains(obj._userProfile._studentName))
                             {
-                                await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                    new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128));
+                                if (!currentStudents.Contains(obj._userProfile._studentName)) 
+                                { 
+                                    currentStudents.Add(obj._userProfile._studentName);
+                                    await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                        new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128));
+                                }
+                                else
+                                    await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                        new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage("This student is already logged in").Build(), PrefixStyle.Base128));
                             }
                             else
                                 await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                    new ServerMessage.Builder(MessageType.LogInFailed).Build(), PrefixStyle.Base128));
-
+                                    new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage("We can't find an account with that username and password").Build(), PrefixStyle.Base128));
                             await networkStream.FlushAsync();
                             break;
                         default:

@@ -14,7 +14,7 @@ namespace SmartCodeLab.Models
         public ObservableCollection<FileItem> Children { get; set; } = new ObservableCollection<FileItem>();
         public bool IsDirectory { get; set; }
 
-        public FileItem(string path)
+        public FileItem(string path, bool forTask)
         {
             FullPath = path;
             Name = Path.GetFileName(path);
@@ -27,13 +27,15 @@ namespace SmartCodeLab.Models
                 {
                     foreach (var dir in Directory.GetDirectories(path))
                     {
-                        Children.Add(new FileItem(dir));
+                        Children.Add(new FileItem(dir, forTask));
                     }
 
                     foreach (var file in Directory.GetFiles(path))
-                    {
-                        if (file.EndsWith(".task"))
-                            Children.Add(new FileItem(file));
+                    {//conditions1 add only task if it is for task,... condition 2 add other file other than task if it is not for task
+                        if (file.EndsWith(".task") && forTask)
+                            Children.Add(new FileItem(file, forTask));
+                        else if(!file.EndsWith(".task") && !forTask)
+                            Children.Add(new FileItem(file, forTask));
                     }
                 }
                 catch { /* Handle access denied or other issues gracefully */ }

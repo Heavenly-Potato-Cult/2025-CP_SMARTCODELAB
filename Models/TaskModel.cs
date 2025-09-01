@@ -25,20 +25,14 @@ namespace SmartCodeLab.Models
         public string _instructions { get; set; }
 
         [ProtoMember(4)]
-        private LanguageSupported? _language;
+        public LanguageSupported _language { get; set; }
 
         [ProtoIgnore]
         public string language { 
-            get { return _language?.ToString() ?? "none"; }
+            get { return _language.ToString(); }
             set {
-                if (value != null && languageMap.TryGetValue(value, out var mappedValue))
-                {
-                    _language = mappedValue;
-                }
-                else
-                {
-                    _language = null;
-                }
+                    _language = languageMap[value];
+
             } }
 
         //will be provided by the user(most probably a teacher) to test the students code

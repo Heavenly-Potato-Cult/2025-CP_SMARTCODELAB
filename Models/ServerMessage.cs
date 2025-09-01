@@ -23,6 +23,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(4)]
         public UserProfile? _userProfile { get; set; }
 
+        [ProtoMember(5)]
+        public string? _errorMessage { get; set; }
+
         public ServerMessage()
         {
         }
@@ -47,6 +50,12 @@ namespace SmartCodeLab.Models
             public Builder MessageType(MessageType messageType)
             {
                 msg._messageType = messageType;
+                return this;
+            }
+
+            public Builder ErrorMessage(string errorMessage)
+            {
+                msg._errorMessage = errorMessage;
                 return this;
             }
 

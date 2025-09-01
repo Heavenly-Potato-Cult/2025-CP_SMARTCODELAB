@@ -85,7 +85,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                         }
                         else if (msg._messageType == MessageType.LogInFailed)
                         {
-                            MessageBox.Show("Login Failed. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                         }
                     }
