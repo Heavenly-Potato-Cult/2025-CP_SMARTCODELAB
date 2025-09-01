@@ -39,8 +39,8 @@ namespace SmartCodeLab
             //change backcolor
             btnSideMenu_Student.BackColor = Color.FromArgb(26, 26, 26);
             btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
             btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -48,8 +48,8 @@ namespace SmartCodeLab
             //change backcolor
             btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
             btnSideMenu_TaskManagement.BackColor = Color.FromArgb(26, 26, 26);
+            btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
             btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
 
 
 
@@ -102,18 +102,23 @@ namespace SmartCodeLab
             //change backcolor
             btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
             btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Settings.BackColor = Color.FromArgb(26, 26, 26);
-            btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_FileManagement.BackColor = Color.FromArgb(26, 26, 26);
+            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
         }
 
-        private void btnSideMenu_Shutdown_Click(object sender, EventArgs e)
+        private void btnSideMenu_Settings_Click(object sender, EventArgs e)
         {
+            tabControl1.SelectedIndex = 3;
             //change backcolor
             btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
             btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Settings.BackColor = Color.FromArgb(13,13,13);
-            btnSideMenu_Shutdown.BackColor = Color.FromArgb(26, 26, 26);
-            
+            btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Settings.BackColor = Color.FromArgb(26, 26, 26);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
