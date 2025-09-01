@@ -68,6 +68,7 @@
             // smartButton1
             // 
             smartButton1.BackColor = Color.MediumSlateBlue;
+            smartButton1.BorderRadius = 5;
             smartButton1.Cursor = Cursors.Hand;
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
@@ -85,6 +86,7 @@
             // smartButton2
             // 
             smartButton2.BackColor = Color.MediumSlateBlue;
+            smartButton2.BorderRadius = 20;
             smartButton2.Cursor = Cursors.Hand;
             smartButton2.FlatAppearance.BorderSize = 0;
             smartButton2.FlatStyle = FlatStyle.Flat;
@@ -103,6 +105,7 @@
             // 
             smartButton3.BackColor = Color.DarkSlateBlue;
             smartButton3.BackgroundColor = Color.DarkSlateBlue;
+            smartButton3.BorderRadius = 20;
             smartButton3.Cursor = Cursors.Hand;
             smartButton3.FlatAppearance.BorderSize = 0;
             smartButton3.FlatStyle = FlatStyle.Flat;
