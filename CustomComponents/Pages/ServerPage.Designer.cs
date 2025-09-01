@@ -214,7 +214,7 @@
             // smartButton1
             // 
             smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 20;
+            smartButton1.BorderRadius = 5;
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.ForeColor = Color.FromArgb(242, 242, 242);

@@ -67,7 +67,7 @@
             // smartButton1
             // 
             smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 20;
+            smartButton1.BorderRadius = 5;
             smartButton1.Cursor = Cursors.Hand;
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
