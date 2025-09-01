@@ -20,7 +20,7 @@ namespace SmartCodeLab.Services
         {
             while (Char.IsDigit(fileName[0]))
                 fileName = fileName.Substring(1);
-
+            fileName = fileName.Replace('.', '_').Replace(' ', '_');
             return fileName;
         }
 

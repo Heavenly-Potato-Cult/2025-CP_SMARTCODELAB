@@ -42,7 +42,7 @@
             customTabControl1.BackColor = SystemColors.AppWorkspace;
             customTabControl1.Location = new Point(217, 30);
             customTabControl1.Name = "customTabControl1";
-            customTabControl1.Size = new Size(1100, 838);
+            customTabControl1.Size = new Size(1100, 841);
             customTabControl1.TabIndex = 10;
             // 
             // fileTree
@@ -51,7 +51,7 @@
             fileTree.Name = "fileTree";
             fileTree.Size = new Size(208, 438);
             fileTree.TabIndex = 9;
-            fileTree.NodeMouseDoubleClick += fileTree_NodeMouseDoubleClick;
+            fileTree.NodeMouseClick += fileTree_NodeMouseClick;
             // 
             // menuStrip1
             // 

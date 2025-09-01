@@ -51,13 +51,6 @@ namespace SmartCodeLab
             btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
             btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
 
-
-
-
-
-
-
-
             if (!SystemSingleton.Instance._loggedIn)
             {
                 var searchServer = new LoadingDialog();
@@ -70,7 +63,7 @@ namespace SmartCodeLab
                     var userLogIn = new UserLogInDIalog(client);
                     if (userLogIn.ShowDialog() == DialogResult.OK)
                     {
-                        var studentProgramming = new ProgrammingEnvironment(userLogIn._folderLocation, userLogIn._userName, userLogIn.serverTask);
+                        var studentProgramming = new ProgrammingEnvironment(userLogIn._folderLocation, userLogIn._userName, userLogIn.serverTask, userLogIn._stream);
                         SystemSingleton.Instance.page2.Controls.Clear();
                         SystemSingleton.Instance.page2.Controls.Add(studentProgramming);
                         SystemSingleton.Instance._loggedIn = true;

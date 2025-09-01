@@ -83,7 +83,7 @@ namespace SmartCodeLab
                     {
                         this.Invoke(new Action(() =>
                         {
-                            msgs.Text = obj.msg;
+                            msgs.Text = obj.sourceCode;
                         }));
                     }
                 }

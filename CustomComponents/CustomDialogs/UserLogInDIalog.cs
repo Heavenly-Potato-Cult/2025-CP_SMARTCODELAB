@@ -22,7 +22,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TcpClient _client { get; set; }
 
-        private NetworkStream _stream;
+        public NetworkStream _stream;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TaskModel serverTask { get; set; }
@@ -33,20 +33,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             _stream = _client.GetStream();
         }
 
-        private void userName__TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        public string UserName()
-        {
-            return userName.Texts;
-        }
-
-        public string folderPath()
-        {
-            return folderLoc.Texts;
-        }
         private void smartButton1_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
@@ -58,47 +44,52 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         private void smartButton3_Click(object sender, EventArgs e)
         {
+            _stream.Close();
+            _client.Close();
             this.DialogResult = DialogResult.Cancel;
         }
 
         async private void smartButton2_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(userName.Texts) || string.IsNullOrEmpty(folderLoc.Texts))
+            if (string.IsNullOrEmpty(userName.Texts) || string.IsNullOrEmpty(folderLoc.Texts))
             {
                 MessageBox.Show("Please fill in all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
 
-                _ = Task.Run(() => 
+            _ = Task.Run(() =>
+            {
+                while (true)
                 {
-                    while (true)
+                    var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(_stream, PrefixStyle.Base128);
+                    if (msg._messageType == MessageType.LogInSuccessful)
                     {
-                        var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(_stream, PrefixStyle.Base128);
-                        if (msg._messageType == MessageType.LogInSuccessful)
-                        {
-                            serverTask = msg._task;
-                            MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.DialogResult = DialogResult.OK;
-                            _stream.Close();
-                            break;
-                        }
-                        else if (msg._messageType == MessageType.LogInFailed)
-                        {
-                            MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            break;
-                        }
+                        serverTask = msg._task;
+                        MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                        break;
                     }
-                });
+                    else if (msg._messageType == MessageType.LogInFailed)
+                    {
+                        MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    }
+                }
+            });
 
-                await Task.Run(() =>
-                {
-                    Serializer.SerializeWithLengthPrefix<ServerMessage>(_stream, 
-                        new ServerMessage.Builder(MessageType.UserProfile).UserProfile(new UserProfile(userName.Texts)).Build(),
-                        PrefixStyle.Base128);
-                });
+            await Task.Run(() =>
+            {
+                Serializer.SerializeWithLengthPrefix<ServerMessage>(_stream,
+                    new ServerMessage.Builder(MessageType.UserProfile).UserProfile(new UserProfile(userName.Texts)).Build(),
+                    PrefixStyle.Base128);
+            });
 
-                await _stream.FlushAsync();
+            await _stream.FlushAsync();
+        }
+
+        private void UserLogInDIalog_FormClosed(object sender, FormClosedEventArgs e)
+        {
         }
     }
 }

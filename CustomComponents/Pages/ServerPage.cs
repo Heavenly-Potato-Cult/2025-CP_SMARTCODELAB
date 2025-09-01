@@ -6,7 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -20,6 +22,7 @@ namespace SmartCodeLab.CustomComponents.Pages
     {
         private TaskModel currentTask { get; set; }
         private TcpListener _server;
+        private Dictionary<NetworkStream,string> connectedClients = new Dictionary<NetworkStream, string>();
 
         private readonly List<string> expectedStudentNames = new List<string>() { "slimfordy","stagnant potato"};
         private List<string> currentStudents = new List<string>();
@@ -28,31 +31,61 @@ namespace SmartCodeLab.CustomComponents.Pages
             InitializeComponent();
             currentTask = task;
             _server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1901);
-            _server.Start();
-            Task.Run(() =>
-            {
-                _server.Start();
-                while (true)
-                {
-                    _ = MessageReceiverAsync(_server.AcceptTcpClient());
-                }
-            });
+
+            // Start the server in the background task
+            Task.Run(async () => await StartServerAsync());
         }
 
-        private async Task MessageReceiverAsync(TcpClient client)
+        private async Task StartServerAsync()
         {
-            NetworkStream networkStream = client.GetStream();
+            try
+            {
+                _server.Start(); // Only start once!
+                Debug.WriteLine("Server started on port 1901");
 
+                while (true)
+                {
+                    TcpClient client = await AcceptTcpClientAsync(_server);
+                    NetworkStream stream = client.GetStream();
+
+                    // Handle each client in a separate task
+                    _ = Task.Run(() => MessageReceiverAsync(stream));
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Server error: {ex.Message}");
+                this.Invoke((MethodInvoker)delegate
+                {
+                    MessageBox.Show($"Server error: {ex.Message}");
+                });
+            }
+        }
+
+        // Helper method to make AcceptTcpClient async
+        private Task<TcpClient> AcceptTcpClientAsync(TcpListener listener)
+        {
+            return Task.Run(() => listener.AcceptTcpClient());
+        }
+
+        private async Task MessageReceiverAsync(NetworkStream networkStream)
+        {
             //send the task to the new client
-            await Task.Run(() =>Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128));
+            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
             await networkStream.FlushAsync();
             while (true)
             {
                 try
                 {
-                    var obj = await Task.Run(() =>
-                        Serializer.DeserializeWithLengthPrefix<ServerMessage>(networkStream, PrefixStyle.Base128)
-                    );
+                    ServerMessage obj;
+                    try
+                    {
+                        obj = Serializer.DeserializeWithLengthPrefix<ServerMessage>(networkStream, PrefixStyle.Base128);
+                    }catch(IOException)
+                    {
+                        //Debug.WriteLine("Receiver stopped: Client disconnected during read");
+                        break; // Exit the loop if the client disconnects
+                    }
 
                     if (obj == null)
                         break;
@@ -60,27 +93,42 @@ namespace SmartCodeLab.CustomComponents.Pages
                     switch (obj._messageType)
                     {
                         case MessageType.ServerTaskRequest:
-                            await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128));
+                            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
                             break;
                         case MessageType.UserProfile:
                             if (obj._userProfile != null && expectedStudentNames.Contains(obj._userProfile._studentName))
                             {
                                 if (!currentStudents.Contains(obj._userProfile._studentName)) 
-                                { 
+                                {
+                                    connectedClients.Add(networkStream, "");
+                                    this.Invoke((MethodInvoker)delegate
+                                    {
+                                        UserIcons userIcon = new UserIcons(obj._userProfile._studentName);
+                                        userProfilesContainer.Controls.Add(userIcon);
+
+                                        userIcon.Click += (s, e) =>
+                                        {
+                                            MessageBox.Show(connectedClients[networkStream]);
+                                        };
+                                    });
+
                                     currentStudents.Add(obj._userProfile._studentName);
-                                    await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                        new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128));
+                                    Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                        new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128);
                                 }
                                 else
-                                    await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                        new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage("This student is already logged in").Build(), PrefixStyle.Base128));
+                                    Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                        new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage("This student is already logged in").Build(), PrefixStyle.Base128);
                             }
                             else
-                                await Task.Run(() => Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                    new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage("We can't find an account with that username and password").Build(), PrefixStyle.Base128));
+                                Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                    new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage("We can't find an account with that username and password").Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
+                            break;
+                        case MessageType.StudentProgress:
+                            connectedClients[networkStream] = obj._progress.sourceCode;
                             break;
                         default:
                             Invoke(new Action(() =>
@@ -89,6 +137,11 @@ namespace SmartCodeLab.CustomComponents.Pages
                             }));
                             break;
                     }
+
+                }catch(IOException)
+                {
+                    //Debug.WriteLine("Receiver stopped: Client disconnected");
+                    break; // Exit the loop if the client disconnects
                 }
                 catch (Exception ex)
                 {

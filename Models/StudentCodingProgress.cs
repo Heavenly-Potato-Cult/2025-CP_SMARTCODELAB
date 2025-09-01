@@ -11,7 +11,7 @@ namespace SmartCodeLab.Models
     public class StudentCodingProgress
     {
         [ProtoMember(1)]
-        public string msg { get; set; }
+        public string sourceCode { get; set; }
 
         public StudentCodingProgress()
         {
@@ -19,7 +19,7 @@ namespace SmartCodeLab.Models
 
         public StudentCodingProgress(string msg)
         {
-            this.msg = msg;
+            this.sourceCode = msg;
         }
     }
 }

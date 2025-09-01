@@ -33,5 +33,10 @@ namespace SmartCodeLab.CustomComponents
         {
             return tabControl1;
         }
+
+        public Size TabControlSize()
+        {
+            return tabControl1.Size;
+        }
     }
 }

@@ -1,10 +1,14 @@
-﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,23 +21,41 @@ namespace SmartCodeLab.CustomComponents.Pages
 {
     public partial class ProgrammingEnvironment : UserControl
     {
-        private TcpClient _client;
+        private NetworkStream _stream;
         private TaskModel _task;
+        private CancellationTokenSource token;
         private ISet<string> openedFiles = new HashSet<string>();
-        public ProgrammingEnvironment(string folderPath, string userName, TaskModel task)
+        public ProgrammingEnvironment(string folderPath, string userName, TaskModel task, NetworkStream client)
         {
             InitializeComponent();
+            _stream = client;
             new Thread(() =>
             {
                 System.Threading.Thread.Sleep(1000);
                 SystemSingleton.Instance._loggedIn = true;
             }).Start();
-
+            token = new CancellationTokenSource();
             //create the activity file
             SourceCodeInitializer.InitializeSourceCode(task._language, folderPath, task._taskName);
-
+            string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName)+".java");
             selectFolder(folderPath);
+            _ = StreamListener(_stream, filePath, token.Token);
             _task = task;
+        }
+
+        private async Task StreamListener(NetworkStream stream, string filePath, CancellationToken token)
+        {
+            while (true)
+            {
+                string content = await File.ReadAllTextAsync(filePath);
+                var message = new ServerMessage.Builder(MessageType.StudentProgress)
+                    .StudentProgress(new StudentCodingProgress(content))
+                    .Build();
+
+                Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
+                await stream.FlushAsync(token);
+                await Task.Delay(500, token); // Send every 1 second
+            }
         }
 
         private void selectFolder(string path)
@@ -43,7 +65,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 Name = new DirectoryInfo(path).Name;
             }
-            ;
             fileTree.Nodes.Add(rootItem.ToTreeNode());
         }
 
@@ -62,14 +83,30 @@ namespace SmartCodeLab.CustomComponents.Pages
             MessageBox.Show(_task._instructions);
         }
 
-        private void fileTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             string selectedPath = (e.Node.Tag as FileItem).FullPath;
             // will check if the selected path is not null, is a file that exists, and is not already opened
             if (selectedPath != null && File.Exists(selectedPath) && !openedFiles.Contains(selectedPath))
             {
                 openedFiles.Add(selectedPath);
-                customTabControl1.addTab(new TabPageModel(selectedPath, customTabControl1.getTabControl(), new CodingEnvironment(selectedPath), openedFiles));
+                customTabControl1.addTab(new TabPageModel(selectedPath, customTabControl1.getTabControl(), getCodeBaseEditor(selectedPath), openedFiles));
+            }
+        }
+
+        private CodeEditorBase getCodeBaseEditor(string filePath)
+        {
+            if(filePath.EndsWith(".java"))
+            {
+                return new JavaCodeEditor(filePath);
+            }
+            else if(filePath.EndsWith(".py"))
+            {
+                return new PythonCodeEditor(filePath);
+            }
+            else
+            {
+                return new CppCodeEditor(filePath);
             }
         }
     }

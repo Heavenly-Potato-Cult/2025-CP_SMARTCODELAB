@@ -1,6 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents.Pages
+﻿namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
-    partial class CodingEnvironment
+    partial class CodeEditorBase
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,30 +29,43 @@
         private void InitializeComponent()
         {
             srcCode = new TextBox();
+            output = new TextBox();
             SuspendLayout();
             // 
             // srcCode
             // 
-            srcCode.Location = new Point(3, 3);
+            srcCode.Location = new Point(0, 0);
             srcCode.Multiline = true;
             srcCode.Name = "srcCode";
-            srcCode.Size = new Size(917, 668);
+            srcCode.Size = new Size(1094, 636);
             srcCode.TabIndex = 0;
+            srcCode.KeyUp += srcCode_KeyUp;
             // 
-            // CodingEnvironment
+            // output
+            // 
+            output.Location = new Point(3, 642);
+            output.Multiline = true;
+            output.Name = "output";
+            output.ScrollBars = ScrollBars.Vertical;
+            output.Size = new Size(1091, 163);
+            output.TabIndex = 1;
+            // 
+            // CodeEditorBase
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
+            Controls.Add(output);
             Controls.Add(srcCode);
-            Name = "CodingEnvironment";
-            Size = new Size(923, 671);
+            Name = "CodeEditorBase";
+            Size = new Size(1097, 808);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox srcCode;
+        protected TextBox srcCode;
+        protected TextBox output;
     }
 }
