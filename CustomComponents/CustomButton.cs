@@ -18,7 +18,7 @@ namespace SmartCodeLab.CustomComponents
     {
         //Fields
         private int borderSize = 0;
-        private int borderRadius = 0;
+        private int borderRadius = 20;
         private Color borderColor = Color.PaleVioletRed;
 
         //Properties
