@@ -38,7 +38,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             label4 = new Label();
             label3 = new Label();
             customCard2 = new CustomCard();
-            textBox1 = new TextBox();
+            studentCode = new TextBox();
             label2 = new Label();
             customCard1 = new CustomCard();
             serverMemberContainer1 = new SmartCodeLab.CustomComponents.ServerPageComponents.ServerMemberContainer();
@@ -144,7 +144,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             customCard2.BorderColor = Color.FromArgb(51, 51, 51);
             customCard2.BorderRadius = 5;
             customCard2.BorderSize = 1;
-            customCard2.Controls.Add(textBox1);
+            customCard2.Controls.Add(studentCode);
             customCard2.Controls.Add(label2);
             customCard2.Location = new Point(309, 43);
             customCard2.Margin = new Padding(3, 4, 3, 4);
@@ -152,18 +152,18 @@ namespace SmartCodeLab.CustomComponents.Pages
             customCard2.Size = new Size(667, 455);
             customCard2.TabIndex = 10;
             // 
-            // textBox1
+            // studentCode
             // 
-            textBox1.BackColor = Color.FromArgb(13, 13, 13);
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.ForeColor = Color.White;
-            textBox1.Location = new Point(13, 53);
-            textBox1.Margin = new Padding(3, 4, 3, 4);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(637, 378);
-            textBox1.TabIndex = 5;
+            studentCode.BackColor = Color.FromArgb(13, 13, 13);
+            studentCode.BorderStyle = BorderStyle.FixedSingle;
+            studentCode.ForeColor = Color.White;
+            studentCode.Location = new Point(13, 53);
+            studentCode.Margin = new Padding(3, 4, 3, 4);
+            studentCode.Multiline = true;
+            studentCode.Name = "studentCode";
+            studentCode.ReadOnly = true;
+            studentCode.Size = new Size(637, 378);
+            studentCode.TabIndex = 5;
             // 
             // label2
             // 
@@ -260,7 +260,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private Label label4;
         private Label label3;
         private CustomCard customCard2;
-        private TextBox textBox1;
+        private TextBox studentCode;
         private Label label2;
         private CustomCard customCard1;
         private Label label1;

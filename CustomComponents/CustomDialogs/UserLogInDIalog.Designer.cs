@@ -162,7 +162,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             Name = "UserLogInDIalog";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UserLogInDIalog";
-            FormClosed += UserLogInDIalog_FormClosed;
             ResumeLayout(false);
             PerformLayout();
         }

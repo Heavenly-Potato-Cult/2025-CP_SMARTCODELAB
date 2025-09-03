@@ -87,9 +87,5 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
             await _stream.FlushAsync();
         }
-
-        private void UserLogInDIalog_FormClosed(object sender, FormClosedEventArgs e)
-        {
-        }
     }
 }

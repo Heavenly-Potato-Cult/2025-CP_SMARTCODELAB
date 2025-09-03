@@ -108,10 +108,5 @@ namespace SmartCodeLab
             btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
             btnSideMenu_Settings.BackColor = Color.FromArgb(26, 26, 26);
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

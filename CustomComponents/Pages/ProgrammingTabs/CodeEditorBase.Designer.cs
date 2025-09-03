@@ -65,7 +65,7 @@
 
         #endregion
 
-        protected TextBox srcCode;
+        public TextBox srcCode;
         protected TextBox output;
     }
 }

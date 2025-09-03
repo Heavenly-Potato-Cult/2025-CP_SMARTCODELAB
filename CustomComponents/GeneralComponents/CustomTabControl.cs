@@ -13,6 +13,8 @@ namespace SmartCodeLab.CustomComponents
 {
     public partial class CustomTabControl : UserControl
     {
+
+        private CustomTabHeader? currentSelected;
         public CustomTabControl()
         {
             InitializeComponent();
@@ -27,16 +29,22 @@ namespace SmartCodeLab.CustomComponents
             tabControl1.TabPages.Add(newTab);
 
             flowLayoutPanel1.Controls.Add(tabPageModel._customTabHeader);
+
+            tabPageModel._customTabHeader.Click += (s, e) => ChangeFocus(tabPageModel._customTabHeader);
+            tabPageModel._customTabHeader.label1.Click += (s, e) => ChangeFocus(tabPageModel._customTabHeader);
+        }
+
+        private void ChangeFocus(CustomTabHeader selectedHeader)
+        {
+            if (currentSelected != null) 
+                currentSelected.FocusLost();
+            
+            currentSelected = selectedHeader;
         }
 
         public TabControl getTabControl()
         {
             return tabControl1;
-        }
-
-        public Size TabControlSize()
-        {
-            return tabControl1.Size;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace SmartCodeLab.Models
     public class TabPageModel : TabPage
     {
         public CustomTabHeader _customTabHeader { get; }
-        public TabPageModel(string headerText,TabControl tabControl, UserControl _content, ISet<string> pages)
+        public TabPageModel(string headerText,TabControl tabControl, UserControl _content, ISet<string> pages, bool closable)
         {
             Controls.Add(_content);
             _customTabHeader = new CustomTabHeader(Path.GetFileName(headerText), tabControl, this);
@@ -20,7 +20,7 @@ namespace SmartCodeLab.Models
                 _customTabHeader.Dispose();
                 pages.Remove(headerText);
             };
-
+            _customTabHeader.CloseButton.Visible = closable;
             TaskModel task = new TaskModel();
             task._taskName = headerText;
         }

@@ -72,7 +72,7 @@
 
         #endregion
 
-        private Label label1;
+        public Label label1;
         private Button button1;
     }
 }

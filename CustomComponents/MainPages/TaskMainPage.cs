@@ -1,19 +1,6 @@
-﻿using Microsoft.VisualBasic;
-using SmartCodeLab.CustomComponents.Pages;
+﻿using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace SmartCodeLab.CustomComponents.MainPages
 {
@@ -28,8 +15,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
         private void openFolderToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            DialogResult result = folderBrowserDialog.ShowDialog();
-            if (result == DialogResult.OK)
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 SystemSingleton.Instance.currentTaskPath = folderBrowserDialog.SelectedPath;
                 refreshFolder(SystemSingleton.Instance.currentTaskPath);
@@ -60,7 +46,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
                     return;
                 }
                 openedFiles.Add(selectedPath);
-                customTabControl1.addTab(new TabPageModel(selectedPath, customTabControl1.getTabControl(), new TaskTabPage(selectedPath), openedFiles));
+                customTabControl1.addTab(new TabPageModel(selectedPath, customTabControl1.getTabControl(), new TaskTabPage(selectedPath, taskModel), openedFiles, true));
                 panel_cover1.Visible = false;
             }
             else if (!Path.Exists(selectedPath) && !File.Exists(selectedPath)) //checks if the path is a folder
@@ -79,11 +65,6 @@ namespace SmartCodeLab.CustomComponents.MainPages
                     refreshFolder(SystemSingleton.Instance.currentTaskPath);
                 }
             }
-        }
-
-        private void fileTree_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,9 +14,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     public partial class CodeEditorBase : UserControl
     {
         protected string filePath;
+        public StudentCodingProgress StudentProgress { get; }
         public CodeEditorBase(string filePath)
         {
             InitializeComponent();
+            StudentProgress = new StudentCodingProgress();
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
             srcCode.KeyDown += (s, e) =>
@@ -43,6 +46,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 File.WriteAllText(filePath, srcCode.Text);
                 MessageBox.Show("File saved");
+            }
+            else
+            {
+                StudentProgress.sourceCode = srcCode.Text;
+                StudentProgress.CodeProgress.Add(srcCode.Text);
             }
         }
     }

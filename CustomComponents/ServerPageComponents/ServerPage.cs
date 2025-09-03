@@ -22,7 +22,7 @@ namespace SmartCodeLab.CustomComponents.Pages
     {
         private TaskModel currentTask { get; set; }
         private TcpListener _server;
-        private Dictionary<NetworkStream,string> connectedClients = new Dictionary<NetworkStream, string>();
+        private Dictionary<NetworkStream,UserIcons> userIcons = new Dictionary<NetworkStream, UserIcons>();
 
         private readonly List<string> expectedStudentNames = new List<string>() { "slimfordy","stagnant potato"};
         private List<string> currentStudents = new List<string>();
@@ -82,8 +82,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                         obj = Serializer.DeserializeWithLengthPrefix<ServerMessage>(networkStream, PrefixStyle.Base128);
                     }catch(IOException)
                     {
-                        //Debug.WriteLine("Receiver stopped: Client disconnected during read");
-                        break; // Exit the loop if the client disconnects
+                        break;
                     }
 
                     if (obj == null)
@@ -101,8 +100,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                             {
                                 if (!currentStudents.Contains(obj._userProfile._studentName)) 
                                 {
-                                    connectedClients.Add(networkStream, "");
-                                    _ = Task.Run(() => serverMemberContainer1.AddUser(obj._userProfile._studentName, networkStream));
+                                    _ = Task.Run(() => userIcons.Add(networkStream, serverMemberContainer1.AddUser(obj._userProfile._studentName, networkStream)));
 
                                     currentStudents.Add(obj._userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
@@ -118,7 +116,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                             await networkStream.FlushAsync();
                             break;
                         case MessageType.StudentProgress:
-                            connectedClients[networkStream] = obj._progress.sourceCode;
+                            this.Invoke(() => studentCode.Text = obj._progress.sourceCode);
                             break;
                         default:
                             Invoke(new Action(() =>
@@ -140,6 +138,10 @@ namespace SmartCodeLab.CustomComponents.Pages
                     //error handling will happen if further development shows some possible issues
                 }
             }
+            Invoke(new Action(() => {
+                userIcons[networkStream].Dispose();
+            }));
+            userIcons.Remove(networkStream);
         }
 
         private void smartButton1_Click(object sender, EventArgs e)

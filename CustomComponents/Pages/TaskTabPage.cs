@@ -1,27 +1,17 @@
 ﻿using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SmartCodeLab.CustomComponents.Pages
 {
     public partial class TaskTabPage : UserControl
     {
         private string? _filePath;
-        public TaskTabPage(string _filePath)
+        public TaskTabPage(string _filePath, TaskModel taskModel)
         {
             InitializeComponent();
             initialize_Save_Shortcut(this);
             this._filePath = _filePath;
-            TaskModel taskModel = JsonFileService.LoadFromFile<TaskModel>(_filePath);
 
             if (taskModel != null)
             {
@@ -134,14 +124,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                     externalResourceCon.addFile(filePath);
                 }
             }
-            //externalResourceCon.addFile("example");
         }
-
-        private void languageUsed_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-       
     }
 }

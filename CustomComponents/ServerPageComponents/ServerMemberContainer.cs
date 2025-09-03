@@ -21,10 +21,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             AddUser("bot", null);
         }
 
-        public void AddUser(string username, NetworkStream stream)
+        public UserIcons AddUser(string username, NetworkStream stream)
         {
             UserIcons userIcons = new UserIcons(username, this, stream);
             this.Invoke(() => flowLayoutPanel1.Controls.Add(userIcons));
+            return userIcons;
         }
 
         public void ChangeSelected(UserIcons userIcons)

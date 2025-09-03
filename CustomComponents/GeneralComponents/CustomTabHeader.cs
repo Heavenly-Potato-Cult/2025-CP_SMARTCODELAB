@@ -13,21 +13,34 @@ namespace SmartCodeLab.CustomComponents
 {
     public partial class CustomTabHeader : UserControl
     {
+        private TabControl tabControl;
+        private TabPage tabPage;
         public CustomTabHeader(string headerText,TabControl tabControl, TabPage tabPage)
         {
             InitializeComponent();
 
             label1.Text = headerText;
-            label1.Click += (sender, e) =>
-            {
-                Focus();
-                tabControl.SelectedTab = tabPage;
-            };
+            this.tabControl = tabControl;
+            this.tabPage = tabPage;
+            label1.Click += TabControlSelected;
+            this.Click += TabControlSelected;
+        }
 
-            LostFocus += (sender, e) =>
+        private void TabControlSelected(object sender, EventArgs m) 
+        {
+            tabControl.SelectedTab = tabPage;
+            this.Invoke((Action)(() =>
             {
-                Debug.WriteLine("I lost focus");
-            };
+                label1.Font = new Font(label1.Font, FontStyle.Bold);
+            }));
+        }
+
+        public void FocusLost() 
+        {
+            this.Invoke((Action)(() =>
+            {
+                label1.Font = new Font(label1.Font, FontStyle.Regular);
+            }));
         }
 
         public Button CloseButton { get { return button1; } }
