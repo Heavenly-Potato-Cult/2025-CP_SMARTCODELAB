@@ -25,6 +25,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private TaskModel _task;
         private CancellationTokenSource token;
         private ISet<string> openedFiles = new HashSet<string>();
+        private bool isFocused = false;
         public ProgrammingEnvironment(string folderPath, string userName, TaskModel task, NetworkStream client)
         {
             InitializeComponent();
@@ -39,22 +40,57 @@ namespace SmartCodeLab.CustomComponents.Pages
             SourceCodeInitializer.InitializeSourceCode(task._language, folderPath, task._taskName);
             string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName)+".java");
             selectFolder(folderPath);
-            _ = StreamListener(_stream, filePath, token.Token);
+            _ = ProgressSender(_stream, filePath, token.Token);
+            _ = StreamListener(_stream);
             _task = task;
         }
 
-        private async Task StreamListener(NetworkStream stream, string filePath, CancellationToken token)
+        private async Task ProgressSender(NetworkStream stream, string filePath, CancellationToken token)
         {
             while (true)
             {
-                string content = await File.ReadAllTextAsync(filePath);
-                var message = new ServerMessage.Builder(MessageType.StudentProgress)
-                    .StudentProgress(new StudentCodingProgress(content))
-                    .Build();
+                if (isFocused) {
+                    string content = await File.ReadAllTextAsync(filePath);
+                    var message = new ServerMessage.Builder(MessageType.StudentProgress)
+                        .StudentProgress(new StudentCodingProgress(content))
+                        .Build();
 
-                Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
-                await stream.FlushAsync(token);
+                    Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
+                    await stream.FlushAsync(token);
+                }
                 await Task.Delay(500, token); // Send every 1 second
+            }
+        }
+
+        private async Task StreamListener(NetworkStream stream)
+        {
+            try
+            {
+                while (true)
+                {
+                    var serverMsg = await Task.Run(() =>
+                        Serializer.DeserializeWithLengthPrefix<ServerMessage>(stream, PrefixStyle.Base128));
+
+                    if (serverMsg == null) break; // End of stream or error
+
+                    switch (serverMsg._messageType)
+                    {
+                        case MessageType.IsEyesOnMe:
+                            isFocused = serverMsg.isFocused.GetValueOrDefault(false);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (IOException)
+            {
+                // Stream closed
+            }
+            catch (Exception ex)
+            {
+                // Log unexpected errors
+                Console.WriteLine(ex);
             }
         }
 

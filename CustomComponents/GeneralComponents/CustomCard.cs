@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
-namespace SmartCodeLab.CustomComponents
+namespace SmartCodeLab.CustomComponents.GeneralComponents
 {
     public class CustomCard : Panel
     {
@@ -44,9 +44,9 @@ namespace SmartCodeLab.CustomComponents
 
         public CustomCard()
         {
-            this.DoubleBuffered = true;
-            this.ResizeRedraw = true;
-            this.BackColor = Color.White;
+            DoubleBuffered = true;
+            ResizeRedraw = true;
+            BackColor = Color.White;
         }
 
         private GraphicsPath GetRoundedRect(Rectangle rect, int radius)
@@ -78,7 +78,7 @@ namespace SmartCodeLab.CustomComponents
             using (Pen penBorder = new Pen(borderColor, borderSize))
             {
                 // Fill background
-                using (SolidBrush brush = new SolidBrush(this.BackColor))
+                using (SolidBrush brush = new SolidBrush(BackColor))
                 {
                     e.Graphics.FillPath(brush, pathSurface);
                 }
@@ -90,7 +90,7 @@ namespace SmartCodeLab.CustomComponents
                 }
 
                 // Set region so children also respect round corners
-                this.Region = new Region(pathSurface);
+                Region = new Region(pathSurface);
             }
         }
     }

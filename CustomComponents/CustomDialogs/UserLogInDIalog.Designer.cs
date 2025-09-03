@@ -1,4 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents.CustomDialogs
+﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+
+namespace SmartCodeLab.CustomComponents.CustomDialogs
 {
     partial class UserLogInDIalog
     {

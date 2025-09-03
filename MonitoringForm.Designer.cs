@@ -1,4 +1,6 @@
-﻿namespace SmartCodeLab
+﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+
+namespace SmartCodeLab
 {
     partial class MonitoringForm
     {
@@ -42,8 +44,8 @@
             tabPage3 = new TabPage();
             taskMainPage2 = new CustomComponents.MainPages.TaskMainPage();
             tabPage4 = new TabPage();
-            customCard1 = new CustomComponents.CustomCard();
-            customToggleButton1 = new CustomComponents.CustomToggleButton();
+            customCard1 = new CustomComponents.GeneralComponents.CustomCard();
+            customToggleButton1 = new CustomComponents.GeneralComponents.CustomToggleButton();
             label2 = new Label();
             label1 = new Label();
             headerPanel.SuspendLayout();
@@ -376,8 +378,8 @@
         private Button button2;
         private Button button1;
         private TabPage tabPage4;
-        private CustomComponents.CustomCard customCard1;
-        private CustomComponents.CustomToggleButton customToggleButton1;
+        private CustomCard customCard1;
+        private CustomToggleButton customToggleButton1;
         private Label label2;
         private Label label1;
     }

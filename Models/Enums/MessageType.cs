@@ -1,9 +1,4 @@
 ﻿using ProtoBuf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmartCodeLab.Models.Enums
 {
@@ -15,6 +10,7 @@ namespace SmartCodeLab.Models.Enums
         ServerTaskRequest,
         UserProfile,
         LogInSuccessful,
-        LogInFailed
+        LogInFailed,
+        IsEyesOnMe
     }
 }

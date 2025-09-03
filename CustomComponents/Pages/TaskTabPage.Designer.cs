@@ -1,4 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents.Pages
+﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+
+namespace SmartCodeLab.CustomComponents.Pages
 {
     partial class TaskTabPage
     {

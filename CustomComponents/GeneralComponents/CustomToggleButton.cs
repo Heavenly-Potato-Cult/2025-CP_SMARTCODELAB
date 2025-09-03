@@ -12,7 +12,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
 
-namespace SmartCodeLab.CustomComponents
+namespace SmartCodeLab.CustomComponents.GeneralComponents
 {
     public class CustomToggleButton : CheckBox
     {
@@ -36,7 +36,7 @@ namespace SmartCodeLab.CustomComponents
             set
             {
                 onBackColor = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -52,7 +52,7 @@ namespace SmartCodeLab.CustomComponents
             set
             {
                 onToggleColor = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -68,7 +68,7 @@ namespace SmartCodeLab.CustomComponents
             set
             {
                 offBackColor = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -84,7 +84,7 @@ namespace SmartCodeLab.CustomComponents
             set
             {
                 offToggleColor = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
@@ -117,22 +117,22 @@ namespace SmartCodeLab.CustomComponents
             set
             {
                 solidStyle = value;
-                this.Invalidate();
+                Invalidate();
             }
         }
 
         //Constructor
         public CustomToggleButton()
         {
-            this.MinimumSize = new Size(45, 22);
+            MinimumSize = new Size(45, 22);
         }
 
         //Methods
         private GraphicsPath GetFigurePath()
         {
-            int arcSize = this.Height - 1;
+            int arcSize = Height - 1;
             Rectangle leftArc = new Rectangle(0, 0, arcSize, arcSize);
-            Rectangle rightArc = new Rectangle(this.Width - arcSize - 2, 0, arcSize, arcSize);
+            Rectangle rightArc = new Rectangle(Width - arcSize - 2, 0, arcSize, arcSize);
 
             GraphicsPath path = new GraphicsPath();
             path.StartFigure();
@@ -145,11 +145,11 @@ namespace SmartCodeLab.CustomComponents
 
         protected override void OnPaint(PaintEventArgs pevent)
         {
-            int toggleSize = this.Height - 5;
+            int toggleSize = Height - 5;
             pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            pevent.Graphics.Clear(this.Parent.BackColor);
+            pevent.Graphics.Clear(Parent.BackColor);
 
-            if (this.Checked) //ON
+            if (Checked) //ON
             {
                 //Draw the control surface
                 if (solidStyle)
@@ -157,7 +157,7 @@ namespace SmartCodeLab.CustomComponents
                 else pevent.Graphics.DrawPath(new Pen(onBackColor, 2), GetFigurePath());
                 //Draw the toggle
                 pevent.Graphics.FillEllipse(new SolidBrush(onToggleColor),
-                    new Rectangle(this.Width - this.Height + 1, 2, toggleSize, toggleSize));
+                    new Rectangle(Width - Height + 1, 2, toggleSize, toggleSize));
             }
             else //OFF
             {

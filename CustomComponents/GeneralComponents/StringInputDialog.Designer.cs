@@ -1,4 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents
+﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+
+namespace SmartCodeLab.CustomComponents
 {
     partial class StringInputDialog
     {

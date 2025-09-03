@@ -1,4 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents.Pages
+﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+
+namespace SmartCodeLab.CustomComponents.Pages
 {
     partial class ServerPage
     {
@@ -39,7 +41,7 @@
             textBox1 = new TextBox();
             label2 = new Label();
             customCard1 = new CustomCard();
-            userProfilesContainer = new FlowLayoutPanel();
+            serverMemberContainer1 = new SmartCodeLab.CustomComponents.ServerPageComponents.ServerMemberContainer();
             label1 = new Label();
             smartButton1 = new SmartButton();
             customCard4.SuspendLayout();
@@ -181,7 +183,7 @@
             customCard1.BorderColor = Color.FromArgb(51, 51, 51);
             customCard1.BorderRadius = 5;
             customCard1.BorderSize = 1;
-            customCard1.Controls.Add(userProfilesContainer);
+            customCard1.Controls.Add(serverMemberContainer1);
             customCard1.Controls.Add(label1);
             customCard1.Location = new Point(25, 43);
             customCard1.Margin = new Padding(3, 4, 3, 4);
@@ -189,15 +191,13 @@
             customCard1.Size = new Size(278, 455);
             customCard1.TabIndex = 7;
             // 
-            // userProfilesContainer
+            // serverMemberContainer1
             // 
-            userProfilesContainer.AutoScroll = true;
-            userProfilesContainer.BorderStyle = BorderStyle.FixedSingle;
-            userProfilesContainer.FlowDirection = FlowDirection.TopDown;
-            userProfilesContainer.Location = new Point(13, 53);
-            userProfilesContainer.Name = "userProfilesContainer";
-            userProfilesContainer.Size = new Size(250, 377);
-            userProfilesContainer.TabIndex = 5;
+            serverMemberContainer1.AutoScroll = true;
+            serverMemberContainer1.Location = new Point(3, 53);
+            serverMemberContainer1.Name = "serverMemberContainer1";
+            serverMemberContainer1.Size = new Size(272, 384);
+            serverMemberContainer1.TabIndex = 5;
             // 
             // label1
             // 
@@ -265,6 +265,6 @@
         private CustomCard customCard1;
         private Label label1;
         private SmartButton smartButton1;
-        private FlowLayoutPanel userProfilesContainer;
+        private ServerPageComponents.ServerMemberContainer serverMemberContainer1;
     }
 }

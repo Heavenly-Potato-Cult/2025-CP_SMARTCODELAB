@@ -1,4 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents.MainPages
+﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+
+namespace SmartCodeLab.CustomComponents.MainPages
 {
     partial class ServerSetUpPage
     {

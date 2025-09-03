@@ -1,4 +1,6 @@
-﻿namespace SmartCodeLab
+﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+
+namespace SmartCodeLab
 {
     partial class Form1
     {
@@ -39,7 +41,7 @@
             taskMainPage1 = new CustomComponents.MainPages.TaskMainPage();
             tabPage3 = new TabPage();
             fileTree = new TreeView();
-            smoothTabControl2 = new CustomComponents.SmoothTabControl();
+            smoothTabControl2 = new CustomComponents.GeneralComponents.SmoothTabControl();
             tabPage5 = new TabPage();
             materialButton5 = new MaterialSkin.Controls.MaterialButton();
             materialLabel12 = new MaterialSkin.Controls.MaterialLabel();
@@ -81,7 +83,7 @@
             materialCard1 = new MaterialSkin.Controls.MaterialCard();
             materialListBox1 = new MaterialSkin.Controls.MaterialListBox();
             materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
-            smoothTabControl1 = new CustomComponents.SmoothTabControl();
+            smoothTabControl1 = new CustomComponents.GeneralComponents.SmoothTabControl();
             openFileDialog1 = new OpenFileDialog();
             tabPage4.SuspendLayout();
             tabPage3.SuspendLayout();
@@ -843,13 +845,13 @@
         private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialListBox materialListBox1;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
-        private SmartCodeLab.CustomComponents.SmoothTabControl smoothTabControl1;
+        private SmoothTabControl smoothTabControl1;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem openFolderToolStripMenuItem;
         private ToolStripMenuItem openFolderToolStripMenuItem1;
         private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
-        private CustomComponents.SmoothTabControl smoothTabControl2;
+        private SmoothTabControl smoothTabControl2;
         private TabPage tabPage5;
         private MaterialSkin.Controls.MaterialButton materialButton4;
         private MaterialSkin.Controls.MaterialMultiLineTextBox materialMultiLineTextBox1;

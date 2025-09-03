@@ -1,4 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents.TaskPageComponents
+﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+
+namespace SmartCodeLab.CustomComponents.TaskPageComponents
 {
     partial class FileContainer
     {

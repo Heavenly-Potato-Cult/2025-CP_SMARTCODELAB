@@ -41,7 +41,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             try
             {
                 _server.Start(); // Only start once!
-                Debug.WriteLine("Server started on port 1901");
 
                 while (true)
                 {
@@ -103,16 +102,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                                 if (!currentStudents.Contains(obj._userProfile._studentName)) 
                                 {
                                     connectedClients.Add(networkStream, "");
-                                    this.Invoke((MethodInvoker)delegate
-                                    {
-                                        UserIcons userIcon = new UserIcons(obj._userProfile._studentName);
-                                        userProfilesContainer.Controls.Add(userIcon);
-
-                                        userIcon.Click += (s, e) =>
-                                        {
-                                            MessageBox.Show(connectedClients[networkStream]);
-                                        };
-                                    });
+                                    _ = Task.Run(() => serverMemberContainer1.AddUser(obj._userProfile._studentName, networkStream));
 
                                     currentStudents.Add(obj._userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,

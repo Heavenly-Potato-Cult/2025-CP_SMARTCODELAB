@@ -26,6 +26,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(5)]
         public string? _errorMessage { get; set; }
 
+        [ProtoMember(6)]
+        public bool? isFocused { get; set; }
+
         public ServerMessage()
         {
         }
@@ -39,7 +42,8 @@ namespace SmartCodeLab.Models
                 Enums.MessageType.ServerTask,
                 Enums.MessageType.StudentProgress,
                 Enums.MessageType.LogInSuccessful,
-                Enums.MessageType.UserProfile
+                Enums.MessageType.UserProfile,
+                Enums.MessageType.IsEyesOnMe
             };
 
             public Builder(MessageType messageType)
@@ -77,6 +81,12 @@ namespace SmartCodeLab.Models
                 return this;
             }
 
+            public Builder Focused(bool isFocused)
+            {
+                msg.isFocused = isFocused;
+                return this;
+            }
+
             public ServerMessage Build()
             {
                 // Validation can be added here
@@ -84,7 +94,7 @@ namespace SmartCodeLab.Models
                     throw new InvalidOperationException("Message Type is required");
 
                 bool isContentRequired = messageTypesRequiringContent.Contains(msg._messageType.Value);
-                bool hasContent = msg._task != null || msg._progress != null || msg._userProfile != null;
+                bool hasContent = msg._task != null || msg._progress != null || msg._userProfile != null || msg.isFocused != null;
                 if (!hasContent && isContentRequired)
                     throw new InvalidOperationException("Message Content is required");
 
