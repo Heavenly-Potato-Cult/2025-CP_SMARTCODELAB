@@ -31,6 +31,7 @@ namespace SmartCodeLab
             lblTitle = new Label();
             btnClose = new Button();
             sideMenuPanel = new Panel();
+            btnSideMenu_Shutdown = new Button();
             btnSideMenu_Settings = new Button();
             btnSideMenu_FileManagement = new Button();
             btnSideMenu_TaskManagement = new Button();
@@ -69,6 +70,7 @@ namespace SmartCodeLab
             headerPanel.Name = "headerPanel";
             headerPanel.Size = new Size(1626, 53);
             headerPanel.TabIndex = 1;
+            headerPanel.Paint += headerPanel_Paint;
             // 
             // lblTitle
             // 
@@ -102,6 +104,7 @@ namespace SmartCodeLab
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(13, 13, 13);
+            sideMenuPanel.Controls.Add(btnSideMenu_Shutdown);
             sideMenuPanel.Controls.Add(btnSideMenu_Settings);
             sideMenuPanel.Controls.Add(btnSideMenu_FileManagement);
             sideMenuPanel.Controls.Add(btnSideMenu_TaskManagement);
@@ -112,6 +115,27 @@ namespace SmartCodeLab
             sideMenuPanel.Name = "sideMenuPanel";
             sideMenuPanel.Size = new Size(256, 923);
             sideMenuPanel.TabIndex = 0;
+            // 
+            // btnSideMenu_Shutdown
+            // 
+            btnSideMenu_Shutdown.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Shutdown.Cursor = Cursors.Hand;
+            btnSideMenu_Shutdown.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Shutdown.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Shutdown.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_Shutdown.ForeColor = Color.White;
+            btnSideMenu_Shutdown.Image = (Image)resources.GetObject("btnSideMenu_Shutdown.Image");
+            btnSideMenu_Shutdown.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_Shutdown.Location = new Point(18, 272);
+            btnSideMenu_Shutdown.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_Shutdown.Name = "btnSideMenu_Shutdown";
+            btnSideMenu_Shutdown.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_Shutdown.Size = new Size(221, 60);
+            btnSideMenu_Shutdown.TabIndex = 5;
+            btnSideMenu_Shutdown.Text = "   Shutdown";
+            btnSideMenu_Shutdown.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_Shutdown.UseVisualStyleBackColor = false;
+            btnSideMenu_Shutdown.Click += btnSideMenu_Shutdown_Click;
             // 
             // btnSideMenu_Settings
             // 
@@ -203,10 +227,11 @@ namespace SmartCodeLab
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
-            tabControl1.Location = new Point(262, 60);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(256, 53);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1310, 904);
+            tabControl1.Size = new Size(1370, 923);
             tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -215,7 +240,7 @@ namespace SmartCodeLab
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1302, 871);
+            tabPage1.Size = new Size(1362, 890);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -226,7 +251,7 @@ namespace SmartCodeLab
             serverSetUpPage1.Dock = DockStyle.Fill;
             serverSetUpPage1.Location = new Point(3, 3);
             serverSetUpPage1.Name = "serverSetUpPage1";
-            serverSetUpPage1.Size = new Size(1296, 865);
+            serverSetUpPage1.Size = new Size(1356, 884);
             serverSetUpPage1.TabIndex = 0;
             // 
             // tabPage2
@@ -237,7 +262,7 @@ namespace SmartCodeLab
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1302, 871);
+            tabPage2.Size = new Size(1362, 890);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             // 
@@ -266,7 +291,7 @@ namespace SmartCodeLab
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1302, 871);
+            tabPage3.Size = new Size(1362, 890);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             // 
@@ -285,7 +310,7 @@ namespace SmartCodeLab
             tabPage4.Location = new Point(4, 29);
             tabPage4.Margin = new Padding(3, 4, 3, 4);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1302, 871);
+            tabPage4.Size = new Size(1362, 890);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             // 
@@ -359,6 +384,7 @@ namespace SmartCodeLab
             Name = "MonitoringForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MonitoringForm";
+            Load += MonitoringForm_Load;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
             sideMenuPanel.ResumeLayout(false);
@@ -390,5 +416,6 @@ namespace SmartCodeLab
         private CustomToggleButton customToggleButton1;
         private Label label2;
         private Label label1;
+        private Button btnSideMenu_Shutdown;
     }
 }

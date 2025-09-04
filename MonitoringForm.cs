@@ -108,5 +108,24 @@ namespace SmartCodeLab
             btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
             btnSideMenu_Settings.BackColor = Color.FromArgb(26, 26, 26);
         }
+
+        private void headerPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void MonitoringForm_Load(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void btnSideMenu_Shutdown_Click(object sender, EventArgs e)
+        {
+            Application.OpenForms["StudentIDEform"].Show();
+            this.Close();
+
+
+        }
     }
 }
