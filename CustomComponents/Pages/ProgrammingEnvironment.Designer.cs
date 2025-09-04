@@ -29,29 +29,21 @@
         private void InitializeComponent()
         {
             customTabControl1 = new CustomTabControl();
-            fileTree = new TreeView();
             menuStrip1 = new MenuStrip();
             runToolStripMenuItem = new ToolStripMenuItem();
             testToolStripMenuItem = new ToolStripMenuItem();
             instructionToolStripMenuItem = new ToolStripMenuItem();
+            taskDescription = new TaskDescription();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // customTabControl1
             // 
             customTabControl1.BackColor = SystemColors.AppWorkspace;
-            customTabControl1.Location = new Point(217, 30);
+            customTabControl1.Location = new Point(273, 30);
             customTabControl1.Name = "customTabControl1";
-            customTabControl1.Size = new Size(1100, 841);
+            customTabControl1.Size = new Size(1044, 841);
             customTabControl1.TabIndex = 10;
-            // 
-            // fileTree
-            // 
-            fileTree.Location = new Point(3, 30);
-            fileTree.Name = "fileTree";
-            fileTree.Size = new Size(208, 438);
-            fileTree.TabIndex = 9;
-            fileTree.NodeMouseClick += fileTree_NodeMouseClick;
             // 
             // menuStrip1
             // 
@@ -86,13 +78,20 @@
             instructionToolStripMenuItem.Text = "Instruction";
             instructionToolStripMenuItem.Click += instructionToolStripMenuItem_Click;
             // 
+            // taskDescription
+            // 
+            taskDescription.Location = new Point(0, 30);
+            taskDescription.Name = "taskDescription";
+            taskDescription.Size = new Size(267, 838);
+            taskDescription.TabIndex = 11;
+            // 
             // ProgrammingEnvironment
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaptionText;
+            Controls.Add(taskDescription);
             Controls.Add(customTabControl1);
-            Controls.Add(fileTree);
             Controls.Add(menuStrip1);
             Name = "ProgrammingEnvironment";
             Size = new Size(1329, 871);
@@ -105,10 +104,10 @@
         #endregion
 
         private CustomTabControl customTabControl1;
-        private TreeView fileTree;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem runToolStripMenuItem;
         private ToolStripMenuItem testToolStripMenuItem;
         private ToolStripMenuItem instructionToolStripMenuItem;
+        private TaskDescription taskDescription;
     }
 }

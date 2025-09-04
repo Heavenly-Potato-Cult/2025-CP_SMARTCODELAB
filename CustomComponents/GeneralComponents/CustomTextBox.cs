@@ -154,13 +154,11 @@ namespace SmartCodeLab.CustomComponents
         {
             get
             {
-                if (isPlaceholder) return "";
-                else return textBox1.Text;
+                return textBox1.Text;
             }
             set
             {
                 textBox1.Text = value;
-                SetPlaceholder();
             }
         }
 
@@ -198,40 +196,12 @@ namespace SmartCodeLab.CustomComponents
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string PlaceholderText
         {
-            get { return placeholderText; }
+            get { return textBox1.PlaceholderText; }
             set
             {
-                placeholderText = value;
-                textBox1.Text = "";
-                SetPlaceholder();
+                textBox1.PlaceholderText = value;
             }
         }
-
-
-        private void SetPlaceholder()
-        {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) && placeholderText != "")
-            {
-                isPlaceholder = true;
-                textBox1.Text = placeholderText;
-                textBox1.ForeColor = placeholderColor;
-                if (isPasswordChar)
-                    textBox1.UseSystemPasswordChar = false;
-            }
-        }
-
-        private void RemovePlaceholder()
-        {
-            if (isPlaceholder && placeholderText != "")
-            {
-                isPlaceholder = false;
-                textBox1.Text = "";
-                textBox1.ForeColor = this.ForeColor;
-                if (isPasswordChar)
-                    textBox1.UseSystemPasswordChar = true;
-            }
-        }
-
 
         //Overridden methods
         protected override void OnPaint(PaintEventArgs e)
@@ -357,39 +327,10 @@ namespace SmartCodeLab.CustomComponents
            
         }
 
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            this.OnClick(e);
-        }
-
         private void textBox1_MouseEnter(object sender, EventArgs e)
         {
             this.OnMouseEnter(e);
 
-        }
-
-        private void textBox1_MouseLeave(object sender, EventArgs e)
-        {
-            this.OnMouseLeave(e);
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            this.OnKeyPress(e);
-        }
-
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            isFocused = true;
-            this.Invalidate();
-            RemovePlaceholder();
-        }
-
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            isFocused = false;
-            this.Invalidate();
-            SetPlaceholder();
         }
     }
 }

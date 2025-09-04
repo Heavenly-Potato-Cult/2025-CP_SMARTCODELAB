@@ -30,6 +30,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
             //create the activity file then open it by default,and also making it unclosable
             SourceCodeInitializer.InitializeSourceCode(task._language, folderPath, task._taskName);
+            taskDescription.SetDescription(task);
             string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName)+".java");
             openedFiles.Add(filePath);
             _editor = getCodeBaseEditor(filePath);
@@ -48,8 +49,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             };
 
             customTabControl1.addTab(new TabPageModel(filePath, customTabControl1.getTabControl(), _editor, openedFiles, false));
-            
-            selectFolder(folderPath);
 
             _ = StreamListener();
             _task = task;
@@ -94,16 +93,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                 // Log unexpected errors
                 Console.WriteLine(ex);
             }
-        }
-
-        private void selectFolder(string path)
-        {
-            fileTree.Nodes.Clear();
-            var rootItem = new FileItem(path, false);
-            {
-                Name = new DirectoryInfo(path).Name;
-            }
-            fileTree.Nodes.Add(rootItem.ToTreeNode());
         }
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)

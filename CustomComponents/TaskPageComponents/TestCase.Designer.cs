@@ -28,29 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            inputs = new TextBox();
             output = new TextBox();
             label1 = new Label();
             label2 = new Label();
+            inputs = new RichTextBox();
             SuspendLayout();
-            // 
-            // inputs
-            // 
-            inputs.Location = new Point(3, 28);
-            inputs.Multiline = true;
-            inputs.Name = "inputs";
-            inputs.ScrollBars = ScrollBars.Both;
-            inputs.Size = new Size(203, 105);
-            inputs.TabIndex = 0;
-            inputs.WordWrap = false;
             // 
             // output
             // 
-            output.Location = new Point(3, 165);
+            output.Location = new Point(3, 185);
             output.Multiline = true;
             output.Name = "output";
-            output.ScrollBars = ScrollBars.Both;
-            output.Size = new Size(203, 72);
+            output.ScrollBars = ScrollBars.Vertical;
+            output.Size = new Size(314, 82);
             output.TabIndex = 1;
             output.WordWrap = false;
             // 
@@ -66,32 +56,39 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(3, 142);
+            label2.Location = new Point(3, 162);
             label2.Name = "label2";
             label2.Size = new Size(120, 20);
             label2.TabIndex = 3;
             label2.Text = "Expected Output";
+            // 
+            // inputs
+            // 
+            inputs.Location = new Point(3, 28);
+            inputs.Name = "inputs";
+            inputs.Size = new Size(314, 120);
+            inputs.TabIndex = 4;
+            inputs.Text = "";
             // 
             // TestCase
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
+            Controls.Add(inputs);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(output);
-            Controls.Add(inputs);
             Name = "TestCase";
-            Size = new Size(209, 240);
+            Size = new Size(320, 270);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private TextBox inputs;
         private TextBox output;
         private Label label1;
         private Label label2;
+        private RichTextBox inputs;
     }
 }

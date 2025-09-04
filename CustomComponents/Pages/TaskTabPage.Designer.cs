@@ -37,8 +37,8 @@ namespace SmartCodeLab.CustomComponents.Pages
             txtbox_instruction = new TextBox();
             languageUsed = new CustomComboBox();
             actName = new CustomTextBox();
-            associateContainer = new TaskPageComponents.FileContainer();
-            externalResourceCon = new TaskPageComponents.FileContainer();
+            associateContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            externalResourceCon = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             label3 = new Label();
             SuspendLayout();
             // 
@@ -47,10 +47,9 @@ namespace SmartCodeLab.CustomComponents.Pages
             testContainer.AutoScroll = true;
             testContainer.BackColor = Color.FromArgb(13, 13, 13);
             testContainer.BorderStyle = BorderStyle.FixedSingle;
-            testContainer.Location = new Point(37, 352);
-            testContainer.Margin = new Padding(3, 2, 3, 2);
+            testContainer.Location = new Point(42, 428);
             testContainer.Name = "testContainer";
-            testContainer.Size = new Size(796, 184);
+            testContainer.Size = new Size(985, 286);
             testContainer.TabIndex = 25;
             // 
             // label1
@@ -59,9 +58,9 @@ namespace SmartCodeLab.CustomComponents.Pages
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(242, 242, 242);
-            label1.Location = new Point(37, 16);
+            label1.Location = new Point(42, 21);
             label1.Name = "label1";
-            label1.Size = new Size(112, 21);
+            label1.Size = new Size(138, 28);
             label1.TabIndex = 29;
             label1.Text = "Activity Name";
             // 
@@ -71,9 +70,9 @@ namespace SmartCodeLab.CustomComponents.Pages
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(242, 242, 242);
-            label2.Location = new Point(293, 16);
+            label2.Location = new Point(335, 21);
             label2.Name = "label2";
-            label2.Size = new Size(81, 21);
+            label2.Size = new Size(101, 28);
             label2.TabIndex = 30;
             label2.Text = "Language";
             // 
@@ -86,9 +85,10 @@ namespace SmartCodeLab.CustomComponents.Pages
             Btn_AddTestCase.FlatStyle = FlatStyle.Flat;
             Btn_AddTestCase.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             Btn_AddTestCase.ForeColor = Color.FromArgb(242, 242, 242);
-            Btn_AddTestCase.Location = new Point(37, 311);
+            Btn_AddTestCase.Location = new Point(42, 373);
+            Btn_AddTestCase.Margin = new Padding(3, 4, 3, 4);
             Btn_AddTestCase.Name = "Btn_AddTestCase";
-            Btn_AddTestCase.Size = new Size(140, 36);
+            Btn_AddTestCase.Size = new Size(160, 48);
             Btn_AddTestCase.TabIndex = 35;
             Btn_AddTestCase.Text = "ADD TEST CASE";
             Btn_AddTestCase.TextColor = Color.FromArgb(242, 242, 242);
@@ -100,10 +100,11 @@ namespace SmartCodeLab.CustomComponents.Pages
             txtbox_instruction.BackColor = Color.FromArgb(13, 13, 13);
             txtbox_instruction.BorderStyle = BorderStyle.FixedSingle;
             txtbox_instruction.ForeColor = Color.FromArgb(179, 179, 179);
-            txtbox_instruction.Location = new Point(37, 137);
+            txtbox_instruction.Location = new Point(42, 183);
+            txtbox_instruction.Margin = new Padding(3, 4, 3, 4);
             txtbox_instruction.Multiline = true;
             txtbox_instruction.Name = "txtbox_instruction";
-            txtbox_instruction.Size = new Size(456, 95);
+            txtbox_instruction.Size = new Size(521, 126);
             txtbox_instruction.TabIndex = 36;
             // 
             // languageUsed
@@ -118,11 +119,12 @@ namespace SmartCodeLab.CustomComponents.Pages
             languageUsed.Items.AddRange(new object[] { "Cpp", "Java", "Python" });
             languageUsed.ListBackColor = Color.FromArgb(13, 13, 13);
             languageUsed.ListTextColor = Color.DimGray;
-            languageUsed.Location = new Point(293, 40);
-            languageUsed.MinimumSize = new Size(200, 30);
+            languageUsed.Location = new Point(335, 53);
+            languageUsed.Margin = new Padding(3, 4, 3, 4);
+            languageUsed.MinimumSize = new Size(229, 40);
             languageUsed.Name = "languageUsed";
             languageUsed.Padding = new Padding(1);
-            languageUsed.Size = new Size(200, 33);
+            languageUsed.Size = new Size(229, 44);
             languageUsed.TabIndex = 38;
             languageUsed.Texts = "";
             // 
@@ -133,11 +135,10 @@ namespace SmartCodeLab.CustomComponents.Pages
             actName.BorderFocusColor = Color.DimGray;
             actName.BorderSize = 1;
             actName.ForeColor = Color.FromArgb(179, 179, 179);
-            actName.Location = new Point(37, 41);
-            actName.Margin = new Padding(3, 2, 3, 2);
+            actName.Location = new Point(42, 55);
             actName.Name = "actName";
-            actName.Padding = new Padding(9, 5, 9, 5);
-            actName.Size = new Size(242, 32);
+            actName.Padding = new Padding(10, 7, 10, 7);
+            actName.Size = new Size(277, 41);
             actName.TabIndex = 39;
             // 
             // associateContainer
@@ -147,10 +148,9 @@ namespace SmartCodeLab.CustomComponents.Pages
             associateContainer.ContainerHeight = 50;
             associateContainer.ForeColor = Color.FromArgb(242, 242, 242);
             associateContainer.LabelText = "Associate Files";
-            associateContainer.Location = new Point(528, 9);
-            associateContainer.Margin = new Padding(3, 2, 3, 2);
+            associateContainer.Location = new Point(680, 21);
             associateContainer.Name = "associateContainer";
-            associateContainer.Size = new Size(304, 84);
+            associateContainer.Size = new Size(347, 112);
             associateContainer.TabIndex = 40;
             // 
             // externalResourceCon
@@ -160,10 +160,9 @@ namespace SmartCodeLab.CustomComponents.Pages
             externalResourceCon.ContainerHeight = 115;
             externalResourceCon.ForeColor = Color.FromArgb(242, 242, 242);
             externalResourceCon.LabelText = "Exernal Files";
-            externalResourceCon.Location = new Point(529, 115);
-            externalResourceCon.Margin = new Padding(3, 2, 3, 2);
+            externalResourceCon.Location = new Point(680, 151);
             externalResourceCon.Name = "externalResourceCon";
-            externalResourceCon.Size = new Size(304, 150);
+            externalResourceCon.Size = new Size(347, 200);
             externalResourceCon.TabIndex = 41;
             // 
             // label3
@@ -172,15 +171,15 @@ namespace SmartCodeLab.CustomComponents.Pages
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(242, 242, 242);
-            label3.Location = new Point(37, 113);
+            label3.Location = new Point(42, 151);
             label3.Name = "label3";
-            label3.Size = new Size(89, 21);
+            label3.Size = new Size(110, 28);
             label3.TabIndex = 42;
             label3.Text = "Instruction";
             // 
             // TaskTabPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 10, 10);
             Controls.Add(label3);
@@ -193,9 +192,8 @@ namespace SmartCodeLab.CustomComponents.Pages
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(testContainer);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TaskTabPage";
-            Size = new Size(960, 548);
+            Size = new Size(1097, 731);
             ResumeLayout(false);
             PerformLayout();
         }

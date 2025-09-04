@@ -46,16 +46,16 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             foreach (Control control in container.Controls)
             {
-                if(control is UserControl)
+                if (control is UserControl)
                     initialize_Save_Shortcut((UserControl)control);
                 else
-                control.KeyUp += (sender, k) =>
-                {
-                    if (k.KeyCode == Keys.S && k.Control)
+                    control.KeyUp += (sender, k) =>
                     {
-                        save_File();
-                    }
-                };
+                        if (k.KeyCode == Keys.S && k.Control)
+                        {
+                            save_File();
+                        }
+                    };
             }
         }
 
