@@ -60,7 +60,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             customCard4.Location = new Point(25, 555);
             customCard4.Margin = new Padding(3, 4, 3, 4);
             customCard4.Name = "customCard4";
-            customCard4.Size = new Size(1285, 301);
+            customCard4.Size = new Size(1257, 301);
             customCard4.TabIndex = 8;
             // 
             // label5
@@ -68,7 +68,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.FromArgb(242, 242, 242);
-            label5.Location = new Point(645, 12);
+            label5.Location = new Point(586, 12);
             label5.Name = "label5";
             label5.Size = new Size(85, 28);
             label5.TabIndex = 4;
@@ -76,6 +76,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             // 
             // customCard3
             // 
+            customCard3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             customCard3.BackColor = Color.FromArgb(13, 13, 13);
             customCard3.BorderColor = Color.FromArgb(51, 51, 51);
             customCard3.BorderRadius = 5;
@@ -84,7 +85,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             customCard3.Controls.Add(listView3);
             customCard3.Controls.Add(label4);
             customCard3.Controls.Add(label3);
-            customCard3.Location = new Point(983, 43);
+            customCard3.Location = new Point(955, 43);
             customCard3.Margin = new Padding(3, 4, 3, 4);
             customCard3.Name = "customCard3";
             customCard3.Size = new Size(327, 455);
@@ -146,10 +147,10 @@ namespace SmartCodeLab.CustomComponents.Pages
             customCard2.BorderSize = 1;
             customCard2.Controls.Add(studentCode);
             customCard2.Controls.Add(label2);
-            customCard2.Location = new Point(309, 43);
+            customCard2.Location = new Point(290, 43);
             customCard2.Margin = new Padding(3, 4, 3, 4);
             customCard2.Name = "customCard2";
-            customCard2.Size = new Size(667, 455);
+            customCard2.Size = new Size(649, 455);
             customCard2.TabIndex = 10;
             // 
             // studentCode
@@ -162,7 +163,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             studentCode.Multiline = true;
             studentCode.Name = "studentCode";
             studentCode.ReadOnly = true;
-            studentCode.Size = new Size(637, 378);
+            studentCode.Size = new Size(618, 378);
             studentCode.TabIndex = 5;
             // 
             // label2
@@ -188,7 +189,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             customCard1.Location = new Point(25, 43);
             customCard1.Margin = new Padding(3, 4, 3, 4);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(278, 455);
+            customCard1.Size = new Size(259, 455);
             customCard1.TabIndex = 7;
             // 
             // serverMemberContainer1
@@ -196,7 +197,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             serverMemberContainer1.AutoScroll = true;
             serverMemberContainer1.Location = new Point(3, 53);
             serverMemberContainer1.Name = "serverMemberContainer1";
-            serverMemberContainer1.Size = new Size(272, 384);
+            serverMemberContainer1.Size = new Size(252, 384);
             serverMemberContainer1.TabIndex = 5;
             // 
             // label1
@@ -238,7 +239,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             Controls.Add(customCard2);
             Controls.Add(customCard1);
             Name = "ServerPage";
-            Size = new Size(1335, 899);
+            Size = new Size(1296, 899);
             customCard4.ResumeLayout(false);
             customCard4.PerformLayout();
             customCard3.ResumeLayout(false);

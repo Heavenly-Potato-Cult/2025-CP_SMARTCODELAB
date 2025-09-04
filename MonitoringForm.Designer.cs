@@ -67,7 +67,7 @@ namespace SmartCodeLab
             headerPanel.Location = new Point(0, 0);
             headerPanel.Margin = new Padding(3, 4, 3, 4);
             headerPanel.Name = "headerPanel";
-            headerPanel.Size = new Size(1584, 53);
+            headerPanel.Size = new Size(1626, 53);
             headerPanel.TabIndex = 1;
             // 
             // lblTitle
@@ -90,7 +90,7 @@ namespace SmartCodeLab
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(1538, 0);
+            btnClose.Location = new Point(1580, 0);
             btnClose.Margin = new Padding(3, 4, 3, 4);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(46, 53);
@@ -110,7 +110,7 @@ namespace SmartCodeLab
             sideMenuPanel.Location = new Point(0, 53);
             sideMenuPanel.Margin = new Padding(3, 4, 3, 4);
             sideMenuPanel.Name = "sideMenuPanel";
-            sideMenuPanel.Size = new Size(229, 923);
+            sideMenuPanel.Size = new Size(256, 923);
             sideMenuPanel.TabIndex = 0;
             // 
             // btnSideMenu_Settings
@@ -119,14 +119,15 @@ namespace SmartCodeLab
             btnSideMenu_Settings.Cursor = Cursors.Hand;
             btnSideMenu_Settings.FlatAppearance.BorderSize = 0;
             btnSideMenu_Settings.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_Settings.Font = new Font("Microsoft Sans Serif", 11.25F);
+            btnSideMenu_Settings.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             btnSideMenu_Settings.ForeColor = Color.White;
             btnSideMenu_Settings.Image = (Image)resources.GetObject("btnSideMenu_Settings.Image");
             btnSideMenu_Settings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Settings.Location = new Point(11, 209);
+            btnSideMenu_Settings.Location = new Point(18, 209);
             btnSideMenu_Settings.Margin = new Padding(3, 4, 3, 4);
             btnSideMenu_Settings.Name = "btnSideMenu_Settings";
-            btnSideMenu_Settings.Size = new Size(201, 60);
+            btnSideMenu_Settings.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_Settings.Size = new Size(221, 60);
             btnSideMenu_Settings.TabIndex = 4;
             btnSideMenu_Settings.Text = "   Settings";
             btnSideMenu_Settings.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -139,14 +140,15 @@ namespace SmartCodeLab
             btnSideMenu_FileManagement.Cursor = Cursors.Hand;
             btnSideMenu_FileManagement.FlatAppearance.BorderSize = 0;
             btnSideMenu_FileManagement.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_FileManagement.Font = new Font("Microsoft Sans Serif", 11.25F);
+            btnSideMenu_FileManagement.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             btnSideMenu_FileManagement.ForeColor = Color.White;
             btnSideMenu_FileManagement.Image = (Image)resources.GetObject("btnSideMenu_FileManagement.Image");
             btnSideMenu_FileManagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_FileManagement.Location = new Point(11, 149);
+            btnSideMenu_FileManagement.Location = new Point(18, 149);
             btnSideMenu_FileManagement.Margin = new Padding(3, 4, 3, 4);
             btnSideMenu_FileManagement.Name = "btnSideMenu_FileManagement";
-            btnSideMenu_FileManagement.Size = new Size(201, 60);
+            btnSideMenu_FileManagement.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_FileManagement.Size = new Size(221, 60);
             btnSideMenu_FileManagement.TabIndex = 3;
             btnSideMenu_FileManagement.Text = "   File Management";
             btnSideMenu_FileManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -159,14 +161,15 @@ namespace SmartCodeLab
             btnSideMenu_TaskManagement.Cursor = Cursors.Hand;
             btnSideMenu_TaskManagement.FlatAppearance.BorderSize = 0;
             btnSideMenu_TaskManagement.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_TaskManagement.Font = new Font("Microsoft Sans Serif", 11.25F);
+            btnSideMenu_TaskManagement.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             btnSideMenu_TaskManagement.ForeColor = Color.White;
             btnSideMenu_TaskManagement.Image = (Image)resources.GetObject("btnSideMenu_TaskManagement.Image");
             btnSideMenu_TaskManagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_TaskManagement.Location = new Point(11, 89);
+            btnSideMenu_TaskManagement.Location = new Point(18, 89);
             btnSideMenu_TaskManagement.Margin = new Padding(3, 4, 3, 4);
             btnSideMenu_TaskManagement.Name = "btnSideMenu_TaskManagement";
-            btnSideMenu_TaskManagement.Size = new Size(201, 60);
+            btnSideMenu_TaskManagement.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_TaskManagement.Size = new Size(221, 60);
             btnSideMenu_TaskManagement.TabIndex = 2;
             btnSideMenu_TaskManagement.Text = "   Task Management";
             btnSideMenu_TaskManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -179,14 +182,15 @@ namespace SmartCodeLab
             btnSideMenu_Student.Cursor = Cursors.Hand;
             btnSideMenu_Student.FlatAppearance.BorderSize = 0;
             btnSideMenu_Student.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_Student.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSideMenu_Student.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             btnSideMenu_Student.ForeColor = Color.White;
             btnSideMenu_Student.Image = (Image)resources.GetObject("btnSideMenu_Student.Image");
             btnSideMenu_Student.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Student.Location = new Point(11, 29);
+            btnSideMenu_Student.Location = new Point(18, 29);
             btnSideMenu_Student.Margin = new Padding(3, 4, 3, 4);
             btnSideMenu_Student.Name = "btnSideMenu_Student";
-            btnSideMenu_Student.Size = new Size(201, 60);
+            btnSideMenu_Student.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_Student.Size = new Size(221, 60);
             btnSideMenu_Student.TabIndex = 1;
             btnSideMenu_Student.Text = "   Connection";
             btnSideMenu_Student.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -199,10 +203,10 @@ namespace SmartCodeLab
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
-            tabControl1.Location = new Point(235, 60);
+            tabControl1.Location = new Point(262, 60);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1337, 904);
+            tabControl1.Size = new Size(1310, 904);
             tabControl1.TabIndex = 2;
             // 
             // tabPage1
@@ -210,8 +214,8 @@ namespace SmartCodeLab
             tabPage1.Controls.Add(serverSetUpPage1);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 3, 3, 3);
-            tabPage1.Size = new Size(1329, 871);
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1302, 871);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -219,9 +223,10 @@ namespace SmartCodeLab
             // serverSetUpPage1
             // 
             serverSetUpPage1.BackColor = Color.FromArgb(10, 10, 10);
+            serverSetUpPage1.Dock = DockStyle.Fill;
             serverSetUpPage1.Location = new Point(3, 3);
             serverSetUpPage1.Name = "serverSetUpPage1";
-            serverSetUpPage1.Size = new Size(1320, 868);
+            serverSetUpPage1.Size = new Size(1296, 865);
             serverSetUpPage1.TabIndex = 0;
             // 
             // tabPage2
@@ -231,8 +236,8 @@ namespace SmartCodeLab
             tabPage2.Controls.Add(button1);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
-            tabPage2.Size = new Size(1329, 871);
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1302, 871);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             // 
@@ -260,8 +265,8 @@ namespace SmartCodeLab
             tabPage3.Controls.Add(taskMainPage2);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3, 3, 3, 3);
-            tabPage3.Size = new Size(1329, 871);
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1302, 871);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             // 
@@ -280,7 +285,7 @@ namespace SmartCodeLab
             tabPage4.Location = new Point(4, 29);
             tabPage4.Margin = new Padding(3, 4, 3, 4);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1329, 871);
+            tabPage4.Size = new Size(1302, 871);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             // 
@@ -344,12 +349,12 @@ namespace SmartCodeLab
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 10, 10);
-            ClientSize = new Size(1584, 976);
+            ClientSize = new Size(1626, 976);
             Controls.Add(tabControl1);
             Controls.Add(sideMenuPanel);
             Controls.Add(headerPanel);
             DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.Fixed3D;
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);
             Name = "MonitoringForm";
             StartPosition = FormStartPosition.CenterScreen;

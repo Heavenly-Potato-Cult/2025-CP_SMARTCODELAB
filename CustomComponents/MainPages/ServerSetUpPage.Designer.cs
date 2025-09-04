@@ -31,8 +31,8 @@ namespace SmartCodeLab.CustomComponents.MainPages
         private void InitializeComponent()
         {
             smartButton1 = new SmartButton();
-            fileContainer2 = new TaskPageComponents.FileContainer();
-            taskContainer = new TaskPageComponents.FileContainer();
+            fileContainer2 = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            taskContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             label8 = new Label();
             customCard1 = new CustomCard();
             customCard1.SuspendLayout();
@@ -47,10 +47,9 @@ namespace SmartCodeLab.CustomComponents.MainPages
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(42, 266);
-            smartButton1.Margin = new Padding(3, 2, 3, 2);
+            smartButton1.Location = new Point(48, 355);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(304, 38);
+            smartButton1.Size = new Size(347, 51);
             smartButton1.TabIndex = 8;
             smartButton1.Text = "Start Server";
             smartButton1.UseVisualStyleBackColor = false;
@@ -62,10 +61,9 @@ namespace SmartCodeLab.CustomComponents.MainPages
             fileContainer2.ContainerHeight = 39;
             fileContainer2.ForeColor = Color.FromArgb(179, 179, 179);
             fileContainer2.LabelText = "Student Credentials";
-            fileContainer2.Location = new Point(42, 159);
-            fileContainer2.Margin = new Padding(3, 2, 3, 2);
+            fileContainer2.Location = new Point(48, 212);
             fileContainer2.Name = "fileContainer2";
-            fileContainer2.Size = new Size(304, 81);
+            fileContainer2.Size = new Size(347, 108);
             fileContainer2.TabIndex = 7;
             // 
             // taskContainer
@@ -74,10 +72,9 @@ namespace SmartCodeLab.CustomComponents.MainPages
             taskContainer.ContainerHeight = 39;
             taskContainer.ForeColor = Color.FromArgb(179, 179, 179);
             taskContainer.LabelText = "Task File";
-            taskContainer.Location = new Point(42, 65);
-            taskContainer.Margin = new Padding(3, 2, 3, 2);
+            taskContainer.Location = new Point(48, 87);
             taskContainer.Name = "taskContainer";
-            taskContainer.Size = new Size(304, 90);
+            taskContainer.Size = new Size(347, 120);
             taskContainer.TabIndex = 6;
             // 
             // label8
@@ -85,9 +82,9 @@ namespace SmartCodeLab.CustomComponents.MainPages
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(242, 242, 242);
-            label8.Location = new Point(115, 13);
+            label8.Location = new Point(131, 17);
             label8.Name = "label8";
-            label8.Size = new Size(164, 30);
+            label8.Size = new Size(210, 37);
             label8.TabIndex = 5;
             label8.Text = "SERVER SET UP";
             // 
@@ -101,20 +98,20 @@ namespace SmartCodeLab.CustomComponents.MainPages
             customCard1.Controls.Add(label8);
             customCard1.Controls.Add(fileContainer2);
             customCard1.Controls.Add(taskContainer);
-            customCard1.Location = new Point(365, 166);
+            customCard1.Location = new Point(417, 221);
+            customCard1.Margin = new Padding(3, 4, 3, 4);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(395, 342);
+            customCard1.Size = new Size(451, 456);
             customCard1.TabIndex = 1;
             // 
             // ServerSetUpPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 10, 10);
             Controls.Add(customCard1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "ServerSetUpPage";
-            Size = new Size(1168, 674);
+            Size = new Size(1335, 994);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
             ResumeLayout(false);

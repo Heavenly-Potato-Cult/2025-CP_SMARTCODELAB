@@ -45,7 +45,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1260, 24);
+            menuStrip1.Padding = new Padding(7, 3, 0, 3);
+            menuStrip1.Size = new Size(1296, 30);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -55,7 +56,7 @@
             fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { openFolderToolStripMenuItem, openFolderToolStripMenuItem1 });
             fileToolStripMenuItem.ForeColor = Color.FromArgb(242, 242, 242);
             fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            fileToolStripMenuItem.Size = new Size(37, 20);
+            fileToolStripMenuItem.Size = new Size(46, 24);
             fileToolStripMenuItem.Text = "File";
             // 
             // openFolderToolStripMenuItem
@@ -63,7 +64,7 @@
             openFolderToolStripMenuItem.BackColor = Color.FromArgb(13, 13, 13);
             openFolderToolStripMenuItem.ForeColor = Color.FromArgb(242, 242, 242);
             openFolderToolStripMenuItem.Name = "openFolderToolStripMenuItem";
-            openFolderToolStripMenuItem.Size = new Size(139, 22);
+            openFolderToolStripMenuItem.Size = new Size(174, 26);
             openFolderToolStripMenuItem.Text = "New File";
             openFolderToolStripMenuItem.Click += openFolderToolStripMenuItem_Click;
             // 
@@ -72,7 +73,7 @@
             openFolderToolStripMenuItem1.BackColor = Color.FromArgb(13, 13, 13);
             openFolderToolStripMenuItem1.ForeColor = Color.FromArgb(242, 242, 242);
             openFolderToolStripMenuItem1.Name = "openFolderToolStripMenuItem1";
-            openFolderToolStripMenuItem1.Size = new Size(139, 22);
+            openFolderToolStripMenuItem1.Size = new Size(174, 26);
             openFolderToolStripMenuItem1.Text = "Open Folder";
             openFolderToolStripMenuItem1.Click += openFolderToolStripMenuItem1_Click;
             // 
@@ -81,41 +82,39 @@
             fileTree.BackColor = Color.FromArgb(13, 13, 13);
             fileTree.BorderStyle = BorderStyle.None;
             fileTree.ForeColor = Color.FromArgb(242, 242, 242);
-            fileTree.Location = new Point(0, 24);
-            fileTree.Margin = new Padding(3, 2, 3, 2);
+            fileTree.Location = new Point(0, 32);
             fileTree.Name = "fileTree";
-            fileTree.Size = new Size(182, 330);
+            fileTree.Size = new Size(208, 440);
             fileTree.TabIndex = 6;
             fileTree.NodeMouseClick += fileTree_NodeMouseClick;
             // 
             // customTabControl1
             // 
             customTabControl1.BackColor = Color.FromArgb(10, 10, 10);
-            customTabControl1.Location = new Point(190, 25);
-            customTabControl1.Margin = new Padding(3, 2, 3, 2);
+            customTabControl1.Location = new Point(217, 33);
             customTabControl1.Name = "customTabControl1";
-            customTabControl1.Size = new Size(960, 579);
+            customTabControl1.Size = new Size(1097, 772);
             customTabControl1.TabIndex = 7;
             // 
             // panel_cover1
             // 
-            panel_cover1.Location = new Point(190, 48);
+            panel_cover1.Location = new Point(217, 34);
+            panel_cover1.Margin = new Padding(3, 4, 3, 4);
             panel_cover1.Name = "panel_cover1";
-            panel_cover1.Size = new Size(960, 556);
+            panel_cover1.Size = new Size(1097, 771);
             panel_cover1.TabIndex = 8;
             // 
             // TaskMainPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 10, 10);
             Controls.Add(panel_cover1);
             Controls.Add(customTabControl1);
             Controls.Add(fileTree);
             Controls.Add(menuStrip1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TaskMainPage";
-            Size = new Size(1260, 656);
+            Size = new Size(1296, 875);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
