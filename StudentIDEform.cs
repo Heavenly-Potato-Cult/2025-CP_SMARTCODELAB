@@ -19,7 +19,7 @@ namespace SmartCodeLab
 
         private void loginAsInstructorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new AuthInstructorForm();
+            var form = new MonitoringForm();
             form.ShowDialog();
         }
 

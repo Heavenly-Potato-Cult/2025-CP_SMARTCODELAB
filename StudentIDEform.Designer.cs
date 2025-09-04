@@ -69,7 +69,7 @@
             // 
             loginAsInstructorToolStripMenuItem.Name = "loginAsInstructorToolStripMenuItem";
             loginAsInstructorToolStripMenuItem.Size = new Size(224, 26);
-            loginAsInstructorToolStripMenuItem.Text = "Login As Instructor";
+            loginAsInstructorToolStripMenuItem.Text = "Go To Monitoring";
             loginAsInstructorToolStripMenuItem.Click += loginAsInstructorToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
