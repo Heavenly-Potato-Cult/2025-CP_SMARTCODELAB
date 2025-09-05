@@ -57,6 +57,8 @@
             label14 = new Label();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            customComboBox2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
+            label15 = new Label();
             customCard1.SuspendLayout();
             customCard2.SuspendLayout();
             customCard3.SuspendLayout();
@@ -129,6 +131,8 @@
             customCard2.BorderColor = Color.Gray;
             customCard2.BorderRadius = 10;
             customCard2.BorderSize = 1;
+            customCard2.Controls.Add(customComboBox2);
+            customCard2.Controls.Add(label15);
             customCard2.Controls.Add(customCard3);
             customCard2.Controls.Add(customComboBox1);
             customCard2.Controls.Add(label7);
@@ -436,6 +440,36 @@
             smartButton3.TextColor = Color.DimGray;
             smartButton3.UseVisualStyleBackColor = false;
             // 
+            // customComboBox2
+            // 
+            customComboBox2.BackColor = Color.White;
+            customComboBox2.BorderColor = Color.LightGray;
+            customComboBox2.BorderSize = 1;
+            customComboBox2.DropDownStyle = ComboBoxStyle.DropDown;
+            customComboBox2.Font = new Font("Segoe UI", 10F);
+            customComboBox2.ForeColor = Color.DimGray;
+            customComboBox2.IconColor = Color.Gray;
+            customComboBox2.ListBackColor = Color.FromArgb(230, 228, 245);
+            customComboBox2.ListTextColor = Color.DimGray;
+            customComboBox2.Location = new Point(456, 210);
+            customComboBox2.MinimumSize = new Size(200, 30);
+            customComboBox2.Name = "customComboBox2";
+            customComboBox2.Padding = new Padding(1);
+            customComboBox2.Size = new Size(250, 41);
+            customComboBox2.TabIndex = 26;
+            customComboBox2.Texts = "";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label15.ForeColor = Color.DimGray;
+            label15.Location = new Point(456, 182);
+            label15.Name = "label15";
+            label15.Size = new Size(124, 25);
+            label15.TabIndex = 25;
+            label15.Text = "Select Exercise";
+            // 
             // TempSessionManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -496,5 +530,7 @@
         private Label label11;
         private Label label13;
         private GeneralComponents.SmartButton smartButton3;
+        private GeneralComponents.CustomComboBox customComboBox2;
+        private Label label15;
     }
 }

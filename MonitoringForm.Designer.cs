@@ -33,6 +33,8 @@ namespace SmartCodeLab
             lblTitle = new Label();
             btnClose = new Button();
             sideMenuPanel = new Panel();
+            button6 = new Button();
+            button5 = new Button();
             button4 = new Button();
             button3 = new Button();
             btnSideMenu_Shutdown = new Button();
@@ -57,6 +59,10 @@ namespace SmartCodeLab
             tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
             tabPage6 = new TabPage();
             tempDashboard1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempDashboard();
+            tabPage7 = new TabPage();
+            tempSessionManagement1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempSessionManagement();
+            tabPage8 = new TabPage();
+            tempExcerciseManager1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExcerciseManager();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -68,6 +74,8 @@ namespace SmartCodeLab
             customCard1.SuspendLayout();
             tabPage5.SuspendLayout();
             tabPage6.SuspendLayout();
+            tabPage7.SuspendLayout();
+            tabPage8.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -137,6 +145,8 @@ namespace SmartCodeLab
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(13, 13, 13);
+            sideMenuPanel.Controls.Add(button6);
+            sideMenuPanel.Controls.Add(button5);
             sideMenuPanel.Controls.Add(button4);
             sideMenuPanel.Controls.Add(button3);
             sideMenuPanel.Controls.Add(btnSideMenu_Shutdown);
@@ -150,6 +160,48 @@ namespace SmartCodeLab
             sideMenuPanel.Name = "sideMenuPanel";
             sideMenuPanel.Size = new Size(256, 906);
             sideMenuPanel.TabIndex = 0;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.FromArgb(13, 13, 13);
+            button6.Cursor = Cursors.Hand;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button6.ForeColor = Color.White;
+            button6.Image = (Image)resources.GetObject("button6.Image");
+            button6.ImageAlign = ContentAlignment.MiddleLeft;
+            button6.Location = new Point(12, 766);
+            button6.Margin = new Padding(3, 4, 3, 4);
+            button6.Name = "button6";
+            button6.Padding = new Padding(10, 0, 0, 0);
+            button6.Size = new Size(221, 60);
+            button6.TabIndex = 9;
+            button6.Text = "   Exercise Manager";
+            button6.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.FromArgb(13, 13, 13);
+            button5.Cursor = Cursors.Hand;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button5.ForeColor = Color.White;
+            button5.Image = (Image)resources.GetObject("button5.Image");
+            button5.ImageAlign = ContentAlignment.MiddleLeft;
+            button5.Location = new Point(12, 630);
+            button5.Margin = new Padding(3, 4, 3, 4);
+            button5.Name = "button5";
+            button5.Padding = new Padding(10, 0, 0, 0);
+            button5.Size = new Size(221, 60);
+            button5.TabIndex = 8;
+            button5.Text = " Session Management";
+            button5.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // button4
             // 
@@ -182,7 +234,7 @@ namespace SmartCodeLab
             button3.ForeColor = Color.White;
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(18, 494);
+            button3.Location = new Point(12, 698);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
             button3.Padding = new Padding(10, 0, 0, 0);
@@ -306,6 +358,8 @@ namespace SmartCodeLab
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
             tabControl1.Controls.Add(tabPage6);
+            tabControl1.Controls.Add(tabPage7);
+            tabControl1.Controls.Add(tabPage8);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(256, 70);
             tabControl1.Name = "tabControl1";
@@ -487,6 +541,42 @@ namespace SmartCodeLab
             tempDashboard1.Size = new Size(1362, 873);
             tempDashboard1.TabIndex = 0;
             // 
+            // tabPage7
+            // 
+            tabPage7.Controls.Add(tempSessionManagement1);
+            tabPage7.Location = new Point(4, 29);
+            tabPage7.Name = "tabPage7";
+            tabPage7.Size = new Size(1362, 873);
+            tabPage7.TabIndex = 6;
+            tabPage7.Text = "tabPage7";
+            tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tempSessionManagement1
+            // 
+            tempSessionManagement1.Dock = DockStyle.Fill;
+            tempSessionManagement1.Location = new Point(0, 0);
+            tempSessionManagement1.Name = "tempSessionManagement1";
+            tempSessionManagement1.Size = new Size(1362, 873);
+            tempSessionManagement1.TabIndex = 0;
+            // 
+            // tabPage8
+            // 
+            tabPage8.Controls.Add(tempExcerciseManager1);
+            tabPage8.Location = new Point(4, 29);
+            tabPage8.Name = "tabPage8";
+            tabPage8.Size = new Size(1362, 873);
+            tabPage8.TabIndex = 7;
+            tabPage8.Text = "tabPage8";
+            tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // tempExcerciseManager1
+            // 
+            tempExcerciseManager1.Dock = DockStyle.Fill;
+            tempExcerciseManager1.Location = new Point(0, 0);
+            tempExcerciseManager1.Name = "tempExcerciseManager1";
+            tempExcerciseManager1.Size = new Size(1362, 873);
+            tempExcerciseManager1.TabIndex = 0;
+            // 
             // MonitoringForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -516,6 +606,8 @@ namespace SmartCodeLab
             customCard1.PerformLayout();
             tabPage5.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
+            tabPage7.ResumeLayout(false);
+            tabPage8.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -546,5 +638,11 @@ namespace SmartCodeLab
         private Label label5;
         private Button button4;
         private CustomComponents.ServerPageComponents.TempDashboard tempDashboard1;
+        private Button button5;
+        private TabPage tabPage7;
+        private CustomComponents.ServerPageComponents.TempSessionManagement tempSessionManagement1;
+        private Button button6;
+        private TabPage tabPage8;
+        private CustomComponents.ServerPageComponents.TempExcerciseManager tempExcerciseManager1;
     }
 }
