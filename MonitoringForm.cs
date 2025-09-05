@@ -127,5 +127,15 @@ namespace SmartCodeLab
 
 
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 4;
+        }
     }
 }
