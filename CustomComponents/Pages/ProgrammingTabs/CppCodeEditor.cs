@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class CppCodeEditor : CodeEditorBase
     {
-        public CppCodeEditor(string filePath) : base(filePath) 
+        public CppCodeEditor(string filePath, TaskModel task) : base(filePath, task) 
         {
 
         }

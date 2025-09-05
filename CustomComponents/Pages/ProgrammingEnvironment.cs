@@ -20,6 +20,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         public ProgrammingEnvironment(string folderPath, string userName, TaskModel task, NetworkStream client)
         {
             InitializeComponent();
+            _task = task;
             _stream = client;
             new Thread(() =>
             {
@@ -30,6 +31,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
             //create the activity file then open it by default,and also making it unclosable
             SourceCodeInitializer.InitializeSourceCode(task._language, folderPath, task._taskName);
+            SourceCodeInitializer.InitializeSourceCodeJavaTester(folderPath, task._taskName);
             taskDescription.SetDescription(task);
             string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName)+".java");
             openedFiles.Add(filePath);
@@ -51,7 +53,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             customTabControl1.addTab(new TabPageModel(filePath, customTabControl1.getTabControl(), _editor, openedFiles, false));
 
             _ = StreamListener();
-            _task = task;
         }
 
         private async Task ProgressSender()
@@ -102,7 +103,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Test action triggered");
+            _editor.RunTest();
         }
 
         private void instructionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -125,15 +126,15 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             if(filePath.EndsWith(".java"))
             {
-                return new JavaCodeEditor(filePath);
+                return new JavaCodeEditor(filePath, _task);
             }
             else if(filePath.EndsWith(".py"))
             {
-                return new PythonCodeEditor(filePath);
+                return new PythonCodeEditor(filePath, _task);
             }
             else
             {
-                return new CppCodeEditor(filePath);
+                return new CppCodeEditor(filePath, _task);
             }
         }
     }

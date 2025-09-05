@@ -14,10 +14,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     public partial class CodeEditorBase : UserControl
     {
         protected string filePath;
+        protected TaskModel _task;
         public StudentCodingProgress StudentProgress { get; }
-        public CodeEditorBase(string filePath)
+        public CodeEditorBase(string filePath, TaskModel task)
         {
             InitializeComponent();
+            _task = task;
             StudentProgress = new StudentCodingProgress();
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
@@ -34,10 +36,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             File.WriteAllText(filePath, sourceCode);
         }
-        public void CompileCode() { }
+        public virtual void CompileCode() { }
 
         public virtual void RunCode() {
             MessageBox.Show("Run code");
+        }
+
+        public virtual void RunTest()
+        {
+
         }
 
         private void srcCode_KeyUp(object sender, KeyEventArgs e)
