@@ -137,5 +137,10 @@ namespace SmartCodeLab
         {
             tabControl1.SelectedIndex = 4;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 5;
+        }
     }
 }
