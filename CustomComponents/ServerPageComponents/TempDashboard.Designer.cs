@@ -636,9 +636,9 @@
             customCard6.BorderSize = 1;
             customCard6.Controls.Add(label27);
             customCard6.Controls.Add(label12);
-            customCard6.Location = new Point(62, 354);
+            customCard6.Location = new Point(61, 354);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(735, 66);
+            customCard6.Size = new Size(736, 66);
             customCard6.TabIndex = 19;
             // 
             // label27

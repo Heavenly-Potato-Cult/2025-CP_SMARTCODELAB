@@ -330,7 +330,7 @@
             // 
             // customCard3
             // 
-            customCard3.BackColor = SystemColors.GradientActiveCaption;
+            customCard3.BackColor = SystemColors.GradientInactiveCaption;
             customCard3.BorderColor = Color.Gray;
             customCard3.BorderRadius = 10;
             customCard3.BorderSize = 1;
