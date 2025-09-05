@@ -48,5 +48,29 @@ namespace SmartCodeLab.Services
                 File.WriteAllText(fileAbsolutePath, srcCode);
 
         }
+
+        public static void InitializeSourceCodeJavaTester(string filePath, string fileName)
+        {
+            string srcCode = $$"""
+                import java.io.ByteArrayInputStream;
+                import java.io.ByteArrayOutputStream;
+                import java.io.PrintStream;
+                public class Tester {
+                    public static void main(String[] args) {
+                        PrintStream originalOut = System.out;
+                        var baos = new ByteArrayOutputStream();
+                        System.setOut(new PrintStream(baos));
+                        System.setIn(new ByteArrayInputStream("userInput".getBytes())); //change theInput
+                        fileClassName.main(null);
+
+                        System.setOut(originalOut);
+                        System.out.println(baos.toString());
+                    }
+                }
+                """.Replace("fileClassName",ValidName(fileName));
+
+            string fileAbsolutePath = filePath + "\\Tester.java";
+            File.WriteAllText(fileAbsolutePath,srcCode);
+        }
     }
 }
