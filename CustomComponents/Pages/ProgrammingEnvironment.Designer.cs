@@ -74,8 +74,8 @@
             // instructionToolStripMenuItem
             // 
             instructionToolStripMenuItem.Name = "instructionToolStripMenuItem";
-            instructionToolStripMenuItem.Size = new Size(92, 24);
-            instructionToolStripMenuItem.Text = "Instruction";
+            instructionToolStripMenuItem.Size = new Size(72, 24);
+            instructionToolStripMenuItem.Text = "Lint Me";
             instructionToolStripMenuItem.Click += instructionToolStripMenuItem_Click;
             // 
             // taskDescription

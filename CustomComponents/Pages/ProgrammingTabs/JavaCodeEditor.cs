@@ -45,16 +45,57 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return temporaryCode;
         }
 
-        public override void RunCode()
+        async public override void RunCode()
+        {
+            _ = Task.Run(() => {
+                SaveCode(srcCode.Text);
+                CompileCode();
+                latestOutput = "==============\n";
+                this.Invoke((Action)(() => output.AppendText("\n=== Process Started ===\n")));
+                string classname = Path.GetFileNameWithoutExtension(filePath);
+                string directory = Path.GetDirectoryName(filePath);
+                string compile = $"/c java -cp \"{directory}\" {classname}";
+
+                javaProcess = JavaProcess(compile);
+
+                this.Invoke((Action)(() => output.Text = ""));
+
+                javaProcess.OutputDataReceived += (sender, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
+                        latestOutput = output.Text;
+                    }
+                };
+
+                javaProcess.ErrorDataReceived += (sender, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
+                        latestOutput = output.Text;
+                    }
+                };
+
+                javaProcess.Exited += (s, e) =>
+                {
+                    this.Invoke((Action)(() => output.AppendText("\n=== Process finished ===\n")));
+                };
+                javaProcess.Start();
+                javaProcess.BeginOutputReadLine();
+                javaProcess.BeginErrorReadLine();
+                javaProcess.WaitForExit();
+            });
+        }
+
+        public override void RunLinting()
         {
             SaveCode(srcCode.Text);
-            CompileCode();
-            latestOutput = "==============\n";
-            string classname = Path.GetFileNameWithoutExtension(filePath);
+            latestOutput = "";
+            string fileName = Path.GetFileName(filePath);
             string directory = Path.GetDirectoryName(filePath);
-            string compile = $"/c java -cp \"{directory}\" {classname}";
-
-            javaProcess = JavaProcess(compile);
+            javaProcess = JavaProcess($"/c ipconfig");
 
             this.Invoke((Action)(() => output.Text = ""));
 
@@ -78,7 +119,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             javaProcess.BeginOutputReadLine();
             javaProcess.BeginErrorReadLine();
         }
-
         public override void CompileCode()
         {
             SaveCode(srcCode.Text);
@@ -161,7 +201,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     javaProcess.Start();
                     javaProcess.BeginOutputReadLine();
                     javaProcess.BeginErrorReadLine();
-                    javaProcess.WaitForExit(); // safe here, since inside Task.Run
+                    javaProcess.WaitForExit();
                     File.WriteAllText(testerFile, testSrcCode.Replace(item.Key,"userInput"));
                 }
             });

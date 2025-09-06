@@ -108,7 +108,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void instructionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_task._instructions);
+            _editor.RunLinting();
         }
 
         private void fileTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)

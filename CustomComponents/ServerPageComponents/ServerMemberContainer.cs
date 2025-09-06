@@ -19,6 +19,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             InitializeComponent();
             var handle = this.Handle;
             AddUser("bot", null);
+            AddUser("bot", null);
+            AddUser("bot", null);
+            AddUser("bot", null);
+            AddUser("bot", null);
+            AddUser("bot", null);
+            AddUser("bot", null);
+            AddUser("bot", null);
         }
 
         public UserIcons AddUser(string username, NetworkStream stream)

@@ -43,9 +43,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         }
 
         public virtual void RunTest()
-        {
+        {}
 
-        }
+        public virtual void RunLinting() { }
 
         private void srcCode_KeyUp(object sender, KeyEventArgs e)
         {

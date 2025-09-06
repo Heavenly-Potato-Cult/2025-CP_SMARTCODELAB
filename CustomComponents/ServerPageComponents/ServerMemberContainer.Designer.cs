@@ -41,9 +41,10 @@
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(3, 90);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(263, 588);
+            flowLayoutPanel1.Size = new Size(284, 572);
             flowLayoutPanel1.TabIndex = 0;
             flowLayoutPanel1.TabStop = true;
+            flowLayoutPanel1.WrapContents = false;
             // 
             // customTextBox1
             // 
@@ -80,7 +81,7 @@
             customCard1.Controls.Add(customTextBox1);
             customCard1.Location = new Point(3, 3);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(269, 681);
+            customCard1.Size = new Size(290, 681);
             customCard1.TabIndex = 10;
             // 
             // ServerMemberContainer
@@ -89,7 +90,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(customCard1);
             Name = "ServerMemberContainer";
-            Size = new Size(275, 687);
+            Size = new Size(300, 687);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
             ResumeLayout(false);

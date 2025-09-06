@@ -609,7 +609,7 @@
             // 
             memberContainer.Location = new Point(71, 137);
             memberContainer.Name = "memberContainer";
-            memberContainer.Size = new Size(279, 687);
+            memberContainer.Size = new Size(315, 687);
             memberContainer.TabIndex = 16;
             // 
             // TempServerPage
