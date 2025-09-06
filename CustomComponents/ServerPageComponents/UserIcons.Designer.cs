@@ -28,31 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            status = new Label();
+            username = new Label();
+            customCard3.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // customCard3
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(63, 14);
-            label1.Name = "label1";
-            label1.Size = new Size(104, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Student Name";
+            customCard3.BackColor = Color.White;
+            customCard3.BorderColor = Color.Gray;
+            customCard3.BorderRadius = 10;
+            customCard3.BorderSize = 1;
+            customCard3.Controls.Add(status);
+            customCard3.Controls.Add(username);
+            customCard3.Location = new Point(3, 3);
+            customCard3.Name = "customCard3";
+            customCard3.Size = new Size(240, 61);
+            customCard3.TabIndex = 9;
+            // 
+            // status
+            // 
+            status.AutoSize = true;
+            status.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            status.ForeColor = Color.FromArgb(0, 192, 0);
+            status.Location = new Point(28, 33);
+            status.Name = "status";
+            status.Size = new Size(42, 17);
+            status.TabIndex = 10;
+            status.Text = "Active";
+            // 
+            // username
+            // 
+            username.AutoSize = true;
+            username.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            username.ForeColor = Color.FromArgb(13, 13, 13);
+            username.Location = new Point(28, 9);
+            username.Name = "username";
+            username.Size = new Size(85, 23);
+            username.TabIndex = 9;
+            username.Text = "username";
             // 
             // UserIcons
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label1);
+            BackgroundImageLayout = ImageLayout.None;
+            Controls.Add(customCard3);
             Name = "UserIcons";
-            Size = new Size(250, 50);
+            Size = new Size(246, 66);
+            customCard3.ResumeLayout(false);
+            customCard3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private GeneralComponents.CustomCard customCard3;
+        private Label status;
+        private Label username;
     }
 }

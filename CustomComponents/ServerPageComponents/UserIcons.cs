@@ -21,22 +21,19 @@ namespace SmartCodeLab.CustomComponents
         public UserIcons(string studentName, ServerMemberContainer container, NetworkStream stream)
         {
             InitializeComponent();
-            label1.Text = studentName;
-            this.Size = new System.Drawing.Size(250, 50);
-            this.BackColor = Color.Red; // Temporary - to see if it exists
-            this.BorderStyle = BorderStyle.FixedSingle; // Add border
+            username.Text = studentName;
+            customCard3.BackColor = Color.White; // Temporary - to see if it exists
             this.Visible = true;
             _stream = stream;
-            this.Click += async (s,e) => {
-                this.Invoke((Action)(() => this.BackColor = Color.PowderBlue));
+            customCard3.Click += async (s, e) => {
+                this.Invoke((Action)(() => customCard3.BackColor = SystemColors.GradientInactiveCaption));
                 container.ChangeSelected(this);
                 _ = FocusStatus(true);
             };
         }
-
         public void LostFocusDisplay()
         {
-            this.Invoke((Action)(() => this.BackColor = Color.Red));
+            this.Invoke((Action)(() => customCard3.BackColor = Color.White));
             _ = FocusStatus(false);
         }
 

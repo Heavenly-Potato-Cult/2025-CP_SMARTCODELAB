@@ -44,7 +44,6 @@ namespace SmartCodeLab
             btnSideMenu_Student = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            serverSetUpPage1 = new SmartCodeLab.CustomComponents.MainPages.ServerSetUpPage();
             tabPage2 = new TabPage();
             button2 = new Button();
             button1 = new Button();
@@ -55,14 +54,15 @@ namespace SmartCodeLab
             customToggleButton1 = new CustomToggleButton();
             label2 = new Label();
             label1 = new Label();
-            tabPage5 = new TabPage();
-            tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
             tabPage6 = new TabPage();
             tempDashboard1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempDashboard();
             tabPage7 = new TabPage();
             tempSessionManagement1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempSessionManagement();
             tabPage8 = new TabPage();
             tempExerciseManage21 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
+            tabPage5 = new TabPage();
+            serverSetUpPage1 = new SmartCodeLab.CustomComponents.MainPages.ServerSetUpPage();
+            tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -72,10 +72,10 @@ namespace SmartCodeLab
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
             customCard1.SuspendLayout();
-            tabPage5.SuspendLayout();
             tabPage6.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage8.SuspendLayout();
+            tabPage5.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -378,15 +378,6 @@ namespace SmartCodeLab
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // serverSetUpPage1
-            // 
-            serverSetUpPage1.BackColor = Color.FromArgb(10, 10, 10);
-            serverSetUpPage1.Dock = DockStyle.Fill;
-            serverSetUpPage1.Location = new Point(3, 3);
-            serverSetUpPage1.Name = "serverSetUpPage1";
-            serverSetUpPage1.Size = new Size(1356, 867);
-            serverSetUpPage1.TabIndex = 0;
-            // 
             // tabPage2
             // 
             tabPage2.BackColor = Color.FromArgb(10, 10, 10);
@@ -502,27 +493,6 @@ namespace SmartCodeLab
             label1.TabIndex = 5;
             label1.Text = "Theme";
             // 
-            // tabPage5
-            // 
-            tabPage5.AutoScroll = true;
-            tabPage5.BackColor = Color.WhiteSmoke;
-            tabPage5.Controls.Add(tempServerPage1);
-            tabPage5.Location = new Point(4, 29);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1362, 873);
-            tabPage5.TabIndex = 4;
-            tabPage5.Text = "tabPage5";
-            // 
-            // tempServerPage1
-            // 
-            tempServerPage1.AutoScroll = true;
-            tempServerPage1.BackColor = Color.WhiteSmoke;
-            tempServerPage1.Dock = DockStyle.Fill;
-            tempServerPage1.Location = new Point(0, 0);
-            tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(1362, 873);
-            tempServerPage1.TabIndex = 0;
-            // 
             // tabPage6
             // 
             tabPage6.Controls.Add(tempDashboard1);
@@ -571,11 +541,44 @@ namespace SmartCodeLab
             // 
             // tempExerciseManage21
             // 
+            tempExerciseManage21.AutoScroll = true;
             tempExerciseManage21.Dock = DockStyle.Fill;
             tempExerciseManage21.Location = new Point(0, 0);
             tempExerciseManage21.Name = "tempExerciseManage21";
             tempExerciseManage21.Size = new Size(1362, 873);
             tempExerciseManage21.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            tabPage5.AutoScroll = true;
+            tabPage5.BackColor = Color.WhiteSmoke;
+            tabPage5.Controls.Add(tempServerPage1);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(1362, 873);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "tabPage5";
+            // 
+            // serverSetUpPage1
+            // 
+            serverSetUpPage1.AutoScroll = true;
+            serverSetUpPage1.BackColor = Color.FromArgb(10, 10, 10);
+            serverSetUpPage1.Dock = DockStyle.Fill;
+            serverSetUpPage1.Location = new Point(3, 3);
+            serverSetUpPage1.Name = "serverSetUpPage1";
+            serverSetUpPage1.Size = new Size(1356, 867);
+            serverSetUpPage1.TabIndex = 0;
+            serverSetUpPage1.Load += serverSetUpPage1_Load;
+            // 
+            // tempServerPage1
+            // 
+            tempServerPage1.AutoScroll = true;
+            tempServerPage1.BackColor = Color.WhiteSmoke;
+            tempServerPage1.Dock = DockStyle.Fill;
+            tempServerPage1.Location = new Point(0, 0);
+            tempServerPage1.Name = "tempServerPage1";
+            tempServerPage1.Size = new Size(1362, 873);
+            tempServerPage1.TabIndex = 0;
             // 
             // MonitoringForm
             // 
@@ -604,10 +607,10 @@ namespace SmartCodeLab
             tabPage4.ResumeLayout(false);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
-            tabPage5.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
             tabPage8.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -621,7 +624,6 @@ namespace SmartCodeLab
         private TabPage tabPage2;
         private TabPage tabPage3;
         private CustomComponents.MainPages.TaskMainPage taskMainPage2;
-        private CustomComponents.MainPages.ServerSetUpPage serverSetUpPage1;
         private Button button2;
         private Button button1;
         private TabPage tabPage4;
@@ -631,8 +633,6 @@ namespace SmartCodeLab
         private Label label1;
         private Button btnSideMenu_Shutdown;
         private Button button3;
-        private TabPage tabPage5;
-        private CustomComponents.ServerPageComponents.TempServerPage tempServerPage1;
         private TabPage tabPage6;
         private PictureBox pictureBox1;
         private Label label5;
@@ -644,5 +644,8 @@ namespace SmartCodeLab
         private Button button6;
         private TabPage tabPage8;
         private CustomComponents.ServerPageComponents.TempExerciseManage tempExerciseManage21;
+        private CustomComponents.MainPages.ServerSetUpPage serverSetUpPage1;
+        private TabPage tabPage5;
+        private CustomComponents.ServerPageComponents.TempServerPage tempServerPage1;
     }
 }
