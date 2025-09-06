@@ -33,6 +33,7 @@ namespace SmartCodeLab
             lblTitle = new Label();
             btnClose = new Button();
             sideMenuPanel = new Panel();
+            button7 = new Button();
             button6 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -44,6 +45,7 @@ namespace SmartCodeLab
             btnSideMenu_Student = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            serverSetUpPage1 = new SmartCodeLab.CustomComponents.MainPages.ServerSetUpPage();
             tabPage2 = new TabPage();
             button2 = new Button();
             button1 = new Button();
@@ -54,15 +56,16 @@ namespace SmartCodeLab
             customToggleButton1 = new CustomToggleButton();
             label2 = new Label();
             label1 = new Label();
+            tabPage5 = new TabPage();
+            tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
             tabPage6 = new TabPage();
             tempDashboard1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempDashboard();
             tabPage7 = new TabPage();
             tempSessionManagement1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempSessionManagement();
             tabPage8 = new TabPage();
             tempExerciseManage21 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
-            tabPage5 = new TabPage();
-            serverSetUpPage1 = new SmartCodeLab.CustomComponents.MainPages.ServerSetUpPage();
-            tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
+            tabPage9 = new TabPage();
+            tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -72,10 +75,11 @@ namespace SmartCodeLab
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
             customCard1.SuspendLayout();
+            tabPage5.SuspendLayout();
             tabPage6.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage8.SuspendLayout();
-            tabPage5.SuspendLayout();
+            tabPage9.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -145,6 +149,7 @@ namespace SmartCodeLab
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(13, 13, 13);
+            sideMenuPanel.Controls.Add(button7);
             sideMenuPanel.Controls.Add(button6);
             sideMenuPanel.Controls.Add(button5);
             sideMenuPanel.Controls.Add(button4);
@@ -160,6 +165,27 @@ namespace SmartCodeLab
             sideMenuPanel.Name = "sideMenuPanel";
             sideMenuPanel.Size = new Size(256, 906);
             sideMenuPanel.TabIndex = 0;
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.FromArgb(13, 13, 13);
+            button7.Cursor = Cursors.Hand;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button7.ForeColor = Color.White;
+            button7.Image = (Image)resources.GetObject("button7.Image");
+            button7.ImageAlign = ContentAlignment.MiddleLeft;
+            button7.Location = new Point(12, 833);
+            button7.Margin = new Padding(3, 4, 3, 4);
+            button7.Name = "button7";
+            button7.Padding = new Padding(10, 0, 0, 0);
+            button7.Size = new Size(221, 60);
+            button7.TabIndex = 10;
+            button7.Text = "   Code Evaluation";
+            button7.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
             // 
             // button6
             // 
@@ -360,6 +386,7 @@ namespace SmartCodeLab
             tabControl1.Controls.Add(tabPage6);
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Controls.Add(tabPage8);
+            tabControl1.Controls.Add(tabPage9);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(256, 70);
             tabControl1.Name = "tabControl1";
@@ -377,6 +404,17 @@ namespace SmartCodeLab
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // serverSetUpPage1
+            // 
+            serverSetUpPage1.AutoScroll = true;
+            serverSetUpPage1.BackColor = Color.FromArgb(10, 10, 10);
+            serverSetUpPage1.Dock = DockStyle.Fill;
+            serverSetUpPage1.Location = new Point(3, 3);
+            serverSetUpPage1.Name = "serverSetUpPage1";
+            serverSetUpPage1.Size = new Size(1356, 867);
+            serverSetUpPage1.TabIndex = 0;
+            serverSetUpPage1.Load += serverSetUpPage1_Load;
             // 
             // tabPage2
             // 
@@ -493,6 +531,27 @@ namespace SmartCodeLab
             label1.TabIndex = 5;
             label1.Text = "Theme";
             // 
+            // tabPage5
+            // 
+            tabPage5.AutoScroll = true;
+            tabPage5.BackColor = Color.WhiteSmoke;
+            tabPage5.Controls.Add(tempServerPage1);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(1362, 873);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "tabPage5";
+            // 
+            // tempServerPage1
+            // 
+            tempServerPage1.AutoScroll = true;
+            tempServerPage1.BackColor = Color.WhiteSmoke;
+            tempServerPage1.Dock = DockStyle.Fill;
+            tempServerPage1.Location = new Point(0, 0);
+            tempServerPage1.Name = "tempServerPage1";
+            tempServerPage1.Size = new Size(1362, 873);
+            tempServerPage1.TabIndex = 0;
+            // 
             // tabPage6
             // 
             tabPage6.Controls.Add(tempDashboard1);
@@ -548,37 +607,23 @@ namespace SmartCodeLab
             tempExerciseManage21.Size = new Size(1362, 873);
             tempExerciseManage21.TabIndex = 0;
             // 
-            // tabPage5
+            // tabPage9
             // 
-            tabPage5.AutoScroll = true;
-            tabPage5.BackColor = Color.WhiteSmoke;
-            tabPage5.Controls.Add(tempServerPage1);
-            tabPage5.Location = new Point(4, 29);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1362, 873);
-            tabPage5.TabIndex = 4;
-            tabPage5.Text = "tabPage5";
+            tabPage9.Controls.Add(tempCodeEvaluation1);
+            tabPage9.Location = new Point(4, 29);
+            tabPage9.Name = "tabPage9";
+            tabPage9.Size = new Size(1362, 873);
+            tabPage9.TabIndex = 8;
+            tabPage9.Text = "tabPage9";
+            tabPage9.UseVisualStyleBackColor = true;
             // 
-            // serverSetUpPage1
+            // tempCodeEvaluation1
             // 
-            serverSetUpPage1.AutoScroll = true;
-            serverSetUpPage1.BackColor = Color.FromArgb(10, 10, 10);
-            serverSetUpPage1.Dock = DockStyle.Fill;
-            serverSetUpPage1.Location = new Point(3, 3);
-            serverSetUpPage1.Name = "serverSetUpPage1";
-            serverSetUpPage1.Size = new Size(1356, 867);
-            serverSetUpPage1.TabIndex = 0;
-            serverSetUpPage1.Load += serverSetUpPage1_Load;
-            // 
-            // tempServerPage1
-            // 
-            tempServerPage1.AutoScroll = true;
-            tempServerPage1.BackColor = Color.WhiteSmoke;
-            tempServerPage1.Dock = DockStyle.Fill;
-            tempServerPage1.Location = new Point(0, 0);
-            tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(1362, 873);
-            tempServerPage1.TabIndex = 0;
+            tempCodeEvaluation1.Dock = DockStyle.Fill;
+            tempCodeEvaluation1.Location = new Point(0, 0);
+            tempCodeEvaluation1.Name = "tempCodeEvaluation1";
+            tempCodeEvaluation1.Size = new Size(1362, 873);
+            tempCodeEvaluation1.TabIndex = 0;
             // 
             // MonitoringForm
             // 
@@ -607,10 +652,11 @@ namespace SmartCodeLab
             tabPage4.ResumeLayout(false);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
+            tabPage5.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
             tabPage8.ResumeLayout(false);
-            tabPage5.ResumeLayout(false);
+            tabPage9.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -647,5 +693,8 @@ namespace SmartCodeLab
         private CustomComponents.MainPages.ServerSetUpPage serverSetUpPage1;
         private TabPage tabPage5;
         private CustomComponents.ServerPageComponents.TempServerPage tempServerPage1;
+        private Button button7;
+        private TabPage tabPage9;
+        private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
     }
 }
