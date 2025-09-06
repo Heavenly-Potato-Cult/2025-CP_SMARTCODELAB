@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
-    public partial class TempExcerciseManager : UserControl
+    public partial class TempExerciseManage : UserControl
     {
-        public TempExcerciseManager()
+        public TempExerciseManage()
         {
             InitializeComponent();
         }

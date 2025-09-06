@@ -727,9 +727,9 @@
             label30.ForeColor = Color.FromArgb(13, 13, 13);
             label30.Location = new Point(67, 134);
             label30.Name = "label30";
-            label30.Size = new Size(173, 28);
+            label30.Size = new Size(171, 28);
             label30.TabIndex = 22;
-            label30.Text = "Upload Reference";
+            label30.Text = "Monitor Students";
             // 
             // pictureBox8
             // 

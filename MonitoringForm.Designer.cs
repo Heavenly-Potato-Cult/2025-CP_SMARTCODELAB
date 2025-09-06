@@ -62,7 +62,7 @@ namespace SmartCodeLab
             tabPage7 = new TabPage();
             tempSessionManagement1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempSessionManagement();
             tabPage8 = new TabPage();
-            tempExcerciseManager1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExcerciseManager();
+            tempExerciseManage21 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -561,7 +561,7 @@ namespace SmartCodeLab
             // 
             // tabPage8
             // 
-            tabPage8.Controls.Add(tempExcerciseManager1);
+            tabPage8.Controls.Add(tempExerciseManage21);
             tabPage8.Location = new Point(4, 29);
             tabPage8.Name = "tabPage8";
             tabPage8.Size = new Size(1362, 873);
@@ -569,13 +569,13 @@ namespace SmartCodeLab
             tabPage8.Text = "tabPage8";
             tabPage8.UseVisualStyleBackColor = true;
             // 
-            // tempExcerciseManager1
+            // tempExerciseManage21
             // 
-            tempExcerciseManager1.Dock = DockStyle.Fill;
-            tempExcerciseManager1.Location = new Point(0, 0);
-            tempExcerciseManager1.Name = "tempExcerciseManager1";
-            tempExcerciseManager1.Size = new Size(1362, 873);
-            tempExcerciseManager1.TabIndex = 0;
+            tempExerciseManage21.Dock = DockStyle.Fill;
+            tempExerciseManage21.Location = new Point(0, 0);
+            tempExerciseManage21.Name = "tempExerciseManage21";
+            tempExerciseManage21.Size = new Size(1362, 873);
+            tempExerciseManage21.TabIndex = 0;
             // 
             // MonitoringForm
             // 
@@ -643,6 +643,6 @@ namespace SmartCodeLab
         private CustomComponents.ServerPageComponents.TempSessionManagement tempSessionManagement1;
         private Button button6;
         private TabPage tabPage8;
-        private CustomComponents.ServerPageComponents.TempExcerciseManager tempExcerciseManager1;
+        private CustomComponents.ServerPageComponents.TempExerciseManage tempExerciseManage21;
     }
 }
