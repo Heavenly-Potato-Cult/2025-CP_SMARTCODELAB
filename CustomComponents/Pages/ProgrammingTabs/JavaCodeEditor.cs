@@ -93,36 +93,37 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 null);
             compiledSuccess = javaProcess.ExitCode == 0;
         }
-
         public override void RunLinting()
         {
-            SaveCode(srcCode.Text);
-            latestOutput = "";
-            string fileName = Path.GetFileName(filePath);
-            string directory = Path.GetDirectoryName(filePath);
-            javaProcess = JavaProcess($"/c ipconfig");
+            _ = Task.Run(() => {
+                SaveCode(srcCode.Text);
+                latestOutput = "";
+                string fileName = Path.GetFileName(filePath);
+                string directory = Path.GetDirectoryName(filePath);
+                javaProcess = JavaProcess($"/c cd {directory} && javac -Xlint {fileName}");
 
-            this.Invoke((Action)(() => output.Text = ""));
+                this.Invoke((Action)(() => output.Text = ""));
 
-            javaProcess.OutputDataReceived += (sender, e) =>
-            {
-                if (!string.IsNullOrEmpty(e.Data))
+                javaProcess.OutputDataReceived += (sender, e) =>
                 {
-                    this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
-                    latestOutput = output.Text;
-                }
-            };
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
+                        latestOutput = output.Text;
+                    }
+                };
 
-            javaProcess.ErrorDataReceived += (sender, e) =>
-            {
-                if (!string.IsNullOrEmpty(e.Data))
+                javaProcess.ErrorDataReceived += (sender, e) =>
                 {
-                    this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
-                }
-            };
-            javaProcess.Start();
-            javaProcess.BeginOutputReadLine();
-            javaProcess.BeginErrorReadLine();
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
+                    }
+                };
+                javaProcess.Start();
+                javaProcess.BeginOutputReadLine();
+                javaProcess.BeginErrorReadLine();
+            });
         }
 
         public override void RunTest()

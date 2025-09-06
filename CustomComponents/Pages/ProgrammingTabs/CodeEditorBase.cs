@@ -15,6 +15,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         protected string filePath;
         protected TaskModel _task;
+        private System.Threading.Timer _debounceTimer;
         public StudentCodingProgress StudentProgress { get; }
         public CodeEditorBase(string filePath, TaskModel task)
         {
@@ -29,6 +30,26 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     SaveCode(srcCode.Text);
                 else if(e.KeyCode == Keys.R && e.Control)
                     RunCode();
+                else if(e.KeyCode == Keys.OemSemicolon || e.KeyCode == Keys.Enter)
+                {
+                    _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                    // Start a new timer
+                    _debounceTimer = new System.Threading.Timer(_ =>
+                    {
+                        RunLinting();
+                    }, null, 0, Timeout.Infinite);
+                }
+                else
+                {
+                    _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                    // Start a new timer
+                    _debounceTimer = new System.Threading.Timer(_ =>
+                    {
+                        RunLinting();
+                    }, null, 300, Timeout.Infinite);
+                }
             };
         }
 

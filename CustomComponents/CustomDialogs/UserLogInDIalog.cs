@@ -66,13 +66,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                     if (msg._messageType == MessageType.LogInSuccessful)
                     {
                         serverTask = msg._task;
-                        MessageBox.Show("Login Successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.DialogResult = DialogResult.OK;
                         break;
                     }
                     else if (msg._messageType == MessageType.LogInFailed)
                     {
-                        MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Invoke((Action)(() => MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)));
                         break;
                     }
                 }
