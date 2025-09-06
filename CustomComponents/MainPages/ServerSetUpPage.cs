@@ -1,4 +1,5 @@
 ﻿using SmartCodeLab.CustomComponents.Pages;
+using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System;
@@ -30,7 +31,8 @@ namespace SmartCodeLab.CustomComponents.MainPages
             }
             Debug.WriteLine(taskModel);
             SystemSingleton.Instance.page1.Controls.Clear();
-            SystemSingleton.Instance.page1.Controls.Add(new ServerPage(taskModel));
+            SystemSingleton.Instance.page1.AutoScroll = true;
+            SystemSingleton.Instance.page1.Controls.Add(new TempServerPage(taskModel));
         }
     }
 }

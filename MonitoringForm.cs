@@ -154,5 +154,10 @@ namespace SmartCodeLab
             tabControl1.SelectedIndex = 7;
 
         }
+
+        private void serverSetUpPage1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
