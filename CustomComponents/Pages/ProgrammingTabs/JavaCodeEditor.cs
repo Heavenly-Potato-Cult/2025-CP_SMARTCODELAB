@@ -47,46 +47,51 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         async public override void RunCode()
         {
+            this.Invoke((Action)(() =>
+            {
+                output.Text = "";
+            }));
             _ = Task.Run(() => {
                 SaveCode(srcCode.Text);
                 CompileCode();
-                latestOutput = "==============\n";
-                this.Invoke((Action)(() => output.AppendText("\n=== Process Started ===\n")));
+                latestOutput = "Process Started\n";
+                this.Invoke((Action)(() =>
+                {
+                    output.Text = "Process Started\n";
+                    output.ReadOnly = false;
+                }));
                 string classname = Path.GetFileNameWithoutExtension(filePath);
                 string directory = Path.GetDirectoryName(filePath);
                 string compile = $"/c java -cp \"{directory}\" {classname}";
-
-                javaProcess = JavaProcess(compile);
-
-                this.Invoke((Action)(() => output.Text = ""));
-
-                javaProcess.OutputDataReceived += (sender, e) =>
-                {
-                    if (!string.IsNullOrEmpty(e.Data))
-                    {
-                        this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
-                        latestOutput = output.Text;
-                    }
-                };
-
-                javaProcess.ErrorDataReceived += (sender, e) =>
-                {
-                    if (!string.IsNullOrEmpty(e.Data))
-                    {
-                        this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
-                        latestOutput = output.Text;
-                    }
-                };
-
-                javaProcess.Exited += (s, e) =>
-                {
-                    this.Invoke((Action)(() => output.AppendText("\n=== Process finished ===\n")));
-                };
-                javaProcess.Start();
-                javaProcess.BeginOutputReadLine();
-                javaProcess.BeginErrorReadLine();
-                javaProcess.WaitForExit();
+                if (compiledSuccess)
+                    javaProcess = JavaProcess(compile);
+                StartJavaProcess(
+                        javaProcess,
+                        outputLine => { this.Invoke((Action)(() => output.AppendText(outputLine + Environment.NewLine)));
+                            latestOutput = output.Text; },
+                        errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
+                        () => this.Invoke((Action)(() => { output.AppendText("\n=== Process finished ===\n");
+                            output.ReadOnly = true;
+                        }))
+                            );
             });
+        }
+
+        private bool compiledSuccess = false;
+        public override void CompileCode()
+        {
+            SaveCode(srcCode.Text);
+            latestOutput = "";
+            string classname = Path.GetFileNameWithoutExtension(filePath);
+            string directory = Path.GetDirectoryName(filePath);
+
+            javaProcess = JavaProcess($"/c javac -cp \"{directory}\" {filePath}");
+            StartJavaProcess(
+                javaProcess,
+                null,
+                withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine)));},
+                null);
+            compiledSuccess = javaProcess.ExitCode == 0;
         }
 
         public override void RunLinting()
@@ -118,38 +123,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             javaProcess.Start();
             javaProcess.BeginOutputReadLine();
             javaProcess.BeginErrorReadLine();
-        }
-        public override void CompileCode()
-        {
-            SaveCode(srcCode.Text);
-            latestOutput = "";
-            string classname = Path.GetFileNameWithoutExtension(filePath);
-            string directory = Path.GetDirectoryName(filePath);
-
-            javaProcess = JavaProcess($"/c javac -cp \"{directory}\" {filePath}");
-
-            this.Invoke((Action)(() => output.Text = ""));
-
-            javaProcess.OutputDataReceived += (sender, e) =>
-            {
-                if (!string.IsNullOrEmpty(e.Data))
-                {
-                    this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
-                    latestOutput = output.Text;
-                }
-            };
-
-            javaProcess.ErrorDataReceived += (sender, e) =>
-            {
-                if (!string.IsNullOrEmpty(e.Data))
-                {
-                    this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
-                }
-            };
-            javaProcess.Start();
-            javaProcess.BeginOutputReadLine();
-            javaProcess.BeginErrorReadLine();
-            javaProcess.WaitForExit();
         }
 
         public override void RunTest()
@@ -197,7 +170,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             """ + Environment.NewLine)));
                         }
                     };
-
                     javaProcess.Start();
                     javaProcess.BeginOutputReadLine();
                     javaProcess.BeginErrorReadLine();
@@ -214,6 +186,34 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 javaProcess.StandardInput.WriteLine(input);
                 javaProcess.StandardInput.Flush();
             }
+        }
+
+        private void StartJavaProcess(Process javaProcess, Action<string> onOutput, Action<string> onError, Action onExit = null)
+        {
+            javaProcess.OutputDataReceived += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                {
+                    onOutput?.Invoke(e.Data);
+                }
+            };
+
+            javaProcess.ErrorDataReceived += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                    onError?.Invoke(e.Data);
+            };
+
+
+            if (onExit != null) {
+                javaProcess.Exited += (s,e) => onExit();
+            }
+
+            javaProcess.EnableRaisingEvents = true;
+            javaProcess.Start();
+            javaProcess.BeginOutputReadLine();
+            javaProcess.BeginErrorReadLine();
+            javaProcess.WaitForExit();
         }
 
         private Process JavaProcess(string command)

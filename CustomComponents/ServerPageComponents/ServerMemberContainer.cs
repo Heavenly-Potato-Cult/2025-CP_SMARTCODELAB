@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
-    public partial class ServerMemberContainer : UserControl
+    public partial class ServerMemberContainer : CustomComponents.GeneralComponents.RoundedUserControl
     {
         public UserIcons selected;
         public ServerMemberContainer()
