@@ -31,7 +31,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
         private void InitializeComponent()
         {
             smartButton1 = new SmartButton();
-            fileContainer2 = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
+            userCredentials = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             taskContainer = new SmartCodeLab.CustomComponents.TaskPageComponents.FileContainer();
             label8 = new Label();
             customCard1 = new CustomCard();
@@ -55,16 +55,16 @@ namespace SmartCodeLab.CustomComponents.MainPages
             smartButton1.UseVisualStyleBackColor = false;
             smartButton1.Click += smartButton1_Click;
             // 
-            // fileContainer2
+            // userCredentials
             // 
-            fileContainer2.AcceptMultipleFiles = false;
-            fileContainer2.ContainerHeight = 39;
-            fileContainer2.ForeColor = Color.FromArgb(179, 179, 179);
-            fileContainer2.LabelText = "Student Credentials";
-            fileContainer2.Location = new Point(48, 212);
-            fileContainer2.Name = "fileContainer2";
-            fileContainer2.Size = new Size(347, 108);
-            fileContainer2.TabIndex = 7;
+            userCredentials.AcceptMultipleFiles = false;
+            userCredentials.ContainerHeight = 39;
+            userCredentials.ForeColor = Color.FromArgb(179, 179, 179);
+            userCredentials.LabelText = "Student Credentials";
+            userCredentials.Location = new Point(48, 212);
+            userCredentials.Name = "userCredentials";
+            userCredentials.Size = new Size(347, 108);
+            userCredentials.TabIndex = 7;
             // 
             // taskContainer
             // 
@@ -96,7 +96,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
             customCard1.BorderSize = 0;
             customCard1.Controls.Add(smartButton1);
             customCard1.Controls.Add(label8);
-            customCard1.Controls.Add(fileContainer2);
+            customCard1.Controls.Add(userCredentials);
             customCard1.Controls.Add(taskContainer);
             customCard1.Location = new Point(417, 221);
             customCard1.Margin = new Padding(3, 4, 3, 4);
@@ -118,7 +118,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
         }
 
         #endregion
-        private TaskPageComponents.FileContainer fileContainer2;
+        private TaskPageComponents.FileContainer userCredentials;
         private TaskPageComponents.FileContainer taskContainer;
         private Label label8;
         private SmartButton smartButton1;

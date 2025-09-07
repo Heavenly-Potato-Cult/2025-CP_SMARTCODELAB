@@ -28,44 +28,70 @@
         /// </summary>
         private void InitializeComponent()
         {
-            srcCode = new TextBox();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CodeEditorBase));
             output = new TextBox();
+            srcCode = new CodeEditor();
+            ((System.ComponentModel.ISupportInitialize)srcCode).BeginInit();
             SuspendLayout();
-            // 
-            // srcCode
-            // 
-            srcCode.Location = new Point(0, 0);
-            srcCode.Multiline = true;
-            srcCode.Name = "srcCode";
-            srcCode.Size = new Size(1094, 636);
-            srcCode.TabIndex = 0;
-            srcCode.KeyUp += srcCode_KeyUp;
             // 
             // output
             // 
-            output.Location = new Point(3, 642);
+            output.Location = new Point(22, 642);
             output.Multiline = true;
             output.Name = "output";
             output.ScrollBars = ScrollBars.Vertical;
-            output.Size = new Size(1091, 163);
+            output.Size = new Size(1072, 163);
             output.TabIndex = 1;
+            // 
+            // srcCode
+            // 
+            srcCode.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            srcCode.AutoScrollMinSize = new Size(31, 18);
+            srcCode.BackBrush = null;
+            srcCode.CharHeight = 18;
+            srcCode.CharWidth = 10;
+            srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            srcCode.Font = new Font("Courier New", 9.75F);
+            srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
+            srcCode.IsReplaceMode = false;
+            srcCode.Location = new Point(0, 0);
+            srcCode.Name = "srcCode";
+            srcCode.Paddings = new Padding(0);
+            srcCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            srcCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("srcCode.ServiceColors");
+            srcCode.Size = new Size(1094, 643);
+            srcCode.TabIndex = 2;
+            srcCode.Zoom = 100;
             // 
             // CodeEditorBase
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
-            Controls.Add(output);
             Controls.Add(srcCode);
+            Controls.Add(output);
             Name = "CodeEditorBase";
             Size = new Size(1097, 808);
+            ((System.ComponentModel.ISupportInitialize)srcCode).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        public TextBox srcCode;
         protected TextBox output;
+        public CodeEditor srcCode;
     }
 }

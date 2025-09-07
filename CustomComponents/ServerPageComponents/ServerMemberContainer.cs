@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,19 +19,19 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
             var handle = this.Handle;
-            AddUser("bot", null);
-            AddUser("bot", null);
-            AddUser("bot", null);
-            AddUser("bot", null);
-            AddUser("bot", null);
-            AddUser("bot", null);
-            AddUser("bot", null);
-            AddUser("bot", null);
+            //AddUser("bot", null,null);
+            //AddUser("bot", null, null);
+            //AddUser("bot", null, null);
+            //AddUser("bot", null, null);
+            //AddUser("bot", null, null);
+            //AddUser("bot", null, null);
+            //AddUser("bot", null, null);
+            //AddUser("bot", null, null);
         }
 
-        public UserIcons AddUser(string username, NetworkStream stream)
+        public UserIcons AddUser(UserProfile user, NetworkStream stream, Label label, Label ipaddress)
         {
-            UserIcons userIcons = new UserIcons(username, this, stream);
+            UserIcons userIcons = new UserIcons(user, this, stream, label, ipaddress);
             this.Invoke(() => flowLayoutPanel1.Controls.Add(userIcons));
             return userIcons;
         }

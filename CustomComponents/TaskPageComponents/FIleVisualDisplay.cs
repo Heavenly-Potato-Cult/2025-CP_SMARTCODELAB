@@ -14,11 +14,14 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
     {
         string _fileContent { get; set; }
         string _fileName { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string _filepath { get; set; }
         private FileContainer _container;
         public FIleVisualDisplay(string filePath, FileContainer container)
         {
             InitializeComponent();
             _fileName = Path.GetFileName(filePath);
+            _filepath = filePath;
             fileName.Text = _fileName;
             _fileContent = File.ReadAllText(filePath);
             _container = container;

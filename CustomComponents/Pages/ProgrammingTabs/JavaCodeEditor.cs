@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.Models;
+﻿using FastColoredTextBoxNS;
+using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,10 +20,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     "choice", "option", "select", "Press any key"
 };
 
-        public JavaCodeEditor(string filePath, TaskModel task) : base(filePath, task){
+        public JavaCodeEditor(string filePath, TaskModel task) : base(filePath, task)
+        {
             output.KeyDown += (s, e) =>
             {
-                if(e.KeyCode == Keys.Enter)
+                if (e.KeyCode == Keys.Enter)
                 {
                     SendInput(output.Text.Replace(latestOutput, ""));
                 }
@@ -67,10 +69,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     javaProcess = JavaProcess(compile);
                 StartJavaProcess(
                         javaProcess,
-                        outputLine => { this.Invoke((Action)(() => output.AppendText(outputLine + Environment.NewLine)));
-                            latestOutput = output.Text; },
+                        outputLine => {
+                            this.Invoke((Action)(() => output.AppendText(outputLine + Environment.NewLine)));
+                            latestOutput = output.Text;
+                        },
                         errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
-                        () => this.Invoke((Action)(() => { output.AppendText("\n=== Process finished ===\n");
+                        () => this.Invoke((Action)(() => {
+                            output.AppendText("\n=== Process finished ===\n");
                             output.ReadOnly = true;
                         }))
                             );
@@ -89,9 +94,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             StartJavaProcess(
                 javaProcess,
                 null,
-                withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine)));},
+                withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
                 null);
-            compiledSuccess = javaProcess.ExitCode == 0;
         }
         public override void RunLinting()
         {
@@ -113,16 +117,27 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                 };
 
+                string errorLine = "";
                 javaProcess.ErrorDataReceived += (sender, e) =>
                 {
                     if (!string.IsNullOrEmpty(e.Data))
                     {
-                        this.Invoke((Action)(() => output.AppendText(e.Data + Environment.NewLine)));
+                        errorLine += e.Data;
+
                     }
                 };
                 javaProcess.Start();
                 javaProcess.BeginOutputReadLine();
                 javaProcess.BeginErrorReadLine();
+                javaProcess.WaitForExit();
+
+                if(errorLine != "")
+                {
+                    string[] lines = errorLine.Split(":");
+                    int lineIndex = int.Parse(lines[1]) - 1;
+                    HighlightError(lineIndex);
+                }else
+                    srcCode.Range.ClearStyle(StyleIndex.All);
             });
         }
 
@@ -144,38 +159,35 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     File.WriteAllText(testerFile, testSrcCode.Replace("userInput", item.Key));
                     string compile = $"/c cd {directory} && javac Tester.java && java Tester";
                     javaProcess = JavaProcess(compile);
-                    javaProcess.OutputDataReceived += (sender, e) =>
-                    {
-                        if (!string.IsNullOrEmpty(e.Data))
-                        {
-                            this.Invoke((Action)(() => output.AppendText($"""
+                    string outputResult = "";
+                    string errorResult = "";
+                    StartJavaProcess(
+                        javaProcess,
+                        outputMsg => outputResult+=outputMsg,
+                        errorMsg => outputResult+=errorMsg,
+                        null
+                        );
+
+                    string result = "";
+                    if (outputResult != "")
+                        result = $"""
                             Test Case {i++}
                             Input:{item.Key + Environment.NewLine}
                             Expected Output : {item.Value}
-                            Actual Output   : {e.Data}
-                            Result          : {(item.Value.Equals(e.Data) ? "Correct" : "Wrong")}
-                            """+ Environment.NewLine)));
-                        }
-                    };
-
-                    javaProcess.ErrorDataReceived += (sender, e) =>
-                    {
-                        if (!string.IsNullOrEmpty(e.Data))
-                        {
-                            this.Invoke((Action)(() => output.AppendText($"""
+                            Actual Output   : {outputResult}
+                            Result          : {(item.Value.Equals(outputResult) ? "Correct" : "Wrong")}
+                            """ + Environment.NewLine;
+                    else
+                        result = $"""
                             Test Case {i++}
-                            Input:
-                                {item.Key + Environment.NewLine}
+                            Input:{item.Key + Environment.NewLine}
                             Expected Output : {item.Value}
-                            Actual Output   : {e.Data}
-                            """ + Environment.NewLine)));
-                        }
-                    };
-                    javaProcess.Start();
-                    javaProcess.BeginOutputReadLine();
-                    javaProcess.BeginErrorReadLine();
-                    javaProcess.WaitForExit();
-                    File.WriteAllText(testerFile, testSrcCode.Replace(item.Key,"userInput"));
+                            Actual Output   : {errorResult}
+                            Result          : {(item.Value.Equals(errorResult) ? "Correct" : "Wrong")}
+                            """ + Environment.NewLine;
+
+                    this.Invoke((Action)(() => output.AppendText(result)));
+                    File.WriteAllText(testerFile, testSrcCode.Replace(item.Key, "userInput"));
                 }
             });
         }
@@ -206,8 +218,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
 
 
-            if (onExit != null) {
-                javaProcess.Exited += (s,e) => onExit();
+            if (onExit != null)
+            {
+                javaProcess.Exited += (s, e) => onExit();
             }
 
             javaProcess.EnableRaisingEvents = true;
@@ -215,6 +228,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             javaProcess.BeginOutputReadLine();
             javaProcess.BeginErrorReadLine();
             javaProcess.WaitForExit();
+
+            compiledSuccess = javaProcess.ExitCode == 0;
         }
 
         private Process JavaProcess(string command)
