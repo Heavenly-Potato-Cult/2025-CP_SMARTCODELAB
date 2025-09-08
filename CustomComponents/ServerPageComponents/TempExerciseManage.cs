@@ -47,16 +47,32 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Title = "Save New Task File";
-                saveFileDialog.Filter = "Task Files (*.task)|*.task|All Files (*.*)|*.*";
-                saveFileDialog.AddExtension = true;
-                saveFileDialog.DefaultExt = "task";
-                saveFileDialog.FileName = "new_task";
-                saveFileDialog.InitialDirectory = @folderPath;
-                saveFileDialog.FileName = ""; // suggest default name
-                saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            //{
+            //    saveFileDialog.Title = "Save New Task File";
+            //    saveFileDialog.Filter = "Task Files (*.task)|*.task|All Files (*.*)|*.*";
+            //    saveFileDialog.AddExtension = true;
+            //    saveFileDialog.DefaultExt = "task";
+            //    saveFileDialog.FileName = "new_task";
+            //    saveFileDialog.InitialDirectory = @folderPath;
+            //    saveFileDialog.FileName = ""; // suggest default name
+            //    saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        // The user selected a folder and file name
+            //        string path = saveFileDialog.FileName;
+            //        JsonFileService.SaveToFile(new TaskModel(Path.GetFileNameWithoutExtension(path)), path);
+            //        folderPath = Path.GetDirectoryName(path);
+            //        OpenTasksFolder(path);
+            //    }
+            //}
+            //       
+            //
+            //     SA DIALOG NANI IBUTANG
+
+            AddNewExercise addNewExercise = new AddNewExercise();
+            addNewExercise.ShowDialog();
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
