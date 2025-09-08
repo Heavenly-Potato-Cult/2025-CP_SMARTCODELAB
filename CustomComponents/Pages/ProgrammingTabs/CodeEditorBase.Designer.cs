@@ -64,7 +64,6 @@
             srcCode.CharHeight = 18;
             srcCode.CharWidth = 10;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            srcCode.Font = new Font("Courier New", 9.75F);
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IsReplaceMode = false;
             srcCode.Location = new Point(0, 0);
