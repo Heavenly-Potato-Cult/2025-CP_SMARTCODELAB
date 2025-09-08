@@ -38,7 +38,7 @@
             textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(10, 7);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(230, 22);
+            textBox1.Size = new Size(230, 27);
             textBox1.TabIndex = 0;
             textBox1.TextChanged += textBox1_TextChanged;
             textBox1.Enter += textBox1_MouseEnter;

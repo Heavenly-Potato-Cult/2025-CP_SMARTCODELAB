@@ -1,4 +1,7 @@
 ﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.TaskPageComponents;
+using SmartCodeLab.Models;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +17,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
     public partial class TempExerciseManage : UserControl
     {
         private string btnStatus = "Edit";
+
+        private Action<ExerciseIcon> changeSelected;
+        private ExerciseIcon selectedIcon;
         public TempExerciseManage()
         {
             InitializeComponent();
+            changeSelected = (exercise) =>
+            {
+                selectedIcon?.LostFocus();
+                selectedIcon = exercise;
+            };
         }
 
         private void TempExerciseManage_Load(object sender, EventArgs e)
@@ -26,14 +37,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
-            AddNewExercise addNewExercise = new AddNewExercise();
-            addNewExercise.ShowDialog();
+            //AddNewExercise addNewExercise = new AddNewExercise();
+            //addNewExercise.ShowDialog();
         }
 
         private void smartButton5_Click(object sender, EventArgs e)
         {
-            AddNewTestCase addNewTestCase = new AddNewTestCase();
-            addNewTestCase.ShowDialog();
+            //AddNewTestCase addNewTestCase = new AddNewTestCase();
+            //addNewTestCase.ShowDialog();
         }
 
         private void btn_UploadFileReference_Click(object sender, EventArgs e)
@@ -44,12 +55,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void btn_EditExerciseDetails_Click(object sender, EventArgs e)
         {
-            if(btnStatus == "Edit")
+            if (btnStatus == "Edit")
             {
-                txtbox_ExerciseName.Enabled = true;
-                txtbox_ExerciseSubject.Enabled = true;
-                txtbox_ExercisePoints.Enabled = true;
-                txtbox_ExerciseInstruction.Enabled = true;
+                exerciseName.Enabled = true;
+                subject.Enabled = true;
+                instruction.Enabled = true;
                 btn_EditExerciseDetails.Text = "Save";
                 btnStatus = "Save";
 
@@ -58,15 +68,46 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             if (btnStatus == "Save")
             {
-                txtbox_ExerciseName.Enabled = false;
-                txtbox_ExerciseSubject.Enabled = false;
-                txtbox_ExercisePoints.Enabled = false;
-                txtbox_ExerciseInstruction.Enabled = false;
+                exerciseName.Enabled = false;
+                subject.Enabled = false;
+                instruction.Enabled = false;
                 btn_EditExerciseDetails.Text = "Edit";
                 btnStatus = "Edit";
 
                 return;
             }
+        }
+
+        private void smartButton3_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK) 
+            {
+                string folderPath = dialog.SelectedPath;
+                foreach(string file in Directory.GetFiles(folderPath))
+                {
+                    if (file.EndsWith(".task"))
+                    {
+                        TaskModel task = JsonFileService.LoadFromFile<TaskModel>(file);
+                        if (task != null)
+                        {
+                            taskContainer.Controls.Add(new ExerciseIcon(task, changeSelected, FillFields));
+                        }
+                    }
+                }
+            }
+        }
+
+        private void FillFields(TaskModel task)
+        {
+            this.Invoke((Action)(() => 
+            {
+                exerciseName.Texts = task._taskName;
+                subject.Texts = task.subject;
+                language.SelectedItem = task.language;
+                instruction.Texts = task._instructions;
+                reference.Text = task._referenceFile?.Value ?? "";
+            }));
         }
     }
 }

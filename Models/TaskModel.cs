@@ -44,6 +44,11 @@ namespace SmartCodeLab.Models
         [ProtoMember(7)]
         public Dictionary<string, string>? _testCases { get; set; } // will be provided by the user to test the students code
 
+        [ProtoMember(8)]
+        public string subject { get; set; }
+
+        [ProtoIgnore]
+        public string filePath { get; set; }
         public TaskModel() { }
 
         public TaskModel(string taskName, string instructions, string lang, KeyValuePair<string, string> referenceFile, List<KeyValuePair<string,string>> externalResources, List<KeyValuePair<string, string>> testCases)

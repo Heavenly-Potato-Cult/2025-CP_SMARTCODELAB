@@ -173,6 +173,15 @@ namespace SmartCodeLab.CustomComponents
             set { borderFocusColor = value; }
         }
 
+        [Category("Custom TextBox")]
+        [Description("Border color when focused.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [Browsable(true)]
+        public ScrollBars ScrollBars
+        {
+            set { textBox1.ScrollBars = value; }
+            get { return textBox1.ScrollBars; }
+        }
 
         [Category("Custom TextBox")]
         [Description("The radius for the rounded border corners.")]
