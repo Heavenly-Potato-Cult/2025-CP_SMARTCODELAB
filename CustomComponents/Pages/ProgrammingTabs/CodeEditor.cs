@@ -8,5 +8,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class CodeEditor : FastColoredTextBoxNS.FastColoredTextBox
     {
+        //okay now?
     }
 }
