@@ -41,26 +41,33 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Title = "Save New Task File";
-                saveFileDialog.Filter = "Task Files (*.task)|*.task|All Files (*.*)|*.*";
-                saveFileDialog.AddExtension = true;
-                saveFileDialog.DefaultExt = "task";
-                saveFileDialog.FileName = "new_task";
-                saveFileDialog.InitialDirectory = @folderPath;
-                saveFileDialog.FileName = ""; // suggest default name
-                saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            //{
+            //    saveFileDialog.Title = "Save New Task File";
+            //    saveFileDialog.Filter = "Task Files (*.task)|*.task|All Files (*.*)|*.*";
+            //    saveFileDialog.AddExtension = true;
+            //    saveFileDialog.DefaultExt = "task";
+            //    saveFileDialog.FileName = "new_task";
+            //    saveFileDialog.InitialDirectory = @folderPath;
+            //    saveFileDialog.FileName = ""; // suggest default name
+            //    saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // The user selected a folder and file name
-                    string path = saveFileDialog.FileName;
-                    JsonFileService.SaveToFile(new TaskModel(Path.GetFileNameWithoutExtension(path)), path);
-                    folderPath = Path.GetDirectoryName(path);
-                    OpenTasksFolder(path);
-                }
-            }
+            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        // The user selected a folder and file name
+            //        string path = saveFileDialog.FileName;
+            //        JsonFileService.SaveToFile(new TaskModel(Path.GetFileNameWithoutExtension(path)), path);
+            //        folderPath = Path.GetDirectoryName(path);
+            //        OpenTasksFolder(path);
+            //    }
+            //}
+            //       
+            //
+            //     SA DIALOG NANI IBUTANG
+
+            AddNewExercise addNewExercise = new AddNewExercise();
+            addNewExercise.ShowDialog();
+
         }
 
         private void smartButton5_Click(object sender, EventArgs e)
@@ -112,7 +119,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     {
                         var icon = new ExerciseIcon(task, changeSelected, FillFields);
                         taskContainer.Controls.Add(icon);
-                        if(file == addedFile)
+                        if (file == addedFile)
                             icon.ClickMe();
                     }
                 }
@@ -122,16 +129,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void smartButton3_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == DialogResult.OK) 
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 folderPath = dialog.SelectedPath;
-                OpenTasksFolder(); 
+                OpenTasksFolder();
             }
         }
 
         private void FillFields(TaskModel task)
         {
-            this.Invoke((Action)(() => 
+            this.Invoke((Action)(() =>
             {
                 exerciseName.Texts = task._taskName;
                 subject.Texts = task.subject;
@@ -139,6 +146,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 instruction.Texts = task._instructions;
                 reference.Text = task._referenceFile?.Value ?? "";
             }));
+        }
+
+        private void btn_AddTestCase_Click(object sender, EventArgs e)
+        {
+            AddNewTestCase addNewTestCase = new AddNewTestCase();
+            addNewTestCase.ShowDialog();
         }
     }
 }

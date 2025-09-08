@@ -323,12 +323,11 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(31, 18);
+            reference.AutoScrollMinSize = new Size(2, 18);
             reference.BackBrush = null;
             reference.CharHeight = 18;
             reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            reference.Font = new Font("Courier New", 9.75F);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IsReplaceMode = false;
             reference.Location = new Point(29, 67);
@@ -588,6 +587,7 @@
             btn_AddTestCase.TabIndex = 54;
             btn_AddTestCase.Text = "Add Test Case";
             btn_AddTestCase.UseVisualStyleBackColor = false;
+            btn_AddTestCase.Click += btn_AddTestCase_Click;
             // 
             // label13
             // 
