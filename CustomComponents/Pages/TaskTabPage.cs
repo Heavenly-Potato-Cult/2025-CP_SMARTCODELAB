@@ -18,17 +18,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                 actName.Texts = taskModel._taskName;
                 txtbox_instruction.Text = taskModel._instructions;
                 languageUsed.SelectedItem = taskModel.language;
-                KeyValuePair<string, string>? referenceFile = taskModel._referenceFile;
-                if (referenceFile.HasValue)
-                    associateContainer.addFile(referenceFile.Value.Key, referenceFile.Value.Value);
-
-                if (taskModel._externalResources != null && taskModel._externalResources.Count > 0)
-                {
-                    foreach (var resource in taskModel._externalResources)
-                    {
-                        externalResourceCon.addFile(resource.Key, resource.Value);
-                    }
-                }
 
                 if (taskModel._testCases != null && taskModel._testCases.Count > 0)
                 {
@@ -53,7 +42,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                     {
                         if (k.KeyCode == Keys.S && k.Control)
                         {
-                            save_File();
+                            //save_File();
                         }
                     };
             }
@@ -82,15 +71,6 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void save_File()
         {
-            var taskModel = new TaskModel();
-            taskModel._taskName = actName.Texts;
-            taskModel._instructions = txtbox_instruction.Text;
-            taskModel.language = languageUsed.SelectedItem?.ToString() ?? null;
-            taskModel._referenceFile = associateContainer.getFile() ?? null;
-            taskModel._externalResources = externalResourceCon.getFiles() ?? null;
-            taskModel._testCases = getTestCases() ?? null;
-            JsonFileService.SaveToFile(taskModel, _filePath);
-            MessageBox.Show("File updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Btn_AddTestCase_Click(object sender, EventArgs e)

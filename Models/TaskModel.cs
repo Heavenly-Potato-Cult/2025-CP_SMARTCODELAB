@@ -35,17 +35,14 @@ namespace SmartCodeLab.Models
 
             } }
 
-        //will be provided by the user(most probably a teacher) to test the students code
         [ProtoMember(5)]
-        public KeyValuePair<string, string>? _referenceFile { get; set; } // the file that will be provided by the user as a quality reference of the students code
+        public string subject { get; set; }
+
         [ProtoMember(6)]
-        public Dictionary<string, string>? _externalResources { get; set; } // the file that contains the functions and properties needed to complete the task
+        public string _referenceFile { get; set; }
 
         [ProtoMember(7)]
-        public Dictionary<string, string>? _testCases { get; set; } // will be provided by the user to test the students code
-
-        [ProtoMember(8)]
-        public string subject { get; set; }
+        public Dictionary<string, string>? _testCases { get; set; }
 
         [ProtoIgnore]
         public string filePath { get; set; }
@@ -56,29 +53,27 @@ namespace SmartCodeLab.Models
             _taskName = taskName;
         }
 
-        public TaskModel(string taskName, string instructions, string lang, KeyValuePair<string, string> referenceFile, List<KeyValuePair<string,string>> externalResources, List<KeyValuePair<string, string>> testCases)
+        public class Builder
         {
-            _taskName = taskName;
-            _instructions = instructions;
-            _language = languageMap[lang];
-            _referenceFile = referenceFile;
-            _externalResources = new Dictionary<string, string>();
-            _testCases = new Dictionary<string, string>();
-
-            foreach (KeyValuePair<string, string> resource in externalResources)
+            private readonly TaskModel task = new TaskModel();
+            public Builder(string actname, string subject, string language, string instruction)
             {
-                _externalResources.Add(resource.Key, resource.Value);
+                task._taskName = actname;
+                task.subject = subject;
+                task.language = language;
+                task._instructions = instruction;
             }
 
-            foreach (KeyValuePair<string, string> testCase in testCases)
+            public Builder ReferenceCode(string sourceCode)
             {
-                _testCases.Add(testCase.Key, testCase.Value);
+                task._referenceFile = sourceCode;
+                return this;
             }
-        }
 
-        public override string? ToString()
-        {
-            return _taskName + "\n" + _instructions + "\n" + language +"\n" +_referenceFile + "\n" + (_externalResources != null ? string.Join(", ", _externalResources.Values) : "");
+            public TaskModel Build()
+            {
+                return task;
+            }
         }
     }
 }

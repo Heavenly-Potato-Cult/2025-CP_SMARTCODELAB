@@ -186,6 +186,7 @@
             // 
             // language
             // 
+            language.Enabled = false;
             language.FormattingEnabled = true;
             language.Items.AddRange(new object[] { "Cpp", "Java", "Python" });
             language.Location = new Point(33, 270);
@@ -328,12 +329,12 @@
             reference.CharHeight = 18;
             reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            reference.Font = new Font("Courier New", 9.75F);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IsReplaceMode = false;
             reference.Location = new Point(29, 67);
             reference.Name = "reference";
             reference.Paddings = new Padding(0);
+            reference.ReadOnly = true;
             reference.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             reference.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("reference.ServiceColors");
             reference.Size = new Size(719, 346);
@@ -371,6 +372,7 @@
             smartButton1.TabIndex = 55;
             smartButton1.Text = "Upload Code";
             smartButton1.UseVisualStyleBackColor = false;
+            smartButton1.Click += smartButton1_Click_1;
             // 
             // label11
             // 

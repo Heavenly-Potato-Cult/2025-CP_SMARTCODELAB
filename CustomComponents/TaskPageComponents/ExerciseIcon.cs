@@ -16,7 +16,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
     {
         private Action<ExerciseIcon> changeFocus;
         private Action<TaskModel> setFields;
-        private TaskModel task;
+        public TaskModel task { get; }
         public ExerciseIcon(TaskModel task, Action<ExerciseIcon> changeFocus, Action<TaskModel> setFields)
         {
             InitializeComponent();
@@ -44,6 +44,14 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
         public void ClickMe()
         {
             this.OnClick(EventArgs.Empty);
+        }
+
+        public void UpdateDisplay()
+        {
+            this.Invoke((Action)(() => {
+                taskName.Text = task._taskName;
+                subject.Text = task.subject;
+            }));
         }
 
         public void LostFocus()
