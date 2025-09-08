@@ -47,32 +47,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
-            //using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            //{
-            //    saveFileDialog.Title = "Save New Task File";
-            //    saveFileDialog.Filter = "Task Files (*.task)|*.task|All Files (*.*)|*.*";
-            //    saveFileDialog.AddExtension = true;
-            //    saveFileDialog.DefaultExt = "task";
-            //    saveFileDialog.FileName = "new_task";
-            //    saveFileDialog.InitialDirectory = @folderPath;
-            //    saveFileDialog.FileName = ""; // suggest default name
-            //    saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-            //    if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            //    {
-            //        // The user selected a folder and file name
-            //        string path = saveFileDialog.FileName;
-            //        JsonFileService.SaveToFile(new TaskModel(Path.GetFileNameWithoutExtension(path)), path);
-            //        folderPath = Path.GetDirectoryName(path);
-            //        OpenTasksFolder(path);
-            //    }
-            //}
-            //       
-            //
-            //     SA DIALOG NANI IBUTANG
-
-            AddNewExercise addNewExercise = new AddNewExercise();
-            addNewExercise.ShowDialog();
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Title = "Save New Task File";
+                saveFileDialog.Filter = "Task Files (*.task)|*.task|All Files (*.*)|*.*";
+                saveFileDialog.AddExtension = true;
+                saveFileDialog.DefaultExt = "task";
+                saveFileDialog.FileName = "new_task";
+                saveFileDialog.InitialDirectory = @folderPath;
+                saveFileDialog.FileName = ""; // suggest default name
+                saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -80,7 +64,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     string path = saveFileDialog.FileName;
                     JsonFileService.SaveToFile(new TaskModel(Path.GetFileNameWithoutExtension(path)), path);
                     folderPath = Path.GetDirectoryName(path);
-                    SaveEditBtn(true);
                     OpenTasksFolder(path);
                 }
             }
@@ -164,7 +147,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             task.language = language.SelectedItem?.ToString() ?? null;
             task._instructions = instruction.Texts;
             task._referenceFile = reference.Text;
-
+            task._testCases = TestCases();
             JsonFileService.SaveToFile<TaskModel>(task, task.filePath);
             MessageBox.Show("Task Saved Successfully");
             selectedIcon.UpdateDisplay();
@@ -188,7 +171,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 subject.Texts = task.subject;
                 language.SelectedItem = task.language;
                 instruction.Texts = task._instructions;
-                reference.Text = task._referenceFile;
+                reference.Text = task._referenceFile?.ToString() ?? "";
+                SetTestCases(task._testCases);
             }));
         }
 
@@ -196,11 +180,47 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = languageExtension[language.SelectedItem.ToString()];
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show(openFileDialog.FileName);
                 reference.Text = File.ReadAllText(openFileDialog.FileName);
             }
+        }
+
+        private void btn_AddTestCase_Click(object sender, EventArgs e)
+        {
+            this.Invoke(new Action(() => testContainer.Controls.Add(new TestCase())));
+        }
+
+        private Dictionary<string,string> TestCases()
+        {
+            Dictionary<string,string> ActivityTestCases = new Dictionary<string,string>();
+
+            foreach (TestCase testCase in testContainer.Controls.OfType<TestCase>())
+            {
+                try
+                {
+                    KeyValuePair<string, string> value = testCase.Value();
+                    ActivityTestCases.Add(value.Key, value.Value);
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("Similar Input Already Exists");
+                }
+            }
+            return ActivityTestCases;
+        }
+
+        private void SetTestCases(Dictionary<string,string> TestCases)
+        {
+            foreach (UserControl item in testContainer.Controls)
+                testContainer.Controls.Remove(item);
+
+            if (TestCases == null || TestCases.Count == 0)
+                return;
+
+            foreach(var kv in TestCases)
+                testContainer.Controls.Add(new TestCase(kv));
         }
     }
 }

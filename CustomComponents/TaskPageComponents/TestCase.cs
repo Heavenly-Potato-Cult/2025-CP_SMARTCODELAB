@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,25 +12,21 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
 {
     public partial class TestCase : UserControl
     {
-        private int i = 1;
-
         public TestCase()
         {
             InitializeComponent();
         }
 
-        public TestCase(string userInput, string expectedOutput)
+        public TestCase(KeyValuePair<string,string> test)
         {
             InitializeComponent();
-            inputs.Text = userInput;
-            output.Text = expectedOutput;
+            input.Text = test.Key;
+            output.Text = test.Value;
         }
 
-        public KeyValuePair<string, string>? getTestCase()
+        public KeyValuePair<string, string> Value()
         {
-            if (string.IsNullOrWhiteSpace(inputs.Text) || string.IsNullOrWhiteSpace(output.Text))
-                return null;
-            return new KeyValuePair<string, string>(inputs.Text, output.Text);
+            return new KeyValuePair<string, string>(input.Text, output.Text);
         }
     }
 }

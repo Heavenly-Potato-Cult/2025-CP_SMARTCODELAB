@@ -28,67 +28,94 @@
         /// </summary>
         private void InitializeComponent()
         {
-            output = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
-            inputs = new RichTextBox();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestCase));
+            input = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            output = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            ((System.ComponentModel.ISupportInitialize)input).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)output).BeginInit();
             SuspendLayout();
+            // 
+            // input
+            // 
+            input.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            input.AutoScrollMinSize = new Size(31, 18);
+            input.BackBrush = null;
+            input.CharHeight = 18;
+            input.CharWidth = 10;
+            input.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            input.Font = new Font("Courier New", 9.75F);
+            input.Hotkeys = resources.GetString("input.Hotkeys");
+            input.IsReplaceMode = false;
+            input.Location = new Point(0, 0);
+            input.Name = "input";
+            input.Paddings = new Padding(0);
+            input.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            input.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("input.ServiceColors");
+            input.Size = new Size(350, 123);
+            input.TabIndex = 0;
+            input.Zoom = 100;
             // 
             // output
             // 
-            output.Location = new Point(3, 185);
-            output.Multiline = true;
+            output.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            output.AutoScrollMinSize = new Size(31, 18);
+            output.BackBrush = null;
+            output.CharHeight = 18;
+            output.CharWidth = 10;
+            output.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            output.Hotkeys = resources.GetString("output.Hotkeys");
+            output.IsReplaceMode = false;
+            output.Location = new Point(352, 0);
             output.Name = "output";
-            output.ScrollBars = ScrollBars.Vertical;
-            output.Size = new Size(314, 82);
+            output.Paddings = new Padding(0);
+            output.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            output.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("output.ServiceColors");
+            output.Size = new Size(355, 123);
             output.TabIndex = 1;
-            output.WordWrap = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 5);
-            label1.Name = "label1";
-            label1.Size = new Size(49, 20);
-            label1.TabIndex = 2;
-            label1.Text = "Inputs";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 162);
-            label2.Name = "label2";
-            label2.Size = new Size(120, 20);
-            label2.TabIndex = 3;
-            label2.Text = "Expected Output";
-            // 
-            // inputs
-            // 
-            inputs.Location = new Point(3, 28);
-            inputs.Name = "inputs";
-            inputs.Size = new Size(314, 120);
-            inputs.TabIndex = 4;
-            inputs.Text = "";
+            output.Zoom = 100;
             // 
             // TestCase
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
-            Controls.Add(inputs);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            BackColor = SystemColors.ControlDarkDark;
             Controls.Add(output);
+            Controls.Add(input);
             Name = "TestCase";
-            Size = new Size(320, 270);
+            Size = new Size(710, 123);
+            ((System.ComponentModel.ISupportInitialize)input).EndInit();
+            ((System.ComponentModel.ISupportInitialize)output).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private TextBox output;
-        private Label label1;
-        private Label label2;
-        private RichTextBox inputs;
+
+        private Pages.ProgrammingTabs.CodeEditor input;
+        private Pages.ProgrammingTabs.CodeEditor output;
     }
 }

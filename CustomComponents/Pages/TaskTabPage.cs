@@ -23,9 +23,9 @@ namespace SmartCodeLab.CustomComponents.Pages
                 {
                     foreach (var testCase in taskModel._testCases)
                     {
-                        var test = new TestCase(testCase.Key, testCase.Value);
-                        initialize_Save_Shortcut(test);
-                        testContainer.Controls.Add(test);
+                        //var test = new TestCase(testCase.Key, testCase.Value);
+                        //initialize_Save_Shortcut(test);
+                        //testContainer.Controls.Add(test);
                     }
                 }
             }
@@ -48,26 +48,26 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
         }
 
-        private Dictionary<string, string> getTestCases()
-        {
-            Dictionary<string, string> testCases = new Dictionary<string, string>();
-            foreach (TestCase testCase in testContainer.Controls)
-            {
-                KeyValuePair<string, string>? test = testCase.getTestCase();
-                if (test != null)
-                {
-                    try
-                    {
-                        testCases.Add(test.Value.Key, test.Value.Value);
-                    }
-                    catch (ArgumentException)
-                    {
-                        // Key already exists.. then do nothing
-                    }
-                }
-            }
-            return testCases;
-        }
+        //private Dictionary<string, string> getTestCases()
+        //{
+        //    Dictionary<string, string> testCases = new Dictionary<string, string>();
+        //    foreach (TestCase testCase in testContainer.Controls)
+        //    {
+        //        KeyValuePair<string, string>? test = testCase.getTestCase();
+        //        if (test != null)
+        //        {
+        //            try
+        //            {
+        //                testCases.Add(test.Value.Key, test.Value.Value);
+        //            }
+        //            catch (ArgumentException)
+        //            {
+        //                // Key already exists.. then do nothing
+        //            }
+        //        }
+        //    }
+        //    return testCases;
+        //}
 
         private void save_File()
         {
@@ -75,9 +75,9 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void Btn_AddTestCase_Click(object sender, EventArgs e)
         {
-            var testCaseContainer = new TestCase();
-            initialize_Save_Shortcut(testCaseContainer);
-            testContainer.Controls.Add(testCaseContainer);
+            //var testCaseContainer = new TestCase();
+            //initialize_Save_Shortcut(testCaseContainer);
+            //testContainer.Controls.Add(testCaseContainer);
         }
 
         private void openFile1_Click(object sender, EventArgs e)

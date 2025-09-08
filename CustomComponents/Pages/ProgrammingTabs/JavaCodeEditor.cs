@@ -47,7 +47,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return temporaryCode;
         }
 
-        async public override void RunCode()
+        public override void RunCode()
         {
             this.Invoke((Action)(() =>
             {
@@ -56,29 +56,33 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             _ = Task.Run(() => {
                 SaveCode(srcCode.Text);
                 CompileCode();
-                latestOutput = "Process Started\n";
-                this.Invoke((Action)(() =>
-                {
-                    output.Text = "Process Started\n";
-                    output.ReadOnly = false;
-                }));
                 string classname = Path.GetFileNameWithoutExtension(filePath);
                 string directory = Path.GetDirectoryName(filePath);
                 string compile = $"/c java -cp \"{directory}\" {classname}";
                 if (compiledSuccess)
+                {
+                    latestOutput = "Process Started";
+                    this.Invoke((Action)(() =>
+                    {
+                        output.Text = "Process Started" + Environment.NewLine;
+                        output.ReadOnly = false;
+                    }));
                     javaProcess = JavaProcess(compile);
-                StartJavaProcess(
+                    StartJavaProcess(
                         javaProcess,
-                        outputLine => {
+                        outputLine =>
+                        {
                             this.Invoke((Action)(() => output.AppendText(outputLine + Environment.NewLine)));
                             latestOutput = output.Text;
                         },
                         errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
-                        () => this.Invoke((Action)(() => {
+                        () => this.Invoke((Action)(() =>
+                        {
                             output.AppendText("\n=== Process finished ===\n");
                             output.ReadOnly = true;
                         }))
-                            );
+                    );
+                }
             });
         }
 
@@ -145,9 +149,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             SaveCode(srcCode.Text);
             CompileCode();
-            latestOutput = "==========\n";
+            latestOutput = "Process Started";
+            this.Invoke((Action)(() =>
+            {
+                output.Text = "Process Started" + Environment.NewLine;
+                output.ReadOnly = true;
+            }));
             Task.Run(() =>
             {
+                int score = 0;
                 int i = 1;
                 foreach (var item in _task._testCases)
                 {
@@ -169,6 +179,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         );
 
                     string result = "";
+                    score = (item.Value.Equals(outputResult)) ? score+1 : score;
                     if (outputResult != "")
                         result = $"""
                             Test Case {i++}
@@ -183,12 +194,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             Input:{item.Key + Environment.NewLine}
                             Expected Output : {item.Value}
                             Actual Output   : {errorResult}
-                            Result          : {(item.Value.Equals(errorResult) ? "Correct" : "Wrong")}
+                            Result          : Wrong
                             """ + Environment.NewLine;
 
-                    this.Invoke((Action)(() => output.AppendText(result)));
+                    this.Invoke((Action)(() => { 
+                        output.AppendText(result+ Environment.NewLine);
+                        }));
                     File.WriteAllText(testerFile, testSrcCode.Replace(item.Key, "userInput"));
                 }
+                this.Invoke((Action)(() => {
+                    output.AppendText($"Score : {score}/{_task._testCases.Count}");
+                }));
             });
         }
 
