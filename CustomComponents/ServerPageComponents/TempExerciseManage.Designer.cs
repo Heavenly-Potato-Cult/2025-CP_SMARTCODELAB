@@ -41,22 +41,24 @@
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label6 = new Label();
             label7 = new Label();
-            customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            customTextBox3 = new CustomTextBox();
+            btn_AddNewExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            tabControl1 = new TabControl();
+            tabPage3 = new TabPage();
+            btn_EditExerciseDetails = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            txtbox_ExerciseInstruction = new CustomTextBox();
+            label25 = new Label();
+            txtbox_ExercisePoints = new CustomTextBox();
             label10 = new Label();
-            customTextBox2 = new CustomTextBox();
+            txtbox_ExerciseSubject = new CustomTextBox();
             label8 = new Label();
-            customTextBox1 = new CustomTextBox();
+            txtbox_ExerciseName = new CustomTextBox();
             label9 = new Label();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            tabPage4 = new TabPage();
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customTextBox4 = new CustomTextBox();
             label11 = new Label();
-            customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label25 = new Label();
+            tabPage1 = new TabPage();
             customCard9 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label24 = new Label();
             label20 = new Label();
@@ -71,14 +73,15 @@
             label14 = new Label();
             smartButton7 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label13 = new Label();
             customCard1.SuspendLayout();
             customCard2.SuspendLayout();
             customCard3.SuspendLayout();
-            customCard4.SuspendLayout();
-            customCard5.SuspendLayout();
-            customCard6.SuspendLayout();
+            tabControl1.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage1.SuspendLayout();
             customCard9.SuspendLayout();
             customCard8.SuspendLayout();
             customCard7.SuspendLayout();
@@ -111,7 +114,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.FromArgb(13, 13, 13);
-            label12.Location = new Point(78, 175);
+            label12.Location = new Point(62, 175);
             label12.Name = "label12";
             label12.Size = new Size(182, 31);
             label12.TabIndex = 19;
@@ -122,7 +125,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(13, 13, 13);
-            label1.Location = new Point(588, 175);
+            label1.Location = new Point(526, 175);
             label1.Name = "label1";
             label1.Size = new Size(180, 31);
             label1.TabIndex = 20;
@@ -136,7 +139,7 @@
             customCard1.BorderSize = 0;
             customCard1.Controls.Add(label17);
             customCard1.Controls.Add(label18);
-            customCard1.Location = new Point(78, 209);
+            customCard1.Location = new Point(64, 238);
             customCard1.Name = "customCard1";
             customCard1.Size = new Size(432, 86);
             customCard1.TabIndex = 42;
@@ -171,7 +174,7 @@
             customCard2.BorderSize = 0;
             customCard2.Controls.Add(label2);
             customCard2.Controls.Add(label4);
-            customCard2.Location = new Point(78, 296);
+            customCard2.Location = new Point(64, 325);
             customCard2.Name = "customCard2";
             customCard2.Size = new Size(432, 86);
             customCard2.TabIndex = 43;
@@ -206,7 +209,7 @@
             customCard3.BorderSize = 0;
             customCard3.Controls.Add(label6);
             customCard3.Controls.Add(label7);
-            customCard3.Location = new Point(78, 385);
+            customCard3.Location = new Point(64, 414);
             customCard3.Name = "customCard3";
             customCard3.Size = new Size(432, 86);
             customCard3.TabIndex = 44;
@@ -233,222 +236,263 @@
             label7.TabIndex = 13;
             label7.Text = "Array Sorting";
             // 
-            // customCard4
+            // btn_AddNewExercise
             // 
-            customCard4.BackColor = Color.White;
-            customCard4.BorderColor = Color.Gray;
-            customCard4.BorderRadius = 10;
-            customCard4.BorderSize = 1;
-            customCard4.Controls.Add(customTextBox3);
-            customCard4.Controls.Add(label10);
-            customCard4.Controls.Add(customTextBox2);
-            customCard4.Controls.Add(label8);
-            customCard4.Controls.Add(customTextBox1);
-            customCard4.Controls.Add(label9);
-            customCard4.Location = new Point(564, 209);
-            customCard4.Name = "customCard4";
-            customCard4.Size = new Size(772, 262);
-            customCard4.TabIndex = 45;
+            btn_AddNewExercise.BackColor = Color.MediumSlateBlue;
+            btn_AddNewExercise.BorderRadius = 10;
+            btn_AddNewExercise.FlatAppearance.BorderSize = 0;
+            btn_AddNewExercise.FlatStyle = FlatStyle.Flat;
+            btn_AddNewExercise.ForeColor = Color.White;
+            btn_AddNewExercise.Location = new Point(1072, 64);
+            btn_AddNewExercise.Name = "btn_AddNewExercise";
+            btn_AddNewExercise.Size = new Size(243, 44);
+            btn_AddNewExercise.TabIndex = 46;
+            btn_AddNewExercise.Text = "Add New Exercise";
+            btn_AddNewExercise.UseVisualStyleBackColor = false;
+            btn_AddNewExercise.Click += smartButton1_Click;
             // 
-            // customTextBox3
+            // tabControl1
             // 
-            customTextBox3.BackColor = Color.White;
-            customTextBox3.BorderColor = Color.LightGray;
-            customTextBox3.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            customTextBox3.BorderRadius = 10;
-            customTextBox3.BorderSize = 1;
-            customTextBox3.ForeColor = SystemColors.ControlText;
-            customTextBox3.Location = new Point(427, 63);
-            customTextBox3.Name = "customTextBox3";
-            customTextBox3.Padding = new Padding(10, 7, 10, 7);
-            customTextBox3.Size = new Size(288, 41);
-            customTextBox3.TabIndex = 26;
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Location = new Point(526, 209);
+            tabControl1.Name = "tabControl1";
+            tabControl1.Padding = new Point(6, 10);
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(793, 466);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+            tabControl1.TabIndex = 52;
+            // 
+            // tabPage3
+            // 
+            tabPage3.BackColor = Color.White;
+            tabPage3.Controls.Add(btn_EditExerciseDetails);
+            tabPage3.Controls.Add(txtbox_ExerciseInstruction);
+            tabPage3.Controls.Add(label25);
+            tabPage3.Controls.Add(txtbox_ExercisePoints);
+            tabPage3.Controls.Add(label10);
+            tabPage3.Controls.Add(txtbox_ExerciseSubject);
+            tabPage3.Controls.Add(label8);
+            tabPage3.Controls.Add(txtbox_ExerciseName);
+            tabPage3.Controls.Add(label9);
+            tabPage3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tabPage3.Location = new Point(4, 43);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(10);
+            tabPage3.Size = new Size(785, 419);
+            tabPage3.TabIndex = 0;
+            tabPage3.Text = "Details";
+            // 
+            // btn_EditExerciseDetails
+            // 
+            btn_EditExerciseDetails.BackColor = Color.MediumTurquoise;
+            btn_EditExerciseDetails.BackgroundColor = Color.MediumTurquoise;
+            btn_EditExerciseDetails.BorderRadius = 20;
+            btn_EditExerciseDetails.FlatAppearance.BorderSize = 0;
+            btn_EditExerciseDetails.FlatStyle = FlatStyle.Flat;
+            btn_EditExerciseDetails.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_EditExerciseDetails.ForeColor = Color.White;
+            btn_EditExerciseDetails.Location = new Point(222, 342);
+            btn_EditExerciseDetails.Name = "btn_EditExerciseDetails";
+            btn_EditExerciseDetails.Size = new Size(304, 50);
+            btn_EditExerciseDetails.TabIndex = 35;
+            btn_EditExerciseDetails.Text = "Edit";
+            btn_EditExerciseDetails.UseVisualStyleBackColor = false;
+            btn_EditExerciseDetails.Click += btn_EditExerciseDetails_Click;
+            // 
+            // txtbox_ExerciseInstruction
+            // 
+            txtbox_ExerciseInstruction.BackColor = Color.White;
+            txtbox_ExerciseInstruction.BorderColor = Color.LightGray;
+            txtbox_ExerciseInstruction.BorderFocusColor = Color.FromArgb(64, 64, 64);
+            txtbox_ExerciseInstruction.BorderRadius = 10;
+            txtbox_ExerciseInstruction.BorderSize = 1;
+            txtbox_ExerciseInstruction.Enabled = false;
+            txtbox_ExerciseInstruction.ForeColor = SystemColors.ControlText;
+            txtbox_ExerciseInstruction.Location = new Point(394, 176);
+            txtbox_ExerciseInstruction.Multiline = true;
+            txtbox_ExerciseInstruction.Name = "txtbox_ExerciseInstruction";
+            txtbox_ExerciseInstruction.Padding = new Padding(10, 7, 10, 7);
+            txtbox_ExerciseInstruction.Size = new Size(366, 99);
+            txtbox_ExerciseInstruction.TabIndex = 34;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label25.ForeColor = Color.DimGray;
+            label25.Location = new Point(401, 155);
+            label25.Name = "label25";
+            label25.Size = new Size(96, 25);
+            label25.TabIndex = 33;
+            label25.Text = "Instruction";
+            // 
+            // txtbox_ExercisePoints
+            // 
+            txtbox_ExercisePoints.BackColor = Color.White;
+            txtbox_ExercisePoints.BorderColor = Color.LightGray;
+            txtbox_ExercisePoints.BorderFocusColor = Color.FromArgb(64, 64, 64);
+            txtbox_ExercisePoints.BorderRadius = 10;
+            txtbox_ExercisePoints.BorderSize = 1;
+            txtbox_ExercisePoints.Enabled = false;
+            txtbox_ExercisePoints.ForeColor = SystemColors.ControlText;
+            txtbox_ExercisePoints.Location = new Point(394, 72);
+            txtbox_ExercisePoints.Name = "txtbox_ExercisePoints";
+            txtbox_ExercisePoints.Padding = new Padding(10, 7, 10, 7);
+            txtbox_ExercisePoints.Size = new Size(288, 46);
+            txtbox_ExercisePoints.TabIndex = 32;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.DimGray;
-            label10.Location = new Point(427, 35);
+            label10.Location = new Point(401, 51);
             label10.Name = "label10";
             label10.Size = new Size(60, 25);
-            label10.TabIndex = 25;
+            label10.TabIndex = 31;
             label10.Text = "Points";
             // 
-            // customTextBox2
+            // txtbox_ExerciseSubject
             // 
-            customTextBox2.BackColor = Color.White;
-            customTextBox2.BorderColor = Color.LightGray;
-            customTextBox2.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            customTextBox2.BorderRadius = 10;
-            customTextBox2.BorderSize = 1;
-            customTextBox2.ForeColor = SystemColors.ControlText;
-            customTextBox2.Location = new Point(24, 162);
-            customTextBox2.Name = "customTextBox2";
-            customTextBox2.Padding = new Padding(10, 7, 10, 7);
-            customTextBox2.Size = new Size(368, 41);
-            customTextBox2.TabIndex = 24;
+            txtbox_ExerciseSubject.BackColor = Color.White;
+            txtbox_ExerciseSubject.BorderColor = Color.LightGray;
+            txtbox_ExerciseSubject.BorderFocusColor = Color.FromArgb(64, 64, 64);
+            txtbox_ExerciseSubject.BorderRadius = 10;
+            txtbox_ExerciseSubject.BorderSize = 1;
+            txtbox_ExerciseSubject.Enabled = false;
+            txtbox_ExerciseSubject.ForeColor = SystemColors.ControlText;
+            txtbox_ExerciseSubject.Location = new Point(26, 171);
+            txtbox_ExerciseSubject.Name = "txtbox_ExerciseSubject";
+            txtbox_ExerciseSubject.Padding = new Padding(10, 7, 10, 7);
+            txtbox_ExerciseSubject.Size = new Size(348, 46);
+            txtbox_ExerciseSubject.TabIndex = 30;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.DimGray;
-            label8.Location = new Point(24, 134);
+            label8.Location = new Point(33, 150);
             label8.Name = "label8";
             label8.Size = new Size(70, 25);
-            label8.TabIndex = 23;
+            label8.TabIndex = 29;
             label8.Text = "Subject";
             // 
-            // customTextBox1
+            // txtbox_ExerciseName
             // 
-            customTextBox1.BackColor = Color.White;
-            customTextBox1.BorderColor = Color.LightGray;
-            customTextBox1.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            customTextBox1.BorderRadius = 10;
-            customTextBox1.BorderSize = 1;
-            customTextBox1.ForeColor = SystemColors.ControlText;
-            customTextBox1.Location = new Point(24, 63);
-            customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(10, 7, 10, 7);
-            customTextBox1.Size = new Size(368, 41);
-            customTextBox1.TabIndex = 22;
+            txtbox_ExerciseName.BackColor = Color.White;
+            txtbox_ExerciseName.BorderColor = Color.LightGray;
+            txtbox_ExerciseName.BorderFocusColor = Color.FromArgb(64, 64, 64);
+            txtbox_ExerciseName.BorderRadius = 10;
+            txtbox_ExerciseName.BorderSize = 1;
+            txtbox_ExerciseName.Enabled = false;
+            txtbox_ExerciseName.ForeColor = SystemColors.ControlText;
+            txtbox_ExerciseName.Location = new Point(26, 72);
+            txtbox_ExerciseName.Name = "txtbox_ExerciseName";
+            txtbox_ExerciseName.Padding = new Padding(10, 7, 10, 7);
+            txtbox_ExerciseName.Size = new Size(348, 46);
+            txtbox_ExerciseName.TabIndex = 28;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.DimGray;
-            label9.Location = new Point(24, 35);
+            label9.Location = new Point(33, 51);
             label9.Name = "label9";
             label9.Size = new Size(125, 25);
-            label9.TabIndex = 21;
+            label9.TabIndex = 27;
             label9.Text = "Exercise Name";
             // 
-            // smartButton1
+            // tabPage4
             // 
-            smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 10;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(661, 53);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(179, 44);
-            smartButton1.TabIndex = 46;
-            smartButton1.Text = "Add New Exercise";
-            smartButton1.UseVisualStyleBackColor = false;
+            tabPage4.BackColor = Color.White;
+            tabPage4.Controls.Add(smartButton2);
+            tabPage4.Controls.Add(smartButton1);
+            tabPage4.Controls.Add(customTextBox4);
+            tabPage4.Controls.Add(label11);
+            tabPage4.Location = new Point(4, 43);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(785, 419);
+            tabPage4.TabIndex = 1;
+            tabPage4.Text = "Reference Code";
             // 
             // smartButton2
             // 
-            smartButton2.BackColor = Color.MediumSlateBlue;
+            smartButton2.BackColor = Color.SlateGray;
+            smartButton2.BackgroundColor = Color.SlateGray;
             smartButton2.BorderRadius = 10;
             smartButton2.FlatAppearance.BorderSize = 0;
             smartButton2.FlatStyle = FlatStyle.Flat;
+            smartButton2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(857, 53);
+            smartButton2.Location = new Point(615, 28);
             smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(179, 44);
-            smartButton2.TabIndex = 47;
-            smartButton2.Text = "Edit Exercise";
+            smartButton2.Size = new Size(133, 34);
+            smartButton2.TabIndex = 56;
+            smartButton2.Text = "Copy";
             smartButton2.UseVisualStyleBackColor = false;
             // 
-            // smartButton3
+            // smartButton1
             // 
-            smartButton3.BackColor = Color.MediumSlateBlue;
-            smartButton3.BorderRadius = 10;
-            smartButton3.FlatAppearance.BorderSize = 0;
-            smartButton3.FlatStyle = FlatStyle.Flat;
-            smartButton3.ForeColor = Color.White;
-            smartButton3.Location = new Point(1055, 53);
-            smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(179, 44);
-            smartButton3.TabIndex = 48;
-            smartButton3.Text = "Delete Exercise";
-            smartButton3.UseVisualStyleBackColor = false;
-            // 
-            // customCard5
-            // 
-            customCard5.BackColor = Color.White;
-            customCard5.BorderColor = Color.Gray;
-            customCard5.BorderRadius = 10;
-            customCard5.BorderSize = 1;
-            customCard5.Controls.Add(smartButton4);
-            customCard5.Controls.Add(customTextBox4);
-            customCard5.Controls.Add(label11);
-            customCard5.Location = new Point(564, 488);
-            customCard5.Name = "customCard5";
-            customCard5.Size = new Size(772, 417);
-            customCard5.TabIndex = 49;
-            // 
-            // smartButton4
-            // 
-            smartButton4.BackColor = Color.SlateGray;
-            smartButton4.BackgroundColor = Color.SlateGray;
-            smartButton4.BorderRadius = 10;
-            smartButton4.FlatAppearance.BorderSize = 0;
-            smartButton4.FlatStyle = FlatStyle.Flat;
-            smartButton4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(564, 19);
-            smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(179, 44);
-            smartButton4.TabIndex = 47;
-            smartButton4.Text = "Upload File";
-            smartButton4.UseVisualStyleBackColor = false;
+            smartButton1.BackColor = Color.SlateGray;
+            smartButton1.BackgroundColor = Color.SlateGray;
+            smartButton1.BorderRadius = 10;
+            smartButton1.FlatAppearance.BorderSize = 0;
+            smartButton1.FlatStyle = FlatStyle.Flat;
+            smartButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton1.ForeColor = Color.White;
+            smartButton1.Location = new Point(476, 28);
+            smartButton1.Name = "smartButton1";
+            smartButton1.Size = new Size(133, 34);
+            smartButton1.TabIndex = 55;
+            smartButton1.Text = "Upload Code";
+            smartButton1.UseVisualStyleBackColor = false;
             // 
             // customTextBox4
             // 
             customTextBox4.BackColor = SystemColors.Window;
             customTextBox4.BorderColor = Color.Gainsboro;
+            customTextBox4.BorderFocusColor = Color.LightGray;
+            customTextBox4.BorderSize = 0;
             customTextBox4.ForeColor = Color.DimGray;
-            customTextBox4.Location = new Point(24, 89);
+            customTextBox4.Location = new Point(29, 78);
             customTextBox4.Multiline = true;
             customTextBox4.Name = "customTextBox4";
             customTextBox4.Padding = new Padding(10, 7, 10, 7);
-            customTextBox4.Size = new Size(719, 291);
-            customTextBox4.TabIndex = 22;
+            customTextBox4.Size = new Size(719, 328);
+            customTextBox4.TabIndex = 24;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.FromArgb(13, 13, 13);
-            label11.Location = new Point(24, 22);
+            label11.Location = new Point(29, 26);
             label11.Name = "label11";
             label11.Size = new Size(277, 31);
-            label11.TabIndex = 21;
+            label11.TabIndex = 23;
             label11.Text = "Reference Solution Code";
             // 
-            // customCard6
+            // tabPage1
             // 
-            customCard6.BackColor = Color.White;
-            customCard6.BorderColor = Color.Gray;
-            customCard6.BorderRadius = 10;
-            customCard6.BorderSize = 1;
-            customCard6.Controls.Add(label25);
-            customCard6.Controls.Add(customCard9);
-            customCard6.Controls.Add(customCard8);
-            customCard6.Controls.Add(customCard7);
-            customCard6.Controls.Add(smartButton7);
-            customCard6.Controls.Add(smartButton6);
-            customCard6.Controls.Add(smartButton5);
-            customCard6.Controls.Add(label13);
-            customCard6.Location = new Point(564, 925);
-            customCard6.Name = "customCard6";
-            customCard6.Size = new Size(772, 301);
-            customCard6.TabIndex = 50;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.ForeColor = Color.Gray;
-            label25.Location = new Point(527, 257);
-            label25.Name = "label25";
-            label25.Size = new Size(199, 25);
-            label25.TabIndex = 51;
-            label25.Text = "Total Marks : 100 Points";
+            tabPage1.BackColor = Color.White;
+            tabPage1.Controls.Add(customCard9);
+            tabPage1.Controls.Add(customCard8);
+            tabPage1.Controls.Add(customCard7);
+            tabPage1.Controls.Add(smartButton7);
+            tabPage1.Controls.Add(smartButton6);
+            tabPage1.Controls.Add(btn_AddTestCase);
+            tabPage1.Controls.Add(label13);
+            tabPage1.ForeColor = SystemColors.ControlText;
+            tabPage1.Location = new Point(4, 43);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new Size(785, 419);
+            tabPage1.TabIndex = 2;
+            tabPage1.Text = "TestCases";
             // 
             // customCard9
             // 
@@ -459,10 +503,10 @@
             customCard9.Controls.Add(label24);
             customCard9.Controls.Add(label20);
             customCard9.Controls.Add(label21);
-            customCard9.Location = new Point(24, 182);
+            customCard9.Location = new Point(36, 186);
             customCard9.Name = "customCard9";
             customCard9.Size = new Size(719, 55);
-            customCard9.TabIndex = 52;
+            customCard9.TabIndex = 59;
             // 
             // label24
             // 
@@ -506,10 +550,10 @@
             customCard8.Controls.Add(label23);
             customCard8.Controls.Add(label19);
             customCard8.Controls.Add(label16);
-            customCard8.Location = new Point(24, 121);
+            customCard8.Location = new Point(36, 125);
             customCard8.Name = "customCard8";
             customCard8.Size = new Size(719, 55);
-            customCard8.TabIndex = 51;
+            customCard8.TabIndex = 58;
             // 
             // label23
             // 
@@ -553,10 +597,10 @@
             customCard7.Controls.Add(label22);
             customCard7.Controls.Add(label15);
             customCard7.Controls.Add(label14);
-            customCard7.Location = new Point(24, 81);
+            customCard7.Location = new Point(36, 85);
             customCard7.Name = "customCard7";
             customCard7.Size = new Size(719, 34);
-            customCard7.TabIndex = 50;
+            customCard7.TabIndex = 57;
             // 
             // label22
             // 
@@ -600,10 +644,10 @@
             smartButton7.FlatStyle = FlatStyle.Flat;
             smartButton7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton7.ForeColor = Color.White;
-            smartButton7.Location = new Point(471, 19);
+            smartButton7.Location = new Point(483, 28);
             smartButton7.Name = "smartButton7";
-            smartButton7.Size = new Size(133, 44);
-            smartButton7.TabIndex = 49;
+            smartButton7.Size = new Size(133, 34);
+            smartButton7.TabIndex = 56;
             smartButton7.Text = "Edit Test Case";
             smartButton7.UseVisualStyleBackColor = false;
             // 
@@ -616,51 +660,47 @@
             smartButton6.FlatStyle = FlatStyle.Flat;
             smartButton6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton6.ForeColor = Color.White;
-            smartButton6.Location = new Point(610, 19);
+            smartButton6.Location = new Point(622, 28);
             smartButton6.Name = "smartButton6";
-            smartButton6.Size = new Size(133, 44);
-            smartButton6.TabIndex = 48;
+            smartButton6.Size = new Size(133, 34);
+            smartButton6.TabIndex = 55;
             smartButton6.Text = "Delete Test Case";
             smartButton6.UseVisualStyleBackColor = false;
             // 
-            // smartButton5
+            // btn_AddTestCase
             // 
-            smartButton5.BackColor = Color.SlateGray;
-            smartButton5.BackgroundColor = Color.SlateGray;
-            smartButton5.BorderRadius = 10;
-            smartButton5.FlatAppearance.BorderSize = 0;
-            smartButton5.FlatStyle = FlatStyle.Flat;
-            smartButton5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton5.ForeColor = Color.White;
-            smartButton5.Location = new Point(332, 19);
-            smartButton5.Name = "smartButton5";
-            smartButton5.Size = new Size(133, 44);
-            smartButton5.TabIndex = 47;
-            smartButton5.Text = "Add Test Case";
-            smartButton5.UseVisualStyleBackColor = false;
+            btn_AddTestCase.BackColor = Color.SlateGray;
+            btn_AddTestCase.BackgroundColor = Color.SlateGray;
+            btn_AddTestCase.BorderRadius = 10;
+            btn_AddTestCase.FlatAppearance.BorderSize = 0;
+            btn_AddTestCase.FlatStyle = FlatStyle.Flat;
+            btn_AddTestCase.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_AddTestCase.ForeColor = Color.White;
+            btn_AddTestCase.Location = new Point(344, 28);
+            btn_AddTestCase.Name = "btn_AddTestCase";
+            btn_AddTestCase.Size = new Size(133, 34);
+            btn_AddTestCase.TabIndex = 54;
+            btn_AddTestCase.Text = "Add Test Case";
+            btn_AddTestCase.UseVisualStyleBackColor = false;
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.FromArgb(13, 13, 13);
-            label13.Location = new Point(24, 22);
+            label13.Location = new Point(36, 31);
             label13.Name = "label13";
             label13.Size = new Size(120, 31);
-            label13.TabIndex = 21;
+            label13.TabIndex = 53;
             label13.Text = "Test Cases";
             // 
-            // TempExerciseManage2
+            // TempExerciseManage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            Controls.Add(customCard6);
-            Controls.Add(customCard5);
-            Controls.Add(smartButton3);
-            Controls.Add(smartButton2);
-            Controls.Add(smartButton1);
-            Controls.Add(customCard4);
+            Controls.Add(tabControl1);
+            Controls.Add(btn_AddNewExercise);
             Controls.Add(customCard3);
             Controls.Add(customCard2);
             Controls.Add(customCard1);
@@ -668,20 +708,23 @@
             Controls.Add(label12);
             Controls.Add(label5);
             Controls.Add(label3);
-            Name = "TempExerciseManage2";
-            Size = new Size(1362, 1411);
+            DoubleBuffered = true;
+            Name = "TempExerciseManage";
+            Size = new Size(1362, 943);
+            Load += TempExerciseManage_Load;
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
             customCard3.ResumeLayout(false);
             customCard3.PerformLayout();
-            customCard4.ResumeLayout(false);
-            customCard4.PerformLayout();
-            customCard5.ResumeLayout(false);
-            customCard5.PerformLayout();
-            customCard6.ResumeLayout(false);
-            customCard6.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            tabPage3.PerformLayout();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
             customCard9.ResumeLayout(false);
             customCard9.PerformLayout();
             customCard8.ResumeLayout(false);
@@ -707,37 +750,39 @@
         private GeneralComponents.CustomCard customCard3;
         private Label label6;
         private Label label7;
-        private GeneralComponents.CustomCard customCard4;
-        private CustomTextBox customTextBox3;
+        private GeneralComponents.SmartButton btn_AddNewExercise;
+        private TabControl tabControl1;
+        private TabPage tabPage3;
+        private TabPage tabPage4;
+        private CustomTextBox txtbox_ExercisePoints;
         private Label label10;
-        private CustomTextBox customTextBox2;
+        private CustomTextBox txtbox_ExerciseSubject;
         private Label label8;
-        private CustomTextBox customTextBox1;
+        private CustomTextBox txtbox_ExerciseName;
         private Label label9;
-        private GeneralComponents.SmartButton smartButton1;
-        private GeneralComponents.SmartButton smartButton2;
-        private GeneralComponents.SmartButton smartButton3;
-        private GeneralComponents.CustomCard customCard5;
-        private GeneralComponents.SmartButton smartButton4;
         private CustomTextBox customTextBox4;
         private Label label11;
-        private GeneralComponents.CustomCard customCard6;
-        private GeneralComponents.SmartButton smartButton5;
-        private Label label13;
-        private GeneralComponents.CustomCard customCard8;
-        private Label label19;
-        private Label label16;
-        private GeneralComponents.CustomCard customCard7;
-        private Label label15;
-        private Label label14;
-        private GeneralComponents.SmartButton smartButton7;
-        private GeneralComponents.SmartButton smartButton6;
-        private Label label25;
+        private TabPage tabPage1;
         private GeneralComponents.CustomCard customCard9;
         private Label label24;
         private Label label20;
         private Label label21;
+        private GeneralComponents.CustomCard customCard8;
         private Label label23;
+        private Label label19;
+        private Label label16;
+        private GeneralComponents.CustomCard customCard7;
         private Label label22;
+        private Label label15;
+        private Label label14;
+        private GeneralComponents.SmartButton smartButton7;
+        private GeneralComponents.SmartButton smartButton6;
+        private GeneralComponents.SmartButton btn_AddTestCase;
+        private Label label13;
+        private CustomTextBox txtbox_ExerciseInstruction;
+        private Label label25;
+        private GeneralComponents.SmartButton btn_EditExerciseDetails;
+        private GeneralComponents.SmartButton smartButton2;
+        private GeneralComponents.SmartButton smartButton1;
     }
 }
