@@ -1,10 +1,12 @@
-﻿using SmartCodeLab.Models;
+﻿using FastColoredTextBoxNS;
+using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +17,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         protected string filePath;
         protected TaskModel _task;
+        private readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
         private System.Threading.Timer _debounceTimer;
         public StudentCodingProgress StudentProgress { get; }
         public CodeEditorBase(string filePath, TaskModel task)
@@ -53,9 +56,40 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
         }
 
-        public void SaveCode(string sourceCode)
+        public void SaveCode(string sourceCode, int maxRetries = 5, int retryDelayMs = 100)
         {
-            File.WriteAllText(filePath, sourceCode);
+            int attempts = 0;
+
+            while (attempts < maxRetries)
+            {
+                try
+                {
+                    File.WriteAllText(filePath, sourceCode);
+                    return; // Success - exit method
+                }
+                catch (IOException ex) when (IsFileLocked(ex))
+                {
+                    attempts++;
+                    if (attempts >= maxRetries)
+                    {
+                        throw new IOException($"Failed to save file after {maxRetries} attempts. File is still in use.", ex);
+                    }
+
+                    Thread.Sleep(retryDelayMs);
+                    retryDelayMs *= 2; // Exponential backoff
+                }
+                catch (Exception ex)
+                {
+                    throw new IOException($"Error saving file: {ex.Message}", ex);
+                }
+            }
+        }
+
+        private bool IsFileLocked(Exception exception)
+        {
+            int hr = Marshal.GetHRForException(exception) & ((1 << 16) - 1);
+            return exception is IOException &&
+                   (hr == 32 || hr == 33); // ERROR_SHARING_VIOLATION or ERROR_LOCK_VIOLATION
         }
         public virtual void CompileCode() { }
 
@@ -67,6 +101,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {}
 
         public virtual void RunLinting() { }
+
+        protected void HighlightError(int errorLine)
+        {
+            this.Invoke((Action)(() =>
+            {
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(redWavy);
+            }));
+        }
+
+        protected void NoError()
+        {
+            srcCode.Range.ClearStyle(StyleIndex.All);
+        }
 
         private void srcCode_KeyUp(object sender, KeyEventArgs e)
         {

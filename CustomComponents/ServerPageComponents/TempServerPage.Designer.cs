@@ -36,8 +36,8 @@
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label14 = new Label();
-            label13 = new Label();
-            label12 = new Label();
+            ipaddress = new Label();
+            studentName = new Label();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label5 = new Label();
             label3 = new Label();
@@ -128,8 +128,8 @@
             customCard6.Controls.Add(smartButton3);
             customCard6.Controls.Add(smartButton2);
             customCard6.Controls.Add(customCard7);
-            customCard6.Controls.Add(label13);
-            customCard6.Controls.Add(label12);
+            customCard6.Controls.Add(ipaddress);
+            customCard6.Controls.Add(studentName);
             customCard6.Location = new Point(392, 137);
             customCard6.Name = "customCard6";
             customCard6.Size = new Size(914, 98);
@@ -190,27 +190,27 @@
             label14.TabIndex = 13;
             label14.Text = "Activite - Coding";
             // 
-            // label13
+            // ipaddress
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label13.ForeColor = Color.Gray;
-            label13.Location = new Point(28, 48);
-            label13.Name = "label13";
-            label13.Size = new Size(317, 25);
-            label13.TabIndex = 8;
-            label13.Text = "IT2024001 | LAB-PC-1 | 192.168.1.101 ";
+            ipaddress.AutoSize = true;
+            ipaddress.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ipaddress.ForeColor = Color.Gray;
+            ipaddress.Location = new Point(28, 48);
+            ipaddress.Name = "ipaddress";
+            ipaddress.Size = new Size(317, 25);
+            ipaddress.TabIndex = 8;
+            ipaddress.Text = "IT2024001 | LAB-PC-1 | 192.168.1.101 ";
             // 
-            // label12
+            // studentName
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.ForeColor = Color.FromArgb(13, 13, 13);
-            label12.Location = new Point(28, 14);
-            label12.Name = "label12";
-            label12.Size = new Size(201, 28);
-            label12.TabIndex = 11;
-            label12.Text = "Jimmuel Sanggayan";
+            studentName.AutoSize = true;
+            studentName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            studentName.ForeColor = Color.FromArgb(13, 13, 13);
+            studentName.Location = new Point(28, 14);
+            studentName.Name = "studentName";
+            studentName.Size = new Size(201, 28);
+            studentName.TabIndex = 11;
+            studentName.Text = "Jimmuel Sanggayan";
             // 
             // smartButton1
             // 
@@ -607,6 +607,10 @@
             // 
             // memberContainer
             // 
+            memberContainer.BackColor = Color.White;
+            memberContainer.BorderColor = Color.Gray;
+            memberContainer.BorderRadius = 20;
+            memberContainer.BorderSize = 0;
             memberContainer.Location = new Point(71, 137);
             memberContainer.Name = "memberContainer";
             memberContainer.Size = new Size(315, 687);
@@ -668,8 +672,8 @@
         private GeneralComponents.SmartButton smartButton2;
         private GeneralComponents.CustomCard customCard7;
         private Label label14;
-        private Label label13;
-        private Label label12;
+        private Label ipaddress;
+        private Label studentName;
         private GeneralComponents.SmartButton smartButton1;
         private Label label5;
         private Label label3;

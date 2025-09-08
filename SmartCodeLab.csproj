@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FCTB" Version="2.16.24" />
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
     <PackageReference Include="protobuf-net" Version="3.2.56" />
   </ItemGroup>

@@ -88,6 +88,15 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             flowLayoutPanel1.Controls.Add(new FIleVisualDisplay(filePath, this));
         }
 
+        public string FilePath()
+        {
+            foreach (FIleVisualDisplay control in flowLayoutPanel1.Controls)
+            {
+                return control._filepath;
+            }
+            return "";
+        }
+
         // planning to merge this with the addFile method by utilizing boolean flags
         public void addFile(string fileName, string fileContent)
         {

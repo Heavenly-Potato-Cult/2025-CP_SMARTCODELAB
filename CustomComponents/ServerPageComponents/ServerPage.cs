@@ -100,7 +100,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                             {
                                 if (!currentStudents.Contains(obj._userProfile._studentName)) 
                                 {
-                                    _ = Task.Run(() => userIcons.Add(networkStream, serverMemberContainer1.AddUser(obj._userProfile._studentName, networkStream)));
+                                    //_ = Task.Run(() => userIcons.Add(networkStream, serverMemberContainer1.AddUser(obj._userProfile._studentName, networkStream, )));
 
                                     currentStudents.Add(obj._userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
