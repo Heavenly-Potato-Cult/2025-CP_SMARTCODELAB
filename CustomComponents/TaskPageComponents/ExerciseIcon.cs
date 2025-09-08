@@ -25,6 +25,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             this.setFields = setFields;
             this.task = task;
 
+
             taskName.Click += GotFocus;
             subject.Click += GotFocus;
             this.Click += GotFocus;
@@ -38,6 +39,11 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             this.Invoke(new Action(() => this.BackColor = Color.FromArgb(240, 247, 255)));
             setFields?.Invoke(task);
             changeFocus?.Invoke(this);
+        }
+
+        public void ClickMe()
+        {
+            this.OnClick(EventArgs.Empty);
         }
 
         public void LostFocus()

@@ -51,6 +51,11 @@ namespace SmartCodeLab.Models
         public string filePath { get; set; }
         public TaskModel() { }
 
+        public TaskModel(string taskName) 
+        {
+            _taskName = taskName;
+        }
+
         public TaskModel(string taskName, string instructions, string lang, KeyValuePair<string, string> referenceFile, List<KeyValuePair<string,string>> externalResources, List<KeyValuePair<string, string>> testCases)
         {
             _taskName = taskName;
