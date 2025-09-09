@@ -27,12 +27,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private TcpListener _server;
         private Dictionary<NetworkStream, UserIcons> userIcons = new Dictionary<NetworkStream, UserIcons>();
 
+        //student ID as the key
+        Dictionary<string, UserProfile> expectedUsers;
         private readonly List<string> expectedStudentNames = new List<string>() { "slimfordy", "stagnant potato" };
         private List<string> currentStudents = new List<string>();
-        public TempServerPage(TaskModel task)
+        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users)
         {
             InitializeComponent();
             currentTask = task;
+            expectedUsers = users;
             _server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1901);
 
             // Start the server in the background task
@@ -100,23 +103,31 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             await networkStream.FlushAsync();
                             break;
                         case MessageType.UserProfile:
-                            if (obj._userProfile != null && expectedStudentNames.Contains(obj._userProfile._studentName))
+                            if (obj._userProfile == null)
+                                break;
+                            UserProfile profile = obj._userProfile;
+                            bool didLogIn = false;
+                            string errorMsg = "We can't find an account with that Student ID";
+                            if (expectedUsers.ContainsKey(profile._studentId))
                             {
-                                if (!currentStudents.Contains(obj._userProfile._studentName))
+                                UserProfile actualProfile = expectedUsers[profile._studentId];
+                                if (!actualProfile._password.Equals(profile._password))
+                                    errorMsg = "Wrong Password";
+                                else if (currentStudents.Contains(profile._studentName))
+                                    errorMsg = "This student is already logged in";
+                                else
                                 {
-                                    _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(obj._userProfile, networkStream,studentName,ipaddress)));
+                                    _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(actualProfile, networkStream, studentName, ipaddress)));
 
                                     currentStudents.Add(obj._userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                         new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128);
+                                    didLogIn = true;
                                 }
-                                else
-                                    Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                        new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage("This student is already logged in").Build(), PrefixStyle.Base128);
                             }
-                            else
+                            if(!didLogIn)
                                 Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                    new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage("We can't find an account with that username and password").Build(), PrefixStyle.Base128);
+                                    new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
                             break;
                         case MessageType.StudentProgress:
@@ -143,9 +154,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     //error handling will happen if further development shows some possible issues
                 }
             }
-            Invoke(new Action(() => {
-                userIcons[networkStream].Dispose();
-            }));
+                Invoke(new Action(() =>
+                {
+            try
+            {
+                    userIcons[networkStream].Dispose();
+            }
+            catch (KeyNotFoundException ex) { }
+                }));
             userIcons.Remove(networkStream);
         }
     }

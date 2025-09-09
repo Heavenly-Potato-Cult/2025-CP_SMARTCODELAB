@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -213,14 +214,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void SetTestCases(Dictionary<string,string> TestCases)
         {
-            foreach (UserControl item in testContainer.Controls)
-                testContainer.Controls.Remove(item);
+            Task.Run(() => {
+                this.Invoke((Action)(() => {
+                    testContainer.Controls.Clear();
 
-            if (TestCases == null || TestCases.Count == 0)
-                return;
+                    if (TestCases == null || TestCases.Count == 0)
+                        return;
 
-            foreach(var kv in TestCases)
-                testContainer.Controls.Add(new TestCase(kv));
+                    foreach (var kv in TestCases)
+                        testContainer.Controls.Add(new TestCase(kv));
+                }));
+            });
         }
     }
 }

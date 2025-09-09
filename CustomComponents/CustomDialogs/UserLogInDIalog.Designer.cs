@@ -37,6 +37,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton3 = new SmartButton();
             label1 = new Label();
             label2 = new Label();
+            label3 = new Label();
+            password = new CustomTextBox();
             SuspendLayout();
             // 
             // userName
@@ -49,6 +51,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             userName.Margin = new Padding(3, 4, 3, 4);
             userName.Name = "userName";
             userName.Padding = new Padding(10, 7, 10, 7);
+            userName.ScrollBars = ScrollBars.None;
             userName.Size = new Size(360, 41);
             userName.TabIndex = 0;
             userName.UnderlinedStyle = true;
@@ -59,9 +62,10 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             folderLoc.BorderColor = Color.White;
             folderLoc.BorderFocusColor = Color.MediumSlateBlue;
             folderLoc.ForeColor = Color.FromArgb(179, 179, 179);
-            folderLoc.Location = new Point(120, 193);
+            folderLoc.Location = new Point(120, 270);
             folderLoc.Name = "folderLoc";
             folderLoc.Padding = new Padding(10, 7, 10, 7);
+            folderLoc.ScrollBars = ScrollBars.None;
             folderLoc.Size = new Size(255, 41);
             folderLoc.TabIndex = 1;
             folderLoc.UnderlinedStyle = true;
@@ -75,7 +79,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(381, 193);
+            smartButton1.Location = new Point(381, 270);
             smartButton1.Name = "smartButton1";
             smartButton1.Size = new Size(99, 43);
             smartButton1.TabIndex = 2;
@@ -92,7 +96,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(313, 304);
+            smartButton2.Location = new Point(313, 381);
             smartButton2.Name = "smartButton2";
             smartButton2.Size = new Size(167, 51);
             smartButton2.TabIndex = 3;
@@ -110,7 +114,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton3.FlatStyle = FlatStyle.Flat;
             smartButton3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             smartButton3.ForeColor = Color.White;
-            smartButton3.Location = new Point(120, 304);
+            smartButton3.Location = new Point(120, 381);
             smartButton3.Name = "smartButton3";
             smartButton3.Size = new Size(166, 51);
             smartButton3.TabIndex = 4;
@@ -126,9 +130,9 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             label1.ForeColor = Color.FromArgb(242, 242, 242);
             label1.Location = new Point(120, 53);
             label1.Name = "label1";
-            label1.Size = new Size(104, 28);
+            label1.Size = new Size(109, 28);
             label1.TabIndex = 30;
-            label1.Text = "Username";
+            label1.Text = "Student ID";
             // 
             // label2
             // 
@@ -136,18 +140,50 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(242, 242, 242);
-            label2.Location = new Point(120, 163);
+            label2.Location = new Point(120, 240);
             label2.Name = "label2";
             label2.Size = new Size(152, 28);
             label2.TabIndex = 31;
             label2.Text = "Folder Location";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(242, 242, 242);
+            label3.Location = new Point(120, 152);
+            label3.Name = "label3";
+            label3.Size = new Size(97, 28);
+            label3.TabIndex = 33;
+            label3.Text = "Password";
+            //label3.Click += this.label3_Click;
+            // 
+            // password
+            // 
+            password.BackColor = Color.FromArgb(13, 13, 13);
+            password.BorderColor = Color.White;
+            password.BorderFocusColor = Color.MediumSlateBlue;
+            password.ForeColor = Color.DimGray;
+            password.Location = new Point(120, 184);
+            password.Margin = new Padding(3, 4, 3, 4);
+            password.Name = "password";
+            password.Padding = new Padding(10, 7, 10, 7);
+            password.PasswordChar = true;
+            password.ScrollBars = ScrollBars.None;
+            password.Size = new Size(360, 41);
+            password.TabIndex = 32;
+            password.UnderlinedStyle = true;
+            password._TextChanged += customTextBox1__TextChanged;
             // 
             // UserLogInDIalog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 10, 10);
-            ClientSize = new Size(600, 407);
+            ClientSize = new Size(600, 489);
+            Controls.Add(label3);
+            Controls.Add(password);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(smartButton3);
@@ -175,5 +211,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         private SmartButton smartButton3;
         private Label label1;
         private Label label2;
+        private Label label3;
+        private CustomTextBox password;
     }
 }

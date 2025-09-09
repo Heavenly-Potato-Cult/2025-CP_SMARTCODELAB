@@ -47,7 +47,7 @@ namespace SmartCodeLab.CustomComponents.MainPages
 
             SystemSingleton.Instance.page1.Controls.Clear();
             SystemSingleton.Instance.page1.AutoScroll = true;
-            SystemSingleton.Instance.page1.Controls.Add(new TempServerPage(taskModel));
+            SystemSingleton.Instance.page1.Controls.Add(new TempServerPage(taskModel, users));
         }
 
         //lets assume that the csv file contains studentId, studentName, and password (for now)
@@ -67,8 +67,8 @@ namespace SmartCodeLab.CustomComponents.MainPages
                         string[] fields = line.Split(',');
                         string userId = fields[0];
                         string userName = fields[1];
-                        string passwo = fields[2];
-                        users.Add(userId, new UserProfile());
+                        string password = fields[2];
+                        users.Add(userId, new UserProfile(userName,userId,password));
                     }
                     notFirstLine = true;
                 }

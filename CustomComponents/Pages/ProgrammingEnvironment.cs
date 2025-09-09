@@ -58,7 +58,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private async Task ProgressSender()
         {
             var message = new ServerMessage.Builder(MessageType.StudentProgress)
-                .StudentProgress(_editor.StudentProgress)
+                .StudentProgress(_editor.GetProgress())
                 .Build();
             Serializer.SerializeWithLengthPrefix(_stream, message, PrefixStyle.Base128);
             await _stream.FlushAsync();
@@ -98,7 +98,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void runToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Run action triggered");
+            _editor.RunCode();
         }
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)

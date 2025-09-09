@@ -329,7 +329,7 @@ namespace SmartCodeLab
             btnSideMenu_FileManagement.Padding = new Padding(10, 0, 0, 0);
             btnSideMenu_FileManagement.Size = new Size(221, 60);
             btnSideMenu_FileManagement.TabIndex = 3;
-            btnSideMenu_FileManagement.Text = "   File Management";
+            btnSideMenu_FileManagement.Text = "   Exercise Manager";
             btnSideMenu_FileManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_FileManagement.UseVisualStyleBackColor = false;
             btnSideMenu_FileManagement.Click += button2_Click;
@@ -619,6 +619,7 @@ namespace SmartCodeLab
             // 
             // tempCodeEvaluation1
             // 
+            tempCodeEvaluation1.AutoScroll = true;
             tempCodeEvaluation1.Dock = DockStyle.Fill;
             tempCodeEvaluation1.Location = new Point(0, 0);
             tempCodeEvaluation1.Name = "tempCodeEvaluation1";

@@ -17,7 +17,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             InitializeComponent();
         }
 
-        public TestCase(KeyValuePair<string,string> test)
+        public TestCase(KeyValuePair<string, string> test)
         {
             InitializeComponent();
             input.Text = test.Key;
@@ -27,6 +27,11 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
         public KeyValuePair<string, string> Value()
         {
             return new KeyValuePair<string, string>(input.Text, output.Text);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

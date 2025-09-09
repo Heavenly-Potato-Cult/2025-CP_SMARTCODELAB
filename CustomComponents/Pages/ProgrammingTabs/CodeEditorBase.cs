@@ -19,7 +19,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected TaskModel _task;
         private readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
         private System.Threading.Timer _debounceTimer;
-        public StudentCodingProgress StudentProgress { get; }
+        public StudentCodingProgress StudentProgress {get;}
         public CodeEditorBase(string filePath, TaskModel task)
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 if(e.KeyCode == Keys.S && e.Control)
                     SaveCode(srcCode.Text);
-                else if(e.KeyCode == Keys.R && e.Control)
+                else if(e.KeyCode == Keys.F5)
                     RunCode();
                 else if(e.KeyCode == Keys.OemSemicolon || e.KeyCode == Keys.Enter)
                 {
@@ -114,6 +114,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected void NoError()
         {
             srcCode.Range.ClearStyle(StyleIndex.All);
+        }
+
+        public StudentCodingProgress GetProgress()
+        {
+            return new StudentCodingProgress(srcCode.Text);
         }
 
         private void srcCode_KeyUp(object sender, KeyEventArgs e)

@@ -51,13 +51,13 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         async private void smartButton2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(userName.Texts) || string.IsNullOrEmpty(folderLoc.Texts))
+            if (string.IsNullOrEmpty(userName.Texts) || string.IsNullOrEmpty(folderLoc.Texts) || string.IsNullOrEmpty(password.Texts))
             {
                 MessageBox.Show("Please fill in all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-
+            //expects a reply
             _ = Task.Run(() =>
             {
                 while (true)
@@ -80,11 +80,16 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             await Task.Run(() =>
             {
                 Serializer.SerializeWithLengthPrefix<ServerMessage>(_stream,
-                    new ServerMessage.Builder(MessageType.UserProfile).UserProfile(new UserProfile(userName.Texts)).Build(),
+                    new ServerMessage.Builder(MessageType.UserProfile).UserProfile(new UserProfile(userName.Texts, password.Texts)).Build(),
                     PrefixStyle.Base128);
             });
 
             await _stream.FlushAsync();
+        }
+
+        private void customTextBox1__TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

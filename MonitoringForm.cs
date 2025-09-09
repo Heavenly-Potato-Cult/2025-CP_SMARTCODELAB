@@ -89,7 +89,7 @@ namespace SmartCodeLab
 
         private void button2_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 2;
+            tabControl1.SelectedIndex = 7;
 
 
             //change backcolor
