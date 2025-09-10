@@ -32,7 +32,6 @@
             menuStrip1 = new MenuStrip();
             runToolStripMenuItem = new ToolStripMenuItem();
             testToolStripMenuItem = new ToolStripMenuItem();
-            instructionToolStripMenuItem = new ToolStripMenuItem();
             taskDescription = new TaskDescription();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -49,7 +48,7 @@
             // 
             menuStrip1.BackColor = SystemColors.ControlDark;
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { runToolStripMenuItem, testToolStripMenuItem, instructionToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { runToolStripMenuItem, testToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Padding = new Padding(7, 3, 0, 3);
@@ -70,13 +69,6 @@
             testToolStripMenuItem.Size = new Size(49, 24);
             testToolStripMenuItem.Text = "Test";
             testToolStripMenuItem.Click += testToolStripMenuItem_Click;
-            // 
-            // instructionToolStripMenuItem
-            // 
-            instructionToolStripMenuItem.Name = "instructionToolStripMenuItem";
-            instructionToolStripMenuItem.Size = new Size(72, 24);
-            instructionToolStripMenuItem.Text = "Lint Me";
-            instructionToolStripMenuItem.Click += instructionToolStripMenuItem_Click;
             // 
             // taskDescription
             // 
@@ -107,7 +99,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem runToolStripMenuItem;
         private ToolStripMenuItem testToolStripMenuItem;
-        private ToolStripMenuItem instructionToolStripMenuItem;
         private TaskDescription taskDescription;
     }
 }

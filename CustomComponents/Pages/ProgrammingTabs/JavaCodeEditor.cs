@@ -96,13 +96,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 error => errorLine += error,
                 null);
 
-            if(errorLine != "")
+            if (errorLine != "")
             {
                 string[] lines = errorLine.Split(":");
                 int lineIndex = int.Parse(lines[1]) - 1;
-                HighlightError(lineIndex);
-            }else
-                srcCode.Range.ClearStyle(StyleIndex.All);
+                HighlightError(lineIndex, lines[3]);
+            }
+            else
+                NoError();
         }
 
         public async override void RunTest()

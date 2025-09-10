@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempServerPage));
             customCard8 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            studentCode = new TextBox();
+            studentCode = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             label15 = new Label();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -73,6 +75,7 @@
             label33 = new Label();
             memberContainer = new ServerMemberContainer();
             customCard8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             customCard6.SuspendLayout();
             customCard7.SuspendLayout();
             customCard1.SuspendLayout();
@@ -89,7 +92,7 @@
             // 
             // customCard8
             // 
-            customCard8.BackColor = Color.White;
+            customCard8.BackColor = Color.WhiteSmoke;
             customCard8.BorderColor = Color.Gray;
             customCard8.BorderRadius = 10;
             customCard8.BorderSize = 1;
@@ -102,11 +105,35 @@
             // 
             // studentCode
             // 
-            studentCode.Location = new Point(32, 88);
-            studentCode.Multiline = true;
+            studentCode.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            studentCode.AutoScrollMinSize = new Size(31, 18);
+            studentCode.BackBrush = null;
+            studentCode.CharHeight = 18;
+            studentCode.CharWidth = 10;
+            studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
+            studentCode.IsReplaceMode = false;
+            studentCode.Location = new Point(28, 53);
             studentCode.Name = "studentCode";
-            studentCode.Size = new Size(853, 457);
+            studentCode.Paddings = new Padding(0);
+            studentCode.ReadOnly = true;
+            studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
+            studentCode.Size = new Size(857, 501);
             studentCode.TabIndex = 15;
+            studentCode.Zoom = 100;
             // 
             // label15
             // 
@@ -636,6 +663,7 @@
             Size = new Size(1362, 1317);
             customCard8.ResumeLayout(false);
             customCard8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();
             customCard6.ResumeLayout(false);
             customCard6.PerformLayout();
             customCard7.ResumeLayout(false);
@@ -665,7 +693,6 @@
         #endregion
 
         private GeneralComponents.CustomCard customCard8;
-        private TextBox studentCode;
         private Label label15;
         private GeneralComponents.CustomCard customCard6;
         private GeneralComponents.SmartButton smartButton3;
@@ -708,5 +735,6 @@
         private Label label25;
         private Label label26;
         private ServerMemberContainer memberContainer;
+        private Pages.ProgrammingTabs.CodeEditor studentCode;
     }
 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -15,34 +16,50 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public partial class CodeEditorBase : UserControl
     {
+        ToolTip toolTip;
         protected string filePath;
         protected TaskModel _task;
         private readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
         private System.Threading.Timer _debounceTimer;
-        public StudentCodingProgress StudentProgress {get;}
+        public StudentCodingProgress StudentProgress { get; }
+
+        private string errorMsg = "";
+        private int? errorLine = null;
+
         public CodeEditorBase(string filePath, TaskModel task)
         {
             InitializeComponent();
+            toolTip = new ToolTip();
+
+            srcCode.ToolTipNeeded += (s, e) =>
+            {
+                if (errorLine != null && e.Place.iLine == errorLine)
+                {
+                    e.ToolTipText = errorMsg;
+                }
+            };
+
             _task = task;
             StudentProgress = new StudentCodingProgress();
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
+            RunLinting();// i check agad ang syntax ng code
             srcCode.KeyDown += (s, e) =>
             {
-                if(e.KeyCode == Keys.S && e.Control)
+                if (e.KeyCode == Keys.S && e.Control)
                     SaveCode(srcCode.Text);
-                else if(e.KeyCode == Keys.F5)
+                else if (e.KeyCode == Keys.F5)
                     RunCode();
-                else if(e.KeyCode == Keys.OemSemicolon || e.KeyCode == Keys.Enter)
-                {
-                    _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+                //else if (e.KeyCode == Keys.OemSemicolon || e.KeyCode == Keys.Enter)
+                //{
+                //    _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
-                    // Start a new timer
-                    _debounceTimer = new System.Threading.Timer(_ =>
-                    {
-                        RunLinting();
-                    }, null, 0, Timeout.Infinite);
-                }
+                //    // Start a new timer
+                //    _debounceTimer = new System.Threading.Timer(_ =>
+                //    {
+                //        RunLinting();
+                //    }, null, 0, Timeout.Infinite);
+                //}
                 else
                 {
                     _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -93,26 +110,29 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         }
         public virtual void CompileCode() { }
 
-        public virtual void RunCode() {
+        public virtual void RunCode()
+        {
             MessageBox.Show("Run code");
         }
 
         public virtual void RunTest()
-        {}
+        { }
 
         public virtual void RunLinting() { }
 
-        protected void HighlightError(int errorLine)
+        protected void HighlightError(int errorLine, string errorMsg)
         {
-            this.Invoke((Action)(() =>
-            {
                 var lineRange = srcCode.GetLine(errorLine);
                 lineRange.SetStyle(redWavy);
-            }));
+                this.errorLine = errorLine;
+
+                this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
         }
 
         protected void NoError()
         {
+            errorLine = null;
+            errorMsg = "";
             srcCode.Range.ClearStyle(StyleIndex.All);
         }
 
@@ -123,7 +143,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private void srcCode_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.S && e.Control) 
+            if (e.KeyCode == Keys.S && e.Control)
             {
                 File.WriteAllText(filePath, srcCode.Text);
                 MessageBox.Show("File saved");
