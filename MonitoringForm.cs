@@ -165,5 +165,11 @@ namespace SmartCodeLab
             tabControl1.SelectedIndex = 8;
 
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            TempIDE tempIDE = new TempIDE();
+            tempIDE.Show();
+        }
     }
 }

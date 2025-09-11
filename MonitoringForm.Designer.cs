@@ -66,6 +66,7 @@ namespace SmartCodeLab
             tempExerciseManage21 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             tabPage9 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
+            button8 = new Button();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -149,6 +150,7 @@ namespace SmartCodeLab
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(13, 13, 13);
+            sideMenuPanel.Controls.Add(button8);
             sideMenuPanel.Controls.Add(button7);
             sideMenuPanel.Controls.Add(button6);
             sideMenuPanel.Controls.Add(button5);
@@ -626,6 +628,27 @@ namespace SmartCodeLab
             tempCodeEvaluation1.Size = new Size(1362, 873);
             tempCodeEvaluation1.TabIndex = 0;
             // 
+            // button8
+            // 
+            button8.BackColor = Color.FromArgb(13, 13, 13);
+            button8.Cursor = Cursors.Hand;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button8.ForeColor = Color.White;
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.ImageAlign = ContentAlignment.MiddleLeft;
+            button8.Location = new Point(18, 470);
+            button8.Margin = new Padding(3, 4, 3, 4);
+            button8.Name = "button8";
+            button8.Padding = new Padding(10, 0, 0, 0);
+            button8.Size = new Size(221, 60);
+            button8.TabIndex = 11;
+            button8.Text = "   StudentIDE";
+            button8.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
+            // 
             // MonitoringForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -697,5 +720,6 @@ namespace SmartCodeLab
         private Button button7;
         private TabPage tabPage9;
         private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
+        private Button button8;
     }
 }
