@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempIDE));
             headerPanel = new Panel();
+            pictureBox8 = new PictureBox();
             label14 = new Label();
             label13 = new Label();
             pictureBox1 = new PictureBox();
@@ -89,8 +90,8 @@
             panel12 = new Panel();
             label21 = new Label();
             label11 = new Label();
-            pictureBox8 = new PictureBox();
             headerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
@@ -113,7 +114,6 @@
             panel8.SuspendLayout();
             panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             SuspendLayout();
             // 
             // headerPanel
@@ -132,6 +132,15 @@
             headerPanel.Size = new Size(1608, 80);
             headerPanel.TabIndex = 2;
             // 
+            // pictureBox8
+            // 
+            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
+            pictureBox8.Location = new Point(1564, 27);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(26, 26);
+            pictureBox8.TabIndex = 16;
+            pictureBox8.TabStop = false;
+            // 
             // label14
             // 
             label14.AutoSize = true;
@@ -148,11 +157,11 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.Gray;
-            label13.Location = new Point(1388, 27);
+            label13.Location = new Point(1265, 28);
             label13.Name = "label13";
-            label13.Size = new Size(170, 25);
+            label13.Size = new Size(281, 25);
             label13.TabIndex = 13;
-            label13.Text = "Jimmuel Sanggayan";
+            label13.Text = "Jimmuel Sanggayan | 2022-00842";
             // 
             // pictureBox1
             // 
@@ -500,7 +509,6 @@
             codeEditor1.CharWidth = 10;
             codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             codeEditor1.Dock = DockStyle.Fill;
-            codeEditor1.Font = new Font("Courier New", 9.75F);
             codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
             codeEditor1.IsReplaceMode = false;
             codeEditor1.Location = new Point(0, 56);
@@ -841,15 +849,6 @@
             label11.Size = new Size(0, 25);
             label11.TabIndex = 62;
             // 
-            // pictureBox8
-            // 
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(1564, 27);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(26, 26);
-            pictureBox8.TabIndex = 16;
-            pictureBox8.TabStop = false;
-            // 
             // TempIDE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -867,6 +866,7 @@
             Load += TempIDE_Load_1;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -897,7 +897,6 @@
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ResumeLayout(false);
         }
 
