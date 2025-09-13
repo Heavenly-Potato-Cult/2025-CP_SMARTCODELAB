@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+
+<module name="Checker">
+    <property name="fileExtensions" value="java"/>
+
+    <module name="TreeWalker">
+	<module name="UnusedImports"/>
+        <module name="UnusedLocalVariable">
+		<message key="unused.named.local.var" value="Wa man ni nagamit, tanggala nalang ni uy"/>
+	</module>
+        <module name="EmptyStatement">
+		<message key="empty.statement"
+             value="Sudli pud"/>
+	</module>
+	<module name="LocalVariableName">
+      		<property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/>
+    	</module>
+    </module>
+</module>

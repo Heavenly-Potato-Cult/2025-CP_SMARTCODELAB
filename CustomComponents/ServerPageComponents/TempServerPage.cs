@@ -1,6 +1,7 @@
 ﻿using ProtoBuf;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,10 +27,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private TaskModel currentTask { get; set; }
         private TcpListener _server;
         private Dictionary<NetworkStream, UserIcons> userIcons = new Dictionary<NetworkStream, UserIcons>();
+        private 
 
         //student ID as the key
         Dictionary<string, UserProfile> expectedUsers;
-        private readonly List<string> expectedStudentNames = new List<string>() { "slimfordy", "stagnant potato" };
         private List<string> currentStudents = new List<string>();
         public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users)
         {
@@ -38,6 +39,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             expectedUsers = users;
             _server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1901);
 
+            Task.Run(UdpServerInfoSender);
             // Start the server in the background task
             Task.Run(async () => await StartServerAsync());
         }
@@ -125,7 +127,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                                     didLogIn = true;
                                 }
                             }
-                            if(!didLogIn)
+                            if (!didLogIn)
                                 Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                     new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
@@ -154,15 +156,27 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     //error handling will happen if further development shows some possible issues
                 }
             }
-                Invoke(new Action(() =>
-                {
-            try
+            Invoke(new Action(() =>
             {
+                try
+                {
                     userIcons[networkStream].Dispose();
-            }
-            catch (KeyNotFoundException ex) { }
-                }));
+                }
+                catch (KeyNotFoundException ex) { }
+            }));
             userIcons.Remove(networkStream);
+        }
+
+        private async Task UdpServerInfoSender()
+        {
+            UdpClient udpServer = new UdpClient(new IPEndPoint(IPAddress.Parse(NetworkServices.GetIpv4()), 1902));
+
+            while (true)
+            {
+                UdpReceiveResult result = await udpServer.ReceiveAsync();
+                byte[] taskData = Encoding.UTF8.GetBytes(JsonFileService.GetObjectJsonText(currentTask));
+                udpServer.Send(taskData, taskData.Length, result.RemoteEndPoint);
+            }
         }
     }
 }

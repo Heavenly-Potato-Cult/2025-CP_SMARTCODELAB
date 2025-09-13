@@ -49,7 +49,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                     }, null, _debounceDelay, Timeout.Infinite);
                 }
             };
-
             customTabControl1.addTab(new TabPageModel(filePath, customTabControl1.getTabControl(), _editor, openedFiles, false));
 
             _ = StreamListener();

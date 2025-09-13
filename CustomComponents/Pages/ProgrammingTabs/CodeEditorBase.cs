@@ -20,22 +20,27 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected string filePath;
         protected TaskModel _task;
         private readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
+        private readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Yellow);
         private System.Threading.Timer _debounceTimer;
         public StudentCodingProgress StudentProgress { get; }
-
         private string errorMsg = "";
+        protected Dictionary<int, string> standardError;
         private int? errorLine = null;
 
         public CodeEditorBase(string filePath, TaskModel task)
         {
             InitializeComponent();
             toolTip = new ToolTip();
-
+            standardError = new Dictionary<int, string>();
             srcCode.ToolTipNeeded += (s, e) =>
             {
                 if (errorLine != null && e.Place.iLine == errorLine)
                 {
                     e.ToolTipText = errorMsg;
+                }
+                if(standardError.ContainsKey(e.Place.iLine))
+                {
+                    e.ToolTipText = standardError.GetValueOrDefault(e.Place.iLine,"No Error Found");
                 }
             };
 
@@ -119,6 +124,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         { }
 
         public virtual void RunLinting() { }
+        public virtual void CheckCodingStandards() { }
 
         protected void HighlightError(int errorLine, string errorMsg)
         {
@@ -127,6 +133,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 this.errorLine = errorLine;
 
                 this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
+        }
+
+        protected void HighLightStandardError(int errorLine, string msg)
+        {
+            var lineRange = srcCode.GetLine(errorLine);
+            lineRange.SetStyle(yellowWavy);
+            standardError.Add(errorLine, msg);
         }
 
         protected void NoError()

@@ -14,14 +14,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         private Process javaProcess;
         string latestOutput = "";
-        private bool isWaitingForInput = false;
-        private readonly string[] inputPrompts = {
-    "Enter", "Input", "Please enter", "Type", ">", ":",
-    "choice", "option", "select", "Press any key"
-};
+
+        private readonly string checkStylePath;
+        private readonly string configFile;
 
         public JavaCodeEditor(string filePath, TaskModel task) : base(filePath, task)
         {
+        var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            checkStylePath = Path.Combine(baseDirectory, "linters", "java", "checkstyle-11.0.1-all.jar");
+            configFile = Path.Combine(baseDirectory, "linters", "java", "simple_checks.xml");
             output.KeyDown += (s, e) =>
             {
                 if (e.KeyCode == Keys.Enter && javaProcess != null && !javaProcess.HasExited)
@@ -103,7 +104,32 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 HighlightError(lineIndex, lines[3]);
             }
             else
+            {
                 NoError();
+                CheckCodingStandards();
+            }
+        }
+
+        public async override void CheckCodingStandards()
+        {
+            standardError.Clear();
+            javaProcess = JavaProcess($"/c java -jar {checkStylePath} -c {configFile} {filePath}");
+            string errorLine = "";
+            await StartJavaProcessAsyncExit(
+                javaProcess,
+                outp => errorLine+=(outp+Environment.NewLine),
+                null,
+                null);
+            //Debug.WriteLine(errorLine.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, ""));
+            string[] errors = (errorLine.Replace("Starting audit..."+Environment.NewLine,"").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
+            foreach (string standardError in errors)
+            {
+                if (errors[errors.Length-1] != standardError) 
+                {
+                    string[] e = standardError.Split(':');
+                    HighLightStandardError(int.Parse(e[2]) - 1, e[4]);
+                }
+            }
         }
 
         public async override void RunTest()

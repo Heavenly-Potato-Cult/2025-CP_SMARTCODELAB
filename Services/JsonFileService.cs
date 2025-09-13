@@ -66,5 +66,10 @@ namespace SmartCodeLab.Services
                 WriteIndented = true // Makes the JSON human-readable
             });
         }
+
+        public static T GetObjectFromText<T>(string text)
+        {
+            return JsonSerializer.Deserialize<T>(text);
+        }
     }
 }

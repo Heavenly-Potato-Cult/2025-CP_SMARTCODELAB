@@ -4,6 +4,7 @@ using SmartCodeLab.CustomComponents.MainPages;
 using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -164,6 +165,26 @@ namespace SmartCodeLab
         {
             tabControl1.SelectedIndex = 8;
 
+        }
+
+        private async void smartButton1_Click(object sender, EventArgs e)
+        {
+            using (UdpClient udpClient = new UdpClient())
+            {
+                udpClient.EnableBroadcast = true;
+
+                IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Parse(NetworkServices.GetBroadCastAddress()), 1902);
+
+                byte[] message = Encoding.UTF8.GetBytes("Discover servers!");
+                await udpClient.SendAsync(message, message.Length, broadcastEP);
+                Console.WriteLine("Broadcast sent, waiting for reply...");
+
+                // Wait for response
+                UdpReceiveResult result = await udpClient.ReceiveAsync();
+                string reply = Encoding.UTF8.GetString(result.Buffer);
+                Debug.WriteLine($"Got reply: {reply} from {result.RemoteEndPoint}");
+
+            }
         }
     }
 }

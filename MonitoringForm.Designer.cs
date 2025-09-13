@@ -66,6 +66,7 @@ namespace SmartCodeLab
             tempExerciseManage21 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             tabPage9 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
+            smartButton1 = new SmartButton();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -149,6 +150,7 @@ namespace SmartCodeLab
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(13, 13, 13);
+            sideMenuPanel.Controls.Add(smartButton1);
             sideMenuPanel.Controls.Add(button7);
             sideMenuPanel.Controls.Add(button6);
             sideMenuPanel.Controls.Add(button5);
@@ -626,6 +628,21 @@ namespace SmartCodeLab
             tempCodeEvaluation1.Size = new Size(1362, 873);
             tempCodeEvaluation1.TabIndex = 0;
             // 
+            // smartButton1
+            // 
+            smartButton1.BackColor = Color.MediumSlateBlue;
+            smartButton1.BorderRadius = 20;
+            smartButton1.FlatAppearance.BorderSize = 0;
+            smartButton1.FlatStyle = FlatStyle.Flat;
+            smartButton1.ForeColor = Color.White;
+            smartButton1.Location = new Point(36, 418);
+            smartButton1.Name = "smartButton1";
+            smartButton1.Size = new Size(188, 50);
+            smartButton1.TabIndex = 11;
+            smartButton1.Text = "smartButton1";
+            smartButton1.UseVisualStyleBackColor = false;
+            smartButton1.Click += smartButton1_Click;
+            // 
             // MonitoringForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -697,5 +714,6 @@ namespace SmartCodeLab
         private Button button7;
         private TabPage tabPage9;
         private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
+        private SmartButton smartButton1;
     }
 }
