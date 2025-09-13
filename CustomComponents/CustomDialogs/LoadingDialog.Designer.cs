@@ -24,23 +24,24 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             label1 = new Label();
             loader = new Label();
             smartButton1 = new SmartButton();
+            serverContainer = new FlowLayoutPanel();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(62, 7);
+            label1.Location = new Point(71, 9);
             label1.Name = "label1";
-            label1.Size = new Size(146, 15);
+            label1.Size = new Size(187, 20);
             label1.TabIndex = 0;
             label1.Text = "Temporary Loading Dialog";
             // 
             // loader
             // 
             loader.AutoSize = true;
-            loader.Location = new Point(62, 35);
+            loader.Location = new Point(71, 47);
             loader.Name = "loader";
-            loader.Size = new Size(94, 15);
+            loader.Size = new Size(119, 20);
             loader.TabIndex = 1;
             loader.Text = "Searching Server";
             // 
@@ -53,24 +54,33 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(83, 60);
-            smartButton1.Margin = new Padding(3, 2, 3, 2);
+            smartButton1.Location = new Point(95, 80);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(126, 26);
+            smartButton1.Size = new Size(144, 35);
             smartButton1.TabIndex = 2;
             smartButton1.Text = "Cancel";
             smartButton1.UseVisualStyleBackColor = false;
             smartButton1.Click += smartButton1_Click;
             // 
+            // serverContainer
+            // 
+            serverContainer.AutoScroll = true;
+            serverContainer.FlowDirection = FlowDirection.TopDown;
+            serverContainer.Location = new Point(8, 121);
+            serverContainer.Name = "serverContainer";
+            serverContainer.Size = new Size(305, 332);
+            serverContainer.TabIndex = 3;
+            serverContainer.WrapContents = false;
+            // 
             // LoadingDialog
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(284, 88);
+            ClientSize = new Size(325, 465);
+            Controls.Add(serverContainer);
             Controls.Add(smartButton1);
             Controls.Add(loader);
             Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "LoadingDialog";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Current Loading Dialog";
@@ -83,5 +93,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         private Label label1;
         private Label loader;
         private SmartButton smartButton1;
+        private FlowLayoutPanel serverContainer;
     }
 }

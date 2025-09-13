@@ -54,13 +54,11 @@ namespace SmartCodeLab
 
             if (!SystemSingleton.Instance._loggedIn)
             {
-                var searchServer = new LoadingDialog();
+                TcpClient client = new TcpClient();
+                var searchServer = new LoadingDialog(client);
                 searchServer.ShowDialog();
-                TcpClient client = searchServer.client;
-                searchServer.Dispose();
                 if (client.Connected)
                 {
-                    searchServer.Dispose();
                     var userLogIn = new UserLogInDIalog(client);
                     if (userLogIn.ShowDialog() == DialogResult.OK)
                     {
@@ -75,6 +73,7 @@ namespace SmartCodeLab
                         userLogIn.Dispose();
                         return;
                     }
+                    searchServer.CloseMe();
                     userLogIn.Dispose();
                 }
                 else
@@ -183,7 +182,6 @@ namespace SmartCodeLab
                 UdpReceiveResult result = await udpClient.ReceiveAsync();
                 string reply = Encoding.UTF8.GetString(result.Buffer);
                 TaskModel task = JsonFileService.GetObjectFromText<TaskModel>(reply);
-                Debug.WriteLine($"Got reply: {task._taskName} from {result.RemoteEndPoint}");
 
             }
         }

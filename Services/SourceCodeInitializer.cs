@@ -41,6 +41,12 @@ namespace SmartCodeLab.Services
                             }
                         """.Replace("fileName",fileName);
                     break;
+                case LanguageSupported.Python:
+                    srcCode =
+                        """
+                            #pagsugod na dra ug code
+                        """;
+                    break;
             }
 
             string fileAbsolutePath = filePath + "\\" + fileName + extension[language];

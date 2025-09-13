@@ -37,21 +37,22 @@ namespace SmartCodeLab.CustomComponents.Pages
             description.AppendText("Test Cases\n");
 
             int itemNum = 1;
-            foreach(var item in task._testCases)
-            {
-                description.SelectionStart = description.TextLength;
-                description.SelectionFont = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
-                description.AppendText($"""
-                    Test Case {itemNum++}:
-                    Inputs:
-                        {item.Key}
+            if(task._testCases != null)
+                foreach(var item in task._testCases)
+                {
+                    description.SelectionStart = description.TextLength;
+                    description.SelectionFont = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+                    description.AppendText($"""
+                        Test Case {itemNum++}:
+                        Inputs:
+                            {item.Key}
 
-                    Output:
-                        {item.Value}
-                    """ + "\n\n");
-                if (itemNum == 3)
-                    break;
-            }
+                        Output:
+                            {item.Value}
+                        """ + "\n\n");
+                    if (itemNum == 3)
+                        break;
+                }
         }
     }
 }

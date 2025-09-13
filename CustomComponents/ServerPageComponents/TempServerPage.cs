@@ -37,7 +37,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             InitializeComponent();
             currentTask = task;
             expectedUsers = users;
-            _server = new TcpListener(IPAddress.Parse("127.0.0.1"), 1901);
+            _server = new TcpListener(IPAddress.Parse(NetworkServices.GetIpv4()), 1901);
 
             Task.Run(UdpServerInfoSender);
             // Start the server in the background task
@@ -113,9 +113,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             if (expectedUsers.ContainsKey(profile._studentId))
                             {
                                 UserProfile actualProfile = expectedUsers[profile._studentId];
-                                if (!actualProfile._password.Equals(profile._password))
-                                    errorMsg = "Wrong Password";
-                                else if (currentStudents.Contains(profile._studentName))
+                                if (currentStudents.Contains(profile._studentName))
                                     errorMsg = "This student is already logged in";
                                 else
                                 {
