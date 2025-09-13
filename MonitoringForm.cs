@@ -182,9 +182,15 @@ namespace SmartCodeLab
                 // Wait for response
                 UdpReceiveResult result = await udpClient.ReceiveAsync();
                 string reply = Encoding.UTF8.GetString(result.Buffer);
-                Debug.WriteLine($"Got reply: {reply} from {result.RemoteEndPoint}");
+                TaskModel task = JsonFileService.GetObjectFromText<TaskModel>(reply);
+                Debug.WriteLine($"Got reply: {task._taskName} from {result.RemoteEndPoint}");
 
             }
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            TempIDE tempIDE = new TempIDE();
+            tempIDE.Show();
         }
     }
 }
