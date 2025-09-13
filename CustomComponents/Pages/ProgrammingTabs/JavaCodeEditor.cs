@@ -19,35 +19,34 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public async override void RunCode()
         {
-            latestoutput = " ";
-            this.Invoke((Action)(() => {
-                output.ReadOnly = false;
-            })); // clear
-            SaveCode();
-            CompileCode();
-
             string classname = Path.GetFileNameWithoutExtension(filePath);
             string directory = Path.GetDirectoryName(filePath);
-            string compile = $"/c {ProgrammingConfiguration.javaExe} -cp \"{directory}\" {classname}";
+            commandLine = $"/c {ProgrammingConfiguration.javac} -cp \"{directory}\" {filePath} && {ProgrammingConfiguration.javaExe} -cp \"{directory}\" {classname}";
+            base.RunCode();
+            //latestoutput = " ";
+            //this.Invoke((Action)(() => {
+            //    output.ReadOnly = false;
+            //}));
+            //SaveCode();
 
-            if (compiledSuccess)
-            {
-                process = CommandRunner(compile);
+            //if (compiledSuccess)
+            //{
+            //    process = CommandRunner(compile);
 
-                await StartprocessAsync(
-                    process,
-                    outputLine => this.Invoke((Action)(() => { 
-                        output.AppendText(outputLine + Environment.NewLine);
-                        latestoutput = output.Text;
-                    })),
-                    errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
-                    () => this.Invoke((Action)(() =>
-                    {
-                        output.AppendText("\n=== Process finished ===\n");
-                        output.ReadOnly = true;
-                    }))
-                );
-            }
+            //    await StartprocessAsync(
+            //        process,
+            //        outputLine => this.Invoke((Action)(() => { 
+            //            output.AppendText(outputLine + Environment.NewLine);
+            //            latestoutput = output.Text;
+            //        })),
+            //        errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
+            //        () => this.Invoke((Action)(() =>
+            //        {
+            //            output.AppendText("\n=== Process finished ===\n");
+            //            output.ReadOnly = true;
+            //        }))
+            //    );
+            //}
         }
         public async override void CompileCode()
         {
@@ -113,53 +112,53 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public async override void RunTest()
         {
-            SaveCode();
-            CompileCode();
-            this.Invoke((Action)(() =>
-            {
-                output.Text = "Process Started" + Environment.NewLine;
-                output.ReadOnly = true;
-            }));
-            int score = 0;
-            int i = 1;
-            foreach (var item in _task._testCases)
-            {
-                string directory = Path.GetDirectoryName(filePath);
-                string testerFile = Path.Combine(directory, "Tester.java");
+            string directory = Path.GetDirectoryName(filePath);
+            testerFile = Path.Combine(directory, "Tester.java");
+            commandLine = $"/c cd {directory} && {ProgrammingConfiguration.javac} Tester.java && {ProgrammingConfiguration.javaExe} Tester";
+            base.RunTest();
+            //SaveCode();
+            //this.Invoke((Action)(() =>
+            //{
+            //    output.Text = "Process Started" + Environment.NewLine;
+            //    output.ReadOnly = true;
+            //}));
+            //int score = 0;
+            //int i = 1;
+            //foreach (var item in _task._testCases)
+            //{
 
-                // read + replace + write
-                string testSrcCode = File.ReadAllText(testerFile);
-                File.WriteAllText(testerFile, testSrcCode.Replace("userInput", item.Key));
-                string compile = $"/c cd {directory} && {ProgrammingConfiguration.javac} Tester.java && {ProgrammingConfiguration.javaExe} Tester";
-                process = CommandRunner(compile);
-                string outputResult = "";
-                string errorResult = "";
-                await StartprocessAsyncExit(
-                    process,
-                    outputMsg => outputResult+=outputMsg,
-                    errorMsg => outputResult+=errorMsg,
-                    null
-                    );
+            //    // read + replace + write
+            //    string testSrcCode = File.ReadAllText(testerFile);
+            //    File.WriteAllText(testerFile, testSrcCode.Replace("userInput", item.Key));
+            //    process = CommandRunner(commandLine);
+            //    string outputResult = "";
+            //    string errorResult = "";
+            //    await StartprocessAsyncExit(
+            //        process,
+            //        outputMsg => outputResult+=outputMsg,
+            //        errorMsg => outputResult+=errorMsg,
+            //        null
+            //        );
 
-                string result = "";
-                string textOutput = string.IsNullOrEmpty(outputResult) ? errorResult : outputResult;
-                score = (item.Value.Equals(outputResult)) ? score+1 : score;
-                result = $"""
-                    Test Case {i++}
-                    Input:{item.Key + Environment.NewLine}
-                    Expected Output : {item.Value}
-                    Actual Output   : {textOutput}
-                    Result          : {(item.Value.Equals(textOutput) ? "Correct" : "Wrong")}
-                    """ + Environment.NewLine;
+            //    string result = "";
+            //    string textOutput = string.IsNullOrEmpty(outputResult) ? errorResult : outputResult;
+            //    score = (item.Value.Equals(outputResult)) ? score+1 : score;
+            //    result = $"""
+            //        Test Case {i++}
+            //        Input:{item.Key + Environment.NewLine}
+            //        Expected Output : {item.Value}
+            //        Actual Output   : {textOutput}
+            //        Result          : {(item.Value.Equals(textOutput) ? "Correct" : "Wrong")}
+            //        """ + Environment.NewLine;
 
-                this.Invoke((Action)(() => { 
-                    output.AppendText(result+ Environment.NewLine);
-                    }));
-                File.WriteAllText(testerFile, testSrcCode.Replace(item.Key, "userInput"));
-            }
-            this.Invoke((Action)(() => {
-                output.AppendText($"Score : {score}/{_task._testCases.Count}");
-            }));
+            //    this.Invoke((Action)(() => { 
+            //        output.AppendText(result+ Environment.NewLine);
+            //        }));
+            //    File.WriteAllText(testerFile, testSrcCode.Replace(item.Key, "userInput"));
+            //}
+            //this.Invoke((Action)(() => {
+            //    output.AppendText($"Score : {score}/{_task._testCases.Count}");
+            //}));
         }
     }
 }

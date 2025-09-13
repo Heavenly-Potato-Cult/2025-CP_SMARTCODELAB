@@ -31,7 +31,6 @@ namespace SmartCodeLab.CustomComponents.Pages
 
             //create the activity file then open it by default,and also making it unclosable
             SourceCodeInitializer.InitializeSourceCode(task._language, folderPath, task._taskName);
-            SourceCodeInitializer.InitializeSourceCodeJavaTester(folderPath, task._taskName);
 
             taskDescription.SetDescription(task);
             string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName)+ SourceCodeInitializer.extension[task._language]);

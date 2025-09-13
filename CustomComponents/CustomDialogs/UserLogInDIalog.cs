@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
@@ -60,20 +61,26 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             //expects a reply
             _ = Task.Run(() =>
             {
-                while (true)
+                try
                 {
-                    var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(_stream, PrefixStyle.Base128);
-                    if (msg._messageType == MessageType.LogInSuccessful)
+                    while (true)
                     {
-                        serverTask = msg._task;
-                        this.DialogResult = DialogResult.OK;
-                        break;
+                        var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(_stream, PrefixStyle.Base128);
+                        if (msg._messageType == MessageType.LogInSuccessful)
+                        {
+                            serverTask = msg._task;
+                            this.DialogResult = DialogResult.OK;
+                            break;
+                        }
+                        else if (msg._messageType == MessageType.LogInFailed)
+                        {
+                            Invoke((Action)(() => MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)));
+                            break;
+                        }
                     }
-                    else if (msg._messageType == MessageType.LogInFailed)
-                    {
-                        Invoke((Action)(() => MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)));
-                        break;
-                    }
+                }catch(ProtoException pe)
+                {
+                    Debug.WriteLine(pe.Message);
                 }
             });
 
@@ -83,7 +90,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                     new ServerMessage.Builder(MessageType.UserProfile).UserProfile(new UserProfile(userName.Texts)).Build(),
                     PrefixStyle.Base128);
             });
-
             await _stream.FlushAsync();
         }
     }

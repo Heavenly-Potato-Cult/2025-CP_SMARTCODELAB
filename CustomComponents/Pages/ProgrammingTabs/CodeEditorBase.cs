@@ -7,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         //code all around services
         protected Process process;
         protected bool compiledSuccess = false;
-        protected string latestoutput = " ";
+        protected string commandLine = string.Empty;
+        protected string latestoutput = string.Empty;
+        protected string testerFile = string.Empty;
         public CodeEditorBase(string filePath, TaskModel task)
         {
             InitializeComponent();
@@ -107,6 +110,33 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return newProcess;
         }
 
+
+        private bool IsFileLocked(Exception exception)
+        {
+            int hr = Marshal.GetHRForException(exception) & ((1 << 16) - 1);
+            return exception is IOException &&
+                   (hr == 32 || hr == 33); // ERROR_SHARING_VIOLATION or ERROR_LOCK_VIOLATION
+        }
+
+        public StudentCodingProgress GetProgress()
+        {
+            return new StudentCodingProgress(srcCode.Text);
+        }
+
+        private void srcCode_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.S && e.Control)
+            {
+                File.WriteAllText(filePath, srcCode.Text);
+                MessageBox.Show("File saved");
+            }
+            else
+            {
+                StudentProgress.sourceCode = srcCode.Text;
+                StudentProgress.CodeProgress.Add(srcCode.Text);
+            }
+        }
+
         public void SaveCode(int maxRetries = 5, int retryDelayMs = 100)
         {
             int attempts = 0;
@@ -135,32 +165,90 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
             }
         }
-
-        private bool IsFileLocked(Exception exception)
-        {
-            int hr = Marshal.GetHRForException(exception) & ((1 << 16) - 1);
-            return exception is IOException &&
-                   (hr == 32 || hr == 33); // ERROR_SHARING_VIOLATION or ERROR_LOCK_VIOLATION
-        }
         public virtual void CompileCode() { }
 
-        public virtual void RunCode()
+        public async virtual void RunCode()
         {
+            latestoutput = " ";
+            this.Invoke((Action)(() => {
+                output.ReadOnly = false;
+            }));
+            SaveCode();
+
+            process = CommandRunner(commandLine);
+
+            await StartprocessAsync(
+                process,
+                outputLine => this.Invoke((Action)(() => {
+                    output.AppendText(outputLine + Environment.NewLine);
+                    latestoutput = output.Text;
+                })),
+                errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
+                () => this.Invoke((Action)(() =>
+                {
+                    output.AppendText("\n=== Process finished ===\n");
+                    output.ReadOnly = true;
+                }))
+            );
         }
 
-        public virtual void RunTest()
-        { }
+        public async virtual void RunTest()
+        {
+            SaveCode();
+            this.Invoke((Action)(() =>
+            {
+                output.Text = "Process Started" + Environment.NewLine;
+                output.ReadOnly = true;
+            }));
+            int score = 0;
+            int i = 1;
+            foreach (var item in _task._testCases)
+            {
+
+                // read + replace + write
+                string testSrcCode = File.ReadAllText(testerFile);
+                File.WriteAllText(testerFile, testSrcCode.Replace("userInput", item.Key));
+                process = CommandRunner(commandLine);
+                string outputResult = "";
+                string errorResult = "";
+                await StartprocessAsyncExit(
+                    process,
+                    outputMsg => outputResult += outputMsg,
+                    errorMsg => outputResult += errorMsg,
+                    null
+                    );
+
+                string result = "";
+                string textOutput = string.IsNullOrEmpty(outputResult) ? errorResult : outputResult;
+                score = (item.Value.Equals(outputResult)) ? score + 1 : score;
+                result = $"""
+                    Test Case {i++}
+                    Input:{item.Key + Environment.NewLine}
+                    Expected Output : {item.Value}
+                    Actual Output   : {textOutput}
+                    Result          : {(item.Value.Equals(textOutput) ? "Correct" : "Wrong")}
+                    """ + Environment.NewLine;
+
+                this.Invoke((Action)(() => {
+                    output.AppendText(result + Environment.NewLine);
+                }));
+                File.WriteAllText(testerFile, testSrcCode.Replace(item.Key, "userInput"));
+            }
+            this.Invoke((Action)(() => {
+                output.AppendText($"Score : {score}/{_task._testCases.Count}");
+            }));
+        }
 
         public virtual void RunLinting() { }
         public virtual void CheckCodingStandards() { }
 
         protected void HighlightError(int errorLine, string errorMsg)
         {
-                var lineRange = srcCode.GetLine(errorLine);
-                lineRange.SetStyle(redWavy);
-                this.errorLine = errorLine;
+            var lineRange = srcCode.GetLine(errorLine);
+            lineRange.SetStyle(redWavy);
+            this.errorLine = errorLine;
 
-                this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
+            this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
         }
 
         protected void HighLightStandardError(int errorLine, string msg)
@@ -180,26 +268,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             errorMsg = "";
             srcCode.Range.ClearStyle(StyleIndex.All);
         }
-
-        public StudentCodingProgress GetProgress()
-        {
-            return new StudentCodingProgress(srcCode.Text);
-        }
-
-        private void srcCode_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.S && e.Control)
-            {
-                File.WriteAllText(filePath, srcCode.Text);
-                MessageBox.Show("File saved");
-            }
-            else
-            {
-                StudentProgress.sourceCode = srcCode.Text;
-                StudentProgress.CodeProgress.Add(srcCode.Text);
-            }
-        }
-
         protected async Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
             this.Invoke((Action)(() => output.Text = "Process Started" + Environment.NewLine));

@@ -39,7 +39,7 @@ namespace SmartCodeLab.Services
                                     System.out.println("Hello, World!");
                                 }
                             }
-                        """.Replace("fileName",fileName);
+                        """.Replace("fileName", fileName);
                     break;
                 case LanguageSupported.Python:
                     srcCode =
@@ -47,36 +47,66 @@ namespace SmartCodeLab.Services
                             #pagsugod na dra ug code
                         """;
                     break;
+                default:
+                    srcCode = """
+                        #include <iostream>
+
+                        int main() {
+                            std::cout << "Hello, World!" << std::endl;
+
+                            return 0;
+                        }
+                        """;
+                        break;
             }
 
             string fileAbsolutePath = filePath + "\\" + fileName + extension[language];
             if(!File.Exists(fileAbsolutePath))
                 File.WriteAllText(fileAbsolutePath, srcCode);
 
+            InitializeTesterSourceCode(language, filePath, fileName);
+
         }
-
-        public static void InitializeSourceCodeJavaTester(string filePath, string fileName)
+        public static void InitializeTesterSourceCode(LanguageSupported language,string filePath, string fileName) 
         {
-            string srcCode = $$"""
-                import java.io.ByteArrayInputStream;
-                import java.io.ByteArrayOutputStream;
-                import java.io.PrintStream;
-                public class Tester {
-                    public static void main(String[] args) {
-                        PrintStream originalOut = System.out;
-                        var baos = new ByteArrayOutputStream();
-                        System.setOut(new PrintStream(baos));
-                        System.setIn(new ByteArrayInputStream("userInput".getBytes())); //change theInput
-                        fileClassName.main(null);
+            string srcCode = string.Empty;
+            string actualFileName = ValidName(fileName);
+            switch (language) 
+            {
+                case LanguageSupported.Java:
+                    srcCode = $$"""
+                        import java.io.ByteArrayInputStream;
+                        import java.io.ByteArrayOutputStream;
+                        import java.io.PrintStream;
+                        public class Tester {
+                            public static void main(String[] args) {
+                                PrintStream originalOut = System.out;
+                                var baos = new ByteArrayOutputStream();
+                                System.setOut(new PrintStream(baos));
+                                System.setIn(new ByteArrayInputStream("userInput".getBytes())); //change theInput
+                                fileClassName.main(null);
 
-                        System.setOut(originalOut);
-                        System.out.println(baos.toString());
-                    }
-                }
-                """.Replace("fileClassName",ValidName(fileName));
+                                System.setOut(originalOut);
+                                System.out.println(baos.toString());
+                            }
+                        }
+                        """.Replace("fileClassName", ValidName(actualFileName));
+                    break;
+                case LanguageSupported.Python:
+                    srcCode = $$"""
+                        import subprocess,os
 
-            string fileAbsolutePath = filePath + "\\Tester.java";
-            File.WriteAllText(fileAbsolutePath,srcCode);
+                        base = os.path.dirname(__file__)  # folder where Tester.py is located
+                        script = os.path.join(base, "fileName.py")
+
+                        subprocess.run(["python", script], input="userInput", text=True)
+                        """
+                            .Replace("fileName",actualFileName);
+                    break;
+            }
+
+            string fileAbsolutePath = filePath + "\\Tester"+extension[language];
+            File.WriteAllText(fileAbsolutePath, srcCode);
         }
     }
 }
