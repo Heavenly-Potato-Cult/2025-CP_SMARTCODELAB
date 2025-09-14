@@ -37,6 +37,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public CodeEditorBase(string filePath, TaskModel task)
         {
             InitializeComponent();
+            StudentProgress = new StudentCodingProgress();
             toolTip = new ToolTip();
             standardError = new Dictionary<int, string>();
             srcCode.ToolTipNeeded += (s, e) =>
@@ -52,26 +53,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
 
             _task = task;
-            StudentProgress = new StudentCodingProgress();
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
+            StudentProgress.sourceCode = srcCode.Text;
+            StudentProgress.CodeProgress.Add(srcCode.Text);
+
             RunLinting();// i check agad ang syntax ng code
-            srcCode.KeyDown += (s, e) =>
+            srcCode.KeyUp += (s, e) =>
             {
+                StudentProgress.sourceCode = srcCode.Text;
+                StudentProgress.CodeProgress.Add(srcCode.Text);
                 if (e.KeyCode == Keys.S && e.Control)
                     SaveCode();
                 else if (e.KeyCode == Keys.F5)
                     RunCode();
-                //else if (e.KeyCode == Keys.OemSemicolon || e.KeyCode == Keys.Enter)
-                //{
-                //    _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-
-                //    // Start a new timer
-                //    _debounceTimer = new System.Threading.Timer(_ =>
-                //    {
-                //        RunLinting();
-                //    }, null, 0, Timeout.Infinite);
-                //}
                 else
                 {
                     _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -88,7 +83,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 if (e.KeyCode == Keys.Enter && process != null && !process.HasExited)
                 {
                     e.SuppressKeyPress = true; // prevent new line in textbox
-                    Debug.WriteLine(latestoutput);
                     string inputLine = output.Text.Replace(latestoutput," ");
                     SendInput(inputLine);
                     output.AppendText(Environment.NewLine); // mimic Enter
@@ -120,21 +114,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public StudentCodingProgress GetProgress()
         {
-            return new StudentCodingProgress(srcCode.Text);
-        }
-
-        private void srcCode_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.S && e.Control)
-            {
-                File.WriteAllText(filePath, srcCode.Text);
-                MessageBox.Show("File saved");
-            }
-            else
-            {
-                StudentProgress.sourceCode = srcCode.Text;
-                StudentProgress.CodeProgress.Add(srcCode.Text);
-            }
+            return StudentProgress;
         }
 
         public void SaveCode(int maxRetries = 5, int retryDelayMs = 100)

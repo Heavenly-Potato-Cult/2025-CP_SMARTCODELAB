@@ -19,19 +19,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
             var handle = this.Handle;
-            //AddUser("bot", null,null);
-            //AddUser("bot", null, null);
-            //AddUser("bot", null, null);
-            //AddUser("bot", null, null);
-            //AddUser("bot", null, null);
-            //AddUser("bot", null, null);
-            //AddUser("bot", null, null);
-            //AddUser("bot", null, null);
         }
 
-        public UserIcons AddUser(UserProfile user, NetworkStream stream, Label label, Label ipaddress)
+        public UserIcons AddUser(UserProfile user, NetworkStream stream, Action<string,string> action)
         {
-            UserIcons userIcons = new UserIcons(user, this, stream, label, ipaddress);
+            UserIcons userIcons = new UserIcons(user, this, stream, action);
             this.Invoke(() => flowLayoutPanel1.Controls.Add(userIcons));
             return userIcons;
         }

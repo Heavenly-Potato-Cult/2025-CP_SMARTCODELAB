@@ -33,6 +33,7 @@ namespace SmartCodeLab
             lblTitle = new Label();
             btnClose = new Button();
             sideMenuPanel = new Panel();
+            button8 = new Button();
             button7 = new Button();
             button6 = new Button();
             button5 = new Button();
@@ -66,8 +67,6 @@ namespace SmartCodeLab
             tempExerciseManage21 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             tabPage9 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
-            smartButton1 = new SmartButton();
-            button8 = new Button();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -151,7 +150,6 @@ namespace SmartCodeLab
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(13, 13, 13);
-            sideMenuPanel.Controls.Add(smartButton1);
             sideMenuPanel.Controls.Add(button8);
             sideMenuPanel.Controls.Add(button7);
             sideMenuPanel.Controls.Add(button6);
@@ -169,6 +167,27 @@ namespace SmartCodeLab
             sideMenuPanel.Name = "sideMenuPanel";
             sideMenuPanel.Size = new Size(256, 906);
             sideMenuPanel.TabIndex = 0;
+            // 
+            // button8
+            // 
+            button8.BackColor = Color.FromArgb(13, 13, 13);
+            button8.Cursor = Cursors.Hand;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            button8.ForeColor = Color.White;
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.ImageAlign = ContentAlignment.MiddleLeft;
+            button8.Location = new Point(18, 470);
+            button8.Margin = new Padding(3, 4, 3, 4);
+            button8.Name = "button8";
+            button8.Padding = new Padding(10, 0, 0, 0);
+            button8.Size = new Size(221, 60);
+            button8.TabIndex = 11;
+            button8.Text = "   StudentIDE";
+            button8.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button8.UseVisualStyleBackColor = false;
+            button8.Click += button8_Click;
             // 
             // button7
             // 
@@ -630,41 +649,6 @@ namespace SmartCodeLab
             tempCodeEvaluation1.Size = new Size(1362, 873);
             tempCodeEvaluation1.TabIndex = 0;
             // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 20;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(36, 418);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(188, 50);
-            smartButton1.TabIndex = 11;
-            smartButton1.Text = "smartButton1";
-            smartButton1.UseVisualStyleBackColor = false;
-            smartButton1.Click += smartButton1_Click;
-            // button8
-            // 
-            button8.BackColor = Color.FromArgb(13, 13, 13);
-            button8.Cursor = Cursors.Hand;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            button8.ForeColor = Color.White;
-            button8.Image = (Image)resources.GetObject("button8.Image");
-            button8.ImageAlign = ContentAlignment.MiddleLeft;
-            button8.Location = new Point(18, 470);
-            button8.Margin = new Padding(3, 4, 3, 4);
-            button8.Name = "button8";
-            button8.Padding = new Padding(10, 0, 0, 0);
-            button8.Size = new Size(221, 60);
-            button8.TabIndex = 11;
-            button8.Text = "   StudentIDE";
-            button8.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button8.UseVisualStyleBackColor = false;
-            button8.Click += button8_Click;
-            // 
             // MonitoringForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -736,7 +720,6 @@ namespace SmartCodeLab
         private Button button7;
         private TabPage tabPage9;
         private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
-        private SmartButton smartButton1;
         private Button button8;
     }
 }

@@ -36,7 +36,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName)+ SourceCodeInitializer.extension[task._language]);
             openedFiles.Add(filePath);
             _editor = getCodeBaseEditor(filePath);
-            _editor.srcCode.TextChanged += (s, e) =>
+            _editor.srcCode.KeyUp += (s, e) =>
             {
                 if (isFocused)
                 {
@@ -78,6 +78,8 @@ namespace SmartCodeLab.CustomComponents.Pages
                     {
                         case MessageType.IsEyesOnMe:
                             isFocused = serverMsg.isFocused.GetValueOrDefault(false);
+                            if(isFocused)
+                                await ProgressSender();
                             break;
                         default:
                             break;

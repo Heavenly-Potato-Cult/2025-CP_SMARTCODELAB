@@ -13,15 +13,18 @@ namespace SmartCodeLab.Models
         [ProtoMember(1)]
         public string sourceCode { get; set; }
 
-        public List<string> CodeProgress = new List<string>();
+        [ProtoMember(2)]
+        public List<string> CodeProgress { get; set; }
 
         public StudentCodingProgress()
         {
+            CodeProgress = new List<string>();
         }
 
         public StudentCodingProgress(string msg)
         {
             this.sourceCode = msg;
+            CodeProgress = new List<string>();
         }
     }
 }

@@ -18,22 +18,21 @@ namespace SmartCodeLab.CustomComponents
     public partial class UserIcons : UserControl
     {
         private NetworkStream _stream;
-        public UserIcons(UserProfile profile, ServerMemberContainer container, NetworkStream stream, Label userNameLabel, Label ipaddress)
+        public UserIcons(UserProfile profile, ServerMemberContainer container, NetworkStream stream, Action<string,string> action)
         {
             InitializeComponent();
             username.Text = profile._studentName;
-            customCard3.BackColor = Color.White; // Temporary - to see if it exists
+            customCard3.BackColor = Color.White;
             this.Visible = true;
             _stream = stream;
-            customCard3.Click += async (s, e) => {
-                this.Invoke((Action)(() => { customCard3.BackColor = SystemColors.GradientInactiveCaption;
-                    if (userNameLabel == null)
-                        return;
-                    userNameLabel.Text = profile._studentName;
-                    ipaddress.Text = profile._computerAddress;
-                }));
-                container.ChangeSelected(this);
-                _ = FocusStatus(true);
+            customCard3.Click += (s, e) => {
+                if (customCard3.BackColor == Color.White)
+                {
+                    container.ChangeSelected(this);
+                    _ = FocusStatus(true);
+                    action?.Invoke(profile._studentName, profile._computerAddress);
+                    customCard3.BackColor = Color.Bisque;
+                }
             };
         }
         public void LostFocusDisplay()

@@ -27,11 +27,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private TaskModel currentTask { get; set; }
         private TcpListener _server;
         private Dictionary<NetworkStream, UserIcons> userIcons = new Dictionary<NetworkStream, UserIcons>();
-        private 
+        private
 
         //student ID as the key
         Dictionary<string, UserProfile> expectedUsers;
         private List<string> currentStudents = new List<string>();
+        private StudentCodingProgress studentProgress;
         public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users)
         {
             InitializeComponent();
@@ -117,7 +118,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                                     errorMsg = "This student is already logged in";
                                 else
                                 {
-                                    _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(actualProfile, networkStream, studentName, ipaddress)));
+                                    _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(actualProfile, networkStream, NewUserSelected)));
 
                                     currentStudents.Add(obj._userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
@@ -131,7 +132,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             await networkStream.FlushAsync();
                             break;
                         case MessageType.StudentProgress:
-                            this.Invoke((Delegate)(() => studentCode.Text = obj._progress.sourceCode));
+                            studentProgress = obj._progress;
+                            this.Invoke((Delegate)(() => { 
+                                int studentProgLength = studentProgress.CodeProgress.Count - 1;
+                                bool atMax = codeTrack.Maximum == codeTrack.Value;
+                                codeTrack.Maximum = studentProgLength;
+                                if (atMax)
+                                {
+                                    studentCode.Text = studentProgress.sourceCode;
+                                    codeTrack.Value = studentProgLength;
+                                }
+                            }));
                             break;
                         default:
                             //Invoke(new Action(() =>
@@ -175,6 +186,30 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 byte[] taskData = Encoding.UTF8.GetBytes(JsonFileService.GetObjectJsonText(currentTask));
                 udpServer.Send(taskData, taskData.Length, result.RemoteEndPoint);
             }
+        }
+
+        private void NewUserSelected(string username, string address)
+        {
+            studentProgress = null;
+            codeTrack.Maximum = 0;
+            codeTrack.Value = 0;
+            studentCode.Text = string.Empty;
+            studentName.Text = username;
+            ipaddress.Text = address;
+
+            studentProgress = null;
+            codeTrack.Maximum = 0;
+            codeTrack.Value = 0;
+            studentCode.Text = string.Empty;
+        }
+        private void codeTrack_Scroll(object sender, EventArgs e)
+        {
+            if (studentProgress == null)
+                return;
+            this.Invoke((Action)(() => 
+            {
+                studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
+            }));
         }
     }
 }

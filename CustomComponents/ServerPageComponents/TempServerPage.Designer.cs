@@ -74,6 +74,7 @@
             customCard17 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label33 = new Label();
             memberContainer = new ServerMemberContainer();
+            codeTrack = new TrackBar();
             customCard8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             customCard6.SuspendLayout();
@@ -88,6 +89,7 @@
             customCard14.SuspendLayout();
             customCard16.SuspendLayout();
             customCard17.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)codeTrack).BeginInit();
             SuspendLayout();
             // 
             // customCard8
@@ -643,12 +645,22 @@
             memberContainer.Size = new Size(315, 687);
             memberContainer.TabIndex = 16;
             // 
+            // codeTrack
+            // 
+            codeTrack.Location = new Point(491, 72);
+            codeTrack.Maximum = 0;
+            codeTrack.Name = "codeTrack";
+            codeTrack.Size = new Size(586, 56);
+            codeTrack.TabIndex = 100;
+            codeTrack.Scroll += codeTrack_Scroll;
+            // 
             // TempServerPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.WhiteSmoke;
+            Controls.Add(codeTrack);
             Controls.Add(memberContainer);
             Controls.Add(customCard17);
             Controls.Add(customCard13);
@@ -686,6 +698,7 @@
             customCard16.PerformLayout();
             customCard17.ResumeLayout(false);
             customCard17.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)codeTrack).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -736,5 +749,6 @@
         private Label label26;
         private ServerMemberContainer memberContainer;
         private Pages.ProgrammingTabs.CodeEditor studentCode;
+        private TrackBar codeTrack;
     }
 }

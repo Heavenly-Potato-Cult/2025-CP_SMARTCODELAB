@@ -166,29 +166,13 @@ namespace SmartCodeLab
 
         }
 
-        private async void smartButton1_Click(object sender, EventArgs e)
+        private void smartButton1_Click(object sender, EventArgs e)
         {
-            using (UdpClient udpClient = new UdpClient())
-            {
-                udpClient.EnableBroadcast = true;
-
-                IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Parse(NetworkServices.GetBroadCastAddress()), 1902);
-
-                byte[] message = Encoding.UTF8.GetBytes("Discover servers!");
-                await udpClient.SendAsync(message, message.Length, broadcastEP);
-                Console.WriteLine("Broadcast sent, waiting for reply...");
-
-                // Wait for response
-                UdpReceiveResult result = await udpClient.ReceiveAsync();
-                string reply = Encoding.UTF8.GetString(result.Buffer);
-                TaskModel task = JsonFileService.GetObjectFromText<TaskModel>(reply);
-
-            }
         }
         private void button8_Click(object sender, EventArgs e)
         {
             TempIDE tempIDE = new TempIDE();
-            tempIDE.Show();
+            tempIDE.ShowDialog();
         }
     }
 }
