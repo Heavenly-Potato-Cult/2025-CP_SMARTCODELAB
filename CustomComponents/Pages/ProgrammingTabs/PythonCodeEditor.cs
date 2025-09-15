@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
-    public class PythonCodeEditor : CodeEditorBase
+    public class PythonCodeEditor : BaseCodeEditor
     {
         public PythonCodeEditor(string filePath, TaskModel task) : base(filePath, task) 
         {

@@ -7,14 +7,28 @@ using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
-    public class JavaCodeEditor : CodeEditorBase
+    public class JavaCodeEditor : BaseCodeEditor
     {
+        TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
+        TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
+        TextStyle GrayStyle = new TextStyle(Brushes.Gray, null, FontStyle.Regular);
+        TextStyle MagentaStyle = new TextStyle(Brushes.Magenta, null, FontStyle.Regular);
+        TextStyle GreenStyle = new TextStyle(Brushes.Green, null, FontStyle.Italic);
+        TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
+        TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
+        MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
         public JavaCodeEditor(string filePath, TaskModel task) : base(filePath, task)
         {
+            srcCode.TextChanged += (s, e) =>
+            {
+                JavaSyntaxHighlight(e);
+            };
+            JavaSyntaxHighlight(new TextChangedEventArgs(srcCode.Range));
         }
 
         public async override void RunCode()
@@ -23,31 +37,45 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string directory = Path.GetDirectoryName(filePath);
             commandLine = $"/c {ProgrammingConfiguration.javac} -cp \"{directory}\" {filePath} && {ProgrammingConfiguration.javaExe} -cp \"{directory}\" {classname}";
             base.RunCode();
-            //latestoutput = " ";
-            //this.Invoke((Action)(() => {
-            //    output.ReadOnly = false;
-            //}));
-            //SaveCode();
-
-            //if (compiledSuccess)
-            //{
-            //    process = CommandRunner(compile);
-
-            //    await StartprocessAsync(
-            //        process,
-            //        outputLine => this.Invoke((Action)(() => { 
-            //            output.AppendText(outputLine + Environment.NewLine);
-            //            latestoutput = output.Text;
-            //        })),
-            //        errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
-            //        () => this.Invoke((Action)(() =>
-            //        {
-            //            output.AppendText("\n=== Process finished ===\n");
-            //            output.ReadOnly = true;
-            //        }))
-            //    );
-            //}
         }
+
+        private void JavaSyntaxHighlight(TextChangedEventArgs e)
+        {
+            srcCode.LeftBracket = '(';
+            srcCode.RightBracket = ')';
+            srcCode.LeftBracket2 = '\x0';
+            srcCode.RightBracket2 = '\x0';
+            //clear style of changed range
+            e.ChangedRange.ClearStyle(BlueStyle, BoldStyle, GrayStyle, MagentaStyle, GreenStyle, BrownStyle);
+
+            //string highlighting
+            e.ChangedRange.SetStyle(BrownStyle, @"""""|@""""|''|@"".*?""|(?<!@)(?<range>"".*?[^\\]"")|'.*?[^\\]'");
+            //comment highlighting
+            e.ChangedRange.SetStyle(GreenStyle, @"//.*$", RegexOptions.Multiline);
+            e.ChangedRange.SetStyle(GreenStyle, @"(/\*.*?\*/)|(/\*.*)", RegexOptions.Singleline);
+            e.ChangedRange.SetStyle(GreenStyle, @"(/\*.*?\*/)|(.*\*/)", RegexOptions.Singleline | RegexOptions.RightToLeft);
+            //number highlighting
+            e.ChangedRange.SetStyle(MagentaStyle, @"\b\d+[\.]?\d*([eE]\-?\d+)?[lLdDfF]?\b|\b0x[a-fA-F\d]+\b");
+            //attribute highlighting
+            e.ChangedRange.SetStyle(GrayStyle, @"^\s*(?<range>\[.+?\])\s*$", RegexOptions.Multiline);
+            //class name highlighting
+            e.ChangedRange.SetStyle(BoldStyle, @"\b(class|struct|enum|interface)\s+(?<range>\w+?)\b");
+            //keyword highlighting
+            e.ChangedRange.SetStyle(BlueStyle, @"\b(abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|
+                        default|do|double|else|enum|extends|final|finally|float|for|goto|if|
+                        implements|import|instanceof|int|interface|long|native|new|package|private|
+                        protected|public|return|short|static|strictfp|super|switch|synchronized|this|
+                        throw|throws|transient|try|void|volatile|while)\b|#region\b|#endregion\b");
+
+            //clear folding markers
+            e.ChangedRange.ClearFoldingMarkers();
+
+            //set folding markers
+            e.ChangedRange.SetFoldingMarkers("{", "}");//allow to collapse brackets block
+            e.ChangedRange.SetFoldingMarkers(@"#region\b", @"#endregion\b");//allow to collapse #region blocks
+            e.ChangedRange.SetFoldingMarkers(@"/\*", @"\*/");//allow to collapse comment block
+        }
+
         public async override void CompileCode()
         {
             SaveCode();

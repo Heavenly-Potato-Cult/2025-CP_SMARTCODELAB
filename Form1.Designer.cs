@@ -38,7 +38,6 @@ namespace SmartCodeLab
             materialButton1 = new MaterialSkin.Controls.MaterialButton();
             imageList1 = new ImageList(components);
             tabPage4 = new TabPage();
-            taskMainPage1 = new CustomComponents.MainPages.TaskMainPage();
             tabPage3 = new TabPage();
             fileTree = new TreeView();
             smoothTabControl2 = new CustomComponents.GeneralComponents.SmoothTabControl();
@@ -135,7 +134,6 @@ namespace SmartCodeLab
             // 
             // tabPage4
             // 
-            tabPage4.Controls.Add(taskMainPage1);
             tabPage4.ImageKey = "logout_white.png";
             tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
@@ -143,14 +141,6 @@ namespace SmartCodeLab
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Exit";
             tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // taskMainPage1
-            // 
-            taskMainPage1.Location = new Point(3, 2);
-            taskMainPage1.Margin = new Padding(3, 2, 3, 2);
-            taskMainPage1.Name = "taskMainPage1";
-            taskMainPage1.Size = new Size(1263, 656);
-            taskMainPage1.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -867,6 +857,5 @@ namespace SmartCodeLab
         private MaterialSkin.Controls.MaterialButton materialButton5;
         private MaterialSkin.Controls.MaterialLabel materialLabel12;
         private TreeView fileTree;
-        private CustomComponents.MainPages.TaskMainPage taskMainPage1;
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
-    public class CppCodeEditor : CodeEditorBase
+    public class CppCodeEditor : BaseCodeEditor
     {
         public CppCodeEditor(string filePath, TaskModel task) : base(filePath, task) 
         {

@@ -48,11 +48,7 @@ namespace SmartCodeLab
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             serverSetUpPage1 = new SmartCodeLab.CustomComponents.MainPages.ServerSetUpPage();
-            tabPage2 = new TabPage();
-            button2 = new Button();
-            button1 = new Button();
             tabPage3 = new TabPage();
-            taskMainPage2 = new SmartCodeLab.CustomComponents.MainPages.TaskMainPage();
             tabPage4 = new TabPage();
             customCard1 = new CustomCard();
             customToggleButton1 = new CustomToggleButton();
@@ -69,14 +65,11 @@ namespace SmartCodeLab
             tabPage9 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
             tabPage10 = new TabPage();
-            tempStudentide1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempStudentIDE();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
-            tabPage2.SuspendLayout();
-            tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
             customCard1.SuspendLayout();
             tabPage5.SuspendLayout();
@@ -84,7 +77,6 @@ namespace SmartCodeLab
             tabPage7.SuspendLayout();
             tabPage8.SuspendLayout();
             tabPage9.SuspendLayout();
-            tabPage10.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -428,7 +420,6 @@ namespace SmartCodeLab
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage5);
@@ -466,54 +457,15 @@ namespace SmartCodeLab
             serverSetUpPage1.TabIndex = 0;
             serverSetUpPage1.Load += serverSetUpPage1_Load;
             // 
-            // tabPage2
-            // 
-            tabPage2.BackColor = Color.FromArgb(10, 10, 10);
-            tabPage2.Controls.Add(button2);
-            tabPage2.Controls.Add(button1);
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1362, 873);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            // 
-            // button2
-            // 
-            button2.Location = new Point(79, 256);
-            button2.Name = "button2";
-            button2.Size = new Size(151, 41);
-            button2.TabIndex = 1;
-            button2.Text = "Client";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(79, 189);
-            button1.Name = "button1";
-            button1.Size = new Size(151, 41);
-            button1.TabIndex = 0;
-            button1.Text = "Server";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(10, 10, 10);
-            tabPage3.Controls.Add(taskMainPage2);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(1362, 873);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
-            // 
-            // taskMainPage2
-            // 
-            taskMainPage2.BackColor = Color.FromArgb(10, 10, 10);
-            taskMainPage2.Location = new Point(0, 0);
-            taskMainPage2.Name = "taskMainPage2";
-            taskMainPage2.Size = new Size(1320, 945);
-            taskMainPage2.TabIndex = 0;
             // 
             // tabPage4
             // 
@@ -679,20 +631,11 @@ namespace SmartCodeLab
             // tabPage10
             // 
             tabPage10.BackColor = Color.White;
-            tabPage10.Controls.Add(tempStudentide1);
             tabPage10.Location = new Point(4, 29);
             tabPage10.Name = "tabPage10";
             tabPage10.Size = new Size(1362, 873);
             tabPage10.TabIndex = 9;
             tabPage10.Text = "tabPage10";
-            // 
-            // tempStudentide1
-            // 
-            tempStudentide1.Dock = DockStyle.Fill;
-            tempStudentide1.Location = new Point(0, 0);
-            tempStudentide1.Name = "tempStudentide1";
-            tempStudentide1.Size = new Size(1362, 873);
-            tempStudentide1.TabIndex = 0;
             // 
             // MonitoringForm
             // 
@@ -716,8 +659,6 @@ namespace SmartCodeLab
             sideMenuPanel.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage2.ResumeLayout(false);
-            tabPage3.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
@@ -726,22 +667,16 @@ namespace SmartCodeLab
             tabPage7.ResumeLayout(false);
             tabPage8.ResumeLayout(false);
             tabPage9.ResumeLayout(false);
-            tabPage10.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
         private Button btnSideMenu_FileManagement;
         private Button btnSideMenu_TaskManagement;
-        private CustomComponents.MainPages.TaskMainPage taskMainPage1;
         private Button btnSideMenu_Settings;
         private TabControl tabControl1;
         private TabPage tabPage1;
-        private TabPage tabPage2;
         private TabPage tabPage3;
-        private CustomComponents.MainPages.TaskMainPage taskMainPage2;
-        private Button button2;
-        private Button button1;
         private TabPage tabPage4;
         private CustomCard customCard1;
         private CustomToggleButton customToggleButton1;

@@ -7,20 +7,21 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Range = FastColoredTextBoxNS.Range;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
-    public partial class CodeEditorBase : UserControl
+    public partial class BaseCodeEditor : UserControl
     {
         protected string filePath;
         protected TaskModel _task;
         private readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
-        private readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Yellow);
+        private readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Orange);
         private System.Threading.Timer _debounceTimer;
         public StudentCodingProgress StudentProgress { get; }
         private string errorMsg = "";
@@ -33,7 +34,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected string commandLine = string.Empty;
         protected string latestoutput = string.Empty;
         protected string testerFile = string.Empty;
-        public CodeEditorBase(string filePath, TaskModel task)
+        public BaseCodeEditor()
+        {
+            InitializeComponent();
+        }
+
+        protected BaseCodeEditor(string filePath, TaskModel task)
         {
             InitializeComponent();
             StudentProgress = new StudentCodingProgress();
@@ -44,9 +50,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     e.ToolTipText = errorMsg;
                 }
-                if(standardError.ContainsKey(e.Place.iLine))
+                if (standardError.ContainsKey(e.Place.iLine))
                 {
-                    e.ToolTipText = standardError.GetValueOrDefault(e.Place.iLine,"No Error Found");
+                    e.ToolTipText = standardError.GetValueOrDefault(e.Place.iLine, "No Error Found");
                 }
             };
 
@@ -81,7 +87,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 if (e.KeyCode == Keys.Enter && process != null && !process.HasExited)
                 {
                     e.SuppressKeyPress = true; // prevent new line in textbox
-                    string inputLine = output.Text.Replace(latestoutput," ");
+                    string inputLine = output.Text.Replace(latestoutput, " ");
                     SendInput(inputLine);
                     output.AppendText(Environment.NewLine); // mimic Enter
                 }
@@ -101,7 +107,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             return newProcess;
         }
-
 
         private bool IsFileLocked(Exception exception)
         {
@@ -231,10 +236,29 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected void HighLightStandardError(int errorLine, string msg)
         {
+            if (msg.Contains("UnusedLocalVariable"))
+            {
+                string kword = msg.Substring(msg.IndexOf("\'")+1);
+                kword = kword.Replace(msg.Substring(msg.IndexOf('.')-1), "");
+                var match = Regex.Match(srcCode.GetLineText(errorLine), $@"\b{kword}\b");
+                if (match.Success)
+                {
+                    // Build a Range for the match inside that line
+                    int startChar = match.Index;
+                    int endChar = match.Index + match.Length;
+
+                    Range r = new Range(srcCode,
+                        new Place(startChar, errorLine), // start position
+                        new Place(endChar, errorLine));  // end position
+
+                    // Highlight it
+                    r.SetStyle(yellowWavy);
+                }
+            }
             try
             {
-                var lineRange = srcCode.GetLine(errorLine);
-                lineRange.SetStyle(yellowWavy);
+                //var lineRange = srcCode.GetLine(errorLine);
+                //lineRange.SetStyle(yellowWavy);
                 standardError.Add(errorLine, msg);
             }
             catch (ArgumentException) { }
@@ -244,7 +268,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             errorLine = null;
             errorMsg = "";
-            srcCode.Range.ClearStyle(StyleIndex.All);
+            srcCode.Range.ClearStyle(yellowWavy);
+            srcCode.Range.ClearStyle(redWavy);
         }
         protected async Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
@@ -307,6 +332,22 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 process.StandardInput.WriteLine(input);
                 process.StandardInput.Flush();
+            }
+        }
+
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task)
+        {
+            if (filePath.EndsWith(".java"))
+            {
+                return new JavaCodeEditor(filePath, task);
+            }
+            else if (filePath.EndsWith(".py"))
+            {
+                return new PythonCodeEditor(filePath, task);
+            }
+            else
+            {
+                return new CppCodeEditor(filePath, task);
             }
         }
     }

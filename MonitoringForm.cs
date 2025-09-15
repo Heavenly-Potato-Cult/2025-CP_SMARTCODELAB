@@ -2,6 +2,7 @@
 using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.MainPages;
 using SmartCodeLab.CustomComponents.Pages;
+using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
@@ -31,7 +32,6 @@ namespace SmartCodeLab
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.ItemSize = new Size(0, 1);
             SystemSingleton.Instance.page1 = tabPage1;
-            SystemSingleton.Instance.page2 = tabPage2;
         }
 
         private void btnMenu2_Click(object sender, EventArgs e)
@@ -63,9 +63,9 @@ namespace SmartCodeLab
                     var userLogIn = new UserLogInDIalog(client);
                     if (userLogIn.ShowDialog() == DialogResult.OK)
                     {
-                        var studentProgramming = new ProgrammingEnvironment(userLogIn._folderLocation, userLogIn._userName, userLogIn.serverTask, userLogIn._stream);
-                        SystemSingleton.Instance.page2.Controls.Clear();
-                        SystemSingleton.Instance.page2.Controls.Add(studentProgramming);
+                        var studentProgramming = new TempStudentIDE(userLogIn._folderLocation, userLogIn._userName, userLogIn.serverTask, userLogIn._stream);
+                        tabPage3.Controls.Clear();
+                        tabPage3.Controls.Add(studentProgramming);
                         SystemSingleton.Instance._loggedIn = true;
                     }
                     else
@@ -90,7 +90,7 @@ namespace SmartCodeLab
 
         private void button2_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 7;
+            tabControl1.SelectedIndex = 6;
 
 
             //change backcolor
@@ -172,7 +172,7 @@ namespace SmartCodeLab
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 9;
+            tabControl1.SelectedIndex = 8;
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

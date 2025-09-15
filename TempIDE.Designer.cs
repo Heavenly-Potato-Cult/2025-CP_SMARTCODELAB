@@ -45,20 +45,9 @@
             smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            panel3 = new Panel();
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            tabPage3 = new TabPage();
             panel4 = new Panel();
-            panel5 = new Panel();
-            pictureBox4 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            label3 = new Label();
-            pictureBox2 = new PictureBox();
             splitContainer1 = new SplitContainer();
             panel7 = new Panel();
-            codeEditor1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             panel6 = new Panel();
             panel18 = new Panel();
             progressBar2 = new ProgressBar();
@@ -90,21 +79,25 @@
             panel12 = new Panel();
             label21 = new Label();
             label11 = new Label();
+            panel3 = new Panel();
+            tabPage3 = new TabPage();
+            tabPage2 = new TabPage();
+            tabPage1 = new TabPage();
+            tabControl1 = new TabControl();
+            codeEditor1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            pictureBox2 = new PictureBox();
+            label3 = new Label();
+            pictureBox3 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            panel5 = new Panel();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            panel3.SuspendLayout();
-            tabControl1.SuspendLayout();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).BeginInit();
             panel18.SuspendLayout();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
@@ -114,6 +107,13 @@
             panel8.SuspendLayout();
             panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            panel3.SuspendLayout();
+            tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)codeEditor1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -339,58 +339,6 @@
             smartButton4.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton4.UseVisualStyleBackColor = false;
             // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.Controls.Add(tabControl1);
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 573);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1169, 187);
-            panel3.TabIndex = 10;
-            // 
-            // tabControl1
-            // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.Padding = new Point(10, 5);
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1169, 187);
-            tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Location = new Point(4, 33);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1161, 150);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "Console Output";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            tabPage2.Location = new Point(4, 33);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1161, 150);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Error Log";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            tabPage3.Location = new Point(4, 33);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1161, 150);
-            tabPage3.TabIndex = 2;
-            tabPage3.Text = "Test Results";
-            tabPage3.UseVisualStyleBackColor = true;
-            // 
             // panel4
             // 
             panel4.BackColor = Color.Gainsboro;
@@ -399,57 +347,6 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(1608, 1);
             panel4.TabIndex = 10;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.WhiteSmoke;
-            panel5.Controls.Add(pictureBox4);
-            panel5.Controls.Add(pictureBox3);
-            panel5.Controls.Add(label3);
-            panel5.Controls.Add(pictureBox2);
-            panel5.Dock = DockStyle.Top;
-            panel5.Location = new Point(0, 0);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(1169, 55);
-            panel5.TabIndex = 11;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(1099, 14);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(27, 26);
-            pictureBox4.TabIndex = 16;
-            pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(1132, 14);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(26, 26);
-            pictureBox3.TabIndex = 15;
-            pictureBox3.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Gray;
-            label3.Location = new Point(22, 11);
-            label3.Name = "label3";
-            label3.Size = new Size(75, 25);
-            label3.TabIndex = 15;
-            label3.Text = "main.py";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(4, 18);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(18, 25);
-            pictureBox2.TabIndex = 15;
-            pictureBox2.TabStop = false;
             // 
             // splitContainer1
             // 
@@ -487,39 +384,6 @@
             panel7.Name = "panel7";
             panel7.Size = new Size(1169, 1);
             panel7.TabIndex = 14;
-            // 
-            // codeEditor1
-            // 
-            codeEditor1.AutoCompleteBracketsList = new char[]
-    {
-    '(',
-    ')',
-    '{',
-    '}',
-    '[',
-    ']',
-    '"',
-    '"',
-    '\'',
-    '\''
-    };
-            codeEditor1.AutoScrollMinSize = new Size(141, 18);
-            codeEditor1.BackBrush = null;
-            codeEditor1.CharHeight = 18;
-            codeEditor1.CharWidth = 10;
-            codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            codeEditor1.Dock = DockStyle.Fill;
-            codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
-            codeEditor1.IsReplaceMode = false;
-            codeEditor1.Location = new Point(0, 56);
-            codeEditor1.Name = "codeEditor1";
-            codeEditor1.Paddings = new Padding(0);
-            codeEditor1.SelectionColor = Color.FromArgb(60, 0, 0, 255);
-            codeEditor1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor1.ServiceColors");
-            codeEditor1.Size = new Size(1169, 517);
-            codeEditor1.TabIndex = 13;
-            codeEditor1.Text = "codeEditor1";
-            codeEditor1.Zoom = 100;
             // 
             // panel6
             // 
@@ -849,6 +713,143 @@
             label11.Size = new Size(0, 25);
             label11.TabIndex = 62;
             // 
+            // panel3
+            // 
+            panel3.BackColor = Color.White;
+            panel3.Controls.Add(tabControl1);
+            panel3.Dock = DockStyle.Bottom;
+            panel3.Location = new Point(0, 573);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1169, 187);
+            panel3.TabIndex = 10;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 33);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(1161, 150);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Test Results";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 33);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(1161, 150);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "Error Log";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 33);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1161, 150);
+            tabPage1.TabIndex = 0;
+            tabPage1.Text = "Console Output";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabControl1
+            // 
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.Padding = new Point(10, 5);
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(1169, 187);
+            tabControl1.TabIndex = 0;
+            // 
+            // codeEditor1
+            // 
+            codeEditor1.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            codeEditor1.AutoScrollMinSize = new Size(141, 18);
+            codeEditor1.BackBrush = null;
+            codeEditor1.CharHeight = 18;
+            codeEditor1.CharWidth = 10;
+            codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            codeEditor1.Dock = DockStyle.Fill;
+            codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
+            codeEditor1.IsReplaceMode = false;
+            codeEditor1.Location = new Point(0, 56);
+            codeEditor1.Name = "codeEditor1";
+            codeEditor1.Paddings = new Padding(0);
+            codeEditor1.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            codeEditor1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor1.ServiceColors");
+            codeEditor1.Size = new Size(1169, 517);
+            codeEditor1.TabIndex = 13;
+            codeEditor1.Text = "codeEditor1";
+            codeEditor1.Zoom = 100;
+            codeEditor1.Load += codeEditor1_Load;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(4, 18);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(18, 25);
+            pictureBox2.TabIndex = 15;
+            pictureBox2.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Gray;
+            label3.Location = new Point(22, 11);
+            label3.Name = "label3";
+            label3.Size = new Size(75, 25);
+            label3.TabIndex = 15;
+            label3.Text = "main.py";
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(1132, 14);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(26, 26);
+            pictureBox3.TabIndex = 15;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(1099, 14);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(27, 26);
+            pictureBox4.TabIndex = 16;
+            pictureBox4.TabStop = false;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.WhiteSmoke;
+            panel5.Controls.Add(pictureBox4);
+            panel5.Controls.Add(pictureBox3);
+            panel5.Controls.Add(label3);
+            panel5.Controls.Add(pictureBox2);
+            panel5.Dock = DockStyle.Top;
+            panel5.Location = new Point(0, 0);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1169, 55);
+            panel5.TabIndex = 11;
+            // 
             // TempIDE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -869,19 +870,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).EndInit();
             panel18.ResumeLayout(false);
             panel18.PerformLayout();
             panel19.ResumeLayout(false);
@@ -897,6 +890,14 @@
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            panel3.ResumeLayout(false);
+            tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)codeEditor1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -911,21 +912,12 @@
         private CustomComponents.GeneralComponents.SmartButton smartButton2;
         private CustomComponents.GeneralComponents.SmartButton smartButton3;
         private Panel panel1;
-        private Panel panel3;
         private Panel panel4;
         private CustomComponents.GeneralComponents.SmartButton smartButton5;
         private CustomComponents.GeneralComponents.SmartButton smartButton4;
-        private Panel panel5;
-        private PictureBox pictureBox2;
-        private Label label3;
         private SplitContainer splitContainer1;
         private Panel panel6;
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
         private Panel panel7;
-        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor1;
-        private TabPage tabPage3;
         private Label label12;
         private Label label11;
         private Panel panel9;
@@ -953,8 +945,6 @@
         private Label label7;
         private Label label13;
         private Label label14;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox3;
         private CustomComponents.GeneralComponents.SmartButton smartButton6;
         private PictureBox pictureBox6;
         private Label label17;
@@ -962,5 +952,16 @@
         private Label label9;
         private PictureBox pictureBox5;
         private PictureBox pictureBox8;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor1;
+        private Panel panel5;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
+        private Label label3;
+        private PictureBox pictureBox2;
+        private Panel panel3;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
     }
 }

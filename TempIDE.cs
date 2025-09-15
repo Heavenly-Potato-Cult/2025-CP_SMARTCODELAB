@@ -26,5 +26,10 @@ namespace SmartCodeLab
         {
 
         }
+
+        private void codeEditor1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

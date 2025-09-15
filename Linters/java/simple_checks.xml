@@ -9,7 +9,6 @@
     <module name="TreeWalker">
 	<module name="UnusedImports"/>
         <module name="UnusedLocalVariable">
-		<message key="unused.named.local.var" value="Wa man ni nagamit, tanggala nalang ni uy"/>
 	</module>
         <module name="EmptyStatement">
 		<message key="empty.statement"
