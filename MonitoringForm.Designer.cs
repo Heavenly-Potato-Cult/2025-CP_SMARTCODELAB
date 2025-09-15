@@ -68,6 +68,8 @@ namespace SmartCodeLab
             tempExerciseManage21 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             tabPage9 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
+            tabPage10 = new TabPage();
+            tempStudentide1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempStudentIDE();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -82,6 +84,7 @@ namespace SmartCodeLab
             tabPage7.SuspendLayout();
             tabPage8.SuspendLayout();
             tabPage9.SuspendLayout();
+            tabPage10.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -433,6 +436,7 @@ namespace SmartCodeLab
             tabControl1.Controls.Add(tabPage7);
             tabControl1.Controls.Add(tabPage8);
             tabControl1.Controls.Add(tabPage9);
+            tabControl1.Controls.Add(tabPage10);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(256, 70);
             tabControl1.Name = "tabControl1";
@@ -672,6 +676,24 @@ namespace SmartCodeLab
             tempCodeEvaluation1.Size = new Size(1362, 873);
             tempCodeEvaluation1.TabIndex = 0;
             // 
+            // tabPage10
+            // 
+            tabPage10.BackColor = Color.White;
+            tabPage10.Controls.Add(tempStudentide1);
+            tabPage10.Location = new Point(4, 29);
+            tabPage10.Name = "tabPage10";
+            tabPage10.Size = new Size(1362, 873);
+            tabPage10.TabIndex = 9;
+            tabPage10.Text = "tabPage10";
+            // 
+            // tempStudentide1
+            // 
+            tempStudentide1.Dock = DockStyle.Fill;
+            tempStudentide1.Location = new Point(0, 0);
+            tempStudentide1.Name = "tempStudentide1";
+            tempStudentide1.Size = new Size(1362, 873);
+            tempStudentide1.TabIndex = 0;
+            // 
             // MonitoringForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -704,6 +726,7 @@ namespace SmartCodeLab
             tabPage7.ResumeLayout(false);
             tabPage8.ResumeLayout(false);
             tabPage9.ResumeLayout(false);
+            tabPage10.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -745,5 +768,7 @@ namespace SmartCodeLab
         private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
         private Button button8;
         private Button btnMenu;
+        private TabPage tabPage10;
+        private CustomComponents.ServerPageComponents.TempStudentIDE tempStudentide1;
     }
 }

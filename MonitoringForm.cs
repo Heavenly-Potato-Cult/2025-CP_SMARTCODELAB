@@ -172,8 +172,7 @@ namespace SmartCodeLab
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            TempIDE tempIDE = new TempIDE();
-            tempIDE.ShowDialog();
+            tabControl1.SelectedIndex = 9;
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
