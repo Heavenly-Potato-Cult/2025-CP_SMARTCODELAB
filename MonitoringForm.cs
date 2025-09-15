@@ -22,6 +22,7 @@ namespace SmartCodeLab
 {
     public partial class MonitoringForm : Form
     {
+        
 
         public MonitoringForm()
         {
@@ -173,6 +174,41 @@ namespace SmartCodeLab
         {
             TempIDE tempIDE = new TempIDE();
             tempIDE.ShowDialog();
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            CollaseMenu();
+        }
+
+        private void CollaseMenu()
+        {
+            if (this.sideMenuPanel.Width > 200)
+            {
+                this.sideMenuPanel.Width = 100;
+                //sideMenuPanel.Width = 100;
+
+
+                foreach (Button button in this.sideMenuPanel.Controls.OfType<Button>())
+                {
+                    button.Text = "";
+                    button.Size = new System.Drawing.Size(64, 60);
+                    button.ImageAlign = ContentAlignment.MiddleCenter;
+                    button.Padding = new Padding(0);
+                }
+            }
+            else
+            {
+                this.sideMenuPanel.Width = 256;
+
+                foreach (Button button in this.sideMenuPanel.Controls.OfType<Button>())
+                {
+                    button.Text = "   "+ button.Tag.ToString();
+                    button.Size = new System.Drawing.Size(215, 60);
+                    button.ImageAlign = ContentAlignment.MiddleLeft;
+                    button.Padding = new Padding(10,0,0,0);
+                }
+            }
         }
     }
 }

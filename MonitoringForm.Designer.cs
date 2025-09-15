@@ -28,6 +28,7 @@ namespace SmartCodeLab
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoringForm));
             headerPanel = new Panel();
+            btnMenu = new Button();
             pictureBox1 = new PictureBox();
             label5 = new Label();
             lblTitle = new Label();
@@ -86,6 +87,7 @@ namespace SmartCodeLab
             // headerPanel
             // 
             headerPanel.BackColor = Color.White;
+            headerPanel.Controls.Add(btnMenu);
             headerPanel.Controls.Add(pictureBox1);
             headerPanel.Controls.Add(label5);
             headerPanel.Controls.Add(lblTitle);
@@ -97,6 +99,16 @@ namespace SmartCodeLab
             headerPanel.Size = new Size(1626, 70);
             headerPanel.TabIndex = 1;
             headerPanel.Paint += headerPanel_Paint;
+            // 
+            // btnMenu
+            // 
+            btnMenu.Location = new Point(420, 23);
+            btnMenu.Name = "btnMenu";
+            btnMenu.Size = new Size(94, 29);
+            btnMenu.TabIndex = 13;
+            btnMenu.Text = "Collapse";
+            btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.Click += btnMenu_Click;
             // 
             // pictureBox1
             // 
@@ -184,6 +196,7 @@ namespace SmartCodeLab
             button8.Padding = new Padding(10, 0, 0, 0);
             button8.Size = new Size(221, 60);
             button8.TabIndex = 11;
+            button8.Tag = "StudentIDE";
             button8.Text = "   StudentIDE";
             button8.TextImageRelation = TextImageRelation.ImageBeforeText;
             button8.UseVisualStyleBackColor = false;
@@ -205,6 +218,7 @@ namespace SmartCodeLab
             button7.Padding = new Padding(10, 0, 0, 0);
             button7.Size = new Size(221, 60);
             button7.TabIndex = 10;
+            button7.Tag = "Code Evaluation";
             button7.Text = "   Code Evaluation";
             button7.TextImageRelation = TextImageRelation.ImageBeforeText;
             button7.UseVisualStyleBackColor = false;
@@ -226,6 +240,7 @@ namespace SmartCodeLab
             button6.Padding = new Padding(10, 0, 0, 0);
             button6.Size = new Size(221, 60);
             button6.TabIndex = 9;
+            button6.Tag = "Exercise Manager";
             button6.Text = "   Exercise Manager";
             button6.TextImageRelation = TextImageRelation.ImageBeforeText;
             button6.UseVisualStyleBackColor = false;
@@ -247,6 +262,7 @@ namespace SmartCodeLab
             button5.Padding = new Padding(10, 0, 0, 0);
             button5.Size = new Size(221, 60);
             button5.TabIndex = 8;
+            button5.Tag = "Session Management";
             button5.Text = " Session Management";
             button5.TextImageRelation = TextImageRelation.ImageBeforeText;
             button5.UseVisualStyleBackColor = false;
@@ -268,6 +284,7 @@ namespace SmartCodeLab
             button4.Padding = new Padding(10, 0, 0, 0);
             button4.Size = new Size(221, 60);
             button4.TabIndex = 7;
+            button4.Tag = "Dashboard";
             button4.Text = "   Dashboard";
             button4.TextImageRelation = TextImageRelation.ImageBeforeText;
             button4.UseVisualStyleBackColor = false;
@@ -289,6 +306,7 @@ namespace SmartCodeLab
             button3.Padding = new Padding(10, 0, 0, 0);
             button3.Size = new Size(221, 60);
             button3.TabIndex = 6;
+            button3.Tag = "Student Monitoring";
             button3.Text = "   Student Monitoring";
             button3.TextImageRelation = TextImageRelation.ImageBeforeText;
             button3.UseVisualStyleBackColor = false;
@@ -310,6 +328,7 @@ namespace SmartCodeLab
             btnSideMenu_Shutdown.Padding = new Padding(10, 0, 0, 0);
             btnSideMenu_Shutdown.Size = new Size(221, 60);
             btnSideMenu_Shutdown.TabIndex = 5;
+            btnSideMenu_Shutdown.Tag = "Shutdown";
             btnSideMenu_Shutdown.Text = "   Shutdown";
             btnSideMenu_Shutdown.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_Shutdown.UseVisualStyleBackColor = false;
@@ -331,6 +350,7 @@ namespace SmartCodeLab
             btnSideMenu_Settings.Padding = new Padding(10, 0, 0, 0);
             btnSideMenu_Settings.Size = new Size(221, 60);
             btnSideMenu_Settings.TabIndex = 4;
+            btnSideMenu_Settings.Tag = "Settings";
             btnSideMenu_Settings.Text = "   Settings";
             btnSideMenu_Settings.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_Settings.UseVisualStyleBackColor = false;
@@ -352,6 +372,7 @@ namespace SmartCodeLab
             btnSideMenu_FileManagement.Padding = new Padding(10, 0, 0, 0);
             btnSideMenu_FileManagement.Size = new Size(221, 60);
             btnSideMenu_FileManagement.TabIndex = 3;
+            btnSideMenu_FileManagement.Tag = "Exercise Manager";
             btnSideMenu_FileManagement.Text = "   Exercise Manager";
             btnSideMenu_FileManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_FileManagement.UseVisualStyleBackColor = false;
@@ -373,6 +394,7 @@ namespace SmartCodeLab
             btnSideMenu_TaskManagement.Padding = new Padding(10, 0, 0, 0);
             btnSideMenu_TaskManagement.Size = new Size(221, 60);
             btnSideMenu_TaskManagement.TabIndex = 2;
+            btnSideMenu_TaskManagement.Tag = "Task Management";
             btnSideMenu_TaskManagement.Text = "   Task Management";
             btnSideMenu_TaskManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_TaskManagement.UseVisualStyleBackColor = false;
@@ -392,8 +414,9 @@ namespace SmartCodeLab
             btnSideMenu_Student.Margin = new Padding(3, 4, 3, 4);
             btnSideMenu_Student.Name = "btnSideMenu_Student";
             btnSideMenu_Student.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_Student.Size = new Size(221, 60);
+            btnSideMenu_Student.Size = new Size(215, 60);
             btnSideMenu_Student.TabIndex = 1;
+            btnSideMenu_Student.Tag = "Connection";
             btnSideMenu_Student.Text = "   Connection";
             btnSideMenu_Student.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_Student.UseVisualStyleBackColor = false;
@@ -721,5 +744,6 @@ namespace SmartCodeLab
         private TabPage tabPage9;
         private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
         private Button button8;
+        private Button btnMenu;
     }
 }
