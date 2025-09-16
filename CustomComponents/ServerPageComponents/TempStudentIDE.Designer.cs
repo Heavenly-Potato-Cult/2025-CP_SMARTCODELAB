@@ -41,14 +41,11 @@
             panel14 = new Panel();
             panel11 = new Panel();
             panel10 = new Panel();
-            label2 = new Label();
-            label7 = new Label();
+            testCaseContainer = new FlowLayoutPanel();
             panel16 = new Panel();
             pictureBox6 = new PictureBox();
             label17 = new Label();
             panel13 = new Panel();
-            label10 = new Label();
-            label8 = new Label();
             panel9 = new Panel();
             panel8 = new Panel();
             description = new TextBox();
@@ -198,39 +195,24 @@
             // panel10
             // 
             panel10.BackColor = Color.White;
-            panel10.Controls.Add(label2);
-            panel10.Controls.Add(label7);
+            panel10.Controls.Add(testCaseContainer);
             panel10.Controls.Add(panel16);
             panel10.Controls.Add(panel13);
-            panel10.Controls.Add(label10);
-            panel10.Controls.Add(label8);
             panel10.Dock = DockStyle.Top;
             panel10.Location = new Point(0, 311);
             panel10.Name = "panel10";
             panel10.Size = new Size(456, 307);
             panel10.TabIndex = 65;
             // 
-            // label2
+            // testCaseContainer
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.DimGray;
-            label2.Location = new Point(222, 114);
-            label2.Name = "label2";
-            label2.Size = new Size(124, 25);
-            label2.TabIndex = 82;
-            label2.Text = "Output: 1,2,10";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.DimGray;
-            label7.Location = new Point(25, 114);
-            label7.Name = "label7";
-            label7.Size = new Size(129, 25);
-            label7.TabIndex = 81;
-            label7.Text = "2) Input: 1,10,2";
+            testCaseContainer.AutoScroll = true;
+            testCaseContainer.FlowDirection = FlowDirection.TopDown;
+            testCaseContainer.Location = new Point(3, 62);
+            testCaseContainer.Name = "testCaseContainer";
+            testCaseContainer.Size = new Size(450, 246);
+            testCaseContainer.TabIndex = 77;
+            testCaseContainer.WrapContents = false;
             // 
             // panel16
             // 
@@ -271,28 +253,6 @@
             panel13.Name = "panel13";
             panel13.Size = new Size(1, 307);
             panel13.TabIndex = 74;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.ForeColor = Color.DimGray;
-            label10.Location = new Point(222, 70);
-            label10.Name = "label10";
-            label10.Size = new Size(134, 25);
-            label10.TabIndex = 80;
-            label10.Text = "Output: 1,12,32";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.DimGray;
-            label8.Location = new Point(25, 70);
-            label8.Name = "label8";
-            label8.Size = new Size(136, 25);
-            label8.TabIndex = 78;
-            label8.Text = "1) Input: 12,1,32";
             // 
             // panel9
             // 
@@ -592,7 +552,6 @@
             panel19.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             panel10.ResumeLayout(false);
-            panel10.PerformLayout();
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
@@ -626,14 +585,10 @@
         private Panel panel14;
         private Panel panel11;
         private Panel panel10;
-        private Label label2;
-        private Label label7;
         private Panel panel16;
         private PictureBox pictureBox6;
         private Label label17;
         private Panel panel13;
-        private Label label10;
-        private Label label8;
         private Panel panel9;
         private Panel panel8;
         private Panel panel15;
@@ -654,5 +609,6 @@
         private Panel codeEditorContainer;
         private GeneralComponents.SmartButton smartButton3;
         private TextBox description;
+        private FlowLayoutPanel testCaseContainer;
     }
 }

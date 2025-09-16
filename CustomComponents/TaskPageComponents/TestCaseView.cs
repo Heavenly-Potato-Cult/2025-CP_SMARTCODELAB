@@ -16,5 +16,13 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
         {
             InitializeComponent();
         }
+
+        public TestCaseView(int num,string userInput, string expectedOutput)
+        {
+            InitializeComponent();
+            number.Text = num.ToString();
+            input.Text = userInput;
+            output.Text = expectedOutput;
+        }
     }
 }

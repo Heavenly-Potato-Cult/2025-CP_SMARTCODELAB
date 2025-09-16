@@ -31,7 +31,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                 MessageBox.Show("Please fill all fields");
                 return;
             }
-            Close();
+            Visible = false;
         }
 
         public KeyValuePair<string,string> NewUser()

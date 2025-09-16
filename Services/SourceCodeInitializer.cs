@@ -1,8 +1,10 @@
 ﻿using SmartCodeLab.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SmartCodeLab.Services
@@ -20,7 +22,7 @@ namespace SmartCodeLab.Services
         {
             while (Char.IsDigit(fileName[0]))
                 fileName = fileName.Substring(1);
-            fileName = fileName.Replace('.', '_').Replace(' ', '_');
+            fileName = Regex.Replace(fileName, @"[^a-zA-Z0-9]", "_");
             return fileName;
         }
 
@@ -28,7 +30,6 @@ namespace SmartCodeLab.Services
         {
             string srcCode = String.Empty;
             fileName = ValidName(fileName);
-            fileName = fileName.Replace('.', '_').Replace(' ', '_');
             switch (language)
             {//other languages implementations will come next
                 case LanguageSupported.Java:
@@ -71,6 +72,7 @@ namespace SmartCodeLab.Services
         {
             string srcCode = string.Empty;
             string actualFileName = ValidName(fileName);
+            string exeDirectory = Path.Combine(filePath,actualFileName+".exe").Replace("\\", "\\\\");
             switch (language) 
             {
                 case LanguageSupported.Java:
@@ -103,8 +105,26 @@ namespace SmartCodeLab.Services
                         """
                             .Replace("fileName",actualFileName);
                     break;
-            }
+                default:
+                    srcCode = $$"""
+                                #include <cstdlib>
+                                #include <iostream>
 
+                                int main() {
+                                    int result = system(
+                                        "cd /d \"gccBin\" && "
+                                        "g++ \"filePath\" "
+                                        "-o \"exeDirectory\" && "
+                                        "\"exeDirectory\""
+                                        );
+                                    return result;
+                                }
+                                """
+                                .Replace("gccBin", ProgrammingConfiguration.gccBin.Replace("\\","\\\\"))
+                                .Replace("filePath", Path.Combine(filePath, actualFileName + ".cpp").Replace("\\", "\\\\"))
+                                .Replace("exeDirectory",exeDirectory);
+                    break;
+            }
             string fileAbsolutePath = filePath + "\\Tester"+extension[language];
             File.WriteAllText(fileAbsolutePath, srcCode);
         }

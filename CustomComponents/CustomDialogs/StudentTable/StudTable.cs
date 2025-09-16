@@ -23,16 +23,10 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         {
             InitializeComponent();
             expectedUsers = users;
-            this.Load += (s, e) =>
+            foreach (var user in users.Values)
             {
-                users.Values.ToList<UserProfile>().ForEach(user =>
-                {
-                    this.Invoke((Action)(() =>
-                    {
-                        studtab.Controls.Add(new StudentRow(user._studentId,user._studentName));
-                    }));
-                });
-            };
+                studtab.Controls.Add(new StudentRow(user._studentId, user._studentName));
+            }
         }
 
         public bool ContainsUser(string studentId)
@@ -58,6 +52,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                         MessageBox.Show("User Id Already Exists");
                         return;
                     }
+                    expectedUsers.Add(newUser.Key, new UserProfile(newUser.Value, newUser.Key,"N/A"));
                     studtab.Controls.Add(new StudentRow(newUser.Key,newUser.Value));
                 }));
             }

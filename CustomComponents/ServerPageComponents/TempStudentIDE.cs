@@ -1,6 +1,7 @@
 ﻿using ProtoBuf;
 using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
@@ -69,6 +70,18 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             };
             codeEditorContainer.Controls.Add(_editor);
             _ = StreamListener();
+
+            this.Load += (s, e) =>
+            {
+                this.Invoke((Action)(() =>
+                {
+                    int i = 1;
+                    foreach (var item in task._testCases)
+                    {
+                        testCaseContainer.Controls.Add(new TestCaseView(i++,item.Key, item.Value));
+                    }
+                }));
+            };
         }
 
         private async Task ProgressSender()

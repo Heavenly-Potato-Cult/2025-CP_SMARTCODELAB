@@ -20,8 +20,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         protected string filePath;
         protected TaskModel _task;
-        private readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
-        private readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Orange);
+        protected readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
+        protected readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Orange);
         private System.Threading.Timer _debounceTimer;
         public StudentCodingProgress StudentProgress { get; }
         private string errorMsg = "";
@@ -227,41 +227,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected void HighlightError(int errorLine, string errorMsg)
         {
+            Debug.WriteLine(errorMsg);
+            standardError.Remove(errorLine);
             var lineRange = srcCode.GetLine(errorLine);
             lineRange.SetStyle(redWavy);
             this.errorLine = errorLine;
-
             this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
         }
 
-        protected void HighLightStandardError(int errorLine, string msg)
+        protected virtual void HighLightStandardError(int errorLine, string msg)
         {
-            if (msg.Contains("UnusedLocalVariable"))
-            {
-                string kword = msg.Substring(msg.IndexOf("\'")+1);
-                kword = kword.Replace(msg.Substring(msg.IndexOf('.')-1), "");
-                var match = Regex.Match(srcCode.GetLineText(errorLine), $@"\b{kword}\b");
-                if (match.Success)
-                {
-                    // Build a Range for the match inside that line
-                    int startChar = match.Index;
-                    int endChar = match.Index + match.Length;
-
-                    Range r = new Range(srcCode,
-                        new Place(startChar, errorLine), // start position
-                        new Place(endChar, errorLine));  // end position
-
-                    // Highlight it
-                    r.SetStyle(yellowWavy);
-                }
-            }
-            try
-            {
-                //var lineRange = srcCode.GetLine(errorLine);
-                //lineRange.SetStyle(yellowWavy);
-                standardError.Add(errorLine, msg);
-            }
-            catch (ArgumentException) { }
         }
 
         protected void NoError()

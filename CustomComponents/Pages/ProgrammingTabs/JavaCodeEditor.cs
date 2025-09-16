@@ -28,7 +28,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 JavaSyntaxHighlight(e);
             };
-            JavaSyntaxHighlight(new TextChangedEventArgs(srcCode.Range));
+            this.Load += (s, e) =>
+            {
+                JavaSyntaxHighlight(new TextChangedEventArgs(srcCode.Range));
+            };
         }
 
         public async override void RunCode()
@@ -130,12 +133,47 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string[] errors = (errorLine.Replace("Starting audit..."+Environment.NewLine,"").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
             foreach (string standardError in errors)
             {
+                Debug.Write(standardError);
                 if (errors[errors.Length-1] != standardError) 
                 {
                     string[] e = standardError.Split(':');
                     HighLightStandardError(int.Parse(e[2]) - 1, e[4]);
                 }
             }
+        }
+
+        protected override void HighLightStandardError(int errorLine, string msg)
+        {
+            if (msg.Contains("OneStatementPerLine"))
+            {
+                srcCode.GetLine(errorLine).SetStyle(yellowWavy);
+                if (standardError.ContainsKey(errorLine))
+                    standardError[errorLine] = msg;
+            }
+            else if (msg.Contains("UnusedLocalVariable"))
+            {
+                string kword = msg.Substring(msg.IndexOf("\'") + 1);
+                kword = kword.Replace(msg.Substring(msg.IndexOf('.') - 1), "");
+                var match = Regex.Match(srcCode.GetLineText(errorLine), $@"\b{kword}\b");
+                if (match.Success)
+                {
+                    // Build a Range for the match inside that line
+                    int startChar = match.Index;
+                    int endChar = match.Index + match.Length;
+
+                    FastColoredTextBoxNS.Range r = new FastColoredTextBoxNS.Range(srcCode,
+                        new Place(startChar, errorLine), // start position
+                        new Place(endChar, errorLine));  // end position
+                    r.SetStyle(yellowWavy);
+                }
+            }
+            try
+            {
+                //var lineRange = srcCode.GetLine(errorLine);
+                //lineRange.SetStyle(yellowWavy);
+                standardError.Add(errorLine, msg);
+            }
+            catch (ArgumentException) { }
         }
 
         public async override void RunTest()
