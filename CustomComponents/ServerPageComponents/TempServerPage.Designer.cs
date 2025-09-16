@@ -75,6 +75,7 @@
             label33 = new Label();
             memberContainer = new ServerMemberContainer();
             codeTrack = new TrackBar();
+            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customCard8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             customCard6.SuspendLayout();
@@ -125,6 +126,7 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
             studentCode.Location = new Point(28, 53);
@@ -654,12 +656,28 @@
             codeTrack.TabIndex = 100;
             codeTrack.Scroll += codeTrack_Scroll;
             // 
+            // smartButton4
+            // 
+            smartButton4.BackColor = Color.MediumSlateBlue;
+            smartButton4.BorderRadius = 20;
+            smartButton4.FlatAppearance.BorderSize = 0;
+            smartButton4.FlatStyle = FlatStyle.Flat;
+            smartButton4.ForeColor = Color.White;
+            smartButton4.Location = new Point(71, 100);
+            smartButton4.Name = "smartButton4";
+            smartButton4.Size = new Size(188, 31);
+            smartButton4.TabIndex = 101;
+            smartButton4.Text = "View Students";
+            smartButton4.UseVisualStyleBackColor = false;
+            smartButton4.Click += smartButton4_Click;
+            // 
             // TempServerPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.WhiteSmoke;
+            Controls.Add(smartButton4);
             Controls.Add(codeTrack);
             Controls.Add(memberContainer);
             Controls.Add(customCard17);
@@ -750,5 +768,6 @@
         private ServerMemberContainer memberContainer;
         private Pages.ProgrammingTabs.CodeEditor studentCode;
         private TrackBar codeTrack;
+        private GeneralComponents.SmartButton smartButton4;
     }
 }

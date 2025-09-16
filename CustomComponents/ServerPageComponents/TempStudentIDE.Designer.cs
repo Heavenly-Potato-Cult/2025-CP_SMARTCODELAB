@@ -141,7 +141,7 @@
             panel20.Dock = DockStyle.Left;
             panel20.Location = new Point(0, 0);
             panel20.Name = "panel20";
-            panel20.Size = new Size(1, 220);
+            panel20.Size = new Size(1, 175);
             panel20.TabIndex = 74;
             // 
             // label6
@@ -181,16 +181,16 @@
             // 
             panel14.BackColor = Color.Gainsboro;
             panel14.Dock = DockStyle.Left;
-            panel14.Location = new Point(0, 574);
+            panel14.Location = new Point(0, 619);
             panel14.Name = "panel14";
-            panel14.Size = new Size(1, 220);
+            panel14.Size = new Size(1, 175);
             panel14.TabIndex = 74;
             // 
             // panel11
             // 
             panel11.BackColor = Color.Gainsboro;
             panel11.Dock = DockStyle.Top;
-            panel11.Location = new Point(0, 573);
+            panel11.Location = new Point(0, 618);
             panel11.Name = "panel11";
             panel11.Size = new Size(456, 1);
             panel11.TabIndex = 66;
@@ -207,7 +207,7 @@
             panel10.Dock = DockStyle.Top;
             panel10.Location = new Point(0, 311);
             panel10.Name = "panel10";
-            panel10.Size = new Size(456, 262);
+            panel10.Size = new Size(456, 307);
             panel10.TabIndex = 65;
             // 
             // label2
@@ -269,7 +269,7 @@
             panel13.Dock = DockStyle.Left;
             panel13.Location = new Point(0, 0);
             panel13.Name = "panel13";
-            panel13.Size = new Size(1, 262);
+            panel13.Size = new Size(1, 307);
             panel13.TabIndex = 74;
             // 
             // label10
@@ -470,6 +470,7 @@
             smartButton3.TextColor = Color.Transparent;
             smartButton3.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton3.UseVisualStyleBackColor = false;
+            smartButton3.Click += smartButton3_Click;
             // 
             // smartButton1
             // 
@@ -532,9 +533,9 @@
             panel18.Controls.Add(label15);
             panel18.Controls.Add(label16);
             panel18.Dock = DockStyle.Fill;
-            panel18.Location = new Point(1, 574);
+            panel18.Location = new Point(1, 619);
             panel18.Name = "panel18";
-            panel18.Size = new Size(455, 220);
+            panel18.Size = new Size(455, 175);
             panel18.TabIndex = 78;
             // 
             // panel4

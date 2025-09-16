@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
@@ -27,17 +28,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private TaskModel currentTask { get; set; }
         private TcpListener _server;
         private Dictionary<NetworkStream, UserIcons> userIcons = new Dictionary<NetworkStream, UserIcons>();
-        private
 
         //student ID as the key
-        Dictionary<string, UserProfile> expectedUsers;
         private List<string> currentStudents = new List<string>();
         private StudentCodingProgress studentProgress;
+        StudTable userTable;
         public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users)
         {
             InitializeComponent();
+            userTable = new StudTable(users);
             currentTask = task;
-            expectedUsers = users;
             _server = new TcpListener(IPAddress.Parse(NetworkServices.GetIpv4()), 1901);
 
             Task.Run(UdpServerInfoSender);
@@ -111,9 +111,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             UserProfile profile = obj._userProfile;
                             bool didLogIn = false;
                             string errorMsg = "We can't find an account with that Student ID";
-                            if (expectedUsers.ContainsKey(profile._studentId))
+                            if (userTable.ContainsUser(profile._studentId))
                             {
-                                UserProfile actualProfile = expectedUsers[profile._studentId];
+                                UserProfile actualProfile = userTable.GetUserProfile(profile._studentId);
                                 if (currentStudents.Contains(profile._studentName))
                                     errorMsg = "This student is already logged in";
                                 else
@@ -133,7 +133,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             break;
                         case MessageType.StudentProgress:
                             studentProgress = obj._progress;
-                            this.Invoke((Delegate)(() => { 
+                            this.Invoke((Delegate)(() =>
+                            {
                                 int studentProgLength = studentProgress.CodeProgress.Count - 1;
                                 bool atMax = codeTrack.Maximum == codeTrack.Value;
                                 codeTrack.Maximum = studentProgLength;
@@ -206,10 +207,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             if (studentProgress == null)
                 return;
-            this.Invoke((Action)(() => 
+            this.Invoke((Action)(() =>
             {
                 studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
             }));
+        }
+
+        private void smartButton4_Click(object sender, EventArgs e)
+        {
+            userTable.ShowDialog();
         }
     }
 }

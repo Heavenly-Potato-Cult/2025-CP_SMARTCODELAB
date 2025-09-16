@@ -118,5 +118,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             _editor.RunCode();
         }
+
+        private void smartButton3_Click(object sender, EventArgs e)
+        {
+            _editor.RunTest();
+        }
     }
 }
