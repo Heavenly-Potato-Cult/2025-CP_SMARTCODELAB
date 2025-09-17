@@ -16,17 +16,27 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         }
 
-        public override void RunCode()
+        public async override void RunCode()
         {
-            string fileExe = Path.GetFileNameWithoutExtension(filePath);
-            commandLine = $"/c cd {ProgrammingConfiguration.gccBin} && g++ {filePath} -o {fileExe}.exe && {fileExe}.exe";
+            string fileExe = filePath.Replace(".cpp", ".exe");
+            commandLine = $"/c {ProgrammingConfiguration.gccExe} {filePath} -o {fileExe} && {fileExe}";
             base.RunCode();
         }
 
         public override void RunTest()
         {
             commandLine = $"/c cd {ProgrammingConfiguration.gccBin} && g++ {Path.GetDirectoryName(filePath)+"\\Tester.cpp"} -o test.exe && test.exe";
-            base.RunCode();
+            testerFile = Path.GetDirectoryName(filePath) + "\\\\" + "Tester.cpp";
+            base.RunTest();
+        }
+
+        protected override void SendInput(string input)
+        {
+            if (process != null && !process.HasExited)
+            {
+                process.StandardInput.Write(input + Environment.NewLine);
+                process.StandardInput.Flush();
+            }
         }
     }
 }

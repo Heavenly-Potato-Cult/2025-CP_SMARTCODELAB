@@ -115,7 +115,7 @@ namespace SmartCodeLab.Services
                                         "cd /d \"gccBin\" && "
                                         "g++ \"filePath\" "
                                         "-o \"exeDirectory\" && "
-                                        "\"exeDirectory\""
+                                        "(userInput) | \"exeDirectory\""
                                         );
                                     return result;
                                 }

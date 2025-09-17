@@ -96,6 +96,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected Process CommandRunner(string command)
         {
+            if(process != null)
+            {
+                process.Kill();
+                process.Dispose();
+            }
             Process newProcess = new Process();
             newProcess.StartInfo.FileName = "cmd.exe";
             newProcess.StartInfo.Arguments = command; // or java ClassName
@@ -108,7 +113,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return newProcess;
         }
 
-        private bool IsFileLocked(Exception exception)
+        protected bool IsFileLocked(Exception exception)
         {
             int hr = Marshal.GetHRForException(exception) & ((1 << 16) - 1);
             return exception is IOException &&
@@ -120,15 +125,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return StudentProgress;
         }
 
-        public void SaveCode(int maxRetries = 5, int retryDelayMs = 100)
+        public void SaveCode(int maxRetries = 5, int retryDelayMs = 100, bool needChange = false)
         {
             int attempts = 0;
-
             while (attempts < maxRetries)
             {
                 try
                 {
-                    File.WriteAllText(filePath, srcCode.Text);
+                    string addedNewCin = needChange ? srcCode.Text.Replace("return", "string toEnsureThatAllIsWell;\ncin>> toEnsureThatAllIsWell;\n return") : srcCode.Text;
+                    File.WriteAllText(filePath, addedNewCin);
                     return; // Success - exit method
                 }
                 catch (IOException ex) when (IsFileLocked(ex))
@@ -156,10 +161,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             this.Invoke((Action)(() => {
                 output.ReadOnly = false;
             }));
-            SaveCode();
 
+            SaveCode(5,100,filePath.EndsWith(".cpp"));
             process = CommandRunner(commandLine);
-
             await StartprocessAsync(
                 process,
                 outputLine => this.Invoke((Action)(() => {
@@ -169,6 +173,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
                 () => this.Invoke((Action)(() =>
                 {
+                    SaveCode(5, 100, false);
                     output.AppendText("\n=== Process finished ===\n");
                     output.ReadOnly = true;
                 }))
@@ -187,10 +192,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int i = 1;
             foreach (var item in _task._testCases)
             {
-
                 // read + replace + write
                 string testSrcCode = File.ReadAllText(testerFile);
-                File.WriteAllText(testerFile, testSrcCode.Replace("userInput", item.Key));
+                string input = item.Key;
+
+                if (filePath.EndsWith(".cpp"))//if the file is cpp, because it needs to be passed using echo per input/line
+                {
+                    string[] lines = input.Split(Environment.NewLine);
+                    string newInput = "echo ";
+                    for(int num = 0; num<lines.Length; num++)
+                    {
+                        newInput += lines[num];
+                        newInput += num != lines.Length - 1 ? " & echo " : "";
+                    }
+                    input = newInput;
+                }
+
+                File.WriteAllText(testerFile, testSrcCode.Replace("userInput", input));
                 process = CommandRunner(commandLine);
                 string outputResult = "";
                 string errorResult = "";
@@ -215,7 +233,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 this.Invoke((Action)(() => {
                     output.AppendText(result + Environment.NewLine);
                 }));
-                File.WriteAllText(testerFile, testSrcCode.Replace(item.Key, "userInput"));
+                File.WriteAllText(testerFile, testSrcCode.Replace(input, "userInput"));
             }
             this.Invoke((Action)(() => {
                 output.AppendText($"Score : {score}/{_task._testCases.Count}");
@@ -227,7 +245,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected void HighlightError(int errorLine, string errorMsg)
         {
-            Debug.WriteLine(errorMsg);
             standardError.Remove(errorLine);
             var lineRange = srcCode.GetLine(errorLine);
             lineRange.SetStyle(redWavy);
@@ -236,8 +253,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         }
 
         protected virtual void HighLightStandardError(int errorLine, string msg)
-        {
-        }
+        {}
 
         protected void NoError()
         {
@@ -301,8 +317,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             await process.WaitForExitAsync();
         }
 
-        protected void SendInput(string input)
+        protected virtual void SendInput(string input)
         {
+            Debug.WriteLine("From base");
             if (process != null && !process.HasExited)
             {
                 process.StandardInput.WriteLine(input);
