@@ -23,7 +23,7 @@ namespace SmartCodeLab
 {
     public partial class MonitoringForm : Form
     {
-        
+
 
         public MonitoringForm()
         {
@@ -202,10 +202,10 @@ namespace SmartCodeLab
 
                 foreach (Button button in this.sideMenuPanel.Controls.OfType<Button>())
                 {
-                    button.Text = "   "+ button.Tag.ToString();
+                    button.Text = "   " + button.Tag.ToString();
                     button.Size = new System.Drawing.Size(215, 60);
                     button.ImageAlign = ContentAlignment.MiddleLeft;
-                    button.Padding = new Padding(10,0,0,0);
+                    button.Padding = new Padding(10, 0, 0, 0);
                 }
             }
         }

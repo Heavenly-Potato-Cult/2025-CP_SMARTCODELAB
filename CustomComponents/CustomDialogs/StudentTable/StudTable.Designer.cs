@@ -39,6 +39,7 @@
             label3 = new Label();
             label14 = new Label();
             label4 = new Label();
+            count = new Label();
             panel1.SuspendLayout();
             customCard7.SuspendLayout();
             SuspendLayout();
@@ -73,6 +74,7 @@
             smartButton2.Text = " Add Student";
             smartButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton2.UseVisualStyleBackColor = false;
+            smartButton2.Click += smartButton2_Click;
             // 
             // panel2
             // 
@@ -164,9 +166,20 @@
             label4.ForeColor = Color.FromArgb(13, 13, 13);
             label4.Location = new Point(34, 586);
             label4.Name = "label4";
-            label4.Size = new Size(177, 28);
+            label4.Size = new Size(159, 28);
             label4.TabIndex = 65;
-            label4.Text = "Total Students : 8";
+            label4.Text = "Total Students :";
+            // 
+            // count
+            // 
+            count.AutoSize = true;
+            count.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            count.ForeColor = Color.FromArgb(13, 13, 13);
+            count.Location = new Point(189, 586);
+            count.Name = "count";
+            count.Size = new Size(24, 28);
+            count.TabIndex = 66;
+            count.Text = "8";
             // 
             // StudTable
             // 
@@ -174,6 +187,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(698, 641);
+            Controls.Add(count);
             Controls.Add(label4);
             Controls.Add(customCard7);
             Controls.Add(panel2);
@@ -204,5 +218,6 @@
         private Label label3;
         private Label label14;
         private Label label4;
+        private Label count;
     }
 }

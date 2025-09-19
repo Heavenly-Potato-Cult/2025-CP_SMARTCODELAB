@@ -101,7 +101,7 @@
             customCard8.BorderSize = 1;
             customCard8.Controls.Add(studentCode);
             customCard8.Controls.Add(label15);
-            customCard8.Location = new Point(392, 279);
+            customCard8.Location = new Point(392, 169);
             customCard8.Name = "customCard8";
             customCard8.Size = new Size(914, 584);
             customCard8.TabIndex = 14;
@@ -126,7 +126,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
             studentCode.Location = new Point(28, 53);
@@ -161,7 +160,7 @@
             customCard6.Controls.Add(customCard7);
             customCard6.Controls.Add(ipaddress);
             customCard6.Controls.Add(studentName);
-            customCard6.Location = new Point(392, 137);
+            customCard6.Location = new Point(393, 3);
             customCard6.Name = "customCard6";
             customCard6.Size = new Size(914, 98);
             customCard6.TabIndex = 13;
@@ -251,9 +250,9 @@
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(1118, 58);
+            smartButton1.Location = new Point(265, 41);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(188, 39);
+            smartButton1.Size = new Size(109, 56);
             smartButton1.TabIndex = 12;
             smartButton1.Text = "Broadcast Message";
             smartButton1.UseVisualStyleBackColor = false;
@@ -263,18 +262,18 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Gray;
-            label5.Location = new Point(57, 72);
+            label5.Location = new Point(61, 38);
             label5.Name = "label5";
-            label5.Size = new Size(404, 25);
+            label5.Size = new Size(185, 25);
             label5.TabIndex = 10;
-            label5.Text = " Real-time monitoring of student coding activities";
+            label5.Text = " Real-time monitoring";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(61, 28);
+            label3.Location = new Point(61, 0);
             label3.Name = "label3";
             label3.Size = new Size(278, 38);
             label3.TabIndex = 9;
@@ -289,7 +288,8 @@
             customCard1.Controls.Add(customCard10);
             customCard1.Controls.Add(customCard9);
             customCard1.Controls.Add(customCard11);
-            customCard1.Location = new Point(392, 890);
+            customCard1.Controls.Add(customCard12);
+            customCard1.Location = new Point(395, 767);
             customCard1.Name = "customCard1";
             customCard1.Size = new Size(431, 335);
             customCard1.TabIndex = 13;
@@ -453,7 +453,7 @@
             customCard12.BorderRadius = 10;
             customCard12.BorderSize = 1;
             customCard12.Controls.Add(label20);
-            customCard12.Location = new Point(392, 890);
+            customCard12.Location = new Point(0, 10);
             customCard12.Name = "customCard12";
             customCard12.Size = new Size(431, 68);
             customCard12.TabIndex = 14;
@@ -467,7 +467,8 @@
             customCard13.Controls.Add(customCard15);
             customCard13.Controls.Add(customCard14);
             customCard13.Controls.Add(customCard16);
-            customCard13.Location = new Point(875, 890);
+            customCard13.Controls.Add(customCard17);
+            customCard13.Location = new Point(872, 767);
             customCard13.Name = "customCard13";
             customCard13.Size = new Size(431, 335);
             customCard13.TabIndex = 14;
@@ -620,7 +621,7 @@
             customCard17.BorderRadius = 10;
             customCard17.BorderSize = 1;
             customCard17.Controls.Add(label33);
-            customCard17.Location = new Point(875, 890);
+            customCard17.Location = new Point(0, 10);
             customCard17.Name = "customCard17";
             customCard17.Size = new Size(431, 68);
             customCard17.TabIndex = 15;
@@ -642,17 +643,17 @@
             memberContainer.BorderColor = Color.Gray;
             memberContainer.BorderRadius = 20;
             memberContainer.BorderSize = 0;
-            memberContainer.Location = new Point(71, 137);
+            memberContainer.Location = new Point(71, 103);
             memberContainer.Name = "memberContainer";
             memberContainer.Size = new Size(315, 687);
             memberContainer.TabIndex = 16;
             // 
             // codeTrack
             // 
-            codeTrack.Location = new Point(491, 72);
+            codeTrack.Location = new Point(392, 107);
             codeTrack.Maximum = 0;
             codeTrack.Name = "codeTrack";
-            codeTrack.Size = new Size(586, 56);
+            codeTrack.Size = new Size(913, 56);
             codeTrack.TabIndex = 100;
             codeTrack.Scroll += codeTrack_Scroll;
             // 
@@ -663,7 +664,7 @@
             smartButton4.FlatAppearance.BorderSize = 0;
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(71, 100);
+            smartButton4.Location = new Point(71, 66);
             smartButton4.Name = "smartButton4";
             smartButton4.Size = new Size(188, 31);
             smartButton4.TabIndex = 101;
@@ -680,9 +681,7 @@
             Controls.Add(smartButton4);
             Controls.Add(codeTrack);
             Controls.Add(memberContainer);
-            Controls.Add(customCard17);
             Controls.Add(customCard13);
-            Controls.Add(customCard12);
             Controls.Add(customCard1);
             Controls.Add(customCard8);
             Controls.Add(customCard6);
@@ -690,7 +689,7 @@
             Controls.Add(label5);
             Controls.Add(label3);
             Name = "TempServerPage";
-            Size = new Size(1362, 1317);
+            Size = new Size(1335, 839);
             customCard8.ResumeLayout(false);
             customCard8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();

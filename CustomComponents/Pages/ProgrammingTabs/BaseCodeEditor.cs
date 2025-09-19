@@ -20,13 +20,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         protected string filePath;
         protected TaskModel _task;
+        private string possibleProgDirectory;
+
         protected readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
         protected readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Orange);
-        private System.Threading.Timer _debounceTimer;
-        public StudentCodingProgress StudentProgress { get; }
         private string errorMsg = "";
         protected Dictionary<int, string> standardError;
         private int? errorLine = null;
+
+        private System.Threading.Timer _debounceTimer;
+        public StudentCodingProgress StudentProgress { get; }
 
         //code all around services
         protected Process process;
@@ -39,11 +42,25 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
         }
 
-        protected BaseCodeEditor(string filePath, TaskModel task)
+        protected BaseCodeEditor(string filePath, TaskModel task, string userName)
         {
             InitializeComponent();
-            StudentProgress = new StudentCodingProgress();
             standardError = new Dictionary<int, string>();
+
+            _task = task;
+            this.filePath = filePath;
+            srcCode.Text = File.ReadAllText(filePath);
+
+            //will initialize first, incase it is new
+            StudentProgress = new StudentCodingProgress();
+            StudentProgress.sourceCode = srcCode.Text;
+            StudentProgress.CodeProgress.Add(srcCode.Text);
+
+            possibleProgDirectory = Path.Combine(Path.GetDirectoryName(filePath), $"{task._taskName}_{userName}_prog.bin");
+            if (File.Exists(possibleProgDirectory))
+                StudentProgress = StudentCodingProgress.Deserialize(possibleProgDirectory);
+
+            RunLinting();// i check agad ang syntax ng code
             srcCode.ToolTipNeeded += (s, e) =>
             {
                 if (errorLine != null && e.Place.iLine == errorLine)
@@ -55,17 +72,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     e.ToolTipText = standardError.GetValueOrDefault(e.Place.iLine, "No Error Found");
                 }
             };
-
-            _task = task;
-            this.filePath = filePath;
-            srcCode.Text = File.ReadAllText(filePath);
-            StudentProgress.sourceCode = srcCode.Text;
-            StudentProgress.CodeProgress.Add(srcCode.Text);
-
-            RunLinting();// i check agad ang syntax ng code
             srcCode.KeyUp += (s, e) =>
             {
-                StudentProgress.sourceCode = srcCode.Text;
                 StudentProgress.CodeProgress.Add(srcCode.Text);
                 if (e.KeyCode == Keys.S && e.Control)
                     SaveCode();
@@ -79,7 +87,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     _debounceTimer = new System.Threading.Timer(_ =>
                     {
                         RunLinting();
+                        SaveStudentProgressFile();
                     }, null, 300, Timeout.Infinite);
+                }
+
+                if(e.KeyCode == Keys.S && e.Control)
+                {
+                    GetPastedCode(currentCode,srcCode.Text).RunSynchronously();
                 }
             };
             output.KeyDown += (s, e) =>
@@ -92,25 +106,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     output.AppendText(Environment.NewLine); // mimic Enter
                 }
             };
+            currentCode = srcCode.Text;
+            SaveStudentProgressFile();
         }
 
-        protected Process CommandRunner(string command)
+        string currentCode = "";
+        private async Task GetPastedCode(string oldCode, string newCode)
         {
-            if(process != null)
-            {
-                process.Kill();
-                process.Dispose();
-            }
-            Process newProcess = new Process();
-            newProcess.StartInfo.FileName = "cmd.exe";
-            newProcess.StartInfo.Arguments = command; // or java ClassName
-            newProcess.StartInfo.UseShellExecute = false;
-            newProcess.StartInfo.RedirectStandardInput = true;
-            newProcess.StartInfo.RedirectStandardOutput = true;
-            newProcess.StartInfo.RedirectStandardError = true;
-            newProcess.StartInfo.CreateNoWindow = true;
 
-            return newProcess;
+        }
+
+        private async void SaveStudentProgressFile()
+        {
+            await StudentProgress.SaveFile(possibleProgDirectory);
         }
 
         protected bool IsFileLocked(Exception exception)
@@ -122,7 +130,31 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public StudentCodingProgress GetProgress()
         {
+            StudentProgress.sourceCode = srcCode.Text;
             return StudentProgress;
+        }
+
+        protected Process CommandRunner(string command)
+        {
+            if (process != null)
+            {
+                try
+                {
+                    process.Kill();
+                    process.Dispose();
+                }
+                catch (InvalidOperationException) { }
+            }
+            Process newProcess = new Process();
+            newProcess.StartInfo.FileName = "cmd.exe";
+            newProcess.StartInfo.Arguments = command; // or java ClassName
+            newProcess.StartInfo.UseShellExecute = false;
+            newProcess.StartInfo.RedirectStandardInput = true;
+            newProcess.StartInfo.RedirectStandardOutput = true;
+            newProcess.StartInfo.RedirectStandardError = true;
+            newProcess.StartInfo.CreateNoWindow = true;
+
+            return newProcess;
         }
 
         public void SaveCode(int maxRetries = 5, int retryDelayMs = 100, bool needChange = false)
@@ -153,6 +185,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
             }
         }
+
         public virtual void CompileCode() { }
 
         public async virtual void RunCode()
@@ -327,19 +360,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
         }
 
-        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task)
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username)
         {
             if (filePath.EndsWith(".java"))
             {
-                return new JavaCodeEditor(filePath, task);
+                return new JavaCodeEditor(filePath, task, username);
             }
             else if (filePath.EndsWith(".py"))
             {
-                return new PythonCodeEditor(filePath, task);
+                return new PythonCodeEditor(filePath, task, username);
             }
             else
             {
-                return new CppCodeEditor(filePath, task);
+                return new CppCodeEditor(filePath, task, username);
             }
         }
     }

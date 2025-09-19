@@ -52,9 +52,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             description.Text = task._instructions;
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
+            //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
             string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName) + SourceCodeInitializer.extension[task._language]);
             openedFiles.Add(filePath);
-            _editor = BaseCodeEditor.BaseCodeEditorFactory(filePath, task);
+            _editor = BaseCodeEditor.BaseCodeEditorFactory(filePath, task,userName);
             _editor.srcCode.KeyUp += (s, e) =>
             {
                 if (isFocused)

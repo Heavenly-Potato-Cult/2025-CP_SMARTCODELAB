@@ -20,13 +20,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
     public partial class ServerPageIcon : RoundedUserControl
     {
-        private TcpClient _tcpClient;
         private Action<IPEndPoint> _action;
-        private LanguageSupported language;
         public ServerPageIcon(TaskModel task,IPEndPoint point, Action<IPEndPoint> act)
         {
             InitializeComponent();
-            language = task._language;
             taskName.Text = task._taskName;
             subject.Text = task.subject;
             _action = act;

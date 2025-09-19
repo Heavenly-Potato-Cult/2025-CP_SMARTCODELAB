@@ -23,6 +23,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         {
             InitializeComponent();
             expectedUsers = users;
+            count.Text = users.Count.ToString();
             foreach (var user in users.Values)
             {
                 studtab.Controls.Add(new StudentRow(user._studentId, user._studentName));
@@ -39,7 +40,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             return expectedUsers[userId];
         }
 
-        private void smartButton1_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void smartButton2_Click(object sender, EventArgs e)
         {
             StudentForm frm = new StudentForm();
             if (frm.ShowDialog() == DialogResult.OK)
@@ -54,14 +60,11 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                     }
                     expectedUsers.Add(newUser.Key, new UserProfile(newUser.Value, newUser.Key, "N/A"));
                     studtab.Controls.Add(new StudentRow(newUser.Key, newUser.Value));
+                    count.Text = int.Parse(count.Text) + 1 + "";
                 }));
             }
+            frm.Close();
             frm = null;
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

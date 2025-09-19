@@ -1,9 +1,5 @@
 ﻿using ProtoBuf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SmartCodeLab.Models
 {
@@ -16,6 +12,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(2)]
         public List<string> CodeProgress { get; set; }
 
+        [ProtoMember(3)]
+        public CopyPastedCode pastedCode { get; set; }
+
         public StudentCodingProgress()
         {
             CodeProgress = new List<string>();
@@ -25,6 +24,24 @@ namespace SmartCodeLab.Models
         {
             this.sourceCode = msg;
             CodeProgress = new List<string>();
+        }
+
+        //the file naming format of this object will be {activityName}_{studentName}_prog.bin
+        public async Task SaveFile(string filePath)
+        {
+            sourceCode = string.Empty;
+            using(var file = File.Create(filePath))
+            {
+                Serializer.Serialize(file, this);
+            }
+        }
+
+        public static StudentCodingProgress Deserialize(string filePath) 
+        {
+            using(var file = File.OpenRead(filePath))
+            {
+                return Serializer.Deserialize<StudentCodingProgress>(file);
+            }
         }
     }
 }
