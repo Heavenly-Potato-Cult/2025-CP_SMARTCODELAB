@@ -25,8 +25,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
         private void smartButton2_Click(object sender, EventArgs e)
         {
-            this.DialogResult= DialogResult.OK;
-            if(string.IsNullOrWhiteSpace(studId.Texts) || string.IsNullOrWhiteSpace(studName.Texts))
+            this.DialogResult = DialogResult.OK;
+            if (string.IsNullOrWhiteSpace(studId.Texts) || string.IsNullOrWhiteSpace(studName.Texts))
             {
                 MessageBox.Show("Please fill all fields");
                 return;
@@ -34,9 +34,24 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             Visible = false;
         }
 
-        public KeyValuePair<string,string> NewUser()
+        public KeyValuePair<string, string> NewUser()
         {
-            return new KeyValuePair<string,string>(studId.Texts,studName.Texts);
+            return new KeyValuePair<string, string>(studId.Texts, studName.Texts);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StudentForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

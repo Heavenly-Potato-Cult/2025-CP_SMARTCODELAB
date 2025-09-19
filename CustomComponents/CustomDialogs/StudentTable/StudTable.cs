@@ -42,21 +42,26 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         private void smartButton1_Click(object sender, EventArgs e)
         {
             StudentForm frm = new StudentForm();
-            if(frm.ShowDialog() == DialogResult.OK)
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 this.Invoke((Action)(() =>
                 {
                     KeyValuePair<string, string> newUser = frm.NewUser();
-                    if (ContainsUser(newUser.Key)) 
+                    if (ContainsUser(newUser.Key))
                     {
                         MessageBox.Show("User Id Already Exists");
                         return;
                     }
-                    expectedUsers.Add(newUser.Key, new UserProfile(newUser.Value, newUser.Key,"N/A"));
-                    studtab.Controls.Add(new StudentRow(newUser.Key,newUser.Value));
+                    expectedUsers.Add(newUser.Key, new UserProfile(newUser.Value, newUser.Key, "N/A"));
+                    studtab.Controls.Add(new StudentRow(newUser.Key, newUser.Value));
                 }));
             }
             frm = null;
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
