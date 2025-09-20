@@ -128,6 +128,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                    (hr == 32 || hr == 33); // ERROR_SHARING_VIOLATION or ERROR_LOCK_VIOLATION
         }
 
+        public void UpdateTask(TaskModel task)
+        {
+            _task = task;
+        }
+
         public StudentCodingProgress GetProgress()
         {
             StudentProgress.sourceCode = srcCode.Text;
@@ -216,11 +221,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public async virtual void RunTest()
         {
             SaveCode();
-            this.Invoke((Action)(() =>
+            if (_task._testCases == null || _task._testCases.Count > 0)
             {
-                output.Text = "Process Started" + Environment.NewLine;
-                output.ReadOnly = true;
-            }));
+                output.Text = "No test Case Available";
+                return;
+            }
+            output.Text = "Process Started" + Environment.NewLine;
+            output.ReadOnly = true;
             int score = 0;
             int i = 1;
             foreach (var item in _task._testCases)

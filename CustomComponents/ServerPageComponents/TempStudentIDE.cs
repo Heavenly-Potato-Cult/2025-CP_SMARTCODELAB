@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Sockets;
@@ -47,10 +48,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             //create the activity file then open it by default,and also making it unclosable
             SourceCodeInitializer.InitializeSourceCode(task._language, folderPath, task._taskName);
 
-            //set task description display
-            actName.Text = task._taskName;
-            description.Text = task._instructions;
-
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
             string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName) + SourceCodeInitializer.extension[task._language]);
@@ -74,15 +71,29 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             this.Load += (s, e) =>
             {
+                UpdateTaskDisplay(task);
+            };
+        }
+
+        public void UpdateTaskDisplay(TaskModel task)
+        {
+            _editor.UpdateTask(task);
+            Task.Run(() =>
                 this.Invoke((Action)(() =>
                 {
+                    //set task description display
+                    actName.Text = task._taskName;
+                    description.Text = task._instructions;
+                    Debug.WriteLine(task._instructions);
                     int i = 1;
-                    foreach (var item in task._testCases)
-                    {
-                        testCaseContainer.Controls.Add(new TestCaseView(i++,item.Key, item.Value));
-                    }
-                }));
-            };
+                    testCaseContainer.Controls.Clear();
+                    if(task._testCases != null && task._testCases.Count > 0)
+                        foreach (var item in task._testCases)
+                        {
+                            testCaseContainer.Controls.Add(new TestCaseView(i++, item.Key, item.Value));
+                        }
+                }))
+            );
         }
 
         private async Task ProgressSender()
@@ -111,6 +122,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             isFocused = serverMsg.isFocused.GetValueOrDefault(false);
                             if (isFocused)
                                 await ProgressSender();
+                            break;
+                        case MessageType.TaskUpdate:
+                            UpdateTaskDisplay(serverMsg._task);
+                            MessageBox.Show("Task updated boiiii");
                             break;
                         default:
                             break;

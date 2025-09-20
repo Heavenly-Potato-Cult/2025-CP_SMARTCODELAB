@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
@@ -42,6 +43,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
             serverPage = new TempServerPage(task, users);
             tabPage1.Controls.Add(serverPage);
+            tabPage2.Controls.Add(new ServerTaskUpdate(currentTask,UpdateServerTask));
         }
 
         private void codeMonitoringToolStripMenuItem_Click(object sender, EventArgs e)
@@ -139,6 +141,19 @@ namespace SmartCodeLab.CustomComponents.Pages
                 connectedUsers.Add(networkStream,userId);
             else
                 connectedUsers.Remove(networkStream);
+        }
+
+        private void UpdateServerTask(TaskModel task)
+        {
+            serverPage.UpdateTask(task);
+            Task.Run(async () => 
+            {
+                foreach (var item in connectedUsers)
+                {
+                    Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Key, new ServerMessage.Builder(MessageType.TaskUpdate).Task(task).Build(), PrefixStyle.Base128);
+                    await item.Key.FlushAsync();
+                }
+            });
         }
     }
 }

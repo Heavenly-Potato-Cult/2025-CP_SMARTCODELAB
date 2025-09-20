@@ -58,8 +58,8 @@
             // submissionStatusToolStripMenuItem
             // 
             submissionStatusToolStripMenuItem.Name = "submissionStatusToolStripMenuItem";
-            submissionStatusToolStripMenuItem.Size = new Size(142, 24);
-            submissionStatusToolStripMenuItem.Text = "Submission Status";
+            submissionStatusToolStripMenuItem.Size = new Size(50, 24);
+            submissionStatusToolStripMenuItem.Text = "Task";
             submissionStatusToolStripMenuItem.Click += submissionStatusToolStripMenuItem_Click;
             // 
             // container

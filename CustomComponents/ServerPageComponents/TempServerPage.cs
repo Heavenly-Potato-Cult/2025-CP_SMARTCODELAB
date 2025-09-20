@@ -124,6 +124,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
+        public void UpdateTask(TaskModel task)
+        {
+            currentTask = task;
+        }
         private void NewUserSelected(string username, string address)
         {
             studentProgress = null;
