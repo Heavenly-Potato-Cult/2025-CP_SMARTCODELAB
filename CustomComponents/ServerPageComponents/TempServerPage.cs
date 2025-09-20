@@ -1,5 +1,6 @@
 ﻿using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
+using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
@@ -53,7 +54,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             userIcons.Remove(networkStream);
         }
 
-        public async Task MessageHandler(ServerMessage message, NetworkStream networkStream, Action<NetworkStream,string,bool> action)
+        public async Task MessageHandler(ServerMessage message, NetworkStream networkStream, Action<NetworkStream, string, bool> action)
         {
             try
             {
@@ -103,6 +104,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                                 studentCode.Text = studentProgress.sourceCode;
                                 codeTrack.Value = studentProgLength;
                             }
+
+                            copypastedCodes.Controls.Clear();
+                            if (studentProgress.pastedCode != null) 
+                            {
+                                foreach (var item in studentProgress.pastedCode)
+                                {
+                                    copypastedCodes.Controls.Add(new PastedCodeIcon(item));
+                                }
+                            }
                         }));
                         break;
                     default:
@@ -116,7 +126,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
             catch (IOException)
             {
-                action?.Invoke(networkStream,"", false);
+                action?.Invoke(networkStream, "", false);
             }//if the connection is disconnected
             catch (Exception)
             {

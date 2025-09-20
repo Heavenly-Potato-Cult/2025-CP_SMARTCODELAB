@@ -11,15 +11,23 @@ namespace SmartCodeLab.Models
     public class CopyPastedCode
     {
         [ProtoMember(1)]
-        public int line {  get; set; }
+        public string wholeCode {  get; set; }
 
         [ProtoMember(2)]
-        public string pastedCode { get; set; }
+        public int start { get; set; }
 
         [ProtoMember(3)]
-        public string codeBefore { get; set; }
+        public int end { get; set; }
 
-        [ProtoMember(4)]
-        public string codeAfter { get; set; }
+        public CopyPastedCode(string wholeCode, int start, int end)
+        {
+            this.wholeCode = wholeCode;
+            this.start = start;
+            this.end = end;
+        }
+
+        public CopyPastedCode()
+        {
+        }
     }
 }

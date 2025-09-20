@@ -26,7 +26,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             InitializeComponent();
             this.task = task;
             this.action = action;
-            SetUpTask();
+            this.Load += (s,e) => SetUpTask();
         }
 
         private void SetUpTask()

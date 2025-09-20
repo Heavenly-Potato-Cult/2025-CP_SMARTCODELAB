@@ -13,7 +13,7 @@ namespace SmartCodeLab.Models
         public List<string> CodeProgress { get; set; }
 
         [ProtoMember(3)]
-        public CopyPastedCode pastedCode { get; set; }
+        public List<CopyPastedCode> pastedCode { get; set; }
 
         public StudentCodingProgress()
         {

@@ -1,18 +1,7 @@
 ﻿using FastColoredTextBoxNS;
 using SmartCodeLab.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Range = FastColoredTextBoxNS.Range;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
@@ -27,9 +16,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private string errorMsg = "";
         protected Dictionary<int, string> standardError;
         private int? errorLine = null;
-
         private System.Threading.Timer _debounceTimer;
+
         public StudentCodingProgress StudentProgress { get; }
+
+        private string[] codeHistory = new string[20];
 
         //code all around services
         protected Process process;
@@ -46,10 +37,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             InitializeComponent();
             standardError = new Dictionary<int, string>();
-
             _task = task;
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
+            codeHistory[0] = srcCode.Text;
 
             //will initialize first, incase it is new
             StudentProgress = new StudentCodingProgress();
@@ -72,28 +63,36 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     e.ToolTipText = standardError.GetValueOrDefault(e.Place.iLine, "No Error Found");
                 }
             };
-            srcCode.KeyUp += (s, e) =>
+            int i = 0;
+            srcCode.TextChanged += (s, e) =>
             {
                 StudentProgress.CodeProgress.Add(srcCode.Text);
+                _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                // Start a new timer
+                _debounceTimer = new System.Threading.Timer(_ =>
+                {
+                    RunLinting();
+                    SaveStudentProgressFile();
+                }, null, 300, Timeout.Infinite);
+
+                //add the new source code to the code history
+                codeHistory[i++ % 20] = srcCode.Text;
+            };
+            srcCode.KeyUp += (s, e) =>
+            {
                 if (e.KeyCode == Keys.S && e.Control)
                     SaveCode();
                 else if (e.KeyCode == Keys.F5)
                     RunCode();
-                else
-                {
-                    _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
-                    // Start a new timer
-                    _debounceTimer = new System.Threading.Timer(_ =>
+                if(e.KeyCode == Keys.V && e.Control)
+                {
+                    if (Clipboard.ContainsText())
                     {
-                        RunLinting();
-                        SaveStudentProgressFile();
-                    }, null, 300, Timeout.Infinite);
-                }
-
-                if(e.KeyCode == Keys.S && e.Control)
-                {
-                    GetPastedCode(currentCode,srcCode.Text).RunSynchronously();
+                        string pasted = Clipboard.GetText();
+                        Task.Run( async () =>await GetPastedCode(pasted, srcCode.Text, codeHistory));
+                    }
                 }
             };
             output.KeyDown += (s, e) =>
@@ -106,13 +105,32 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     output.AppendText(Environment.NewLine); // mimic Enter
                 }
             };
-            currentCode = srcCode.Text;
             SaveStudentProgressFile();
         }
 
-        string currentCode = "";
-        private async Task GetPastedCode(string oldCode, string newCode)
+        private async Task GetPastedCode(string codeSnippet,string wholeCode, string[] history)
         {
+            foreach (var item in history)
+            {
+                if (item!= null && item != wholeCode && item.Contains(codeSnippet)) 
+                {
+                    return;//meaning this code is potentially not pasted from external source
+                }
+            }
+            //if yes, now we will hunt if which line the new code was copy pasted
+            string[] wholeCodeLines = wholeCode.Split("\n", StringSplitOptions.None);
+            string[] pastedCodeLines = codeSnippet.Split("\n", StringSplitOptions.None);
+
+            for (int i = 0; i < wholeCodeLines.Length; i++) 
+            {
+                if (wholeCodeLines[i].Trim() == pastedCodeLines[0].Trim() && wholeCodeLines[i+1].Trim() == pastedCodeLines[1].Trim())
+                {
+                    if (StudentProgress.pastedCode == null)
+                        StudentProgress.pastedCode = new List<CopyPastedCode>();
+                    StudentProgress.pastedCode.Add(new CopyPastedCode(wholeCode,i, i + (pastedCodeLines.Length - 1)));
+                    break;
+                }
+            }
 
         }
 
