@@ -44,7 +44,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { codeMonitoringToolStripMenuItem, submissionStatusToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1370, 28);
+            menuStrip1.Size = new Size(1345, 28);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -66,10 +66,10 @@
             // 
             container.Controls.Add(tabPage1);
             container.Controls.Add(tabPage2);
-            container.Location = new Point(3, 31);
+            container.Location = new Point(0, 31);
             container.Name = "container";
             container.SelectedIndex = 0;
-            container.Size = new Size(1364, 872);
+            container.Size = new Size(1345, 856);
             container.TabIndex = 1;
             // 
             // tabPage1
@@ -77,7 +77,7 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1356, 839);
+            tabPage1.Size = new Size(1337, 823);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -87,7 +87,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1356, 839);
+            tabPage2.Size = new Size(1337, 767);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
@@ -100,7 +100,7 @@
             Controls.Add(container);
             Controls.Add(menuStrip1);
             Name = "MainServerPage";
-            Size = new Size(1370, 906);
+            Size = new Size(1345, 890);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             container.ResumeLayout(false);

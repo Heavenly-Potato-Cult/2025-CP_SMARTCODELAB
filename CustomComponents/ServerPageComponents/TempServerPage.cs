@@ -106,7 +106,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             }
 
                             copypastedCodes.Controls.Clear();
-                            if (studentProgress.pastedCode != null) 
+                            if (studentProgress.pastedCode != null)
                             {
                                 foreach (var item in studentProgress.pastedCode)
                                 {
@@ -165,6 +165,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void smartButton4_Click(object sender, EventArgs e)
         {
             userTable.ShowDialog();
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TempServerPage_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
