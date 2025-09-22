@@ -27,9 +27,10 @@ namespace SmartCodeLab.CustomComponents.Pages
             InitializeComponent();
         }
         private Server server;
-        //controls handling
+        //controls handling and pages
         private TempServerPage serverPage;
         private StudTable userTable;
+        private ServerHomePage homePage;
 
         //network and user connectivity related
         private readonly MessageType[] ForMainServer = { MessageType.UserProfile };//messages that are meant for this page, or class
@@ -51,10 +52,12 @@ namespace SmartCodeLab.CustomComponents.Pages
 
             userTable = new StudTable(server.Users);
             serverPage = new TempServerPage(server.ServerTask, server.Users);
+            homePage = new ServerHomePage();
 
-            tabPage1.Controls.Add(serverPage);
-            tabPage2.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
-            tabPage3.Controls.Add(new ProgressSubmissionPage());
+            tabPage1.Controls.Add(homePage);
+            tabPage2.Controls.Add(serverPage);
+            tabPage3.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
+            tabPage4.Controls.Add(new ProgressSubmissionPage());
         }
 
         private void codeMonitoringToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,6 +68,16 @@ namespace SmartCodeLab.CustomComponents.Pages
         private void submissionStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             container.SelectedIndex = 1;
+        }
+
+        private void viewUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            container.SelectedIndex = 2;
+        }
+
+        private void viewUsersToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            userTable.ShowDialog();
         }
 
         //network related stuffs
@@ -151,12 +164,12 @@ namespace SmartCodeLab.CustomComponents.Pages
                                 else
                                 {
                                     serverPage.AddNewUser(networkStream, actualProfile);
-
                                     currentStudents.Add(profile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                         new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128);
                                     didLogIn = true;
                                     HandleUserStream(networkStream, profile._studentId, true);
+                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, "logged in", actualProfile._studentName));
                                 }
                             }
                             if (!didLogIn)
@@ -200,11 +213,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                     await item.Key.FlushAsync();
                 }
             });
-        }
-
-        private void viewUsersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            userTable.ShowDialog();
         }
     }
 }

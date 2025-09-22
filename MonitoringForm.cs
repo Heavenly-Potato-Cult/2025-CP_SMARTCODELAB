@@ -37,21 +37,25 @@ namespace SmartCodeLab
         private void btnMenu2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 0;
+            FocusInAndOut(btnSideMenu_Student);
+        }
 
-            //change backcolor
-            btnSideMenu_Student.BackColor = Color.FromArgb(26, 26, 26);
-            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
+        private void FocusInAndOut(Button button)
+        {
+            Button[] buttons = { btnSideMenu_Student , btnSideMenu_TaskManagement, btnSideMenu_FileManagement, btnSideMenu_Settings };
+
+            foreach(Button b in buttons)
+            {
+                b.BackColor = Color.FromArgb(13, 13, 13);
+                if (b == button)
+                    b.BackColor = Color.FromArgb(26, 26, 26);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             //change backcolor
-            btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(26, 26, 26);
-            btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
+            FocusInAndOut(btnSideMenu_TaskManagement);
 
             if (!SystemSingleton.Instance._loggedIn)
             {
@@ -64,8 +68,10 @@ namespace SmartCodeLab
                     if (userLogIn.ShowDialog() == DialogResult.OK)
                     {
                         var studentProgramming = new TempStudentIDE(userLogIn._folderLocation, userLogIn._userName, userLogIn.serverTask, userLogIn._stream);
-                        tabPage3.Controls.Clear();
-                        tabPage3.Controls.Add(studentProgramming);
+                        this.Invoke((Action)(() => {
+                            tabPage3.Controls.Clear();
+                            tabPage3.Controls.Add(studentProgramming);
+                        }));
                         SystemSingleton.Instance._loggedIn = true;
                     }
                     else
@@ -92,46 +98,20 @@ namespace SmartCodeLab
         {
             tabControl1.SelectedIndex = 6;
 
-
-            //change backcolor
-            btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_FileManagement.BackColor = Color.FromArgb(26, 26, 26);
-            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
+            FocusInAndOut(btnSideMenu_FileManagement);
         }
 
         private void btnSideMenu_Settings_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 3;
             //change backcolor
-            btnSideMenu_Student.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Settings.BackColor = Color.FromArgb(26, 26, 26);
-        }
-
-        private void headerPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void MonitoringForm_Load(object sender, EventArgs e)
-        {
-
-
+            FocusInAndOut(btnSideMenu_Settings);
         }
 
         private void btnSideMenu_Shutdown_Click(object sender, EventArgs e)
         {
             Application.OpenForms["StudentIDEform"].Show();
             this.Close();
-
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -156,20 +136,12 @@ namespace SmartCodeLab
 
         }
 
-        private void serverSetUpPage1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void button7_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 8;
 
         }
 
-        private void smartButton1_Click(object sender, EventArgs e)
-        {
-        }
         private void button8_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 8;

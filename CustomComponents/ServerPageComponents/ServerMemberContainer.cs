@@ -24,7 +24,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public UserIcons AddUser(UserProfile user, NetworkStream stream, Action<string,string> action)
         {
             UserIcons userIcons = new UserIcons(user, this, stream, action);
-            this.Invoke(() => flowLayoutPanel1.Controls.Add(userIcons));
+            this.Invoke((Action)(() => flowLayoutPanel1.Controls.Add(userIcons)));
             return userIcons;
         }
 

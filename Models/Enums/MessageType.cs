@@ -12,6 +12,7 @@ namespace SmartCodeLab.Models.Enums
         LogInSuccessful,
         LogInFailed,
         IsEyesOnMe,
-        TaskUpdate
+        TaskUpdate,
+        Notification
     }
 }

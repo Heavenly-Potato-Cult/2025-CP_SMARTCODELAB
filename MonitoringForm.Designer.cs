@@ -41,12 +41,12 @@ namespace SmartCodeLab
             button4 = new Button();
             button3 = new Button();
             btnSideMenu_Shutdown = new Button();
-            btnSideMenu_Settings = new Button();
             btnSideMenu_FileManagement = new Button();
             btnSideMenu_TaskManagement = new Button();
             btnSideMenu_Student = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            serverSetUp2 = new SmartCodeLab.CustomComponents.Pages.ServerSetUp();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
             customCard1 = new CustomCard();
@@ -64,7 +64,7 @@ namespace SmartCodeLab
             tabPage9 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
             tabPage10 = new TabPage();
-            serverSetUp2 = new SmartCodeLab.CustomComponents.Pages.ServerSetUp();
+            btnSideMenu_Settings = new Button();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -93,7 +93,6 @@ namespace SmartCodeLab
             headerPanel.Name = "headerPanel";
             headerPanel.Size = new Size(1626, 70);
             headerPanel.TabIndex = 1;
-            headerPanel.Paint += headerPanel_Paint;
             // 
             // btnMenu
             // 
@@ -329,28 +328,6 @@ namespace SmartCodeLab
             btnSideMenu_Shutdown.UseVisualStyleBackColor = false;
             btnSideMenu_Shutdown.Click += btnSideMenu_Shutdown_Click;
             // 
-            // btnSideMenu_Settings
-            // 
-            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Settings.Cursor = Cursors.Hand;
-            btnSideMenu_Settings.FlatAppearance.BorderSize = 0;
-            btnSideMenu_Settings.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_Settings.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            btnSideMenu_Settings.ForeColor = Color.White;
-            btnSideMenu_Settings.Image = (Image)resources.GetObject("btnSideMenu_Settings.Image");
-            btnSideMenu_Settings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Settings.Location = new Point(18, 209);
-            btnSideMenu_Settings.Margin = new Padding(3, 4, 3, 4);
-            btnSideMenu_Settings.Name = "btnSideMenu_Settings";
-            btnSideMenu_Settings.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_Settings.Size = new Size(221, 60);
-            btnSideMenu_Settings.TabIndex = 4;
-            btnSideMenu_Settings.Tag = "Settings";
-            btnSideMenu_Settings.Text = "   Settings";
-            btnSideMenu_Settings.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSideMenu_Settings.UseVisualStyleBackColor = false;
-            btnSideMenu_Settings.Click += btnSideMenu_Settings_Click;
-            // 
             // btnSideMenu_FileManagement
             // 
             btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
@@ -390,7 +367,7 @@ namespace SmartCodeLab
             btnSideMenu_TaskManagement.Size = new Size(221, 60);
             btnSideMenu_TaskManagement.TabIndex = 2;
             btnSideMenu_TaskManagement.Tag = "Task Management";
-            btnSideMenu_TaskManagement.Text = "   Task Management";
+            btnSideMenu_TaskManagement.Text = "   Join Server";
             btnSideMenu_TaskManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_TaskManagement.UseVisualStyleBackColor = false;
             btnSideMenu_TaskManagement.Click += button1_Click;
@@ -445,6 +422,13 @@ namespace SmartCodeLab
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // serverSetUp2
+            // 
+            serverSetUp2.Location = new Point(0, 0);
+            serverSetUp2.Name = "serverSetUp2";
+            serverSetUp2.Size = new Size(1362, 877);
+            serverSetUp2.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -625,12 +609,27 @@ namespace SmartCodeLab
             tabPage10.TabIndex = 9;
             tabPage10.Text = "tabPage10";
             // 
-            // serverSetUp2
+            // btnSideMenu_Settings
             // 
-            serverSetUp2.Location = new Point(0, 0);
-            serverSetUp2.Name = "serverSetUp2";
-            serverSetUp2.Size = new Size(1362, 877);
-            serverSetUp2.TabIndex = 0;
+            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Settings.Cursor = Cursors.Hand;
+            btnSideMenu_Settings.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Settings.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Settings.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_Settings.ForeColor = Color.White;
+            btnSideMenu_Settings.Image = (Image)resources.GetObject("btnSideMenu_Settings.Image");
+            btnSideMenu_Settings.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_Settings.Location = new Point(18, 209);
+            btnSideMenu_Settings.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_Settings.Name = "btnSideMenu_Settings";
+            btnSideMenu_Settings.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_Settings.Size = new Size(221, 60);
+            btnSideMenu_Settings.TabIndex = 4;
+            btnSideMenu_Settings.Tag = "Settings";
+            btnSideMenu_Settings.Text = "   Settings";
+            btnSideMenu_Settings.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_Settings.UseVisualStyleBackColor = false;
+            btnSideMenu_Settings.Click += btnSideMenu_Settings_Click;
             // 
             // MonitoringForm
             // 
@@ -647,7 +646,6 @@ namespace SmartCodeLab
             Name = "MonitoringForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MonitoringForm";
-            Load += MonitoringForm_Load;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -668,7 +666,6 @@ namespace SmartCodeLab
         #endregion
         private Button btnSideMenu_FileManagement;
         private Button btnSideMenu_TaskManagement;
-        private Button btnSideMenu_Settings;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage3;
@@ -700,5 +697,6 @@ namespace SmartCodeLab
         private CustomComponents.ServerPageComponents.TempStudentIDE tempStudentide1;
         private CustomComponents.Pages.ServerSetUp serverSetUp1;
         private CustomComponents.Pages.ServerSetUp serverSetUp2;
+        private Button btnSideMenu_Settings;
     }
 }

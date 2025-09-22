@@ -29,6 +29,8 @@ namespace SmartCodeLab.Models
         [ProtoMember(6)]
         public bool? isFocused { get; set; }
 
+        [ProtoMember(7)]
+        public Notification notification { get; set; }
         public ServerMessage()
         {
         }
@@ -84,6 +86,12 @@ namespace SmartCodeLab.Models
             public Builder Focused(bool isFocused)
             {
                 msg.isFocused = isFocused;
+                return this;
+            }
+
+            public Builder Notification(Notification notification)
+            {
+                msg.notification = notification;
                 return this;
             }
 
