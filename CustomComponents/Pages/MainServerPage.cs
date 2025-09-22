@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.Models;
@@ -25,25 +26,35 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             InitializeComponent();
         }
-
+        private Server server;
         //controls handling
         private TempServerPage serverPage;
+        private StudTable userTable;
 
         //network and user connectivity related
+        private readonly MessageType[] ForMainServer = { MessageType.UserProfile };//messages that are meant for this page, or class
         private TaskModel currentTask;
-        private TcpListener _server;
+        private TcpListener _serverListener;
+
+        //users related
         private Dictionary<NetworkStream, string> connectedUsers;
-        public MainServerPage(TaskModel task, Dictionary<string, UserProfile> users)
+        Dictionary<string, UserProfile> expectedUsers;
+        private List<string> currentStudents = new List<string>();
+        public MainServerPage(Server server)
         {
             InitializeComponent();
-            _server = new TcpListener(IPAddress.Parse(NetworkServices.GetIpv4()), 1901);
-            currentTask = task;
+            this.server = server;
+            _serverListener = new TcpListener(IPAddress.Parse(NetworkServices.GetIpv4()), 1901);
+            currentTask = server.ServerTask;
             Task.Run(async () => await StartServerAsync());
             connectedUsers = new Dictionary<NetworkStream, string>();
 
-            serverPage = new TempServerPage(task, users);
+            userTable = new StudTable(server.Users);
+            serverPage = new TempServerPage(server.ServerTask, server.Users);
+
             tabPage1.Controls.Add(serverPage);
-            tabPage2.Controls.Add(new ServerTaskUpdate(currentTask,UpdateServerTask));
+            tabPage2.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
+            tabPage3.Controls.Add(new ProgressSubmissionPage());
         }
 
         private void codeMonitoringToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,7 +75,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             while (true)
             {
                 UdpReceiveResult result = await udpServer.ReceiveAsync();
-                byte[] taskData = Encoding.UTF8.GetBytes(JsonFileService.GetObjectJsonText(currentTask));
+                byte[] taskData = Encoding.UTF8.GetBytes(JsonFileService.GetObjectJsonText(server));
                 udpServer.Send(taskData, taskData.Length, result.RemoteEndPoint);
             }
         }
@@ -73,11 +84,11 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             try
             {
-                _server.Start(); // Only start once!
+                _serverListener.Start(); // Only start once!
                 _ = UdpServerInfoSender();
                 while (true)
                 {
-                    TcpClient client = await AcceptTcpClientAsync(_server);
+                    TcpClient client = await AcceptTcpClientAsync(_serverListener);
                     NetworkStream stream = client.GetStream();
 
                     // Handle each client in a separate task
@@ -86,7 +97,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Server error: {ex.Message}");
                 this.Invoke((MethodInvoker)delegate
                 {
                     MessageBox.Show($"Server error: {ex.Message}");
@@ -117,11 +127,47 @@ namespace SmartCodeLab.CustomComponents.Pages
                     {
                         break;
                     }
-
                     if (obj == null)
                         break;
-                    await serverPage.MessageHandler(obj,networkStream, HandleUserStream);
 
+                    switch (obj._messageType)
+                    {
+                        case MessageType.ServerTaskRequest:
+                            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
+                            await networkStream.FlushAsync();
+                            break;
+                        case MessageType.UserProfile:
+                            if (obj._userProfile == null)
+                                break;
+                            UserProfile profile = obj._userProfile;
+                            bool didLogIn = false;
+                            string errorMsg = "We can't find an account with that Student ID";
+                            if (userTable.ContainsUser(profile._studentId))
+                            {
+                                UserProfile actualProfile = userTable.GetUserProfile(profile._studentId);
+                                if (currentStudents.Contains(profile._studentName))
+                                    errorMsg = "This student is already logged in";
+                                else
+                                {
+                                    serverPage.AddNewUser(networkStream, actualProfile);
+
+                                    currentStudents.Add(profile._studentName);
+                                    Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                        new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128);
+                                    didLogIn = true;
+                                    HandleUserStream(networkStream, profile._studentId, true);
+                                }
+                            }
+                            if (!didLogIn)
+                                Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                                    new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
+                            await networkStream.FlushAsync();
+                            break;
+                        default:
+                            await serverPage.MessageHandler(obj, networkStream, HandleUserStream);
+                            break;
+                    }
                 }
                 catch (IOException)
                 {
@@ -135,10 +181,10 @@ namespace SmartCodeLab.CustomComponents.Pages
             serverPage.RemoveUser(networkStream);
         }
 
-        private void HandleUserStream(NetworkStream networkStream, string userId, bool isAdd) 
+        private void HandleUserStream(NetworkStream networkStream, string userId, bool isAdd)
         {
             if (isAdd)
-                connectedUsers.Add(networkStream,userId);
+                connectedUsers.Add(networkStream, userId);
             else
                 connectedUsers.Remove(networkStream);
         }
@@ -146,7 +192,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private void UpdateServerTask(TaskModel task)
         {
             serverPage.UpdateTask(task);
-            Task.Run(async () => 
+            Task.Run(async () =>
             {
                 foreach (var item in connectedUsers)
                 {
@@ -154,6 +200,11 @@ namespace SmartCodeLab.CustomComponents.Pages
                     await item.Key.FlushAsync();
                 }
             });
+        }
+
+        private void viewUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            userTable.ShowDialog();
         }
     }
 }

@@ -60,38 +60,38 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 switch (message._messageType)
                 {
-                    case MessageType.ServerTaskRequest:
-                        Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                            new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
-                        await networkStream.FlushAsync();
-                        break;
-                    case MessageType.UserProfile:
-                        if (message._userProfile == null)
-                            break;
-                        UserProfile profile = message._userProfile;
-                        bool didLogIn = false;
-                        string errorMsg = "We can't find an account with that Student ID";
-                        if (userTable.ContainsUser(profile._studentId))
-                        {
-                            UserProfile actualProfile = userTable.GetUserProfile(profile._studentId);
-                            if (currentStudents.Contains(profile._studentName))
-                                errorMsg = "This student is already logged in";
-                            else
-                            {
-                                _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(actualProfile, networkStream, NewUserSelected)));
+                    //case MessageType.ServerTaskRequest:
+                    //    Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                    //        new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
+                    //    await networkStream.FlushAsync();
+                    //    break;
+                    //case MessageType.UserProfile:
+                    //    if (message._userProfile == null)
+                    //        break;
+                    //    UserProfile profile = message._userProfile;
+                    //    bool didLogIn = false;
+                    //    string errorMsg = "We can't find an account with that Student ID";
+                    //    if (userTable.ContainsUser(profile._studentId))
+                    //    {
+                    //        UserProfile actualProfile = userTable.GetUserProfile(profile._studentId);
+                    //        if (currentStudents.Contains(profile._studentName))
+                    //            errorMsg = "This student is already logged in";
+                    //        else
+                    //        {
+                    //            _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(actualProfile, networkStream, NewUserSelected)));
 
-                                currentStudents.Add(profile._studentName);
-                                Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                    new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128);
-                                didLogIn = true;
-                                action?.Invoke(networkStream, profile._studentId, true);
-                            }
-                        }
-                        if (!didLogIn)
-                            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
-                        await networkStream.FlushAsync();
-                        break;
+                    //            currentStudents.Add(profile._studentName);
+                    //            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                    //                new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128);
+                    //            didLogIn = true;
+                    //            action?.Invoke(networkStream, profile._studentId, true);
+                    //        }
+                    //    }
+                    //    if (!didLogIn)
+                    //        Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
+                    //            new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
+                    //    await networkStream.FlushAsync();
+                    //    break;
                     case MessageType.StudentProgress:
                         studentProgress = message._progress;
                         this.Invoke((Delegate)(() =>
@@ -134,6 +134,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
+        public void AddNewUser(NetworkStream networkStream, UserProfile user)
+        {
+            _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(user, networkStream, NewUserSelected)));
+        }
+
         public void UpdateTask(TaskModel task)
         {
             currentTask = task;
@@ -160,21 +165,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
             }));
-        }
-
-        private void smartButton4_Click(object sender, EventArgs e)
-        {
-            userTable.ShowDialog();
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TempServerPage_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

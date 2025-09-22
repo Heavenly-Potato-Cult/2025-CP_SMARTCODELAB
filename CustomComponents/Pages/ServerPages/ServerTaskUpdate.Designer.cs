@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerTaskUpdate));
             tabControl1 = new TabControl();
             tabPage3 = new TabPage();
-            langauge = new CustomTextBox();
-            label2 = new Label();
             instruction = new CustomTextBox();
             label25 = new Label();
             subject = new CustomTextBox();
@@ -78,8 +76,6 @@
             // tabPage3
             // 
             tabPage3.BackColor = Color.White;
-            tabPage3.Controls.Add(langauge);
-            tabPage3.Controls.Add(label2);
             tabPage3.Controls.Add(instruction);
             tabPage3.Controls.Add(label25);
             tabPage3.Controls.Add(subject);
@@ -90,36 +86,9 @@
             tabPage3.Location = new Point(4, 43);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(10);
-            tabPage3.Size = new Size(1157, 468);
+            tabPage3.Size = new Size(1157, 556);
             tabPage3.TabIndex = 0;
             tabPage3.Text = "Details";
-            // 
-            // langauge
-            // 
-            langauge.BackColor = Color.White;
-            langauge.BorderColor = Color.LightGray;
-            langauge.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            langauge.BorderRadius = 10;
-            langauge.BorderSize = 1;
-            langauge.Enabled = false;
-            langauge.ForeColor = SystemColors.ControlText;
-            langauge.Location = new Point(26, 280);
-            langauge.Name = "langauge";
-            langauge.Padding = new Padding(10, 7, 10, 7);
-            langauge.ScrollBars = ScrollBars.None;
-            langauge.Size = new Size(348, 46);
-            langauge.TabIndex = 38;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.DimGray;
-            label2.Location = new Point(26, 252);
-            label2.Name = "label2";
-            label2.Size = new Size(204, 25);
-            label2.TabIndex = 37;
-            label2.Text = "Programming Language";
             // 
             // instruction
             // 
@@ -131,12 +100,12 @@
             instruction.BorderRadius = 10;
             instruction.BorderSize = 1;
             instruction.ForeColor = SystemColors.ControlText;
-            instruction.Location = new Point(452, 72);
+            instruction.Location = new Point(26, 177);
             instruction.Multiline = true;
             instruction.Name = "instruction";
             instruction.Padding = new Padding(10, 7, 10, 7);
             instruction.ScrollBars = ScrollBars.Vertical;
-            instruction.Size = new Size(679, 254);
+            instruction.Size = new Size(1105, 353);
             instruction.TabIndex = 34;
             // 
             // label25
@@ -144,7 +113,7 @@
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label25.ForeColor = Color.DimGray;
-            label25.Location = new Point(452, 44);
+            label25.Location = new Point(26, 149);
             label25.Name = "label25";
             label25.Size = new Size(96, 25);
             label25.TabIndex = 33;
@@ -158,7 +127,7 @@
             subject.BorderRadius = 10;
             subject.BorderSize = 1;
             subject.ForeColor = SystemColors.ControlText;
-            subject.Location = new Point(26, 171);
+            subject.Location = new Point(444, 72);
             subject.Name = "subject";
             subject.Padding = new Padding(10, 7, 10, 7);
             subject.ScrollBars = ScrollBars.None;
@@ -170,7 +139,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.DimGray;
-            label8.Location = new Point(26, 143);
+            label8.Location = new Point(444, 44);
             label8.Name = "label8";
             label8.Size = new Size(70, 25);
             label8.TabIndex = 29;
@@ -213,7 +182,7 @@
             tabPage4.Location = new Point(4, 43);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1157, 468);
+            tabPage4.Size = new Size(1157, 556);
             tabPage4.TabIndex = 1;
             tabPage4.Text = "Reference Code";
             // 
@@ -435,7 +404,6 @@
 
         private TabControl tabControl1;
         private TabPage tabPage3;
-        private Label label2;
         private GeneralComponents.SmartButton btn_EditExerciseDetails;
         private CustomTextBox instruction;
         private Label label25;
@@ -456,6 +424,5 @@
         private GeneralComponents.SmartButton btn_AddTestCase;
         private Label label13;
         private Label label3;
-        private CustomTextBox langauge;
     }
 }

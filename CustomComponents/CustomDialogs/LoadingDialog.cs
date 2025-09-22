@@ -67,8 +67,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                         {
                             UdpReceiveResult result = await udpClient.ReceiveAsync();
                             string reply = Encoding.UTF8.GetString(result.Buffer);
-                            TaskModel task = JsonFileService.GetObjectFromText<TaskModel>(reply);
-
+                            Server task = JsonFileService.GetObjectFromText<Server>(reply);
                             if (!senders.Contains(result.RemoteEndPoint))
                             {
                                 senders.Add(result.RemoteEndPoint);

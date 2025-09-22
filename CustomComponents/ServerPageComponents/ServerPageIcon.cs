@@ -21,11 +21,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
     public partial class ServerPageIcon : RoundedUserControl
     {
         private Action<IPEndPoint> _action;
-        public ServerPageIcon(TaskModel task,IPEndPoint point, Action<IPEndPoint> act)
+        public ServerPageIcon(Server server,IPEndPoint point, Action<IPEndPoint> act)
         {
             InitializeComponent();
-            taskName.Text = task._taskName;
-            subject.Text = task.subject;
+            taskName.Text = server.ServerName;
+            subject.Text = server.programmingLanguage;
             _action = act;
 
             this.Click += (s, e) => ConnectServer(point);

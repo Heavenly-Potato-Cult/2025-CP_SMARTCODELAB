@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             exerciseContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             taskContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -38,9 +39,9 @@
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label8 = new Label();
-            customComboBox1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
+            language = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             label7 = new Label();
-            customTextBox1 = new CustomTextBox();
+            serverName = new CustomTextBox();
             label4 = new Label();
             label12 = new Label();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -48,7 +49,6 @@
             label1 = new Label();
             label5 = new Label();
             label3 = new Label();
-            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customCard2.SuspendLayout();
             exerciseContainer.SuspendLayout();
             customCard3.SuspendLayout();
@@ -66,15 +66,32 @@
             customCard2.Controls.Add(customComboBox2);
             customCard2.Controls.Add(label15);
             customCard2.Controls.Add(customCard3);
-            customCard2.Controls.Add(customComboBox1);
+            customCard2.Controls.Add(language);
             customCard2.Controls.Add(label7);
-            customCard2.Controls.Add(customTextBox1);
+            customCard2.Controls.Add(serverName);
             customCard2.Controls.Add(label4);
             customCard2.Controls.Add(label12);
             customCard2.Location = new Point(106, 165);
             customCard2.Name = "customCard2";
             customCard2.Size = new Size(1110, 679);
             customCard2.TabIndex = 20;
+            // 
+            // smartButton4
+            // 
+            smartButton4.BackColor = Color.SeaGreen;
+            smartButton4.BackgroundColor = Color.SeaGreen;
+            smartButton4.BorderRadius = 5;
+            smartButton4.FlatAppearance.BorderSize = 0;
+            smartButton4.FlatStyle = FlatStyle.Flat;
+            smartButton4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton4.ForeColor = Color.White;
+            smartButton4.Location = new Point(405, 314);
+            smartButton4.Name = "smartButton4";
+            smartButton4.Size = new Size(301, 50);
+            smartButton4.TabIndex = 28;
+            smartButton4.Text = "Start Session";
+            smartButton4.UseVisualStyleBackColor = false;
+            smartButton4.Click += smartButton4_Click;
             // 
             // exerciseContainer
             // 
@@ -202,24 +219,25 @@
             label8.TabIndex = 25;
             label8.Text = "Session Actions";
             // 
-            // customComboBox1
+            // language
             // 
-            customComboBox1.BackColor = Color.White;
-            customComboBox1.BorderColor = Color.LightGray;
-            customComboBox1.BorderSize = 1;
-            customComboBox1.DropDownStyle = ComboBoxStyle.DropDown;
-            customComboBox1.Font = new Font("Segoe UI", 10F);
-            customComboBox1.ForeColor = Color.DimGray;
-            customComboBox1.IconColor = Color.Gray;
-            customComboBox1.ListBackColor = Color.FromArgb(230, 228, 245);
-            customComboBox1.ListTextColor = Color.DimGray;
-            customComboBox1.Location = new Point(456, 111);
-            customComboBox1.MinimumSize = new Size(200, 30);
-            customComboBox1.Name = "customComboBox1";
-            customComboBox1.Padding = new Padding(1);
-            customComboBox1.Size = new Size(250, 41);
-            customComboBox1.TabIndex = 23;
-            customComboBox1.Texts = "";
+            language.BackColor = Color.White;
+            language.BorderColor = Color.LightGray;
+            language.BorderSize = 1;
+            language.DropDownStyle = ComboBoxStyle.DropDown;
+            language.Font = new Font("Segoe UI", 10F);
+            language.ForeColor = Color.DimGray;
+            language.IconColor = Color.Gray;
+            language.Items.AddRange(new object[] { "C++", "Java", "Python" });
+            language.ListBackColor = Color.FromArgb(230, 228, 245);
+            language.ListTextColor = Color.DimGray;
+            language.Location = new Point(456, 111);
+            language.MinimumSize = new Size(200, 30);
+            language.Name = "language";
+            language.Padding = new Padding(1);
+            language.Size = new Size(250, 41);
+            language.TabIndex = 23;
+            language.Texts = "";
             // 
             // label7
             // 
@@ -228,24 +246,24 @@
             label7.ForeColor = Color.DimGray;
             label7.Location = new Point(456, 83);
             label7.Name = "label7";
-            label7.Size = new Size(81, 25);
+            label7.Size = new Size(89, 25);
             label7.TabIndex = 21;
-            label7.Text = "Duration";
+            label7.Text = "Language";
             // 
-            // customTextBox1
+            // serverName
             // 
-            customTextBox1.BackColor = Color.White;
-            customTextBox1.BorderColor = Color.LightGray;
-            customTextBox1.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            customTextBox1.BorderRadius = 10;
-            customTextBox1.BorderSize = 1;
-            customTextBox1.ForeColor = SystemColors.ControlText;
-            customTextBox1.Location = new Point(23, 111);
-            customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(10, 7, 10, 7);
-            customTextBox1.ScrollBars = ScrollBars.None;
-            customTextBox1.Size = new Size(368, 41);
-            customTextBox1.TabIndex = 18;
+            serverName.BackColor = Color.White;
+            serverName.BorderColor = Color.LightGray;
+            serverName.BorderFocusColor = Color.FromArgb(64, 64, 64);
+            serverName.BorderRadius = 10;
+            serverName.BorderSize = 1;
+            serverName.ForeColor = SystemColors.ControlText;
+            serverName.Location = new Point(23, 111);
+            serverName.Name = "serverName";
+            serverName.Padding = new Padding(10, 7, 10, 7);
+            serverName.ScrollBars = ScrollBars.None;
+            serverName.Size = new Size(368, 41);
+            serverName.TabIndex = 18;
             // 
             // label4
             // 
@@ -326,23 +344,6 @@
             label3.TabIndex = 17;
             label3.Text = "Set Up Session";
             // 
-            // smartButton4
-            // 
-            smartButton4.BackColor = Color.SeaGreen;
-            smartButton4.BackgroundColor = Color.SeaGreen;
-            smartButton4.BorderRadius = 5;
-            smartButton4.FlatAppearance.BorderSize = 0;
-            smartButton4.FlatStyle = FlatStyle.Flat;
-            smartButton4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(405, 314);
-            smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(301, 50);
-            smartButton4.TabIndex = 28;
-            smartButton4.Text = "Start Session";
-            smartButton4.UseVisualStyleBackColor = false;
-            smartButton4.Click += smartButton4_Click;
-            // 
             // ServerSetUp
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -373,9 +374,9 @@
         private GeneralComponents.SmartButton smartButton2;
         private GeneralComponents.SmartButton smartButton1;
         private Label label8;
-        private GeneralComponents.CustomComboBox customComboBox1;
+        private GeneralComponents.CustomComboBox language;
         private Label label7;
-        private CustomTextBox customTextBox1;
+        private CustomTextBox serverName;
         private Label label4;
         private Label label12;
         private GeneralComponents.CustomCard customCard1;

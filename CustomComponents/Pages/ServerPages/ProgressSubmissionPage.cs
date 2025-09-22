@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SmartCodeLab.CustomComponents.ServerPageComponents
+namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
-    public partial class TempCodeEvaluation : UserControl
+    public partial class ProgressSubmissionPage : UserControl
     {
-        public TempCodeEvaluation()
+        public ProgressSubmissionPage()
         {
             InitializeComponent();
         }
 
-        private void label16_Click(object sender, EventArgs e)
+        private void label11_Click(object sender, EventArgs e)
         {
 
         }

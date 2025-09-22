@@ -37,8 +37,6 @@
             btn_AddNewExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             tabControl1 = new TabControl();
             tabPage3 = new TabPage();
-            label2 = new Label();
-            language = new ComboBox();
             btn_EditExerciseDetails = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             instruction = new CustomTextBox();
             label25 = new Label();
@@ -146,8 +144,6 @@
             // tabPage3
             // 
             tabPage3.BackColor = Color.White;
-            tabPage3.Controls.Add(label2);
-            tabPage3.Controls.Add(language);
             tabPage3.Controls.Add(btn_EditExerciseDetails);
             tabPage3.Controls.Add(instruction);
             tabPage3.Controls.Add(label25);
@@ -163,27 +159,6 @@
             tabPage3.TabIndex = 0;
             tabPage3.Text = "Details";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.DimGray;
-            label2.Location = new Point(33, 242);
-            label2.Name = "label2";
-            label2.Size = new Size(204, 25);
-            label2.TabIndex = 37;
-            label2.Text = "Programming Language";
-            // 
-            // language
-            // 
-            language.Enabled = false;
-            language.FormattingEnabled = true;
-            language.Items.AddRange(new object[] { "Cpp", "Java", "Python" });
-            language.Location = new Point(33, 270);
-            language.Name = "language";
-            language.Size = new Size(241, 39);
-            language.TabIndex = 36;
-            // 
             // btn_EditExerciseDetails
             // 
             btn_EditExerciseDetails.BackColor = Color.MediumTurquoise;
@@ -193,7 +168,7 @@
             btn_EditExerciseDetails.FlatStyle = FlatStyle.Flat;
             btn_EditExerciseDetails.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_EditExerciseDetails.ForeColor = Color.White;
-            btn_EditExerciseDetails.Location = new Point(222, 342);
+            btn_EditExerciseDetails.Location = new Point(222, 356);
             btn_EditExerciseDetails.Name = "btn_EditExerciseDetails";
             btn_EditExerciseDetails.Size = new Size(304, 50);
             btn_EditExerciseDetails.TabIndex = 35;
@@ -212,12 +187,12 @@
             instruction.BorderSize = 1;
             instruction.Enabled = false;
             instruction.ForeColor = SystemColors.ControlText;
-            instruction.Location = new Point(394, 72);
+            instruction.Location = new Point(20, 126);
             instruction.Multiline = true;
             instruction.Name = "instruction";
             instruction.Padding = new Padding(10, 7, 10, 7);
             instruction.ScrollBars = ScrollBars.Vertical;
-            instruction.Size = new Size(366, 237);
+            instruction.Size = new Size(740, 224);
             instruction.TabIndex = 34;
             // 
             // label25
@@ -225,7 +200,7 @@
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label25.ForeColor = Color.DimGray;
-            label25.Location = new Point(394, 51);
+            label25.Location = new Point(20, 98);
             label25.Name = "label25";
             label25.Size = new Size(96, 25);
             label25.TabIndex = 33;
@@ -240,7 +215,7 @@
             subject.BorderSize = 1;
             subject.Enabled = false;
             subject.ForeColor = SystemColors.ControlText;
-            subject.Location = new Point(26, 171);
+            subject.Location = new Point(412, 30);
             subject.Name = "subject";
             subject.Padding = new Padding(10, 7, 10, 7);
             subject.ScrollBars = ScrollBars.None;
@@ -252,7 +227,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.DimGray;
-            label8.Location = new Point(33, 150);
+            label8.Location = new Point(420, 9);
             label8.Name = "label8";
             label8.Size = new Size(70, 25);
             label8.TabIndex = 29;
@@ -267,7 +242,7 @@
             exerciseName.BorderSize = 1;
             exerciseName.Enabled = false;
             exerciseName.ForeColor = SystemColors.ControlText;
-            exerciseName.Location = new Point(26, 72);
+            exerciseName.Location = new Point(13, 30);
             exerciseName.Name = "exerciseName";
             exerciseName.Padding = new Padding(10, 7, 10, 7);
             exerciseName.ScrollBars = ScrollBars.None;
@@ -279,7 +254,7 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.DimGray;
-            label9.Location = new Point(33, 51);
+            label9.Location = new Point(20, 9);
             label9.Name = "label9";
             label9.Size = new Size(125, 25);
             label9.TabIndex = 27;
@@ -314,11 +289,12 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(31, 18);
+            reference.AutoScrollMinSize = new Size(2, 18);
             reference.BackBrush = null;
             reference.CharHeight = 18;
             reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            reference.Font = new Font("Courier New", 9.75F);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IsReplaceMode = false;
             reference.Location = new Point(29, 67);
@@ -596,8 +572,6 @@
         private GeneralComponents.CustomCard customCard4;
         private FlowLayoutPanel taskContainer;
         private GeneralComponents.SmartButton smartButton3;
-        private Label label2;
-        private ComboBox language;
         private Pages.ProgrammingTabs.CodeEditor reference;
         private FlowLayoutPanel testContainer;
     }

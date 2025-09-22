@@ -49,7 +49,6 @@
             label20 = new Label();
             memberContainer = new ServerMemberContainer();
             codeTrack = new TrackBar();
-            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
             customCard13 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -116,6 +115,7 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
             studentCode.Location = new Point(28, 53);
@@ -138,7 +138,6 @@
             label15.Size = new Size(193, 28);
             label15.TabIndex = 14;
             label15.Text = "Live Coding Viewer";
-            label15.Click += label15_Click;
             // 
             // customCard6
             // 
@@ -335,21 +334,6 @@
             codeTrack.Size = new Size(909, 56);
             codeTrack.TabIndex = 100;
             codeTrack.Scroll += codeTrack_Scroll;
-            // 
-            // smartButton4
-            // 
-            smartButton4.BackColor = Color.MediumSlateBlue;
-            smartButton4.BorderRadius = 20;
-            smartButton4.FlatAppearance.BorderSize = 0;
-            smartButton4.FlatStyle = FlatStyle.Flat;
-            smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(28, 66);
-            smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(188, 31);
-            smartButton4.TabIndex = 101;
-            smartButton4.Text = "View Students";
-            smartButton4.UseVisualStyleBackColor = false;
-            smartButton4.Click += smartButton4_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -560,14 +544,12 @@
             AutoScroll = true;
             BackColor = Color.WhiteSmoke;
             Controls.Add(flowLayoutPanel1);
-            Controls.Add(smartButton4);
             Controls.Add(memberContainer);
             Controls.Add(smartButton1);
             Controls.Add(label5);
             Controls.Add(label3);
             Name = "TempServerPage";
             Size = new Size(1331, 820);
-            Load += TempServerPage_Load;
             customCard8.ResumeLayout(false);
             customCard8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();
@@ -615,7 +597,6 @@
         private ServerMemberContainer memberContainer;
         private Pages.ProgrammingTabs.CodeEditor studentCode;
         private TrackBar codeTrack;
-        private GeneralComponents.SmartButton smartButton4;
         private FlowLayoutPanel copypastedCodes;
         private FlowLayoutPanel flowLayoutPanel1;
         private Panel panel1;

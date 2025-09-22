@@ -47,7 +47,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             StudentProgress.sourceCode = srcCode.Text;
             StudentProgress.CodeProgress.Add(srcCode.Text);
 
-            possibleProgDirectory = Path.Combine(Path.GetDirectoryName(filePath), $"{task._taskName}_{userName}_prog.bin");
+            possibleProgDirectory = Path.Combine(Path.GetDirectoryName(filePath), $"{task._taskName}_{userName}_{Path.GetExtension(filePath)}_prog.bin");
             if (File.Exists(possibleProgDirectory))
                 StudentProgress = StudentCodingProgress.Deserialize(possibleProgDirectory);
 
@@ -100,7 +100,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 if (e.KeyCode == Keys.Enter && process != null && !process.HasExited)
                 {
                     e.SuppressKeyPress = true; // prevent new line in textbox
-                    string inputLine = output.Text.Replace(latestoutput, " ");
+                    string inputLine = output.Text.Replace(latestoutput, "");
                     SendInput(inputLine);
                     output.AppendText(Environment.NewLine); // mimic Enter
                 }
@@ -239,7 +239,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public async virtual void RunTest()
         {
             SaveCode();
-            if (_task._testCases == null || _task._testCases.Count > 0)
+            if (_task._testCases == null || _task._testCases.Count == 0)
             {
                 output.Text = "No test Case Available";
                 return;
@@ -322,7 +322,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         }
         protected async Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
-            this.Invoke((Action)(() => output.Text = "Process Started" + Environment.NewLine));
+            this.Invoke((Action)(() => output.Text = "Process Started"+ Environment.NewLine));
             latestoutput = output.Text;
             process.OutputDataReceived += (sender, e) =>
             {
@@ -339,6 +339,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             process.Exited += (s, e) =>
             {
                 compiledSuccess = process.ExitCode == 0;
+                Thread.Sleep(999);
                 onExit?.Invoke();
             };
 
@@ -377,7 +378,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected virtual void SendInput(string input)
         {
-            Debug.WriteLine("From base");
             if (process != null && !process.HasExited)
             {
                 process.StandardInput.WriteLine(input);

@@ -110,7 +110,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             exerciseName.Enabled = isEditing;
             subject.Enabled = isEditing;
             instruction.Enabled = isEditing;
-            language.Enabled = isEditing;
             btn_EditExerciseDetails.Text = isEditing ? "Save" : "Edit";
             reference.ReadOnly = !isEditing;
             btnStatus = isEditing ? "Save" : "Edit";
@@ -145,7 +144,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             TaskModel task = selectedIcon.task;
             task._taskName = exerciseName.Texts;
             task.subject = subject.Texts;
-            task.language = language.SelectedItem?.ToString() ?? null;
             task._instructions = instruction.Texts;
             task._referenceFile = reference.Text;
             task._testCases = TestCases();
@@ -170,7 +168,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 exerciseName.Texts = task._taskName;
                 subject.Texts = task.subject;
-                language.SelectedItem = task.language;
                 instruction.Texts = task._instructions;
                 reference.Text = task._referenceFile?.ToString() ?? "";
                 SetTestCases(task._testCases);
@@ -180,7 +177,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void smartButton1_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = languageExtension[language.SelectedItem.ToString()];
+            //openFileDialog.Filter = languageExtension[language.SelectedItem.ToString()];
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show(openFileDialog.FileName);

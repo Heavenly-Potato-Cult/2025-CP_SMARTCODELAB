@@ -32,7 +32,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                 selectedTask = JsonFileService.LoadFromFile<TaskModel>(fileChooser.FileName);
                 if (selectedTask == null)
                 {
-                    MessageBox.Show("Invalid File Content");
+                    ShowError("Invalid File Content");
                     return;
                 }
                 taskContainer.Controls.Clear();
@@ -42,14 +42,29 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void smartButton4_Click(object sender, EventArgs e)
         {
-            if (selectedTask == null)
+            if (serverName.Texts.IsWhiteSpace())
             {
-                MessageBox.Show("Invalid File Content");
+                ShowError("Invalid Server Name");
                 return;
             }
+            else if (language.SelectedItem == null || language.SelectedItem.ToString() == "")
+            {
+                ShowError("No language Selected");
+                return;
+            }
+            else if(selectedTask == null)
+            {
+                selectedTask = new TaskModel();
+            }
+            Server server = new Server(serverName.Texts.Trim(),selectedTask,language.SelectedItem.ToString(), new Dictionary<string,UserProfile>());
             SystemSingleton.Instance.page1.Controls.Clear();
             SystemSingleton.Instance.page1.AutoScroll = true;
-            SystemSingleton.Instance.page1.Controls.Add(new MainServerPage(selectedTask, new Dictionary<string, UserProfile>()));
+            SystemSingleton.Instance.page1.Controls.Add(new MainServerPage(server));
+        }
+
+        private void ShowError(string message)
+        {
+            MessageBox.Show(message);
         }
     }
 }

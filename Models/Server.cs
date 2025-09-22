@@ -1,0 +1,61 @@
+﻿using ProtoBuf;
+using SmartCodeLab.Models.Enums;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SmartCodeLab.Models
+{
+    [ProtoContract]
+    public class Server
+    {
+        [ProtoMember(1)]
+        public string ServerName { get; set; }
+
+        [ProtoMember(2)]
+        public TaskModel ServerTask { get; set; }
+
+        [ProtoMember(3)]
+        private LanguageSupported ProgrammingLanguage { get; set; }
+
+        [ProtoIgnore]
+        public string programmingLanguage //servers as the controller for getting the value of ProgrammingLanguage
+        {
+            get
+            {
+                return ProgrammingLanguage.ToString();
+            } 
+            set 
+            { 
+                ProgrammingLanguage = langaugeMap[value];
+            } }
+
+        [ProtoIgnore]
+        private readonly Dictionary<string, LanguageSupported> langaugeMap = new Dictionary<string, LanguageSupported>()
+        {
+            {"C++", LanguageSupported.Cpp},
+            {"Java", LanguageSupported.Java },
+            {"Python", LanguageSupported.Python }
+        };
+
+
+        [ProtoMember(4)]
+        public Dictionary<String,UserProfile> Users = new Dictionary<String, UserProfile>();
+
+        public Server()
+        {
+        }
+
+        public Server(string serverName, TaskModel serverTask, string programmingLanguage, Dictionary<string,UserProfile> users)
+        {
+            ServerName = serverName;
+            this.programmingLanguage = programmingLanguage;
+            ServerTask = serverTask;
+            ServerTask._language = ProgrammingLanguage;
+            ServerTask._taskName = serverName;
+            Users = users;
+        }
+    }
+}

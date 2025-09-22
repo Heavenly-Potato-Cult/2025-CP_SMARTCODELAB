@@ -37,7 +37,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 {
                     exerciseName.Texts = task._taskName;
                     subject.Texts = task.subject;
-                    langauge.Texts = task.language;
                     instruction.Texts = task._instructions;
 
                     testContainer.Controls.Clear();

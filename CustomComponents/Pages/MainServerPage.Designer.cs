@@ -34,6 +34,8 @@
             container = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
+            viewUsersToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             container.SuspendLayout();
             SuspendLayout();
@@ -41,7 +43,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { codeMonitoringToolStripMenuItem, submissionStatusToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { codeMonitoringToolStripMenuItem, submissionStatusToolStripMenuItem, viewUsersToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1345, 28);
@@ -66,6 +68,7 @@
             // 
             container.Controls.Add(tabPage1);
             container.Controls.Add(tabPage2);
+            container.Controls.Add(tabPage3);
             container.Location = new Point(0, 31);
             container.Name = "container";
             container.SelectedIndex = 0;
@@ -87,10 +90,27 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1337, 767);
+            tabPage2.Size = new Size(1337, 823);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1337, 823);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "tabPage3";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // viewUsersToolStripMenuItem
+            // 
+            viewUsersToolStripMenuItem.Name = "viewUsersToolStripMenuItem";
+            viewUsersToolStripMenuItem.Size = new Size(94, 24);
+            viewUsersToolStripMenuItem.Text = "View Users";
+            viewUsersToolStripMenuItem.Click += viewUsersToolStripMenuItem_Click;
             // 
             // MainServerPage
             // 
@@ -116,5 +136,7 @@
         private TabControl container;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private TabPage tabPage3;
+        private ToolStripMenuItem viewUsersToolStripMenuItem;
     }
 }
