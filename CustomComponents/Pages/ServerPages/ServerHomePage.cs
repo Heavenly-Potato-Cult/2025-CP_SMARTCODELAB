@@ -21,10 +21,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         public void NewNotification(Notification notification)
         {
-            this.Invoke(new Action(() =>
+            Task.Run(() => 
             {
-                notifContainer.Controls.Add(new NotificationIcon(notification));
-            }));
+                this.Invoke(new Action(() =>
+                {
+                    notifContainer.Controls.Add(new NotificationIcon(notification));
+                }));
+            });
         }
     }
 }

@@ -2,6 +2,8 @@
 using SmartCodeLab.Models;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
+using SmartCodeLab.Models.Enums;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
@@ -17,6 +19,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected Dictionary<int, string> standardError;
         private int? errorLine = null;
         private System.Threading.Timer _debounceTimer;
+
+        //will be used to send activity notification to the server/host
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Action<NotificationType, string> notifAction {  get; set; }//will be used to send activity notification to the server/host
 
         public StudentCodingProgress StudentProgress { get; }
 
@@ -128,6 +135,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     if (StudentProgress.pastedCode == null)
                         StudentProgress.pastedCode = new List<CopyPastedCode>();
                     StudentProgress.pastedCode.Add(new CopyPastedCode(wholeCode,i, i + (pastedCodeLines.Length - 1)));
+                    notifAction?.Invoke(NotificationType.CopyPasted,"");
                     break;
                 }
             }
@@ -288,14 +296,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     Result          : {(item.Value.Equals(textOutput) ? "Correct" : "Wrong")}
                     """ + Environment.NewLine;
 
-                this.Invoke((Action)(() => {
-                    output.AppendText(result + Environment.NewLine);
-                }));
+                output.AppendText(result + Environment.NewLine);
                 File.WriteAllText(testerFile, testSrcCode.Replace(input, "userInput"));
             }
-            this.Invoke((Action)(() => {
-                output.AppendText($"Score : {score}/{_task._testCases.Count}");
-            }));
+            output.AppendText($"Score : {score}/{_task._testCases.Count}");
+            notifAction?.Invoke(NotificationType.TestResult,$"{score}/{_task._testCases.Count}");
+            Debug.WriteLine("Rights Invoked!");
         }
 
         public virtual void RunLinting() { }

@@ -27,8 +27,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private ISet<string> openedFiles = new HashSet<string>();
         private BaseCodeEditor _editor;
         private System.Threading.Timer _debounceTimer;
-        private readonly int _debounceDelay = 300;
+        private readonly int _debounceDelay = 700;
         private bool isFocused = false;
+        private string userName;
         public TempStudentIDE()
         {
             InitializeComponent();
@@ -38,6 +39,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             InitializeComponent();
             _task = task;
             _stream = client;
+            this.userName = userName;
             new Thread(() =>
             {
                 System.Threading.Thread.Sleep(1000);
@@ -53,6 +55,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName) + SourceCodeInitializer.extension[task._language]);
             openedFiles.Add(filePath);
             _editor = BaseCodeEditor.BaseCodeEditorFactory(filePath, task,userName);
+            _editor.notifAction = NotifyHost;
             _editor.srcCode.KeyUp += (s, e) =>
             {
                 if (isFocused)
@@ -84,7 +87,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     //set task description display
                     actName.Text = task._taskName;
                     description.Text = task._instructions;
-                    Debug.WriteLine(task._instructions);
                     int i = 1;
                     testCaseContainer.Controls.Clear();
                     if(task._testCases != null && task._testCases.Count > 0)
@@ -141,6 +143,23 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 // Log unexpected errors
                 Console.WriteLine(ex);
             }
+        }
+
+        private void NotifyHost(NotificationType type, string result)
+        {
+            Task.Run(async () => 
+            {
+                try
+                {
+                    var message = new ServerMessage.Builder(MessageType.Notification)
+                        .Notification(new Notification(type, userName, result))
+                        .Build();
+                    Serializer.SerializeWithLengthPrefix(_stream, message, PrefixStyle.Base128);
+                    await _stream.FlushAsync();
+                }catch(ProtoException e)
+                {
+                }
+            });
         }
 
         private void smartButton1_Click(object sender, EventArgs e)

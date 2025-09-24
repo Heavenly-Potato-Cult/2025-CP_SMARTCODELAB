@@ -166,16 +166,19 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     serverPage.AddNewUser(networkStream, actualProfile);
                                     currentStudents.Add(profile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                        new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128);
+                                        new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).UserProfile(actualProfile).Build(), PrefixStyle.Base128);
                                     didLogIn = true;
                                     HandleUserStream(networkStream, profile._studentId, true);
-                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, "logged in", actualProfile._studentName));
+                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, actualProfile._studentName));
                                 }
                             }
                             if (!didLogIn)
                                 Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                     new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
+                            break;
+                        case MessageType.Notification:
+                            homePage.NewNotification(obj.notification);
                             break;
                         default:
                             await serverPage.MessageHandler(obj, networkStream, HandleUserStream);
@@ -188,7 +191,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("MainServerPage: MessageReceiverAsync");
+                    MessageBox.Show(ex.Message);
                 }
             }
             serverPage.RemoveUser(networkStream);

@@ -48,10 +48,10 @@
             label5 = new Label();
             label3 = new Label();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            notifContainer = new FlowLayoutPanel();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label27 = new Label();
             label12 = new Label();
-            notifContainer = new FlowLayoutPanel();
             customCard15 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label39 = new Label();
             label38 = new Label();
@@ -61,16 +61,12 @@
             label33 = new Label();
             label29 = new Label();
             customCard13 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            pictureBox11 = new PictureBox();
-            label32 = new Label();
+            customCard14 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            label34 = new Label();
             pictureBox10 = new PictureBox();
             label31 = new Label();
             pictureBox9 = new PictureBox();
             label30 = new Label();
-            pictureBox8 = new PictureBox();
-            label28 = new Label();
-            customCard14 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label34 = new Label();
             customCard4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             customCard3.SuspendLayout();
@@ -83,11 +79,9 @@
             customCard6.SuspendLayout();
             customCard15.SuspendLayout();
             customCard13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
+            customCard14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            customCard14.SuspendLayout();
             SuspendLayout();
             // 
             // customCard4
@@ -152,7 +146,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(27, 28);
+            pictureBox3.Location = new Point(18, 29);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(63, 62);
             pictureBox3.TabIndex = 16;
@@ -163,22 +157,22 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Gray;
-            label7.Location = new Point(121, 66);
+            label7.Location = new Point(83, 65);
             label7.Name = "label7";
-            label7.Size = new Size(113, 25);
+            label7.Size = new Size(176, 25);
             label7.TabIndex = 14;
-            label7.Text = "Success Rate";
+            label7.Text = "Copy Paste Detected";
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             label8.ForeColor = Color.FromArgb(13, 13, 13);
-            label8.Location = new Point(121, 28);
+            label8.Location = new Point(87, 28);
             label8.Name = "label8";
-            label8.Size = new Size(97, 38);
+            label8.Size = new Size(33, 38);
             label8.TabIndex = 12;
-            label8.Text = "89.2%";
+            label8.Text = "3";
             // 
             // customCard2
             // 
@@ -221,9 +215,9 @@
             label6.ForeColor = Color.FromArgb(13, 13, 13);
             label6.Location = new Point(100, 28);
             label6.Name = "label6";
-            label6.Size = new Size(89, 38);
+            label6.Size = new Size(33, 38);
             label6.TabIndex = 12;
-            label6.Text = "1,847";
+            label6.Text = "0";
             // 
             // customCard1
             // 
@@ -304,6 +298,16 @@
             customCard5.Size = new Size(736, 477);
             customCard5.TabIndex = 24;
             // 
+            // notifContainer
+            // 
+            notifContainer.AutoScroll = true;
+            notifContainer.FlowDirection = FlowDirection.TopDown;
+            notifContainer.Location = new Point(10, 75);
+            notifContainer.Name = "notifContainer";
+            notifContainer.Size = new Size(720, 393);
+            notifContainer.TabIndex = 0;
+            notifContainer.WrapContents = false;
+            // 
             // customCard6
             // 
             customCard6.BackColor = Color.White;
@@ -338,16 +342,6 @@
             label12.Size = new Size(184, 28);
             label12.TabIndex = 12;
             label12.Text = "Real-time Activity";
-            // 
-            // notifContainer
-            // 
-            notifContainer.AutoScroll = true;
-            notifContainer.FlowDirection = FlowDirection.TopDown;
-            notifContainer.Location = new Point(10, 75);
-            notifContainer.Name = "notifContainer";
-            notifContainer.Size = new Size(720, 393);
-            notifContainer.TabIndex = 0;
-            notifContainer.WrapContents = false;
             // 
             // customCard15
             // 
@@ -451,98 +445,14 @@
             customCard13.BorderRadius = 10;
             customCard13.BorderSize = 1;
             customCard13.Controls.Add(customCard14);
-            customCard13.Controls.Add(pictureBox11);
-            customCard13.Controls.Add(label32);
             customCard13.Controls.Add(pictureBox10);
             customCard13.Controls.Add(label31);
             customCard13.Controls.Add(pictureBox9);
             customCard13.Controls.Add(label30);
-            customCard13.Controls.Add(pictureBox8);
-            customCard13.Controls.Add(label28);
             customCard13.Location = new Point(830, 319);
             customCard13.Name = "customCard13";
             customCard13.Size = new Size(442, 303);
             customCard13.TabIndex = 29;
-            // 
-            // pictureBox11
-            // 
-            pictureBox11.Image = (Image)resources.GetObject("pictureBox11.Image");
-            pictureBox11.Location = new Point(27, 240);
-            pictureBox11.Name = "pictureBox11";
-            pictureBox11.Size = new Size(37, 30);
-            pictureBox11.TabIndex = 27;
-            pictureBox11.TabStop = false;
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label32.ForeColor = Color.FromArgb(13, 13, 13);
-            label32.Location = new Point(67, 240);
-            label32.Name = "label32";
-            label32.Size = new Size(142, 28);
-            label32.TabIndex = 26;
-            label32.Text = "View Analytics";
-            // 
-            // pictureBox10
-            // 
-            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
-            pictureBox10.Location = new Point(27, 189);
-            pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(37, 30);
-            pictureBox10.TabIndex = 25;
-            pictureBox10.TabStop = false;
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label31.ForeColor = Color.FromArgb(13, 13, 13);
-            label31.Location = new Point(70, 189);
-            label31.Name = "label31";
-            label31.Size = new Size(139, 28);
-            label31.TabIndex = 24;
-            label31.Text = "Add Test Case";
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(27, 134);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(37, 30);
-            pictureBox9.TabIndex = 23;
-            pictureBox9.TabStop = false;
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label30.ForeColor = Color.FromArgb(13, 13, 13);
-            label30.Location = new Point(67, 134);
-            label30.Name = "label30";
-            label30.Size = new Size(171, 28);
-            label30.TabIndex = 22;
-            label30.Text = "Monitor Students";
-            // 
-            // pictureBox8
-            // 
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(27, 84);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(37, 30);
-            pictureBox8.TabIndex = 21;
-            pictureBox8.TabStop = false;
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label28.ForeColor = Color.FromArgb(13, 13, 13);
-            label28.Location = new Point(70, 84);
-            label28.Name = "label28";
-            label28.Size = new Size(192, 28);
-            label28.TabIndex = 13;
-            label28.Text = "Create New Session";
             // 
             // customCard14
             // 
@@ -566,6 +476,46 @@
             label34.Size = new Size(134, 28);
             label34.TabIndex = 12;
             label34.Text = "Quick Action";
+            // 
+            // pictureBox10
+            // 
+            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
+            pictureBox10.Location = new Point(33, 136);
+            pictureBox10.Name = "pictureBox10";
+            pictureBox10.Size = new Size(37, 30);
+            pictureBox10.TabIndex = 25;
+            pictureBox10.TabStop = false;
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label31.ForeColor = Color.FromArgb(13, 13, 13);
+            label31.Location = new Point(76, 136);
+            label31.Name = "label31";
+            label31.Size = new Size(139, 28);
+            label31.TabIndex = 24;
+            label31.Text = "Add Test Case";
+            // 
+            // pictureBox9
+            // 
+            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
+            pictureBox9.Location = new Point(33, 81);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(37, 30);
+            pictureBox9.TabIndex = 23;
+            pictureBox9.TabStop = false;
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label30.ForeColor = Color.FromArgb(13, 13, 13);
+            label30.Location = new Point(73, 81);
+            label30.Name = "label30";
+            label30.Size = new Size(171, 28);
+            label30.TabIndex = 22;
+            label30.Text = "Monitor Students";
             // 
             // ServerHomePage
             // 
@@ -602,12 +552,10 @@
             customCard15.PerformLayout();
             customCard13.ResumeLayout(false);
             customCard13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             customCard14.ResumeLayout(false);
             customCard14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

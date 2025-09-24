@@ -20,11 +20,43 @@ namespace SmartCodeLab.Models
         [ProtoMember(3)]
         public string UserName { get; set; }
 
-        public Notification(NotificationType type, string message, string userName)
+        [ProtoMember(4)]
+        public string testResult { get; set; }
+
+
+        public Notification(NotificationType type, string userName, string testResult = "")
         {
-            Type = type;
-            Message = message;
             UserName = userName;
+            this.testResult = testResult;
+            Message = NotificationMessage(type, testResult);
+        }
+
+        public Notification()
+        {
+        }
+
+        private string NotificationMessage(NotificationType type, string testResult = "")
+        {
+            switch (type)
+            {
+                case NotificationType.CopyPasted:
+                    return "submitted code with potential copy-paste detection";
+
+                case NotificationType.Submitted:
+                    return "submitted their code for evaluation";
+
+                case NotificationType.TestResult:
+                    return $"tested the code with a result of {testResult}";
+
+                case NotificationType.LoggedIn:
+                    return "has logged into the programming server";
+
+                case NotificationType.LoggedOut:
+                    return "has logged out of the programming server";
+
+                default:
+                    return "has performed an action";
+            }
         }
     }
 }

@@ -17,7 +17,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 {
     public partial class UserLogInDIalog : Form
     {
-        public string _userName { get { return userName.Texts; } }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public string _userName { set; get; }
         public string _folderLocation { get { return folderLoc.Texts; } }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -69,6 +70,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                         if (msg._messageType == MessageType.LogInSuccessful)
                         {
                             serverTask = msg._task;
+                            _userName = msg._userProfile._studentName;
                             this.DialogResult = DialogResult.OK;
                             break;
                         }

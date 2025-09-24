@@ -33,12 +33,7 @@
             exerciseContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             taskContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            customComboBox2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             label15 = new Label();
-            customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            label8 = new Label();
             language = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             label7 = new Label();
             serverName = new CustomTextBox();
@@ -51,7 +46,6 @@
             label3 = new Label();
             customCard2.SuspendLayout();
             exerciseContainer.SuspendLayout();
-            customCard3.SuspendLayout();
             customCard1.SuspendLayout();
             SuspendLayout();
             // 
@@ -63,9 +57,7 @@
             customCard2.BorderSize = 1;
             customCard2.Controls.Add(smartButton4);
             customCard2.Controls.Add(exerciseContainer);
-            customCard2.Controls.Add(customComboBox2);
             customCard2.Controls.Add(label15);
-            customCard2.Controls.Add(customCard3);
             customCard2.Controls.Add(language);
             customCard2.Controls.Add(label7);
             customCard2.Controls.Add(serverName);
@@ -85,7 +77,7 @@
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(405, 314);
+            smartButton4.Location = new Point(400, 385);
             smartButton4.Name = "smartButton4";
             smartButton4.Size = new Size(301, 50);
             smartButton4.TabIndex = 28;
@@ -101,7 +93,7 @@
             exerciseContainer.BorderSize = 1;
             exerciseContainer.Controls.Add(taskContainer);
             exerciseContainer.Controls.Add(smartButton3);
-            exerciseContainer.Location = new Point(23, 206);
+            exerciseContainer.Location = new Point(655, 111);
             exerciseContainer.Name = "exerciseContainer";
             exerciseContainer.Size = new Size(368, 45);
             exerciseContainer.TabIndex = 27;
@@ -132,92 +124,16 @@
             smartButton3.UseVisualStyleBackColor = false;
             smartButton3.Click += smartButton3_Click;
             // 
-            // customComboBox2
-            // 
-            customComboBox2.BackColor = Color.White;
-            customComboBox2.BorderColor = Color.LightGray;
-            customComboBox2.BorderSize = 1;
-            customComboBox2.DropDownStyle = ComboBoxStyle.DropDown;
-            customComboBox2.Font = new Font("Segoe UI", 10F);
-            customComboBox2.ForeColor = Color.DimGray;
-            customComboBox2.IconColor = Color.Gray;
-            customComboBox2.ListBackColor = Color.FromArgb(230, 228, 245);
-            customComboBox2.ListTextColor = Color.DimGray;
-            customComboBox2.Location = new Point(456, 210);
-            customComboBox2.MinimumSize = new Size(200, 30);
-            customComboBox2.Name = "customComboBox2";
-            customComboBox2.Padding = new Padding(1);
-            customComboBox2.Size = new Size(250, 41);
-            customComboBox2.TabIndex = 26;
-            customComboBox2.Texts = "";
-            // 
             // label15
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.DimGray;
-            label15.Location = new Point(23, 178);
+            label15.Location = new Point(655, 83);
             label15.Name = "label15";
             label15.Size = new Size(124, 25);
             label15.TabIndex = 25;
             label15.Text = "Select Exercise";
-            // 
-            // customCard3
-            // 
-            customCard3.BackColor = Color.White;
-            customCard3.BorderColor = Color.Gray;
-            customCard3.BorderRadius = 15;
-            customCard3.BorderSize = 1;
-            customCard3.Controls.Add(smartButton2);
-            customCard3.Controls.Add(smartButton1);
-            customCard3.Controls.Add(label8);
-            customCard3.Location = new Point(746, 43);
-            customCard3.Name = "customCard3";
-            customCard3.Size = new Size(333, 208);
-            customCard3.TabIndex = 24;
-            // 
-            // smartButton2
-            // 
-            smartButton2.BackColor = Color.DarkOrange;
-            smartButton2.BackgroundColor = Color.DarkOrange;
-            smartButton2.BorderRadius = 5;
-            smartButton2.FlatAppearance.BorderSize = 0;
-            smartButton2.FlatStyle = FlatStyle.Flat;
-            smartButton2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(18, 128);
-            smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(301, 50);
-            smartButton2.TabIndex = 27;
-            smartButton2.Text = "Pause Session";
-            smartButton2.UseVisualStyleBackColor = false;
-            // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.Crimson;
-            smartButton1.BackgroundColor = Color.Crimson;
-            smartButton1.BorderRadius = 5;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(18, 68);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(301, 50);
-            smartButton1.TabIndex = 26;
-            smartButton1.Text = "End Session";
-            smartButton1.UseVisualStyleBackColor = false;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.FromArgb(13, 13, 13);
-            label8.Location = new Point(18, 19);
-            label8.Name = "label8";
-            label8.Size = new Size(147, 28);
-            label8.TabIndex = 25;
-            label8.Text = "Session Actions";
             // 
             // language
             // 
@@ -231,7 +147,7 @@
             language.Items.AddRange(new object[] { "C++", "Java", "Python" });
             language.ListBackColor = Color.FromArgb(230, 228, 245);
             language.ListTextColor = Color.DimGray;
-            language.Location = new Point(456, 111);
+            language.Location = new Point(23, 229);
             language.MinimumSize = new Size(200, 30);
             language.Name = "language";
             language.Padding = new Padding(1);
@@ -244,7 +160,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.DimGray;
-            label7.Location = new Point(456, 83);
+            label7.Location = new Point(23, 201);
             label7.Name = "label7";
             label7.Size = new Size(89, 25);
             label7.TabIndex = 21;
@@ -357,8 +273,6 @@
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
             exerciseContainer.ResumeLayout(false);
-            customCard3.ResumeLayout(false);
-            customCard3.PerformLayout();
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
             ResumeLayout(false);
@@ -368,12 +282,7 @@
         #endregion
 
         private GeneralComponents.CustomCard customCard2;
-        private GeneralComponents.CustomComboBox customComboBox2;
         private Label label15;
-        private GeneralComponents.CustomCard customCard3;
-        private GeneralComponents.SmartButton smartButton2;
-        private GeneralComponents.SmartButton smartButton1;
-        private Label label8;
         private GeneralComponents.CustomComboBox language;
         private Label label7;
         private CustomTextBox serverName;
