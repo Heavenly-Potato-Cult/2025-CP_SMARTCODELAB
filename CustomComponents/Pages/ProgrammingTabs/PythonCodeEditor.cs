@@ -16,7 +16,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             
         }
 
-        public async override void RunCode()
+        public override void RunCode()
         {
             commandLine = $"/c {ProgrammingConfiguration.pythonExe} {filePath}";
             base.RunCode();
@@ -42,7 +42,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             //);
         }
 
-        public async override void RunTest()
+        public override void RunTest()
         {
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.py");

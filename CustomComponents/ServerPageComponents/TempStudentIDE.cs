@@ -26,7 +26,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private CancellationTokenSource token;
         private ISet<string> openedFiles = new HashSet<string>();
         private BaseCodeEditor _editor;
-        private System.Threading.Timer _debounceTimer;
+        private System.Threading.Timer? _debounceTimer;
         private readonly int _debounceDelay = 700;
         private bool isFocused = false;
         private string userName;
@@ -156,9 +156,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         .Build();
                     Serializer.SerializeWithLengthPrefix(_stream, message, PrefixStyle.Base128);
                     await _stream.FlushAsync();
-                }catch(ProtoException e)
-                {
-                }
+                }catch(ProtoException){}
             });
         }
 

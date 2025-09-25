@@ -20,8 +20,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         TextStyle MagentaStyle = new TextStyle(Brushes.Magenta, null, FontStyle.Regular);
         TextStyle GreenStyle = new TextStyle(Brushes.Green, null, FontStyle.Italic);
         TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
-        TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
-        MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
+        //TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
+        //MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
         public JavaCodeEditor(string filePath, TaskModel task, string username) : base(filePath, task, username)
         {
             srcCode.TextChanged += (s, e) =>
@@ -34,7 +34,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
         }
 
-        public async override void RunCode()
+        public override void RunCode()
         {
             string classname = Path.GetFileNameWithoutExtension(filePath);
             string directory = Path.GetDirectoryName(filePath);
@@ -144,39 +144,43 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected override void HighLightStandardError(int errorLine, string msg)
         {
-            if (msg.Contains("OneStatementPerLine"))
-            {
-                srcCode.GetLine(errorLine).SetStyle(yellowWavy);
-                if (standardError.ContainsKey(errorLine))
-                    standardError[errorLine] = msg;
-            }
-            else if (msg.Contains("UnusedLocalVariable"))
-            {
-                string kword = msg.Substring(msg.IndexOf("\'") + 1);
-                kword = kword.Replace(msg.Substring(msg.IndexOf('.') - 1), "");
-                var match = Regex.Match(srcCode.GetLineText(errorLine), $@"\b{kword}\b");
-                if (match.Success)
-                {
-                    // Build a Range for the match inside that line
-                    int startChar = match.Index;
-                    int endChar = match.Index + match.Length;
+            Debug.WriteLine("Error : "+ msg);
+            //srcCode.GetLine(errorLine).SetStyle(yellowWavy);
+            //if (standardError.ContainsKey(errorLine))
+            //    standardError[errorLine] = msg;
+            //if (msg.Contains("OneStatementPerLine"))
+            //{
+            //    srcCode.GetLine(errorLine).SetStyle(yellowWavy);
+            //    if (standardError.ContainsKey(errorLine))
+            //        standardError[errorLine] = msg;
+            //}
+            //else if (msg.Contains("UnusedLocalVariable"))
+            //{
+            //    string kword = msg.Substring(msg.IndexOf("\'") + 1);
+            //    kword = kword.Replace(msg.Substring(msg.IndexOf('.') - 1), "");
+            //    var match = Regex.Match(srcCode.GetLineText(errorLine), $@"\b{kword}\b");
+            //    if (match.Success)
+            //    {
+            //        // Build a Range for the match inside that line
+            //        int startChar = match.Index;
+            //        int endChar = match.Index + match.Length;
 
-                    FastColoredTextBoxNS.Range r = new FastColoredTextBoxNS.Range(srcCode,
-                        new Place(startChar, errorLine), // start position
-                        new Place(endChar, errorLine));  // end position
-                    r.SetStyle(yellowWavy);
-                }
-            }
+            //        FastColoredTextBoxNS.Range r = new FastColoredTextBoxNS.Range(srcCode,
+            //            new Place(startChar, errorLine), // start position
+            //            new Place(endChar, errorLine));  // end position
+            //        r.SetStyle(yellowWavy);
+            //    }
+            //}
             try
             {
-                //var lineRange = srcCode.GetLine(errorLine);
-                //lineRange.SetStyle(yellowWavy);
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(yellowWavy);
                 standardError.Add(errorLine, msg);
             }
             catch (ArgumentException) { }
         }
 
-        public async override void RunTest()
+        public override void RunTest()
         {
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.java");

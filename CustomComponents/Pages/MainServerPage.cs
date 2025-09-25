@@ -33,13 +33,12 @@ namespace SmartCodeLab.CustomComponents.Pages
         private ServerHomePage homePage;
 
         //network and user connectivity related
-        private readonly MessageType[] ForMainServer = { MessageType.UserProfile };//messages that are meant for this page, or class
+        //private readonly MessageType[] ForMainServer = { MessageType.UserProfile };//messages that are meant for this page, or class
         private TaskModel currentTask;
         private TcpListener _serverListener;
 
         //users related
         private Dictionary<NetworkStream, string> connectedUsers;
-        Dictionary<string, UserProfile> expectedUsers;
         private List<string> currentStudents = new List<string>();
         public MainServerPage(Server server)
         {
@@ -181,7 +180,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                             homePage.NewNotification(obj.notification);
                             break;
                         default:
-                            await serverPage.MessageHandler(obj, networkStream, HandleUserStream);
+                             await serverPage.MessageHandler(obj, networkStream, HandleUserStream);
                             break;
                     }
                 }

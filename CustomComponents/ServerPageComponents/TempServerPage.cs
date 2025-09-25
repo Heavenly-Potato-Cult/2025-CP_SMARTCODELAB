@@ -27,7 +27,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         }
 
         private TaskModel currentTask { get; set; }
-        private TcpListener _server;
+        //private TcpListener _server;
         private Dictionary<NetworkStream, UserIcons> userIcons = new Dictionary<NetworkStream, UserIcons>();
 
         //student ID as the key
@@ -49,7 +49,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     userIcons[networkStream].Dispose();
                 }
-                catch (KeyNotFoundException ex) { }
+                catch (KeyNotFoundException) { }
             }));
             userIcons.Remove(networkStream);
         }
@@ -161,10 +161,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             if (studentProgress == null)
                 return;
-            this.Invoke((Action)(() =>
-            {
-                studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
-            }));
+
+            studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
         }
     }
 }

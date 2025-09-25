@@ -34,7 +34,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             subject.Text = task.subject;
         }
 
-        private void GotFocus(object sender, EventArgs e)
+        private new void GotFocus(object sender, EventArgs e)
         {
             this.Invoke(new Action(() => this.BackColor = Color.FromArgb(240, 247, 255)));
             setFields?.Invoke(task);
@@ -54,7 +54,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
             }));
         }
 
-        public void LostFocus()
+        public new void LostFocus()
         {
             this.Invoke(new Action(() => this.BackColor = Color.White));
         }

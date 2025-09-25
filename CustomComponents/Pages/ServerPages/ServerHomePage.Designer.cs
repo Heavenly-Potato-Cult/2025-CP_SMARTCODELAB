@@ -594,14 +594,10 @@
         private Label label33;
         private Label label29;
         private GeneralComponents.CustomCard customCard13;
-        private PictureBox pictureBox11;
-        private Label label32;
         private PictureBox pictureBox10;
         private Label label31;
         private PictureBox pictureBox9;
         private Label label30;
-        private PictureBox pictureBox8;
-        private Label label28;
         private GeneralComponents.CustomCard customCard14;
         private Label label34;
     }

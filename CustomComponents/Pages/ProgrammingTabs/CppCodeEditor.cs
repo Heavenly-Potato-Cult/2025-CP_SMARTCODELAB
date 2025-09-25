@@ -16,7 +16,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         }
 
-        public async override void RunCode()
+        public override void RunCode()
         {
             string fileExe = filePath.Replace(".cpp", ".exe");
             commandLine = $"/c {ProgrammingConfiguration.gccExe} {filePath} -o {fileExe} && {fileExe}";

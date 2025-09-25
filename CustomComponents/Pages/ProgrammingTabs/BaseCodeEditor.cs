@@ -18,19 +18,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private string errorMsg = "";
         protected Dictionary<int, string> standardError;
         private int? errorLine = null;
-        private System.Threading.Timer _debounceTimer;
+        private System.Threading.Timer? _debounceTimer;
 
         //will be used to send activity notification to the server/host
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Action<NotificationType, string> notifAction {  get; set; }//will be used to send activity notification to the server/host
+        public Action<NotificationType, string>? notifAction {  get; set; }//will be used to send activity notification to the server/host
 
         public StudentCodingProgress StudentProgress { get; }
 
         private string[] codeHistory = new string[20];
 
         //code all around services
-        protected Process process;
+        protected Process? process;
         protected bool compiledSuccess = false;
         protected string commandLine = string.Empty;
         protected string latestoutput = string.Empty;
@@ -98,7 +98,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     if (Clipboard.ContainsText())
                     {
                         string pasted = Clipboard.GetText();
-                        Task.Run( async () =>await GetPastedCode(pasted, srcCode.Text, codeHistory));
+                        Task.Run(() =>GetPastedCode(pasted, srcCode.Text, codeHistory));
                     }
                 }
             };
@@ -115,7 +115,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             SaveStudentProgressFile();
         }
 
-        private async Task GetPastedCode(string codeSnippet,string wholeCode, string[] history)
+        private void GetPastedCode(string codeSnippet,string wholeCode, string[] history)
         {
             foreach (var item in history)
             {

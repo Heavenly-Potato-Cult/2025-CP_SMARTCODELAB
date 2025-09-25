@@ -30,7 +30,7 @@ namespace SmartCodeLab.Models
         public async Task SaveFile(string filePath)
         {
             sourceCode = string.Empty;
-            using(var file = File.Create(filePath))
+            using (var file = File.Create(filePath))
             {
                 Serializer.Serialize(file, this);
             }
