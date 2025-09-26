@@ -46,7 +46,9 @@ namespace SmartCodeLab.Models
 
         [ProtoIgnore]
         public string filePath { get; set; }
-        public TaskModel() { }
+        public TaskModel() {
+            _testCases = new Dictionary<string, string>();
+        }
 
         public TaskModel(string taskName) 
         {

@@ -19,6 +19,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected Dictionary<int, string> standardError;
         private int? errorLine = null;
         private System.Threading.Timer? _debounceTimer;
+        private Action<int, int> updateStats;
 
         //will be used to send activity notification to the server/host
 
@@ -40,9 +41,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
         }
 
-        protected BaseCodeEditor(string filePath, TaskModel task, string userName)
+        protected BaseCodeEditor(string filePath, TaskModel task, string userName, Action<int, int> updateStats)
         {
             InitializeComponent();
+            this.updateStats = updateStats;
             standardError = new Dictionary<int, string>();
             _task = task;
             this.filePath = filePath;
@@ -275,6 +277,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
 
                 File.WriteAllText(testerFile, testSrcCode.Replace("userInput", input));
+                Debug.WriteLine(testSrcCode.Replace("userInput", input));
                 process = CommandRunner(commandLine);
                 string outputResult = "";
                 string errorResult = "";
@@ -301,7 +304,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
             output.AppendText($"Score : {score}/{_task._testCases.Count}");
             notifAction?.Invoke(NotificationType.TestResult,$"{score}/{_task._testCases.Count}");
-            Debug.WriteLine("Rights Invoked!");
+            int percentage = (score / _task._testCases.Count) * 100;
+            updateStats?.Invoke(1, percentage);
         }
 
         public virtual void RunLinting() { }
@@ -326,7 +330,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             srcCode.Range.ClearStyle(yellowWavy);
             srcCode.Range.ClearStyle(redWavy);
         }
-        protected async Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
+        protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
             this.Invoke((Action)(() => output.Text = "Process Started"+ Environment.NewLine));
             latestoutput = output.Text;
@@ -353,6 +357,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             process.Start();
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
+
+            return Task.CompletedTask;
         }
 
         protected async Task StartprocessAsyncExit(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
@@ -391,19 +397,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
         }
 
-        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username)
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username, Action<int,int> updateStats)
         {
             if (filePath.EndsWith(".java"))
             {
-                return new JavaCodeEditor(filePath, task, username);
+                return new JavaCodeEditor(filePath, task, username, updateStats);
             }
             else if (filePath.EndsWith(".py"))
             {
-                return new PythonCodeEditor(filePath, task, username);
+                return new PythonCodeEditor(filePath, task, username, updateStats);
             }
             else
             {
-                return new CppCodeEditor(filePath, task, username);
+                return new CppCodeEditor(filePath, task, username, updateStats);
             }
         }
     }

@@ -41,6 +41,7 @@ namespace SmartCodeLab
             button4 = new Button();
             button3 = new Button();
             btnSideMenu_Shutdown = new Button();
+            btnSideMenu_Settings = new Button();
             btnSideMenu_FileManagement = new Button();
             btnSideMenu_TaskManagement = new Button();
             btnSideMenu_Student = new Button();
@@ -64,7 +65,6 @@ namespace SmartCodeLab
             tabPage9 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
             tabPage10 = new TabPage();
-            btnSideMenu_Settings = new Button();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -327,6 +327,28 @@ namespace SmartCodeLab
             btnSideMenu_Shutdown.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_Shutdown.UseVisualStyleBackColor = false;
             btnSideMenu_Shutdown.Click += btnSideMenu_Shutdown_Click;
+            // 
+            // btnSideMenu_Settings
+            // 
+            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Settings.Cursor = Cursors.Hand;
+            btnSideMenu_Settings.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Settings.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Settings.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_Settings.ForeColor = Color.White;
+            btnSideMenu_Settings.Image = (Image)resources.GetObject("btnSideMenu_Settings.Image");
+            btnSideMenu_Settings.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_Settings.Location = new Point(18, 209);
+            btnSideMenu_Settings.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_Settings.Name = "btnSideMenu_Settings";
+            btnSideMenu_Settings.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_Settings.Size = new Size(221, 60);
+            btnSideMenu_Settings.TabIndex = 4;
+            btnSideMenu_Settings.Tag = "Settings";
+            btnSideMenu_Settings.Text = "   Settings";
+            btnSideMenu_Settings.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_Settings.UseVisualStyleBackColor = false;
+            btnSideMenu_Settings.Click += btnSideMenu_Settings_Click;
             // 
             // btnSideMenu_FileManagement
             // 
@@ -608,28 +630,6 @@ namespace SmartCodeLab
             tabPage10.Size = new Size(1362, 873);
             tabPage10.TabIndex = 9;
             tabPage10.Text = "tabPage10";
-            // 
-            // btnSideMenu_Settings
-            // 
-            btnSideMenu_Settings.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_Settings.Cursor = Cursors.Hand;
-            btnSideMenu_Settings.FlatAppearance.BorderSize = 0;
-            btnSideMenu_Settings.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_Settings.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            btnSideMenu_Settings.ForeColor = Color.White;
-            btnSideMenu_Settings.Image = (Image)resources.GetObject("btnSideMenu_Settings.Image");
-            btnSideMenu_Settings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Settings.Location = new Point(18, 209);
-            btnSideMenu_Settings.Margin = new Padding(3, 4, 3, 4);
-            btnSideMenu_Settings.Name = "btnSideMenu_Settings";
-            btnSideMenu_Settings.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_Settings.Size = new Size(221, 60);
-            btnSideMenu_Settings.TabIndex = 4;
-            btnSideMenu_Settings.Tag = "Settings";
-            btnSideMenu_Settings.Text = "   Settings";
-            btnSideMenu_Settings.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSideMenu_Settings.UseVisualStyleBackColor = false;
-            btnSideMenu_Settings.Click += btnSideMenu_Settings_Click;
             // 
             // MonitoringForm
             // 

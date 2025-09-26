@@ -64,7 +64,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 task._testCases.Add(item.Value().Key, item.Value().Value);
             }
-
             action?.Invoke(task);
         }
     }

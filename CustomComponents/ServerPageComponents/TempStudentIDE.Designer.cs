@@ -29,15 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempStudentIDE));
-            progressBar2 = new ProgressBar();
             panel19 = new Panel();
             pictureBox7 = new PictureBox();
             label9 = new Label();
-            label4 = new Label();
             panel20 = new Panel();
-            label6 = new Label();
             label15 = new Label();
-            label16 = new Label();
             panel14 = new Panel();
             panel11 = new Panel();
             panel10 = new Panel();
@@ -66,6 +62,7 @@
             panel4 = new Panel();
             splitContainer1 = new SplitContainer();
             codeEditorContainer = new Panel();
+            accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel10.SuspendLayout();
@@ -81,14 +78,6 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             SuspendLayout();
-            // 
-            // progressBar2
-            // 
-            progressBar2.Location = new Point(26, 155);
-            progressBar2.Name = "progressBar2";
-            progressBar2.Size = new Size(390, 16);
-            progressBar2.TabIndex = 82;
-            progressBar2.Value = 85;
             // 
             // panel19
             // 
@@ -121,17 +110,6 @@
             label9.TabIndex = 79;
             label9.Text = "Score";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.DimGray;
-            label4.Location = new Point(327, 117);
-            label4.Name = "label4";
-            label4.Size = new Size(89, 25);
-            label4.TabIndex = 81;
-            label4.Text = "85 Points";
-            // 
             // panel20
             // 
             panel20.BackColor = Color.Gainsboro;
@@ -141,17 +119,6 @@
             panel20.Size = new Size(1, 175);
             panel20.TabIndex = 74;
             // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.ForeColor = Color.DimGray;
-            label6.Location = new Point(320, 74);
-            label6.Name = "label6";
-            label6.Size = new Size(96, 25);
-            label6.TabIndex = 80;
-            label6.Text = "100 Points";
-            // 
             // label15
             // 
             label15.AutoSize = true;
@@ -159,20 +126,9 @@
             label15.ForeColor = Color.DimGray;
             label15.Location = new Point(24, 74);
             label15.Name = "label15";
-            label15.Size = new Size(124, 25);
+            label15.Size = new Size(84, 25);
             label15.TabIndex = 78;
-            label15.Text = "Target Score :";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.ForeColor = Color.DimGray;
-            label16.Location = new Point(24, 117);
-            label16.Name = "label16";
-            label16.Size = new Size(136, 25);
-            label16.TabIndex = 79;
-            label16.Text = "Current Score :";
+            label15.Text = "Accuracy";
             // 
             // panel14
             // 
@@ -210,7 +166,7 @@
             testCaseContainer.FlowDirection = FlowDirection.TopDown;
             testCaseContainer.Location = new Point(3, 62);
             testCaseContainer.Name = "testCaseContainer";
-            testCaseContainer.Size = new Size(450, 246);
+            testCaseContainer.Size = new Size(450, 239);
             testCaseContainer.TabIndex = 77;
             testCaseContainer.WrapContents = false;
             // 
@@ -485,13 +441,10 @@
             // panel18
             // 
             panel18.BackColor = Color.White;
-            panel18.Controls.Add(progressBar2);
+            panel18.Controls.Add(accuracy);
             panel18.Controls.Add(panel19);
-            panel18.Controls.Add(label4);
             panel18.Controls.Add(panel20);
-            panel18.Controls.Add(label6);
             panel18.Controls.Add(label15);
-            panel18.Controls.Add(label16);
             panel18.Dock = DockStyle.Fill;
             panel18.Location = new Point(1, 619);
             panel18.Name = "panel18";
@@ -538,6 +491,14 @@
             codeEditorContainer.Size = new Size(896, 786);
             codeEditorContainer.TabIndex = 0;
             // 
+            // accuracy
+            // 
+            accuracy.Location = new Point(120, 86);
+            accuracy.Name = "accuracy";
+            accuracy.Size = new Size(316, 13);
+            accuracy.TabIndex = 79;
+            accuracy.Value = 38;
+            // 
             // TempStudentIDE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -572,16 +533,11 @@
         }
 
         #endregion
-
-        private ProgressBar progressBar2;
         private Panel panel19;
         private PictureBox pictureBox7;
         private Label label9;
-        private Label label4;
         private Panel panel20;
-        private Label label6;
         private Label label15;
-        private Label label16;
         private Panel panel14;
         private Panel panel11;
         private Panel panel10;
@@ -610,5 +566,6 @@
         private GeneralComponents.SmartButton smartButton3;
         private TextBox description;
         private FlowLayoutPanel testCaseContainer;
+        private GeneralComponents.StatsBar accuracy;
     }
 }

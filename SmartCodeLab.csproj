@@ -16,9 +16,12 @@
 	<None Include="$(RootDir)Linters\java\**" LinkBase="linters\java">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
-	  <None Include="$(RootDir)LanguageRunners\**" LinkBase="languagerunners">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+	<None Include="$(RootDir)LanguageRunners\**" LinkBase="languagerunners">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+	<None Include="$(RootDir)SmartCodeLabActivities\**" LinkBase="smartcodelabactivities">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
   </ItemGroup>
 
 </Project>

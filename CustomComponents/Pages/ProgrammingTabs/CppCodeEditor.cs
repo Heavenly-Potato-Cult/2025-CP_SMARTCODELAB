@@ -11,7 +11,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class CppCodeEditor : BaseCodeEditor
     {
-        public CppCodeEditor(string filePath, TaskModel task, string username) : base(filePath, task, username) 
+        public CppCodeEditor(string filePath, TaskModel task, string username, Action<int, int> updateStats) : base(filePath, task, username, updateStats) 
         {
 
         }

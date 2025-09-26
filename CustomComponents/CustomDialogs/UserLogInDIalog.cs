@@ -19,7 +19,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string _userName { set; get; }
-        public string _folderLocation { get { return folderLoc.Texts; } }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TcpClient _client { get; set; }
@@ -35,15 +34,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             _stream = _client.GetStream();
         }
 
-        private void smartButton1_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-            {
-                folderLoc.Texts = folderBrowserDialog.SelectedPath;
-            }
-        }
-
         private void smartButton3_Click(object sender, EventArgs e)
         {
             _stream.Close();
@@ -53,7 +43,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         async private void smartButton2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(userName.Texts) || string.IsNullOrEmpty(folderLoc.Texts))
+            if (string.IsNullOrEmpty(userName.Texts))
             {
                 MessageBox.Show("Please fill in all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;

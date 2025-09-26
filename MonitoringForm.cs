@@ -42,9 +42,9 @@ namespace SmartCodeLab
 
         private void FocusInAndOut(Button button)
         {
-            Button[] buttons = { btnSideMenu_Student , btnSideMenu_TaskManagement, btnSideMenu_FileManagement, btnSideMenu_Settings };
+            Button[] buttons = { btnSideMenu_Student, btnSideMenu_TaskManagement, btnSideMenu_FileManagement, btnSideMenu_Settings };
 
-            foreach(Button b in buttons)
+            foreach (Button b in buttons)
             {
                 b.BackColor = Color.FromArgb(13, 13, 13);
                 if (b == button)
@@ -67,8 +67,9 @@ namespace SmartCodeLab
                     var userLogIn = new UserLogInDIalog(client);
                     if (userLogIn.ShowDialog() == DialogResult.OK)
                     {
-                        var studentProgramming = new TempStudentIDE(userLogIn._folderLocation, userLogIn._userName, userLogIn.serverTask, userLogIn._stream);
-                        this.Invoke((Action)(() => {
+                        var studentProgramming = new TempStudentIDE(userLogIn._userName, userLogIn.serverTask, userLogIn._stream);
+                        this.Invoke((Action)(() =>
+                        {
                             tabPage3.Controls.Clear();
                             tabPage3.Controls.Add(studentProgramming);
                         }));
@@ -132,10 +133,38 @@ namespace SmartCodeLab
 
         private void button6_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 7;
-
+            //tabControl1.SelectedIndex = 7;
+            Directory.CreateDirectory(Path.Combine(ProgrammingConfiguration.javaFolder, "testing lang"));
         }
+        protected void CommandRunner(string command)
+        {
+            Process newProcess = new Process();
+            newProcess.StartInfo.FileName = "cmd.exe";
+            newProcess.StartInfo.Arguments = command; // or java ClassName
+            newProcess.StartInfo.UseShellExecute = false;
+            newProcess.StartInfo.RedirectStandardInput = true;
+            newProcess.StartInfo.RedirectStandardOutput = true;
+            newProcess.StartInfo.RedirectStandardError = true;
+            newProcess.StartInfo.CreateNoWindow = true;
 
+            newProcess.OutputDataReceived += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                    MessageBox.Show(e.Data);
+            };
+
+            newProcess.ErrorDataReceived += (sender, e) =>
+            {
+                if (!string.IsNullOrEmpty(e.Data))
+                    Debug.WriteLine(e.Data);
+            };
+
+            newProcess.EnableRaisingEvents = true;
+            newProcess.Start();
+            newProcess.BeginOutputReadLine();
+            newProcess.BeginErrorReadLine();
+            newProcess.WaitForExit();
+        }
         private void button7_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 8;

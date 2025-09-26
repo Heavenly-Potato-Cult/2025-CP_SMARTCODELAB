@@ -16,7 +16,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Runtime.InteropServices;
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
     public partial class TempStudentIDE : UserControl
@@ -24,7 +24,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private NetworkStream _stream;
         private TaskModel _task;
         private CancellationTokenSource token;
-        private ISet<string> openedFiles = new HashSet<string>();
+        //private ISet<string> openedFiles = new HashSet<string>();
         private BaseCodeEditor _editor;
         private System.Threading.Timer? _debounceTimer;
         private readonly int _debounceDelay = 700;
@@ -34,7 +34,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
         }
-        public TempStudentIDE(string folderPath, string userName, TaskModel task, NetworkStream client)
+        public TempStudentIDE(string userName, TaskModel task, NetworkStream client)
         {
             InitializeComponent();
             _task = task;
@@ -47,14 +47,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }).Start();
             token = new CancellationTokenSource();
 
-            //create the activity file then open it by default,and also making it unclosable
-            SourceCodeInitializer.InitializeSourceCode(task._language, folderPath, task._taskName);
+            //create the activity directory then return the file path of the main file
+            string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName);
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
-            string filePath = Path.Combine(folderPath, SourceCodeInitializer.ValidName(task._taskName) + SourceCodeInitializer.extension[task._language]);
-            openedFiles.Add(filePath);
-            _editor = BaseCodeEditor.BaseCodeEditorFactory(filePath, task,userName);
+            _editor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, userName, UpdateStats);
             _editor.notifAction = NotifyHost;
             _editor.srcCode.KeyUp += (s, e) =>
             {
@@ -96,6 +94,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         }
                 }))
             );
+        }
+
+        private void UpdateStats(int i, int value)
+        {
+            if(i == 1)
+            {
+                accuracy.ChangeValue(value);
+            }
         }
 
         private async Task ProgressSender()

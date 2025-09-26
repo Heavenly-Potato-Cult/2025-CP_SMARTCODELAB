@@ -18,6 +18,13 @@ namespace SmartCodeLab.Services
             {LanguageSupported.Cpp, ".cpp"}
         };
 
+        public static readonly Dictionary<LanguageSupported, string> activityLocation = new Dictionary<LanguageSupported, string>()
+        {
+            {LanguageSupported.Java,ProgrammingConfiguration.javaFolder },
+            {LanguageSupported.Python,ProgrammingConfiguration.pythonFolder },
+            {LanguageSupported.Cpp, ProgrammingConfiguration.cppFolder }
+        };
+
         public static string ValidName(string fileName)
         {
             while (Char.IsDigit(fileName[0]))
@@ -26,30 +33,37 @@ namespace SmartCodeLab.Services
             return fileName;
         }
 
-        public static void InitializeSourceCode(LanguageSupported language,string filePath, string fileName)
+        public static string InitializeActivityDirectory(LanguageSupported language, string userName, string taskName)
         {
-            string srcCode = String.Empty;
-            fileName = ValidName(fileName);
-            switch (language)
-            {//other languages implementations will come next
-                case LanguageSupported.Java:
-                    srcCode =
-                        """
-                            public class fileName{
+            string activityDirectory = Path.Combine(activityLocation[language], userName+'_'+taskName);
+            string mainFile = Path.Combine(activityDirectory, $"Main{extension[language]}");
+            string srcCode = string.Empty;
+
+            if (!Directory.Exists(activityDirectory))
+                Directory.CreateDirectory(activityDirectory);
+
+            if (!File.Exists(mainFile))
+            {
+                switch (language)
+                {//other languages implementations will come next
+                    case LanguageSupported.Java:
+                        srcCode =
+                            """
+                            public class Main{
                                 public static void main(String[] args) {
                                     System.out.println("Hello, World!");
                                 }
                             }
-                        """.Replace("fileName", fileName);
-                    break;
-                case LanguageSupported.Python:
-                    srcCode =
-                        """
+                        """;
+                        break;
+                    case LanguageSupported.Python:
+                        srcCode =
+                            """
                             #pagsugod na dra ug code
                         """;
-                    break;
-                default:
-                    srcCode = """
+                        break;
+                    default:
+                        srcCode = """
                         #include <iostream>
 
                         int main() {
@@ -59,24 +73,20 @@ namespace SmartCodeLab.Services
                         }
                         """;
                         break;
+                }
+                File.WriteAllText(mainFile, srcCode);
             }
-
-            string fileAbsolutePath = filePath + "\\" + fileName + extension[language];
-            if(!File.Exists(fileAbsolutePath))
-                File.WriteAllText(fileAbsolutePath, srcCode);
-
-            InitializeTesterSourceCode(language, filePath, fileName);
-
+            InitializeTesterSourceCode(language, activityDirectory);
+            return mainFile;
         }
-        public static void InitializeTesterSourceCode(LanguageSupported language,string filePath, string fileName) 
+        public static void InitializeTesterSourceCode(LanguageSupported language,string filePath) 
         {
             string srcCode = string.Empty;
-            string actualFileName = ValidName(fileName);
-            string exeDirectory = Path.Combine(filePath,actualFileName+".exe").Replace("\\", "\\\\");
+            string exeDirectory = Path.Combine(filePath,"Main.exe").Replace("\\", "\\\\");
             switch (language) 
             {
                 case LanguageSupported.Java:
-                    srcCode = $$"""
+                    srcCode = """
                         import java.io.ByteArrayInputStream;
                         import java.io.ByteArrayOutputStream;
                         import java.io.PrintStream;
@@ -85,25 +95,27 @@ namespace SmartCodeLab.Services
                                 PrintStream originalOut = System.out;
                                 var baos = new ByteArrayOutputStream();
                                 System.setOut(new PrintStream(baos));
-                                System.setIn(new ByteArrayInputStream("userInput".getBytes())); //change theInput
-                                fileClassName.main(null);
+                                System.setIn(new ByteArrayInputStream(
+                                \"\"\"
+                                userInput
+                                \"\"\".getBytes())); //change theInput
+                                Main.main(null);
 
                                 System.setOut(originalOut);
                                 System.out.println(baos.toString());
                             }
                         }
-                        """.Replace("fileClassName", ValidName(actualFileName));
+                        """.Replace("\\","");
                     break;
                 case LanguageSupported.Python:
                     srcCode = $$"""
                         import subprocess,os
 
                         base = os.path.dirname(__file__)  # folder where Tester.py is located
-                        script = os.path.join(base, "fileName.py")
+                        script = os.path.join(base, "Main.py")
 
                         subprocess.run(["python", script], input="userInput", text=True)
-                        """
-                            .Replace("fileName",actualFileName);
+                        """;
                     break;
                 default:
                     srcCode = $$"""
@@ -121,7 +133,7 @@ namespace SmartCodeLab.Services
                                 }
                                 """
                                 .Replace("gccBin", ProgrammingConfiguration.gccBin.Replace("\\","\\\\"))
-                                .Replace("filePath", Path.Combine(filePath, actualFileName + ".cpp").Replace("\\", "\\\\"))
+                                .Replace("filePath", Path.Combine(filePath,"Main.cpp").Replace("\\", "\\\\"))
                                 .Replace("exeDirectory",exeDirectory);
                     break;
             }
