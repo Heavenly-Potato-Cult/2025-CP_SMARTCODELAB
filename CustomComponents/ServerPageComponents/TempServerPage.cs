@@ -31,13 +31,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Dictionary<NetworkStream, UserIcons> userIcons = new Dictionary<NetworkStream, UserIcons>();
 
         //student ID as the key
-        private List<string> currentStudents = new List<string>();
         private StudentCodingProgress studentProgress;
-        StudTable userTable;
         public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users)
         {
             InitializeComponent();
-            userTable = new StudTable(users);
             currentTask = task;
         }
 

@@ -134,7 +134,10 @@ namespace SmartCodeLab
         private void button6_Click(object sender, EventArgs e)
         {
             //tabControl1.SelectedIndex = 7;
-            Directory.CreateDirectory(Path.Combine(ProgrammingConfiguration.javaFolder, "testing lang"));
+            //Directory.CreateDirectory(Path.Combine(ProgrammingConfiguration.javaFolder, "testing lang"));
+            var toDelete = new ToDelete();
+            toDelete.ShowDialog();
+            toDelete.Close();
         }
         protected void CommandRunner(string command)
         {

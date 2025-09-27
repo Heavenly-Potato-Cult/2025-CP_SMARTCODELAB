@@ -97,7 +97,6 @@
             label11.Size = new Size(161, 25);
             label11.TabIndex = 67;
             label11.Text = "Total submissions :";
-            label11.Click += label11_Click;
             // 
             // customComboBox2
             // 

@@ -59,5 +59,10 @@
 			<property name="max" value="10"/>
 			<message key="maxParam" value="For readability purposes, the recommended maximum number of parameter in a method is only up to 10"/>
 		</module>
+		
+		<!--Linter regarding whiteSpaces-->
+		<module name="NoWhitespaceBeforeCaseDefaultColon">
+			<message key="ws.preceded" value="Unnecessary whitespace before switch case colon"/>
+		</module>
     </module>
 </module>

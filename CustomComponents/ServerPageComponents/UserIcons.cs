@@ -18,14 +18,14 @@ namespace SmartCodeLab.CustomComponents
 {
     public partial class UserIcons : UserControl
     {
-        private NetworkStream _stream;
+        private NetworkStream stream;
         public UserIcons(UserProfile profile, ServerMemberContainer container, NetworkStream stream, Action<string,string> action)
         {
             InitializeComponent();
             username.Text = profile._studentName;
             customCard3.BackColor = Color.White;
             this.Visible = true;
-            _stream = stream;
+            this.stream = stream;
             customCard3.Click += (s, e) => {
                 if (customCard3.BackColor == Color.White)
                 {
@@ -44,10 +44,10 @@ namespace SmartCodeLab.CustomComponents
 
         private async Task FocusStatus(bool isFocused)
         {
-            if (_stream != null)
+            if (stream != null)
             {
-                Serializer.SerializeWithLengthPrefix<ServerMessage>(_stream, new ServerMessage.Builder(MessageType.IsEyesOnMe).Focused(isFocused).Build(), PrefixStyle.Base128);
-                await _stream.FlushAsync();
+                Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, new ServerMessage.Builder(MessageType.IsEyesOnMe).Focused(isFocused).Build(), PrefixStyle.Base128);
+                await stream.FlushAsync();
             }
         }
     }

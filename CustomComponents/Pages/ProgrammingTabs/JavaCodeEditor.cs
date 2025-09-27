@@ -1,5 +1,6 @@
 ﻿using FastColoredTextBoxNS;
 using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
@@ -115,62 +116,47 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             else
             {
                 NoError();
-                CheckCodingStandards();
+                standardError.Clear();
+                CheckCodingStandards($"/c {ProgrammingConfiguration.javaExe} -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkStyleConfig} {filePath}");
+
+                NamingConvention namingConvention = JavaVariableExtractor.GetVariableNamingConvention(srcCode.Text);
+                string expression = ProgrammingConfiguration.namingConventionProperties[namingConvention];
+                string updatedFile = File.ReadAllText(ProgrammingConfiguration.namingConventionChecker).Replace("regex!!",expression);
+                File.WriteAllText(ProgrammingConfiguration.namingConventionChecker, updatedFile);
+                CheckCodingStandards($"/c {ProgrammingConfiguration.javaExe} -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.namingConventionChecker} {filePath}",
+                    new Action(async () => await File.WriteAllTextAsync(ProgrammingConfiguration.namingConventionChecker, updatedFile.Replace(expression, "regex!!"))));
             }
         }
 
-        public async override void CheckCodingStandards()
+        public async override void CheckCodingStandards(string command, Action reRun = null)
         {
             standardError.Clear();
-            process = CommandRunner($"/c {ProgrammingConfiguration.javaExe} -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkStyleConfig} {filePath}");
+            process = CommandRunner(command);
             string errorLine = "";
             await StartprocessAsyncExit(
                 process,
-                outp => errorLine+=(outp+Environment.NewLine),
-                null,
-                null);
-            //Debug.WriteLine(errorLine.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, ""));
+                outp => { errorLine += (outp + Environment.NewLine); Debug.WriteLine(errorLine); },
+                err => Debug.WriteLine(err),
+                () => reRun?.Invoke());
+
             string[] errors = (errorLine.Replace("Starting audit..."+Environment.NewLine,"").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
             foreach (string standardError in errors)
             {
-                Debug.Write(standardError);
-                if (errors[errors.Length-1] != standardError) 
+                try
                 {
-                    string[] e = standardError.Split(':');
-                    HighLightStandardError(int.Parse(e[2]) - 1, e[4]);
+                    if (errors[errors.Length - 1] != standardError)
+                    {
+                        string[] e = standardError.Split(':');
+                        HighLightStandardError(int.Parse(e[2]) - 1, e[4]);
+                    }
                 }
+                catch (IndexOutOfRangeException)
+                { }
             }
         }
 
         protected override void HighLightStandardError(int errorLine, string msg)
         {
-            Debug.WriteLine("Error : "+ msg);
-            //srcCode.GetLine(errorLine).SetStyle(yellowWavy);
-            //if (standardError.ContainsKey(errorLine))
-            //    standardError[errorLine] = msg;
-            //if (msg.Contains("OneStatementPerLine"))
-            //{
-            //    srcCode.GetLine(errorLine).SetStyle(yellowWavy);
-            //    if (standardError.ContainsKey(errorLine))
-            //        standardError[errorLine] = msg;
-            //}
-            //else if (msg.Contains("UnusedLocalVariable"))
-            //{
-            //    string kword = msg.Substring(msg.IndexOf("\'") + 1);
-            //    kword = kword.Replace(msg.Substring(msg.IndexOf('.') - 1), "");
-            //    var match = Regex.Match(srcCode.GetLineText(errorLine), $@"\b{kword}\b");
-            //    if (match.Success)
-            //    {
-            //        // Build a Range for the match inside that line
-            //        int startChar = match.Index;
-            //        int endChar = match.Index + match.Length;
-
-            //        FastColoredTextBoxNS.Range r = new FastColoredTextBoxNS.Range(srcCode,
-            //            new Place(startChar, errorLine), // start position
-            //            new Place(endChar, errorLine));  // end position
-            //        r.SetStyle(yellowWavy);
-            //    }
-            //}
             try
             {
                 var lineRange = srcCode.GetLine(errorLine);
@@ -186,49 +172,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             testerFile = Path.Combine(directory, "Tester.java");
             commandLine = $"/c cd {directory} && {ProgrammingConfiguration.javac} Tester.java && {ProgrammingConfiguration.javaExe} Tester";
             base.RunTest();
-            //SaveCode();
-            //this.Invoke((Action)(() =>
-            //{
-            //    output.Text = "Process Started" + Environment.NewLine;
-            //    output.ReadOnly = true;
-            //}));
-            //int score = 0;
-            //int i = 1;
-            //foreach (var item in _task._testCases)
-            //{
-
-            //    // read + replace + write
-            //    string testSrcCode = File.ReadAllText(testerFile);
-            //    File.WriteAllText(testerFile, testSrcCode.Replace("userInput", item.Key));
-            //    process = CommandRunner(commandLine);
-            //    string outputResult = "";
-            //    string errorResult = "";
-            //    await StartprocessAsyncExit(
-            //        process,
-            //        outputMsg => outputResult+=outputMsg,
-            //        errorMsg => outputResult+=errorMsg,
-            //        null
-            //        );
-
-            //    string result = "";
-            //    string textOutput = string.IsNullOrEmpty(outputResult) ? errorResult : outputResult;
-            //    score = (item.Value.Equals(outputResult)) ? score+1 : score;
-            //    result = $"""
-            //        Test Case {i++}
-            //        Input:{item.Key + Environment.NewLine}
-            //        Expected Output : {item.Value}
-            //        Actual Output   : {textOutput}
-            //        Result          : {(item.Value.Equals(textOutput) ? "Correct" : "Wrong")}
-            //        """ + Environment.NewLine;
-
-            //    this.Invoke((Action)(() => { 
-            //        output.AppendText(result+ Environment.NewLine);
-            //        }));
-            //    File.WriteAllText(testerFile, testSrcCode.Replace(item.Key, "userInput"));
-            //}
-            //this.Invoke((Action)(() => {
-            //    output.AppendText($"Score : {score}/{_task._testCases.Count}");
-            //}));
         }
     }
 }

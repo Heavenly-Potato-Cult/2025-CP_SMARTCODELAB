@@ -16,10 +16,5 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         {
             InitializeComponent();
         }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

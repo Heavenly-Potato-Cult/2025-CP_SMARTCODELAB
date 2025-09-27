@@ -35,7 +35,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         //network and user connectivity related
         //private readonly MessageType[] ForMainServer = { MessageType.UserProfile };//messages that are meant for this page, or class
         private TaskModel currentTask;
-        private TcpListener _serverListener;
+        private TcpListener serverListener;
 
         //users related
         private Dictionary<NetworkStream, string> connectedUsers;
@@ -44,7 +44,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             InitializeComponent();
             this.server = server;
-            _serverListener = new TcpListener(IPAddress.Parse(NetworkServices.GetIpv4()), 1901);
+            serverListener = new TcpListener(IPAddress.Parse(NetworkServices.GetIpv4()), 1901);
             currentTask = server.ServerTask;
             Task.Run(async () => await StartServerAsync());
             connectedUsers = new Dictionary<NetworkStream, string>();
@@ -96,11 +96,11 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             try
             {
-                _serverListener.Start(); // Only start once!
+                serverListener.Start(); // Only start once!
                 _ = UdpServerInfoSender();
                 while (true)
                 {
-                    TcpClient client = await AcceptTcpClientAsync(_serverListener);
+                    TcpClient client = await AcceptTcpClientAsync(serverListener);
                     NetworkStream stream = client.GetStream();
 
                     // Handle each client in a separate task

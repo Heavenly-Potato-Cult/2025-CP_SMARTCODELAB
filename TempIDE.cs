@@ -17,11 +17,6 @@ namespace SmartCodeLab
             InitializeComponent();
         }
 
-        private void TempIDE_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void TempIDE_Load_1(object sender, EventArgs e)
         {
 

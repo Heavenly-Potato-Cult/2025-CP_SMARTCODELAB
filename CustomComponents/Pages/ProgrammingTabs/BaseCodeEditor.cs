@@ -10,7 +10,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     public partial class BaseCodeEditor : UserControl
     {
         protected string filePath;
-        protected TaskModel _task;
+        protected TaskModel task;
         private string possibleProgDirectory;
 
         protected readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
@@ -46,7 +46,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
             this.updateStats = updateStats;
             standardError = new Dictionary<int, string>();
-            _task = task;
+            this.task = task;
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
             codeHistory[0] = srcCode.Text;
@@ -83,7 +83,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     RunLinting();
                     SaveStudentProgressFile();
-                }, null, 300, Timeout.Infinite);
+                }, null, 700, Timeout.Infinite);
 
                 //add the new source code to the code history
                 codeHistory[i++ % 20] = srcCode.Text;
@@ -158,7 +158,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public void UpdateTask(TaskModel task)
         {
-            _task = task;
+            this.task = task;
         }
 
         public StudentCodingProgress GetProgress()
@@ -249,7 +249,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public async virtual void RunTest()
         {
             SaveCode();
-            if (_task._testCases == null || _task._testCases.Count == 0)
+            if (task._testCases == null || task._testCases.Count == 0)
             {
                 output.Text = "No test Case Available";
                 return;
@@ -258,7 +258,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             output.ReadOnly = true;
             int score = 0;
             int i = 1;
-            foreach (var item in _task._testCases)
+            foreach (var item in task._testCases)
             {
                 // read + replace + write
                 string testSrcCode = File.ReadAllText(testerFile);
@@ -302,14 +302,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 output.AppendText(result + Environment.NewLine);
                 File.WriteAllText(testerFile, testSrcCode.Replace(input, "userInput"));
             }
-            output.AppendText($"Score : {score}/{_task._testCases.Count}");
-            notifAction?.Invoke(NotificationType.TestResult,$"{score}/{_task._testCases.Count}");
-            int percentage = (score / _task._testCases.Count) * 100;
+            output.AppendText($"Score : {score}/{task._testCases.Count}");
+            notifAction?.Invoke(NotificationType.TestResult,$"{score}/{task._testCases.Count}");
+            int percentage = (score / task._testCases.Count) * 100;
             updateStats?.Invoke(1, percentage);
         }
 
         public virtual void RunLinting() { }
-        public virtual void CheckCodingStandards() { }
+        public virtual void CheckCodingStandards(string command, Action reRun = null) { }
 
         protected void HighlightError(int errorLine, string errorMsg)
         {

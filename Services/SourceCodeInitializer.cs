@@ -36,6 +36,7 @@ namespace SmartCodeLab.Services
         public static string InitializeActivityDirectory(LanguageSupported language, string userName, string taskName)
         {
             string activityDirectory = Path.Combine(activityLocation[language], userName+'_'+taskName);
+            activityDirectory = activityDirectory.Replace(' ', '_');
             string mainFile = Path.Combine(activityDirectory, $"Main{extension[language]}");
             string srcCode = string.Empty;
 

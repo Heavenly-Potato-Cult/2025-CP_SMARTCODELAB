@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,17 @@ namespace SmartCodeLab.Services
         public static string javaFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "java");
         public static string pythonFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "python");
         public static string cppFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "cpp");
+
+        //Java
+        public static Dictionary<NamingConvention, string> namingConventionProperties = new Dictionary<NamingConvention, string>()
+        { 
+            {NamingConvention.SnakeCase, "^[a-z][a-z0-9]*(_[a-z0-9]+)*$"},
+            {NamingConvention.CamelCase, "^[a-z][a-zA-Z0-9]*$" },
+            {NamingConvention.Unknown, "^[a-z][a-zA-Z0-9]*$" },
+            {NamingConvention.PascalCase, "^[A-Z][a-zA-Z0-9]*$" },
+            {NamingConvention.UpperSnakeCase, "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$" },
+        };
+
+        public static string namingConventionChecker = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "defaultNamingConvention.xml");
     }
 }
