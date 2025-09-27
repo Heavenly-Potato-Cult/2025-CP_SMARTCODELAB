@@ -154,11 +154,13 @@ namespace SmartCodeLab.CustomComponents
         {
             get
             {
-                return textBox1.Text;
+                if (isPlaceholder) return "";
+                else return textBox1.Text;
             }
             set
             {
                 textBox1.Text = value;
+                SetPlaceHolder();
             }
         }
 
@@ -202,13 +204,60 @@ namespace SmartCodeLab.CustomComponents
 
         [Category("Custom TextBox")]
         [Description("The color of the placeholder text.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string PlaceholderText
         {
-            get { return textBox1.PlaceholderText; }
+            get { return placeholderText; }
             set
             {
-                textBox1.PlaceholderText = value;
+                placeholderText = value;
+                textBox1.Text = "";
+                SetPlaceHolder();
+
+            }
+        }
+        [Category("Custom TextBox")]
+        [Description("The color of the placeholder text.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Color PlaceHolderColor
+        {
+            get { return placeholderColor; }
+            set
+            {
+                placeholderColor = value;
+                if (isPlaceholder)
+                {
+                    textBox1.ForeColor = value;
+                }
+
+            }
+        }
+
+        private void SetPlaceHolder()
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text) && placeholderText != "")
+            {
+                isPlaceholder = true;
+                textBox1.Text = placeholderText;
+                textBox1.ForeColor = placeholderColor;
+                if (isPasswordChar)
+                {
+                    textBox1.UseSystemPasswordChar = false;
+                }
+            }
+        }
+
+        private void RemovePlaceHolder()
+        {
+            if (isPlaceholder && placeholderText != "")
+            {
+                isPlaceholder = false;
+                textBox1.Text = "";
+                textBox1.ForeColor = this.ForeColor;
+                if (isPasswordChar)
+                {
+                    textBox1.UseSystemPasswordChar = true;
+                }
             }
         }
 
@@ -312,6 +361,7 @@ namespace SmartCodeLab.CustomComponents
         {
             base.OnLoad(e);
             UpdateControlHeight();
+            SetPlaceHolder();
         }
 
         //Private methods
@@ -333,13 +383,22 @@ namespace SmartCodeLab.CustomComponents
         {
             if (_TextChanged != null)
                 _TextChanged.Invoke(sender, e);
-           
+
         }
 
-        private void textBox1_MouseEnter(object sender, EventArgs e)
+        private void textBox1_Enter(object sender, EventArgs e)
         {
-            this.OnMouseEnter(e);
+            isFocused = true;
+            this.Invalidate();
+            RemovePlaceHolder();
+            
+        }
 
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            isFocused = false;
+            this.Invalidate();
+            SetPlaceHolder();
         }
     }
 }
