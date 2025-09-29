@@ -37,7 +37,8 @@ namespace SmartCodeLab.Models
         {
             {"C++", LanguageSupported.Cpp},
             {"Java", LanguageSupported.Java },
-            {"Python", LanguageSupported.Python }
+            {"Python", LanguageSupported.Python },
+            { "Cpp", LanguageSupported.Cpp }
         };
 
 

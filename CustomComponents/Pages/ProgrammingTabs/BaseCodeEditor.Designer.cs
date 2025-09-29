@@ -35,12 +35,13 @@
             srcCode = new CodeEditor();
             tabControl2 = new TabControl();
             tabPage1 = new TabPage();
-            output = new TextBox();
+            output = new CodeEditor();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)srcCode).BeginInit();
             tabControl2.SuspendLayout();
             tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)output).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -84,7 +85,6 @@
             srcCode.CharHeight = 18;
             srcCode.CharWidth = 10;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            srcCode.Font = new Font("Courier New", 9.75F);
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IsReplaceMode = false;
             srcCode.Location = new Point(6, 6);
@@ -99,10 +99,10 @@
             // tabControl2
             // 
             tabControl2.Controls.Add(tabPage1);
-            tabControl2.Location = new Point(0, 566);
+            tabControl2.Location = new Point(0, 559);
             tabControl2.Name = "tabControl2";
             tabControl2.SelectedIndex = 0;
-            tabControl2.Size = new Size(899, 220);
+            tabControl2.Size = new Size(899, 227);
             tabControl2.TabIndex = 16;
             // 
             // tabPage1
@@ -111,20 +111,42 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(891, 187);
+            tabPage1.Size = new Size(891, 194);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Output";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // output
             // 
-            output.Location = new Point(3, 6);
-            output.Multiline = true;
+            output.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            output.AutoScrollMinSize = new Size(31, 18);
+            output.BackBrush = null;
+            output.CharHeight = 18;
+            output.CharWidth = 10;
+            output.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            output.Font = new Font("Courier New", 9.75F);
+            output.Hotkeys = resources.GetString("output.Hotkeys");
+            output.IsReplaceMode = false;
+            output.Location = new Point(9, 6);
             output.Name = "output";
-            output.ScrollBars = ScrollBars.Vertical;
-            output.Size = new Size(882, 175);
+            output.Paddings = new Padding(0);
+            output.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            output.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("output.ServiceColors");
+            output.Size = new Size(883, 188);
             output.TabIndex = 0;
-            output.WordWrap = false;
+            output.Zoom = 100;
             // 
             // BaseCodeEditor
             // 
@@ -141,7 +163,7 @@
             ((System.ComponentModel.ISupportInitialize)srcCode).EndInit();
             tabControl2.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)output).EndInit();
             ResumeLayout(false);
         }
 
@@ -152,6 +174,6 @@
         public CodeEditor srcCode;
         private TabControl tabControl2;
         private TabPage tabPage1;
-        public TextBox output;
+        protected CodeEditor output;
     }
 }

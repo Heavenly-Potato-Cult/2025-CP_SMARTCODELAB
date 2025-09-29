@@ -30,14 +30,14 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToDelete));
-            codeEditor1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            consoleTextBox1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.ConsoleTextBox();
             button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)consoleTextBox1).BeginInit();
             SuspendLayout();
             // 
-            // codeEditor1
+            // consoleTextBox1
             // 
-            codeEditor1.AutoCompleteBracketsList = new char[]
+            consoleTextBox1.AutoCompleteBracketsList = new char[]
     {
     '(',
     ')',
@@ -50,27 +50,38 @@
     '\'',
     '\''
     };
-            codeEditor1.AutoScrollMinSize = new Size(141, 18);
-            codeEditor1.BackBrush = null;
-            codeEditor1.CharHeight = 18;
-            codeEditor1.CharWidth = 10;
-            codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            codeEditor1.Font = new Font("Courier New", 9.75F);
-            codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
-            codeEditor1.IsReplaceMode = false;
-            codeEditor1.Location = new Point(12, 12);
-            codeEditor1.Name = "codeEditor1";
-            codeEditor1.Paddings = new Padding(0);
-            codeEditor1.SelectionColor = Color.FromArgb(60, 0, 0, 255);
-            codeEditor1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor1.ServiceColors");
-            codeEditor1.Size = new Size(1070, 579);
-            codeEditor1.TabIndex = 0;
-            codeEditor1.Text = "codeEditor1";
-            codeEditor1.Zoom = 100;
+            consoleTextBox1.AutoScrollMinSize = new Size(749, 19);
+            consoleTextBox1.BackBrush = null;
+            consoleTextBox1.BackColor = Color.Black;
+            consoleTextBox1.CaretColor = Color.White;
+            consoleTextBox1.CharHeight = 19;
+            consoleTextBox1.CharWidth = 9;
+            consoleTextBox1.Cursor = Cursors.IBeam;
+            consoleTextBox1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            consoleTextBox1.FoldingIndicatorColor = Color.Gold;
+            consoleTextBox1.Font = new Font("Consolas", 9.75F);
+            consoleTextBox1.ForeColor = Color.White;
+            consoleTextBox1.Hotkeys = resources.GetString("consoleTextBox1.Hotkeys");
+            consoleTextBox1.IndentBackColor = Color.Black;
+            consoleTextBox1.IsReplaceMode = false;
+            consoleTextBox1.LineNumberColor = Color.Gold;
+            consoleTextBox1.Location = new Point(12, 41);
+            consoleTextBox1.Name = "consoleTextBox1";
+            consoleTextBox1.PaddingBackColor = Color.Black;
+            consoleTextBox1.Paddings = new Padding(0);
+            consoleTextBox1.PreferredLineWidth = 80;
+            consoleTextBox1.SelectionColor = Color.FromArgb(150, 255, 255, 255);
+            consoleTextBox1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("consoleTextBox1.ServiceColors");
+            consoleTextBox1.ServiceLinesColor = Color.DimGray;
+            consoleTextBox1.Size = new Size(713, 342);
+            consoleTextBox1.TabIndex = 0;
+            consoleTextBox1.WordWrap = true;
+            consoleTextBox1.WordWrapMode = FastColoredTextBoxNS.WordWrapMode.CharWrapPreferredWidth;
+            consoleTextBox1.Zoom = 100;
             // 
             // button1
             // 
-            button1.Location = new Point(476, 612);
+            button1.Location = new Point(202, 462);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 1;
@@ -84,16 +95,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1094, 682);
             Controls.Add(button1);
-            Controls.Add(codeEditor1);
+            Controls.Add(consoleTextBox1);
             Name = "ToDelete";
             Text = "ToDelete";
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)consoleTextBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Pages.ProgrammingTabs.CodeEditor codeEditor1;
+        private Pages.ProgrammingTabs.ConsoleTextBox consoleTextBox1;
         private Button button1;
     }
 }

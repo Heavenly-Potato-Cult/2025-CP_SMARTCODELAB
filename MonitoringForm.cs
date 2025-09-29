@@ -133,41 +133,11 @@ namespace SmartCodeLab
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //tabControl1.SelectedIndex = 7;
-            //Directory.CreateDirectory(Path.Combine(ProgrammingConfiguration.javaFolder, "testing lang"));
-            var toDelete = new ToDelete();
-            toDelete.ShowDialog();
-            toDelete.Close();
+            var todelete = new ToDelete();
+            todelete.ShowDialog();
+            todelete.Close();
         }
-        protected void CommandRunner(string command)
-        {
-            Process newProcess = new Process();
-            newProcess.StartInfo.FileName = "cmd.exe";
-            newProcess.StartInfo.Arguments = command; // or java ClassName
-            newProcess.StartInfo.UseShellExecute = false;
-            newProcess.StartInfo.RedirectStandardInput = true;
-            newProcess.StartInfo.RedirectStandardOutput = true;
-            newProcess.StartInfo.RedirectStandardError = true;
-            newProcess.StartInfo.CreateNoWindow = true;
 
-            newProcess.OutputDataReceived += (sender, e) =>
-            {
-                if (!string.IsNullOrEmpty(e.Data))
-                    MessageBox.Show(e.Data);
-            };
-
-            newProcess.ErrorDataReceived += (sender, e) =>
-            {
-                if (!string.IsNullOrEmpty(e.Data))
-                    Debug.WriteLine(e.Data);
-            };
-
-            newProcess.EnableRaisingEvents = true;
-            newProcess.Start();
-            newProcess.BeginOutputReadLine();
-            newProcess.BeginErrorReadLine();
-            newProcess.WaitForExit();
-        }
         private void button7_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 8;
@@ -189,8 +159,6 @@ namespace SmartCodeLab
             if (this.sideMenuPanel.Width > 200)
             {
                 this.sideMenuPanel.Width = 100;
-                //sideMenuPanel.Width = 100;
-
 
                 foreach (Button button in this.sideMenuPanel.Controls.OfType<Button>())
                 {

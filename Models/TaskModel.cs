@@ -15,9 +15,10 @@ namespace SmartCodeLab.Models
         [ProtoMember(1)]
         private static readonly Dictionary<string, LanguageSupported> languageMap = new()
         {
-            { "Cpp", LanguageSupported.Cpp },
+            { "C++", LanguageSupported.Cpp },
             { "Python", LanguageSupported.Python },
-            { "Java", LanguageSupported.Java }
+            { "Java", LanguageSupported.Java },
+            { "Cpp", LanguageSupported.Cpp }
         };
         [ProtoMember(2)]
         public string _taskName { get; set; }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using SmartCodeLab.Models.Enums;
+using SmartCodeLab.Services;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
@@ -24,7 +25,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         //will be used to send activity notification to the server/host
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Action<NotificationType, string>? notifAction {  get; set; }//will be used to send activity notification to the server/host
+        public Action<NotificationType, string>? notifAction { get; set; }//will be used to send activity notification to the server/host
 
         public StudentCodingProgress StudentProgress { get; }
 
@@ -95,12 +96,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 else if (e.KeyCode == Keys.F5)
                     RunCode();
 
-                if(e.KeyCode == Keys.V && e.Control)
+                if (e.KeyCode == Keys.V && e.Control)
                 {
                     if (Clipboard.ContainsText())
                     {
                         string pasted = Clipboard.GetText();
-                        Task.Run(() =>GetPastedCode(pasted, srcCode.Text, codeHistory));
+                        Task.Run(() => GetPastedCode(pasted, srcCode.Text, codeHistory));
                     }
                 }
             };
@@ -112,16 +113,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     string inputLine = output.Text.Replace(latestoutput, "");
                     SendInput(inputLine);
                     output.AppendText(Environment.NewLine); // mimic Enter
+                    latestoutput = output.Text;
                 }
             };
             SaveStudentProgressFile();
         }
 
-        private void GetPastedCode(string codeSnippet,string wholeCode, string[] history)
+        private void GetPastedCode(string codeSnippet, string wholeCode, string[] history)
         {
             foreach (var item in history)
             {
-                if (item!= null && item != wholeCode && item.Contains(codeSnippet)) 
+                if (item != null && item != wholeCode && item.Contains(codeSnippet))
                 {
                     return;//meaning this code is potentially not pasted from external source
                 }
@@ -130,7 +132,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string[] wholeCodeLines = wholeCode.Split("\n", StringSplitOptions.None);
             string[] pastedCodeLines = codeSnippet.Split("\n", StringSplitOptions.None);
 
-            for (int i = 0; i < wholeCodeLines.Length; i++) 
+            for (int i = 0; i < wholeCodeLines.Length; i++)
             {
                 try
                 {
@@ -184,7 +186,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
             Process newProcess = new Process();
             newProcess.StartInfo.FileName = "cmd.exe";
-            newProcess.StartInfo.Arguments = command; // or java ClassName
+            newProcess.StartInfo.Arguments = command;
             newProcess.StartInfo.UseShellExecute = false;
             newProcess.StartInfo.RedirectStandardInput = true;
             newProcess.StartInfo.RedirectStandardOutput = true;
@@ -228,15 +230,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public async virtual void RunCode()
         {
             latestoutput = " ";
-            this.Invoke((Action)(() => {
+            this.Invoke((Action)(() =>
+            {
                 output.ReadOnly = false;
             }));
 
-            SaveCode(5,100,filePath.EndsWith(".cpp"));
+            SaveCode(5, 100);
             process = CommandRunner(commandLine);
             await StartprocessAsync(
                 process,
-                outputLine => this.Invoke((Action)(() => {
+                outputLine => this.Invoke((Action)(() =>
+                {
                     output.AppendText(outputLine + Environment.NewLine);
                     latestoutput = output.Text;
                 })),
@@ -272,24 +276,38 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     string[] lines = input.Split(Environment.NewLine);
                     string newInput = "echo ";
-                    for(int num = 0; num<lines.Length; num++)
+                    for (int num = 0; num < lines.Length; num++)
                     {
                         newInput += lines[num];
                         newInput += num != lines.Length - 1 ? " & echo " : "";
                     }
                     input = newInput;
                 }
-
+                else if (filePath.EndsWith(".py"))
+                {
+                    string[] lines = input.Split(Environment.NewLine);
+                    string newInput = "";
+                    foreach (var item1 in lines)
+                    {
+                        newInput += item1 + "\\n";
+                    }
+                    input = newInput.Remove(newInput.Length - 2);
+                }
                 File.WriteAllText(testerFile, testSrcCode.Replace("userInput", input));
-                Debug.WriteLine(testSrcCode.Replace("userInput", input));
                 process = CommandRunner(commandLine);
                 string outputResult = "";
                 string errorResult = "";
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 await StartprocessAsyncExit(
                     process,
-                    outputMsg => outputResult += outputMsg,
+                    outputMsg => { outputResult += outputMsg; Debug.WriteLine($"Memory Usage: {process.WorkingSet64 / (1024 * 1024)} MB"); },
                     errorMsg => outputResult += errorMsg,
-                    null
+                    () =>
+                    {
+                        sw.Stop();
+                        Debug.WriteLine(sw.Elapsed.ToString());
+                    }
                     );
 
                 string result = "";
@@ -307,7 +325,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 File.WriteAllText(testerFile, testSrcCode.Replace(input, "userInput"));
             }
             output.AppendText($"Score : {score}/{task._testCases.Count}");
-            notifAction?.Invoke(NotificationType.TestResult,$"{score}/{task._testCases.Count}");
+            notifAction?.Invoke(NotificationType.TestResult, $"{score}/{task._testCases.Count}");
             int percentage = (score / task._testCases.Count) * 100;
             updateStats?.Invoke(1, percentage);
         }
@@ -325,7 +343,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         }
 
         protected virtual void HighLightStandardError(int errorLine, string msg)
-        {}
+        { }
 
         protected void NoError()
         {
@@ -336,7 +354,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         }
         protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
-            this.Invoke((Action)(() => output.Text = "Process Started"+ Environment.NewLine));
+            this.Invoke((Action)(() => output.Text = "Process Started" + Environment.NewLine));
             latestoutput = output.Text;
             process.OutputDataReceived += (sender, e) =>
             {
@@ -361,7 +379,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             process.Start();
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
-
             return Task.CompletedTask;
         }
 
@@ -401,7 +418,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
         }
 
-        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username, Action<int,int> updateStats)
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username, Action<int, int> updateStats)
         {
             if (filePath.EndsWith(".java"))
             {
