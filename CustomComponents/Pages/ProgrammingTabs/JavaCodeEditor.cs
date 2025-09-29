@@ -4,6 +4,7 @@ using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
@@ -15,6 +16,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class JavaCodeEditor : BaseCodeEditor
     {
+        private int errorCounts = 0;
         TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
         TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
         TextStyle GrayStyle = new TextStyle(Brushes.Gray, null, FontStyle.Regular);
@@ -117,15 +119,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 NoError();
                 standardError.Clear();
-                CheckCodingStandards($"/c {ProgrammingConfiguration.javaExe} -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkStyleConfig} {filePath}");
-
+                errorCounts = 0;
                 NamingConvention namingConvention = JavaVariableExtractor.GetVariableNamingConvention(srcCode.Text);
                 string expression = ProgrammingConfiguration.namingConventionProperties[namingConvention];
-                string updatedFile = File.ReadAllText(ProgrammingConfiguration.namingConventionChecker).Replace("regex!!",expression);
-                File.WriteAllText(ProgrammingConfiguration.namingConventionChecker, updatedFile);
-                CheckCodingStandards($"/c {ProgrammingConfiguration.javaExe} -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.namingConventionChecker} {filePath}",
-                    new Action(async () => await File.WriteAllTextAsync(ProgrammingConfiguration.namingConventionChecker, updatedFile.Replace(expression, "regex!!"))));
+                string updatedFile = File.ReadAllText(ProgrammingConfiguration.checkStyleConfig).Replace("regex!!", expression);
+                File.WriteAllText(ProgrammingConfiguration.checkStyleConfig, updatedFile);
+
+                CheckCodingStandards($"/c {ProgrammingConfiguration.javaExe} -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkStyleConfig} {filePath}",
+                    new Action(() => File.WriteAllTextAsync(ProgrammingConfiguration.namingConventionChecker, updatedFile.Replace(expression, "regex!!"))));
             }
+        }
+
+        private void printErrorCount()
+        {
+            Debug.WriteLine(errorCounts.ToString());
         }
 
         public async override void CheckCodingStandards(string command, Action reRun = null)
@@ -135,24 +142,24 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string errorLine = "";
             await StartprocessAsyncExit(
                 process,
-                outp => { errorLine += (outp + Environment.NewLine); Debug.WriteLine(errorLine); },
-                err => Debug.WriteLine(err),
-                () => reRun?.Invoke());
+                outp => { errorLine += (outp + Environment.NewLine); },
+                null,
+                () =>
+                {
+                    reRun?.Invoke();
+                });
 
             string[] errors = (errorLine.Replace("Starting audit..."+Environment.NewLine,"").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
             foreach (string standardError in errors)
             {
-                try
+                if (errors[errors.Length - 1] != standardError)
                 {
-                    if (errors[errors.Length - 1] != standardError)
-                    {
-                        string[] e = standardError.Split(':');
-                        HighLightStandardError(int.Parse(e[2]) - 1, e[4]);
-                    }
+                    string[] e = standardError.Split(':');
+                    HighLightStandardError(int.Parse(e[2]) - 1, e[e.Length - 1]);
+                    errorCounts++;
                 }
-                catch (IndexOutOfRangeException)
-                { }
             }
+            updateStats?.Invoke(2, errorCounts);
         }
 
         protected override void HighLightStandardError(int errorLine, string msg)
@@ -161,9 +168,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 var lineRange = srcCode.GetLine(errorLine);
                 lineRange.SetStyle(yellowWavy);
+                if (standardError.ContainsKey(errorLine))
+                    standardError.Remove(errorLine);
                 standardError.Add(errorLine, msg);
             }
-            catch (ArgumentException) { }
+            catch (ArgumentException e) { Debug.WriteLine(e.Message); }
         }
 
         public override void RunTest()

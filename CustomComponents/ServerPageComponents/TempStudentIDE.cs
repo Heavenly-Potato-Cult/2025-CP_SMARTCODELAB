@@ -96,9 +96,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void UpdateStats(int i, int value)
         {
-            if(i == 1)
+            if (i == 1)//Accuracy
             {
                 accuracy.ChangeValue(value);
+            }
+            else if (i == 2) 
+            {
+                readability.ChangeValue(100-value);
             }
         }
 

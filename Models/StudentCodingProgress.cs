@@ -32,15 +32,22 @@ namespace SmartCodeLab.Models
             sourceCode = string.Empty;
             using (var file = File.Create(filePath))
             {
-                Serializer.Serialize(file, this);
+                Serializer.SerializeWithLengthPrefix(file, this, PrefixStyle.Base128);
             }
         }
 
         public static StudentCodingProgress Deserialize(string filePath) 
         {
-            using(var file = File.OpenRead(filePath))
+            try
             {
-                return Serializer.Deserialize<StudentCodingProgress>(file);
+                using (var file = File.OpenRead(filePath))
+                {
+                    return Serializer.DeserializeWithLengthPrefix<StudentCodingProgress>(file,PrefixStyle.Base128);
+                }
+            }
+            catch (System.IO.EndOfStreamException e)
+            {
+                return null;
             }
         }
     }

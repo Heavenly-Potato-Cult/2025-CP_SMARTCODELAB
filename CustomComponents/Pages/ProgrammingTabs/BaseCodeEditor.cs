@@ -19,7 +19,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected Dictionary<int, string> standardError;
         private int? errorLine = null;
         private System.Threading.Timer? _debounceTimer;
-        private Action<int, int> updateStats;
+        protected Action<int, int> updateStats;
 
         //will be used to send activity notification to the server/host
 
@@ -132,14 +132,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             for (int i = 0; i < wholeCodeLines.Length; i++) 
             {
-                if (wholeCodeLines[i].Trim() == pastedCodeLines[0].Trim() && wholeCodeLines[i+1].Trim() == pastedCodeLines[1].Trim())
+                try
                 {
-                    if (StudentProgress.pastedCode == null)
-                        StudentProgress.pastedCode = new List<CopyPastedCode>();
-                    StudentProgress.pastedCode.Add(new CopyPastedCode(wholeCode,i, i + (pastedCodeLines.Length - 1)));
-                    notifAction?.Invoke(NotificationType.CopyPasted,"");
-                    break;
+                    if (wholeCodeLines[i].Trim() == pastedCodeLines[0].Trim() && wholeCodeLines[i + 1].Trim() == pastedCodeLines[1].Trim())
+                    {
+                        if (StudentProgress.pastedCode == null)
+                            StudentProgress.pastedCode = new List<CopyPastedCode>();
+                        StudentProgress.pastedCode.Add(new CopyPastedCode(wholeCode, i, i + (pastedCodeLines.Length - 1)));
+                        notifAction?.Invoke(NotificationType.CopyPasted, "");
+                        break;
+                    }
                 }
+                catch (IndexOutOfRangeException) { }
             }
 
         }

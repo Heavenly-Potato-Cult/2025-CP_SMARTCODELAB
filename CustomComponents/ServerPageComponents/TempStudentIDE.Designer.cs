@@ -59,10 +59,12 @@
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
             panel18 = new Panel();
+            accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             panel4 = new Panel();
             splitContainer1 = new SplitContainer();
             codeEditorContainer = new Panel();
-            accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            label1 = new Label();
+            readability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel10.SuspendLayout();
@@ -116,7 +118,7 @@
             panel20.Dock = DockStyle.Left;
             panel20.Location = new Point(0, 0);
             panel20.Name = "panel20";
-            panel20.Size = new Size(1, 175);
+            panel20.Size = new Size(1, 230);
             panel20.TabIndex = 74;
             // 
             // label15
@@ -124,7 +126,7 @@
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.DimGray;
-            label15.Location = new Point(24, 74);
+            label15.Location = new Point(4, 75);
             label15.Name = "label15";
             label15.Size = new Size(84, 25);
             label15.TabIndex = 78;
@@ -134,16 +136,16 @@
             // 
             panel14.BackColor = Color.Gainsboro;
             panel14.Dock = DockStyle.Left;
-            panel14.Location = new Point(0, 619);
+            panel14.Location = new Point(0, 564);
             panel14.Name = "panel14";
-            panel14.Size = new Size(1, 175);
+            panel14.Size = new Size(1, 230);
             panel14.TabIndex = 74;
             // 
             // panel11
             // 
             panel11.BackColor = Color.Gainsboro;
             panel11.Dock = DockStyle.Top;
-            panel11.Location = new Point(0, 618);
+            panel11.Location = new Point(0, 563);
             panel11.Name = "panel11";
             panel11.Size = new Size(456, 1);
             panel11.TabIndex = 66;
@@ -157,7 +159,7 @@
             panel10.Dock = DockStyle.Top;
             panel10.Location = new Point(0, 311);
             panel10.Name = "panel10";
-            panel10.Size = new Size(456, 307);
+            panel10.Size = new Size(456, 252);
             panel10.TabIndex = 65;
             // 
             // testCaseContainer
@@ -166,7 +168,7 @@
             testCaseContainer.FlowDirection = FlowDirection.TopDown;
             testCaseContainer.Location = new Point(3, 62);
             testCaseContainer.Name = "testCaseContainer";
-            testCaseContainer.Size = new Size(450, 239);
+            testCaseContainer.Size = new Size(450, 191);
             testCaseContainer.TabIndex = 77;
             testCaseContainer.WrapContents = false;
             // 
@@ -207,7 +209,7 @@
             panel13.Dock = DockStyle.Left;
             panel13.Location = new Point(0, 0);
             panel13.Name = "panel13";
-            panel13.Size = new Size(1, 307);
+            panel13.Size = new Size(1, 252);
             panel13.TabIndex = 74;
             // 
             // panel9
@@ -441,15 +443,25 @@
             // panel18
             // 
             panel18.BackColor = Color.White;
+            panel18.Controls.Add(readability);
+            panel18.Controls.Add(label1);
             panel18.Controls.Add(accuracy);
             panel18.Controls.Add(panel19);
             panel18.Controls.Add(panel20);
             panel18.Controls.Add(label15);
             panel18.Dock = DockStyle.Fill;
-            panel18.Location = new Point(1, 619);
+            panel18.Location = new Point(1, 564);
             panel18.Name = "panel18";
-            panel18.Size = new Size(455, 175);
+            panel18.Size = new Size(455, 230);
             panel18.TabIndex = 78;
+            // 
+            // accuracy
+            // 
+            accuracy.Location = new Point(120, 82);
+            accuracy.Name = "accuracy";
+            accuracy.Size = new Size(316, 13);
+            accuracy.TabIndex = 79;
+            accuracy.Value = 38;
             // 
             // panel4
             // 
@@ -491,13 +503,24 @@
             codeEditorContainer.Size = new Size(896, 786);
             codeEditorContainer.TabIndex = 0;
             // 
-            // accuracy
+            // label1
             // 
-            accuracy.Location = new Point(120, 86);
-            accuracy.Name = "accuracy";
-            accuracy.Size = new Size(316, 13);
-            accuracy.TabIndex = 79;
-            accuracy.Value = 38;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(4, 118);
+            label1.Name = "label1";
+            label1.Size = new Size(104, 25);
+            label1.TabIndex = 80;
+            label1.Text = "Readability";
+            // 
+            // readability
+            // 
+            readability.Location = new Point(120, 125);
+            readability.Name = "readability";
+            readability.Size = new Size(316, 13);
+            readability.TabIndex = 81;
+            readability.Value = 38;
             // 
             // TempStudentIDE
             // 
@@ -567,5 +590,7 @@
         private TextBox description;
         private FlowLayoutPanel testCaseContainer;
         private GeneralComponents.StatsBar accuracy;
+        private GeneralComponents.StatsBar readability;
+        private Label label1;
     }
 }

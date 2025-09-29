@@ -4,19 +4,23 @@
     "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <property name="fileExtensions" value="java"/>
 	
 	<module name="LineLength">
 		<property name="max" value="120"/> <!--The max will be based on how much the code editor can take without the need for scrolling horizontally -->
 	</module>
+
+	<!--Miscellaneous-->
+	<module name="NewlineAtEndOfFile">
+    		<property name="lineSeparator" value="lf"/>
+		<property name="fileExtensions" value="java, xml, cpp"/>
+  	</module>
     <module name="TreeWalker">
 		<module name="UnusedImports"/>
-			<module name="OneStatementPerLine"/>
-			<module name="UnusedLocalVariable"/>
-			<module name="DefaultComesLast"/>
-			<module name="EmptyStatement">
-			<message key="empty.statement"
-				value="Sudli pud"/>
+		<module name="OneStatementPerLine"/>
+		<module name="UnusedLocalVariable"/>
+		<module name="DefaultComesLast"/>
+		<module name="EmptyStatement">
+			<message key="empty.statement" value="Sudli pud"/>
 		</module>
 		<module name="IllegalCatch">
 			<message key="illegal.catch"
@@ -28,9 +32,9 @@
 		</module>
 		<module name="MultipleVariableDeclarations">
 			<message key="multiple.variable.declarations"
-				value="Using parent exceptions is highly discouraged"/>
+				value="Each variable declaration must be in its own statement"/>
 			<message key="multiple.variable.declarations.comma"
-				value="Using parent exceptions is highly discouraged"/>
+				value="Each variable declaration must be in its own statement"/>
 		</module>
 		<module name="NestedForDepth">
 			<property name="max" value="2"/>
@@ -59,10 +63,37 @@
 			<property name="max" value="10"/>
 			<message key="maxParam" value="For readability purposes, the recommended maximum number of parameter in a method is only up to 10"/>
 		</module>
-		
+
+		<module name="Indentation">
+      			<property name="forceStrictCondition" value="true"/>
+    		</module>
+
+		<!--METRICS-->
+		<module name="BooleanExpressionComplexity">
+      			<property name="max" value="5"/>
+    		</module>
+		<module name="CyclomaticComplexity">
+      			<property name="max" value="4"/>
+      			<property name="tokens" value="LITERAL_WHILE, LITERAL_DO"/>
+    		</module>
 		<!--Linter regarding whiteSpaces-->
 		<module name="NoWhitespaceBeforeCaseDefaultColon">
 			<message key="ws.preceded" value="Unnecessary whitespace before switch case colon"/>
 		</module>
+
+		<!-- FOR NAMING CONVENTION -->
+		<module name="LocalVariableName">
+      			<property name="format" value="regex!!"/>
+      			<property name="allowOneCharVarInForLoop" value="true"/>
+    		</module>
+		<module name="MemberName">
+      			<property name="format" value="regex!!"/>
+    		</module>
+		<module name="ParameterName">
+      			<property name="format" value="regex!!"/>
+    		</module>
+		<module name="PatternVariableName">
+      			<property name="format" value="regex!!"/>
+    		</module>
     </module>
 </module>

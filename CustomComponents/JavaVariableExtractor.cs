@@ -240,7 +240,6 @@ namespace SmartCodeLab.CustomComponents
                     {
                         bool isDownToTwo = downToTwo;
                         string variable = item.Name;
-                        Debug.WriteLine(variable);
                         downToTwo = (variable == variable.ToLower() && !variable.Contains('_'));
                         if (!downToTwo && !isDownToTwo)
                         {
