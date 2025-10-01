@@ -30,10 +30,20 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToDelete));
-            consoleTextBox1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.ConsoleTextBox();
             button1 = new Button();
+            consoleTextBox1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.ConsoleTextBox();
             ((System.ComponentModel.ISupportInitialize)consoleTextBox1).BeginInit();
             SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(202, 462);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // consoleTextBox1
             // 
@@ -50,52 +60,30 @@
     '\'',
     '\''
     };
-            consoleTextBox1.AutoScrollMinSize = new Size(749, 19);
+            consoleTextBox1.AutoScrollMinSize = new Size(31, 18);
             consoleTextBox1.BackBrush = null;
-            consoleTextBox1.BackColor = Color.Black;
-            consoleTextBox1.CaretColor = Color.White;
-            consoleTextBox1.CharHeight = 19;
-            consoleTextBox1.CharWidth = 9;
-            consoleTextBox1.Cursor = Cursors.IBeam;
+            consoleTextBox1.CharHeight = 18;
+            consoleTextBox1.CharWidth = 10;
             consoleTextBox1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            consoleTextBox1.FoldingIndicatorColor = Color.Gold;
-            consoleTextBox1.Font = new Font("Consolas", 9.75F);
-            consoleTextBox1.ForeColor = Color.White;
+            consoleTextBox1.Font = new Font("Courier New", 9.75F);
             consoleTextBox1.Hotkeys = resources.GetString("consoleTextBox1.Hotkeys");
-            consoleTextBox1.IndentBackColor = Color.Black;
             consoleTextBox1.IsReplaceMode = false;
-            consoleTextBox1.LineNumberColor = Color.Gold;
-            consoleTextBox1.Location = new Point(12, 41);
+            consoleTextBox1.Location = new Point(144, 107);
             consoleTextBox1.Name = "consoleTextBox1";
-            consoleTextBox1.PaddingBackColor = Color.Black;
             consoleTextBox1.Paddings = new Padding(0);
-            consoleTextBox1.PreferredLineWidth = 80;
-            consoleTextBox1.SelectionColor = Color.FromArgb(150, 255, 255, 255);
+            consoleTextBox1.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             consoleTextBox1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("consoleTextBox1.ServiceColors");
-            consoleTextBox1.ServiceLinesColor = Color.DimGray;
-            consoleTextBox1.Size = new Size(713, 342);
-            consoleTextBox1.TabIndex = 0;
-            consoleTextBox1.WordWrap = true;
-            consoleTextBox1.WordWrapMode = FastColoredTextBoxNS.WordWrapMode.CharWrapPreferredWidth;
+            consoleTextBox1.Size = new Size(500, 188);
+            consoleTextBox1.TabIndex = 2;
             consoleTextBox1.Zoom = 100;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(202, 462);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 1;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // ToDelete
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1094, 682);
-            Controls.Add(button1);
             Controls.Add(consoleTextBox1);
+            Controls.Add(button1);
             Name = "ToDelete";
             Text = "ToDelete";
             ((System.ComponentModel.ISupportInitialize)consoleTextBox1).EndInit();
@@ -103,8 +91,7 @@
         }
 
         #endregion
-
-        private Pages.ProgrammingTabs.ConsoleTextBox consoleTextBox1;
         private Button button1;
+        private Pages.ProgrammingTabs.ConsoleTextBox consoleTextBox1;
     }
 }

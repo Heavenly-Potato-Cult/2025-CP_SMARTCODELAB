@@ -20,19 +20,24 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             InitializeComponent();
             consoleTextBox1.IsReadLineMode = true;
-            consoleTextBox1.KeyUp += (s, e) =>
+            this.Load += (s,e) => Task.Run(() =>
             {
-                if (e.KeyCode == Keys.Enter)
+                while (true)
                 {
-                    string waiting = consoleTextBox1.ReadLine();
-                    Debug.WriteLine(waiting);
+                    this.Invoke((Action)(() =>
+                    {
+                        Debug.WriteLine(consoleTextBox1.ReadLine());
+                        consoleTextBox1.Text = "";
+                    }));
                 }
-            };
+            });
         }
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            consoleTextBox1.Clear();
+            consoleTextBox1.WriteLine("New Line");
         }
     }
 }

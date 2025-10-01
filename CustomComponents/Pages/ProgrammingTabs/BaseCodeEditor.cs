@@ -1,10 +1,11 @@
 ﻿using FastColoredTextBoxNS;
 using SmartCodeLab.Models;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.ComponentModel;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
@@ -20,6 +21,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected Dictionary<int, string> standardError;
         private int? errorLine = null;
         private System.Threading.Timer? _debounceTimer;
+        private System.Threading.Timer? inputTimer;
         protected Action<int, int> updateStats;
 
         //will be used to send activity notification to the server/host
@@ -33,6 +35,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         //code all around services
         protected Process? process;
+        protected string application;
         protected bool compiledSuccess = false;
         protected string commandLine = string.Empty;
         protected string latestoutput = string.Empty;
@@ -93,27 +96,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 if (e.KeyCode == Keys.S && e.Control)
                     SaveCode();
-                else if (e.KeyCode == Keys.F5)
-                    RunCode();
-
-                if (e.KeyCode == Keys.V && e.Control)
+                else if (e.KeyCode == Keys.V && e.Control)
                 {
                     if (Clipboard.ContainsText())
                     {
                         string pasted = Clipboard.GetText();
                         Task.Run(() => GetPastedCode(pasted, srcCode.Text, codeHistory));
                     }
-                }
-            };
-            output.KeyDown += (s, e) =>
-            {
-                if (e.KeyCode == Keys.Enter && process != null && !process.HasExited)
-                {
-                    e.SuppressKeyPress = true; // prevent new line in textbox
-                    string inputLine = output.Text.Replace(latestoutput, "");
-                    SendInput(inputLine);
-                    output.AppendText(Environment.NewLine); // mimic Enter
-                    latestoutput = output.Text;
                 }
             };
             SaveStudentProgressFile();
@@ -227,43 +216,51 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public virtual void CompileCode() { }
 
+        private bool isNotDone;
         public async virtual void RunCode()
         {
-            latestoutput = " ";
+            isNotDone = true;
             this.Invoke((Action)(() =>
             {
-                output.ReadOnly = false;
+                output.Clear();
+                output.WriteLine("Started" + Environment.NewLine);
+                output.IsReadLineMode = true;
             }));
 
             SaveCode(5, 100);
             process = CommandRunner(commandLine);
             await StartprocessAsync(
                 process,
-                outputLine => this.Invoke((Action)(() =>
+                outp => output.WriteLine(outp + Environment.NewLine),
+                err => output.WriteLine(err + Environment.NewLine),
+                () =>
                 {
-                    output.AppendText(outputLine + Environment.NewLine);
-                    latestoutput = output.Text;
-                })),
-                errorLine => this.Invoke((Action)(() => output.AppendText(errorLine + Environment.NewLine))),
-                () => this.Invoke((Action)(() =>
-                {
-                    SaveCode(5, 100, false);
-                    output.AppendText("\n=== Process finished ===\n");
-                    output.ReadOnly = true;
-                }))
+                    output.WriteLine("Program Finished");
+                    isNotDone = false;
+                }
             );
+
+            Task.Run(() =>
+            {
+                do
+                {
+                    SendInput(output.ReadLine());
+                    Thread.Sleep(10);
+                } while (isNotDone);
+            });
         }
 
         public async virtual void RunTest()
         {
             SaveCode();
+            output.Clear();
             if (task._testCases == null || task._testCases.Count == 0)
             {
-                output.Text = "No test Case Available";
+                output.WriteLine("No test Case Available");
                 return;
             }
-            output.Text = "Process Started" + Environment.NewLine;
-            output.ReadOnly = true;
+            output.WriteLine("Process Started" + Environment.NewLine);
+            output.IsReadLineMode = false;
             int score = 0;
             int i = 1;
             foreach (var item in task._testCases)
@@ -321,10 +318,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     Result          : {(item.Value.Equals(textOutput) ? "Correct" : "Wrong")}
                     """ + Environment.NewLine;
 
-                output.AppendText(result + Environment.NewLine);
+                output.WriteLine(result + Environment.NewLine);
                 File.WriteAllText(testerFile, testSrcCode.Replace(input, "userInput"));
             }
-            output.AppendText($"Score : {score}/{task._testCases.Count}");
+            output.WriteLine($"Score : {score}/{task._testCases.Count}");
             notifAction?.Invoke(NotificationType.TestResult, $"{score}/{task._testCases.Count}");
             int percentage = (score / task._testCases.Count) * 100;
             updateStats?.Invoke(1, percentage);
@@ -371,7 +368,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             process.Exited += (s, e) =>
             {
                 compiledSuccess = process.ExitCode == 0;
-                Thread.Sleep(999);
+                Thread.Sleep(99);
                 onExit?.Invoke();
             };
 
@@ -411,11 +408,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected virtual void SendInput(string input)
         {
-            if (process != null && !process.HasExited)
+            try
             {
-                process.StandardInput.WriteLine(input);
-                process.StandardInput.Flush();
+                if (process != null && !process.HasExited)
+                {
+                    process.StandardInput.WriteLine(input);
+                    process.StandardInput.Flush();
+                }
             }
+            catch (InvalidOperationException) { }
         }
 
         public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username, Action<int, int> updateStats)
