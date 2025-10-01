@@ -19,25 +19,20 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         public ToDelete()
         {
             InitializeComponent();
-            consoleTextBox1.IsReadLineMode = true;
-            this.Load += (s,e) => Task.Run(() =>
-            {
-                while (true)
-                {
-                    this.Invoke((Action)(() =>
-                    {
-                        Debug.WriteLine(consoleTextBox1.ReadLine());
-                        consoleTextBox1.Text = "";
-                    }));
-                }
-            });
         }
 
-
-
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            consoleTextBox1.WriteLine("New Line");
+            if (panel1.Size.Height > 60)
+            {
+                panel1.Size = new Size(panel1.Width, 60);
+                button1.Text = "OPEN";
+            }
+            else
+            {
+                panel1.Size = new Size(panel1.Width, 120);
+                button1.Text = "CLOSE";
+            }
         }
     }
 }

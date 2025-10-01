@@ -162,7 +162,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return StudentProgress;
         }
 
-        protected Process CommandRunner(string command)
+        protected Process CommandRunner(string command, bool didRunCode = false)
         {
             if (process != null)
             {
@@ -175,12 +175,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
             Process newProcess = new Process();
             newProcess.StartInfo.FileName = "cmd.exe";
-            newProcess.StartInfo.Arguments = command;
-            newProcess.StartInfo.UseShellExecute = false;
-            newProcess.StartInfo.RedirectStandardInput = true;
-            newProcess.StartInfo.RedirectStandardOutput = true;
-            newProcess.StartInfo.RedirectStandardError = true;
-            newProcess.StartInfo.CreateNoWindow = true;
+            newProcess.StartInfo.Arguments = command + (didRunCode ? " & pause" : "");
+            newProcess.StartInfo.UseShellExecute = didRunCode;
+            newProcess.StartInfo.RedirectStandardInput = !didRunCode;
+            newProcess.StartInfo.RedirectStandardOutput = !didRunCode;
+            newProcess.StartInfo.RedirectStandardError = !didRunCode;
+            newProcess.StartInfo.CreateNoWindow = !didRunCode;
 
             return newProcess;
         }
@@ -216,114 +216,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public virtual void CompileCode() { }
 
-        private bool isNotDone;
         public async virtual void RunCode()
         {
-            isNotDone = true;
-            this.Invoke((Action)(() =>
-            {
-                output.Clear();
-                output.WriteLine("Started" + Environment.NewLine);
-                output.IsReadLineMode = true;
-            }));
-
             SaveCode(5, 100);
-            process = CommandRunner(commandLine);
-            await StartprocessAsync(
-                process,
-                outp => output.WriteLine(outp + Environment.NewLine),
-                err => output.WriteLine(err + Environment.NewLine),
-                () =>
-                {
-                    output.WriteLine("Program Finished");
-                    isNotDone = false;
-                }
-            );
-
-            Task.Run(() =>
-            {
-                do
-                {
-                    SendInput(output.ReadLine());
-                    Thread.Sleep(10);
-                } while (isNotDone);
-            });
+            process = CommandRunner(commandLine, true);
+            await StartprocessAsync(process, null, null, null);
         }
 
         public async virtual void RunTest()
         {
             SaveCode();
-            output.Clear();
-            if (task._testCases == null || task._testCases.Count == 0)
-            {
-                output.WriteLine("No test Case Available");
-                return;
-            }
-            output.WriteLine("Process Started" + Environment.NewLine);
-            output.IsReadLineMode = false;
-            int score = 0;
-            int i = 1;
-            foreach (var item in task._testCases)
-            {
-                // read + replace + write
-                string testSrcCode = File.ReadAllText(testerFile);
-                string input = item.Key;
+            TestCodeForm testCodeForm = new TestCodeForm(commandLine, testerFile, task);
+            testCodeForm.ShowDialog();
 
-                if (filePath.EndsWith(".cpp"))//if the file is cpp, because it needs to be passed using echo per input/line
-                {
-                    string[] lines = input.Split(Environment.NewLine);
-                    string newInput = "echo ";
-                    for (int num = 0; num < lines.Length; num++)
-                    {
-                        newInput += lines[num];
-                        newInput += num != lines.Length - 1 ? " & echo " : "";
-                    }
-                    input = newInput;
-                }
-                else if (filePath.EndsWith(".py"))
-                {
-                    string[] lines = input.Split(Environment.NewLine);
-                    string newInput = "";
-                    foreach (var item1 in lines)
-                    {
-                        newInput += item1 + "\\n";
-                    }
-                    input = newInput.Remove(newInput.Length - 2);
-                }
-                File.WriteAllText(testerFile, testSrcCode.Replace("userInput", input));
-                process = CommandRunner(commandLine);
-                string outputResult = "";
-                string errorResult = "";
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                await StartprocessAsyncExit(
-                    process,
-                    outputMsg => { outputResult += outputMsg; Debug.WriteLine($"Memory Usage: {process.WorkingSet64 / (1024 * 1024)} MB"); },
-                    errorMsg => outputResult += errorMsg,
-                    () =>
-                    {
-                        sw.Stop();
-                        Debug.WriteLine(sw.Elapsed.ToString());
-                    }
-                    );
-
-                string result = "";
-                string textOutput = string.IsNullOrEmpty(outputResult) ? errorResult : outputResult;
-                score = (item.Value.Equals(outputResult)) ? score + 1 : score;
-                result = $"""
-                    Test Case {i++}
-                    Input:{item.Key + Environment.NewLine}
-                    Expected Output : {item.Value}
-                    Actual Output   : {textOutput}
-                    Result          : {(item.Value.Equals(textOutput) ? "Correct" : "Wrong")}
-                    """ + Environment.NewLine;
-
-                output.WriteLine(result + Environment.NewLine);
-                File.WriteAllText(testerFile, testSrcCode.Replace(input, "userInput"));
-            }
-            output.WriteLine($"Score : {score}/{task._testCases.Count}");
-            notifAction?.Invoke(NotificationType.TestResult, $"{score}/{task._testCases.Count}");
-            int percentage = (score / task._testCases.Count) * 100;
+            int percentage = (testCodeForm.score / task._testCases.Count) * 100;
             updateStats?.Invoke(1, percentage);
         }
 
@@ -374,8 +280,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             process.EnableRaisingEvents = true;
             process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
+            try
+            {
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+            }
+            catch (InvalidOperationException) { }
             return Task.CompletedTask;
         }
 
