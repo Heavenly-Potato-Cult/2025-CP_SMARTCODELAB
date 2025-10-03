@@ -28,83 +28,84 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToDelete));
-            consoleTextBox1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.ConsoleTextBox();
+            panel1 = new Panel();
             button1 = new Button();
-            ((System.ComponentModel.ISupportInitialize)consoleTextBox1).BeginInit();
+            label2 = new Label();
+            label1 = new Label();
+            testCaseResult1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.TestCaseResult();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // consoleTextBox1
+            // panel1
             // 
-            consoleTextBox1.AutoCompleteBracketsList = new char[]
-    {
-    '(',
-    ')',
-    '{',
-    '}',
-    '[',
-    ']',
-    '"',
-    '"',
-    '\'',
-    '\''
-    };
-            consoleTextBox1.AutoScrollMinSize = new Size(749, 19);
-            consoleTextBox1.BackBrush = null;
-            consoleTextBox1.BackColor = Color.Black;
-            consoleTextBox1.CaretColor = Color.White;
-            consoleTextBox1.CharHeight = 19;
-            consoleTextBox1.CharWidth = 9;
-            consoleTextBox1.Cursor = Cursors.IBeam;
-            consoleTextBox1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            consoleTextBox1.FoldingIndicatorColor = Color.Gold;
-            consoleTextBox1.Font = new Font("Consolas", 9.75F);
-            consoleTextBox1.ForeColor = Color.White;
-            consoleTextBox1.Hotkeys = resources.GetString("consoleTextBox1.Hotkeys");
-            consoleTextBox1.IndentBackColor = Color.Black;
-            consoleTextBox1.IsReplaceMode = false;
-            consoleTextBox1.LineNumberColor = Color.Gold;
-            consoleTextBox1.Location = new Point(12, 41);
-            consoleTextBox1.Name = "consoleTextBox1";
-            consoleTextBox1.PaddingBackColor = Color.Black;
-            consoleTextBox1.Paddings = new Padding(0);
-            consoleTextBox1.PreferredLineWidth = 80;
-            consoleTextBox1.SelectionColor = Color.FromArgb(150, 255, 255, 255);
-            consoleTextBox1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("consoleTextBox1.ServiceColors");
-            consoleTextBox1.ServiceLinesColor = Color.DimGray;
-            consoleTextBox1.Size = new Size(713, 342);
-            consoleTextBox1.TabIndex = 0;
-            consoleTextBox1.WordWrap = true;
-            consoleTextBox1.WordWrapMode = FastColoredTextBoxNS.WordWrapMode.CharWrapPreferredWidth;
-            consoleTextBox1.Zoom = 100;
+            panel1.BackColor = SystemColors.ActiveBorder;
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(132, 99);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(602, 125);
+            panel1.TabIndex = 0;
             // 
             // button1
             // 
-            button1.Location = new Point(202, 462);
+            button1.Location = new Point(505, 2);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 1;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Click += button1_Click_1;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(66, 110, 232);
+            label2.Location = new Point(0, 65);
+            label2.Name = "label2";
+            label2.Size = new Size(120, 31);
+            label2.TabIndex = 81;
+            label2.Text = "Test Cases";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(66, 110, 232);
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(120, 31);
+            label1.TabIndex = 80;
+            label1.Text = "Test Cases";
+            // 
+            // testCaseResult1
+            // 
+            testCaseResult1.Location = new Point(54, 305);
+            testCaseResult1.Name = "testCaseResult1";
+            testCaseResult1.Size = new Size(1029, 31);
+            testCaseResult1.TabIndex = 1;
             // 
             // ToDelete
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1094, 682);
-            Controls.Add(button1);
-            Controls.Add(consoleTextBox1);
+            ClientSize = new Size(1233, 682);
+            Controls.Add(panel1);
+            Controls.Add(testCaseResult1);
             Name = "ToDelete";
             Text = "ToDelete";
-            ((System.ComponentModel.ISupportInitialize)consoleTextBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Pages.ProgrammingTabs.ConsoleTextBox consoleTextBox1;
+        private Panel panel1;
+        private Label label2;
+        private Label label1;
         private Button button1;
+        private Pages.ProgrammingTabs.TestCaseResult testCaseResult1;
     }
 }

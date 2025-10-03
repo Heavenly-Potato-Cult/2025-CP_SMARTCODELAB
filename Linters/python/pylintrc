@@ -1,0 +1,46 @@
+[MASTER]
+# Only enable the checkers we care about for readability
+disable=all
+enable=C0301,     # line-too-long
+       C0302,     # too-many-lines
+       C0303,     # trailing-whitespace
+       C0304,     # missing-final-newline
+       C0114,     # missing-module-docstring
+       C0115,     # missing-class-docstring
+       C0116,     # missing-function-docstring
+       W0511,     # fixme / TODO comments
+       R0903,     # too-few-public-methods
+       R0904,     # too-many-public-methods
+       R0912,     # too-many-branches
+       R0913,     # too-many-arguments
+       R0914,     # too-many-locals
+       R0915,     # too-many-statements
+       R1702,     # too-many-nested-blocks
+       C0411,     # wrong-import-order
+       C0412,     # ungrouped-imports
+       C0413,     # wrong-import-position
+       C0415,     # import-outside-toplevel
+       R1705,     # unnecessary-else-after-return
+       R1706,     # consider-using-ternary
+       R1710,     # inconsistent-return-statements
+       R1730,     # consider-using-generator
+       C0321,     # multiple-statements on one line
+       C0325      # superfluous-parens
+
+[FORMAT]
+# Max line length (PEP 8 recommends 79, but 100 is more practical for students)
+max-line-length=100
+
+[DESIGN]
+# Reasonable limits for student readability
+max-args=5
+max-branches=12
+max-locals=15
+max-statements=50
+max-nested-blocks=4
+
+[REPORTS]
+# We don’t need full reports, just messages
+output-format=colorized
+reports=no
+score=no

@@ -130,11 +130,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
         }
 
-        private void printErrorCount()
-        {
-            Debug.WriteLine(errorCounts.ToString());
-        }
-
         public async override void CheckCodingStandards(string command, Action reRun = null)
         {
             standardError.Clear();

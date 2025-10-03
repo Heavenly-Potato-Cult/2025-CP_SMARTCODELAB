@@ -35,7 +35,7 @@
             srcCode = new CodeEditor();
             tabControl2 = new TabControl();
             tabPage1 = new TabPage();
-            output = new CodeEditor();
+            output = new ConsoleTextBox();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)srcCode).BeginInit();
@@ -174,6 +174,6 @@
         public CodeEditor srcCode;
         private TabControl tabControl2;
         private TabPage tabPage1;
-        protected CodeEditor output;
+        protected ConsoleTextBox output;
     }
 }
