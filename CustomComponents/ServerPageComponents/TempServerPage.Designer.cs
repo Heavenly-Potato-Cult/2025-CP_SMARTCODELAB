@@ -47,7 +47,6 @@
             copypastedCodes = new FlowLayoutPanel();
             customCard12 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label20 = new Label();
-            memberContainer = new ServerMemberContainer();
             codeTrack = new TrackBar();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
@@ -66,6 +65,10 @@
             label32 = new Label();
             customCard17 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label33 = new Label();
+            customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            iconsContainer = new FlowLayoutPanel();
+            label4 = new Label();
+            customTextBox1 = new CustomTextBox();
             customCard8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             customCard6.SuspendLayout();
@@ -80,6 +83,7 @@
             customCard14.SuspendLayout();
             customCard16.SuspendLayout();
             customCard17.SuspendLayout();
+            customCard2.SuspendLayout();
             SuspendLayout();
             // 
             // customCard8
@@ -315,17 +319,6 @@
             label20.TabIndex = 6;
             label20.Text = "Copy-Paste Activity";
             // 
-            // memberContainer
-            // 
-            memberContainer.BackColor = Color.White;
-            memberContainer.BorderColor = Color.Gray;
-            memberContainer.BorderRadius = 20;
-            memberContainer.BorderSize = 0;
-            memberContainer.Location = new Point(28, 103);
-            memberContainer.Name = "memberContainer";
-            memberContainer.Size = new Size(315, 670);
-            memberContainer.TabIndex = 16;
-            // 
             // codeTrack
             // 
             codeTrack.Location = new Point(3, 107);
@@ -537,14 +530,66 @@
             label33.TabIndex = 6;
             label33.Text = "Code Functions Overview";
             // 
+            // customCard2
+            // 
+            customCard2.BackColor = Color.White;
+            customCard2.BorderColor = Color.Gray;
+            customCard2.BorderRadius = 20;
+            customCard2.BorderSize = 1;
+            customCard2.Controls.Add(iconsContainer);
+            customCard2.Controls.Add(label4);
+            customCard2.Controls.Add(customTextBox1);
+            customCard2.Location = new Point(18, 110);
+            customCard2.Name = "customCard2";
+            customCard2.Size = new Size(315, 707);
+            customCard2.TabIndex = 103;
+            // 
+            // iconsContainer
+            // 
+            iconsContainer.AutoScroll = true;
+            iconsContainer.FlowDirection = FlowDirection.TopDown;
+            iconsContainer.Location = new Point(10, 88);
+            iconsContainer.Name = "iconsContainer";
+            iconsContainer.Size = new Size(294, 616);
+            iconsContainer.TabIndex = 12;
+            iconsContainer.TabStop = true;
+            iconsContainer.WrapContents = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(13, 13, 13);
+            label4.Location = new Point(18, 10);
+            label4.Name = "label4";
+            label4.Size = new Size(95, 28);
+            label4.TabIndex = 10;
+            label4.Text = "Students";
+            // 
+            // customTextBox1
+            // 
+            customTextBox1.BackColor = Color.WhiteSmoke;
+            customTextBox1.BorderColor = Color.White;
+            customTextBox1.BorderFocusColor = Color.Transparent;
+            customTextBox1.BorderRadius = 10;
+            customTextBox1.ForeColor = Color.DimGray;
+            customTextBox1.Location = new Point(10, 41);
+            customTextBox1.Name = "customTextBox1";
+            customTextBox1.Padding = new Padding(10, 7, 10, 7);
+            customTextBox1.PlaceHolderColor = Color.DarkGray;
+            customTextBox1.PlaceholderText = "";
+            customTextBox1.ScrollBars = ScrollBars.None;
+            customTextBox1.Size = new Size(285, 41);
+            customTextBox1.TabIndex = 11;
+            // 
             // TempServerPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.WhiteSmoke;
+            Controls.Add(customCard2);
             Controls.Add(flowLayoutPanel1);
-            Controls.Add(memberContainer);
             Controls.Add(smartButton1);
             Controls.Add(label5);
             Controls.Add(label3);
@@ -573,6 +618,8 @@
             customCard16.PerformLayout();
             customCard17.ResumeLayout(false);
             customCard17.PerformLayout();
+            customCard2.ResumeLayout(false);
+            customCard2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -594,7 +641,6 @@
         private GeneralComponents.CustomCard customCard1;
         private Label label20;
         private GeneralComponents.CustomCard customCard12;
-        private ServerMemberContainer memberContainer;
         private Pages.ProgrammingTabs.CodeEditor studentCode;
         private TrackBar codeTrack;
         private FlowLayoutPanel copypastedCodes;
@@ -615,5 +661,9 @@
         private Label label32;
         private GeneralComponents.CustomCard customCard17;
         private Label label33;
+        private GeneralComponents.CustomCard customCard2;
+        private Label label4;
+        private CustomTextBox customTextBox1;
+        private FlowLayoutPanel iconsContainer;
     }
 }

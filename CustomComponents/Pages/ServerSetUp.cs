@@ -56,9 +56,8 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 selectedTask = new TaskModel();
             }
-            Debug.WriteLine(language.SelectedItem.ToString());
             Server server = new Server(serverName.Texts.Trim(),selectedTask,language.SelectedItem.ToString(), new Dictionary<string, UserProfile>() { {"2",new UserProfile("Clifford","2","Slimparroot")} });
-            Debug.WriteLine(server.programmingLanguage);
+
             SystemSingleton.Instance.page1.Controls.Clear();
             SystemSingleton.Instance.page1.AutoScroll = true;
             SystemSingleton.Instance.page1.Controls.Add(new MainServerPage(server));

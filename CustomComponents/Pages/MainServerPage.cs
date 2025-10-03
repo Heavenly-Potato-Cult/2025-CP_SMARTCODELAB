@@ -40,6 +40,9 @@ namespace SmartCodeLab.CustomComponents.Pages
         //users related
         private Dictionary<NetworkStream, string> connectedUsers;
         private List<string> currentStudents = new List<string>();
+
+        //will use userId as a KEY
+        private Dictionary<string, StudentCodingProgress> userProgress;
         public MainServerPage(Server server)
         {
             InitializeComponent();
@@ -48,9 +51,10 @@ namespace SmartCodeLab.CustomComponents.Pages
             currentTask = server.ServerTask;
             Task.Run(async () => await StartServerAsync());
             connectedUsers = new Dictionary<NetworkStream, string>();
+            userProgress = [];
 
             userTable = new StudTable(server.Users);
-            serverPage = new TempServerPage(server.ServerTask, server.Users);
+            serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress);
             homePage = new ServerHomePage();
 
             tabPage1.Controls.Add(homePage);
@@ -123,6 +127,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private async Task MessageReceiverAsync(NetworkStream networkStream)
         {
+            UserProfile userProfile = new UserProfile();
             //send the task to the new client
             Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
             await networkStream.FlushAsync();
@@ -162,13 +167,23 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     errorMsg = "This student is already logged in";
                                 else
                                 {
-                                    serverPage.AddNewUser(networkStream, actualProfile);
+                                    if (!userProgress.ContainsKey(profile._studentId))
+                                        userProgress.Add(profile._studentId, new StudentCodingProgress());
+
+                                    //serverPage.AddNewUser(networkStream, actualProfile);
                                     currentStudents.Add(profile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                        new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).UserProfile(actualProfile).Build(), PrefixStyle.Base128);
+                                        new ServerMessage.Builder(MessageType.LogInSuccessful).
+                                        Task(currentTask).
+                                        UserProfile(actualProfile).
+                                        StudentProgress(userProgress[actualProfile._studentId]).
+                                        Build(), PrefixStyle.Base128);
                                     didLogIn = true;
-                                    HandleUserStream(networkStream, profile._studentId, true);
+                                    userProfile = profile;
+                                    serverPage.StudentLoggedIn(userProfile);
+                                    HandleUserStream(networkStream, profile, true);
                                     homePage.NewNotification(new Notification(NotificationType.LoggedIn, actualProfile._studentName));
+
                                 }
                             }
                             if (!didLogIn)
@@ -176,16 +191,20 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
                             break;
+                        case MessageType.StudentProgress:
+                            UpdateUserProgress(userProfile._studentId, obj._progress);
+                            serverPage.UpdateStudentProgressDisplay(userProfile,obj._progress);
+                            break;
                         case MessageType.Notification:
                             homePage.NewNotification(obj.notification);
                             break;
                         default:
-                             await serverPage.MessageHandler(obj, networkStream, HandleUserStream);
                             break;
                     }
                 }
                 catch (IOException)
                 {
+                    MessageBox.Show("all too well gar");
                     break;
                 }
                 catch (Exception ex)
@@ -193,15 +212,31 @@ namespace SmartCodeLab.CustomComponents.Pages
                     MessageBox.Show(ex.Message);
                 }
             }
-            serverPage.RemoveUser(networkStream);
+            HandleUserStream(networkStream, userProfile, false);
         }
 
-        private void HandleUserStream(NetworkStream networkStream, string userId, bool isAdd)
+        private void UpdateUserProgress(string studentId, StudentCodingProgress progress)
+        {
+            if(!userProgress.ContainsKey(studentId))
+                userProgress.Add(studentId, progress);
+            userProgress[studentId] = progress;
+
+        }
+
+        public StudentCodingProgress IdStudentProgress(string studentId)
+        {
+            return userProgress[studentId];
+        }
+
+        private void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd)
         {
             if (isAdd)
-                connectedUsers.Add(networkStream, userId);
+                connectedUsers.Add(networkStream, profile._studentId);
             else
+            {
                 connectedUsers.Remove(networkStream);
+                currentStudents.Remove(profile._studentName);
+            }
         }
 
         private void UpdateServerTask(TaskModel task)

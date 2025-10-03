@@ -28,131 +28,93 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private TaskModel currentTask { get; set; }
         //private TcpListener _server;
-        private Dictionary<NetworkStream, UserIcons> userIcons = new Dictionary<NetworkStream, UserIcons>();
-
         //student ID as the key
+        private Dictionary<string, UserIcons> userIcons = new Dictionary<string, UserIcons>();
         private StudentCodingProgress studentProgress;
-        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users)
+
+        private string selectedStudentId = string.Empty;
+
+        private Func<string, StudentCodingProgress> progressRetriever;
+        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string,StudentCodingProgress> progressRetriever)
         {
             InitializeComponent();
             currentTask = task;
+            this.progressRetriever = progressRetriever;
+            this.Load += (s, e) =>
+            {
+                Task.Run(() =>
+                {
+                    foreach (var item in users.Values)
+                    {
+                        AddStudent(item);
+                    }
+                });
+            };
         }
 
-        public void RemoveUser(NetworkStream networkStream)
+        public void AddStudent(UserProfile profile)
         {
-            Invoke(new Action(() =>
+            this.Invoke((Action)(() => 
             {
-                try
-                {
-                    userIcons[networkStream].Dispose();
-                }
-                catch (KeyNotFoundException) { }
+                //this will be used to view who are the students who are yet to log in or inactive(left the lobby), already logged in, and submitted
+                profile._computerAddress = "";
+                userIcons.Add(profile._studentId, new UserIcons(profile, NewUserSelected));
+                iconsContainer.Controls.Add(userIcons[profile._studentId]);
             }));
-            userIcons.Remove(networkStream);
         }
 
-        public async Task MessageHandler(ServerMessage message, NetworkStream networkStream, Action<NetworkStream, string, bool> action)
+        public void StudentLoggedIn(UserProfile profile)
         {
-            try
+            userIcons[profile._studentId].profile._computerAddress = profile._computerAddress;
+        }
+
+        public async void UpdateStudentProgressDisplay(UserProfile user, StudentCodingProgress progress)
+        {
+            if (user._studentId == selectedStudentId)
             {
-                switch (message._messageType)
+                await Task.Run(() =>
                 {
-                    //case MessageType.ServerTaskRequest:
-                    //    Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                    //        new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
-                    //    await networkStream.FlushAsync();
-                    //    break;
-                    //case MessageType.UserProfile:
-                    //    if (message._userProfile == null)
-                    //        break;
-                    //    UserProfile profile = message._userProfile;
-                    //    bool didLogIn = false;
-                    //    string errorMsg = "We can't find an account with that Student ID";
-                    //    if (userTable.ContainsUser(profile._studentId))
-                    //    {
-                    //        UserProfile actualProfile = userTable.GetUserProfile(profile._studentId);
-                    //        if (currentStudents.Contains(profile._studentName))
-                    //            errorMsg = "This student is already logged in";
-                    //        else
-                    //        {
-                    //            _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(actualProfile, networkStream, NewUserSelected)));
-
-                    //            currentStudents.Add(profile._studentName);
-                    //            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                    //                new ServerMessage.Builder(MessageType.LogInSuccessful).Task(currentTask).Build(), PrefixStyle.Base128);
-                    //            didLogIn = true;
-                    //            action?.Invoke(networkStream, profile._studentId, true);
-                    //        }
-                    //    }
-                    //    if (!didLogIn)
-                    //        Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                    //            new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
-                    //    await networkStream.FlushAsync();
-                    //    break;
-                    case MessageType.StudentProgress:
-                        studentProgress = message._progress;
-                        this.Invoke((Delegate)(() =>
+                    this.Invoke((Delegate)(() =>
+                    {
+                        studentProgress = progress;
+                        int studentProgLength = studentProgress.CodeProgress.Count - 1;
+                        bool atMax = codeTrack.Maximum == codeTrack.Value;
+                        codeTrack.Maximum = studentProgLength;
+                        if (atMax)
                         {
-                            int studentProgLength = studentProgress.CodeProgress.Count - 1;
-                            bool atMax = codeTrack.Maximum == codeTrack.Value;
-                            codeTrack.Maximum = studentProgLength;
-                            if (atMax)
+                            studentCode.Text = studentProgress.sourceCode;
+                            codeTrack.Value = studentProgLength;
+                        }
+
+                        copypastedCodes.Controls.Clear();
+                        if (studentProgress.pastedCode != null)
+                        {
+                            foreach (var item in studentProgress.pastedCode)
                             {
-                                studentCode.Text = studentProgress.sourceCode;
-                                codeTrack.Value = studentProgLength;
+                                copypastedCodes.Controls.Add(new PastedCodeIcon(item));
                             }
-
-                            copypastedCodes.Controls.Clear();
-                            if (studentProgress.pastedCode != null)
-                            {
-                                foreach (var item in studentProgress.pastedCode)
-                                {
-                                    copypastedCodes.Controls.Add(new PastedCodeIcon(item));
-                                }
-                            }
-                        }));
-                        break;
-                    default:
-                        //Invoke(new Action(() =>
-                        //{
-                        //    richTextBox1.AppendText($"Unknown Message Type: {obj.Content}\n");
-                        //}));
-                        break;
-                }
-
+                        }
+                    }));
+                });
             }
-            catch (IOException)
-            {
-                action?.Invoke(networkStream, "", false);
-            }//if the connection is disconnected
-            catch (Exception)
-            {
-                MessageBox.Show("TempServerPage under Message Handler");
-            }
-        }
-
-        public void AddNewUser(NetworkStream networkStream, UserProfile user)
-        {
-            _ = Task.Run(() => userIcons.Add(networkStream, memberContainer.AddUser(user, networkStream, NewUserSelected)));
         }
 
         public void UpdateTask(TaskModel task)
         {
             currentTask = task;
         }
-        private void NewUserSelected(string username, string address)
-        {
-            studentProgress = null;
-            codeTrack.Maximum = 0;
-            codeTrack.Value = 0;
-            studentCode.Text = string.Empty;
-            studentName.Text = username;
-            ipaddress.Text = address;
 
-            studentProgress = null;
-            codeTrack.Maximum = 0;
-            codeTrack.Value = 0;
-            studentCode.Text = string.Empty;
+        private void NewUserSelected(UserProfile profile)
+        {
+            selectedStudentId = profile._studentId;
+            try
+            {
+                UpdateStudentProgressDisplay(profile, progressRetriever?.Invoke(profile._studentId));
+            }
+            catch (KeyNotFoundException) { }
+
+            studentName.Text = profile._studentName;
+            ipaddress.Text = profile._computerAddress;
         }
         private void codeTrack_Scroll(object sender, EventArgs e)
         {

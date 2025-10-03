@@ -59,12 +59,12 @@
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
             panel18 = new Panel();
+            readability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            label1 = new Label();
             accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             panel4 = new Panel();
             splitContainer1 = new SplitContainer();
             codeEditorContainer = new Panel();
-            label1 = new Label();
-            readability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel10.SuspendLayout();
@@ -347,6 +347,7 @@
             smartButton5.Text = "Clear Console";
             smartButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton5.UseVisualStyleBackColor = false;
+            smartButton5.Click += smartButton5_Click;
             // 
             // smartButton4
             // 
@@ -455,6 +456,25 @@
             panel18.Size = new Size(455, 230);
             panel18.TabIndex = 78;
             // 
+            // readability
+            // 
+            readability.Location = new Point(120, 125);
+            readability.Name = "readability";
+            readability.Size = new Size(316, 13);
+            readability.TabIndex = 81;
+            readability.Value = 38;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(4, 118);
+            label1.Name = "label1";
+            label1.Size = new Size(104, 25);
+            label1.TabIndex = 80;
+            label1.Text = "Readability";
+            // 
             // accuracy
             // 
             accuracy.Location = new Point(120, 82);
@@ -502,25 +522,6 @@
             codeEditorContainer.Name = "codeEditorContainer";
             codeEditorContainer.Size = new Size(896, 786);
             codeEditorContainer.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(4, 118);
-            label1.Name = "label1";
-            label1.Size = new Size(104, 25);
-            label1.TabIndex = 80;
-            label1.Text = "Readability";
-            // 
-            // readability
-            // 
-            readability.Location = new Point(120, 125);
-            readability.Name = "readability";
-            readability.Size = new Size(316, 13);
-            readability.TabIndex = 81;
-            readability.Value = 38;
             // 
             // TempStudentIDE
             // 

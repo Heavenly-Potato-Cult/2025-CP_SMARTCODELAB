@@ -27,14 +27,6 @@ namespace SmartCodeLab.Models
         }
 
         //the file naming format of this object will be {activityName}_{studentName}_prog.bin
-        public async Task SaveFile(string filePath)
-        {
-            sourceCode = string.Empty;
-            using (var file = File.Create(filePath))
-            {
-                Serializer.SerializeWithLengthPrefix(file, this, PrefixStyle.Base128);
-            }
-        }
 
         public static StudentCodingProgress Deserialize(string filePath) 
         {
@@ -45,7 +37,7 @@ namespace SmartCodeLab.Models
                     return Serializer.DeserializeWithLengthPrefix<StudentCodingProgress>(file,PrefixStyle.Base128);
                 }
             }
-            catch (System.IO.EndOfStreamException e)
+            catch (EndOfStreamException e)
             {
                 return null;
             }

@@ -27,6 +27,9 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TaskModel serverTask { get; set; }
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public StudentCodingProgress progress { get; set; }
         public UserLogInDIalog(TcpClient client)
         {
             InitializeComponent();
@@ -61,6 +64,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                         {
                             serverTask = msg._task;
                             _userName = msg._userProfile._studentName;
+                            progress = msg._progress;
                             this.DialogResult = DialogResult.OK;
                             break;
                         }

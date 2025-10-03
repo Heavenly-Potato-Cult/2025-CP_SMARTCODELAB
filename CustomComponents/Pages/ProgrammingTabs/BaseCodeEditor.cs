@@ -45,7 +45,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
         }
 
-        protected BaseCodeEditor(string filePath, TaskModel task, string userName, Action<int, int> updateStats)
+        protected BaseCodeEditor(string filePath, TaskModel task, string userName, StudentCodingProgress progress, Action<int, int> updateStats)
         {
             InitializeComponent();
             this.updateStats = updateStats;
@@ -56,13 +56,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             codeHistory[0] = srcCode.Text;
 
             //will initialize first, incase it is new
-            StudentProgress = new StudentCodingProgress();
-            StudentProgress.sourceCode = srcCode.Text;
-            StudentProgress.CodeProgress.Add(srcCode.Text);
-
-            possibleProgDirectory = Path.Combine(Path.GetDirectoryName(filePath), $"{task._taskName}_{userName}_{Path.GetExtension(filePath)}_prog.bin");
-            if (File.Exists(possibleProgDirectory))
-                StudentProgress = StudentCodingProgress.Deserialize(possibleProgDirectory);
+            StudentProgress = progress;
 
             RunLinting();// i check agad ang syntax ng code
             srcCode.ToolTipNeeded += (s, e) =>
@@ -86,7 +80,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 _debounceTimer = new System.Threading.Timer(_ =>
                 {
                     RunLinting();
-                    SaveStudentProgressFile();
                 }, null, 700, Timeout.Infinite);
 
                 //add the new source code to the code history
@@ -105,7 +98,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                 }
             };
-            SaveStudentProgressFile();
         }
 
         private void GetPastedCode(string codeSnippet, string wholeCode, string[] history)
@@ -137,11 +129,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 catch (IndexOutOfRangeException) { }
             }
 
-        }
-
-        private async void SaveStudentProgressFile()
-        {
-            await StudentProgress.SaveFile(possibleProgDirectory);
         }
 
         protected bool IsFileLocked(Exception exception)
@@ -329,19 +316,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             catch (InvalidOperationException) { }
         }
 
-        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username, Action<int, int> updateStats)
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username, StudentCodingProgress progress, Action<int, int> updateStats)
         {
             if (filePath.EndsWith(".java"))
             {
-                return new JavaCodeEditor(filePath, task, username, updateStats);
+                return new JavaCodeEditor(filePath, task, username, progress, updateStats);
             }
             else if (filePath.EndsWith(".py"))
             {
-                return new PythonCodeEditor(filePath, task, username, updateStats);
+                return new PythonCodeEditor(filePath, task, username, progress, updateStats);
             }
             else
             {
-                return new CppCodeEditor(filePath, task, username, updateStats);
+                return new CppCodeEditor(filePath, task, username, progress, updateStats);
             }
         }
     }

@@ -1,6 +1,5 @@
 ﻿using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs;
-using SmartCodeLab.CustomComponents.MainPages;
 using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.Models;
@@ -67,7 +66,7 @@ namespace SmartCodeLab
                     var userLogIn = new UserLogInDIalog(client);
                     if (userLogIn.ShowDialog() == DialogResult.OK)
                     {
-                        var studentProgramming = new TempStudentIDE(userLogIn._userName, userLogIn.serverTask, userLogIn._stream);
+                        var studentProgramming = new TempStudentIDE(userLogIn._userName, userLogIn.serverTask, userLogIn.progress, userLogIn._stream);
                         this.Invoke((Action)(() =>
                         {
                             tabPage3.Controls.Clear();
@@ -180,6 +179,11 @@ namespace SmartCodeLab
                     button.Padding = new Padding(10, 0, 0, 0);
                 }
             }
+        }
+
+        private void sideMenuPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

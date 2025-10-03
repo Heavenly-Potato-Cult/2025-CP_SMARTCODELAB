@@ -11,7 +11,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class PythonCodeEditor : BaseCodeEditor
     {
-        public PythonCodeEditor(string filePath, TaskModel task, string username, Action<int, int> updateStats) : base(filePath, task, username, updateStats) 
+        public PythonCodeEditor(string filePath, TaskModel task, string username, StudentCodingProgress progress, Action<int, int> updateStats) : base(filePath, task, username, progress, updateStats) 
         {
             
         }

@@ -27,15 +27,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private BaseCodeEditor editor;
         private System.Threading.Timer? debounceTimer;
         private readonly int debounceDelay = 700;
-        private bool isFocused = false;
+        //private bool isFocused = false;
         private string userName;
+        private StudentCodingProgress progress;
         public TempStudentIDE()
         {
             InitializeComponent();
         }
-        public TempStudentIDE(string userName, TaskModel task, NetworkStream client)
+        public TempStudentIDE(string userName, TaskModel task,StudentCodingProgress progress, NetworkStream client)
         {
             InitializeComponent();
+            this.progress = progress;
             stream = client;
             this.userName = userName;
             new Thread(() =>
@@ -50,12 +52,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
-            editor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, userName, UpdateStats);
+            editor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, userName, progress, UpdateStats);
             editor.notifAction = NotifyHost;
             editor.srcCode.KeyUp += (s, e) =>
             {
-                if (isFocused)
-                {
+                //if (isFocused)
+                //{
                     debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
                     // Start a new timer
@@ -63,7 +65,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     {
                         await ProgressSender();
                     }, null, debounceDelay, Timeout.Infinite);
-                }
+                //}
             };
             codeEditorContainer.Controls.Add(editor);
             _ = StreamListener();
@@ -85,7 +87,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     description.Text = task._instructions;
                     int i = 1;
                     testCaseContainer.Controls.Clear();
-                    if(task._testCases != null && task._testCases.Count > 0)
+                    if (task._testCases != null && task._testCases.Count > 0)
                         foreach (var item in task._testCases)
                         {
                             testCaseContainer.Controls.Add(new TestCaseView(i++, item.Key, item.Value));
@@ -100,9 +102,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 accuracy.ChangeValue(value);
             }
-            else if (i == 2) 
+            else if (i == 2)
             {
-                readability.ChangeValue(100-value);
+                readability.ChangeValue(100 - value);
             }
         }
 
@@ -128,11 +130,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                     switch (serverMsg._messageType)
                     {
-                        case MessageType.IsEyesOnMe:
-                            isFocused = serverMsg.isFocused.GetValueOrDefault(false);
-                            if (isFocused)
-                                await ProgressSender();
-                            break;
                         case MessageType.TaskUpdate:
                             UpdateTaskDisplay(serverMsg._task);
                             MessageBox.Show("Task updated boiiii");
@@ -155,7 +152,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void NotifyHost(NotificationType type, string result)
         {
-            Task.Run(async () => 
+            Task.Run(async () =>
             {
                 try
                 {
@@ -164,7 +161,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         .Build();
                     Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
                     await stream.FlushAsync();
-                }catch(ProtoException){}
+                }
+                catch (ProtoException) { }
             });
         }
 
@@ -176,6 +174,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void smartButton3_Click(object sender, EventArgs e)
         {
             editor.RunTest();
+        }
+
+        private async void smartButton5_Click(object sender, EventArgs e)
+        {
+            Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,new ServerMessage.Builder(MessageType.ProgressRequest).Build(), PrefixStyle.Base128);
+            await stream.FlushAsync();
         }
     }
 }

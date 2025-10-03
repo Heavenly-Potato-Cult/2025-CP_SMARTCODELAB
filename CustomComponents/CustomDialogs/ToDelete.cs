@@ -21,18 +21,20 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             InitializeComponent();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private async void button1_Click_1(object sender, EventArgs e)
         {
-            if (panel1.Size.Height > 60)
+            await Task.Run(() => 
             {
-                panel1.Size = new Size(panel1.Width, 60);
-                button1.Text = "OPEN";
-            }
-            else
+                Debug.WriteLine("Task 1 started");
+                Thread.Sleep(499);
+                Debug.WriteLine("Task 1 finished");
+            } );
+            await Task.Run(() => 
             {
-                panel1.Size = new Size(panel1.Width, 120);
-                button1.Text = "CLOSE";
-            }
+                Debug.WriteLine("Task 2 started");
+                Thread.Sleep(499);
+                Debug.WriteLine("Task 2 finished");
+            });
         }
     }
 }

@@ -173,6 +173,7 @@ namespace SmartCodeLab
             sideMenuPanel.Name = "sideMenuPanel";
             sideMenuPanel.Size = new Size(256, 906);
             sideMenuPanel.TabIndex = 0;
+            sideMenuPanel.Paint += sideMenuPanel_Paint;
             // 
             // button8
             // 

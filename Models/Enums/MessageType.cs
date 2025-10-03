@@ -6,6 +6,7 @@ namespace SmartCodeLab.Models.Enums
     public enum MessageType
     {
         StudentProgress,
+        ProgressRequest,
         ServerTask,
         ServerTaskRequest,
         UserProfile,
