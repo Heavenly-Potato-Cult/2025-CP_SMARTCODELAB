@@ -33,12 +33,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public async override void RunLinting()
         {
             SaveCode();
-            process = CommandRunner($"/c {ProgrammingConfiguration.pylintExe} {filePath}");
-            string lintOutput = "";
+            Debug.WriteLine($"/c {ProgrammingConfiguration.pylintExe} --rcfile={ProgrammingConfiguration.pylintConfig} {filePath}");
+            process = CommandRunner($"/c {ProgrammingConfiguration.pylintExe} --rcfile={ProgrammingConfiguration.pylintConfig} {filePath}");
+            string lintOutput = "Output";
             await StartprocessAsyncExit(
                 process,
                 err => lintOutput += (err + Environment.NewLine),
-                null,
+                err => lintOutput += (err + Environment.NewLine),
                 () => Debug.WriteLine(lintOutput));
         }
     }

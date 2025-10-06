@@ -40,16 +40,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             InitializeComponent();
             currentTask = task;
             this.progressRetriever = progressRetriever;
-            this.Load += (s, e) =>
+
+            //will ensure that the handle is created before accessing the UI thread
+            var obj = this.Handle;
+            Task.Run(() =>
             {
-                Task.Run(() =>
+                foreach (var item in users.Values)
                 {
-                    foreach (var item in users.Values)
-                    {
-                        AddStudent(item);
-                    }
-                });
-            };
+                    AddStudent(item);
+                }
+            });
         }
 
         public void AddStudent(UserProfile profile)
@@ -60,6 +60,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 profile._computerAddress = "";
                 userIcons.Add(profile._studentId, new UserIcons(profile, NewUserSelected));
                 iconsContainer.Controls.Add(userIcons[profile._studentId]);
+                Debug.WriteLine(profile._studentId);
             }));
         }
 

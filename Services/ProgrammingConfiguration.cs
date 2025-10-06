@@ -12,7 +12,8 @@ namespace SmartCodeLab.Services
         //Python
         public static string pythonExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "Python", "python.exe");
         public static string pylintExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "pylint_portable.exe");
-        
+        public static string pylintConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "pylintrc");
+
         //C++
         public static string gccExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "C++", "MinGW64", "bin","g++");
         public static string gccBin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "C++", "MinGW64", "bin");

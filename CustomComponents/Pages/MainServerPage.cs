@@ -157,33 +157,34 @@ namespace SmartCodeLab.CustomComponents.Pages
                         case MessageType.UserProfile:
                             if (obj._userProfile == null)
                                 break;
-                            UserProfile profile = obj._userProfile;
+                            //the obj._userProfile only contains userId/studentId
+                            userProfile = obj._userProfile;
                             bool didLogIn = false;
                             string errorMsg = "We can't find an account with that Student ID";
-                            if (userTable.ContainsUser(profile._studentId))
+                            if (userTable.ContainsUser(userProfile._studentId))
                             {
-                                UserProfile actualProfile = userTable.GetUserProfile(profile._studentId);
-                                if (currentStudents.Contains(profile._studentName))
+                                //will retrieve the full student profile from the table using studentId
+                                userProfile = userTable.GetUserProfile(userProfile._studentId);
+                                if (currentStudents.Contains(userProfile._studentName))
                                     errorMsg = "This student is already logged in";
                                 else
                                 {
-                                    if (!userProgress.ContainsKey(profile._studentId))
-                                        userProgress.Add(profile._studentId, new StudentCodingProgress());
-
-                                    //serverPage.AddNewUser(networkStream, actualProfile);
-                                    currentStudents.Add(profile._studentName);
+                                    if (!userProgress.ContainsKey(userProfile._studentId))
+                                    {
+                                        userProgress.Add(userProfile._studentId, new StudentCodingProgress());
+                                    }
+                                    
+                                    currentStudents.Add(userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                         new ServerMessage.Builder(MessageType.LogInSuccessful).
                                         Task(currentTask).
-                                        UserProfile(actualProfile).
-                                        StudentProgress(userProgress[actualProfile._studentId]).
+                                        UserProfile(userProfile).
+                                        StudentProgress(userProgress[userProfile._studentId]).
                                         Build(), PrefixStyle.Base128);
                                     didLogIn = true;
-                                    userProfile = profile;
                                     serverPage.StudentLoggedIn(userProfile);
-                                    HandleUserStream(networkStream, profile, true);
-                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, actualProfile._studentName));
-
+                                    HandleUserStream(networkStream, userProfile, true);
+                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, userProfile._studentName));
                                 }
                             }
                             if (!didLogIn)
@@ -209,7 +210,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("The error : " + ex.StackTrace);
                 }
             }
             HandleUserStream(networkStream, userProfile, false);

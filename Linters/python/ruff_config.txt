@@ -1,0 +1,31 @@
+# pyproject.toml
+[tool.ruff]
+# Select rule categories
+select = [
+    "E",   # Pycodestyle errors
+    "W",   # Pycodestyle warnings
+    "F",   # PyFlakes
+    "I",   # Isort
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+]
+
+# Ignore specific rules
+ignore = [
+    "E501",  # Line too long - we handle this with formatter
+    "W503",  # Line break before operator
+    "B008",  # Do not perform function calls in argument defaults
+]
+
+# Specific rule configurations
+[tool.ruff.flake8-bugbear]
+extend-immutable-calls = ["frozenset"]
+
+[tool.ruff.isort]
+known-first-party = ["myapp"]
+
+# Formatting configuration
+[tool.ruff.format]
+quote-style = "double"
+line-length = 100

@@ -1,0 +1,2 @@
+ruff check {filename} --config ruff.toml #running ruff with custom configuration
+pylint_portable.exe --rcfile=myConfig.pylintrc {filename} #running pylint with custom configuration
