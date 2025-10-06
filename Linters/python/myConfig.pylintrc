@@ -6,6 +6,15 @@ enable=	E,
 	C0303,	#trailing whitespace
 	W0311,	#bad-indentation
 	C0305,	#trailing new lines
+	R1711,	#useless-return
+	W0106,	#expression-not-assigned
+	W0602,	#global-variable-not-assigned
+	W1115,	#non-str-assignment-to-dunder-name
+	W0128,	#redeclared-assigned-name
+	W0127,	#self-assigning-variable
+	W2605,	#using-assignment-expression-in-unsupported-version
+	C3001,	#unnecessary-lambda-assignment
+	
 
 
 [FORMAT]
