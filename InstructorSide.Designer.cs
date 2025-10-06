@@ -35,21 +35,41 @@
             smartButton12 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton13 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             sideMenuPanel = new Panel();
-            button2 = new Button();
-            button1 = new Button();
-            panel_Title = new Panel();
-            btnSideMenu_Student = new Button();
-            btnSideMenu_FileManagement = new Button();
-            btnSideMenu_TaskManagement = new Button();
             btnSideMenu_Settings = new Button();
+            btnSideMenu_Report = new Button();
+            btnSideMenu_CodeEvaluation = new Button();
+            panel_Title = new Panel();
+            btnSideMenu_Dashboard = new Button();
+            btnSideMenu_ExerciseManagement = new Button();
+            btnSideMenu_SessionManagement = new Button();
+            btnSideMenu_StudentMonitoring = new Button();
             panel1 = new Panel();
+            customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            label1 = new Label();
             tabPage2 = new TabPage();
+            tempSessionManagement1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempSessionManagement();
             tabPage1 = new TabPage();
-            smoothTabControl1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmoothTabControl();
+            tempDashboard1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempDashboard();
+            smthTabControl_Main = new SmartCodeLab.CustomComponents.GeneralComponents.SmoothTabControl();
+            tabPage3 = new TabPage();
+            tempExerciseManage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
+            tabPage4 = new TabPage();
+            tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
+            tabPage5 = new TabPage();
+            tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
+            tabPage6 = new TabPage();
+            tabPage7 = new TabPage();
+            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
             panel1.SuspendLayout();
-            smoothTabControl1.SuspendLayout();
+            customCard1.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage1.SuspendLayout();
+            smthTabControl_Main.SuspendLayout();
+            tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            tabPage5.SuspendLayout();
             SuspendLayout();
             // 
             // pictureBox1
@@ -60,7 +80,6 @@
             pictureBox1.Size = new Size(64, 64);
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
             // 
             // lblTitle
             // 
@@ -134,133 +153,20 @@
             // sideMenuPanel
             // 
             sideMenuPanel.BackColor = Color.FromArgb(13, 13, 13);
-            sideMenuPanel.Controls.Add(button2);
-            sideMenuPanel.Controls.Add(button1);
-            sideMenuPanel.Controls.Add(panel_Title);
-            sideMenuPanel.Controls.Add(btnSideMenu_Student);
-            sideMenuPanel.Controls.Add(btnSideMenu_FileManagement);
-            sideMenuPanel.Controls.Add(btnSideMenu_TaskManagement);
             sideMenuPanel.Controls.Add(btnSideMenu_Settings);
+            sideMenuPanel.Controls.Add(btnSideMenu_Report);
+            sideMenuPanel.Controls.Add(btnSideMenu_CodeEvaluation);
+            sideMenuPanel.Controls.Add(panel_Title);
+            sideMenuPanel.Controls.Add(btnSideMenu_Dashboard);
+            sideMenuPanel.Controls.Add(btnSideMenu_ExerciseManagement);
+            sideMenuPanel.Controls.Add(btnSideMenu_SessionManagement);
+            sideMenuPanel.Controls.Add(btnSideMenu_StudentMonitoring);
             sideMenuPanel.Dock = DockStyle.Left;
             sideMenuPanel.Location = new Point(0, 0);
             sideMenuPanel.Margin = new Padding(3, 4, 3, 4);
             sideMenuPanel.Name = "sideMenuPanel";
             sideMenuPanel.Size = new Size(256, 1018);
             sideMenuPanel.TabIndex = 5;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.FromArgb(13, 13, 13);
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(8, 422);
-            button2.Margin = new Padding(3, 4, 3, 4);
-            button2.Name = "button2";
-            button2.Padding = new Padding(10, 0, 0, 0);
-            button2.Size = new Size(241, 60);
-            button2.TabIndex = 13;
-            button2.Tag = "Settings";
-            button2.Text = "   Settings";
-            button2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button2.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(13, 13, 13);
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(8, 369);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Padding = new Padding(10, 0, 0, 0);
-            button1.Size = new Size(241, 60);
-            button1.TabIndex = 12;
-            button1.Tag = "Settings";
-            button1.Text = "   Code Evaluation";
-            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
-            // 
-            // panel_Title
-            // 
-            panel_Title.Dock = DockStyle.Top;
-            panel_Title.Location = new Point(0, 0);
-            panel_Title.Name = "panel_Title";
-            panel_Title.Size = new Size(256, 125);
-            panel_Title.TabIndex = 0;
-            // 
-            // btnSideMenu_Student
-            // 
-            btnSideMenu_Student.BackColor = Color.FromArgb(26, 26, 26);
-            btnSideMenu_Student.Cursor = Cursors.Hand;
-            btnSideMenu_Student.FlatAppearance.BorderSize = 0;
-            btnSideMenu_Student.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_Student.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            btnSideMenu_Student.ForeColor = Color.White;
-            btnSideMenu_Student.Image = (Image)resources.GetObject("btnSideMenu_Student.Image");
-            btnSideMenu_Student.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Student.Location = new Point(8, 132);
-            btnSideMenu_Student.Margin = new Padding(3, 4, 3, 4);
-            btnSideMenu_Student.Name = "btnSideMenu_Student";
-            btnSideMenu_Student.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_Student.Size = new Size(241, 60);
-            btnSideMenu_Student.TabIndex = 1;
-            btnSideMenu_Student.Tag = "Connection";
-            btnSideMenu_Student.Text = "   Dashboard";
-            btnSideMenu_Student.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSideMenu_Student.UseVisualStyleBackColor = false;
-            // 
-            // btnSideMenu_FileManagement
-            // 
-            btnSideMenu_FileManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_FileManagement.Cursor = Cursors.Hand;
-            btnSideMenu_FileManagement.FlatAppearance.BorderSize = 0;
-            btnSideMenu_FileManagement.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_FileManagement.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            btnSideMenu_FileManagement.ForeColor = Color.White;
-            btnSideMenu_FileManagement.Image = (Image)resources.GetObject("btnSideMenu_FileManagement.Image");
-            btnSideMenu_FileManagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_FileManagement.Location = new Point(8, 252);
-            btnSideMenu_FileManagement.Margin = new Padding(3, 4, 3, 4);
-            btnSideMenu_FileManagement.Name = "btnSideMenu_FileManagement";
-            btnSideMenu_FileManagement.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_FileManagement.Size = new Size(241, 60);
-            btnSideMenu_FileManagement.TabIndex = 3;
-            btnSideMenu_FileManagement.Tag = "Exercise Manager";
-            btnSideMenu_FileManagement.Text = "   Exercise Manager";
-            btnSideMenu_FileManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSideMenu_FileManagement.UseVisualStyleBackColor = false;
-            // 
-            // btnSideMenu_TaskManagement
-            // 
-            btnSideMenu_TaskManagement.BackColor = Color.FromArgb(13, 13, 13);
-            btnSideMenu_TaskManagement.Cursor = Cursors.Hand;
-            btnSideMenu_TaskManagement.FlatAppearance.BorderSize = 0;
-            btnSideMenu_TaskManagement.FlatStyle = FlatStyle.Flat;
-            btnSideMenu_TaskManagement.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            btnSideMenu_TaskManagement.ForeColor = Color.White;
-            btnSideMenu_TaskManagement.Image = (Image)resources.GetObject("btnSideMenu_TaskManagement.Image");
-            btnSideMenu_TaskManagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_TaskManagement.Location = new Point(8, 192);
-            btnSideMenu_TaskManagement.Margin = new Padding(3, 4, 3, 4);
-            btnSideMenu_TaskManagement.Name = "btnSideMenu_TaskManagement";
-            btnSideMenu_TaskManagement.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_TaskManagement.Size = new Size(241, 60);
-            btnSideMenu_TaskManagement.TabIndex = 2;
-            btnSideMenu_TaskManagement.Tag = "Task Management";
-            btnSideMenu_TaskManagement.Text = "   Session Management";
-            btnSideMenu_TaskManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSideMenu_TaskManagement.UseVisualStyleBackColor = false;
             // 
             // btnSideMenu_Settings
             // 
@@ -272,20 +178,160 @@
             btnSideMenu_Settings.ForeColor = Color.White;
             btnSideMenu_Settings.Image = (Image)resources.GetObject("btnSideMenu_Settings.Image");
             btnSideMenu_Settings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Settings.Location = new Point(8, 312);
+            btnSideMenu_Settings.Location = new Point(8, 479);
             btnSideMenu_Settings.Margin = new Padding(3, 4, 3, 4);
             btnSideMenu_Settings.Name = "btnSideMenu_Settings";
             btnSideMenu_Settings.Padding = new Padding(10, 0, 0, 0);
             btnSideMenu_Settings.Size = new Size(241, 60);
-            btnSideMenu_Settings.TabIndex = 4;
+            btnSideMenu_Settings.TabIndex = 14;
             btnSideMenu_Settings.Tag = "Settings";
-            btnSideMenu_Settings.Text = "   Student Monitoring";
+            btnSideMenu_Settings.Text = "   Settings";
             btnSideMenu_Settings.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSideMenu_Settings.UseVisualStyleBackColor = false;
+            // 
+            // btnSideMenu_Report
+            // 
+            btnSideMenu_Report.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_Report.Cursor = Cursors.Hand;
+            btnSideMenu_Report.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Report.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Report.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_Report.ForeColor = Color.White;
+            btnSideMenu_Report.Image = (Image)resources.GetObject("btnSideMenu_Report.Image");
+            btnSideMenu_Report.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_Report.Location = new Point(8, 422);
+            btnSideMenu_Report.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_Report.Name = "btnSideMenu_Report";
+            btnSideMenu_Report.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_Report.Size = new Size(241, 60);
+            btnSideMenu_Report.TabIndex = 13;
+            btnSideMenu_Report.Tag = "Settings";
+            btnSideMenu_Report.Text = "   Statistics / Report";
+            btnSideMenu_Report.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_Report.UseVisualStyleBackColor = false;
+            // 
+            // btnSideMenu_CodeEvaluation
+            // 
+            btnSideMenu_CodeEvaluation.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_CodeEvaluation.Cursor = Cursors.Hand;
+            btnSideMenu_CodeEvaluation.FlatAppearance.BorderSize = 0;
+            btnSideMenu_CodeEvaluation.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_CodeEvaluation.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_CodeEvaluation.ForeColor = Color.White;
+            btnSideMenu_CodeEvaluation.Image = (Image)resources.GetObject("btnSideMenu_CodeEvaluation.Image");
+            btnSideMenu_CodeEvaluation.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_CodeEvaluation.Location = new Point(8, 369);
+            btnSideMenu_CodeEvaluation.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_CodeEvaluation.Name = "btnSideMenu_CodeEvaluation";
+            btnSideMenu_CodeEvaluation.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_CodeEvaluation.Size = new Size(241, 60);
+            btnSideMenu_CodeEvaluation.TabIndex = 12;
+            btnSideMenu_CodeEvaluation.Tag = "Settings";
+            btnSideMenu_CodeEvaluation.Text = "   Code Evaluation";
+            btnSideMenu_CodeEvaluation.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_CodeEvaluation.UseVisualStyleBackColor = false;
+            btnSideMenu_CodeEvaluation.Click += btnSideMenu_CodeEvaluation_Click;
+            // 
+            // panel_Title
+            // 
+            panel_Title.Dock = DockStyle.Top;
+            panel_Title.Location = new Point(0, 0);
+            panel_Title.Name = "panel_Title";
+            panel_Title.Size = new Size(256, 125);
+            panel_Title.TabIndex = 0;
+            // 
+            // btnSideMenu_Dashboard
+            // 
+            btnSideMenu_Dashboard.BackColor = Color.FromArgb(26, 26, 26);
+            btnSideMenu_Dashboard.Cursor = Cursors.Hand;
+            btnSideMenu_Dashboard.FlatAppearance.BorderSize = 0;
+            btnSideMenu_Dashboard.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_Dashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_Dashboard.ForeColor = Color.White;
+            btnSideMenu_Dashboard.Image = (Image)resources.GetObject("btnSideMenu_Dashboard.Image");
+            btnSideMenu_Dashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_Dashboard.Location = new Point(8, 132);
+            btnSideMenu_Dashboard.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_Dashboard.Name = "btnSideMenu_Dashboard";
+            btnSideMenu_Dashboard.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_Dashboard.Size = new Size(241, 60);
+            btnSideMenu_Dashboard.TabIndex = 1;
+            btnSideMenu_Dashboard.Tag = "Connection";
+            btnSideMenu_Dashboard.Text = "   Dashboard";
+            btnSideMenu_Dashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_Dashboard.UseVisualStyleBackColor = false;
+            btnSideMenu_Dashboard.Click += btnSideMenu_Dashboard_Click;
+            // 
+            // btnSideMenu_ExerciseManagement
+            // 
+            btnSideMenu_ExerciseManagement.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_ExerciseManagement.Cursor = Cursors.Hand;
+            btnSideMenu_ExerciseManagement.FlatAppearance.BorderSize = 0;
+            btnSideMenu_ExerciseManagement.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_ExerciseManagement.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_ExerciseManagement.ForeColor = Color.White;
+            btnSideMenu_ExerciseManagement.Image = (Image)resources.GetObject("btnSideMenu_ExerciseManagement.Image");
+            btnSideMenu_ExerciseManagement.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_ExerciseManagement.Location = new Point(8, 252);
+            btnSideMenu_ExerciseManagement.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_ExerciseManagement.Name = "btnSideMenu_ExerciseManagement";
+            btnSideMenu_ExerciseManagement.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_ExerciseManagement.Size = new Size(241, 60);
+            btnSideMenu_ExerciseManagement.TabIndex = 3;
+            btnSideMenu_ExerciseManagement.Tag = "Exercise Manager";
+            btnSideMenu_ExerciseManagement.Text = "   Exercise Manager";
+            btnSideMenu_ExerciseManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_ExerciseManagement.UseVisualStyleBackColor = false;
+            btnSideMenu_ExerciseManagement.Click += btnSideMenu_ExerciseManagement_Click;
+            // 
+            // btnSideMenu_SessionManagement
+            // 
+            btnSideMenu_SessionManagement.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_SessionManagement.Cursor = Cursors.Hand;
+            btnSideMenu_SessionManagement.FlatAppearance.BorderSize = 0;
+            btnSideMenu_SessionManagement.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_SessionManagement.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_SessionManagement.ForeColor = Color.White;
+            btnSideMenu_SessionManagement.Image = (Image)resources.GetObject("btnSideMenu_SessionManagement.Image");
+            btnSideMenu_SessionManagement.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_SessionManagement.Location = new Point(8, 192);
+            btnSideMenu_SessionManagement.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_SessionManagement.Name = "btnSideMenu_SessionManagement";
+            btnSideMenu_SessionManagement.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_SessionManagement.Size = new Size(241, 60);
+            btnSideMenu_SessionManagement.TabIndex = 2;
+            btnSideMenu_SessionManagement.Tag = "Task Management";
+            btnSideMenu_SessionManagement.Text = "   Session Management";
+            btnSideMenu_SessionManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_SessionManagement.UseVisualStyleBackColor = false;
+            btnSideMenu_SessionManagement.Click += btnSideMenu_SessionManagement_Click;
+            // 
+            // btnSideMenu_StudentMonitoring
+            // 
+            btnSideMenu_StudentMonitoring.BackColor = Color.FromArgb(13, 13, 13);
+            btnSideMenu_StudentMonitoring.Cursor = Cursors.Hand;
+            btnSideMenu_StudentMonitoring.FlatAppearance.BorderSize = 0;
+            btnSideMenu_StudentMonitoring.FlatStyle = FlatStyle.Flat;
+            btnSideMenu_StudentMonitoring.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            btnSideMenu_StudentMonitoring.ForeColor = Color.White;
+            btnSideMenu_StudentMonitoring.Image = (Image)resources.GetObject("btnSideMenu_StudentMonitoring.Image");
+            btnSideMenu_StudentMonitoring.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSideMenu_StudentMonitoring.Location = new Point(8, 312);
+            btnSideMenu_StudentMonitoring.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_StudentMonitoring.Name = "btnSideMenu_StudentMonitoring";
+            btnSideMenu_StudentMonitoring.Padding = new Padding(10, 0, 0, 0);
+            btnSideMenu_StudentMonitoring.Size = new Size(241, 60);
+            btnSideMenu_StudentMonitoring.TabIndex = 4;
+            btnSideMenu_StudentMonitoring.Tag = "Settings";
+            btnSideMenu_StudentMonitoring.Text = "   Student Monitoring";
+            btnSideMenu_StudentMonitoring.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSideMenu_StudentMonitoring.UseVisualStyleBackColor = false;
+            btnSideMenu_StudentMonitoring.Click += btnSideMenu_StudentMonitoring_Click;
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(customCard1);
             panel1.Controls.Add(smartButton11);
             panel1.Controls.Add(smartButton12);
             panel1.Controls.Add(pictureBox1);
@@ -297,46 +343,179 @@
             panel1.Size = new Size(1370, 104);
             panel1.TabIndex = 6;
             // 
+            // customCard1
+            // 
+            customCard1.Anchor = AnchorStyles.Left;
+            customCard1.BackColor = Color.FromArgb(192, 255, 192);
+            customCard1.BorderColor = Color.Gray;
+            customCard1.BorderRadius = 10;
+            customCard1.BorderSize = 1;
+            customCard1.Controls.Add(label1);
+            customCard1.Location = new Point(331, 28);
+            customCard1.Name = "customCard1";
+            customCard1.Size = new Size(161, 49);
+            customCard1.TabIndex = 16;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Green;
+            label1.Location = new Point(12, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(136, 28);
+            label1.TabIndex = 16;
+            label1.Text = "Session Active";
+            // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(tempSessionManagement1);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1362, 881);
+            tabPage2.Size = new Size(1362, 880);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // tempSessionManagement1
+            // 
+            tempSessionManagement1.Dock = DockStyle.Fill;
+            tempSessionManagement1.Location = new Point(3, 3);
+            tempSessionManagement1.Name = "tempSessionManagement1";
+            tempSessionManagement1.Size = new Size(1356, 874);
+            tempSessionManagement1.TabIndex = 0;
+            // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(tempDashboard1);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1362, 881);
+            tabPage1.Size = new Size(1362, 880);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // smoothTabControl1
+            // tempDashboard1
             // 
-            smoothTabControl1.Controls.Add(tabPage1);
-            smoothTabControl1.Controls.Add(tabPage2);
-            smoothTabControl1.Depth = 0;
-            smoothTabControl1.Dock = DockStyle.Fill;
-            smoothTabControl1.Location = new Point(256, 104);
-            smoothTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
-            smoothTabControl1.Multiline = true;
-            smoothTabControl1.Name = "smoothTabControl1";
-            smoothTabControl1.SelectedIndex = 0;
-            smoothTabControl1.Size = new Size(1370, 914);
-            smoothTabControl1.TabIndex = 7;
+            tempDashboard1.Dock = DockStyle.Fill;
+            tempDashboard1.Location = new Point(3, 3);
+            tempDashboard1.Name = "tempDashboard1";
+            tempDashboard1.Size = new Size(1356, 874);
+            tempDashboard1.TabIndex = 0;
+            // 
+            // smthTabControl_Main
+            // 
+            smthTabControl_Main.Controls.Add(tabPage1);
+            smthTabControl_Main.Controls.Add(tabPage2);
+            smthTabControl_Main.Controls.Add(tabPage3);
+            smthTabControl_Main.Controls.Add(tabPage4);
+            smthTabControl_Main.Controls.Add(tabPage5);
+            smthTabControl_Main.Controls.Add(tabPage6);
+            smthTabControl_Main.Controls.Add(tabPage7);
+            smthTabControl_Main.Depth = 0;
+            smthTabControl_Main.Dock = DockStyle.Fill;
+            smthTabControl_Main.Location = new Point(256, 105);
+            smthTabControl_Main.MouseState = MaterialSkin.MouseState.HOVER;
+            smthTabControl_Main.Multiline = true;
+            smthTabControl_Main.Name = "smthTabControl_Main";
+            smthTabControl_Main.SelectedIndex = 0;
+            smthTabControl_Main.Size = new Size(1370, 913);
+            smthTabControl_Main.TabIndex = 7;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Controls.Add(tempExerciseManage1);
+            tabPage3.Location = new Point(4, 29);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Size = new Size(1362, 880);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "tabPage3";
+            tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tempExerciseManage1
+            // 
+            tempExerciseManage1.AutoScroll = true;
+            tempExerciseManage1.Dock = DockStyle.Fill;
+            tempExerciseManage1.Location = new Point(0, 0);
+            tempExerciseManage1.Name = "tempExerciseManage1";
+            tempExerciseManage1.Size = new Size(1362, 880);
+            tempExerciseManage1.TabIndex = 0;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(tempServerPage1);
+            tabPage4.Location = new Point(4, 29);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Size = new Size(1362, 880);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "tabPage4";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tempServerPage1
+            // 
+            tempServerPage1.AutoScroll = true;
+            tempServerPage1.BackColor = Color.WhiteSmoke;
+            tempServerPage1.Dock = DockStyle.Fill;
+            tempServerPage1.Location = new Point(0, 0);
+            tempServerPage1.Name = "tempServerPage1";
+            tempServerPage1.Size = new Size(1362, 880);
+            tempServerPage1.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Controls.Add(tempCodeEvaluation1);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(1362, 880);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "tabPage5";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tempCodeEvaluation1
+            // 
+            tempCodeEvaluation1.AutoScroll = true;
+            tempCodeEvaluation1.Dock = DockStyle.Fill;
+            tempCodeEvaluation1.Location = new Point(0, 0);
+            tempCodeEvaluation1.Name = "tempCodeEvaluation1";
+            tempCodeEvaluation1.Size = new Size(1362, 880);
+            tempCodeEvaluation1.TabIndex = 0;
+            // 
+            // tabPage6
+            // 
+            tabPage6.Location = new Point(4, 29);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Size = new Size(1362, 880);
+            tabPage6.TabIndex = 5;
+            tabPage6.Text = "tabPage6";
+            tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            tabPage7.Location = new Point(4, 29);
+            tabPage7.Name = "tabPage7";
+            tabPage7.Size = new Size(1362, 880);
+            tabPage7.TabIndex = 6;
+            tabPage7.Text = "tabPage7";
+            tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Gray;
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(256, 104);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1370, 1);
+            panel2.TabIndex = 8;
             // 
             // InstructorSide
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1626, 1018);
-            Controls.Add(smoothTabControl1);
+            Controls.Add(smthTabControl_Main);
+            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(sideMenuPanel);
             DoubleBuffered = true;
@@ -350,7 +529,14 @@
             sideMenuPanel.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            smoothTabControl1.ResumeLayout(false);
+            customCard1.ResumeLayout(false);
+            customCard1.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
+            smthTabControl_Main.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage5.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -362,15 +548,29 @@
         private CustomComponents.GeneralComponents.SmartButton smartButton12;
         private CustomComponents.GeneralComponents.SmartButton smartButton13;
         private Panel sideMenuPanel;
-        private Button btnSideMenu_Settings;
-        private Button btnSideMenu_FileManagement;
-        private Button btnSideMenu_TaskManagement;
-        private Button btnSideMenu_Student;
+        private Button btnSideMenu_StudentMonitoring;
+        private Button btnSideMenu_ExerciseManagement;
+        private Button btnSideMenu_SessionManagement;
+        private Button btnSideMenu_Dashboard;
         private Panel panel1;
-        private Button button1;
-        private Button button2;
+        private Button btnSideMenu_CodeEvaluation;
+        private Button btnSideMenu_Report;
         private TabPage tabPage2;
         private TabPage tabPage1;
-        private CustomComponents.GeneralComponents.SmoothTabControl smoothTabControl1;
+        private CustomComponents.GeneralComponents.SmoothTabControl smthTabControl_Main;
+        private CustomComponents.ServerPageComponents.TempDashboard tempDashboard1;
+        private Panel panel2;
+        private TabPage tabPage3;
+        private CustomComponents.ServerPageComponents.TempExerciseManage tempExerciseManage1;
+        private TabPage tabPage4;
+        private TabPage tabPage5;
+        private TabPage tabPage6;
+        private Button btnSideMenu_Settings;
+        private CustomComponents.ServerPageComponents.TempServerPage tempServerPage1;
+        private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
+        private TabPage tabPage7;
+        private CustomComponents.ServerPageComponents.TempSessionManagement tempSessionManagement1;
+        private CustomComponents.GeneralComponents.CustomCard customCard1;
+        private Label label1;
     }
 }

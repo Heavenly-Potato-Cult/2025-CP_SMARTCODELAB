@@ -73,13 +73,34 @@ namespace SmartCodeLab
             this.WindowState = FormWindowState.Normal;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+
+
+        private void btnSideMenu_Dashboard_Click(object sender, EventArgs e)
         {
+            smthTabControl_Main.SelectedIndex = 0;
+        }
+
+        private void btnSideMenu_SessionManagement_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 1;
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSideMenu_ExerciseManagement_Click(object sender, EventArgs e)
         {
+            smthTabControl_Main.SelectedIndex = 2;
+
+        }
+
+        private void btnSideMenu_StudentMonitoring_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 3;
+
+        }
+
+        private void btnSideMenu_CodeEvaluation_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 4;
 
         }
     }
