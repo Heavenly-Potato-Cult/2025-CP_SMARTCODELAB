@@ -142,33 +142,33 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 () =>
                 {
                     reRun?.Invoke();
+
+                    string[] errors = (errorLine.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
+                    foreach (string standardError in errors)
+                    {
+                        if (errors[errors.Length - 1] != standardError)
+                        {
+                            string[] e = standardError.Split(':');
+                            base.HighLightStandardError(int.Parse(e[2]) - 1, e[e.Length - 1]);
+                            errorCounts++;
+                        }
+                    }
+                    updateStats?.Invoke(2, errorCounts);
                 });
-
-            string[] errors = (errorLine.Replace("Starting audit..."+Environment.NewLine,"").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
-            foreach (string standardError in errors)
-            {
-                if (errors[errors.Length - 1] != standardError)
-                {
-                    string[] e = standardError.Split(':');
-                    HighLightStandardError(int.Parse(e[2]) - 1, e[e.Length - 1]);
-                    errorCounts++;
-                }
-            }
-            updateStats?.Invoke(2, errorCounts);
         }
 
-        protected override void HighLightStandardError(int errorLine, string msg)
-        {
-            try
-            {
-                var lineRange = srcCode.GetLine(errorLine);
-                lineRange.SetStyle(yellowWavy);
-                if (standardError.ContainsKey(errorLine))
-                    standardError.Remove(errorLine);
-                standardError.Add(errorLine, msg);
-            }
-            catch (ArgumentException e) { Debug.WriteLine(e.Message); }
-        }
+        //protected override void HighLightStandardError(int errorLine, string msg)
+        //{
+        //    try
+        //    {
+        //        var lineRange = srcCode.GetLine(errorLine);
+        //        lineRange.SetStyle(yellowWavy);
+        //        if (standardError.ContainsKey(errorLine))
+        //            standardError.Remove(errorLine);
+        //        standardError.Add(errorLine, msg);
+        //    }
+        //    catch (ArgumentException) {}
+        //}
 
         public override void RunTest()
         {

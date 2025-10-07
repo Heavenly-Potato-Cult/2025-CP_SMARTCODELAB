@@ -12,7 +12,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         protected string filePath;
         protected TaskModel task;
-        private string possibleProgDirectory;
 
         protected readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
         protected readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Orange);
@@ -100,7 +99,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    SendInput(output.ReadLine());
+                    Invoker(() => SendInput(output.ReadLine()));
                     inputTimerStarter();
                 }
             };
@@ -217,7 +216,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 output.WriteLine("Started" + Environment.NewLine);
                 output.IsReadLineMode = true;
             });
-
+            string exeptionThrown = string.Empty;
             SaveCode(5, 100);
             process = CommandRunner(commandLine);
             await StartprocessAsync(
@@ -226,21 +225,64 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     Invoker(() => output.WriteLine(outp));
                     inputTimerStarter();
                 },
-                err => output.WriteLine(err + Environment.NewLine),
+                err => { 
+                    Invoker(() => output.WriteLine(err + Environment.NewLine));
+                    exeptionThrown += (err + "\n");
+                },
                 async () =>
                 {
-                    output.WriteLine(Environment.NewLine + "Program Finished");
+                    Invoker(() => output.WriteLine(Environment.NewLine + "Program Finished"));
                     output.IsReadLineMode = false;
                     inputTimer?.Change(Timeout.Infinite, Timeout.Infinite);
                     bool isFilePython = filePath.EndsWith(".py");
-
+                    ExtractThrownExceptions(exeptionThrown);
                     if (!isFilePython)
                     {
                         string extension = filePath.EndsWith("cpp") ? "exe" : "class";
                         string delCommand = $"/c del {Path.Combine(Path.GetDirectoryName(filePath),"Main."+extension)}";
-                        Debug.WriteLine(delCommand);
                         process = CommandRunner(delCommand);
                         await StartprocessAsyncExit(process, null, null, null);
+                    }
+                }
+            );
+        }
+
+        private void ExtractThrownExceptions(string allExections)
+        {
+            //for java
+            Task.Run(() =>
+                {
+                    if (filePath.EndsWith(".java"))
+                    {
+                        string[] exceptions = allExections.Split("Exception in");
+                        foreach (string exception in exceptions)
+                        {
+                            string exceptionLine = (exception.Split("\n")[0]);//separated by \t ang exception errors
+                            string[] exceptionID = exceptionLine.Split('.');
+
+                            /* then the exeption line can be split by '.', then get the last index since it is likely the exception object
+                             * sample output "thread "main" java.util.InputMismatchException"
+                             * 
+                             * but if a student caught the Exception then created its own throw statement
+                             * like this throw new InputMismatchException("mali imong gibutang"); will show
+                             * Exception in thread "main" java.util.InputMismatchException: mali imong gibutang
+                             *   at Main.main(Main.java:12)
+                             * the 2nd statement block will be used
+                            */
+                            string exceptionMsg = exceptionID[exceptionID.Length - 1];
+                            if (exceptionMsg.Contains(':'))
+                                Debug.WriteLine(exceptionID[exceptionID.Length - 1].Split(':')); //usually formatted as {exceptionObj}: {user message}
+                            else
+                                Debug.WriteLine(exceptionMsg);
+                        }
+                    }
+                    else if(filePath.EndsWith(".py"))
+                    {
+
+                        //most likely the exception type is in the last line
+                        //as last line contains two messages separated by colon {Exception}: {exceptionMessage}
+                        string[] exceptions = allExections.Split("\n");
+                        Debug.WriteLine(exceptions[exceptions.Length - 2].Split(':')[0]);
                     }
                 }
             );
@@ -343,14 +385,29 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected void HighlightError(int errorLine, string errorMsg)
         {
-            standardError.Remove(errorLine);
-            var lineRange = srcCode.GetLine(errorLine);
-            lineRange.SetStyle(redWavy);
-            this.errorLine = errorLine;
-            this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
+            try
+            {
+                standardError.Remove(errorLine);
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(redWavy);
+                this.errorLine = errorLine;
+                this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
+            }
+            catch (ArgumentOutOfRangeException) { }
         }
 
-        protected virtual void HighLightStandardError(int errorLine, string msg){ }
+        protected virtual void HighLightStandardError(int errorLine, string msg)
+        {
+            try
+            {
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(yellowWavy);
+                if (standardError.ContainsKey(errorLine))
+                    standardError.Remove(errorLine);
+                standardError.Add(errorLine, msg);
+            }
+            catch (ArgumentException) { }
+        }
 
         protected void NoError()
         {
@@ -389,7 +446,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             inputTimer = new System.Threading.Timer(_ =>
             {
                 output.IsReadLineMode = true;
-                SendInput(output.ReadLine());
+                Invoker(() => SendInput(output.ReadLine()));
                 output.IsReadLineMode = true;
             }, null, 700, Timeout.Infinite);
         }
