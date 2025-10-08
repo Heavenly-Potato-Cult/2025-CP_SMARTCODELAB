@@ -30,8 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempExerciseManage));
-            label5 = new Label();
-            label3 = new Label();
             label12 = new Label();
             label1 = new Label();
             btn_AddNewExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -61,35 +59,17 @@
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             taskContainer = new FlowLayoutPanel();
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            panel3 = new Panel();
+            label2 = new Label();
+            label4 = new Label();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)reference).BeginInit();
             tabPage1.SuspendLayout();
             customCard7.SuspendLayout();
+            panel3.SuspendLayout();
             SuspendLayout();
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Gray;
-            label5.Location = new Point(62, 72);
-            label5.Name = "label5";
-            label5.Size = new Size(450, 25);
-            label5.TabIndex = 18;
-            label5.Text = "Create, edit and manage coding exercise with test cases";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(61, 28);
-            label3.Name = "label3";
-            label3.Size = new Size(246, 38);
-            label3.TabIndex = 17;
-            label3.Text = "Exercise Manager";
             // 
             // label12
             // 
@@ -120,7 +100,7 @@
             btn_AddNewExercise.FlatAppearance.BorderSize = 0;
             btn_AddNewExercise.FlatStyle = FlatStyle.Flat;
             btn_AddNewExercise.ForeColor = Color.White;
-            btn_AddNewExercise.Location = new Point(1072, 64);
+            btn_AddNewExercise.Location = new Point(1047, 60);
             btn_AddNewExercise.Name = "btn_AddNewExercise";
             btn_AddNewExercise.Size = new Size(243, 44);
             btn_AddNewExercise.TabIndex = 46;
@@ -191,6 +171,8 @@
             instruction.Multiline = true;
             instruction.Name = "instruction";
             instruction.Padding = new Padding(10, 7, 10, 7);
+            instruction.PlaceHolderColor = Color.DarkGray;
+            instruction.PlaceholderText = "";
             instruction.ScrollBars = ScrollBars.Vertical;
             instruction.Size = new Size(740, 224);
             instruction.TabIndex = 34;
@@ -218,6 +200,8 @@
             subject.Location = new Point(412, 30);
             subject.Name = "subject";
             subject.Padding = new Padding(10, 7, 10, 7);
+            subject.PlaceHolderColor = Color.DarkGray;
+            subject.PlaceholderText = "";
             subject.ScrollBars = ScrollBars.None;
             subject.Size = new Size(348, 46);
             subject.TabIndex = 30;
@@ -245,6 +229,8 @@
             exerciseName.Location = new Point(13, 30);
             exerciseName.Name = "exerciseName";
             exerciseName.Padding = new Padding(10, 7, 10, 7);
+            exerciseName.PlaceHolderColor = Color.DarkGray;
+            exerciseName.PlaceholderText = "";
             exerciseName.ScrollBars = ScrollBars.None;
             exerciseName.Size = new Size(348, 46);
             exerciseName.TabIndex = 28;
@@ -289,12 +275,11 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(2, 18);
+            reference.AutoScrollMinSize = new Size(31, 18);
             reference.BackBrush = null;
             reference.CharHeight = 18;
             reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            reference.Font = new Font("Courier New", 9.75F);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IsReplaceMode = false;
             reference.Location = new Point(29, 67);
@@ -509,20 +494,51 @@
             smartButton3.UseVisualStyleBackColor = false;
             smartButton3.Click += smartButton3_Click;
             // 
+            // panel3
+            // 
+            panel3.Controls.Add(btn_AddNewExercise);
+            panel3.Controls.Add(label2);
+            panel3.Controls.Add(label4);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1362, 156);
+            panel3.TabIndex = 55;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.FromArgb(13, 13, 13);
+            label2.Location = new Point(126, 35);
+            label2.Name = "label2";
+            label2.Size = new Size(246, 38);
+            label2.TabIndex = 13;
+            label2.Text = "Exercise Manager";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Gray;
+            label4.Location = new Point(127, 79);
+            label4.Name = "label4";
+            label4.Size = new Size(450, 25);
+            label4.TabIndex = 14;
+            label4.Text = "Create, edit and manage coding exercise with test cases";
+            // 
             // TempExerciseManage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
+            Controls.Add(panel3);
             Controls.Add(smartButton3);
             Controls.Add(taskContainer);
             Controls.Add(customCard4);
             Controls.Add(tabControl1);
-            Controls.Add(btn_AddNewExercise);
             Controls.Add(label1);
             Controls.Add(label12);
-            Controls.Add(label5);
-            Controls.Add(label3);
             DoubleBuffered = true;
             Name = "TempExerciseManage";
             Size = new Size(1362, 943);
@@ -537,14 +553,13 @@
             tabPage1.PerformLayout();
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label5;
-        private Label label3;
         private Label label12;
         private Label label1;
         private GeneralComponents.SmartButton btn_AddNewExercise;
@@ -574,5 +589,8 @@
         private GeneralComponents.SmartButton smartButton3;
         private Pages.ProgrammingTabs.CodeEditor reference;
         private FlowLayoutPanel testContainer;
+        private Panel panel3;
+        private Label label2;
+        private Label label4;
     }
 }
