@@ -35,7 +35,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private string selectedStudentId = string.Empty;
 
         private Func<string, StudentCodingProgress> progressRetriever;
-        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string,StudentCodingProgress> progressRetriever)
+        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string, StudentCodingProgress> progressRetriever)
         {
             InitializeComponent();
             currentTask = task;
@@ -54,7 +54,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         public void AddStudent(UserProfile profile)
         {
-            this.Invoke((Action)(() => 
+            this.Invoke((Action)(() =>
             {
                 //this will be used to view who are the students who are yet to log in or inactive(left the lobby), already logged in, and submitted
                 profile._computerAddress = "";

@@ -185,6 +185,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     serverPage.StudentLoggedIn(userProfile);
                                     HandleUserStream(networkStream, userProfile, true);
                                     homePage.NewNotification(new Notification(NotificationType.LoggedIn, userProfile._studentName));
+                                    await homePage.UpdateActiveStudentsCount(NotificationType.LoggedIn);
                                 }
                             }
                             if (!didLogIn)
@@ -229,7 +230,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             return userProgress[studentId];
         }
 
-        private void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd)
+        private async void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd)
         {
             if (isAdd)
                 connectedUsers.Add(networkStream, profile._studentId);
@@ -237,6 +238,8 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 connectedUsers.Remove(networkStream);
                 currentStudents.Remove(profile._studentName);
+                homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
+                await homePage.UpdateActiveStudentsCount(NotificationType.LoggedOut);
             }
         }
 

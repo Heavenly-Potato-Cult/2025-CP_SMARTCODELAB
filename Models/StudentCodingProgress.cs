@@ -15,6 +15,14 @@ namespace SmartCodeLab.Models
         [ProtoMember(3)]
         public List<CopyPastedCode> pastedCode { get; set; }
 
+        [ProtoMember(4)]
+        public readonly Dictionary<string, int> codeStats = new Dictionary<string, int>() 
+        {
+            {"accuracy",0 },
+            {"readability", 0 },
+            {"efficiency", 0 }
+        };
+
         public StudentCodingProgress()
         {
             CodeProgress = new List<string>();
@@ -26,20 +34,11 @@ namespace SmartCodeLab.Models
             CodeProgress = new List<string>();
         }
 
-        //the file naming format of this object will be {activityName}_{studentName}_prog.bin
-
-        public static StudentCodingProgress Deserialize(string filePath) 
+        public void UpdateStats(Dictionary<string, int> updatedStats)
         {
-            try
+            foreach (var item in updatedStats)
             {
-                using (var file = File.OpenRead(filePath))
-                {
-                    return Serializer.DeserializeWithLengthPrefix<StudentCodingProgress>(file,PrefixStyle.Base128);
-                }
-            }
-            catch (EndOfStreamException e)
-            {
-                return null;
+                codeStats[item.Key] = item.Value;
             }
         }
     }

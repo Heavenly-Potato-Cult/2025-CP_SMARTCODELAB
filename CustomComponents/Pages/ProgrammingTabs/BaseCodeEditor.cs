@@ -234,8 +234,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     Invoker(() => output.WriteLine(Environment.NewLine + "Program Finished"));
                     output.IsReadLineMode = false;
                     inputTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                    if(exeptionThrown != "")
+                        ExtractThrownExceptions(exeptionThrown);
+
                     bool isFilePython = filePath.EndsWith(".py");
-                    ExtractThrownExceptions(exeptionThrown);
                     if (!isFilePython)
                     {
                         string extension = filePath.EndsWith("cpp") ? "exe" : "class";
@@ -247,14 +250,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
-        private void ExtractThrownExceptions(string allExections)
+        private void ExtractThrownExceptions(string allExceptions)
         {
             //for java
             Task.Run(() =>
                 {
                     if (filePath.EndsWith(".java"))
                     {
-                        string[] exceptions = allExections.Split("Exception in");
+                        allExceptions = allExceptions.Remove(allExceptions.LastIndexOf('\n'));
+                        string[] exceptions = allExceptions.Split("Exception in").Where(a => a != "").ToArray();
                         foreach (string exception in exceptions)
                         {
                             string exceptionLine = (exception.Split("\n")[0]);//separated by \t ang exception errors
@@ -271,9 +275,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             */
                             string exceptionMsg = exceptionID[exceptionID.Length - 1];
                             if (exceptionMsg.Contains(':'))
-                                Debug.WriteLine(exceptionID[exceptionID.Length - 1].Split(':')); //usually formatted as {exceptionObj}: {user message}
-                            else
-                                Debug.WriteLine(exceptionMsg);
+                                exceptionMsg = exceptionID[exceptionID.Length - 1].Split(':')[0]; //usually formatted as {exceptionObj}: {user message}
+
+
+                            notifAction?.Invoke(NotificationType.ExceptionThrown, exceptionMsg);
                         }
                     }
                     else if(filePath.EndsWith(".py"))
@@ -281,8 +286,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
                         //most likely the exception type is in the last line
                         //as last line contains two messages separated by colon {Exception}: {exceptionMessage}
-                        string[] exceptions = allExections.Split("\n");
-                        Debug.WriteLine(exceptions[exceptions.Length - 2].Split(':')[0]);
+                        string[] exceptions = allExceptions.Split("\n");
+                        string specificException = exceptions[exceptions.Length - 2].Split(':')[0];
+                        notifAction?.Invoke(NotificationType.ExceptionThrown, specificException);
                     }
                 }
             );

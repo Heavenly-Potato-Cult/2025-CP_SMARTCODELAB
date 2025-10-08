@@ -51,18 +51,12 @@
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
             customCard13 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            customCard15 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label27 = new Label();
-            label28 = new Label();
-            label29 = new Label();
-            customCard14 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label24 = new Label();
-            label25 = new Label();
-            label26 = new Label();
-            customCard16 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label30 = new Label();
-            label31 = new Label();
-            label32 = new Label();
+            statsBar2 = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            label6 = new Label();
+            readability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            label2 = new Label();
+            accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            label1 = new Label();
             customCard17 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label33 = new Label();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -79,9 +73,6 @@
             flowLayoutPanel1.SuspendLayout();
             panel1.SuspendLayout();
             customCard13.SuspendLayout();
-            customCard15.SuspendLayout();
-            customCard14.SuspendLayout();
-            customCard16.SuspendLayout();
             customCard17.SuspendLayout();
             customCard2.SuspendLayout();
             SuspendLayout();
@@ -119,7 +110,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
             studentCode.Location = new Point(28, 53);
@@ -357,155 +347,74 @@
             customCard13.BorderColor = Color.Gray;
             customCard13.BorderRadius = 10;
             customCard13.BorderSize = 1;
-            customCard13.Controls.Add(customCard15);
-            customCard13.Controls.Add(customCard14);
-            customCard13.Controls.Add(customCard16);
+            customCard13.Controls.Add(statsBar2);
+            customCard13.Controls.Add(label6);
+            customCard13.Controls.Add(readability);
+            customCard13.Controls.Add(label2);
+            customCard13.Controls.Add(accuracy);
+            customCard13.Controls.Add(label1);
             customCard13.Controls.Add(customCard17);
             customCard13.Location = new Point(475, 3);
             customCard13.Name = "customCard13";
             customCard13.Size = new Size(431, 335);
             customCard13.TabIndex = 14;
             // 
-            // customCard15
+            // statsBar2
             // 
-            customCard15.BackColor = Color.White;
-            customCard15.BorderColor = Color.Gray;
-            customCard15.BorderRadius = 10;
-            customCard15.BorderSize = 1;
-            customCard15.Controls.Add(label27);
-            customCard15.Controls.Add(label28);
-            customCard15.Controls.Add(label29);
-            customCard15.Location = new Point(19, 218);
-            customCard15.Name = "customCard15";
-            customCard15.Size = new Size(392, 61);
-            customCard15.TabIndex = 12;
+            statsBar2.Location = new Point(113, 175);
+            statsBar2.Name = "statsBar2";
+            statsBar2.Size = new Size(316, 13);
+            statsBar2.TabIndex = 85;
+            statsBar2.Value = 38;
             // 
-            // label27
+            // label6
             // 
-            label27.AutoSize = true;
-            label27.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label27.ForeColor = Color.Gray;
-            label27.Location = new Point(89, 33);
-            label27.Name = "label27";
-            label27.Size = new Size(52, 17);
-            label27.TabIndex = 11;
-            label27.Text = "13 lines";
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.DimGray;
+            label6.Location = new Point(5, 167);
+            label6.Name = "label6";
+            label6.Size = new Size(84, 25);
+            label6.TabIndex = 84;
+            label6.Text = "Accuracy";
             // 
-            // label28
+            // readability
             // 
-            label28.AutoSize = true;
-            label28.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label28.ForeColor = Color.Gray;
-            label28.Location = new Point(28, 33);
-            label28.Name = "label28";
-            label28.Size = new Size(36, 17);
-            label28.TabIndex = 10;
-            label28.Text = "7min";
+            readability.Location = new Point(112, 136);
+            readability.Name = "readability";
+            readability.Size = new Size(316, 13);
+            readability.TabIndex = 83;
+            readability.Value = 38;
             // 
-            // label29
+            // label2
             // 
-            label29.AutoSize = true;
-            label29.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label29.ForeColor = Color.FromArgb(13, 13, 13);
-            label29.Location = new Point(28, 9);
-            label29.Name = "label29";
-            label29.Size = new Size(83, 23);
-            label29.TabIndex = 9;
-            label29.Text = "setUsers()";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.DimGray;
+            label2.Location = new Point(5, 128);
+            label2.Name = "label2";
+            label2.Size = new Size(104, 25);
+            label2.TabIndex = 82;
+            label2.Text = "Readability";
             // 
-            // customCard14
+            // accuracy
             // 
-            customCard14.BackColor = Color.White;
-            customCard14.BorderColor = Color.Gray;
-            customCard14.BorderRadius = 10;
-            customCard14.BorderSize = 1;
-            customCard14.Controls.Add(label24);
-            customCard14.Controls.Add(label25);
-            customCard14.Controls.Add(label26);
-            customCard14.Location = new Point(19, 151);
-            customCard14.Name = "customCard14";
-            customCard14.Size = new Size(392, 61);
-            customCard14.TabIndex = 12;
+            accuracy.Location = new Point(112, 97);
+            accuracy.Name = "accuracy";
+            accuracy.Size = new Size(316, 13);
+            accuracy.TabIndex = 81;
+            accuracy.Value = 38;
             // 
-            // label24
+            // label1
             // 
-            label24.AutoSize = true;
-            label24.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label24.ForeColor = Color.Gray;
-            label24.Location = new Point(89, 33);
-            label24.Name = "label24";
-            label24.Size = new Size(52, 17);
-            label24.TabIndex = 11;
-            label24.Text = "10 lines";
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.ForeColor = Color.Gray;
-            label25.Location = new Point(28, 33);
-            label25.Name = "label25";
-            label25.Size = new Size(43, 17);
-            label25.TabIndex = 10;
-            label25.Text = "14min";
-            // 
-            // label26
-            // 
-            label26.AutoSize = true;
-            label26.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label26.ForeColor = Color.FromArgb(13, 13, 13);
-            label26.Location = new Point(28, 9);
-            label26.Name = "label26";
-            label26.Size = new Size(141, 23);
-            label26.TabIndex = 9;
-            label26.Text = "getmesomemilk()";
-            // 
-            // customCard16
-            // 
-            customCard16.BackColor = Color.White;
-            customCard16.BorderColor = Color.Gray;
-            customCard16.BorderRadius = 10;
-            customCard16.BorderSize = 1;
-            customCard16.Controls.Add(label30);
-            customCard16.Controls.Add(label31);
-            customCard16.Controls.Add(label32);
-            customCard16.Location = new Point(19, 84);
-            customCard16.Name = "customCard16";
-            customCard16.Size = new Size(392, 61);
-            customCard16.TabIndex = 8;
-            // 
-            // label30
-            // 
-            label30.AutoSize = true;
-            label30.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label30.ForeColor = Color.Gray;
-            label30.Location = new Point(89, 33);
-            label30.Name = "label30";
-            label30.Size = new Size(52, 17);
-            label30.TabIndex = 11;
-            label30.Text = "23 lines";
-            // 
-            // label31
-            // 
-            label31.AutoSize = true;
-            label31.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label31.ForeColor = Color.Gray;
-            label31.Location = new Point(28, 33);
-            label31.Name = "label31";
-            label31.Size = new Size(43, 17);
-            label31.TabIndex = 10;
-            label31.Text = "10min";
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label32.ForeColor = Color.FromArgb(13, 13, 13);
-            label32.Location = new Point(28, 9);
-            label32.Name = "label32";
-            label32.Size = new Size(57, 23);
-            label32.TabIndex = 9;
-            label32.Text = "hello()";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(6, 89);
+            label1.Name = "label1";
+            label1.Size = new Size(84, 25);
+            label1.TabIndex = 80;
+            label1.Text = "Accuracy";
             // 
             // customCard17
             // 
@@ -526,9 +435,9 @@
             label33.ForeColor = Color.FromArgb(13, 13, 13);
             label33.Location = new Point(11, 19);
             label33.Name = "label33";
-            label33.Size = new Size(252, 28);
+            label33.Size = new Size(112, 28);
             label33.TabIndex = 6;
-            label33.Text = "Code Functions Overview";
+            label33.Text = "Code Stats";
             // 
             // customCard2
             // 
@@ -610,12 +519,7 @@
             flowLayoutPanel1.PerformLayout();
             panel1.ResumeLayout(false);
             customCard13.ResumeLayout(false);
-            customCard15.ResumeLayout(false);
-            customCard15.PerformLayout();
-            customCard14.ResumeLayout(false);
-            customCard14.PerformLayout();
-            customCard16.ResumeLayout(false);
-            customCard16.PerformLayout();
+            customCard13.PerformLayout();
             customCard17.ResumeLayout(false);
             customCard17.PerformLayout();
             customCard2.ResumeLayout(false);
@@ -647,23 +551,17 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private Panel panel1;
         private GeneralComponents.CustomCard customCard13;
-        private GeneralComponents.CustomCard customCard15;
-        private Label label27;
-        private Label label28;
-        private Label label29;
-        private GeneralComponents.CustomCard customCard14;
-        private Label label24;
-        private Label label25;
-        private Label label26;
-        private GeneralComponents.CustomCard customCard16;
-        private Label label30;
-        private Label label31;
-        private Label label32;
         private GeneralComponents.CustomCard customCard17;
         private Label label33;
         private GeneralComponents.CustomCard customCard2;
         private Label label4;
         private CustomTextBox customTextBox1;
         private FlowLayoutPanel iconsContainer;
+        private GeneralComponents.StatsBar accuracy;
+        private Label label1;
+        private GeneralComponents.StatsBar statsBar2;
+        private Label label6;
+        private GeneralComponents.StatsBar readability;
+        private Label label2;
     }
 }

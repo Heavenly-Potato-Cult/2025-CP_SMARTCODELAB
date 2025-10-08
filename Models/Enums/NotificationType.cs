@@ -14,6 +14,7 @@ namespace SmartCodeLab.Models.Enums
         Submitted,
         TestResult,
         LoggedIn,
-        LoggedOut
+        LoggedOut,
+        ExceptionThrown
     }
 }

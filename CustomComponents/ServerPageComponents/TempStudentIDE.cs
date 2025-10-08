@@ -29,7 +29,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private readonly int debounceDelay = 700;
         //private bool isFocused = false;
         private string userName;
-        private StudentCodingProgress progress;
+        //private StudentCodingProgress progress;
         public TempStudentIDE()
         {
             InitializeComponent();
@@ -37,7 +37,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public TempStudentIDE(string userName, TaskModel task,StudentCodingProgress progress, NetworkStream client)
         {
             InitializeComponent();
-            this.progress = progress;
             stream = client;
             this.userName = userName;
             new Thread(() =>
@@ -48,7 +47,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             token = new CancellationTokenSource();
 
             //create the activity directory then return the file path of the main file
-            string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName);
+            string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName, progress.sourceCode ?? "");
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
