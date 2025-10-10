@@ -38,6 +38,8 @@
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
+            submissionToolStripMenuItem = new ToolStripMenuItem();
+            tabPage5 = new TabPage();
             menuStrip1.SuspendLayout();
             container.SuspendLayout();
             SuspendLayout();
@@ -45,7 +47,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { codeMonitoringToolStripMenuItem, submissionStatusToolStripMenuItem, viewUsersToolStripMenuItem, viewUsersToolStripMenuItem1 });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { codeMonitoringToolStripMenuItem, submissionStatusToolStripMenuItem, viewUsersToolStripMenuItem, viewUsersToolStripMenuItem1, submissionToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1345, 28);
@@ -86,6 +88,7 @@
             container.Controls.Add(tabPage2);
             container.Controls.Add(tabPage3);
             container.Controls.Add(tabPage4);
+            container.Controls.Add(tabPage5);
             container.Depth = 0;
             container.Location = new Point(0, 31);
             container.MouseState = MaterialSkin.MouseState.HOVER;
@@ -135,6 +138,23 @@
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // submissionToolStripMenuItem
+            // 
+            submissionToolStripMenuItem.Name = "submissionToolStripMenuItem";
+            submissionToolStripMenuItem.Size = new Size(98, 24);
+            submissionToolStripMenuItem.Text = "Submission";
+            submissionToolStripMenuItem.Click += submissionToolStripMenuItem_Click;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(1337, 826);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "tabPage5";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
             // MainServerPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -163,5 +183,7 @@
         private TabPage tabPage3;
         private TabPage tabPage4;
         private ToolStripMenuItem viewUsersToolStripMenuItem1;
+        private ToolStripMenuItem submissionToolStripMenuItem;
+        private TabPage tabPage5;
     }
 }

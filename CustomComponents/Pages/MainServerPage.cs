@@ -31,6 +31,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private TempServerPage serverPage;
         private StudTable userTable;
         private ServerHomePage homePage;
+        private ProgressSubmissionPage progressSubmissionPage;
 
         //network and user connectivity related
         //private readonly MessageType[] ForMainServer = { MessageType.UserProfile };//messages that are meant for this page, or class
@@ -56,11 +57,12 @@ namespace SmartCodeLab.CustomComponents.Pages
             userTable = new StudTable(server.Users);
             serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress);
             homePage = new ServerHomePage();
+            progressSubmissionPage = new ProgressSubmissionPage();
 
             tabPage1.Controls.Add(homePage);
             tabPage2.Controls.Add(serverPage);
             tabPage3.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
-            tabPage4.Controls.Add(new ProgressSubmissionPage());
+            tabPage4.Controls.Add(progressSubmissionPage);
         }
 
         private void codeMonitoringToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,6 +78,10 @@ namespace SmartCodeLab.CustomComponents.Pages
         private void viewUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             container.SelectedIndex = 2;
+        }
+        private void submissionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            container.SelectedIndex = 3;
         }
 
         private void viewUsersToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -129,7 +135,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             UserProfile userProfile = new UserProfile();
             //send the task to the new client
-            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
+            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.SERVER_TASK).Task(currentTask).Build(), PrefixStyle.Base128);
             await networkStream.FlushAsync();
             while (true)
             {
@@ -149,12 +155,12 @@ namespace SmartCodeLab.CustomComponents.Pages
 
                     switch (obj._messageType)
                     {
-                        case MessageType.ServerTaskRequest:
+                        case MessageType.SERVER_TASK_REQUEST:
                             Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
+                                new ServerMessage.Builder(MessageType.SERVER_TASK).Task(currentTask).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
                             break;
-                        case MessageType.UserProfile:
+                        case MessageType.USER_PROFILE:
                             if (obj._userProfile == null)
                                 break;
                             //the obj._userProfile only contains userId/studentId
@@ -173,10 +179,10 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     {
                                         userProgress.Add(userProfile._studentId, new StudentCodingProgress());
                                     }
-                                    
+
                                     currentStudents.Add(userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                        new ServerMessage.Builder(MessageType.LogInSuccessful).
+                                        new ServerMessage.Builder(MessageType.LOG_IN_SUCCESSFUL).
                                         Task(currentTask).
                                         UserProfile(userProfile).
                                         StudentProgress(userProgress[userProfile._studentId]).
@@ -190,14 +196,18 @@ namespace SmartCodeLab.CustomComponents.Pages
                             }
                             if (!didLogIn)
                                 Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                    new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
+                                    new ServerMessage.Builder(MessageType.LOG_IN_FAILED).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
                             break;
-                        case MessageType.StudentProgress:
+                        case MessageType.STUDENT_PROGRESS:
                             UpdateUserProgress(userProfile._studentId, obj._progress);
-                            serverPage.UpdateStudentProgressDisplay(userProfile,obj._progress);
+                            serverPage.UpdateStudentProgressDisplay(userProfile, obj._progress);
                             break;
-                        case MessageType.Notification:
+                        case MessageType.CODE_SUBMISSION:
+                            obj.submittedCode.user = userProfile;
+                            progressSubmissionPage.StudentSubmitted(obj.submittedCode);
+                            break;
+                        case MessageType.NOTIFICATION:
                             homePage.NewNotification(obj.notification);
                             break;
                         default:
@@ -219,7 +229,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void UpdateUserProgress(string studentId, StudentCodingProgress progress)
         {
-            if(!userProgress.ContainsKey(studentId))
+            if (!userProgress.ContainsKey(studentId))
                 userProgress.Add(studentId, progress);
             userProgress[studentId] = progress;
 
@@ -250,7 +260,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 foreach (var item in connectedUsers)
                 {
-                    Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Key, new ServerMessage.Builder(MessageType.TaskUpdate).Task(task).Build(), PrefixStyle.Base128);
+                    Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Key, new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), PrefixStyle.Base128);
                     await item.Key.FlushAsync();
                 }
             });

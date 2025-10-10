@@ -45,6 +45,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(4)]
         public Dictionary<String,UserProfile> Users = new Dictionary<String, UserProfile>();
 
+        [ProtoMember(5)]
+        public int submittedCount { get; set; }
+
         public Server()
         {
         }
@@ -57,6 +60,7 @@ namespace SmartCodeLab.Models
             ServerTask._language = ProgrammingLanguage;
             ServerTask._taskName = serverName;
             Users = users;
+            submittedCount = 0;
         }
     }
 }

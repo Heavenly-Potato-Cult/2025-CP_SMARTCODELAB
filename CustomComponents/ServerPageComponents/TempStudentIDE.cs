@@ -34,7 +34,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
         }
-        public TempStudentIDE(string userName, TaskModel task,StudentCodingProgress progress, NetworkStream client)
+        public TempStudentIDE(string userName, TaskModel task, StudentCodingProgress progress, NetworkStream client)
         {
             InitializeComponent();
             stream = client;
@@ -57,13 +57,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 //if (isFocused)
                 //{
-                    debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+                debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
-                    // Start a new timer
-                    debounceTimer = new System.Threading.Timer(async _ =>
-                    {
-                        await ProgressSender();
-                    }, null, debounceDelay, Timeout.Infinite);
+                // Start a new timer
+                debounceTimer = new System.Threading.Timer(async _ =>
+                {
+                    await ProgressSender();
+                }, null, debounceDelay, Timeout.Infinite);
                 //}
             };
             codeEditorContainer.Controls.Add(editor);
@@ -109,7 +109,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private async Task ProgressSender()
         {
-            var message = new ServerMessage.Builder(MessageType.StudentProgress)
+            var message = new ServerMessage.Builder(MessageType.STUDENT_PROGRESS)
                 .StudentProgress(editor.GetProgress())
                 .Build();
             Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
@@ -129,7 +129,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                     switch (serverMsg._messageType)
                     {
-                        case MessageType.TaskUpdate:
+                        case MessageType.TASK_UPDATE:
                             UpdateTaskDisplay(serverMsg._task);
                             MessageBox.Show("Task updated boiiii");
                             break;
@@ -155,7 +155,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 try
                 {
-                    var message = new ServerMessage.Builder(MessageType.Notification)
+                    var message = new ServerMessage.Builder(MessageType.NOTIFICATION)
                         .Notification(new Notification(type, userName, result))
                         .Build();
                     Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
@@ -177,8 +177,19 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private async void smartButton5_Click(object sender, EventArgs e)
         {
-            Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,new ServerMessage.Builder(MessageType.ProgressRequest).Build(), PrefixStyle.Base128);
+            Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, new ServerMessage.Builder(MessageType.PROGRESS_REQUEST).Build(), PrefixStyle.Base128);
             await stream.FlushAsync();
+        }
+
+        private void smartButton2_Click(object sender, EventArgs e)
+        {
+            Task.Run(async () => 
+            {
+                Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
+                    new ServerMessage.Builder(MessageType.CODE_SUBMISSION).SubmittedCode(new SubmittedCode(editor.srcCode.Text)).Build(),
+                    PrefixStyle.Base128);
+                await stream.FlushAsync();
+            });
         }
     }
 }
