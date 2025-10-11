@@ -34,18 +34,24 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton2 = new SmartButton();
             smartButton3 = new SmartButton();
             label1 = new Label();
+            panel3 = new Panel();
+            panel2 = new Panel();
+            panel4 = new Panel();
+            panel1 = new Panel();
             SuspendLayout();
             // 
             // userName
             // 
-            userName.BackColor = Color.FromArgb(13, 13, 13);
+            userName.BackColor = Color.White;
             userName.BorderColor = Color.White;
             userName.BorderFocusColor = Color.MediumSlateBlue;
             userName.ForeColor = Color.DimGray;
-            userName.Location = new Point(120, 85);
+            userName.Location = new Point(77, 60);
             userName.Margin = new Padding(3, 4, 3, 4);
             userName.Name = "userName";
             userName.Padding = new Padding(10, 7, 10, 7);
+            userName.PlaceHolderColor = Color.DarkGray;
+            userName.PlaceholderText = "";
             userName.ScrollBars = ScrollBars.None;
             userName.Size = new Size(360, 41);
             userName.TabIndex = 0;
@@ -60,7 +66,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(313, 144);
+            smartButton2.Location = new Point(270, 127);
             smartButton2.Name = "smartButton2";
             smartButton2.Size = new Size(167, 51);
             smartButton2.TabIndex = 3;
@@ -78,7 +84,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton3.FlatStyle = FlatStyle.Flat;
             smartButton3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             smartButton3.ForeColor = Color.White;
-            smartButton3.Location = new Point(120, 144);
+            smartButton3.Location = new Point(77, 127);
             smartButton3.Name = "smartButton3";
             smartButton3.Size = new Size(166, 51);
             smartButton3.TabIndex = 4;
@@ -91,25 +97,65 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(242, 242, 242);
-            label1.Location = new Point(120, 53);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(77, 28);
             label1.Name = "label1";
             label1.Size = new Size(109, 28);
             label1.TabIndex = 30;
             label1.Text = "Student ID";
             // 
+            // panel3
+            // 
+            panel3.BackColor = Color.Black;
+            panel3.Dock = DockStyle.Left;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1, 216);
+            panel3.TabIndex = 31;
+            // 
+            // panel2
+            // 
+            panel2.BackColor = Color.Black;
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(1, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(513, 1);
+            panel2.TabIndex = 32;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.Black;
+            panel4.Dock = DockStyle.Right;
+            panel4.Location = new Point(513, 1);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(1, 215);
+            panel4.TabIndex = 33;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Black;
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(1, 215);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(512, 1);
+            panel1.TabIndex = 34;
+            // 
             // UserLogInDIalog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(10, 10, 10);
-            ClientSize = new Size(600, 216);
+            BackColor = SystemColors.Control;
+            ClientSize = new Size(514, 216);
+            Controls.Add(panel1);
+            Controls.Add(panel4);
+            Controls.Add(panel2);
+            Controls.Add(panel3);
             Controls.Add(label1);
             Controls.Add(smartButton3);
             Controls.Add(smartButton2);
             Controls.Add(userName);
             DoubleBuffered = true;
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UserLogInDIalog";
@@ -125,5 +171,9 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         private SmartButton smartButton2;
         private SmartButton smartButton3;
         private Label label1;
+        private Panel panel3;
+        private Panel panel2;
+        private Panel panel4;
+        private Panel panel1;
     }
 }
