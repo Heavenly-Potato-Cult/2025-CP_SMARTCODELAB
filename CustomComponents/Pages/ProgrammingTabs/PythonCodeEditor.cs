@@ -33,13 +33,79 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public async override void RunLinting()
         {
             SaveCode();
-            process = CommandRunner($"/c {ProgrammingConfiguration.pylintExe} {filePath}");
-            string lintOutput = "";
+            NoError();
+            List<string> readabilityCommands = [
+                $"/c {ProgrammingConfiguration.pylintExe} --rcfile={ProgrammingConfiguration.readabilityConfig} {filePath}",
+                $"/c {ProgrammingConfiguration.ruffExe} check {filePath} --config {ProgrammingConfiguration.ruffConfig}"];
+
+            //for error checking
+            process = CommandRunner($"/c {ProgrammingConfiguration.pylintExe} --rcfile={ProgrammingConfiguration.errorConfig} {filePath}");
+            string errorOutput = "";
             await StartprocessAsyncExit(
                 process,
-                err => lintOutput += (err + Environment.NewLine),
-                null,
-                () => Debug.WriteLine(lintOutput));
+                err => errorOutput += (err + '\n'),
+                err => errorOutput += (err),
+                () => 
+                {
+                    try
+                    {
+                        errorOutput = errorOutput.Replace("************* Module Main\n", "");
+                        errorOutput = errorOutput.Remove(errorOutput.LastIndexOf('\n'));
+                        string[] errors = errorOutput.Split("\n");
+                        foreach (var error in errors)
+                        {
+                            string[] splicedErrorLine = error.Split(':');
+                            int splicedLength = splicedErrorLine.Length;
+                            string errorMessage = splicedErrorLine[5];
+                            int line = int.Parse(splicedErrorLine[2]) - 1;
+                            HighlightError(line, errorMessage);
+                        }
+                    }
+                    catch (ArgumentOutOfRangeException) { }
+                }
+            );
+
+            //checks readability status
+            int i = 0;
+            int errorCounts = 0;
+            foreach (var item in readabilityCommands)
+            {
+                process = CommandRunner(item);
+                string lintOutput = "";
+                await StartprocessAsyncExit(
+                    process,
+                    err => lintOutput += (err + '\n'),
+                    null,
+                    () =>
+                    {
+                        string errorMessage = string.Empty;
+                        int line = 0;
+                        if(!lintOutput.Contains("All checks passed!"))//this means the linter used was pylint
+                        {
+                            lintOutput = lintOutput.Replace("************* Module Main\n", "");
+
+                            if(i == 1)
+                                lintOutput = lintOutput.Remove(lintOutput.LastIndexOf("Found "));
+
+                            lintOutput = lintOutput.Remove(lintOutput.LastIndexOf('\n'));
+                            string[] errors = lintOutput.Split("\n");
+                            foreach (var error in errors)
+                            {
+                                string[] splicedErrorLine = error.Split(':');
+                                int splicedLength = splicedErrorLine.Length;
+
+                                //if i == 0, this means pylint was used and error message is in index 5, while it will be on index 4 if ruff was used
+                                errorMessage = splicedErrorLine[i == 0 ? 5 : 4];
+                                line = int.Parse(splicedErrorLine[2]) - 1;
+                                errorCounts++;
+                                base.HighLightStandardError(line, errorMessage);
+                            }
+                        }
+                    }
+                );
+                i++;
+            }
+            updateStats?.Invoke(2, errorCounts);
         }
     }
 }

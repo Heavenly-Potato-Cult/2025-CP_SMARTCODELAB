@@ -5,15 +5,15 @@ namespace SmartCodeLab.Models.Enums
     [ProtoContract]
     public enum MessageType
     {
-        StudentProgress,
-        ProgressRequest,
-        ServerTask,
-        ServerTaskRequest,
-        UserProfile,
-        LogInSuccessful,
-        LogInFailed,
-        IsEyesOnMe,
-        TaskUpdate,
-        Notification
+        STUDENT_PROGRESS,
+        PROGRESS_REQUEST,
+        SERVER_TASK,
+        SERVER_TASK_REQUEST,
+        USER_PROFILE,
+        LOG_IN_SUCCESSFUL,
+        LOG_IN_FAILED,
+        TASK_UPDATE,
+        NOTIFICATION,
+        CODE_SUBMISSION
     }
 }

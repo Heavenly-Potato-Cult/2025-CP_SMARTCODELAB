@@ -33,7 +33,6 @@
             customTextBox2 = new CustomTextBox();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label6 = new Label();
-            label15 = new Label();
             label14 = new Label();
             label12 = new Label();
             label5 = new Label();
@@ -46,11 +45,8 @@
             label17 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label22 = new Label();
             studentCode = new TextBox();
-            customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label23 = new Label();
-            textBox1 = new TextBox();
+            label22 = new Label();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label32 = new Label();
@@ -74,11 +70,11 @@
             label45 = new Label();
             label49 = new Label();
             submitCount = new Label();
+            label1 = new Label();
             customCard7.SuspendLayout();
             customCard2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             customCard3.SuspendLayout();
-            customCard4.SuspendLayout();
             customCard5.SuspendLayout();
             customCard6.SuspendLayout();
             customCard10.SuspendLayout();
@@ -128,6 +124,8 @@
             customTextBox2.Location = new Point(48, 185);
             customTextBox2.Name = "customTextBox2";
             customTextBox2.Padding = new Padding(10, 7, 10, 7);
+            customTextBox2.PlaceHolderColor = Color.DarkGray;
+            customTextBox2.PlaceholderText = "Search Student";
             customTextBox2.ScrollBars = ScrollBars.None;
             customTextBox2.Size = new Size(311, 41);
             customTextBox2.TabIndex = 65;
@@ -138,12 +136,12 @@
             customCard7.BorderColor = Color.Silver;
             customCard7.BorderRadius = 2;
             customCard7.BorderSize = 0;
+            customCard7.Controls.Add(label1);
             customCard7.Controls.Add(label6);
-            customCard7.Controls.Add(label15);
             customCard7.Controls.Add(label14);
             customCard7.Location = new Point(49, 236);
             customCard7.Name = "customCard7";
-            customCard7.Size = new Size(517, 34);
+            customCard7.Size = new Size(532, 34);
             customCard7.TabIndex = 64;
             // 
             // label6
@@ -151,29 +149,18 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Gray;
-            label6.Location = new Point(406, 5);
+            label6.Location = new Point(423, 5);
             label6.Name = "label6";
-            label6.Size = new Size(60, 25);
+            label6.Size = new Size(63, 25);
             label6.TabIndex = 20;
-            label6.Text = "Status";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label15.ForeColor = Color.Gray;
-            label15.Location = new Point(265, 5);
-            label15.Name = "label15";
-            label15.Size = new Size(56, 25);
-            label15.TabIndex = 19;
-            label15.Text = "Score";
+            label6.Text = "Rating";
             // 
             // label14
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.Gray;
-            label14.Location = new Point(16, 5);
+            label14.Location = new Point(92, 5);
             label14.Name = "label14";
             label14.Size = new Size(125, 25);
             label14.TabIndex = 18;
@@ -216,9 +203,9 @@
             // 
             submittedContainer.AutoScroll = true;
             submittedContainer.FlowDirection = FlowDirection.TopDown;
-            submittedContainer.Location = new Point(49, 276);
+            submittedContainer.Location = new Point(49, 269);
             submittedContainer.Name = "submittedContainer";
-            submittedContainer.Size = new Size(517, 553);
+            submittedContainer.Size = new Size(532, 560);
             submittedContainer.TabIndex = 68;
             submittedContainer.WrapContents = false;
             // 
@@ -285,7 +272,6 @@
             // 
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Controls.Add(customCard3);
-            flowLayoutPanel1.Controls.Add(customCard4);
             flowLayoutPanel1.Controls.Add(customCard5);
             flowLayoutPanel1.Controls.Add(customCard13);
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
@@ -308,6 +294,14 @@
             customCard3.Size = new Size(680, 393);
             customCard3.TabIndex = 62;
             // 
+            // studentCode
+            // 
+            studentCode.Location = new Point(24, 53);
+            studentCode.Multiline = true;
+            studentCode.Name = "studentCode";
+            studentCode.Size = new Size(640, 323);
+            studentCode.TabIndex = 67;
+            // 
             // label22
             // 
             label22.AutoSize = true;
@@ -318,46 +312,6 @@
             label22.Size = new Size(136, 28);
             label22.TabIndex = 65;
             label22.Text = "Student Code";
-            // 
-            // studentCode
-            // 
-            studentCode.Location = new Point(24, 53);
-            studentCode.Multiline = true;
-            studentCode.Name = "studentCode";
-            studentCode.Size = new Size(640, 323);
-            studentCode.TabIndex = 67;
-            // 
-            // customCard4
-            // 
-            customCard4.BackColor = Color.White;
-            customCard4.BorderColor = Color.Gray;
-            customCard4.BorderRadius = 5;
-            customCard4.BorderSize = 1;
-            customCard4.Controls.Add(textBox1);
-            customCard4.Controls.Add(label23);
-            customCard4.Location = new Point(3, 402);
-            customCard4.Name = "customCard4";
-            customCard4.Size = new Size(680, 393);
-            customCard4.TabIndex = 68;
-            // 
-            // label23
-            // 
-            label23.AutoSize = true;
-            label23.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label23.ForeColor = Color.FromArgb(13, 13, 13);
-            label23.Location = new Point(18, 22);
-            label23.Name = "label23";
-            label23.Size = new Size(232, 28);
-            label23.TabIndex = 65;
-            label23.Text = "Reference Code Preview";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(24, 53);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(640, 323);
-            textBox1.TabIndex = 69;
             // 
             // customCard5
             // 
@@ -370,7 +324,7 @@
             customCard5.Controls.Add(customCard11);
             customCard5.Controls.Add(customCard12);
             customCard5.Controls.Add(label24);
-            customCard5.Location = new Point(3, 801);
+            customCard5.Location = new Point(3, 402);
             customCard5.Name = "customCard5";
             customCard5.Size = new Size(680, 331);
             customCard5.TabIndex = 70;
@@ -583,7 +537,7 @@
             customCard13.Controls.Add(label37);
             customCard13.Controls.Add(label45);
             customCard13.Controls.Add(label49);
-            customCard13.Location = new Point(3, 1138);
+            customCard13.Location = new Point(3, 739);
             customCard13.Name = "customCard13";
             customCard13.Size = new Size(680, 97);
             customCard13.TabIndex = 71;
@@ -632,6 +586,17 @@
             submitCount.TabIndex = 71;
             submitCount.Text = "0";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Gray;
+            label1.Location = new Point(3, 5);
+            label1.Name = "label1";
+            label1.Size = new Size(40, 25);
+            label1.TabIndex = 21;
+            label1.Text = "No.";
+            // 
             // ProgressSubmissionPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -656,8 +621,6 @@
             flowLayoutPanel1.ResumeLayout(false);
             customCard3.ResumeLayout(false);
             customCard3.PerformLayout();
-            customCard4.ResumeLayout(false);
-            customCard4.PerformLayout();
             customCard5.ResumeLayout(false);
             customCard5.PerformLayout();
             customCard6.ResumeLayout(false);
@@ -681,7 +644,6 @@
         private CustomTextBox customTextBox2;
         private GeneralComponents.CustomCard customCard7;
         private Label label6;
-        private Label label15;
         private Label label14;
         private Label label12;
         private Label label5;
@@ -696,9 +658,6 @@
         private GeneralComponents.CustomCard customCard3;
         private Label label22;
         private TextBox studentCode;
-        private GeneralComponents.CustomCard customCard4;
-        private Label label23;
-        private TextBox textBox1;
         private GeneralComponents.CustomCard customCard5;
         private GeneralComponents.CustomCard customCard6;
         private Label label32;
@@ -722,5 +681,6 @@
         private Label label45;
         private Label label49;
         private Label submitCount;
+        private Label label1;
     }
 }

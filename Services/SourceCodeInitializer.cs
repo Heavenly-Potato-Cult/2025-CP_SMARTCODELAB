@@ -33,38 +33,40 @@ namespace SmartCodeLab.Services
             return fileName;
         }
 
-        public static string InitializeActivityDirectory(LanguageSupported language, string userName, string taskName)
+        public static string InitializeActivityDirectory(LanguageSupported language, string userName, string taskName, string sourceCode = "")
         {
             string activityDirectory = Path.Combine(activityLocation[language], userName+'_'+taskName);
             activityDirectory = activityDirectory.Replace(' ', '_');
             string mainFile = Path.Combine(activityDirectory, $"Main{extension[language]}");
-            string srcCode = string.Empty;
+            string srcCode = sourceCode;
 
             if (!Directory.Exists(activityDirectory))
                 Directory.CreateDirectory(activityDirectory);
 
             if (!File.Exists(mainFile))
             {
-                switch (language)
-                {//other languages implementations will come next
-                    case LanguageSupported.Java:
-                        srcCode =
-                            """
+                if (srcCode == "")
+                {
+                    switch (language)
+                    {//other languages implementations will come next
+                        case LanguageSupported.Java:
+                            srcCode =
+                                """
                             public class Main{
                                 public static void main(String[] args) {
                                     System.out.println("Hello, World!");
                                 }
                             }
                         """;
-                        break;
-                    case LanguageSupported.Python:
-                        srcCode =
-                            """
+                            break;
+                        case LanguageSupported.Python:
+                            srcCode =
+                                """
                             #pagsugod na dra ug code
                         """;
-                        break;
-                    default:
-                        srcCode = """
+                            break;
+                        default:
+                            srcCode = """
                         #include <iostream>
 
                         int main() {
@@ -73,7 +75,8 @@ namespace SmartCodeLab.Services
                             return 0;
                         }
                         """;
-                        break;
+                            break;
+                    }
                 }
                 File.WriteAllText(mainFile, srcCode);
             }

@@ -40,7 +40,7 @@ namespace SmartCodeLab.Models
             switch (type)
             {
                 case NotificationType.CopyPasted:
-                    return "submitted code with potential copy-paste detection";
+                    return "performed code copy-paste";
 
                 case NotificationType.Submitted:
                     return "submitted their code for evaluation";
@@ -53,6 +53,8 @@ namespace SmartCodeLab.Models
 
                 case NotificationType.LoggedOut:
                     return "has logged out of the programming server";
+                case NotificationType.ExceptionThrown:
+                    return $"code threw an \"{testResult}\"";
 
                 default:
                     return "has performed an action";

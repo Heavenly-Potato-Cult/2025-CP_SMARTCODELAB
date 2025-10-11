@@ -29,15 +29,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private readonly int debounceDelay = 700;
         //private bool isFocused = false;
         private string userName;
-        private StudentCodingProgress progress;
+        //private StudentCodingProgress progress;
         public TempStudentIDE()
         {
             InitializeComponent();
         }
-        public TempStudentIDE(string userName, TaskModel task,StudentCodingProgress progress, NetworkStream client)
+        public TempStudentIDE(string userName, TaskModel task, StudentCodingProgress progress, NetworkStream client)
         {
             InitializeComponent();
-            this.progress = progress;
             stream = client;
             this.userName = userName;
             new Thread(() =>
@@ -48,7 +47,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             token = new CancellationTokenSource();
 
             //create the activity directory then return the file path of the main file
-            string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName);
+            string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName, progress.sourceCode ?? "");
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
@@ -58,13 +57,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 //if (isFocused)
                 //{
-                    debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+                debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
-                    // Start a new timer
-                    debounceTimer = new System.Threading.Timer(async _ =>
-                    {
-                        await ProgressSender();
-                    }, null, debounceDelay, Timeout.Infinite);
+                // Start a new timer
+                debounceTimer = new System.Threading.Timer(async _ =>
+                {
+                    await ProgressSender();
+                }, null, debounceDelay, Timeout.Infinite);
                 //}
             };
             codeEditorContainer.Controls.Add(editor);
@@ -110,7 +109,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private async Task ProgressSender()
         {
-            var message = new ServerMessage.Builder(MessageType.StudentProgress)
+            var message = new ServerMessage.Builder(MessageType.STUDENT_PROGRESS)
                 .StudentProgress(editor.GetProgress())
                 .Build();
             Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
@@ -130,7 +129,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                     switch (serverMsg._messageType)
                     {
-                        case MessageType.TaskUpdate:
+                        case MessageType.TASK_UPDATE:
                             UpdateTaskDisplay(serverMsg._task);
                             MessageBox.Show("Task updated boiiii");
                             break;
@@ -156,7 +155,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 try
                 {
-                    var message = new ServerMessage.Builder(MessageType.Notification)
+                    var message = new ServerMessage.Builder(MessageType.NOTIFICATION)
                         .Notification(new Notification(type, userName, result))
                         .Build();
                     Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
@@ -178,8 +177,19 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private async void smartButton5_Click(object sender, EventArgs e)
         {
-            Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,new ServerMessage.Builder(MessageType.ProgressRequest).Build(), PrefixStyle.Base128);
+            Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, new ServerMessage.Builder(MessageType.PROGRESS_REQUEST).Build(), PrefixStyle.Base128);
             await stream.FlushAsync();
+        }
+
+        private void smartButton2_Click(object sender, EventArgs e)
+        {
+            Task.Run(async () => 
+            {
+                Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
+                    new ServerMessage.Builder(MessageType.CODE_SUBMISSION).SubmittedCode(new SubmittedCode(editor.srcCode.Text)).Build(),
+                    PrefixStyle.Base128);
+                await stream.FlushAsync();
+            });
         }
     }
 }

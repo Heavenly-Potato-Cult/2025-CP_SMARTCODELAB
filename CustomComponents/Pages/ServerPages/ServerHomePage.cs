@@ -1,4 +1,5 @@
 ﻿using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
     public partial class ServerHomePage : UserControl
     {
+        private readonly SemaphoreSlim _semaphore = new(1, 1);
         public ServerHomePage()
         {
             InitializeComponent();
@@ -28,6 +30,24 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     notifContainer.Controls.Add(new NotificationIcon(notification));
                 }));
             });
+        }
+
+        public async Task UpdateActiveStudentsCount(NotificationType notificationType) 
+        {
+            await _semaphore.WaitAsync();
+            try
+            {
+                int currentActiveCount = int.Parse(activeCount.Text);
+                if (notificationType == NotificationType.LoggedIn)
+                    currentActiveCount++;
+                else
+                    currentActiveCount--;
+                this.Invoke((Action)(() => activeCount.Text = currentActiveCount.ToString()));
+            }
+            finally
+            {
+                _semaphore.Release();
+            }
         }
     }
 }

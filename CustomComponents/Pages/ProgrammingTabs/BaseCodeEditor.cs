@@ -1,7 +1,6 @@
 ﻿using FastColoredTextBoxNS;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
-using SmartCodeLab.Services;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -13,7 +12,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         protected string filePath;
         protected TaskModel task;
-        private string possibleProgDirectory;
 
         protected readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
         protected readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Orange);
@@ -24,13 +22,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private System.Threading.Timer? inputTimer;
         protected Action<int, int> updateStats;
 
-        //will be used to send activity notification to the server/host
-
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<NotificationType, string>? notifAction { get; set; }//will be used to send activity notification to the server/host
 
         public StudentCodingProgress StudentProgress { get; }
-
         private string[] codeHistory = new string[20];
 
         //code all around services
@@ -40,6 +35,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected string commandLine = string.Empty;
         protected string latestoutput = string.Empty;
         protected string testerFile = string.Empty;
+
         public BaseCodeEditor()
         {
             InitializeComponent();
@@ -96,6 +92,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         string pasted = Clipboard.GetText();
                         Task.Run(() => GetPastedCode(pasted, srcCode.Text, codeHistory));
                     }
+                }
+            };
+
+            output.KeyUp += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Invoker(() => SendInput(output.ReadLine()));
+                    inputTimerStarter();
                 }
             };
         }
@@ -205,9 +210,88 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public async virtual void RunCode()
         {
+            Invoker(() =>
+            {
+                output.Clear();
+                output.WriteLine("Started" + Environment.NewLine);
+                output.IsReadLineMode = true;
+            });
+            string exeptionThrown = string.Empty;
             SaveCode(5, 100);
-            process = CommandRunner(commandLine, true);
-            await StartprocessAsync(process, null, null, null);
+            process = CommandRunner(commandLine);
+            await StartprocessAsync(
+                process,
+                outp => {
+                    Invoker(() => output.WriteLine(outp));
+                    inputTimerStarter();
+                },
+                err => { 
+                    Invoker(() => output.WriteLine(err + Environment.NewLine));
+                    exeptionThrown += (err + "\n");
+                },
+                async () =>
+                {
+                    Invoker(() => output.WriteLine(Environment.NewLine + "Program Finished"));
+                    output.IsReadLineMode = false;
+                    inputTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                    if(exeptionThrown != "")
+                        ExtractThrownExceptions(exeptionThrown);
+
+                    bool isFilePython = filePath.EndsWith(".py");
+                    if (!isFilePython)
+                    {
+                        string extension = filePath.EndsWith("cpp") ? "exe" : "class";
+                        string delCommand = $"/c del {Path.Combine(Path.GetDirectoryName(filePath),"Main."+extension)}";
+                        process = CommandRunner(delCommand);
+                        await StartprocessAsyncExit(process, null, null, null);
+                    }
+                }
+            );
+        }
+
+        private void ExtractThrownExceptions(string allExceptions)
+        {
+            //for java
+            Task.Run(() =>
+                {
+                    if (filePath.EndsWith(".java"))
+                    {
+                        allExceptions = allExceptions.Remove(allExceptions.LastIndexOf('\n'));
+                        string[] exceptions = allExceptions.Split("Exception in").Where(a => a != "").ToArray();
+                        foreach (string exception in exceptions)
+                        {
+                            string exceptionLine = (exception.Split("\n")[0]);//separated by \t ang exception errors
+                            string[] exceptionID = exceptionLine.Split('.');
+
+                            /* then the exeption line can be split by '.', then get the last index since it is likely the exception object
+                             * sample output "thread "main" java.util.InputMismatchException"
+                             * 
+                             * but if a student caught the Exception then created its own throw statement
+                             * like this throw new InputMismatchException("mali imong gibutang"); will show
+                             * Exception in thread "main" java.util.InputMismatchException: mali imong gibutang
+                             *   at Main.main(Main.java:12)
+                             * the 2nd statement block will be used
+                            */
+                            string exceptionMsg = exceptionID[exceptionID.Length - 1];
+                            if (exceptionMsg.Contains(':'))
+                                exceptionMsg = exceptionID[exceptionID.Length - 1].Split(':')[0]; //usually formatted as {exceptionObj}: {user message}
+
+
+                            notifAction?.Invoke(NotificationType.ExceptionThrown, exceptionMsg);
+                        }
+                    }
+                    else if(filePath.EndsWith(".py"))
+                    {
+
+                        //most likely the exception type is in the last line
+                        //as last line contains two messages separated by colon {Exception}: {exceptionMessage}
+                        string[] exceptions = allExceptions.Split("\n");
+                        string specificException = exceptions[exceptions.Length - 2].Split(':')[0];
+                        notifAction?.Invoke(NotificationType.ExceptionThrown, specificException);
+                    }
+                }
+            );
         }
 
         public async virtual void RunTest()
@@ -219,38 +303,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int percentage = (testCodeForm.score / task._testCases.Count) * 100;
             updateStats?.Invoke(1, percentage);
         }
-
-        public virtual void RunLinting() { }
-        public virtual void CheckCodingStandards(string command, Action reRun = null) { }
-
-        protected void HighlightError(int errorLine, string errorMsg)
-        {
-            standardError.Remove(errorLine);
-            var lineRange = srcCode.GetLine(errorLine);
-            lineRange.SetStyle(redWavy);
-            this.errorLine = errorLine;
-            this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
-        }
-
-        protected virtual void HighLightStandardError(int errorLine, string msg)
-        { }
-
-        protected void NoError()
-        {
-            errorLine = null;
-            errorMsg = "";
-            srcCode.Range.ClearStyle(yellowWavy);
-            srcCode.Range.ClearStyle(redWavy);
-        }
         protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
-            this.Invoke((Action)(() => output.Text = "Process Started" + Environment.NewLine));
+            Invoker(() => output.Text = "Process Started" + Environment.NewLine);
             latestoutput = output.Text;
-            process.OutputDataReceived += (sender, e) =>
-            {
-                if (!string.IsNullOrEmpty(e.Data))
-                    onOutput?.Invoke(e.Data);
-            };
 
             process.ErrorDataReceived += (sender, e) =>
             {
@@ -267,12 +323,26 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             process.EnableRaisingEvents = true;
             process.Start();
+            inputTimerStarter();
             try
             {
-                process.BeginOutputReadLine();
-                process.BeginErrorReadLine();
+                Task.Run(async () =>
+                {
+                    var reader = process.StandardOutput;
+                    char[] buffer = new char[256];
+                    int read;
+                    while ((read = await reader.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                    {
+                        string chunk = new string(buffer, 0, read);
+                        onOutput?.Invoke(chunk);  // print partial output immediately
+                    }
+                });
             }
-            catch (InvalidOperationException) { }
+            catch (InvalidOperationException e)
+            {
+                Invoker(() => Debug.WriteLine(""));
+            }
+            process.BeginErrorReadLine();
             return Task.CompletedTask;
         }
 
@@ -316,6 +386,43 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             catch (InvalidOperationException) { }
         }
 
+        public virtual void RunLinting() { }
+        public virtual void CheckCodingStandards(string command, Action reRun = null) { }
+
+        protected void HighlightError(int errorLine, string errorMsg)
+        {
+            try
+            {
+                standardError.Remove(errorLine);
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(redWavy);
+                this.errorLine = errorLine;
+                this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
+            }
+            catch (ArgumentOutOfRangeException) { }
+        }
+
+        protected virtual void HighLightStandardError(int errorLine, string msg)
+        {
+            try
+            {
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(yellowWavy);
+                if (standardError.ContainsKey(errorLine))
+                    standardError.Remove(errorLine);
+                standardError.Add(errorLine, msg);
+            }
+            catch (ArgumentException) { }
+        }
+
+        protected void NoError()
+        {
+            errorLine = null;
+            errorMsg = "";
+            srcCode.Range.ClearStyle(yellowWavy);
+            srcCode.Range.ClearStyle(redWavy);
+        }
+
         public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username, StudentCodingProgress progress, Action<int, int> updateStats)
         {
             if (filePath.EndsWith(".java"))
@@ -330,6 +437,24 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 return new CppCodeEditor(filePath, task, username, progress, updateStats);
             }
+        }
+
+        private void Invoker(Action action) 
+        {
+            this.Invoke(action);
+        }
+
+        private void inputTimerStarter()
+        {
+            inputTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+            // Start a new timer
+            inputTimer = new System.Threading.Timer(_ =>
+            {
+                output.IsReadLineMode = true;
+                Invoker(() => SendInput(output.ReadLine()));
+                output.IsReadLineMode = true;
+            }, null, 700, Timeout.Infinite);
         }
     }
 }

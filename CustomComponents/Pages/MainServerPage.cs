@@ -31,6 +31,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private TempServerPage serverPage;
         private StudTable userTable;
         private ServerHomePage homePage;
+        private ProgressSubmissionPage progressSubmissionPage;
 
         //network and user connectivity related
         //private readonly MessageType[] ForMainServer = { MessageType.UserProfile };//messages that are meant for this page, or class
@@ -56,11 +57,12 @@ namespace SmartCodeLab.CustomComponents.Pages
             userTable = new StudTable(server.Users);
             serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress);
             homePage = new ServerHomePage();
+            progressSubmissionPage = new ProgressSubmissionPage();
 
             tabPage1.Controls.Add(homePage);
             tabPage2.Controls.Add(serverPage);
             tabPage3.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
-            tabPage4.Controls.Add(new ProgressSubmissionPage());
+            tabPage4.Controls.Add(progressSubmissionPage);
         }
 
         private void codeMonitoringToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,6 +78,10 @@ namespace SmartCodeLab.CustomComponents.Pages
         private void viewUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             container.SelectedIndex = 2;
+        }
+        private void submissionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            container.SelectedIndex = 3;
         }
 
         private void viewUsersToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -129,7 +135,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             UserProfile userProfile = new UserProfile();
             //send the task to the new client
-            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
+            Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.SERVER_TASK).Task(currentTask).Build(), PrefixStyle.Base128);
             await networkStream.FlushAsync();
             while (true)
             {
@@ -149,53 +155,59 @@ namespace SmartCodeLab.CustomComponents.Pages
 
                     switch (obj._messageType)
                     {
-                        case MessageType.ServerTaskRequest:
+                        case MessageType.SERVER_TASK_REQUEST:
                             Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                new ServerMessage.Builder(MessageType.ServerTask).Task(currentTask).Build(), PrefixStyle.Base128);
+                                new ServerMessage.Builder(MessageType.SERVER_TASK).Task(currentTask).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
                             break;
-                        case MessageType.UserProfile:
+                        case MessageType.USER_PROFILE:
                             if (obj._userProfile == null)
                                 break;
-                            UserProfile profile = obj._userProfile;
+                            //the obj._userProfile only contains userId/studentId
+                            userProfile = obj._userProfile;
                             bool didLogIn = false;
                             string errorMsg = "We can't find an account with that Student ID";
-                            if (userTable.ContainsUser(profile._studentId))
+                            if (userTable.ContainsUser(userProfile._studentId))
                             {
-                                UserProfile actualProfile = userTable.GetUserProfile(profile._studentId);
-                                if (currentStudents.Contains(profile._studentName))
+                                //will retrieve the full student profile from the table using studentId
+                                userProfile = userTable.GetUserProfile(userProfile._studentId);
+                                if (currentStudents.Contains(userProfile._studentName))
                                     errorMsg = "This student is already logged in";
                                 else
                                 {
-                                    if (!userProgress.ContainsKey(profile._studentId))
-                                        userProgress.Add(profile._studentId, new StudentCodingProgress());
+                                    if (!userProgress.ContainsKey(userProfile._studentId))
+                                    {
+                                        userProgress.Add(userProfile._studentId, new StudentCodingProgress());
+                                    }
 
-                                    //serverPage.AddNewUser(networkStream, actualProfile);
-                                    currentStudents.Add(profile._studentName);
+                                    currentStudents.Add(userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                        new ServerMessage.Builder(MessageType.LogInSuccessful).
+                                        new ServerMessage.Builder(MessageType.LOG_IN_SUCCESSFUL).
                                         Task(currentTask).
-                                        UserProfile(actualProfile).
-                                        StudentProgress(userProgress[actualProfile._studentId]).
+                                        UserProfile(userProfile).
+                                        StudentProgress(userProgress[userProfile._studentId]).
                                         Build(), PrefixStyle.Base128);
                                     didLogIn = true;
-                                    userProfile = profile;
                                     serverPage.StudentLoggedIn(userProfile);
-                                    HandleUserStream(networkStream, profile, true);
-                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, actualProfile._studentName));
-
+                                    HandleUserStream(networkStream, userProfile, true);
+                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, userProfile._studentName));
+                                    await homePage.UpdateActiveStudentsCount(NotificationType.LoggedIn);
                                 }
                             }
                             if (!didLogIn)
                                 Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
-                                    new ServerMessage.Builder(MessageType.LogInFailed).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
+                                    new ServerMessage.Builder(MessageType.LOG_IN_FAILED).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
                             break;
-                        case MessageType.StudentProgress:
+                        case MessageType.STUDENT_PROGRESS:
                             UpdateUserProgress(userProfile._studentId, obj._progress);
-                            serverPage.UpdateStudentProgressDisplay(userProfile,obj._progress);
+                            serverPage.UpdateStudentProgressDisplay(userProfile, obj._progress);
                             break;
-                        case MessageType.Notification:
+                        case MessageType.CODE_SUBMISSION:
+                            obj.submittedCode.user = userProfile;
+                            progressSubmissionPage.StudentSubmitted(obj.submittedCode);
+                            break;
+                        case MessageType.NOTIFICATION:
                             homePage.NewNotification(obj.notification);
                             break;
                         default:
@@ -209,7 +221,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("The error : " + ex.StackTrace);
                 }
             }
             HandleUserStream(networkStream, userProfile, false);
@@ -217,7 +229,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void UpdateUserProgress(string studentId, StudentCodingProgress progress)
         {
-            if(!userProgress.ContainsKey(studentId))
+            if (!userProgress.ContainsKey(studentId))
                 userProgress.Add(studentId, progress);
             userProgress[studentId] = progress;
 
@@ -228,7 +240,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             return userProgress[studentId];
         }
 
-        private void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd)
+        private async void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd)
         {
             if (isAdd)
                 connectedUsers.Add(networkStream, profile._studentId);
@@ -236,6 +248,8 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 connectedUsers.Remove(networkStream);
                 currentStudents.Remove(profile._studentName);
+                homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
+                await homePage.UpdateActiveStudentsCount(NotificationType.LoggedOut);
             }
         }
 
@@ -246,7 +260,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 foreach (var item in connectedUsers)
                 {
-                    Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Key, new ServerMessage.Builder(MessageType.TaskUpdate).Task(task).Build(), PrefixStyle.Base128);
+                    Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Key, new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), PrefixStyle.Base128);
                     await item.Key.FlushAsync();
                 }
             });

@@ -35,26 +35,8 @@ namespace SmartCodeLab.CustomComponents
             customCard3.Click += (s, e) => {
                 if (customCard3.BackColor == Color.White)
                 {
-                    _ = FocusStatus(true);
+                    //_ = FocusStatus(true);
                     setSelectedUserId?.Invoke(this.profile);
-                    customCard3.BackColor = Color.Bisque;
-                }
-            };
-        }
-
-        public UserIcons(UserProfile profile, ServerMemberContainer container, NetworkStream stream, Action<string,string> action)
-        {
-            InitializeComponent();
-            username.Text = profile._studentName;
-            customCard3.BackColor = Color.White;
-            this.Visible = true;
-            this.stream = stream;
-            customCard3.Click += (s, e) => {
-                if (customCard3.BackColor == Color.White)
-                {
-                    container.ChangeSelected(this);
-                    _ = FocusStatus(true);
-                    action?.Invoke(profile._studentName, profile._computerAddress);
                     customCard3.BackColor = Color.Bisque;
                 }
             };
@@ -63,16 +45,16 @@ namespace SmartCodeLab.CustomComponents
         public void LostFocusDisplay()
         {
             this.Invoke((Action)(() => customCard3.BackColor = Color.White));
-            _ = FocusStatus(false);
+            //_ = FocusStatus(false);
         }
 
-        private async Task FocusStatus(bool isFocused)
-        {
-            if (stream != null)
-            {
-                Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, new ServerMessage.Builder(MessageType.IsEyesOnMe).Focused(isFocused).Build(), PrefixStyle.Base128);
-                await stream.FlushAsync();
-            }
-        }
+        //private async Task FocusStatus(bool isFocused)
+        //{
+        //    if (stream != null)
+        //    {
+        //        Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, new ServerMessage.Builder(MessageType.IsEyesOnMe).Focused(isFocused).Build(), PrefixStyle.Base128);
+        //        await stream.FlushAsync();
+        //    }
+        //}
     }
 }

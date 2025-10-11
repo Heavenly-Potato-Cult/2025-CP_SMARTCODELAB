@@ -28,10 +28,10 @@ namespace SmartCodeLab.Models
         public string? _errorMessage { get; set; }
 
         [ProtoMember(6)]
-        public bool? isFocused { get; set; }
+        public Notification notification { get; set; }
 
         [ProtoMember(7)]
-        public Notification notification { get; set; }
+        public SubmittedCode submittedCode { get; set; }
         public ServerMessage()
         {
         }
@@ -42,22 +42,16 @@ namespace SmartCodeLab.Models
 
             private readonly List<MessageType> messageTypesRequiringContent = new List<MessageType>
             {
-                Enums.MessageType.ServerTask,
-                Enums.MessageType.StudentProgress,
-                Enums.MessageType.LogInSuccessful,
-                Enums.MessageType.UserProfile,
-                Enums.MessageType.IsEyesOnMe
+                Enums.MessageType.SERVER_TASK,
+                Enums.MessageType.STUDENT_PROGRESS,
+                Enums.MessageType.LOG_IN_SUCCESSFUL,
+                Enums.MessageType.USER_PROFILE,
+                Enums.MessageType.CODE_SUBMISSION
             };
 
             public Builder(MessageType messageType)
             {
                 msg._messageType = messageType;
-            }
-
-            public Builder MessageType(MessageType messageType)
-            {
-                msg._messageType = messageType;
-                return this;
             }
 
             public Builder ErrorMessage(string errorMessage)
@@ -84,26 +78,22 @@ namespace SmartCodeLab.Models
                 return this;
             }
 
-            public Builder Focused(bool isFocused)
-            {
-                msg.isFocused = isFocused;
-                return this;
-            }
-
             public Builder Notification(Notification notification)
             {
                 msg.notification = notification;
                 return this;
             }
 
+            public Builder SubmittedCode(SubmittedCode submittedCode)
+            {
+                msg.submittedCode = submittedCode;
+                return this;
+            }
+
             public ServerMessage Build()
             {
-                // Validation can be added here
-                if (msg._messageType == null)
-                    throw new InvalidOperationException("Message Type is required");
-
                 bool isContentRequired = messageTypesRequiringContent.Contains(msg._messageType.Value);
-                bool hasContent = msg._task != null || msg._progress != null || msg._userProfile != null || msg.isFocused != null;
+                bool hasContent = msg._task != null || msg._progress != null || msg._userProfile != null || msg.submittedCode != null;
                 if (!hasContent && isContentRequired)
                     throw new InvalidOperationException("Message Content is required");
 

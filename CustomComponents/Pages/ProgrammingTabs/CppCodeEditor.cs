@@ -30,13 +30,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             base.RunTest();
         }
 
-        protected override void SendInput(string input)
-        {
-            if (process != null && !process.HasExited)
-            {
-                process.StandardInput.Write(input + Environment.NewLine);
-                process.StandardInput.Flush();
-            }
-        }
+        //protected override void SendInput(string input)
+        //{
+        //    if (process != null && !process.HasExited)
+        //    {
+        //        process.StandardInput.Write(input + Environment.NewLine);
+        //        process.StandardInput.Flush();
+        //    }
+        //}
     }
 }

@@ -431,6 +431,7 @@
             smartButton2.Text = " Submit";
             smartButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton2.UseVisualStyleBackColor = false;
+            smartButton2.Click += smartButton2_Click;
             // 
             // panel2
             // 

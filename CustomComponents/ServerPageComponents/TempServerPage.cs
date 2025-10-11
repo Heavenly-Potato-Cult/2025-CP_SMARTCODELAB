@@ -35,31 +35,32 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private string selectedStudentId = string.Empty;
 
         private Func<string, StudentCodingProgress> progressRetriever;
-        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string,StudentCodingProgress> progressRetriever)
+        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string, StudentCodingProgress> progressRetriever)
         {
             InitializeComponent();
             currentTask = task;
             this.progressRetriever = progressRetriever;
-            this.Load += (s, e) =>
+
+            //will ensure that the handle is created before accessing the UI thread
+            var obj = this.Handle;
+            Task.Run(() =>
             {
-                Task.Run(() =>
+                foreach (var item in users.Values)
                 {
-                    foreach (var item in users.Values)
-                    {
-                        AddStudent(item);
-                    }
-                });
-            };
+                    AddStudent(item);
+                }
+            });
         }
 
         public void AddStudent(UserProfile profile)
         {
-            this.Invoke((Action)(() => 
+            this.Invoke((Action)(() =>
             {
                 //this will be used to view who are the students who are yet to log in or inactive(left the lobby), already logged in, and submitted
                 profile._computerAddress = "";
                 userIcons.Add(profile._studentId, new UserIcons(profile, NewUserSelected));
                 iconsContainer.Controls.Add(userIcons[profile._studentId]);
+                Debug.WriteLine(profile._studentId);
             }));
         }
 

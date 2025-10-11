@@ -60,7 +60,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                     while (true)
                     {
                         var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(_stream, PrefixStyle.Base128);
-                        if (msg._messageType == MessageType.LogInSuccessful)
+                        if (msg._messageType == MessageType.LOG_IN_SUCCESSFUL)
                         {
                             serverTask = msg._task;
                             _userName = msg._userProfile._studentName;
@@ -68,7 +68,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                             this.DialogResult = DialogResult.OK;
                             break;
                         }
-                        else if (msg._messageType == MessageType.LogInFailed)
+                        else if (msg._messageType == MessageType.LOG_IN_FAILED)
                         {
                             Invoke((Action)(() => MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)));
                             break;
@@ -83,7 +83,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             await Task.Run(() =>
             {
                 Serializer.SerializeWithLengthPrefix<ServerMessage>(_stream,
-                    new ServerMessage.Builder(MessageType.UserProfile).UserProfile(new UserProfile(userName.Texts)).Build(),
+                    new ServerMessage.Builder(MessageType.USER_PROFILE).UserProfile(new UserProfile(userName.Texts)).Build(),
                     PrefixStyle.Base128);
             });
             await _stream.FlushAsync();
