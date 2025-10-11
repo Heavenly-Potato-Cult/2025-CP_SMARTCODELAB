@@ -110,8 +110,9 @@ namespace SmartCodeLab
 
         private void btnSideMenu_Shutdown_Click(object sender, EventArgs e)
         {
-            Application.OpenForms["StudentIDEform"].Show();
-            this.Close();
+            InstructorSide instructorSide = new InstructorSide();
+            instructorSide.Show();
+            
         }
 
         private void button3_Click(object sender, EventArgs e)

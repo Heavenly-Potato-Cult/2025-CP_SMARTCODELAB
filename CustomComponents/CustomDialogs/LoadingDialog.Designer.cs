@@ -21,10 +21,13 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoadingDialog));
             label1 = new Label();
             loader = new Label();
             smartButton1 = new SmartButton();
             serverContainer = new FlowLayoutPanel();
+            picturebox_loadingGIF = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picturebox_loadingGIF).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -72,11 +75,22 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             serverContainer.TabIndex = 3;
             serverContainer.WrapContents = false;
             // 
+            // picturebox_loadingGIF
+            // 
+            picturebox_loadingGIF.BackColor = Color.Silver;
+            picturebox_loadingGIF.Image = (Image)resources.GetObject("picturebox_loadingGIF.Image");
+            picturebox_loadingGIF.Location = new Point(273, 31);
+            picturebox_loadingGIF.Name = "picturebox_loadingGIF";
+            picturebox_loadingGIF.Size = new Size(145, 122);
+            picturebox_loadingGIF.TabIndex = 5;
+            picturebox_loadingGIF.TabStop = false;
+            // 
             // LoadingDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(325, 465);
+            ClientSize = new Size(460, 465);
+            Controls.Add(picturebox_loadingGIF);
             Controls.Add(serverContainer);
             Controls.Add(smartButton1);
             Controls.Add(loader);
@@ -84,6 +98,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             Name = "LoadingDialog";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Current Loading Dialog";
+            ((System.ComponentModel.ISupportInitialize)picturebox_loadingGIF).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -94,5 +109,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         private Label loader;
         private SmartButton smartButton1;
         private FlowLayoutPanel serverContainer;
+        private PictureBox picturebox_loadingGIF;
     }
 }

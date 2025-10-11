@@ -31,6 +31,22 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             isCancelled = false;
             this.client = client;
             this.Load += (s, e) => LookForServers();
+
+
+            picturebox_loadingGIF.Visible = true;
+        }
+
+        private void UpdateLoadingVisibility()
+        {
+            bool noServersFound = serverContainer.Controls.Count == 0;
+            if (noServersFound)
+            {
+                picturebox_loadingGIF.Visible = true;
+                return;
+            }
+
+            picturebox_loadingGIF.Visible = false;
+
         }
 
         private void LookForServers()
@@ -72,6 +88,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                             {
                                 senders.Add(result.RemoteEndPoint);
                                 this.Invoke((Action)(() => serverContainer.Controls.Add(new ServerPageIcon(task,result.RemoteEndPoint, ConnectClient))));
+
+                                UpdateLoadingVisibility();
                             }
                         }
                     }
@@ -118,6 +136,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             isCancelled = true;
             senders.Clear();
+            picturebox_loadingGIF.Visible = true;
             Close();
         }
     }
