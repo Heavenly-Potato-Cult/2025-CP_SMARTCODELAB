@@ -38,7 +38,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             {
                 udpClient.EnableBroadcast = true;
 
-                IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Parse(NetworkServices.GetBroadCastAddress()), 1902);
+                IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Broadcast, 1902);
 
                 //sender
                 Task.Run(async () =>
@@ -49,8 +49,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                         {
                             byte[] message = Encoding.UTF8.GetBytes("Discover servers!");
                             await udpClient.SendAsync(message, message.Length, broadcastEP);
+                            Thread.Sleep(499);
                         }
-                        Thread.Sleep(499);
                     }
                     catch (InvalidOperationException e)
                     {

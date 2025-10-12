@@ -14,11 +14,10 @@ namespace SmartCodeLab.Models
         {
         }
 
-        public SubmittedCode(string sourceCode, UserProfile user, int placement)
+        public SubmittedCode(string sourceCode, UserProfile user)
         {
             this.sourceCode = sourceCode;
             this.user = user;
-            this.placement = placement;
         }
 
         public SubmittedCode(string sourceCode)
@@ -31,13 +30,5 @@ namespace SmartCodeLab.Models
 
         [ProtoMember(2)]
         public UserProfile user {  get; set; }
-
-        [ProtoMember(3)]
-        public int placement { get; set; }
-
-        public void IncreasePlacement() 
-        {
-            placement--;
-        }
     }
 }

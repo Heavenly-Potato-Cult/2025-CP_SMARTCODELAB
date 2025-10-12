@@ -18,6 +18,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int currentPlacement { get; set; }
+
         public StudentSubmittedIcon(SubmittedCode submittedCode, int placement)
         {
             InitializeComponent();
@@ -27,15 +28,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             name.Text = submittedCode.user._studentName;
         }
 
-        public void UpdatePlacement(int newPlacement)
+        public void UpdatePlacement(int newPlacement, string newSourceCode)
         {
-            submittedCode.placement = newPlacement;
             currentPlacement = newPlacement;
+            placing.Text = newPlacement.ToString();
+            submittedCode.sourceCode = newSourceCode;
         }
 
         public void IncreasePlacement() 
         {
-            this.Invoke((Action)(() => submittedCode.IncreasePlacement() ));
+            this.Invoke((Action)(() => { 
+                currentPlacement--;
+                placing.Text = currentPlacement.ToString();
+            } ));
         }
     }
 }

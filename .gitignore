@@ -9,3 +9,4 @@ obj/
 
 # Other cache
 *.log
+build command.txt
