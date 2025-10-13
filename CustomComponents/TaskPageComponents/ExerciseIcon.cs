@@ -27,11 +27,11 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
 
 
             taskName.Click += GotFocus;
-            subject.Click += GotFocus;
+            //subject.Click += GotFocus;
             this.Click += GotFocus;
 
             taskName.Text = task._taskName;
-            subject.Text = task.subject;
+            //subject.Text = task.subject;
         }
 
         private new void GotFocus(object sender, EventArgs e)
@@ -48,15 +48,21 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
 
         public void UpdateDisplay()
         {
-            this.Invoke((Action)(() => {
+            this.Invoke((Action)(() =>
+            {
                 taskName.Text = task._taskName;
-                subject.Text = task.subject;
+                //subject.Text = task.subject;
             }));
         }
 
         public new void LostFocus()
         {
             this.Invoke(new Action(() => this.BackColor = Color.White));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

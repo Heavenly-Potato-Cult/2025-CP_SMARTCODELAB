@@ -22,6 +22,9 @@
 	<None Include="$(RootDir)SmartCodeLabActivities\**" LinkBase="smartcodelabactivities">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
+	<None Include="$(RootDir)Tasks\**" LinkBase="tasks">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
   </ItemGroup>
 
 </Project>

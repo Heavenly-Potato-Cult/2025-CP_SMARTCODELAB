@@ -71,8 +71,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                                 if (msg == null)
                                     break;
 
-                                Invoke(() => MessageBox.Show("Received a result"));
-
                                 if (msg._messageType == MessageType.LOG_IN_SUCCESSFUL)
                                 {
                                     serverTask = msg._task;

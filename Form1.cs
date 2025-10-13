@@ -57,7 +57,6 @@ namespace SmartCodeLab
                 if (openFile.ShowDialog() == DialogResult.OK)
                 {
                     string selectedFilePath = openFile.FileName;
-                    MessageBox.Show("You selected: " + selectedFilePath);
                 }
             }
         }

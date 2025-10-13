@@ -277,7 +277,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             if (exceptionMsg.Contains(':'))
                                 exceptionMsg = exceptionID[exceptionID.Length - 1].Split(':')[0]; //usually formatted as {exceptionObj}: {user message}
 
-
                             notifAction?.Invoke(NotificationType.ExceptionThrown, exceptionMsg);
                         }
                     }

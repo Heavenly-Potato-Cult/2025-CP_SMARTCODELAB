@@ -32,7 +32,27 @@ namespace SmartCodeLab
             tabControl1.ItemSize = new Size(0, 1);
             SystemSingleton.Instance.page1 = tabPage1;
         }
+        //public void OpenNetshAsAdmin(string command)
+        //{
+        //    ProcessStartInfo startInfo = new ProcessStartInfo
+        //    {
+        //        FileName = "netsh",
+        //        Arguments = command,
+        //        Verb = "runas", // This requests admin privileges
+        //        UseShellExecute = true,
+        //        WindowStyle = ProcessWindowStyle.Normal
+        //    };
 
+        //    try
+        //    {
+        //        Process.Start(startInfo);
+        //    }
+        //    catch (System.ComponentModel.Win32Exception ex)
+        //    {
+        //        // User cancelled the UAC prompt
+        //        Console.WriteLine("Admin privileges required: " + ex.Message);
+        //    }
+        //}
         private void btnMenu2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 0;

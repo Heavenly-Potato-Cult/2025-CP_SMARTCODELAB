@@ -87,7 +87,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                             if (!senders.Contains(result.RemoteEndPoint))
                             {
                                 senders.Add(result.RemoteEndPoint);
-                                this.Invoke((Action)(() => serverContainer.Controls.Add(new ServerPageIcon(task,result.RemoteEndPoint, ConnectClient))));
+                                this.Invoke((Action)(() => serverContainer.Controls.Add(new ServerPageIcon(task, result.RemoteEndPoint, ConnectClient))));
 
                                 UpdateLoadingVisibility();
                             }
@@ -129,7 +129,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             catch (SocketException e)
             {
                 Debug.WriteLine(e.Message);
-            }catch (InvalidOperationException) { }
+            }
+            catch (InvalidOperationException) { }
         }
 
         public void CloseMe()

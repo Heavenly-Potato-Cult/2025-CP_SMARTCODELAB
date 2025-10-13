@@ -28,48 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            subject = new Label();
             taskName = new Label();
+            button1 = new Button();
             SuspendLayout();
-            // 
-            // subject
-            // 
-            subject.AutoSize = true;
-            subject.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            subject.ForeColor = Color.Gray;
-            subject.Location = new Point(32, 46);
-            subject.Name = "subject";
-            subject.Size = new Size(252, 25);
-            subject.TabIndex = 20;
-            subject.Text = "Data Structures and Algorithm";
             // 
             // taskName
             // 
             taskName.AutoSize = true;
             taskName.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             taskName.ForeColor = Color.FromArgb(13, 13, 13);
-            taskName.Location = new Point(32, 15);
+            taskName.Location = new Point(3, 10);
             taskName.Name = "taskName";
             taskName.Size = new Size(155, 31);
             taskName.TabIndex = 19;
             taskName.Text = "Array Sorting";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(335, 10);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 20;
+            button1.Text = "Delete";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // ExerciseIcon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(subject);
+            Controls.Add(button1);
             Controls.Add(taskName);
             Name = "ExerciseIcon";
-            Size = new Size(432, 86);
+            Size = new Size(432, 48);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label subject;
         private Label taskName;
+        private Button button1;
     }
 }

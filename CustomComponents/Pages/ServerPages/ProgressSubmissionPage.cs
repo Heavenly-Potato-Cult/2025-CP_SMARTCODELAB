@@ -48,9 +48,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 {
                     submittedCount++;
                     codeSubmission.Add(submitted.user._studentId, new StudentSubmittedIcon(submitted, submittedCount));
-                    this.Invoke((Action)(() => submittedContainer.Controls.Add(codeSubmission[submitted.user._studentId]) ));
+                    this.Invoke((Action)(() => { 
+                        submittedContainer.Controls.Add(codeSubmission[submitted.user._studentId]);
+                        submitCount.Text = (int.Parse(submitCount.Text) + 1).ToString();
+                    }
+                    ));
                 }
             });
+        }
+
+        private void submitCount_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

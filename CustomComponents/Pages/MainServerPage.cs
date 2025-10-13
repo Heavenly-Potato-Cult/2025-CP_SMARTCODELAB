@@ -164,7 +164,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                         case MessageType.USER_PROFILE:
                             if (obj._userProfile == null)
                                 break;
-                            MessageBox.Show("Received profile");
                             //the obj._userProfile only contains userId/studentId
                             userProfile = obj._userProfile;
                             didLoggedIn = false;
@@ -200,7 +199,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                                 Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                     new ServerMessage.Builder(MessageType.LOG_IN_FAILED).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
-                            MessageBox.Show("Sent logging in result");
                             break;
                         case MessageType.STUDENT_PROGRESS:
                             UpdateUserProgress(userProfile._studentId, obj._progress);
@@ -209,6 +207,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                         case MessageType.CODE_SUBMISSION:
                             obj.submittedCode.user = userProfile;
                             progressSubmissionPage.StudentSubmitted(obj.submittedCode);
+                            homePage.NewNotification(new Notification(NotificationType.Submitted, userProfile._studentName,""));
                             break;
                         case MessageType.NOTIFICATION:
                             homePage.NewNotification(obj.notification);

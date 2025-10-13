@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+﻿using Microsoft.VisualBasic;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
@@ -23,86 +24,24 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private string btnStatus = "Edit";
         private string folderPath = "";
 
+        private TaskModel selectedTaskModel;
+
         private readonly Dictionary<string, string> languageExtension = new Dictionary<string, string>()
         {
             {"Cpp","Cpp file(.cpp)|*.cpp" },
             {"Java",".Java file(.java)|*.java" },
             {"Python","Python file(.py)|*.py" }
         };
-        private Action<ExerciseIcon> changeSelected;
-        private ExerciseIcon selectedIcon;
         public TempExerciseManage()
         {
             InitializeComponent();
-            changeSelected = (exercise) =>
-            {
-                selectedIcon?.LostFocus();
-                selectedIcon = exercise;
-            };
-        }
-
-        private void TempExerciseManage_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void smartButton1_Click(object sender, EventArgs e)
-        {
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Title = "Save New Task File";
-                saveFileDialog.Filter = "Task Files (*.task)|*.task|All Files (*.*)|*.*";
-                saveFileDialog.AddExtension = true;
-                saveFileDialog.DefaultExt = "task";
-                saveFileDialog.FileName = "new_task";
-                saveFileDialog.InitialDirectory = @folderPath;
-                saveFileDialog.FileName = ""; // suggest default name
-                saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // The user selected a folder and file name
-                    string path = saveFileDialog.FileName;
-                    JsonFileService.SaveToFile(new TaskModel(Path.GetFileNameWithoutExtension(path)), path);
-                    folderPath = Path.GetDirectoryName(path);
-                    OpenTasksFolder(path);
-                }
-            }
-        }
-
-        private void smartButton5_Click(object sender, EventArgs e)
-        {
-            //AddNewTestCase addNewTestCase = new AddNewTestCase();
-            //addNewTestCase.ShowDialog();
-        }
-
-        private void btn_UploadFileReference_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.ShowDialog();
+            folderPath = SystemConfigurations.TASK_FOLDER;
+            fileView.Nodes.Add(new TreeNodeObj(folderPath, null, FillFields));
         }
 
         private void btn_EditExerciseDetails_Click(object sender, EventArgs e)
         {
             SaveEditBtn(btnStatus == "Edit");
-            //if (btnStatus == "Edit")
-            //{
-            //    exerciseName.Enabled = true;
-            //    subject.Enabled = true;
-            //    instruction.Enabled = true;
-            //    btn_EditExerciseDetails.Text = "Save";
-            //    btnStatus = "Save";
-
-            //}
-            //else if(btnStatus == "Save")
-            //{
-            //    exerciseName.Enabled = false;
-            //    subject.Enabled = false;
-            //    instruction.Enabled = false;
-            //    btn_EditExerciseDetails.Text = "Edit";
-            //    btnStatus = "Edit";
-            //    SaveTask();
-            //}
         }
 
         private void SaveEditBtn(bool isEditing)
@@ -119,29 +58,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
-        private void OpenTasksFolder(string addedFile = "")
-        {
-            taskContainer.Controls.Clear();
-            foreach (string file in Directory.GetFiles(folderPath))
-            {
-                if (file.EndsWith(".task"))
-                {
-                    TaskModel task = JsonFileService.LoadFromFile<TaskModel>(file);
-                    if (task != null)
-                    {
-                        task.filePath = file;
-                        var icon = new ExerciseIcon(task, changeSelected, FillFields);
-                        taskContainer.Controls.Add(icon);
-                        if (file == addedFile)
-                            icon.ClickMe();
-                    }
-                }
-            }
-        }
-
         private void SaveTask()
         {
-            TaskModel task = selectedIcon.task;
+            TaskModel task = selectedTaskModel;
             task._taskName = exerciseName.Texts;
             task.subject = subject.Texts;
             task._instructions = instruction.Texts;
@@ -149,21 +68,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             task._testCases = TestCases();
             JsonFileService.SaveToFile<TaskModel>(task, task.filePath);
             MessageBox.Show("Task Saved Successfully");
-            selectedIcon.UpdateDisplay();
-        }
-
-        private void smartButton3_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                folderPath = dialog.SelectedPath;
-                OpenTasksFolder();
-            }
         }
 
         private void FillFields(TaskModel task)
         {
+            selectedTaskModel = task;
             this.Invoke((Action)(() =>
             {
                 exerciseName.Texts = task._taskName;
@@ -177,7 +86,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void smartButton1_Click_1(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = languageExtension[language.SelectedItem.ToString()];
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show(openFileDialog.FileName);
@@ -190,9 +98,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             this.Invoke(new Action(() => testContainer.Controls.Add(new TestCase())));
         }
 
-        private Dictionary<string,string> TestCases()
+        private Dictionary<string, string> TestCases()
         {
-            Dictionary<string,string> ActivityTestCases = new Dictionary<string,string>();
+            Dictionary<string, string> ActivityTestCases = new Dictionary<string, string>();
 
             foreach (TestCase testCase in testContainer.Controls.OfType<TestCase>())
             {
@@ -209,10 +117,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             return ActivityTestCases;
         }
 
-        private void SetTestCases(Dictionary<string,string> TestCases)
+        private void SetTestCases(Dictionary<string, string> TestCases)
         {
-            Task.Run(() => {
-                this.Invoke((Action)(() => {
+            Task.Run(() =>
+            {
+                this.Invoke((Action)(() =>
+                {
                     testContainer.Controls.Clear();
 
                     if (TestCases == null || TestCases.Count == 0)
@@ -222,6 +132,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         testContainer.Controls.Add(new TestCase(kv));
                 }));
             });
+        }
+
+        private void fileView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            ((TreeNodeObj)e.Node).SimulateClicked(e);
         }
     }
 }
