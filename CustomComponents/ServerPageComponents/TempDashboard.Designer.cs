@@ -948,9 +948,9 @@
             label32.Location = new Point(75, 175);
             label32.Name = "label32";
             label32.Padding = new Padding(0, 2, 0, 0);
-            label32.Size = new Size(142, 30);
+            label32.Size = new Size(186, 30);
             label32.TabIndex = 26;
-            label32.Text = "View Analytics";
+            label32.Text = "Broadcast Message";
             label32.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label31
@@ -961,9 +961,9 @@
             label31.Location = new Point(75, 120);
             label31.Name = "label31";
             label31.Padding = new Padding(0, 2, 0, 0);
-            label31.Size = new Size(139, 30);
+            label31.Size = new Size(127, 30);
             label31.TabIndex = 24;
-            label31.Text = "Add Test Case";
+            label31.Text = "Add Exercise";
             label31.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label30
@@ -987,9 +987,9 @@
             label28.Location = new Point(75, 10);
             label28.Name = "label28";
             label28.Padding = new Padding(0, 2, 0, 0);
-            label28.Size = new Size(192, 30);
+            label28.Size = new Size(121, 30);
             label28.TabIndex = 13;
-            label28.Text = "Create New Session";
+            label28.Text = "End Session";
             label28.TextAlign = ContentAlignment.BottomCenter;
             // 
             // panel3

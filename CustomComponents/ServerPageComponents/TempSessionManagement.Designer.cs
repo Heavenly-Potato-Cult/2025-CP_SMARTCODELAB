@@ -306,7 +306,7 @@
             label7.Name = "label7";
             label7.Size = new Size(308, 25);
             label7.TabIndex = 27;
-            label7.Text = "Languange";
+            label7.Text = "Class Selection";
             // 
             // customComboBox1
             // 

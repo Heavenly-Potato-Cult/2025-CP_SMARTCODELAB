@@ -15,46 +15,29 @@ namespace SmartCodeLab
         public InstructorSide()
         {
             InitializeComponent();
+            panel_SubMenu_ActiveSession.Visible = false;
+            panel_SubMenu_Management.Visible = false;
+            btn_SideMenu_ActiveSession.Visible = false;
         }
 
 
-
-        private void smartButton8_Click(object sender, EventArgs e)
+        private void ToggleSubMenu(Panel panel)
         {
-
+            panel.Visible = !panel.Visible;
         }
 
-        private void smartButton9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void smartButton10_Click(object sender, EventArgs e)
-        {
 
 
-        }
-
-        private void smartButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void smartButton2_Click(object sender, EventArgs e)
-        {
 
 
-        }
 
-        private void panel_sideMenu_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
 
-        private void InstructorSide_Load(object sender, EventArgs e)
-        {
 
-        }
+
+
+
+
 
         private void smartButton13_Click(object sender, EventArgs e)
         {
@@ -73,14 +56,58 @@ namespace SmartCodeLab
             this.WindowState = FormWindowState.Normal;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+
+
+
+        private void btn_SideMenu_ActiveSession_Click(object sender, EventArgs e)
         {
+            ToggleSubMenu(panel_SubMenu_ActiveSession);
+        }
+
+        private void btn_SideMenu_Management_Click(object sender, EventArgs e)
+        {
+            ToggleSubMenu(panel_SubMenu_Management);
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
+        {
+            btn_SideMenu_ActiveSession.Visible = !btn_SideMenu_ActiveSession.Visible;
+
+        }
+
+        private void btn_SideMenu_SessionSetup_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 0;
+        }
+
+        private void btn_SubMenu_Dashboard_Click(object sender, EventArgs e)
         {
 
+            smthTabControl_Main.SelectedIndex = 1;
+        }
+
+        private void btn_SubMenu_StudentMonitoring_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 2;
+
+        }
+
+        private void btn_SubMenu_ExerciseManagement_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 4;
+
+        }
+
+        private void btn_SideMenu_SubmissionReview_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 5;
+
+        }
+
+        private void btn_SideMenu_Settings_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 6;
         }
     }
 }
