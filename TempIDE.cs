@@ -12,6 +12,8 @@ namespace SmartCodeLab
 {
     public partial class TempIDE : Form
     {
+        private bool isResizingTabs = false;
+
         public TempIDE()
         {
             InitializeComponent();
@@ -30,14 +32,29 @@ namespace SmartCodeLab
 
         private void ResizeTabs()
         {
-            if (tabControl_RightSide.TabPages.Count == 0) return;
+            if (isResizingTabs) { return; } // Prevent recursion
 
-            int tabCount = tabControl_RightSide.TabPages.Count;
+            if (tabControl_RightSide.TabPages.Count == 0) { return; }
+
             int totalWidth = tabControl_RightSide.ClientSize.Width;
-            int tabWidth = totalWidth / tabCount;
+            if (totalWidth <= 0) { return; }
 
-            tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-            tabControl_RightSide.ItemSize = new Size(tabWidth, 30); // 30 = tab height
+
+            isResizingTabs = true;
+
+
+            try
+            {
+                int tabCount = tabControl_RightSide.TabPages.Count;
+                int tabWidth = totalWidth / tabCount;
+
+                tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
+                tabControl_RightSide.ItemSize = new Size(tabWidth, 30); // 30 = tab height
+            }
+            finally
+            {
+                isResizingTabs = false;
+            }
         }
 
         private void tabControl_RightSide_Resize(object sender, EventArgs e)
