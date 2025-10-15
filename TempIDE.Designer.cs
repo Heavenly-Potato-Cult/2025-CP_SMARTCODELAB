@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempIDE));
             headerPanel = new Panel();
+            pictureBox4 = new PictureBox();
             pictureBox8 = new PictureBox();
+            pictureBox3 = new PictureBox();
             label14 = new Label();
             label13 = new Label();
             pictureBox1 = new PictureBox();
@@ -41,27 +43,15 @@
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel1 = new Panel();
-            smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            btn_OpenFolder = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel4 = new Panel();
-            splitContainer1 = new SplitContainer();
-            button1 = new Button();
-            panel_test = new Panel();
-            panel7 = new Panel();
-            panel6 = new Panel();
-            panel5 = new Panel();
-            pictureBox4 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            label3 = new Label();
-            pictureBox2 = new PictureBox();
-            panel3 = new Panel();
+            panel_LeftSide_Directory = new Panel();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
-            panel14 = new Panel();
-            panel8 = new Panel();
             tabControl_RightSide = new TabControl();
             BroadcastsTab = new TabPage();
             MessagesTab = new TabPage();
@@ -84,22 +74,19 @@
             panel16 = new Panel();
             pictureBox6 = new PictureBox();
             label17 = new Label();
-            panel12 = new Panel();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            panel_LeftSide_Main = new Panel();
+            panel_LeftSide_Buttons = new Panel();
+            tabControl2 = new TabControl();
+            tabPage4 = new TabPage();
+            tabPage5 = new TabPage();
             headerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.Panel2.SuspendLayout();
-            splitContainer1.SuspendLayout();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel3.SuspendLayout();
             tabControl1.SuspendLayout();
-            panel8.SuspendLayout();
             tabControl_RightSide.SuspendLayout();
             ActivityTab.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -112,12 +99,18 @@
             panel_TestCases.SuspendLayout();
             panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            tableLayoutPanel2.SuspendLayout();
+            panel_LeftSide_Main.SuspendLayout();
+            panel_LeftSide_Buttons.SuspendLayout();
+            tabControl2.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
             // 
             headerPanel.BackColor = Color.White;
+            headerPanel.Controls.Add(pictureBox4);
             headerPanel.Controls.Add(pictureBox8);
+            headerPanel.Controls.Add(pictureBox3);
             headerPanel.Controls.Add(label14);
             headerPanel.Controls.Add(label13);
             headerPanel.Controls.Add(pictureBox1);
@@ -130,6 +123,15 @@
             headerPanel.Size = new Size(1608, 80);
             headerPanel.TabIndex = 2;
             // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(861, 27);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(27, 26);
+            pictureBox4.TabIndex = 16;
+            pictureBox4.TabStop = false;
+            // 
             // pictureBox8
             // 
             pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
@@ -138,6 +140,15 @@
             pictureBox8.Size = new Size(26, 26);
             pictureBox8.TabIndex = 16;
             pictureBox8.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(960, 15);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(26, 26);
+            pictureBox3.TabIndex = 15;
+            pictureBox3.TabStop = false;
             // 
             // label14
             // 
@@ -265,9 +276,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(smartButton6);
             panel1.Controls.Add(smartButton5);
-            panel1.Controls.Add(smartButton4);
             panel1.Controls.Add(smartButton3);
             panel1.Controls.Add(smartButton1);
             panel1.Controls.Add(smartButton2);
@@ -276,26 +285,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1608, 87);
             panel1.TabIndex = 9;
-            // 
-            // smartButton6
-            // 
-            smartButton6.BackColor = Color.DarkOrange;
-            smartButton6.BackgroundColor = Color.DarkOrange;
-            smartButton6.BorderRadius = 10;
-            smartButton6.FlatAppearance.BorderSize = 0;
-            smartButton6.FlatStyle = FlatStyle.Flat;
-            smartButton6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            smartButton6.ForeColor = Color.White;
-            smartButton6.Image = (Image)resources.GetObject("smartButton6.Image");
-            smartButton6.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton6.Location = new Point(1055, 24);
-            smartButton6.Name = "smartButton6";
-            smartButton6.Padding = new Padding(10, 0, 0, 0);
-            smartButton6.Size = new Size(114, 39);
-            smartButton6.TabIndex = 8;
-            smartButton6.Text = " New File";
-            smartButton6.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton6.UseVisualStyleBackColor = false;
             // 
             // smartButton5
             // 
@@ -317,25 +306,45 @@
             smartButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton5.UseVisualStyleBackColor = false;
             // 
-            // smartButton4
+            // smartButton6
             // 
-            smartButton4.BackColor = Color.DarkOrange;
-            smartButton4.BackgroundColor = Color.DarkOrange;
-            smartButton4.BorderRadius = 10;
-            smartButton4.FlatAppearance.BorderSize = 0;
-            smartButton4.FlatStyle = FlatStyle.Flat;
-            smartButton4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            smartButton4.ForeColor = Color.White;
-            smartButton4.Image = (Image)resources.GetObject("smartButton4.Image");
-            smartButton4.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton4.Location = new Point(931, 24);
-            smartButton4.Name = "smartButton4";
-            smartButton4.Padding = new Padding(15, 0, 0, 0);
-            smartButton4.Size = new Size(114, 39);
-            smartButton4.TabIndex = 6;
-            smartButton4.Text = " Open";
-            smartButton4.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton4.UseVisualStyleBackColor = false;
+            smartButton6.BackColor = Color.DarkOrange;
+            smartButton6.BackgroundColor = Color.DarkOrange;
+            smartButton6.BorderRadius = 10;
+            smartButton6.FlatAppearance.BorderSize = 0;
+            smartButton6.FlatStyle = FlatStyle.Flat;
+            smartButton6.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            smartButton6.ForeColor = Color.White;
+            smartButton6.Image = (Image)resources.GetObject("smartButton6.Image");
+            smartButton6.ImageAlign = ContentAlignment.MiddleLeft;
+            smartButton6.Location = new Point(15, 11);
+            smartButton6.Name = "smartButton6";
+            smartButton6.Padding = new Padding(10, 0, 0, 0);
+            smartButton6.Size = new Size(43, 39);
+            smartButton6.TabIndex = 8;
+            smartButton6.TextImageRelation = TextImageRelation.ImageBeforeText;
+            smartButton6.UseVisualStyleBackColor = false;
+            // 
+            // btn_OpenFolder
+            // 
+            btn_OpenFolder.BackColor = Color.DarkOrange;
+            btn_OpenFolder.BackgroundColor = Color.DarkOrange;
+            btn_OpenFolder.BorderRadius = 10;
+            btn_OpenFolder.FlatAppearance.BorderSize = 0;
+            btn_OpenFolder.FlatStyle = FlatStyle.Flat;
+            btn_OpenFolder.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btn_OpenFolder.ForeColor = Color.White;
+            btn_OpenFolder.Image = (Image)resources.GetObject("btn_OpenFolder.Image");
+            btn_OpenFolder.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_OpenFolder.Location = new Point(64, 11);
+            btn_OpenFolder.Name = "btn_OpenFolder";
+            btn_OpenFolder.Padding = new Padding(15, 0, 0, 0);
+            btn_OpenFolder.Size = new Size(114, 39);
+            btn_OpenFolder.TabIndex = 6;
+            btn_OpenFolder.Text = " Open";
+            btn_OpenFolder.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_OpenFolder.UseVisualStyleBackColor = false;
+            btn_OpenFolder.Click += btn_OpenFolder_Click;
             // 
             // panel4
             // 
@@ -346,137 +355,24 @@
             panel4.Size = new Size(1608, 1);
             panel4.TabIndex = 10;
             // 
-            // splitContainer1
+            // panel_LeftSide_Directory
             // 
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 169);
-            splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.Controls.Add(button1);
-            splitContainer1.Panel1.Controls.Add(panel_test);
-            splitContainer1.Panel1.Controls.Add(panel7);
-            splitContainer1.Panel1.Controls.Add(panel6);
-            splitContainer1.Panel1.Controls.Add(panel5);
-            splitContainer1.Panel1.Controls.Add(panel3);
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.BackColor = Color.White;
-            splitContainer1.Panel2.Controls.Add(panel14);
-            splitContainer1.Panel2.Controls.Add(panel8);
-            splitContainer1.Size = new Size(1608, 760);
-            splitContainer1.SplitterDistance = 1169;
-            splitContainer1.TabIndex = 17;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(397, 149);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 17;
-            button1.Text = "Open";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // panel_test
-            // 
-            panel_test.Location = new Point(535, 95);
-            panel_test.Name = "panel_test";
-            panel_test.Size = new Size(328, 236);
-            panel_test.TabIndex = 15;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.Gainsboro;
-            panel7.Dock = DockStyle.Bottom;
-            panel7.Location = new Point(0, 572);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(1169, 1);
-            panel7.TabIndex = 14;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.Gainsboro;
-            panel6.Dock = DockStyle.Top;
-            panel6.Location = new Point(0, 55);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(1169, 1);
-            panel6.TabIndex = 12;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.WhiteSmoke;
-            panel5.Controls.Add(pictureBox4);
-            panel5.Controls.Add(pictureBox3);
-            panel5.Controls.Add(label3);
-            panel5.Controls.Add(pictureBox2);
-            panel5.Dock = DockStyle.Top;
-            panel5.Location = new Point(0, 0);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(1169, 55);
-            panel5.TabIndex = 11;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(1099, 14);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(27, 26);
-            pictureBox4.TabIndex = 16;
-            pictureBox4.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(1132, 14);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(26, 26);
-            pictureBox3.TabIndex = 15;
-            pictureBox3.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Gray;
-            label3.Location = new Point(22, 11);
-            label3.Name = "label3";
-            label3.Size = new Size(75, 25);
-            label3.TabIndex = 15;
-            label3.Text = "main.py";
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(4, 18);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(18, 25);
-            pictureBox2.TabIndex = 15;
-            pictureBox2.TabStop = false;
-            // 
-            // panel3
-            // 
-            panel3.BackColor = Color.White;
-            panel3.Controls.Add(tabControl1);
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 573);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1169, 187);
-            panel3.TabIndex = 10;
+            panel_LeftSide_Directory.Dock = DockStyle.Top;
+            panel_LeftSide_Directory.Location = new Point(0, 61);
+            panel_LeftSide_Directory.Name = "panel_LeftSide_Directory";
+            panel_LeftSide_Directory.Size = new Size(289, 687);
+            panel_LeftSide_Directory.TabIndex = 15;
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
+            tabControl1.Location = new Point(298, 636);
             tabControl1.Name = "tabControl1";
             tabControl1.Padding = new Point(10, 5);
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1169, 187);
+            tabControl1.Size = new Size(669, 121);
             tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -484,7 +380,7 @@
             tabPage1.Location = new Point(4, 33);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1161, 150);
+            tabPage1.Size = new Size(661, 84);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Console Output";
             tabPage1.UseVisualStyleBackColor = true;
@@ -494,7 +390,7 @@
             tabPage2.Location = new Point(4, 33);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1161, 150);
+            tabPage2.Size = new Size(661, 84);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Error Log";
             tabPage2.UseVisualStyleBackColor = true;
@@ -503,30 +399,10 @@
             // 
             tabPage3.Location = new Point(4, 33);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1161, 150);
+            tabPage3.Size = new Size(661, 84);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Test Results";
             tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // panel14
-            // 
-            panel14.BackColor = Color.Gainsboro;
-            panel14.Dock = DockStyle.Left;
-            panel14.Location = new Point(0, 0);
-            panel14.Name = "panel14";
-            panel14.Size = new Size(1, 760);
-            panel14.TabIndex = 74;
-            // 
-            // panel8
-            // 
-            panel8.BackColor = Color.White;
-            panel8.Controls.Add(tabControl_RightSide);
-            panel8.Controls.Add(panel12);
-            panel8.Dock = DockStyle.Fill;
-            panel8.Location = new Point(0, 0);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(435, 760);
-            panel8.TabIndex = 63;
             // 
             // tabControl_RightSide
             // 
@@ -534,11 +410,12 @@
             tabControl_RightSide.Controls.Add(MessagesTab);
             tabControl_RightSide.Controls.Add(ActivityTab);
             tabControl_RightSide.Dock = DockStyle.Fill;
-            tabControl_RightSide.Location = new Point(1, 0);
+            tabControl_RightSide.Location = new Point(1167, 3);
             tabControl_RightSide.Multiline = true;
             tabControl_RightSide.Name = "tabControl_RightSide";
+            tableLayoutPanel2.SetRowSpan(tabControl_RightSide, 2);
             tabControl_RightSide.SelectedIndex = 0;
-            tabControl_RightSide.Size = new Size(434, 760);
+            tabControl_RightSide.Size = new Size(438, 754);
             tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
             tabControl_RightSide.TabIndex = 9;
             tabControl_RightSide.Resize += tabControl_RightSide_Resize;
@@ -548,7 +425,7 @@
             BroadcastsTab.Location = new Point(4, 29);
             BroadcastsTab.Name = "BroadcastsTab";
             BroadcastsTab.Padding = new Padding(3);
-            BroadcastsTab.Size = new Size(426, 727);
+            BroadcastsTab.Size = new Size(430, 721);
             BroadcastsTab.TabIndex = 0;
             BroadcastsTab.Text = "Broadcasts";
             BroadcastsTab.UseVisualStyleBackColor = true;
@@ -558,7 +435,7 @@
             MessagesTab.Location = new Point(4, 29);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3);
-            MessagesTab.Size = new Size(426, 727);
+            MessagesTab.Size = new Size(430, 721);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -570,7 +447,7 @@
             ActivityTab.Location = new Point(4, 29);
             ActivityTab.Name = "ActivityTab";
             ActivityTab.Padding = new Padding(10, 10, 10, 20);
-            ActivityTab.Size = new Size(426, 727);
+            ActivityTab.Size = new Size(430, 721);
             ActivityTab.TabIndex = 2;
             ActivityTab.Text = "Activity";
             ActivityTab.UseVisualStyleBackColor = true;
@@ -590,7 +467,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.Size = new Size(406, 697);
+            tableLayoutPanel1.Size = new Size(410, 691);
             tableLayoutPanel1.TabIndex = 17;
             // 
             // panel_Instruction
@@ -600,7 +477,7 @@
             panel_Instruction.Dock = DockStyle.Fill;
             panel_Instruction.Location = new Point(3, 3);
             panel_Instruction.Name = "panel_Instruction";
-            panel_Instruction.Size = new Size(400, 284);
+            panel_Instruction.Size = new Size(404, 281);
             panel_Instruction.TabIndex = 15;
             // 
             // label2
@@ -623,7 +500,7 @@
             panel15.Dock = DockStyle.Top;
             panel15.Location = new Point(0, 0);
             panel15.Name = "panel15";
-            panel15.Size = new Size(400, 38);
+            panel15.Size = new Size(404, 38);
             panel15.TabIndex = 74;
             // 
             // pictureBox5
@@ -654,9 +531,9 @@
             panel_Score.Controls.Add(label16);
             panel_Score.Controls.Add(progressBar2);
             panel_Score.Dock = DockStyle.Fill;
-            panel_Score.Location = new Point(3, 583);
+            panel_Score.Location = new Point(3, 577);
             panel_Score.Name = "panel_Score";
-            panel_Score.Size = new Size(400, 111);
+            panel_Score.Size = new Size(404, 111);
             panel_Score.TabIndex = 16;
             // 
             // progressBar1
@@ -675,7 +552,7 @@
             panel19.Dock = DockStyle.Top;
             panel19.Location = new Point(0, 0);
             panel19.Name = "panel19";
-            panel19.Size = new Size(400, 38);
+            panel19.Size = new Size(404, 38);
             panel19.TabIndex = 76;
             // 
             // pictureBox7
@@ -732,9 +609,9 @@
             // 
             panel_TestCases.Controls.Add(panel16);
             panel_TestCases.Dock = DockStyle.Fill;
-            panel_TestCases.Location = new Point(3, 293);
+            panel_TestCases.Location = new Point(3, 290);
             panel_TestCases.Name = "panel_TestCases";
-            panel_TestCases.Size = new Size(400, 284);
+            panel_TestCases.Size = new Size(404, 281);
             panel_TestCases.TabIndex = 16;
             // 
             // panel16
@@ -745,7 +622,7 @@
             panel16.Dock = DockStyle.Top;
             panel16.Location = new Point(0, 0);
             panel16.Name = "panel16";
-            panel16.Size = new Size(400, 38);
+            panel16.Size = new Size(404, 38);
             panel16.TabIndex = 76;
             // 
             // pictureBox6
@@ -768,14 +645,78 @@
             label17.TabIndex = 77;
             label17.Text = "Test Cases";
             // 
-            // panel12
+            // tableLayoutPanel2
             // 
-            panel12.BackColor = Color.Gainsboro;
-            panel12.Dock = DockStyle.Left;
-            panel12.Location = new Point(0, 0);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(1, 760);
-            panel12.TabIndex = 73;
+            tableLayoutPanel2.ColumnCount = 3;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.3457718F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.04229F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.61194F));
+            tableLayoutPanel2.Controls.Add(panel_LeftSide_Main, 0, 0);
+            tableLayoutPanel2.Controls.Add(tabControl1, 1, 1);
+            tableLayoutPanel2.Controls.Add(tabControl_RightSide, 2, 0);
+            tableLayoutPanel2.Controls.Add(tabControl2, 1, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(0, 169);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel2.Size = new Size(1608, 760);
+            tableLayoutPanel2.TabIndex = 18;
+            // 
+            // panel_LeftSide_Main
+            // 
+            panel_LeftSide_Main.Controls.Add(panel_LeftSide_Directory);
+            panel_LeftSide_Main.Controls.Add(panel_LeftSide_Buttons);
+            panel_LeftSide_Main.Dock = DockStyle.Fill;
+            panel_LeftSide_Main.Location = new Point(3, 3);
+            panel_LeftSide_Main.Name = "panel_LeftSide_Main";
+            tableLayoutPanel2.SetRowSpan(panel_LeftSide_Main, 2);
+            panel_LeftSide_Main.Size = new Size(289, 754);
+            panel_LeftSide_Main.TabIndex = 19;
+            // 
+            // panel_LeftSide_Buttons
+            // 
+            panel_LeftSide_Buttons.Controls.Add(smartButton6);
+            panel_LeftSide_Buttons.Controls.Add(btn_OpenFolder);
+            panel_LeftSide_Buttons.Dock = DockStyle.Top;
+            panel_LeftSide_Buttons.Location = new Point(0, 0);
+            panel_LeftSide_Buttons.Name = "panel_LeftSide_Buttons";
+            panel_LeftSide_Buttons.Size = new Size(289, 61);
+            panel_LeftSide_Buttons.TabIndex = 16;
+            // 
+            // tabControl2
+            // 
+            tabControl2.Controls.Add(tabPage4);
+            tabControl2.Controls.Add(tabPage5);
+            tabControl2.Dock = DockStyle.Bottom;
+            tabControl2.Location = new Point(298, 104);
+            tabControl2.Name = "tabControl2";
+            tabControl2.SelectedIndex = 0;
+            tabControl2.Size = new Size(863, 526);
+            tabControl2.TabIndex = 20;
+            tabControl2.MouseDown += tabControl2_MouseDown;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Location = new Point(4, 29);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(855, 493);
+            tabPage4.TabIndex = 0;
+            tabPage4.Text = "tabPage4";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // tabPage5
+            // 
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(855, 493);
+            tabPage5.TabIndex = 1;
+            tabPage5.Text = "tabPage5";
+            tabPage5.UseVisualStyleBackColor = true;
             // 
             // TempIDE
             // 
@@ -783,7 +724,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(1608, 929);
-            Controls.Add(splitContainer1);
+            Controls.Add(tableLayoutPanel2);
             Controls.Add(panel4);
             Controls.Add(panel1);
             Controls.Add(panel2);
@@ -794,21 +735,12 @@
             Shown += TempIDE_Shown;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel3.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
-            panel8.ResumeLayout(false);
             tabControl_RightSide.ResumeLayout(false);
             ActivityTab.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
@@ -826,6 +758,10 @@
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            tableLayoutPanel2.ResumeLayout(false);
+            panel_LeftSide_Main.ResumeLayout(false);
+            panel_LeftSide_Buttons.ResumeLayout(false);
+            tabControl2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -842,13 +778,8 @@
         private Panel panel1;
         private Panel panel4;
         private CustomComponents.GeneralComponents.SmartButton smartButton5;
-        private CustomComponents.GeneralComponents.SmartButton smartButton4;
-        private SplitContainer splitContainer1;
-        private Panel panel6;
-        private Panel panel7;
+        private CustomComponents.GeneralComponents.SmartButton btn_OpenFolder;
         private Label label12;
-        private Panel panel8;
-        private Panel panel12;
         private Panel panel16;
         private Panel panel15;
         private ProgressBar progressBar2;
@@ -863,12 +794,8 @@
         private Label label9;
         private PictureBox pictureBox5;
         private PictureBox pictureBox8;
-        private Panel panel5;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
-        private Label label3;
-        private PictureBox pictureBox2;
-        private Panel panel3;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -879,13 +806,17 @@
         private TabPage ActivityTab;
         private ProgressBar progressBar1;
         private Label label1;
-        private Panel panel14;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel panel_Instruction;
         private Panel panel_Score;
         private Panel panel_TestCases;
         private Label label2;
-        private Panel panel_test;
-        private Button button1;
+        private Panel panel_LeftSide_Directory;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Panel panel_LeftSide_Main;
+        private Panel panel_LeftSide_Buttons;
+        private TabControl tabControl2;
+        private TabPage tabPage4;
+        private TabPage tabPage5;
     }
 }
