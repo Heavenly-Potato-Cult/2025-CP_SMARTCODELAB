@@ -1,3 +1,4 @@
+using SmartCodeLab.Services;
 using System.Diagnostics;
 
 namespace SmartCodeLab
@@ -19,24 +20,17 @@ namespace SmartCodeLab
 
         private static void ConfigureFirewallRules()
         {
-            if (!FirewallRuleExists("Temp_Port"))
+            if (!FirewallRuleExists("Temp_Port") || !FirewallRuleExists("Temporary_Port_Allow"))
             {
-                OpenNetshAsAdmin("advfirewall firewall add rule name=\"Temp_Port\" dir=in action=allow protocol=TCP localport=1901");
-            }
-            Debug.WriteLine(FirewallRuleExists("Temp_Port"));
-            Debug.WriteLine(FirewallRuleExists("Temporary_Port_Allow"));
-            if (!FirewallRuleExists("Temporary_Port_Allow"))
-            {
-                OpenNetshAsAdmin("advfirewall firewall add rule name=\"Temporary_Port_Allow\" dir=in action=allow protocol=UDP localport=1902");
+                OpenNetshAsAdmin($"/c {SystemConfigurations.OPEN_FIREWALL_PORTS_BAT}");
             }
             // Clean up on application exit
             Application.ApplicationExit += (s, e) =>
             {
-                if (FirewallRuleExists("Temporary_Port_Allow"))
-                {
-                    OpenNetshAsAdmin("advfirewall firewall delete rule name=\"Temp_Port\"");
-                    OpenNetshAsAdmin("advfirewall firewall delete rule name=\"Temporary_Port_Allow\"");
-                }
+                //if (FirewallRuleExists("Temporary_Port_Allow") || FirewallRuleExists("Temporary_Port_Allow"))
+                //{
+                //    OpenNetshAsAdmin($"/c {SystemConfigurations.REMOVE_FIREWALL_PORTS_BAT}");
+                //}
             };
         }
 
@@ -71,7 +65,7 @@ namespace SmartCodeLab
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
-                FileName = "netsh",
+                FileName = "cmd.exe",
                 Arguments = command,
                 Verb = "runas", // This requests admin privileges
                 UseShellExecute = true,

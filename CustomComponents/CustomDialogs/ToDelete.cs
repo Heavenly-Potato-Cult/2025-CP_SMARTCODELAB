@@ -21,20 +21,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         public ToDelete()
         {
             InitializeComponent();
-            treeView1.Nodes.Add(new TreeNodeObj("C:\\Users\\magno\\OneDrive\\Desktop\\testMe", null));
-        }
-
-        static void OnObjectMouseClick(object sender, MouseEventArgs e)
-        {
-            Console.WriteLine($"Mouse clicked hihi");
-        }
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if(e.Node is TreeNodeObj tno)
-            {
-                tno.SimulateClicked(e);
-            }
         }
     }
 }

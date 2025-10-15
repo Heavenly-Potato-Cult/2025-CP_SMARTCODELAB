@@ -48,6 +48,8 @@ namespace SmartCodeLab.Models
         [ProtoMember(5)]
         public int submittedCount { get; set; }
 
+        [ProtoMember(6)]
+        public Dictionary<int, int> CodeRatingFactors { get; set; }
         public Server()
         {
         }

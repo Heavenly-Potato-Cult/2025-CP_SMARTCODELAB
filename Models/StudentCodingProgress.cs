@@ -16,12 +16,7 @@ namespace SmartCodeLab.Models
         public List<CopyPastedCode> pastedCode { get; set; }
 
         [ProtoMember(4)]
-        public readonly Dictionary<string, int> codeStats = new Dictionary<string, int>() 
-        {
-            {"accuracy",0 },
-            {"readability", 0 },
-            {"efficiency", 0 }
-        };
+        public Dictionary<int, int> codeStats { get; set; }
 
         public StudentCodingProgress()
         {
@@ -34,7 +29,7 @@ namespace SmartCodeLab.Models
             CodeProgress = new List<string>();
         }
 
-        public void UpdateStats(Dictionary<string, int> updatedStats)
+        public void UpdateStats(Dictionary<int, int> updatedStats)
         {
             foreach (var item in updatedStats)
             {

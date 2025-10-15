@@ -50,6 +50,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     AddStudent(item);
                 }
             });
+            studentCodeRating.SetStats(task.ratingFactors);
         }
 
         public void AddStudent(UserProfile profile)
@@ -60,7 +61,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 profile._computerAddress = "";
                 userIcons.Add(profile._studentId, new UserIcons(profile, NewUserSelected));
                 iconsContainer.Controls.Add(userIcons[profile._studentId]);
-                Debug.WriteLine(profile._studentId);
             }));
         }
 
@@ -95,6 +95,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                                 copypastedCodes.Controls.Add(new PastedCodeIcon(item));
                             }
                         }
+                        studentCodeRating.SetStudentStats(progress.codeStats);
                     }));
                 });
             }

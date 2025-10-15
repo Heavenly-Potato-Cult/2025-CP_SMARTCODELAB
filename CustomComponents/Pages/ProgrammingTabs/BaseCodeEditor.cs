@@ -1,4 +1,6 @@
 ﻿using FastColoredTextBoxNS;
+using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using System.ComponentModel;
@@ -41,7 +43,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
         }
 
-        protected BaseCodeEditor(string filePath, TaskModel task, string userName, StudentCodingProgress progress, Action<int, int> updateStats)
+        protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int> updateStats, Func<Task> sendProgress)
         {
             InitializeComponent();
             this.updateStats = updateStats;
@@ -73,9 +75,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 _debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
                 // Start a new timer
-                _debounceTimer = new System.Threading.Timer(_ =>
+                _debounceTimer = new System.Threading.Timer(async _ =>
                 {
                     RunLinting();
+                    await CountComplexity1();
+                    await sendProgress.Invoke();
                 }, null, 700, Timeout.Infinite);
 
                 //add the new source code to the code history
@@ -148,9 +152,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             this.task = task;
         }
 
-        public StudentCodingProgress GetProgress()
+        public StudentCodingProgress GetProgress(Dictionary<int, int> currentStats)
         {
             StudentProgress.sourceCode = srcCode.Text;
+            StudentProgress.codeStats = currentStats;
             return StudentProgress;
         }
 
@@ -296,11 +301,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public async virtual void RunTest()
         {
             SaveCode();
-            TestCodeForm testCodeForm = new TestCodeForm(commandLine, testerFile, task);
-            testCodeForm.ShowDialog();
-
-            int percentage = (testCodeForm.score / task._testCases.Count) * 100;
-            updateStats?.Invoke(1, percentage);
+            if (task._testCases.Count == 0)
+            {
+                MessageBox.Show("No available test cases");
+            }
+            else {
+                TestCodeForm testCodeForm = new TestCodeForm(commandLine, testerFile, task);
+                testCodeForm.ShowDialog();
+                int percentage = (testCodeForm.score / task._testCases.Count) * 100;
+                updateStats?.Invoke(1, percentage);
+            }
         }
         protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
@@ -386,6 +396,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         }
 
         public virtual void RunLinting() { }
+
         public virtual void CheckCodingStandards(string command, Action reRun = null) { }
 
         protected void HighlightError(int errorLine, string errorMsg)
@@ -422,19 +433,30 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             srcCode.Range.ClearStyle(redWavy);
         }
 
-        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, string username, StudentCodingProgress progress, Action<int, int> updateStats)
+        private void CountComplexity()
+        {
+            updateStats?.Invoke(4, CodeComplexityReference.CodeComplexityCounter(filePath));
+        }
+
+        private Task CountComplexity1()
+        {
+            updateStats?.Invoke(4, CodeComplexityReference.CodeComplexityCounter(filePath));
+            return Task.CompletedTask;
+        }
+
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int> updateStats, Func<Task> sendProgress)
         {
             if (filePath.EndsWith(".java"))
             {
-                return new JavaCodeEditor(filePath, task, username, progress, updateStats);
+                return new JavaCodeEditor(filePath, task, progress, updateStats, sendProgress);
             }
             else if (filePath.EndsWith(".py"))
             {
-                return new PythonCodeEditor(filePath, task, username, progress, updateStats);
+                return new PythonCodeEditor(filePath, task, progress, updateStats, sendProgress);
             }
             else
             {
-                return new CppCodeEditor(filePath, task, username, progress, updateStats);
+                return new CppCodeEditor(filePath, task, progress, updateStats, sendProgress);
             }
         }
 

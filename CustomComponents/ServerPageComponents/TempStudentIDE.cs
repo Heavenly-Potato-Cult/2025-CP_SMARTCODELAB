@@ -51,27 +51,28 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
-            editor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, userName, progress, UpdateStats);
+            editor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);
             editor.notifAction = NotifyHost;
-            editor.srcCode.KeyUp += (s, e) =>
-            {
-                //if (isFocused)
-                //{
-                debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+            //editor.srcCode.KeyUp += (s, e) =>
+            //{
+            //    //if (isFocused)
+            //    //{
+            //    debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
-                // Start a new timer
-                debounceTimer = new System.Threading.Timer(async _ =>
-                {
-                    await ProgressSender();
-                }, null, debounceDelay, Timeout.Infinite);
-                //}
-            };
+            //    // Start a new timer
+            //    debounceTimer = new System.Threading.Timer(async _ =>
+            //    {
+            //        await ProgressSender();
+            //    }, null, debounceDelay, Timeout.Infinite);
+            //    //}
+            //};
             codeEditorContainer.Controls.Add(editor);
             _ = StreamListener();
 
             this.Load += (s, e) =>
             {
                 UpdateTaskDisplay(task);
+                studentCodeRating.SetStats(task.ratingFactors);
             };
         }
 
@@ -95,22 +96,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             );
         }
 
-        private void UpdateStats(int i, int value)
-        {
-            if (i == 1)//Accuracy
-            {
-                accuracy.ChangeValue(value);
-            }
-            else if (i == 2)
-            {
-                readability.ChangeValue(100 - value);
-            }
-        }
-
         private async Task ProgressSender()
         {
             var message = new ServerMessage.Builder(MessageType.STUDENT_PROGRESS)
-                .StudentProgress(editor.GetProgress())
+                .StudentProgress(editor.GetProgress(studentCodeRating.GetStats()))
                 .Build();
             Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
             await stream.FlushAsync();

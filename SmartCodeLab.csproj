@@ -7,6 +7,8 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
+	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +25,9 @@
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
 	<None Include="$(RootDir)Tasks\**" LinkBase="tasks">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+	<None Include="$(RootDir)SmartCodeLabConfig\**" LinkBase="smartcodelabconfig">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
   </ItemGroup>

@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempStudentIDE));
-            panel19 = new Panel();
-            pictureBox7 = new PictureBox();
-            label9 = new Label();
-            panel20 = new Panel();
-            label15 = new Label();
             panel14 = new Panel();
             panel11 = new Panel();
             panel10 = new Panel();
@@ -58,15 +53,10 @@
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
-            panel18 = new Panel();
-            readability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
-            label1 = new Label();
-            accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             panel4 = new Panel();
             splitContainer1 = new SplitContainer();
             codeEditorContainer = new Panel();
-            panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            studentCodeRating = new StudentCodeRating();
             panel10.SuspendLayout();
             panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -74,63 +64,11 @@
             panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel1.SuspendLayout();
-            panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel19
-            // 
-            panel19.BackColor = Color.FromArgb(240, 247, 255);
-            panel19.Controls.Add(pictureBox7);
-            panel19.Controls.Add(label9);
-            panel19.Dock = DockStyle.Top;
-            panel19.Location = new Point(1, 0);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(454, 56);
-            panel19.TabIndex = 76;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(23, 19);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(25, 25);
-            pictureBox7.TabIndex = 78;
-            pictureBox7.TabStop = false;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.FromArgb(66, 110, 232);
-            label9.Location = new Point(51, 13);
-            label9.Name = "label9";
-            label9.Size = new Size(73, 31);
-            label9.TabIndex = 79;
-            label9.Text = "Score";
-            // 
-            // panel20
-            // 
-            panel20.BackColor = Color.Gainsboro;
-            panel20.Dock = DockStyle.Left;
-            panel20.Location = new Point(0, 0);
-            panel20.Name = "panel20";
-            panel20.Size = new Size(1, 230);
-            panel20.TabIndex = 74;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.ForeColor = Color.DimGray;
-            label15.Location = new Point(4, 75);
-            label15.Name = "label15";
-            label15.Size = new Size(84, 25);
-            label15.TabIndex = 78;
-            label15.Text = "Accuracy";
             // 
             // panel14
             // 
@@ -442,48 +380,6 @@
             panel2.Size = new Size(1362, 1);
             panel2.TabIndex = 18;
             // 
-            // panel18
-            // 
-            panel18.BackColor = Color.White;
-            panel18.Controls.Add(readability);
-            panel18.Controls.Add(label1);
-            panel18.Controls.Add(accuracy);
-            panel18.Controls.Add(panel19);
-            panel18.Controls.Add(panel20);
-            panel18.Controls.Add(label15);
-            panel18.Dock = DockStyle.Fill;
-            panel18.Location = new Point(1, 564);
-            panel18.Name = "panel18";
-            panel18.Size = new Size(455, 230);
-            panel18.TabIndex = 78;
-            // 
-            // readability
-            // 
-            readability.Location = new Point(120, 125);
-            readability.Name = "readability";
-            readability.Size = new Size(316, 13);
-            readability.TabIndex = 81;
-            readability.Value = 38;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(4, 118);
-            label1.Name = "label1";
-            label1.Size = new Size(104, 25);
-            label1.TabIndex = 80;
-            label1.Text = "Readability";
-            // 
-            // accuracy
-            // 
-            accuracy.Location = new Point(120, 82);
-            accuracy.Name = "accuracy";
-            accuracy.Size = new Size(316, 13);
-            accuracy.TabIndex = 79;
-            accuracy.Value = 38;
-            // 
             // panel4
             // 
             panel4.BackColor = Color.Gainsboro;
@@ -506,7 +402,7 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.BackColor = Color.White;
-            splitContainer1.Panel2.Controls.Add(panel18);
+            splitContainer1.Panel2.Controls.Add(studentCodeRating);
             splitContainer1.Panel2.Controls.Add(panel14);
             splitContainer1.Panel2.Controls.Add(panel11);
             splitContainer1.Panel2.Controls.Add(panel10);
@@ -524,6 +420,13 @@
             codeEditorContainer.Size = new Size(896, 786);
             codeEditorContainer.TabIndex = 0;
             // 
+            // studentCodeRating
+            // 
+            studentCodeRating.Location = new Point(1, 566);
+            studentCodeRating.Name = "studentCodeRating";
+            studentCodeRating.Size = new Size(455, 230);
+            studentCodeRating.TabIndex = 75;
+            // 
             // TempStudentIDE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -534,9 +437,6 @@
             Controls.Add(panel4);
             Name = "TempStudentIDE";
             Size = new Size(1362, 873);
-            panel19.ResumeLayout(false);
-            panel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             panel10.ResumeLayout(false);
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
@@ -547,8 +447,6 @@
             panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             panel1.ResumeLayout(false);
-            panel18.ResumeLayout(false);
-            panel18.PerformLayout();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();
@@ -558,11 +456,6 @@
         }
 
         #endregion
-        private Panel panel19;
-        private PictureBox pictureBox7;
-        private Label label9;
-        private Panel panel20;
-        private Label label15;
         private Panel panel14;
         private Panel panel11;
         private Panel panel10;
@@ -584,15 +477,12 @@
         private GeneralComponents.SmartButton smartButton1;
         private GeneralComponents.SmartButton smartButton2;
         private Panel panel2;
-        private Panel panel18;
         private Panel panel4;
         private SplitContainer splitContainer1;
         private Panel codeEditorContainer;
         private GeneralComponents.SmartButton smartButton3;
         private TextBox description;
         private FlowLayoutPanel testCaseContainer;
-        private GeneralComponents.StatsBar accuracy;
-        private GeneralComponents.StatsBar readability;
-        private Label label1;
+        private StudentCodeRating studentCodeRating;
     }
 }

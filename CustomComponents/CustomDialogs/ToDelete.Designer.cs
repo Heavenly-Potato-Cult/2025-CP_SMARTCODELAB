@@ -28,23 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            treeView1 = new TreeView();
+            studentCodeRating1 = new SmartCodeLab.CustomComponents.ServerPageComponents.StudentCodeRating();
             SuspendLayout();
             // 
-            // treeView1
+            // studentCodeRating1
             // 
-            treeView1.Location = new Point(123, 98);
-            treeView1.Name = "treeView1";
-            treeView1.Size = new Size(250, 247);
-            treeView1.TabIndex = 0;
-            treeView1.NodeMouseClick += treeView1_NodeMouseClick;
+            studentCodeRating1.Location = new Point(5, 12);
+            studentCodeRating1.Name = "studentCodeRating1";
+            studentCodeRating1.Size = new Size(451, 658);
+            studentCodeRating1.TabIndex = 0;
             // 
             // ToDelete
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(586, 682);
-            Controls.Add(treeView1);
+            ClientSize = new Size(459, 682);
+            Controls.Add(studentCodeRating1);
             Name = "ToDelete";
             Text = "ToDelete";
             ResumeLayout(false);
@@ -52,6 +51,6 @@
 
         #endregion
 
-        private TreeView treeView1;
+        private ServerPageComponents.StudentCodeRating studentCodeRating1;
     }
 }

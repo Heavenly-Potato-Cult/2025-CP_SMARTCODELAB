@@ -201,6 +201,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                             await networkStream.FlushAsync();
                             break;
                         case MessageType.STUDENT_PROGRESS:
+                            Debug.WriteLine("Received with " + obj._progress.codeStats[4]);
                             UpdateUserProgress(userProfile._studentId, obj._progress);
                             serverPage.UpdateStudentProgressDisplay(userProfile, obj._progress);
                             break;

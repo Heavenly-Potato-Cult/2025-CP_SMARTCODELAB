@@ -12,6 +12,7 @@ namespace SmartCodeLab.Services
         //Python
         public static string pythonExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "Python", "python.exe");
 
+        public static string lizardExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "lizard_portable.exe");
         public static string pylintExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "pylint_portable.exe");
         public static string readabilityConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "readabilityConfig.pylintrc");
         public static string errorConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "errorConfig.pylintrc");

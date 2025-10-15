@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            codeQualityChoices = new SmartCodeLab.CustomComponents.GeneralComponents.CodeQualityChoices();
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             exerciseContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             taskContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -55,6 +56,7 @@
             customCard2.BorderColor = Color.Gray;
             customCard2.BorderRadius = 10;
             customCard2.BorderSize = 1;
+            customCard2.Controls.Add(codeQualityChoices);
             customCard2.Controls.Add(smartButton4);
             customCard2.Controls.Add(exerciseContainer);
             customCard2.Controls.Add(label15);
@@ -67,6 +69,13 @@
             customCard2.Name = "customCard2";
             customCard2.Size = new Size(1110, 679);
             customCard2.TabIndex = 20;
+            // 
+            // codeQualityChoices
+            // 
+            codeQualityChoices.Location = new Point(89, 367);
+            codeQualityChoices.Name = "codeQualityChoices";
+            codeQualityChoices.Size = new Size(230, 131);
+            codeQualityChoices.TabIndex = 29;
             // 
             // smartButton4
             // 
@@ -177,6 +186,8 @@
             serverName.Location = new Point(23, 111);
             serverName.Name = "serverName";
             serverName.Padding = new Padding(10, 7, 10, 7);
+            serverName.PlaceHolderColor = Color.DarkGray;
+            serverName.PlaceholderText = "";
             serverName.ScrollBars = ScrollBars.None;
             serverName.Size = new Size(368, 41);
             serverName.TabIndex = 18;
@@ -297,5 +308,6 @@
         private GeneralComponents.SmartButton smartButton3;
         private GeneralComponents.CustomCard taskContainer;
         private GeneralComponents.SmartButton smartButton4;
+        private GeneralComponents.CodeQualityChoices codeQualityChoices;
     }
 }

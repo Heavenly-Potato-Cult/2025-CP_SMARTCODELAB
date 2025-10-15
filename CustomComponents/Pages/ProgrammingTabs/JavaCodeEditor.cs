@@ -25,7 +25,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
         //TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
         //MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
-        public JavaCodeEditor(string filePath, TaskModel task, string username, StudentCodingProgress progress, Action<int, int> updateStats) : base(filePath, task, username, progress, updateStats)
+        public JavaCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
         {
             srcCode.TextChanged += (s, e) =>
             {
