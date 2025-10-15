@@ -401,7 +401,6 @@
             codeEditor1.CharWidth = 10;
             codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             codeEditor1.Dock = DockStyle.Fill;
-            codeEditor1.Font = new Font("Courier New", 9.75F);
             codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
             codeEditor1.IsReplaceMode = false;
             codeEditor1.Location = new Point(0, 56);
@@ -590,7 +589,7 @@
             Activity.Controls.Add(panel16);
             Activity.Controls.Add(flowLayoutPanel1);
             Activity.Controls.Add(panel15);
-            Activity.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
+            Activity.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Activity.Location = new Point(4, 29);
             Activity.Name = "Activity";
             Activity.Padding = new Padding(10, 10, 20, 10);

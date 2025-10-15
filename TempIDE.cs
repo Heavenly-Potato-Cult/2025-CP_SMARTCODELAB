@@ -39,6 +39,7 @@ namespace SmartCodeLab
             int totalWidth = tabControl_RightSide.ClientSize.Width;
             if (totalWidth <= 0) { return; }
 
+            
 
             isResizingTabs = true;
 
@@ -48,8 +49,9 @@ namespace SmartCodeLab
                 int tabCount = tabControl_RightSide.TabPages.Count;
                 int tabWidth = (totalWidth / tabCount) - 2;
 
+                tabControl_RightSide.Font = new Font("Segoe UI", 12F);
                 tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-                tabControl_RightSide.ItemSize = new Size(tabWidth, 30); // 30 = tab height
+                tabControl_RightSide.ItemSize = new Size(tabWidth, 50); // 50 = tab height
             }
             finally
             {
@@ -65,6 +67,7 @@ namespace SmartCodeLab
         private void TempIDE_Shown(object sender, EventArgs e)
         {
             ResizeTabs();
+            tabControl_RightSide.Invalidate();
         }
     }
 }
