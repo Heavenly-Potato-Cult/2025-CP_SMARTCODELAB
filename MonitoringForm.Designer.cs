@@ -452,6 +452,7 @@ namespace SmartCodeLab
             serverSetUp2.Name = "serverSetUp2";
             serverSetUp2.Size = new Size(1362, 877);
             serverSetUp2.TabIndex = 0;
+            serverSetUp2.Load += serverSetUp2_Load;
             // 
             // tabPage3
             // 

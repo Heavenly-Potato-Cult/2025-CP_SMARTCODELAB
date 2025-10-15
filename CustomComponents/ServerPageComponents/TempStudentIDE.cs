@@ -17,6 +17,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
+
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
     public partial class TempStudentIDE : UserControl

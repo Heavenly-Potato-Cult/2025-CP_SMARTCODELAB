@@ -9,6 +9,7 @@
     <LangVersion>preview</LangVersion>
 	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
 	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+	  <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>

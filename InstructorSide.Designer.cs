@@ -49,12 +49,6 @@
             btn_SideMenu_PerformanceReports = new Button();
             btn_SideMenu_Settings = new Button();
             panel_Title = new Panel();
-            panel9 = new Panel();
-            panel8 = new Panel();
-            panel4 = new Panel();
-            panel5 = new Panel();
-            panel7 = new Panel();
-            panel3 = new Panel();
             panel1 = new Panel();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label1 = new Label();
@@ -449,55 +443,6 @@
             panel_Title.Size = new Size(272, 125);
             panel_Title.TabIndex = 0;
             // 
-            // panel9
-            // 
-            panel9.BackColor = Color.Black;
-            panel9.Location = new Point(765, 468);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(272, 60);
-            panel9.TabIndex = 3;
-            // 
-            // panel8
-            // 
-            panel8.BackColor = Color.Black;
-            panel8.Location = new Point(765, 408);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(272, 60);
-            panel8.TabIndex = 4;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.Black;
-            panel4.Location = new Point(765, 348);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(272, 60);
-            panel4.TabIndex = 3;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.Black;
-            panel5.Location = new Point(765, 148);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(272, 60);
-            panel5.TabIndex = 4;
-            // 
-            // panel7
-            // 
-            panel7.BackColor = Color.Black;
-            panel7.Location = new Point(535, 82);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(272, 60);
-            panel7.TabIndex = 5;
-            // 
-            // panel3
-            // 
-            panel3.AutoSize = true;
-            panel3.BackColor = Color.Black;
-            panel3.Location = new Point(535, 22);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(278, 64);
-            panel3.TabIndex = 2;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.White;
@@ -663,12 +608,6 @@
             // 
             // tabPage7
             // 
-            tabPage7.Controls.Add(panel9);
-            tabPage7.Controls.Add(panel8);
-            tabPage7.Controls.Add(panel4);
-            tabPage7.Controls.Add(panel5);
-            tabPage7.Controls.Add(panel7);
-            tabPage7.Controls.Add(panel3);
             tabPage7.Controls.Add(button4);
             tabPage7.Location = new Point(4, 29);
             tabPage7.Name = "tabPage7";
@@ -727,7 +666,6 @@
             tabPage5.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
-            tabPage7.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -757,14 +695,8 @@
         private TabPage tabPage7;
         private CustomComponents.GeneralComponents.CustomCard customCard1;
         private Label label1;
-        private Panel panel3;
-        private Panel panel7;
         private Button btn_SideMenu_ActiveSession;
-        private Panel panel4;
-        private Panel panel5;
         private Panel panel_SubMenu_ActiveSession;
-        private Panel panel8;
-        private Panel panel9;
         private Panel panel_SubMenu_Management;
         private Button btn_SubMenu_ExerciseManagement;
         private Button btn_SubMenu_ClassManagement;

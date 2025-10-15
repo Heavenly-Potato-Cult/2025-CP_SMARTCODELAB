@@ -7,7 +7,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-
+using System.IO;
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public partial class BaseCodeEditor : UserControl
