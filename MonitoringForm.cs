@@ -112,7 +112,7 @@ namespace SmartCodeLab
         {
             InstructorSide instructorSide = new InstructorSide();
             instructorSide.Show();
-            
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -146,7 +146,8 @@ namespace SmartCodeLab
 
         private void button8_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 8;
+           TempIDE tempIDE = new TempIDE();
+            tempIDE.ShowDialog();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -183,6 +184,11 @@ namespace SmartCodeLab
         }
 
         private void sideMenuPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void serverSetUp2_Load(object sender, EventArgs e)
         {
 
         }
