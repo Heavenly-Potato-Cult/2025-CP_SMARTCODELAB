@@ -54,7 +54,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             {
                 udpClient.EnableBroadcast = true;
 
-                IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Parse(NetworkServices.GetBroadCastAddress()), 1902);
+                IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Broadcast, 1902);
 
                 //sender
                 Task.Run(async () =>
@@ -65,8 +65,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                         {
                             byte[] message = Encoding.UTF8.GetBytes("Discover servers!");
                             await udpClient.SendAsync(message, message.Length, broadcastEP);
+                            Thread.Sleep(499);
                         }
-                        Thread.Sleep(499);
                     }
                     catch (InvalidOperationException e)
                     {
@@ -87,7 +87,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                             if (!senders.Contains(result.RemoteEndPoint))
                             {
                                 senders.Add(result.RemoteEndPoint);
-                                this.Invoke((Action)(() => serverContainer.Controls.Add(new ServerPageIcon(task,result.RemoteEndPoint, ConnectClient))));
+                                this.Invoke((Action)(() => serverContainer.Controls.Add(new ServerPageIcon(task, result.RemoteEndPoint, ConnectClient))));
 
                                 UpdateLoadingVisibility();
                             }
@@ -129,7 +129,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             catch (SocketException e)
             {
                 Debug.WriteLine(e.Message);
-            }catch (InvalidOperationException) { }
+            }
+            catch (InvalidOperationException) { }
         }
 
         public void CloseMe()

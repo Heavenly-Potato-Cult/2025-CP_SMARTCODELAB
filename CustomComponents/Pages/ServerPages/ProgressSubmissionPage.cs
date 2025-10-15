@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.Models;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,15 +36,30 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                         Where(subIcon => subIcon.currentPlacement > currentPlacement).//filter out the submitted codes later than the newly updated
                         ToList().
                         ForEach(sub => sub.IncreasePlacement()); //iterate each, will just update the placement(+1 rank)
-                    submissionIcon.UpdatePlacement(submittedCount);
+
+                    this.Invoke((Action)(() =>
+                    {
+                        submissionIcon.UpdatePlacement(codeSubmission.Count, submitted.sourceCode);
+                        submittedContainer.Controls.Remove(submissionIcon);
+                        submittedContainer.Controls.Add(submissionIcon);
+                    }));
                 }
                 else
                 {
                     submittedCount++;
                     codeSubmission.Add(submitted.user._studentId, new StudentSubmittedIcon(submitted, submittedCount));
-                    this.Invoke((Action)(() => submittedContainer.Controls.Add(codeSubmission[submitted.user._studentId]) ));
+                    this.Invoke((Action)(() => { 
+                        submittedContainer.Controls.Add(codeSubmission[submitted.user._studentId]);
+                        submitCount.Text = (int.Parse(submitCount.Text) + 1).ToString();
+                    }
+                    ));
                 }
             });
+        }
+
+        private void submitCount_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

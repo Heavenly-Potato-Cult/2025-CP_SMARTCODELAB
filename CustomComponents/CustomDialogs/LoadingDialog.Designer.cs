@@ -53,7 +53,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(150, 248);
+            smartButton1.Location = new Point(148, 361);
             smartButton1.Name = "smartButton1";
             smartButton1.Size = new Size(160, 49);
             smartButton1.TabIndex = 2;
@@ -65,7 +65,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             // 
             serverContainer.AutoScroll = true;
             serverContainer.FlowDirection = FlowDirection.TopDown;
-            serverContainer.Location = new Point(86, 101);
+            serverContainer.Location = new Point(86, 227);
             serverContainer.Name = "serverContainer";
             serverContainer.Size = new Size(305, 112);
             serverContainer.TabIndex = 3;
@@ -85,7 +85,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             // 
             panel1.BackColor = Color.Black;
             panel1.Dock = DockStyle.Bottom;
-            panel1.Location = new Point(0, 371);
+            panel1.Location = new Point(0, 522);
             panel1.Name = "panel1";
             panel1.Size = new Size(460, 1);
             panel1.TabIndex = 6;
@@ -105,7 +105,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 1);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1, 370);
+            panel3.Size = new Size(1, 521);
             panel3.TabIndex = 7;
             // 
             // panel4
@@ -114,14 +114,14 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             panel4.Dock = DockStyle.Right;
             panel4.Location = new Point(459, 1);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1, 370);
+            panel4.Size = new Size(1, 521);
             panel4.TabIndex = 7;
             // 
             // LoadingDialog
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(460, 372);
+            ClientSize = new Size(460, 523);
             Controls.Add(smartButton1);
             Controls.Add(panel3);
             Controls.Add(panel4);

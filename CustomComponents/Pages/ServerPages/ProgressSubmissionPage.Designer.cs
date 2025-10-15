@@ -32,6 +32,7 @@
             customComboBox2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             customTextBox2 = new CustomTextBox();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            label1 = new Label();
             label6 = new Label();
             label14 = new Label();
             label12 = new Label();
@@ -70,7 +71,6 @@
             label45 = new Label();
             label49 = new Label();
             submitCount = new Label();
-            label1 = new Label();
             customCard7.SuspendLayout();
             customCard2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -143,6 +143,17 @@
             customCard7.Name = "customCard7";
             customCard7.Size = new Size(532, 34);
             customCard7.TabIndex = 64;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Gray;
+            label1.Location = new Point(3, 5);
+            label1.Name = "label1";
+            label1.Size = new Size(40, 25);
+            label1.TabIndex = 21;
+            label1.Text = "No.";
             // 
             // label6
             // 
@@ -585,17 +596,7 @@
             submitCount.Size = new Size(22, 25);
             submitCount.TabIndex = 71;
             submitCount.Text = "0";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Gray;
-            label1.Location = new Point(3, 5);
-            label1.Name = "label1";
-            label1.Size = new Size(40, 25);
-            label1.TabIndex = 21;
-            label1.Text = "No.";
+            submitCount.Click += submitCount_Click;
             // 
             // ProgressSubmissionPage
             // 

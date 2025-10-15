@@ -92,11 +92,11 @@ namespace SmartCodeLab.CustomComponents.Pages
         //network related stuffs
         private async Task UdpServerInfoSender()
         {
-            UdpClient udpServer = new UdpClient(new IPEndPoint(IPAddress.Parse(NetworkServices.GetIpv4()), 1902));
+            UdpClient udpServer = new UdpClient(new IPEndPoint(IPAddress.Any, 1902));
 
             while (true)
             {
-                UdpReceiveResult result = await udpServer.ReceiveAsync();
+                var result = await udpServer.ReceiveAsync();
                 byte[] taskData = Encoding.UTF8.GetBytes(JsonFileService.GetObjectJsonText(server));
                 udpServer.Send(taskData, taskData.Length, result.RemoteEndPoint);
             }
@@ -134,6 +134,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private async Task MessageReceiverAsync(NetworkStream networkStream)
         {
             UserProfile userProfile = new UserProfile();
+            bool didLoggedIn = false;
             //send the task to the new client
             Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.SERVER_TASK).Task(currentTask).Build(), PrefixStyle.Base128);
             await networkStream.FlushAsync();
@@ -165,7 +166,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                                 break;
                             //the obj._userProfile only contains userId/studentId
                             userProfile = obj._userProfile;
-                            bool didLogIn = false;
+                            didLoggedIn = false;
                             string errorMsg = "We can't find an account with that Student ID";
                             if (userTable.ContainsUser(userProfile._studentId))
                             {
@@ -187,14 +188,14 @@ namespace SmartCodeLab.CustomComponents.Pages
                                         UserProfile(userProfile).
                                         StudentProgress(userProgress[userProfile._studentId]).
                                         Build(), PrefixStyle.Base128);
-                                    didLogIn = true;
+                                    didLoggedIn = true;
                                     serverPage.StudentLoggedIn(userProfile);
-                                    HandleUserStream(networkStream, userProfile, true);
+                                    HandleUserStream(networkStream, userProfile, true, didLoggedIn);
                                     homePage.NewNotification(new Notification(NotificationType.LoggedIn, userProfile._studentName));
                                     await homePage.UpdateActiveStudentsCount(NotificationType.LoggedIn);
                                 }
                             }
-                            if (!didLogIn)
+                            if (!didLoggedIn)
                                 Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                     new ServerMessage.Builder(MessageType.LOG_IN_FAILED).ErrorMessage(errorMsg).Build(), PrefixStyle.Base128);
                             await networkStream.FlushAsync();
@@ -206,6 +207,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                         case MessageType.CODE_SUBMISSION:
                             obj.submittedCode.user = userProfile;
                             progressSubmissionPage.StudentSubmitted(obj.submittedCode);
+                            homePage.NewNotification(new Notification(NotificationType.Submitted, userProfile._studentName,""));
                             break;
                         case MessageType.NOTIFICATION:
                             homePage.NewNotification(obj.notification);
@@ -224,7 +226,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                     MessageBox.Show("The error : " + ex.StackTrace);
                 }
             }
-            HandleUserStream(networkStream, userProfile, false);
+            HandleUserStream(networkStream, userProfile, false, didLoggedIn);
         }
 
         private void UpdateUserProgress(string studentId, StudentCodingProgress progress)
@@ -240,7 +242,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             return userProgress[studentId];
         }
 
-        private async void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd)
+        private async void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd, bool didLoggedIn)
         {
             if (isAdd)
                 connectedUsers.Add(networkStream, profile._studentId);
@@ -248,8 +250,11 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 connectedUsers.Remove(networkStream);
                 currentStudents.Remove(profile._studentName);
-                homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
-                await homePage.UpdateActiveStudentsCount(NotificationType.LoggedOut);
+                if (didLoggedIn)
+                {
+                    homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
+                    await homePage.UpdateActiveStudentsCount(NotificationType.LoggedOut);
+                }
             }
         }
 

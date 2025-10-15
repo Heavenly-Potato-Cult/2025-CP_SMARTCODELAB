@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempExerciseManage));
             label12 = new Label();
             label1 = new Label();
-            btn_AddNewExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             tabControl1 = new TabControl();
             tabPage3 = new TabPage();
             btn_EditExerciseDetails = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -56,12 +55,10 @@
             smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label13 = new Label();
-            customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            taskContainer = new FlowLayoutPanel();
-            smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel3 = new Panel();
             label2 = new Label();
             label4 = new Label();
+            fileView = new TreeView();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
@@ -76,7 +73,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.FromArgb(13, 13, 13);
-            label12.Location = new Point(62, 175);
+            label12.Location = new Point(16, 175);
             label12.Name = "label12";
             label12.Size = new Size(182, 31);
             label12.TabIndex = 19;
@@ -92,21 +89,6 @@
             label1.Size = new Size(180, 31);
             label1.TabIndex = 20;
             label1.Text = "Exercise Details";
-            // 
-            // btn_AddNewExercise
-            // 
-            btn_AddNewExercise.BackColor = Color.MediumSlateBlue;
-            btn_AddNewExercise.BorderRadius = 10;
-            btn_AddNewExercise.FlatAppearance.BorderSize = 0;
-            btn_AddNewExercise.FlatStyle = FlatStyle.Flat;
-            btn_AddNewExercise.ForeColor = Color.White;
-            btn_AddNewExercise.Location = new Point(1047, 60);
-            btn_AddNewExercise.Name = "btn_AddNewExercise";
-            btn_AddNewExercise.Size = new Size(243, 44);
-            btn_AddNewExercise.TabIndex = 46;
-            btn_AddNewExercise.Text = "Add New Exercise";
-            btn_AddNewExercise.UseVisualStyleBackColor = false;
-            btn_AddNewExercise.Click += smartButton1_Click;
             // 
             // tabControl1
             // 
@@ -275,7 +257,7 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(31, 18);
+            reference.AutoScrollMinSize = new Size(2, 18);
             reference.BackBrush = null;
             reference.CharHeight = 18;
             reference.CharWidth = 10;
@@ -457,46 +439,8 @@
             label13.TabIndex = 53;
             label13.Text = "Test Cases";
             // 
-            // customCard4
-            // 
-            customCard4.BackColor = Color.White;
-            customCard4.BorderColor = Color.Gray;
-            customCard4.BorderRadius = 20;
-            customCard4.BorderSize = 1;
-            customCard4.Location = new Point(64, 209);
-            customCard4.Name = "customCard4";
-            customCard4.Size = new Size(448, 691);
-            customCard4.TabIndex = 53;
-            // 
-            // taskContainer
-            // 
-            taskContainer.AutoScroll = true;
-            taskContainer.FlowDirection = FlowDirection.TopDown;
-            taskContainer.Location = new Point(67, 215);
-            taskContainer.Name = "taskContainer";
-            taskContainer.Size = new Size(442, 682);
-            taskContainer.TabIndex = 0;
-            taskContainer.WrapContents = false;
-            // 
-            // smartButton3
-            // 
-            smartButton3.BackColor = Color.MediumSlateBlue;
-            smartButton3.BorderRadius = 20;
-            smartButton3.FlatAppearance.BorderSize = 0;
-            smartButton3.FlatStyle = FlatStyle.Flat;
-            smartButton3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton3.ForeColor = Color.White;
-            smartButton3.Location = new Point(324, 168);
-            smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(188, 35);
-            smartButton3.TabIndex = 54;
-            smartButton3.Text = "Open Folder";
-            smartButton3.UseVisualStyleBackColor = false;
-            smartButton3.Click += smartButton3_Click;
-            // 
             // panel3
             // 
-            panel3.Controls.Add(btn_AddNewExercise);
             panel3.Controls.Add(label2);
             panel3.Controls.Add(label4);
             panel3.Dock = DockStyle.Top;
@@ -527,22 +471,27 @@
             label4.TabIndex = 14;
             label4.Text = "Create, edit and manage coding exercise with test cases";
             // 
+            // fileView
+            // 
+            fileView.Location = new Point(16, 207);
+            fileView.Name = "fileView";
+            fileView.Size = new Size(356, 468);
+            fileView.TabIndex = 56;
+            fileView.NodeMouseClick += fileView_NodeMouseClick;
+            // 
             // TempExerciseManage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
+            Controls.Add(fileView);
             Controls.Add(panel3);
-            Controls.Add(smartButton3);
-            Controls.Add(taskContainer);
-            Controls.Add(customCard4);
             Controls.Add(tabControl1);
             Controls.Add(label1);
             Controls.Add(label12);
             DoubleBuffered = true;
             Name = "TempExerciseManage";
             Size = new Size(1362, 943);
-            Load += TempExerciseManage_Load;
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
@@ -562,7 +511,6 @@
         #endregion
         private Label label12;
         private Label label1;
-        private GeneralComponents.SmartButton btn_AddNewExercise;
         private TabControl tabControl1;
         private TabPage tabPage3;
         private TabPage tabPage4;
@@ -584,13 +532,11 @@
         private GeneralComponents.SmartButton btn_EditExerciseDetails;
         private GeneralComponents.SmartButton smartButton2;
         private GeneralComponents.SmartButton smartButton1;
-        private GeneralComponents.CustomCard customCard4;
-        private FlowLayoutPanel taskContainer;
-        private GeneralComponents.SmartButton smartButton3;
         private Pages.ProgrammingTabs.CodeEditor reference;
         private FlowLayoutPanel testContainer;
         private Panel panel3;
         private Label label2;
         private Label label4;
+        private TreeView fileView;
     }
 }

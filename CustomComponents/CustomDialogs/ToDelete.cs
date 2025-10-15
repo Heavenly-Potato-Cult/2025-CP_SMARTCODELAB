@@ -1,4 +1,6 @@
 ﻿using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+using SmartCodeLab.CustomComponents.Pages.ServerPages;
+using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services.NamingConventions;
 using System;
@@ -19,22 +21,20 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         public ToDelete()
         {
             InitializeComponent();
+            treeView1.Nodes.Add(new TreeNodeObj("C:\\Users\\magno\\OneDrive\\Desktop\\testMe", null));
         }
 
-        private async void button1_Click_1(object sender, EventArgs e)
+        static void OnObjectMouseClick(object sender, MouseEventArgs e)
         {
-            await Task.Run(() => 
+            Console.WriteLine($"Mouse clicked hihi");
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if(e.Node is TreeNodeObj tno)
             {
-                Debug.WriteLine("Task 1 started");
-                Thread.Sleep(499);
-                Debug.WriteLine("Task 1 finished");
-            } );
-            await Task.Run(() => 
-            {
-                Debug.WriteLine("Task 2 started");
-                Thread.Sleep(499);
-                Debug.WriteLine("Task 2 finished");
-            });
+                tno.SimulateClicked(e);
+            }
         }
     }
 }

@@ -1,13 +1,13 @@
-﻿namespace SmartCodeLab.CustomComponents.CustomDialogs
+﻿namespace SmartCodeLab.CustomComponents
 {
-    partial class ToDelete
+    partial class DialogOptions
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,38 +20,40 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            treeView1 = new TreeView();
+            optionName = new Label();
             SuspendLayout();
             // 
-            // treeView1
+            // optionName
             // 
-            treeView1.Location = new Point(123, 98);
-            treeView1.Name = "treeView1";
-            treeView1.Size = new Size(250, 247);
-            treeView1.TabIndex = 0;
-            treeView1.NodeMouseClick += treeView1_NodeMouseClick;
+            optionName.AutoSize = true;
+            optionName.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            optionName.Location = new Point(3, 7);
+            optionName.Name = "optionName";
+            optionName.Size = new Size(51, 20);
+            optionName.TabIndex = 0;
+            optionName.Text = "label1";
             // 
-            // ToDelete
+            // DialogOptions
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(586, 682);
-            Controls.Add(treeView1);
-            Name = "ToDelete";
-            Text = "ToDelete";
+            Controls.Add(optionName);
+            Name = "DialogOptions";
+            Size = new Size(250, 30);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private TreeView treeView1;
+        private Label optionName;
     }
 }

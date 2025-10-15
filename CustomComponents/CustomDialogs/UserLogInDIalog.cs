@@ -30,6 +30,9 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public StudentCodingProgress progress { get; set; }
+
+        private Task logInTask;
+
         public UserLogInDIalog(TcpClient client)
         {
             InitializeComponent();
@@ -44,49 +47,68 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             this.DialogResult = DialogResult.Cancel;
         }
 
-        async private void smartButton2_Click(object sender, EventArgs e)
+        private void smartButton2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(userName.Texts))
             {
                 MessageBox.Show("Please fill in all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            logInTask?.Dispose();
 
-            //expects a reply
-            _ = Task.Run(() =>
+            logInTask = Task.Run(async () =>
             {
                 try
                 {
-                    while (true)
+                    // Start listening for server messages
+                    _ = Task.Run(async () =>
                     {
-                        var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(_stream, PrefixStyle.Base128);
-                        if (msg._messageType == MessageType.LOG_IN_SUCCESSFUL)
+                        try
                         {
-                            serverTask = msg._task;
-                            _userName = msg._userProfile._studentName;
-                            progress = msg._progress;
-                            this.DialogResult = DialogResult.OK;
-                            break;
+                            while (true)
+                            {
+                                var msg = Serializer.DeserializeWithLengthPrefix<ServerMessage>(_stream, PrefixStyle.Base128);
+                                if (msg == null)
+                                    break;
+
+                                if (msg._messageType == MessageType.LOG_IN_SUCCESSFUL)
+                                {
+                                    serverTask = msg._task;
+                                    _userName = msg._userProfile._studentName;
+                                    progress = msg._progress;
+                                    Invoke(() => this.DialogResult = DialogResult.OK);
+                                    break;
+                                }
+                                else if (msg._messageType == MessageType.LOG_IN_FAILED)
+                                {
+                                    Invoke(() => MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error));
+                                    break;
+                                }
+                            }
                         }
-                        else if (msg._messageType == MessageType.LOG_IN_FAILED)
+                        catch (ProtoException ex)
                         {
-                            Invoke((Action)(() => MessageBox.Show(msg._errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)));
-                            break;
+                            Debug.WriteLine($"ProtoException: {ex.Message}");
                         }
-                    }
-                }catch(ProtoException pe)
+                        catch (IOException io)
+                        {
+                            Debug.WriteLine($"Stream closed: {io.Message}");
+                        }
+                    });
+
+                    // Send the login request
+                    var loginMessage = new ServerMessage.Builder(MessageType.USER_PROFILE)
+                        .UserProfile(new UserProfile(userName.Texts))
+                        .Build();
+
+                    Serializer.SerializeWithLengthPrefix(_stream, loginMessage, PrefixStyle.Base128);
+                    await _stream.FlushAsync();
+                }
+                catch (Exception ex)
                 {
-                    Debug.WriteLine(pe.Message);
+                    Debug.WriteLine($"Error during login: {ex}");
                 }
             });
-
-            await Task.Run(() =>
-            {
-                Serializer.SerializeWithLengthPrefix<ServerMessage>(_stream,
-                    new ServerMessage.Builder(MessageType.USER_PROFILE).UserProfile(new UserProfile(userName.Texts)).Build(),
-                    PrefixStyle.Base128);
-            });
-            await _stream.FlushAsync();
         }
     }
 }
