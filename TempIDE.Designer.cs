@@ -61,28 +61,28 @@
             panel14 = new Panel();
             panel8 = new Panel();
             tabControl_RightSide = new TabControl();
-            Broadcasts = new TabPage();
-            Messages = new TabPage();
-            Activity = new TabPage();
-            progressBar1 = new ProgressBar();
-            label1 = new Label();
-            progressBar2 = new ProgressBar();
-            label16 = new Label();
-            panel19 = new Panel();
-            pictureBox7 = new PictureBox();
-            label9 = new Label();
-            panel16 = new Panel();
-            pictureBox6 = new PictureBox();
-            label17 = new Label();
-            label21 = new Label();
+            BroadcastsTab = new TabPage();
+            MessagesTab = new TabPage();
+            ActivityTab = new TabPage();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            panel_Instruction = new Panel();
+            label2 = new Label();
             panel15 = new Panel();
             pictureBox5 = new PictureBox();
             label12 = new Label();
-            panel12 = new Panel();
-            panel_Instruction = new Panel();
-            panel_TestCases = new Panel();
             panel_Score = new Panel();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            progressBar1 = new ProgressBar();
+            panel19 = new Panel();
+            pictureBox7 = new PictureBox();
+            label9 = new Label();
+            label1 = new Label();
+            label16 = new Label();
+            progressBar2 = new ProgressBar();
+            panel_TestCases = new Panel();
+            panel16 = new Panel();
+            pictureBox6 = new PictureBox();
+            label17 = new Label();
+            panel12 = new Panel();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -99,17 +99,17 @@
             tabControl1.SuspendLayout();
             panel8.SuspendLayout();
             tabControl_RightSide.SuspendLayout();
-            Activity.SuspendLayout();
-            panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            panel16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ActivityTab.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            panel_Instruction.SuspendLayout();
             panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            panel_Instruction.SuspendLayout();
-            panel_TestCases.SuspendLayout();
             panel_Score.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
+            panel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            panel_TestCases.SuspendLayout();
+            panel16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // headerPanel
@@ -509,9 +509,9 @@
             // 
             // tabControl_RightSide
             // 
-            tabControl_RightSide.Controls.Add(Broadcasts);
-            tabControl_RightSide.Controls.Add(Messages);
-            tabControl_RightSide.Controls.Add(Activity);
+            tabControl_RightSide.Controls.Add(BroadcastsTab);
+            tabControl_RightSide.Controls.Add(MessagesTab);
+            tabControl_RightSide.Controls.Add(ActivityTab);
             tabControl_RightSide.Dock = DockStyle.Fill;
             tabControl_RightSide.Location = new Point(1, 0);
             tabControl_RightSide.Multiline = true;
@@ -522,148 +522,77 @@
             tabControl_RightSide.TabIndex = 9;
             tabControl_RightSide.Resize += tabControl_RightSide_Resize;
             // 
-            // Broadcasts
+            // BroadcastsTab
             // 
-            Broadcasts.Location = new Point(4, 29);
-            Broadcasts.Name = "Broadcasts";
-            Broadcasts.Padding = new Padding(3);
-            Broadcasts.Size = new Size(426, 727);
-            Broadcasts.TabIndex = 0;
-            Broadcasts.Text = "Broadcasts";
-            Broadcasts.UseVisualStyleBackColor = true;
+            BroadcastsTab.Location = new Point(4, 29);
+            BroadcastsTab.Name = "BroadcastsTab";
+            BroadcastsTab.Padding = new Padding(3);
+            BroadcastsTab.Size = new Size(426, 727);
+            BroadcastsTab.TabIndex = 0;
+            BroadcastsTab.Text = "Broadcasts";
+            BroadcastsTab.UseVisualStyleBackColor = true;
             // 
-            // Messages
+            // MessagesTab
             // 
-            Messages.Location = new Point(4, 29);
-            Messages.Name = "Messages";
-            Messages.Padding = new Padding(3);
-            Messages.Size = new Size(426, 727);
-            Messages.TabIndex = 1;
-            Messages.Text = "Messages";
-            Messages.UseVisualStyleBackColor = true;
+            MessagesTab.Location = new Point(4, 29);
+            MessagesTab.Name = "MessagesTab";
+            MessagesTab.Padding = new Padding(3);
+            MessagesTab.Size = new Size(426, 727);
+            MessagesTab.TabIndex = 1;
+            MessagesTab.Text = "Messages";
+            MessagesTab.UseVisualStyleBackColor = true;
             // 
-            // Activity
+            // ActivityTab
             // 
-            Activity.Controls.Add(tableLayoutPanel1);
-            Activity.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Activity.Location = new Point(4, 29);
-            Activity.Name = "Activity";
-            Activity.Padding = new Padding(10, 10, 20, 10);
-            Activity.Size = new Size(426, 727);
-            Activity.TabIndex = 2;
-            Activity.Text = "Activity";
-            Activity.UseVisualStyleBackColor = true;
+            ActivityTab.Controls.Add(tableLayoutPanel1);
+            ActivityTab.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ActivityTab.Location = new Point(4, 29);
+            ActivityTab.Name = "ActivityTab";
+            ActivityTab.Padding = new Padding(10, 10, 10, 20);
+            ActivityTab.Size = new Size(426, 727);
+            ActivityTab.TabIndex = 2;
+            ActivityTab.Text = "Activity";
+            ActivityTab.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
+            // tableLayoutPanel1
             // 
-            progressBar1.Location = new Point(131, 59);
-            progressBar1.Name = "progressBar1";
-            progressBar1.Size = new Size(279, 16);
-            progressBar1.TabIndex = 84;
-            progressBar1.Value = 85;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Controls.Add(panel_Instruction, 0, 0);
+            tableLayoutPanel1.Controls.Add(panel_Score, 0, 2);
+            tableLayoutPanel1.Controls.Add(panel_TestCases, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(10, 10);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.Size = new Size(406, 697);
+            tableLayoutPanel1.TabIndex = 17;
             // 
-            // label1
+            // panel_Instruction
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(18, 50);
-            label1.Name = "label1";
-            label1.Size = new Size(84, 25);
-            label1.TabIndex = 83;
-            label1.Text = "Accuracy";
+            panel_Instruction.Controls.Add(label2);
+            panel_Instruction.Controls.Add(panel15);
+            panel_Instruction.Dock = DockStyle.Fill;
+            panel_Instruction.Location = new Point(3, 3);
+            panel_Instruction.Name = "panel_Instruction";
+            panel_Instruction.Size = new Size(400, 284);
+            panel_Instruction.TabIndex = 15;
             // 
-            // progressBar2
+            // label2
             // 
-            progressBar2.Location = new Point(134, 95);
-            progressBar2.Name = "progressBar2";
-            progressBar2.Size = new Size(279, 16);
-            progressBar2.TabIndex = 82;
-            progressBar2.Value = 85;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.ForeColor = Color.DimGray;
-            label16.Location = new Point(17, 86);
-            label16.Name = "label16";
-            label16.Size = new Size(104, 25);
-            label16.TabIndex = 79;
-            label16.Text = "Readability";
-            // 
-            // panel19
-            // 
-            panel19.BackColor = Color.FromArgb(240, 247, 255);
-            panel19.Controls.Add(pictureBox7);
-            panel19.Controls.Add(label9);
-            panel19.Dock = DockStyle.Top;
-            panel19.Location = new Point(0, 0);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(390, 38);
-            panel19.TabIndex = 76;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(23, 10);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(25, 25);
-            pictureBox7.TabIndex = 78;
-            pictureBox7.TabStop = false;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.FromArgb(66, 110, 232);
-            label9.Location = new Point(51, 4);
-            label9.Name = "label9";
-            label9.Size = new Size(73, 31);
-            label9.TabIndex = 79;
-            label9.Text = "Score";
-            // 
-            // panel16
-            // 
-            panel16.BackColor = Color.FromArgb(240, 247, 255);
-            panel16.Controls.Add(pictureBox6);
-            panel16.Controls.Add(label17);
-            panel16.Dock = DockStyle.Top;
-            panel16.Location = new Point(0, 0);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(390, 38);
-            panel16.TabIndex = 76;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(24, 10);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(28, 25);
-            pictureBox6.TabIndex = 76;
-            pictureBox6.TabStop = false;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.FromArgb(66, 110, 232);
-            label17.Location = new Point(55, 4);
-            label17.Name = "label17";
-            label17.Size = new Size(120, 31);
-            label17.TabIndex = 77;
-            label17.Text = "Test Cases";
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label21.ForeColor = Color.DimGray;
-            label21.Location = new Point(-2, 66);
-            label21.Name = "label21";
-            label21.Size = new Size(392, 50);
-            label21.TabIndex = 71;
-            label21.Text = "Task : Implement a bubble sort algorithm that\r\nsorts an array of integers in ascending order\r\n";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold);
+            label2.ForeColor = Color.DimGray;
+            label2.Location = new Point(8, 50);
+            label2.MaximumSize = new Size(390, 288);
+            label2.Name = "label2";
+            label2.Size = new Size(379, 75);
+            label2.TabIndex = 15;
+            label2.Text = "Task : Implement a bubble sort algorithm that  sorts an array of integers in ascending order";
             // 
             // panel15
             // 
@@ -673,7 +602,7 @@
             panel15.Dock = DockStyle.Top;
             panel15.Location = new Point(0, 0);
             panel15.Name = "panel15";
-            panel15.Size = new Size(390, 38);
+            panel15.Size = new Size(400, 38);
             panel15.TabIndex = 74;
             // 
             // pictureBox5
@@ -696,34 +625,6 @@
             label12.TabIndex = 61;
             label12.Text = "Buble sort algorithm";
             // 
-            // panel12
-            // 
-            panel12.BackColor = Color.Gainsboro;
-            panel12.Dock = DockStyle.Left;
-            panel12.Location = new Point(0, 0);
-            panel12.Name = "panel12";
-            panel12.Size = new Size(1, 760);
-            panel12.TabIndex = 73;
-            // 
-            // panel_Instruction
-            // 
-            panel_Instruction.Controls.Add(label21);
-            panel_Instruction.Controls.Add(panel15);
-            panel_Instruction.Dock = DockStyle.Fill;
-            panel_Instruction.Location = new Point(3, 3);
-            panel_Instruction.Name = "panel_Instruction";
-            panel_Instruction.Size = new Size(390, 288);
-            panel_Instruction.TabIndex = 15;
-            // 
-            // panel_TestCases
-            // 
-            panel_TestCases.Controls.Add(panel16);
-            panel_TestCases.Dock = DockStyle.Fill;
-            panel_TestCases.Location = new Point(3, 297);
-            panel_TestCases.Name = "panel_TestCases";
-            panel_TestCases.Size = new Size(390, 288);
-            panel_TestCases.TabIndex = 16;
-            // 
             // panel_Score
             // 
             panel_Score.Controls.Add(progressBar1);
@@ -732,28 +633,128 @@
             panel_Score.Controls.Add(label16);
             panel_Score.Controls.Add(progressBar2);
             panel_Score.Dock = DockStyle.Fill;
-            panel_Score.Location = new Point(3, 591);
+            panel_Score.Location = new Point(3, 583);
             panel_Score.Name = "panel_Score";
-            panel_Score.Size = new Size(390, 113);
+            panel_Score.Size = new Size(400, 111);
             panel_Score.TabIndex = 16;
             // 
-            // tableLayoutPanel1
+            // progressBar1
             // 
-            tableLayoutPanel1.ColumnCount = 1;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Controls.Add(panel_Instruction, 0, 0);
-            tableLayoutPanel1.Controls.Add(panel_Score, 0, 2);
-            tableLayoutPanel1.Controls.Add(panel_TestCases, 0, 1);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(10, 10);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.Size = new Size(396, 707);
-            tableLayoutPanel1.TabIndex = 17;
+            progressBar1.Location = new Point(131, 59);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(279, 16);
+            progressBar1.TabIndex = 84;
+            progressBar1.Value = 85;
+            // 
+            // panel19
+            // 
+            panel19.BackColor = Color.FromArgb(240, 247, 255);
+            panel19.Controls.Add(pictureBox7);
+            panel19.Controls.Add(label9);
+            panel19.Dock = DockStyle.Top;
+            panel19.Location = new Point(0, 0);
+            panel19.Name = "panel19";
+            panel19.Size = new Size(400, 38);
+            panel19.TabIndex = 76;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(23, 10);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(25, 25);
+            pictureBox7.TabIndex = 78;
+            pictureBox7.TabStop = false;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.FromArgb(66, 110, 232);
+            label9.Location = new Point(51, 4);
+            label9.Name = "label9";
+            label9.Size = new Size(73, 31);
+            label9.TabIndex = 79;
+            label9.Text = "Score";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(18, 50);
+            label1.Name = "label1";
+            label1.Size = new Size(84, 25);
+            label1.TabIndex = 83;
+            label1.Text = "Accuracy";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label16.ForeColor = Color.DimGray;
+            label16.Location = new Point(17, 86);
+            label16.Name = "label16";
+            label16.Size = new Size(104, 25);
+            label16.TabIndex = 79;
+            label16.Text = "Readability";
+            // 
+            // progressBar2
+            // 
+            progressBar2.Location = new Point(134, 95);
+            progressBar2.Name = "progressBar2";
+            progressBar2.Size = new Size(279, 16);
+            progressBar2.TabIndex = 82;
+            progressBar2.Value = 85;
+            // 
+            // panel_TestCases
+            // 
+            panel_TestCases.Controls.Add(panel16);
+            panel_TestCases.Dock = DockStyle.Fill;
+            panel_TestCases.Location = new Point(3, 293);
+            panel_TestCases.Name = "panel_TestCases";
+            panel_TestCases.Size = new Size(400, 284);
+            panel_TestCases.TabIndex = 16;
+            // 
+            // panel16
+            // 
+            panel16.BackColor = Color.FromArgb(240, 247, 255);
+            panel16.Controls.Add(pictureBox6);
+            panel16.Controls.Add(label17);
+            panel16.Dock = DockStyle.Top;
+            panel16.Location = new Point(0, 0);
+            panel16.Name = "panel16";
+            panel16.Size = new Size(400, 38);
+            panel16.TabIndex = 76;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(24, 10);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(28, 25);
+            pictureBox6.TabIndex = 76;
+            pictureBox6.TabStop = false;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label17.ForeColor = Color.FromArgb(66, 110, 232);
+            label17.Location = new Point(55, 4);
+            label17.Name = "label17";
+            label17.Size = new Size(120, 31);
+            label17.TabIndex = 77;
+            label17.Text = "Test Cases";
+            // 
+            // panel12
+            // 
+            panel12.BackColor = Color.Gainsboro;
+            panel12.Dock = DockStyle.Left;
+            panel12.Location = new Point(0, 0);
+            panel12.Name = "panel12";
+            panel12.Size = new Size(1, 760);
+            panel12.TabIndex = 73;
             // 
             // TempIDE
             // 
@@ -789,22 +790,22 @@
             tabControl1.ResumeLayout(false);
             panel8.ResumeLayout(false);
             tabControl_RightSide.ResumeLayout(false);
-            Activity.ResumeLayout(false);
-            panel19.ResumeLayout(false);
-            panel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            panel16.ResumeLayout(false);
-            panel16.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ActivityTab.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            panel_Instruction.ResumeLayout(false);
+            panel_Instruction.PerformLayout();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            panel_Instruction.ResumeLayout(false);
-            panel_Instruction.PerformLayout();
-            panel_TestCases.ResumeLayout(false);
             panel_Score.ResumeLayout(false);
             panel_Score.PerformLayout();
-            tableLayoutPanel1.ResumeLayout(false);
+            panel19.ResumeLayout(false);
+            panel19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            panel_TestCases.ResumeLayout(false);
+            panel16.ResumeLayout(false);
+            panel16.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
         }
 
@@ -827,7 +828,6 @@
         private Panel panel7;
         private Label label12;
         private Panel panel8;
-        private Label label21;
         private Panel panel12;
         private Panel panel16;
         private Panel panel15;
@@ -854,9 +854,9 @@
         private TabPage tabPage2;
         private TabPage tabPage3;
         private TabControl tabControl_RightSide;
-        private TabPage Broadcasts;
-        private TabPage Messages;
-        private TabPage Activity;
+        private TabPage BroadcastsTab;
+        private TabPage MessagesTab;
+        private TabPage ActivityTab;
         private ProgressBar progressBar1;
         private Label label1;
         private Panel panel14;
@@ -864,5 +864,6 @@
         private Panel panel_Instruction;
         private Panel panel_Score;
         private Panel panel_TestCases;
+        private Label label2;
     }
 }
