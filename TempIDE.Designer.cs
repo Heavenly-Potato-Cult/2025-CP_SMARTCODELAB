@@ -46,6 +46,8 @@
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel4 = new Panel();
             splitContainer1 = new SplitContainer();
+            button1 = new Button();
+            panel_test = new Panel();
             panel7 = new Panel();
             panel6 = new Panel();
             panel5 = new Panel();
@@ -352,6 +354,8 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(button1);
+            splitContainer1.Panel1.Controls.Add(panel_test);
             splitContainer1.Panel1.Controls.Add(panel7);
             splitContainer1.Panel1.Controls.Add(panel6);
             splitContainer1.Panel1.Controls.Add(panel5);
@@ -365,6 +369,23 @@
             splitContainer1.Size = new Size(1608, 760);
             splitContainer1.SplitterDistance = 1169;
             splitContainer1.TabIndex = 17;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(397, 149);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 17;
+            button1.Text = "Open";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // panel_test
+            // 
+            panel_test.Location = new Point(535, 95);
+            panel_test.Name = "panel_test";
+            panel_test.Size = new Size(328, 236);
+            panel_test.TabIndex = 15;
             // 
             // panel7
             // 
@@ -770,7 +791,6 @@
             Name = "TempIDE";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TempIDE";
-            Load += TempIDE_Load_1;
             Shown += TempIDE_Shown;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
@@ -865,5 +885,7 @@
         private Panel panel_Score;
         private Panel panel_TestCases;
         private Label label2;
+        private Panel panel_test;
+        private Button button1;
     }
 }
