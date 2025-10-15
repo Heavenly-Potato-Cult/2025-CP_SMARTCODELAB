@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,17 +12,14 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using System.Windows.Media;
-
-
-
+using EH = System.Windows.Forms.Integration.ElementHost;
+using WpfBrushes = System.Windows.Media.Brushes;
+using WpfColor = System.Windows.Media.Color;
+using WpfSolidColorBrush = System.Windows.Media.SolidColorBrush;
+using WpfSystemColors = System.Windows.SystemColors;
 //For WPF ;>
 using WpfTreeView = System.Windows.Controls.TreeView;
 using WpfTreeViewItem = System.Windows.Controls.TreeViewItem;
-using WpfColor = System.Windows.Media.Color;
-using WpfBrushes = System.Windows.Media.Brushes;
-using WpfSolidColorBrush = System.Windows.Media.SolidColorBrush;
-using WpfSystemColors = System.Windows.SystemColors;
-using EH = System.Windows.Forms.Integration.ElementHost;
 
 namespace SmartCodeLab
 {
@@ -36,40 +34,10 @@ namespace SmartCodeLab
         {
             InitializeComponent();
             InitializeWPFTree();
-            setTabControl();
-        }
-        private void setTabControl()
-        {
-            tabControl2.DrawMode = TabDrawMode.OwnerDrawFixed;
-            tabControl2.DrawItem += tabcontrol_DrawItem;
-            tabControl2.MouseDown += tabControl2_MouseDown;
+
         }
 
-        private void tabcontrol_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            var tabPage = tabControl2.TabPages[e.Index];
-            var tabRect = tabControl2.GetTabRect(e.Index);
 
-            // Draw tab text
-            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabControl2.Font, tabRect, tabPage.ForeColor);
-
-            // Draw "X" on the right
-            var closeRect = new Rectangle(tabRect.Right - 15, tabRect.Top + 2, 12, 12);
-            e.Graphics.DrawString("x", tabControl1.Font, System.Drawing.Brushes.Red, closeRect.Location);
-        }
-        private void tabControl2_MouseDown(object sender, MouseEventArgs e)
-        {
-            for (int i = 0; i < tabControl2.TabPages.Count; i++)
-            {
-                var tabRect = tabControl2.GetTabRect(i);
-                var closeRect = new Rectangle(tabRect.Right - 15, tabRect.Top + 2, 12, 12);
-                if (closeRect.Contains(e.Location))
-                {
-                    tabControl2.TabPages.RemoveAt(i);
-                    break;
-                }
-            }
-        }
 
 
         private void ResizeTabs()
@@ -233,5 +201,13 @@ namespace SmartCodeLab
             wpfTree.Items.Add(rootNode);
         }
 
+        private void TempIDE_Load(object sender, EventArgs e)
+        {
+            var editor1 = new CodeEditor { Dock = DockStyle.Fill };
+            var editor2 = new CodeEditor { Dock = DockStyle.Fill };
+
+            customTabControl1.AddTab("main.cpp", editor1);
+            customTabControl1.AddTab("helper.cpp", editor2);
+        }
     }
 }

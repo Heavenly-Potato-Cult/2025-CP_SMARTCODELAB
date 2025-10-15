@@ -30,9 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempIDE));
             headerPanel = new Panel();
-            pictureBox4 = new PictureBox();
             pictureBox8 = new PictureBox();
-            pictureBox3 = new PictureBox();
             label14 = new Label();
             label13 = new Label();
             pictureBox1 = new PictureBox();
@@ -77,13 +75,10 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             panel_LeftSide_Main = new Panel();
             panel_LeftSide_Buttons = new Panel();
-            tabControl2 = new TabControl();
-            tabPage4 = new TabPage();
-            tabPage5 = new TabPage();
+            panel_MiddlePart_Main = new Panel();
+            customTabControl1 = new SmartCodeLab.CustomComponents.WPFComponents.CustomTabControl();
             headerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -102,15 +97,13 @@
             tableLayoutPanel2.SuspendLayout();
             panel_LeftSide_Main.SuspendLayout();
             panel_LeftSide_Buttons.SuspendLayout();
-            tabControl2.SuspendLayout();
+            panel_MiddlePart_Main.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
             // 
             headerPanel.BackColor = Color.White;
-            headerPanel.Controls.Add(pictureBox4);
             headerPanel.Controls.Add(pictureBox8);
-            headerPanel.Controls.Add(pictureBox3);
             headerPanel.Controls.Add(label14);
             headerPanel.Controls.Add(label13);
             headerPanel.Controls.Add(pictureBox1);
@@ -123,15 +116,6 @@
             headerPanel.Size = new Size(1608, 80);
             headerPanel.TabIndex = 2;
             // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(861, 27);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(27, 26);
-            pictureBox4.TabIndex = 16;
-            pictureBox4.TabStop = false;
-            // 
             // pictureBox8
             // 
             pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
@@ -140,15 +124,6 @@
             pictureBox8.Size = new Size(26, 26);
             pictureBox8.TabIndex = 16;
             pictureBox8.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(960, 15);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(26, 26);
-            pictureBox3.TabIndex = 15;
-            pictureBox3.TabStop = false;
             // 
             // label14
             // 
@@ -223,7 +198,7 @@
             smartButton1.ForeColor = Color.White;
             smartButton1.Image = (Image)resources.GetObject("smartButton1.Image");
             smartButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton1.Location = new Point(46, 24);
+            smartButton1.Location = new Point(13, 11);
             smartButton1.Name = "smartButton1";
             smartButton1.Padding = new Padding(10, 0, 0, 0);
             smartButton1.Size = new Size(118, 39);
@@ -243,7 +218,7 @@
             smartButton2.ForeColor = Color.White;
             smartButton2.Image = (Image)resources.GetObject("smartButton2.Image");
             smartButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton2.Location = new Point(182, 24);
+            smartButton2.Location = new Point(149, 11);
             smartButton2.Name = "smartButton2";
             smartButton2.Padding = new Padding(10, 0, 0, 0);
             smartButton2.Size = new Size(107, 39);
@@ -263,12 +238,12 @@
             smartButton3.ForeColor = Color.Transparent;
             smartButton3.Image = (Image)resources.GetObject("smartButton3.Image");
             smartButton3.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton3.Location = new Point(310, 24);
+            smartButton3.Location = new Point(277, 11);
             smartButton3.Name = "smartButton3";
             smartButton3.Padding = new Padding(20, 0, 0, 0);
             smartButton3.Size = new Size(107, 39);
             smartButton3.TabIndex = 5;
-            smartButton3.Text = " Save";
+            smartButton3.Text = " Test";
             smartButton3.TextColor = Color.Transparent;
             smartButton3.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton3.UseVisualStyleBackColor = false;
@@ -281,9 +256,9 @@
             panel1.Controls.Add(smartButton1);
             panel1.Controls.Add(smartButton2);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 81);
+            panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1608, 87);
+            panel1.Size = new Size(863, 61);
             panel1.TabIndex = 9;
             // 
             // smartButton5
@@ -297,7 +272,7 @@
             smartButton5.ForeColor = Color.White;
             smartButton5.Image = (Image)resources.GetObject("smartButton5.Image");
             smartButton5.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton5.Location = new Point(436, 24);
+            smartButton5.Location = new Point(403, 11);
             smartButton5.Name = "smartButton5";
             smartButton5.Padding = new Padding(10, 0, 0, 0);
             smartButton5.Size = new Size(146, 39);
@@ -350,17 +325,17 @@
             // 
             panel4.BackColor = Color.Gainsboro;
             panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(0, 168);
+            panel4.Location = new Point(0, 81);
             panel4.Name = "panel4";
             panel4.Size = new Size(1608, 1);
             panel4.TabIndex = 10;
             // 
             // panel_LeftSide_Directory
             // 
-            panel_LeftSide_Directory.Dock = DockStyle.Top;
+            panel_LeftSide_Directory.Dock = DockStyle.Fill;
             panel_LeftSide_Directory.Location = new Point(0, 61);
             panel_LeftSide_Directory.Name = "panel_LeftSide_Directory";
-            panel_LeftSide_Directory.Size = new Size(289, 687);
+            panel_LeftSide_Directory.Size = new Size(289, 780);
             panel_LeftSide_Directory.TabIndex = 15;
             // 
             // tabControl1
@@ -368,7 +343,7 @@
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
-            tabControl1.Location = new Point(298, 636);
+            tabControl1.Location = new Point(298, 708);
             tabControl1.Name = "tabControl1";
             tabControl1.Padding = new Point(10, 5);
             tabControl1.SelectedIndex = 0;
@@ -415,7 +390,7 @@
             tabControl_RightSide.Name = "tabControl_RightSide";
             tableLayoutPanel2.SetRowSpan(tabControl_RightSide, 2);
             tabControl_RightSide.SelectedIndex = 0;
-            tabControl_RightSide.Size = new Size(438, 754);
+            tabControl_RightSide.Size = new Size(438, 841);
             tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
             tabControl_RightSide.TabIndex = 9;
             tabControl_RightSide.Resize += tabControl_RightSide_Resize;
@@ -425,7 +400,7 @@
             BroadcastsTab.Location = new Point(4, 29);
             BroadcastsTab.Name = "BroadcastsTab";
             BroadcastsTab.Padding = new Padding(3);
-            BroadcastsTab.Size = new Size(430, 721);
+            BroadcastsTab.Size = new Size(430, 808);
             BroadcastsTab.TabIndex = 0;
             BroadcastsTab.Text = "Broadcasts";
             BroadcastsTab.UseVisualStyleBackColor = true;
@@ -435,7 +410,7 @@
             MessagesTab.Location = new Point(4, 29);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3);
-            MessagesTab.Size = new Size(430, 721);
+            MessagesTab.Size = new Size(430, 808);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -447,7 +422,7 @@
             ActivityTab.Location = new Point(4, 29);
             ActivityTab.Name = "ActivityTab";
             ActivityTab.Padding = new Padding(10, 10, 10, 20);
-            ActivityTab.Size = new Size(430, 721);
+            ActivityTab.Size = new Size(430, 808);
             ActivityTab.TabIndex = 2;
             ActivityTab.Text = "Activity";
             ActivityTab.UseVisualStyleBackColor = true;
@@ -467,7 +442,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.Size = new Size(410, 691);
+            tableLayoutPanel1.Size = new Size(410, 778);
             tableLayoutPanel1.TabIndex = 17;
             // 
             // panel_Instruction
@@ -477,7 +452,7 @@
             panel_Instruction.Dock = DockStyle.Fill;
             panel_Instruction.Location = new Point(3, 3);
             panel_Instruction.Name = "panel_Instruction";
-            panel_Instruction.Size = new Size(404, 281);
+            panel_Instruction.Size = new Size(404, 318);
             panel_Instruction.TabIndex = 15;
             // 
             // label2
@@ -531,9 +506,9 @@
             panel_Score.Controls.Add(label16);
             panel_Score.Controls.Add(progressBar2);
             panel_Score.Dock = DockStyle.Fill;
-            panel_Score.Location = new Point(3, 577);
+            panel_Score.Location = new Point(3, 651);
             panel_Score.Name = "panel_Score";
-            panel_Score.Size = new Size(404, 111);
+            panel_Score.Size = new Size(404, 124);
             panel_Score.TabIndex = 16;
             // 
             // progressBar1
@@ -609,9 +584,9 @@
             // 
             panel_TestCases.Controls.Add(panel16);
             panel_TestCases.Dock = DockStyle.Fill;
-            panel_TestCases.Location = new Point(3, 290);
+            panel_TestCases.Location = new Point(3, 327);
             panel_TestCases.Name = "panel_TestCases";
-            panel_TestCases.Size = new Size(404, 281);
+            panel_TestCases.Size = new Size(404, 318);
             panel_TestCases.TabIndex = 16;
             // 
             // panel16
@@ -654,15 +629,15 @@
             tableLayoutPanel2.Controls.Add(panel_LeftSide_Main, 0, 0);
             tableLayoutPanel2.Controls.Add(tabControl1, 1, 1);
             tableLayoutPanel2.Controls.Add(tabControl_RightSide, 2, 0);
-            tableLayoutPanel2.Controls.Add(tabControl2, 1, 0);
+            tableLayoutPanel2.Controls.Add(panel_MiddlePart_Main, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 169);
+            tableLayoutPanel2.Location = new Point(0, 82);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(1608, 760);
+            tableLayoutPanel2.Size = new Size(1608, 847);
             tableLayoutPanel2.TabIndex = 18;
             // 
             // panel_LeftSide_Main
@@ -673,7 +648,7 @@
             panel_LeftSide_Main.Location = new Point(3, 3);
             panel_LeftSide_Main.Name = "panel_LeftSide_Main";
             tableLayoutPanel2.SetRowSpan(panel_LeftSide_Main, 2);
-            panel_LeftSide_Main.Size = new Size(289, 754);
+            panel_LeftSide_Main.Size = new Size(289, 841);
             panel_LeftSide_Main.TabIndex = 19;
             // 
             // panel_LeftSide_Buttons
@@ -686,37 +661,23 @@
             panel_LeftSide_Buttons.Size = new Size(289, 61);
             panel_LeftSide_Buttons.TabIndex = 16;
             // 
-            // tabControl2
+            // panel_MiddlePart_Main
             // 
-            tabControl2.Controls.Add(tabPage4);
-            tabControl2.Controls.Add(tabPage5);
-            tabControl2.Dock = DockStyle.Bottom;
-            tabControl2.Location = new Point(298, 104);
-            tabControl2.Name = "tabControl2";
-            tabControl2.SelectedIndex = 0;
-            tabControl2.Size = new Size(863, 526);
-            tabControl2.TabIndex = 20;
-            tabControl2.MouseDown += tabControl2_MouseDown;
+            panel_MiddlePart_Main.Controls.Add(customTabControl1);
+            panel_MiddlePart_Main.Controls.Add(panel1);
+            panel_MiddlePart_Main.Dock = DockStyle.Fill;
+            panel_MiddlePart_Main.Location = new Point(298, 3);
+            panel_MiddlePart_Main.Name = "panel_MiddlePart_Main";
+            panel_MiddlePart_Main.Size = new Size(863, 699);
+            panel_MiddlePart_Main.TabIndex = 20;
             // 
-            // tabPage4
+            // customTabControl1
             // 
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(855, 493);
-            tabPage4.TabIndex = 0;
-            tabPage4.Text = "tabPage4";
-            tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // tabPage5
-            // 
-            tabPage5.Location = new Point(4, 29);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Padding = new Padding(3);
-            tabPage5.Size = new Size(855, 493);
-            tabPage5.TabIndex = 1;
-            tabPage5.Text = "tabPage5";
-            tabPage5.UseVisualStyleBackColor = true;
+            customTabControl1.Dock = DockStyle.Fill;
+            customTabControl1.Location = new Point(0, 61);
+            customTabControl1.Name = "customTabControl1";
+            customTabControl1.Size = new Size(863, 638);
+            customTabControl1.TabIndex = 20;
             // 
             // TempIDE
             // 
@@ -726,18 +687,16 @@
             ClientSize = new Size(1608, 929);
             Controls.Add(tableLayoutPanel2);
             Controls.Add(panel4);
-            Controls.Add(panel1);
             Controls.Add(panel2);
             Controls.Add(headerPanel);
             Name = "TempIDE";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TempIDE";
+            Load += TempIDE_Load;
             Shown += TempIDE_Shown;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
@@ -761,7 +720,7 @@
             tableLayoutPanel2.ResumeLayout(false);
             panel_LeftSide_Main.ResumeLayout(false);
             panel_LeftSide_Buttons.ResumeLayout(false);
-            tabControl2.ResumeLayout(false);
+            panel_MiddlePart_Main.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -794,8 +753,6 @@
         private Label label9;
         private PictureBox pictureBox5;
         private PictureBox pictureBox8;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox3;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -815,8 +772,7 @@
         private TableLayoutPanel tableLayoutPanel2;
         private Panel panel_LeftSide_Main;
         private Panel panel_LeftSide_Buttons;
-        private TabControl tabControl2;
-        private TabPage tabPage4;
-        private TabPage tabPage5;
+        private CustomComponents.WPFComponents.CustomTabControl customTabControl1;
+        private Panel panel_MiddlePart_Main;
     }
 }
