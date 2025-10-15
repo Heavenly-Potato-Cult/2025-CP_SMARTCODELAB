@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,22 +12,22 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using System.Windows.Media;
-
-
-
+using EH = System.Windows.Forms.Integration.ElementHost;
+using WpfBrushes = System.Windows.Media.Brushes;
+using WpfColor = System.Windows.Media.Color;
+using WpfSolidColorBrush = System.Windows.Media.SolidColorBrush;
+using WpfSystemColors = System.Windows.SystemColors;
 //For WPF ;>
 using WpfTreeView = System.Windows.Controls.TreeView;
 using WpfTreeViewItem = System.Windows.Controls.TreeViewItem;
-using WpfColor = System.Windows.Media.Color;
-using WpfBrushes = System.Windows.Media.Brushes;
-using WpfSolidColorBrush = System.Windows.Media.SolidColorBrush;
-using WpfSystemColors = System.Windows.SystemColors;
-using EH = System.Windows.Forms.Integration.ElementHost;
 
 namespace SmartCodeLab
 {
     public partial class TempIDE : Form
     {
+
+
+
         private bool isResizingTabs = false;
         private System.Windows.Controls.TreeView wpfTree;
         public TempIDE()
@@ -36,7 +37,8 @@ namespace SmartCodeLab
 
         }
 
-       
+
+
 
         private void ResizeTabs()
         {
@@ -80,7 +82,7 @@ namespace SmartCodeLab
 
         private void InitializeWPFTree()
         {
-            if (panel_test == null) return;
+            if (panel_LeftSide_Directory == null) return;
 
             wpfTree = new WpfTreeView
             {
@@ -92,14 +94,14 @@ namespace SmartCodeLab
             wpfTree.Resources[WpfSystemColors.HighlightBrushKey] = new WpfSolidColorBrush(WpfColor.FromRgb(200, 230, 255));
             wpfTree.Resources[WpfSystemColors.ControlBrushKey] = new WpfSolidColorBrush(WpfColor.FromRgb(220, 240, 255));
 
-           
+
             var host = new EH
             {
                 Dock = DockStyle.Fill,
                 Child = wpfTree
             };
 
-            panel_test.Controls.Add(host);
+            panel_LeftSide_Directory.Controls.Add(host);
         }
 
         private void LoadFolder(string path, WpfTreeViewItem parent)
@@ -126,20 +128,7 @@ namespace SmartCodeLab
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            using var dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() != DialogResult.OK) return;
 
-            if (wpfTree == null) return;
-
-            wpfTree.Items.Clear();
-
-            var rootNode = CreateFolderNode(dialog.SelectedPath);
-            if (rootNode == null) return;
-
-            wpfTree.Items.Add(rootNode);
-        }
 
         private WpfTreeViewItem CreateFolderNode(string path)
         {
@@ -197,6 +186,28 @@ namespace SmartCodeLab
             }
         }
 
-       
+        private void btn_OpenFolder_Click(object sender, EventArgs e)
+        {
+            using var dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() != DialogResult.OK) return;
+
+            if (wpfTree == null) return;
+
+            wpfTree.Items.Clear();
+
+            var rootNode = CreateFolderNode(dialog.SelectedPath);
+            if (rootNode == null) return;
+
+            wpfTree.Items.Add(rootNode);
+        }
+
+        private void TempIDE_Load(object sender, EventArgs e)
+        {
+            var editor1 = new CodeEditor { Dock = DockStyle.Fill };
+            var editor2 = new CodeEditor { Dock = DockStyle.Fill };
+
+            customTabControl1.AddTab("main.cpp", editor1);
+            customTabControl1.AddTab("helper.cpp", editor2);
+        }
     }
 }
