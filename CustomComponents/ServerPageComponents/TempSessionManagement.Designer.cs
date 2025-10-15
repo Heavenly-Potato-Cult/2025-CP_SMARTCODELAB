@@ -32,11 +32,6 @@
             label3 = new Label();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             tableLayoutPanel1 = new TableLayoutPanel();
-            customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            panel6 = new Panel();
-            panel5 = new Panel();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            label8 = new Label();
             label4 = new Label();
             customTextBox1 = new CustomTextBox();
             label6 = new Label();
@@ -45,6 +40,11 @@
             customTextBox2 = new CustomTextBox();
             label7 = new Label();
             customComboBox1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
+            customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            panel6 = new Panel();
+            panel5 = new Panel();
+            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            label8 = new Label();
             panel7 = new Panel();
             panel4 = new Panel();
             label14 = new Label();
@@ -78,9 +78,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Gray;
-            label5.Location = new Point(127, 79);
+            label5.Location = new Point(111, 59);
             label5.Name = "label5";
-            label5.Size = new Size(391, 25);
+            label5.Size = new Size(322, 20);
             label5.TabIndex = 14;
             label5.Text = "Control and monitor programming lab sessions";
             // 
@@ -89,9 +89,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(126, 35);
+            label3.Location = new Point(110, 26);
             label3.Name = "label3";
-            label3.Size = new Size(297, 38);
+            label3.Size = new Size(233, 30);
             label3.TabIndex = 13;
             label3.Text = "Session Management";
             // 
@@ -106,10 +106,11 @@
             customCard2.Controls.Add(panel7);
             customCard2.Controls.Add(panel4);
             customCard2.Controls.Add(label14);
-            customCard2.Location = new Point(126, 162);
+            customCard2.Location = new Point(110, 122);
+            customCard2.Margin = new Padding(3, 2, 3, 2);
             customCard2.Name = "customCard2";
-            customCard2.Padding = new Padding(10, 20, 10, 10);
-            customCard2.Size = new Size(1110, 309);
+            customCard2.Padding = new Padding(9, 15, 9, 8);
+            customCard2.Size = new Size(971, 232);
             customCard2.TabIndex = 16;
             // 
             // tableLayoutPanel1
@@ -128,84 +129,19 @@
             tableLayoutPanel1.Controls.Add(customComboBox1, 1, 1);
             tableLayoutPanel1.Controls.Add(customCard3, 2, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(10, 67);
+            tableLayoutPanel1.Location = new Point(9, 52);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(10, 20, 20, 0);
+            tableLayoutPanel1.Padding = new Padding(9, 15, 18, 0);
             tableLayoutPanel1.RowCount = 4;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15.85366F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 19.2660542F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 40.3669739F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(1090, 232);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
+            tableLayoutPanel1.Size = new Size(953, 172);
             tableLayoutPanel1.TabIndex = 30;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint_1;
-            // 
-            // customCard3
-            // 
-            customCard3.BackColor = Color.White;
-            customCard3.BorderColor = Color.Gray;
-            customCard3.BorderRadius = 15;
-            customCard3.BorderSize = 1;
-            customCard3.Controls.Add(panel6);
-            customCard3.Controls.Add(panel5);
-            customCard3.Controls.Add(smartButton1);
-            customCard3.Controls.Add(label8);
-            customCard3.Location = new Point(651, 56);
-            customCard3.MaximumSize = new Size(439, 208);
-            customCard3.Name = "customCard3";
-            customCard3.Padding = new Padding(10, 10, 10, 0);
-            tableLayoutPanel1.SetRowSpan(customCard3, 3);
-            customCard3.Size = new Size(416, 144);
-            customCard3.TabIndex = 24;
-            // 
-            // panel6
-            // 
-            panel6.BackColor = Color.DarkGray;
-            panel6.Dock = DockStyle.Top;
-            panel6.Location = new Point(10, 48);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(396, 1);
-            panel6.TabIndex = 31;
-            // 
-            // panel5
-            // 
-            panel5.BackColor = Color.White;
-            panel5.Dock = DockStyle.Top;
-            panel5.Location = new Point(10, 38);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(396, 10);
-            panel5.TabIndex = 30;
-            // 
-            // smartButton1
-            // 
-            smartButton1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            smartButton1.BackColor = Color.DarkGreen;
-            smartButton1.BackgroundColor = Color.DarkGreen;
-            smartButton1.BorderRadius = 5;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(10, 58);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(396, 56);
-            smartButton1.TabIndex = 26;
-            smartButton1.Text = "Start Session";
-            smartButton1.UseVisualStyleBackColor = false;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Dock = DockStyle.Top;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.FromArgb(13, 13, 13);
-            label8.Location = new Point(10, 10);
-            label8.Name = "label8";
-            label8.Padding = new Padding(10, 0, 0, 0);
-            label8.Size = new Size(157, 28);
-            label8.TabIndex = 25;
-            label8.Text = "Session Actions";
             // 
             // label4
             // 
@@ -213,9 +149,9 @@
             label4.Dock = DockStyle.Bottom;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.DimGray;
-            label4.Location = new Point(13, 28);
+            label4.Location = new Point(12, 19);
             label4.Name = "label4";
-            label4.Size = new Size(318, 25);
+            label4.Size = new Size(277, 20);
             label4.TabIndex = 17;
             label4.Text = "Session Name";
             // 
@@ -227,13 +163,14 @@
             customTextBox1.BorderRadius = 10;
             customTextBox1.BorderSize = 1;
             customTextBox1.ForeColor = SystemColors.ControlText;
-            customTextBox1.Location = new Point(13, 56);
+            customTextBox1.Location = new Point(12, 41);
+            customTextBox1.Margin = new Padding(3, 2, 3, 2);
             customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(10, 7, 10, 7);
+            customTextBox1.Padding = new Padding(9, 5, 9, 5);
             customTextBox1.PlaceHolderColor = Color.DarkGray;
             customTextBox1.PlaceholderText = "";
             customTextBox1.ScrollBars = ScrollBars.None;
-            customTextBox1.Size = new Size(304, 41);
+            customTextBox1.Size = new Size(266, 32);
             customTextBox1.TabIndex = 18;
             // 
             // label6
@@ -242,9 +179,9 @@
             label6.Dock = DockStyle.Bottom;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.DimGray;
-            label6.Location = new Point(13, 120);
+            label6.Location = new Point(12, 88);
             label6.Name = "label6";
-            label6.Size = new Size(318, 25);
+            label6.Size = new Size(277, 20);
             label6.TabIndex = 19;
             label6.Text = "Session Code";
             // 
@@ -259,11 +196,12 @@
             customComboBox2.IconColor = Color.Gray;
             customComboBox2.ListBackColor = Color.FromArgb(230, 228, 245);
             customComboBox2.ListTextColor = Color.DimGray;
-            customComboBox2.Location = new Point(337, 148);
-            customComboBox2.MinimumSize = new Size(200, 30);
+            customComboBox2.Location = new Point(295, 110);
+            customComboBox2.Margin = new Padding(3, 2, 3, 2);
+            customComboBox2.MinimumSize = new Size(175, 22);
             customComboBox2.Name = "customComboBox2";
             customComboBox2.Padding = new Padding(1);
-            customComboBox2.Size = new Size(250, 41);
+            customComboBox2.Size = new Size(219, 31);
             customComboBox2.TabIndex = 26;
             customComboBox2.Texts = "";
             // 
@@ -273,9 +211,9 @@
             label15.Dock = DockStyle.Bottom;
             label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.DimGray;
-            label15.Location = new Point(337, 120);
+            label15.Location = new Point(295, 88);
             label15.Name = "label15";
-            label15.Size = new Size(308, 25);
+            label15.Size = new Size(268, 20);
             label15.TabIndex = 25;
             label15.Text = "Select Exercise";
             label15.TextAlign = ContentAlignment.BottomLeft;
@@ -288,13 +226,14 @@
             customTextBox2.BorderRadius = 10;
             customTextBox2.BorderSize = 1;
             customTextBox2.ForeColor = SystemColors.ControlText;
-            customTextBox2.Location = new Point(13, 148);
+            customTextBox2.Location = new Point(12, 110);
+            customTextBox2.Margin = new Padding(3, 2, 3, 2);
             customTextBox2.Name = "customTextBox2";
-            customTextBox2.Padding = new Padding(10, 7, 10, 7);
+            customTextBox2.Padding = new Padding(9, 5, 9, 5);
             customTextBox2.PlaceHolderColor = Color.DarkGray;
             customTextBox2.PlaceholderText = "";
             customTextBox2.ScrollBars = ScrollBars.None;
-            customTextBox2.Size = new Size(304, 41);
+            customTextBox2.Size = new Size(266, 32);
             customTextBox2.TabIndex = 20;
             // 
             // label7
@@ -303,9 +242,9 @@
             label7.Dock = DockStyle.Bottom;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.DimGray;
-            label7.Location = new Point(337, 28);
+            label7.Location = new Point(295, 19);
             label7.Name = "label7";
-            label7.Size = new Size(308, 25);
+            label7.Size = new Size(268, 20);
             label7.TabIndex = 27;
             label7.Text = "Class Selection";
             // 
@@ -321,30 +260,103 @@
             customComboBox1.Items.AddRange(new object[] { "C++", "Java", "Python" });
             customComboBox1.ListBackColor = Color.FromArgb(230, 228, 245);
             customComboBox1.ListTextColor = Color.DimGray;
-            customComboBox1.Location = new Point(337, 56);
-            customComboBox1.MinimumSize = new Size(200, 30);
+            customComboBox1.Location = new Point(295, 41);
+            customComboBox1.Margin = new Padding(3, 2, 3, 2);
+            customComboBox1.MinimumSize = new Size(175, 22);
             customComboBox1.Name = "customComboBox1";
             customComboBox1.Padding = new Padding(1);
-            customComboBox1.Size = new Size(250, 41);
+            customComboBox1.Size = new Size(219, 31);
             customComboBox1.TabIndex = 28;
             customComboBox1.Texts = "";
+            // 
+            // customCard3
+            // 
+            customCard3.BackColor = Color.White;
+            customCard3.BorderColor = Color.Gray;
+            customCard3.BorderRadius = 15;
+            customCard3.BorderSize = 1;
+            customCard3.Controls.Add(panel6);
+            customCard3.Controls.Add(panel5);
+            customCard3.Controls.Add(smartButton1);
+            customCard3.Controls.Add(label8);
+            customCard3.Location = new Point(569, 41);
+            customCard3.Margin = new Padding(3, 2, 3, 2);
+            customCard3.MaximumSize = new Size(384, 156);
+            customCard3.Name = "customCard3";
+            customCard3.Padding = new Padding(9, 8, 9, 0);
+            tableLayoutPanel1.SetRowSpan(customCard3, 3);
+            customCard3.Size = new Size(363, 108);
+            customCard3.TabIndex = 24;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.DarkGray;
+            panel6.Dock = DockStyle.Top;
+            panel6.Location = new Point(9, 37);
+            panel6.Margin = new Padding(3, 2, 3, 2);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(345, 1);
+            panel6.TabIndex = 31;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.White;
+            panel5.Dock = DockStyle.Top;
+            panel5.Location = new Point(9, 29);
+            panel5.Margin = new Padding(3, 2, 3, 2);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(345, 8);
+            panel5.TabIndex = 30;
+            // 
+            // smartButton1
+            // 
+            smartButton1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            smartButton1.BackColor = Color.DarkGreen;
+            smartButton1.BackgroundColor = Color.DarkGreen;
+            smartButton1.BorderRadius = 5;
+            smartButton1.FlatAppearance.BorderSize = 0;
+            smartButton1.FlatStyle = FlatStyle.Flat;
+            smartButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton1.ForeColor = Color.White;
+            smartButton1.Location = new Point(9, 44);
+            smartButton1.Margin = new Padding(3, 2, 3, 2);
+            smartButton1.Name = "smartButton1";
+            smartButton1.Size = new Size(345, 42);
+            smartButton1.TabIndex = 26;
+            smartButton1.Text = "Start Session";
+            smartButton1.UseVisualStyleBackColor = false;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Dock = DockStyle.Top;
+            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label8.ForeColor = Color.FromArgb(13, 13, 13);
+            label8.Location = new Point(9, 8);
+            label8.Name = "label8";
+            label8.Padding = new Padding(9, 0, 0, 0);
+            label8.Size = new Size(127, 21);
+            label8.TabIndex = 25;
+            label8.Text = "Session Actions";
             // 
             // panel7
             // 
             panel7.BackColor = Color.DarkGray;
             panel7.Dock = DockStyle.Top;
-            panel7.Location = new Point(10, 66);
+            panel7.Location = new Point(9, 51);
+            panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1090, 1);
+            panel7.Size = new Size(953, 1);
             panel7.TabIndex = 32;
             // 
             // panel4
             // 
             panel4.BackColor = Color.White;
             panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(10, 51);
+            panel4.Location = new Point(9, 40);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1090, 15);
+            panel4.Size = new Size(953, 11);
             panel4.TabIndex = 31;
             // 
             // label14
@@ -353,10 +365,10 @@
             label14.Dock = DockStyle.Top;
             label14.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.FromArgb(13, 13, 13);
-            label14.Location = new Point(10, 20);
+            label14.Location = new Point(9, 15);
             label14.Name = "label14";
-            label14.Padding = new Padding(10, 0, 0, 0);
-            label14.Size = new Size(191, 31);
+            label14.Padding = new Padding(9, 0, 0, 0);
+            label14.Size = new Size(160, 25);
             label14.TabIndex = 29;
             label14.Text = "Session Control";
             // 
@@ -372,10 +384,11 @@
             customCard4.Controls.Add(panel2);
             customCard4.Controls.Add(panel1);
             customCard4.Controls.Add(label16);
-            customCard4.Location = new Point(126, 514);
+            customCard4.Location = new Point(110, 386);
+            customCard4.Margin = new Padding(3, 2, 3, 2);
             customCard4.Name = "customCard4";
-            customCard4.Padding = new Padding(10, 20, 10, 10);
-            customCard4.Size = new Size(1110, 337);
+            customCard4.Padding = new Padding(9, 15, 9, 8);
+            customCard4.Size = new Size(971, 253);
             customCard4.TabIndex = 25;
             // 
             // tbllayoutpanel_realtime_activity
@@ -386,13 +399,14 @@
             tbllayoutpanel_realtime_activity.Controls.Add(customCard7, 0, 1);
             tbllayoutpanel_realtime_activity.Controls.Add(customCard6, 0, 0);
             tbllayoutpanel_realtime_activity.Dock = DockStyle.Fill;
-            tbllayoutpanel_realtime_activity.Location = new Point(10, 67);
+            tbllayoutpanel_realtime_activity.Location = new Point(9, 52);
+            tbllayoutpanel_realtime_activity.Margin = new Padding(3, 2, 3, 2);
             tbllayoutpanel_realtime_activity.Name = "tbllayoutpanel_realtime_activity";
-            tbllayoutpanel_realtime_activity.Padding = new Padding(10, 20, 20, 20);
+            tbllayoutpanel_realtime_activity.Padding = new Padding(9, 15, 18, 15);
             tbllayoutpanel_realtime_activity.RowCount = 2;
             tbllayoutpanel_realtime_activity.RowStyles.Add(new RowStyle());
             tbllayoutpanel_realtime_activity.RowStyles.Add(new RowStyle());
-            tbllayoutpanel_realtime_activity.Size = new Size(1090, 260);
+            tbllayoutpanel_realtime_activity.Size = new Size(953, 193);
             tbllayoutpanel_realtime_activity.TabIndex = 27;
             // 
             // customCard7
@@ -405,9 +419,10 @@
             customCard7.Controls.Add(label9);
             customCard7.Controls.Add(label17);
             customCard7.Controls.Add(label18);
-            customCard7.Location = new Point(13, 133);
+            customCard7.Location = new Point(12, 98);
+            customCard7.Margin = new Padding(3, 2, 3, 2);
             customCard7.Name = "customCard7";
-            customCard7.Size = new Size(1054, 86);
+            customCard7.Size = new Size(920, 64);
             customCard7.TabIndex = 26;
             // 
             // label9
@@ -416,9 +431,9 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.Gray;
-            label9.Location = new Point(920, 28);
+            label9.Location = new Point(803, 21);
             label9.Name = "label9";
-            label9.Size = new Size(106, 25);
+            label9.Size = new Size(86, 20);
             label9.TabIndex = 19;
             label9.Text = "24 Students";
             // 
@@ -427,9 +442,9 @@
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.Gray;
-            label17.Location = new Point(36, 41);
+            label17.Location = new Point(32, 31);
             label17.Name = "label17";
-            label17.Size = new Size(324, 25);
+            label17.Size = new Size(263, 20);
             label17.TabIndex = 18;
             label17.Text = "September 6, 2025 | 2:00 PM - 4:00 PM";
             // 
@@ -438,9 +453,9 @@
             label18.AutoSize = true;
             label18.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label18.ForeColor = Color.FromArgb(13, 13, 13);
-            label18.Location = new Point(36, 13);
+            label18.Location = new Point(32, 10);
             label18.Name = "label18";
-            label18.Size = new Size(259, 25);
+            label18.Size = new Size(213, 20);
             label18.TabIndex = 13;
             label18.Text = "Data Structures Lab - Week 5";
             // 
@@ -454,9 +469,10 @@
             customCard6.Controls.Add(label10);
             customCard6.Controls.Add(label11);
             customCard6.Controls.Add(label13);
-            customCard6.Location = new Point(13, 23);
+            customCard6.Location = new Point(12, 17);
+            customCard6.Margin = new Padding(3, 2, 3, 2);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(1054, 86);
+            customCard6.Size = new Size(920, 64);
             customCard6.TabIndex = 27;
             // 
             // label10
@@ -465,9 +481,9 @@
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.ForeColor = Color.Gray;
-            label10.Location = new Point(920, 28);
+            label10.Location = new Point(803, 21);
             label10.Name = "label10";
-            label10.Size = new Size(106, 25);
+            label10.Size = new Size(86, 20);
             label10.TabIndex = 19;
             label10.Text = "26 Students";
             // 
@@ -476,9 +492,9 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Gray;
-            label11.Location = new Point(36, 41);
+            label11.Location = new Point(32, 31);
             label11.Name = "label11";
-            label11.Size = new Size(276, 25);
+            label11.Size = new Size(222, 20);
             label11.TabIndex = 18;
             label11.Text = "July 30, 2025 | 1:00 PM - 3:00 PM";
             // 
@@ -487,9 +503,9 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.FromArgb(13, 13, 13);
-            label13.Location = new Point(36, 13);
+            label13.Location = new Point(32, 10);
             label13.Name = "label13";
-            label13.Size = new Size(310, 25);
+            label13.Size = new Size(254, 20);
             label13.TabIndex = 13;
             label13.Text = "Object-Oriented Programming Lab ";
             // 
@@ -503,9 +519,10 @@
             smartButton3.FlatStyle = FlatStyle.Flat;
             smartButton3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton3.ForeColor = Color.DimGray;
-            smartButton3.Location = new Point(945, 14);
+            smartButton3.Location = new Point(827, 10);
+            smartButton3.Margin = new Padding(3, 2, 3, 2);
             smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(104, 37);
+            smartButton3.Size = new Size(91, 28);
             smartButton3.TabIndex = 28;
             smartButton3.Text = "Export Logs";
             smartButton3.TextAlign = ContentAlignment.MiddleRight;
@@ -516,18 +533,20 @@
             // 
             panel2.BackColor = Color.DarkGray;
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(10, 66);
+            panel2.Location = new Point(9, 51);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1090, 1);
+            panel2.Size = new Size(953, 1);
             panel2.TabIndex = 30;
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(10, 51);
+            panel1.Location = new Point(9, 40);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1090, 15);
+            panel1.Size = new Size(953, 11);
             panel1.TabIndex = 29;
             // 
             // label16
@@ -536,10 +555,10 @@
             label16.Dock = DockStyle.Top;
             label16.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label16.ForeColor = Color.FromArgb(13, 13, 13);
-            label16.Location = new Point(10, 20);
+            label16.Location = new Point(9, 15);
             label16.Name = "label16";
-            label16.Padding = new Padding(10, 0, 0, 0);
-            label16.Size = new Size(160, 31);
+            label16.Padding = new Padding(9, 0, 0, 0);
+            label16.Size = new Size(134, 25);
             label16.TabIndex = 28;
             label16.Text = "Session Logs";
             // 
@@ -549,19 +568,21 @@
             panel3.Controls.Add(label5);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1362, 156);
+            panel3.Size = new Size(1192, 117);
             panel3.TabIndex = 26;
             // 
             // TempSessionManagement
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(panel3);
             Controls.Add(customCard4);
             Controls.Add(customCard2);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TempSessionManagement";
-            Size = new Size(1362, 1317);
+            Size = new Size(1192, 988);
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);

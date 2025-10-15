@@ -43,20 +43,23 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         public void SetStats(Dictionary<int, int> stats)
         {
-            foreach (var item in statsTotal.Keys)
+            if (stats != null)
             {
-                if (!stats.ContainsKey(item))
+                foreach (var item in statsTotal.Keys)
                 {
-                    statsTotal[item]?.Hide();
+                    if (!stats.ContainsKey(item))
+                    {
+                        statsTotal[item]?.Hide();
+                    }
                 }
-            }
 
-            if (stats.ContainsKey(4)) 
-            {
-                standardCycComplexity = stats[4];
+                if (stats.ContainsKey(4))
+                {
+                    standardCycComplexity = stats[4];
+                }
+                stats.Remove(0);
+                recordedStats = stats.Keys.ToList();
             }
-            stats.Remove(0);
-            recordedStats = stats.Keys.ToList();
         }
 
         public void SetStudentStats(Dictionary<int, int> stats)

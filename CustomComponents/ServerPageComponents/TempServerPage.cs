@@ -50,7 +50,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     AddStudent(item);
                 }
             });
-            studentCodeRating.SetStats(task.ratingFactors);
+            studentCodeRating1.SetStats(task.ratingFactors);
         }
 
         public void AddStudent(UserProfile profile)
@@ -73,7 +73,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             if (user._studentId == selectedStudentId)
             {
-                await Task.Run(() =>
+                await Task.Run((Action)(() =>
                 {
                     this.Invoke((Delegate)(() =>
                     {
@@ -81,6 +81,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         int studentProgLength = studentProgress.CodeProgress.Count - 1;
                         bool atMax = codeTrack.Maximum == codeTrack.Value;
                         codeTrack.Maximum = studentProgLength;
+                        codeTrack.Minimum = 0;
                         if (atMax)
                         {
                             studentCode.Text = studentProgress.sourceCode;
@@ -95,9 +96,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                                 copypastedCodes.Controls.Add(new PastedCodeIcon(item));
                             }
                         }
-                        studentCodeRating.SetStudentStats(progress.codeStats);
+                        this.studentCodeRating1.SetStudentStats(progress.codeStats);
                     }));
-                });
+                }));
             }
         }
 
