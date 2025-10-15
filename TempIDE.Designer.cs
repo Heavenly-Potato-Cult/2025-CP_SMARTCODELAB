@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempIDE));
             headerPanel = new Panel();
             pictureBox8 = new PictureBox();
@@ -48,7 +47,6 @@
             panel4 = new Panel();
             splitContainer1 = new SplitContainer();
             panel7 = new Panel();
-            codeEditor1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             panel6 = new Panel();
             panel5 = new Panel();
             pictureBox4 = new PictureBox();
@@ -66,27 +64,25 @@
             Broadcasts = new TabPage();
             Messages = new TabPage();
             Activity = new TabPage();
-            flowLayoutPanel2 = new FlowLayoutPanel();
-            panel18 = new Panel();
             progressBar1 = new ProgressBar();
             label1 = new Label();
             progressBar2 = new ProgressBar();
-            panel20 = new Panel();
             label16 = new Label();
             panel19 = new Panel();
             pictureBox7 = new PictureBox();
             label9 = new Label();
-            flowLayoutPanel3 = new FlowLayoutPanel();
             panel16 = new Panel();
             pictureBox6 = new PictureBox();
             label17 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             label21 = new Label();
-            label20 = new Label();
             panel15 = new Panel();
             pictureBox5 = new PictureBox();
             label12 = new Label();
             panel12 = new Panel();
+            panel_Instruction = new Panel();
+            panel_TestCases = new Panel();
+            panel_Score = new Panel();
+            tableLayoutPanel1 = new TableLayoutPanel();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -95,7 +91,6 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -105,15 +100,16 @@
             panel8.SuspendLayout();
             tabControl_RightSide.SuspendLayout();
             Activity.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
-            panel18.SuspendLayout();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
             panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            panel_Instruction.SuspendLayout();
+            panel_TestCases.SuspendLayout();
+            panel_Score.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -357,7 +353,6 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.Controls.Add(panel7);
-            splitContainer1.Panel1.Controls.Add(codeEditor1);
             splitContainer1.Panel1.Controls.Add(panel6);
             splitContainer1.Panel1.Controls.Add(panel5);
             splitContainer1.Panel1.Controls.Add(panel3);
@@ -379,40 +374,6 @@
             panel7.Name = "panel7";
             panel7.Size = new Size(1169, 1);
             panel7.TabIndex = 14;
-            // 
-            // codeEditor1
-            // 
-            codeEditor1.AutoCompleteBracketsList = new char[]
-    {
-    '(',
-    ')',
-    '{',
-    '}',
-    '[',
-    ']',
-    '"',
-    '"',
-    '\'',
-    '\''
-    };
-            codeEditor1.AutoScrollMinSize = new Size(141, 18);
-            codeEditor1.BackBrush = null;
-            codeEditor1.CharHeight = 18;
-            codeEditor1.CharWidth = 10;
-            codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            codeEditor1.Dock = DockStyle.Fill;
-            codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
-            codeEditor1.IsReplaceMode = false;
-            codeEditor1.Location = new Point(0, 56);
-            codeEditor1.Name = "codeEditor1";
-            codeEditor1.Paddings = new Padding(0);
-            codeEditor1.SelectionColor = Color.FromArgb(60, 0, 0, 255);
-            codeEditor1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor1.ServiceColors");
-            codeEditor1.Size = new Size(1169, 517);
-            codeEditor1.TabIndex = 13;
-            codeEditor1.Text = "codeEditor1";
-            codeEditor1.Zoom = 100;
-            codeEditor1.Load += codeEditor1_Load;
             // 
             // panel6
             // 
@@ -583,12 +544,7 @@
             // 
             // Activity
             // 
-            Activity.Controls.Add(flowLayoutPanel2);
-            Activity.Controls.Add(panel19);
-            Activity.Controls.Add(flowLayoutPanel3);
-            Activity.Controls.Add(panel16);
-            Activity.Controls.Add(flowLayoutPanel1);
-            Activity.Controls.Add(panel15);
+            Activity.Controls.Add(tableLayoutPanel1);
             Activity.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Activity.Location = new Point(4, 29);
             Activity.Name = "Activity";
@@ -598,34 +554,9 @@
             Activity.Text = "Activity";
             Activity.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel2
-            // 
-            flowLayoutPanel2.Controls.Add(panel18);
-            flowLayoutPanel2.Dock = DockStyle.Top;
-            flowLayoutPanel2.Location = new Point(10, 622);
-            flowLayoutPanel2.MinimumSize = new Size(434, 99);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Padding = new Padding(0, 0, 0, 10);
-            flowLayoutPanel2.Size = new Size(434, 99);
-            flowLayoutPanel2.TabIndex = 77;
-            // 
-            // panel18
-            // 
-            panel18.BackColor = Color.White;
-            panel18.Controls.Add(progressBar1);
-            panel18.Controls.Add(label1);
-            panel18.Controls.Add(progressBar2);
-            panel18.Controls.Add(panel20);
-            panel18.Controls.Add(label16);
-            panel18.Dock = DockStyle.Top;
-            panel18.Location = new Point(3, 3);
-            panel18.Name = "panel18";
-            panel18.Size = new Size(434, 113);
-            panel18.TabIndex = 78;
-            // 
             // progressBar1
             // 
-            progressBar1.Location = new Point(136, 28);
+            progressBar1.Location = new Point(131, 59);
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(279, 16);
             progressBar1.TabIndex = 84;
@@ -636,7 +567,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(23, 19);
+            label1.Location = new Point(18, 50);
             label1.Name = "label1";
             label1.Size = new Size(84, 25);
             label1.TabIndex = 83;
@@ -644,27 +575,18 @@
             // 
             // progressBar2
             // 
-            progressBar2.Location = new Point(139, 64);
+            progressBar2.Location = new Point(134, 95);
             progressBar2.Name = "progressBar2";
             progressBar2.Size = new Size(279, 16);
             progressBar2.TabIndex = 82;
             progressBar2.Value = 85;
-            // 
-            // panel20
-            // 
-            panel20.BackColor = Color.Gainsboro;
-            panel20.Dock = DockStyle.Left;
-            panel20.Location = new Point(0, 0);
-            panel20.Name = "panel20";
-            panel20.Size = new Size(1, 113);
-            panel20.TabIndex = 74;
             // 
             // label16
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label16.ForeColor = Color.DimGray;
-            label16.Location = new Point(22, 55);
+            label16.Location = new Point(17, 86);
             label16.Name = "label16";
             label16.Size = new Size(104, 25);
             label16.TabIndex = 79;
@@ -676,15 +598,15 @@
             panel19.Controls.Add(pictureBox7);
             panel19.Controls.Add(label9);
             panel19.Dock = DockStyle.Top;
-            panel19.Location = new Point(10, 566);
+            panel19.Location = new Point(0, 0);
             panel19.Name = "panel19";
-            panel19.Size = new Size(396, 56);
+            panel19.Size = new Size(390, 38);
             panel19.TabIndex = 76;
             // 
             // pictureBox7
             // 
             pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(23, 19);
+            pictureBox7.Location = new Point(23, 10);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(25, 25);
             pictureBox7.TabIndex = 78;
@@ -695,20 +617,11 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.FromArgb(66, 110, 232);
-            label9.Location = new Point(51, 13);
+            label9.Location = new Point(51, 4);
             label9.Name = "label9";
             label9.Size = new Size(73, 31);
             label9.TabIndex = 79;
             label9.Text = "Score";
-            // 
-            // flowLayoutPanel3
-            // 
-            flowLayoutPanel3.AutoScroll = true;
-            flowLayoutPanel3.Dock = DockStyle.Top;
-            flowLayoutPanel3.Location = new Point(10, 324);
-            flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(396, 242);
-            flowLayoutPanel3.TabIndex = 73;
             // 
             // panel16
             // 
@@ -716,15 +629,15 @@
             panel16.Controls.Add(pictureBox6);
             panel16.Controls.Add(label17);
             panel16.Dock = DockStyle.Top;
-            panel16.Location = new Point(10, 268);
+            panel16.Location = new Point(0, 0);
             panel16.Name = "panel16";
-            panel16.Size = new Size(396, 56);
+            panel16.Size = new Size(390, 38);
             panel16.TabIndex = 76;
             // 
             // pictureBox6
             // 
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(24, 19);
+            pictureBox6.Location = new Point(24, 10);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(28, 25);
             pictureBox6.TabIndex = 76;
@@ -735,47 +648,22 @@
             label17.AutoSize = true;
             label17.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label17.ForeColor = Color.FromArgb(66, 110, 232);
-            label17.Location = new Point(55, 13);
+            label17.Location = new Point(55, 4);
             label17.Name = "label17";
             label17.Size = new Size(120, 31);
             label17.TabIndex = 77;
             label17.Text = "Test Cases";
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.AutoSize = true;
-            flowLayoutPanel1.Controls.Add(label21);
-            flowLayoutPanel1.Controls.Add(label20);
-            flowLayoutPanel1.Dock = DockStyle.Top;
-            flowLayoutPanel1.Location = new Point(10, 48);
-            flowLayoutPanel1.MinimumSize = new Size(434, 99);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(0, 10, 0, 10);
-            flowLayoutPanel1.Size = new Size(434, 220);
-            flowLayoutPanel1.TabIndex = 75;
             // 
             // label21
             // 
             label21.AutoSize = true;
             label21.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label21.ForeColor = Color.DimGray;
-            label21.Location = new Point(3, 10);
+            label21.Location = new Point(-2, 66);
             label21.Name = "label21";
             label21.Size = new Size(392, 50);
             label21.TabIndex = 71;
             label21.Text = "Task : Implement a bubble sort algorithm that\r\nsorts an array of integers in ascending order\r\n";
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label20.ForeColor = Color.DimGray;
-            label20.Location = new Point(3, 60);
-            label20.Name = "label20";
-            label20.Size = new Size(353, 150);
-            label20.TabIndex = 72;
-            label20.Text = "Requirements:\r\n\r\n. Function should accept a list of integers\r\n. Return the sorted list\r\n. Use bubble sort algorithm specifically\r\n. Handle empty arrays gracefully";
             // 
             // panel15
             // 
@@ -783,9 +671,9 @@
             panel15.Controls.Add(pictureBox5);
             panel15.Controls.Add(label12);
             panel15.Dock = DockStyle.Top;
-            panel15.Location = new Point(10, 10);
+            panel15.Location = new Point(0, 0);
             panel15.Name = "panel15";
-            panel15.Size = new Size(396, 38);
+            panel15.Size = new Size(390, 38);
             panel15.TabIndex = 74;
             // 
             // pictureBox5
@@ -817,6 +705,56 @@
             panel12.Size = new Size(1, 760);
             panel12.TabIndex = 73;
             // 
+            // panel_Instruction
+            // 
+            panel_Instruction.Controls.Add(label21);
+            panel_Instruction.Controls.Add(panel15);
+            panel_Instruction.Dock = DockStyle.Fill;
+            panel_Instruction.Location = new Point(3, 3);
+            panel_Instruction.Name = "panel_Instruction";
+            panel_Instruction.Size = new Size(390, 288);
+            panel_Instruction.TabIndex = 15;
+            // 
+            // panel_TestCases
+            // 
+            panel_TestCases.Controls.Add(panel16);
+            panel_TestCases.Dock = DockStyle.Fill;
+            panel_TestCases.Location = new Point(3, 297);
+            panel_TestCases.Name = "panel_TestCases";
+            panel_TestCases.Size = new Size(390, 288);
+            panel_TestCases.TabIndex = 16;
+            // 
+            // panel_Score
+            // 
+            panel_Score.Controls.Add(progressBar1);
+            panel_Score.Controls.Add(panel19);
+            panel_Score.Controls.Add(label1);
+            panel_Score.Controls.Add(label16);
+            panel_Score.Controls.Add(progressBar2);
+            panel_Score.Dock = DockStyle.Fill;
+            panel_Score.Location = new Point(3, 591);
+            panel_Score.Name = "panel_Score";
+            panel_Score.Size = new Size(390, 113);
+            panel_Score.TabIndex = 16;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Controls.Add(panel_Instruction, 0, 0);
+            tableLayoutPanel1.Controls.Add(panel_Score, 0, 2);
+            tableLayoutPanel1.Controls.Add(panel_TestCases, 0, 1);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(10, 10);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.Size = new Size(396, 707);
+            tableLayoutPanel1.TabIndex = 17;
+            // 
             // TempIDE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -842,7 +780,6 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
@@ -853,21 +790,21 @@
             panel8.ResumeLayout(false);
             tabControl_RightSide.ResumeLayout(false);
             Activity.ResumeLayout(false);
-            Activity.PerformLayout();
-            flowLayoutPanel2.ResumeLayout(false);
-            panel18.ResumeLayout(false);
-            panel18.PerformLayout();
             panel19.ResumeLayout(false);
             panel19.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             panel16.ResumeLayout(false);
             panel16.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
             panel15.ResumeLayout(false);
             panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            panel_Instruction.ResumeLayout(false);
+            panel_Instruction.PerformLayout();
+            panel_TestCases.ResumeLayout(false);
+            panel_Score.ResumeLayout(false);
+            panel_Score.PerformLayout();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -890,7 +827,6 @@
         private Panel panel7;
         private Label label12;
         private Panel panel8;
-        private Label label20;
         private Label label21;
         private Panel panel12;
         private Panel panel16;
@@ -907,7 +843,6 @@
         private Label label9;
         private PictureBox pictureBox5;
         private PictureBox pictureBox8;
-        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor1;
         private Panel panel5;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
@@ -921,14 +856,13 @@
         private TabControl tabControl_RightSide;
         private TabPage Broadcasts;
         private TabPage Messages;
-        private FlowLayoutPanel flowLayoutPanel2;
         private TabPage Activity;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel18;
         private ProgressBar progressBar1;
         private Label label1;
-        private Panel panel20;
         private Panel panel14;
-        private FlowLayoutPanel flowLayoutPanel3;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel_Instruction;
+        private Panel panel_Score;
+        private Panel panel_TestCases;
     }
 }
