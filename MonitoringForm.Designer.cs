@@ -47,7 +47,6 @@ namespace SmartCodeLab
             btnSideMenu_Student = new Button();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            serverSetUp2 = new SmartCodeLab.CustomComponents.Pages.ServerSetUp();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
             customCard1 = new CustomCard();
@@ -65,6 +64,7 @@ namespace SmartCodeLab
             tabPage9 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
             tabPage10 = new TabPage();
+            tempSessionManagement1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempSessionManagement();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
@@ -89,16 +89,16 @@ namespace SmartCodeLab
             headerPanel.Controls.Add(btnClose);
             headerPanel.Dock = DockStyle.Top;
             headerPanel.Location = new Point(0, 0);
-            headerPanel.Margin = new Padding(3, 4, 3, 4);
             headerPanel.Name = "headerPanel";
-            headerPanel.Size = new Size(1626, 70);
+            headerPanel.Size = new Size(1362, 52);
             headerPanel.TabIndex = 1;
             // 
             // btnMenu
             // 
-            btnMenu.Location = new Point(420, 23);
+            btnMenu.Location = new Point(368, 17);
+            btnMenu.Margin = new Padding(3, 2, 3, 2);
             btnMenu.Name = "btnMenu";
-            btnMenu.Size = new Size(94, 29);
+            btnMenu.Size = new Size(82, 22);
             btnMenu.TabIndex = 13;
             btnMenu.Text = "Collapse";
             btnMenu.UseVisualStyleBackColor = true;
@@ -107,9 +107,10 @@ namespace SmartCodeLab
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(18, 3);
+            pictureBox1.Location = new Point(16, 2);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(64, 64);
+            pictureBox1.Size = new Size(56, 48);
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
             // 
@@ -118,9 +119,9 @@ namespace SmartCodeLab
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Gray;
-            label5.Location = new Point(89, 39);
+            label5.Location = new Point(78, 29);
             label5.Name = "label5";
-            label5.Size = new Size(181, 25);
+            label5.Size = new Size(148, 20);
             label5.TabIndex = 11;
             label5.Text = "Instructor Dashboard";
             // 
@@ -129,9 +130,9 @@ namespace SmartCodeLab
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.FromArgb(13, 13, 13);
-            lblTitle.Location = new Point(88, 9);
+            lblTitle.Location = new Point(77, 7);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(180, 32);
+            lblTitle.Size = new Size(144, 25);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "SmartCodeLab";
             // 
@@ -144,10 +145,9 @@ namespace SmartCodeLab
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(1580, 0);
-            btnClose.Margin = new Padding(3, 4, 3, 4);
+            btnClose.Location = new Point(1322, 0);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(46, 70);
+            btnClose.Size = new Size(40, 52);
             btnClose.TabIndex = 1;
             btnClose.Text = "X";
             btnClose.UseVisualStyleBackColor = false;
@@ -168,12 +168,10 @@ namespace SmartCodeLab
             sideMenuPanel.Controls.Add(btnSideMenu_TaskManagement);
             sideMenuPanel.Controls.Add(btnSideMenu_Student);
             sideMenuPanel.Dock = DockStyle.Left;
-            sideMenuPanel.Location = new Point(0, 70);
-            sideMenuPanel.Margin = new Padding(3, 4, 3, 4);
+            sideMenuPanel.Location = new Point(0, 52);
             sideMenuPanel.Name = "sideMenuPanel";
-            sideMenuPanel.Size = new Size(256, 906);
+            sideMenuPanel.Size = new Size(224, 611);
             sideMenuPanel.TabIndex = 0;
-            sideMenuPanel.Paint += sideMenuPanel_Paint;
             // 
             // button8
             // 
@@ -185,11 +183,10 @@ namespace SmartCodeLab
             button8.ForeColor = Color.White;
             button8.Image = (Image)resources.GetObject("button8.Image");
             button8.ImageAlign = ContentAlignment.MiddleLeft;
-            button8.Location = new Point(18, 470);
-            button8.Margin = new Padding(3, 4, 3, 4);
+            button8.Location = new Point(16, 352);
             button8.Name = "button8";
-            button8.Padding = new Padding(10, 0, 0, 0);
-            button8.Size = new Size(221, 60);
+            button8.Padding = new Padding(9, 0, 0, 0);
+            button8.Size = new Size(193, 45);
             button8.TabIndex = 11;
             button8.Tag = "StudentIDE";
             button8.Text = "   StudentIDE";
@@ -207,11 +204,10 @@ namespace SmartCodeLab
             button7.ForeColor = Color.White;
             button7.Image = (Image)resources.GetObject("button7.Image");
             button7.ImageAlign = ContentAlignment.MiddleLeft;
-            button7.Location = new Point(12, 833);
-            button7.Margin = new Padding(3, 4, 3, 4);
+            button7.Location = new Point(10, 625);
             button7.Name = "button7";
-            button7.Padding = new Padding(10, 0, 0, 0);
-            button7.Size = new Size(221, 60);
+            button7.Padding = new Padding(9, 0, 0, 0);
+            button7.Size = new Size(193, 45);
             button7.TabIndex = 10;
             button7.Tag = "Code Evaluation";
             button7.Text = "   Code Evaluation";
@@ -229,11 +225,10 @@ namespace SmartCodeLab
             button6.ForeColor = Color.White;
             button6.Image = (Image)resources.GetObject("button6.Image");
             button6.ImageAlign = ContentAlignment.MiddleLeft;
-            button6.Location = new Point(12, 766);
-            button6.Margin = new Padding(3, 4, 3, 4);
+            button6.Location = new Point(10, 574);
             button6.Name = "button6";
-            button6.Padding = new Padding(10, 0, 0, 0);
-            button6.Size = new Size(221, 60);
+            button6.Padding = new Padding(9, 0, 0, 0);
+            button6.Size = new Size(193, 45);
             button6.TabIndex = 9;
             button6.Tag = "Exercise Manager";
             button6.Text = "   Exercise Manager";
@@ -251,11 +246,10 @@ namespace SmartCodeLab
             button5.ForeColor = Color.White;
             button5.Image = (Image)resources.GetObject("button5.Image");
             button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(12, 630);
-            button5.Margin = new Padding(3, 4, 3, 4);
+            button5.Location = new Point(10, 472);
             button5.Name = "button5";
-            button5.Padding = new Padding(10, 0, 0, 0);
-            button5.Size = new Size(221, 60);
+            button5.Padding = new Padding(9, 0, 0, 0);
+            button5.Size = new Size(193, 45);
             button5.TabIndex = 8;
             button5.Tag = "Session Management";
             button5.Text = " Session Management";
@@ -273,11 +267,10 @@ namespace SmartCodeLab
             button4.ForeColor = Color.White;
             button4.Image = (Image)resources.GetObject("button4.Image");
             button4.ImageAlign = ContentAlignment.MiddleLeft;
-            button4.Location = new Point(18, 562);
-            button4.Margin = new Padding(3, 4, 3, 4);
+            button4.Location = new Point(16, 422);
             button4.Name = "button4";
-            button4.Padding = new Padding(10, 0, 0, 0);
-            button4.Size = new Size(221, 60);
+            button4.Padding = new Padding(9, 0, 0, 0);
+            button4.Size = new Size(193, 45);
             button4.TabIndex = 7;
             button4.Tag = "Dashboard";
             button4.Text = "   Dashboard";
@@ -295,11 +288,10 @@ namespace SmartCodeLab
             button3.ForeColor = Color.White;
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(12, 698);
-            button3.Margin = new Padding(3, 4, 3, 4);
+            button3.Location = new Point(10, 524);
             button3.Name = "button3";
-            button3.Padding = new Padding(10, 0, 0, 0);
-            button3.Size = new Size(221, 60);
+            button3.Padding = new Padding(9, 0, 0, 0);
+            button3.Size = new Size(193, 45);
             button3.TabIndex = 6;
             button3.Tag = "Student Monitoring";
             button3.Text = "   Student Monitoring";
@@ -317,11 +309,10 @@ namespace SmartCodeLab
             btnSideMenu_Shutdown.ForeColor = Color.White;
             btnSideMenu_Shutdown.Image = (Image)resources.GetObject("btnSideMenu_Shutdown.Image");
             btnSideMenu_Shutdown.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Shutdown.Location = new Point(18, 272);
-            btnSideMenu_Shutdown.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_Shutdown.Location = new Point(16, 204);
             btnSideMenu_Shutdown.Name = "btnSideMenu_Shutdown";
-            btnSideMenu_Shutdown.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_Shutdown.Size = new Size(221, 60);
+            btnSideMenu_Shutdown.Padding = new Padding(9, 0, 0, 0);
+            btnSideMenu_Shutdown.Size = new Size(193, 45);
             btnSideMenu_Shutdown.TabIndex = 5;
             btnSideMenu_Shutdown.Tag = "Shutdown";
             btnSideMenu_Shutdown.Text = "   Shutdown";
@@ -339,11 +330,10 @@ namespace SmartCodeLab
             btnSideMenu_Settings.ForeColor = Color.White;
             btnSideMenu_Settings.Image = (Image)resources.GetObject("btnSideMenu_Settings.Image");
             btnSideMenu_Settings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Settings.Location = new Point(18, 209);
-            btnSideMenu_Settings.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_Settings.Location = new Point(16, 157);
             btnSideMenu_Settings.Name = "btnSideMenu_Settings";
-            btnSideMenu_Settings.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_Settings.Size = new Size(221, 60);
+            btnSideMenu_Settings.Padding = new Padding(9, 0, 0, 0);
+            btnSideMenu_Settings.Size = new Size(193, 45);
             btnSideMenu_Settings.TabIndex = 4;
             btnSideMenu_Settings.Tag = "Settings";
             btnSideMenu_Settings.Text = "   Settings";
@@ -361,11 +351,10 @@ namespace SmartCodeLab
             btnSideMenu_FileManagement.ForeColor = Color.White;
             btnSideMenu_FileManagement.Image = (Image)resources.GetObject("btnSideMenu_FileManagement.Image");
             btnSideMenu_FileManagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_FileManagement.Location = new Point(18, 149);
-            btnSideMenu_FileManagement.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_FileManagement.Location = new Point(16, 112);
             btnSideMenu_FileManagement.Name = "btnSideMenu_FileManagement";
-            btnSideMenu_FileManagement.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_FileManagement.Size = new Size(221, 60);
+            btnSideMenu_FileManagement.Padding = new Padding(9, 0, 0, 0);
+            btnSideMenu_FileManagement.Size = new Size(193, 45);
             btnSideMenu_FileManagement.TabIndex = 3;
             btnSideMenu_FileManagement.Tag = "Exercise Manager";
             btnSideMenu_FileManagement.Text = "   Exercise Manager";
@@ -383,11 +372,10 @@ namespace SmartCodeLab
             btnSideMenu_TaskManagement.ForeColor = Color.White;
             btnSideMenu_TaskManagement.Image = (Image)resources.GetObject("btnSideMenu_TaskManagement.Image");
             btnSideMenu_TaskManagement.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_TaskManagement.Location = new Point(18, 89);
-            btnSideMenu_TaskManagement.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_TaskManagement.Location = new Point(16, 67);
             btnSideMenu_TaskManagement.Name = "btnSideMenu_TaskManagement";
-            btnSideMenu_TaskManagement.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_TaskManagement.Size = new Size(221, 60);
+            btnSideMenu_TaskManagement.Padding = new Padding(9, 0, 0, 0);
+            btnSideMenu_TaskManagement.Size = new Size(193, 45);
             btnSideMenu_TaskManagement.TabIndex = 2;
             btnSideMenu_TaskManagement.Tag = "Task Management";
             btnSideMenu_TaskManagement.Text = "   Join Server";
@@ -405,11 +393,10 @@ namespace SmartCodeLab
             btnSideMenu_Student.ForeColor = Color.White;
             btnSideMenu_Student.Image = (Image)resources.GetObject("btnSideMenu_Student.Image");
             btnSideMenu_Student.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSideMenu_Student.Location = new Point(18, 29);
-            btnSideMenu_Student.Margin = new Padding(3, 4, 3, 4);
+            btnSideMenu_Student.Location = new Point(16, 22);
             btnSideMenu_Student.Name = "btnSideMenu_Student";
-            btnSideMenu_Student.Padding = new Padding(10, 0, 0, 0);
-            btnSideMenu_Student.Size = new Size(215, 60);
+            btnSideMenu_Student.Padding = new Padding(9, 0, 0, 0);
+            btnSideMenu_Student.Size = new Size(188, 45);
             btnSideMenu_Student.TabIndex = 1;
             btnSideMenu_Student.Tag = "Connection";
             btnSideMenu_Student.Text = "   Connection";
@@ -429,38 +416,33 @@ namespace SmartCodeLab
             tabControl1.Controls.Add(tabPage9);
             tabControl1.Controls.Add(tabPage10);
             tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(256, 70);
+            tabControl1.Location = new Point(224, 52);
+            tabControl1.Margin = new Padding(3, 2, 3, 2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1370, 906);
+            tabControl1.Size = new Size(1138, 611);
             tabControl1.TabIndex = 2;
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(serverSetUp2);
-            tabPage1.Location = new Point(4, 29);
+            tabPage1.Controls.Add(tempSessionManagement1);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Margin = new Padding(3, 2, 3, 2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1362, 873);
+            tabPage1.Padding = new Padding(3, 2, 3, 2);
+            tabPage1.Size = new Size(1130, 583);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
             // 
-            // serverSetUp2
-            // 
-            serverSetUp2.Location = new Point(0, 0);
-            serverSetUp2.Name = "serverSetUp2";
-            serverSetUp2.Size = new Size(1362, 877);
-            serverSetUp2.TabIndex = 0;
-            serverSetUp2.Load += serverSetUp2_Load;
-            // 
             // tabPage3
             // 
             tabPage3.BackColor = Color.FromArgb(10, 10, 10);
-            tabPage3.Location = new Point(4, 29);
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Margin = new Padding(3, 2, 3, 2);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(1362, 873);
+            tabPage3.Padding = new Padding(3, 2, 3, 2);
+            tabPage3.Size = new Size(1130, 583);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             // 
@@ -468,10 +450,9 @@ namespace SmartCodeLab
             // 
             tabPage4.BackColor = Color.FromArgb(10, 10, 10);
             tabPage4.Controls.Add(customCard1);
-            tabPage4.Location = new Point(4, 29);
-            tabPage4.Margin = new Padding(3, 4, 3, 4);
+            tabPage4.Location = new Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1362, 873);
+            tabPage4.Size = new Size(1191, 652);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             // 
@@ -484,25 +465,23 @@ namespace SmartCodeLab
             customCard1.Controls.Add(customToggleButton1);
             customCard1.Controls.Add(label2);
             customCard1.Controls.Add(label1);
-            customCard1.Location = new Point(80, 77);
-            customCard1.Margin = new Padding(3, 4, 3, 4);
+            customCard1.Location = new Point(70, 58);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(221, 117);
+            customCard1.Size = new Size(193, 88);
             customCard1.TabIndex = 0;
             // 
             // customToggleButton1
             // 
             customToggleButton1.AutoSize = true;
             customToggleButton1.Cursor = Cursors.Hand;
-            customToggleButton1.Location = new Point(149, 61);
-            customToggleButton1.Margin = new Padding(3, 4, 3, 4);
-            customToggleButton1.MinimumSize = new Size(51, 29);
+            customToggleButton1.Location = new Point(130, 46);
+            customToggleButton1.MinimumSize = new Size(45, 22);
             customToggleButton1.Name = "customToggleButton1";
             customToggleButton1.OffBackColor = Color.Gray;
             customToggleButton1.OffToggleColor = Color.Gainsboro;
             customToggleButton1.OnBackColor = Color.MediumSlateBlue;
             customToggleButton1.OnToggleColor = Color.WhiteSmoke;
-            customToggleButton1.Size = new Size(51, 29);
+            customToggleButton1.Size = new Size(45, 22);
             customToggleButton1.TabIndex = 8;
             customToggleButton1.UseVisualStyleBackColor = true;
             // 
@@ -512,9 +491,9 @@ namespace SmartCodeLab
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(242, 242, 242);
-            label2.Location = new Point(17, 65);
+            label2.Location = new Point(15, 49);
             label2.Name = "label2";
-            label2.Size = new Size(86, 20);
+            label2.Size = new Size(66, 15);
             label2.TabIndex = 6;
             label2.Text = "Dark Mode";
             // 
@@ -524,9 +503,9 @@ namespace SmartCodeLab
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(242, 242, 242);
-            label1.Location = new Point(17, 21);
+            label1.Location = new Point(15, 16);
             label1.Name = "label1";
-            label1.Size = new Size(75, 28);
+            label1.Size = new Size(60, 21);
             label1.TabIndex = 5;
             label1.Text = "Theme";
             // 
@@ -535,9 +514,10 @@ namespace SmartCodeLab
             tabPage5.AutoScroll = true;
             tabPage5.BackColor = Color.WhiteSmoke;
             tabPage5.Controls.Add(tempServerPage1);
-            tabPage5.Location = new Point(4, 29);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Margin = new Padding(3, 2, 3, 2);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1362, 873);
+            tabPage5.Size = new Size(1191, 652);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "tabPage5";
             // 
@@ -547,16 +527,18 @@ namespace SmartCodeLab
             tempServerPage1.BackColor = Color.WhiteSmoke;
             tempServerPage1.Dock = DockStyle.Fill;
             tempServerPage1.Location = new Point(0, 0);
+            tempServerPage1.Margin = new Padding(3, 2, 3, 2);
             tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(1362, 873);
+            tempServerPage1.Size = new Size(1191, 652);
             tempServerPage1.TabIndex = 0;
             // 
             // tabPage6
             // 
             tabPage6.Controls.Add(tempDashboard1);
-            tabPage6.Location = new Point(4, 29);
+            tabPage6.Location = new Point(4, 24);
+            tabPage6.Margin = new Padding(3, 2, 3, 2);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1362, 873);
+            tabPage6.Size = new Size(1191, 652);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "tabPage6";
             tabPage6.UseVisualStyleBackColor = true;
@@ -565,33 +547,37 @@ namespace SmartCodeLab
             // 
             tempDashboard1.Dock = DockStyle.Fill;
             tempDashboard1.Location = new Point(0, 0);
+            tempDashboard1.Margin = new Padding(3, 2, 3, 2);
             tempDashboard1.Name = "tempDashboard1";
-            tempDashboard1.Size = new Size(1362, 873);
+            tempDashboard1.Size = new Size(1191, 652);
             tempDashboard1.TabIndex = 0;
             // 
             // tabPage7
             // 
             tabPage7.Controls.Add(serverSetUp1);
-            tabPage7.Location = new Point(4, 29);
+            tabPage7.Location = new Point(4, 24);
+            tabPage7.Margin = new Padding(3, 2, 3, 2);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1362, 873);
+            tabPage7.Size = new Size(1191, 652);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "tabPage7";
             tabPage7.UseVisualStyleBackColor = true;
             // 
             // serverSetUp1
             // 
-            serverSetUp1.Location = new Point(3, 3);
+            serverSetUp1.Location = new Point(3, 2);
+            serverSetUp1.Margin = new Padding(3, 2, 3, 2);
             serverSetUp1.Name = "serverSetUp1";
-            serverSetUp1.Size = new Size(1351, 870);
+            serverSetUp1.Size = new Size(1182, 652);
             serverSetUp1.TabIndex = 0;
             // 
             // tabPage8
             // 
             tabPage8.Controls.Add(tempExerciseManage21);
-            tabPage8.Location = new Point(4, 29);
+            tabPage8.Location = new Point(4, 24);
+            tabPage8.Margin = new Padding(3, 2, 3, 2);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1362, 873);
+            tabPage8.Size = new Size(1191, 652);
             tabPage8.TabIndex = 7;
             tabPage8.Text = "tabPage8";
             tabPage8.UseVisualStyleBackColor = true;
@@ -601,16 +587,18 @@ namespace SmartCodeLab
             tempExerciseManage21.AutoScroll = true;
             tempExerciseManage21.Dock = DockStyle.Fill;
             tempExerciseManage21.Location = new Point(0, 0);
+            tempExerciseManage21.Margin = new Padding(3, 2, 3, 2);
             tempExerciseManage21.Name = "tempExerciseManage21";
-            tempExerciseManage21.Size = new Size(1362, 873);
+            tempExerciseManage21.Size = new Size(1191, 652);
             tempExerciseManage21.TabIndex = 0;
             // 
             // tabPage9
             // 
             tabPage9.Controls.Add(tempCodeEvaluation1);
-            tabPage9.Location = new Point(4, 29);
+            tabPage9.Location = new Point(4, 24);
+            tabPage9.Margin = new Padding(3, 2, 3, 2);
             tabPage9.Name = "tabPage9";
-            tabPage9.Size = new Size(1362, 873);
+            tabPage9.Size = new Size(1191, 652);
             tabPage9.TabIndex = 8;
             tabPage9.Text = "tabPage9";
             tabPage9.UseVisualStyleBackColor = true;
@@ -620,31 +608,40 @@ namespace SmartCodeLab
             tempCodeEvaluation1.AutoScroll = true;
             tempCodeEvaluation1.Dock = DockStyle.Fill;
             tempCodeEvaluation1.Location = new Point(0, 0);
+            tempCodeEvaluation1.Margin = new Padding(3, 2, 3, 2);
             tempCodeEvaluation1.Name = "tempCodeEvaluation1";
-            tempCodeEvaluation1.Size = new Size(1362, 873);
+            tempCodeEvaluation1.Size = new Size(1191, 652);
             tempCodeEvaluation1.TabIndex = 0;
             // 
             // tabPage10
             // 
             tabPage10.BackColor = Color.White;
-            tabPage10.Location = new Point(4, 29);
+            tabPage10.Location = new Point(4, 24);
+            tabPage10.Margin = new Padding(3, 2, 3, 2);
             tabPage10.Name = "tabPage10";
-            tabPage10.Size = new Size(1362, 873);
+            tabPage10.Size = new Size(1191, 652);
             tabPage10.TabIndex = 9;
             tabPage10.Text = "tabPage10";
             // 
+            // tempSessionManagement1
+            // 
+            tempSessionManagement1.Location = new Point(2, 2);
+            tempSessionManagement1.Margin = new Padding(3, 2, 3, 2);
+            tempSessionManagement1.Name = "tempSessionManagement1";
+            tempSessionManagement1.Size = new Size(1192, 988);
+            tempSessionManagement1.TabIndex = 0;
+            // 
             // MonitoringForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(10, 10, 10);
-            ClientSize = new Size(1626, 976);
+            ClientSize = new Size(1362, 663);
             Controls.Add(tabControl1);
             Controls.Add(sideMenuPanel);
             Controls.Add(headerPanel);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "MonitoringForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MonitoringForm";
@@ -698,7 +695,7 @@ namespace SmartCodeLab
         private TabPage tabPage10;
         private CustomComponents.ServerPageComponents.TempStudentIDE tempStudentide1;
         private CustomComponents.Pages.ServerSetUp serverSetUp1;
-        private CustomComponents.Pages.ServerSetUp serverSetUp2;
         private Button btnSideMenu_Settings;
+        private CustomComponents.ServerPageComponents.TempSessionManagement tempSessionManagement1;
     }
 }

@@ -33,9 +33,9 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         public Dictionary<int,int> GetRatingFactors()
         {
-            var ratingFactors = new Dictionary<int, int>() 
+            var ratingFactors = new Dictionary<int, int>()
             {
-                { 0, 0 },
+                { 99, 0 },
             };
 
             if (accuracy.Checked)

@@ -30,39 +30,15 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseCodeEditor));
-            tabControl1 = new TabControl();
-            tabPage3 = new TabPage();
             srcCode = new CodeEditor();
             tabControl2 = new TabControl();
             tabPage1 = new TabPage();
             output = new ConsoleTextBox();
-            tabControl1.SuspendLayout();
-            tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)srcCode).BeginInit();
             tabControl2.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)output).BeginInit();
             SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Location = new Point(3, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(890, 560);
-            tabControl1.TabIndex = 15;
-            // 
-            // tabPage3
-            // 
-            tabPage3.Controls.Add(srcCode);
-            tabPage3.Location = new Point(4, 29);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(882, 527);
-            tabPage3.TabIndex = 0;
-            tabPage3.Text = "MainCode";
-            tabPage3.UseVisualStyleBackColor = true;
             // 
             // srcCode
             // 
@@ -79,39 +55,42 @@
     '\'',
     '\''
     };
-            srcCode.AutoScrollMinSize = new Size(31, 18);
+            srcCode.AutoScrollMinSize = new Size(27, 14);
             srcCode.AutoSize = true;
             srcCode.BackBrush = null;
-            srcCode.CharHeight = 18;
-            srcCode.CharWidth = 10;
+            srcCode.CharHeight = 14;
+            srcCode.CharWidth = 8;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IsReplaceMode = false;
-            srcCode.Location = new Point(6, 6);
+            srcCode.Location = new Point(3, 2);
+            srcCode.Margin = new Padding(3, 2, 3, 2);
             srcCode.Name = "srcCode";
             srcCode.Paddings = new Padding(0);
             srcCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             srcCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("srcCode.ServiceColors");
-            srcCode.Size = new Size(870, 518);
+            srcCode.Size = new Size(716, 353);
             srcCode.TabIndex = 0;
             srcCode.Zoom = 100;
             // 
             // tabControl2
             // 
             tabControl2.Controls.Add(tabPage1);
-            tabControl2.Location = new Point(0, 559);
+            tabControl2.Location = new Point(3, 359);
+            tabControl2.Margin = new Padding(3, 2, 3, 2);
             tabControl2.Name = "tabControl2";
             tabControl2.SelectedIndex = 0;
-            tabControl2.Size = new Size(899, 227);
+            tabControl2.Size = new Size(712, 153);
             tabControl2.TabIndex = 16;
             // 
             // tabPage1
             // 
             tabPage1.Controls.Add(output);
-            tabPage1.Location = new Point(4, 29);
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Margin = new Padding(3, 2, 3, 2);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(891, 194);
+            tabPage1.Padding = new Padding(3, 2, 3, 2);
+            tabPage1.Size = new Size(704, 125);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Output";
             tabPage1.UseVisualStyleBackColor = true;
@@ -131,46 +110,43 @@
     '\'',
     '\''
     };
-            output.AutoScrollMinSize = new Size(31, 18);
+            output.AutoScrollMinSize = new Size(27, 14);
             output.BackBrush = null;
-            output.CharHeight = 18;
-            output.CharWidth = 10;
+            output.CharHeight = 14;
+            output.CharWidth = 8;
             output.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             output.Font = new Font("Courier New", 9.75F);
             output.Hotkeys = resources.GetString("output.Hotkeys");
             output.IsReplaceMode = false;
-            output.Location = new Point(9, 6);
+            output.Location = new Point(8, 4);
+            output.Margin = new Padding(3, 2, 3, 2);
             output.Name = "output";
             output.Paddings = new Padding(0);
             output.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             output.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("output.ServiceColors");
-            output.Size = new Size(883, 188);
+            output.Size = new Size(690, 117);
             output.TabIndex = 0;
             output.Zoom = 100;
             // 
             // BaseCodeEditor
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             Controls.Add(tabControl2);
-            Controls.Add(tabControl1);
+            Controls.Add(srcCode);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "BaseCodeEditor";
-            Size = new Size(896, 786);
-            tabControl1.ResumeLayout(false);
-            tabPage3.ResumeLayout(false);
-            tabPage3.PerformLayout();
+            Size = new Size(722, 514);
             ((System.ComponentModel.ISupportInitialize)srcCode).EndInit();
             tabControl2.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)output).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private TabControl tabControl1;
-        private TabPage tabPage3;
         public CodeEditor srcCode;
         private TabControl tabControl2;
         private TabPage tabPage1;

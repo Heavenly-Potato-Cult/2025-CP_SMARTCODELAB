@@ -36,9 +36,10 @@ namespace SmartCodeLab.Models
             _computerAddress = NetworkServices.GetIpv4();
         }
 
-        public UserProfile(string studentId)
+        public UserProfile(string studentId, string password)
         {
             _studentId = studentId;
+            _password = password;
             _computerAddress = NetworkServices.GetIpv4();
         }
     }

@@ -22,7 +22,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private int? errorLine = null;
         private System.Threading.Timer? _debounceTimer;
         private System.Threading.Timer? inputTimer;
-        protected Action<int, int> updateStats;
+        protected Action<int, int, List<string>> updateStats;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<NotificationType, string>? notifAction { get; set; }//will be used to send activity notification to the server/host
@@ -43,7 +43,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
         }
 
-        protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int> updateStats, Func<Task> sendProgress)
+        protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress)
         {
             InitializeComponent();
             this.updateStats = updateStats;
@@ -309,7 +309,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 TestCodeForm testCodeForm = new TestCodeForm(commandLine, testerFile, task);
                 testCodeForm.ShowDialog();
                 int percentage = (testCodeForm.score / task._testCases.Count) * 100;
-                updateStats?.Invoke(1, percentage);
+                updateStats?.Invoke(1, percentage, null);
             }
         }
         protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
@@ -433,18 +433,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             srcCode.Range.ClearStyle(redWavy);
         }
 
-        private void CountComplexity()
-        {
-            updateStats?.Invoke(4, CodeComplexityReference.CodeComplexityCounter(filePath));
-        }
-
         private Task CountComplexity1()
         {
-            updateStats?.Invoke(4, CodeComplexityReference.CodeComplexityCounter(filePath));
+            updateStats?.Invoke(4, CodeComplexityReference.CodeComplexityCounter(filePath), null);
             return Task.CompletedTask;
         }
 
-        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int> updateStats, Func<Task> sendProgress)
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress)
         {
             if (filePath.EndsWith(".java"))
             {

@@ -20,6 +20,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(3)]
         private LanguageSupported ProgrammingLanguage { get; set; }
 
+        [ProtoMember(4)]
+        public string Password { get; set; }
+
         [ProtoIgnore]
         public string programmingLanguage //servers as the controller for getting the value of ProgrammingLanguage
         {
@@ -54,10 +57,11 @@ namespace SmartCodeLab.Models
         {
         }
 
-        public Server(string serverName, TaskModel serverTask, string programmingLanguage, Dictionary<string,UserProfile> users)
+        public Server(string serverName, string password, TaskModel serverTask, string programmingLanguage, Dictionary<string,UserProfile> users)
         {
             ServerName = serverName;
             this.programmingLanguage = programmingLanguage;
+            this.Password = password;
             ServerTask = serverTask;
             ServerTask._language = ProgrammingLanguage;
             ServerTask._taskName = serverName;

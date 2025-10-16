@@ -33,19 +33,24 @@
             // 
             // studentCodeRating1
             // 
-            studentCodeRating1.Location = new Point(5, 12);
+            studentCodeRating1.Location = new Point(4, 9);
+            studentCodeRating1.Margin = new Padding(3, 2, 3, 2);
             studentCodeRating1.Name = "studentCodeRating1";
-            studentCodeRating1.Size = new Size(451, 658);
+            studentCodeRating1.Size = new Size(395, 494);
             studentCodeRating1.TabIndex = 0;
             // 
             // ToDelete
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(459, 682);
+            ClientSize = new Size(402, 512);
             Controls.Add(studentCodeRating1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "ToDelete";
             Text = "ToDelete";
+            Deactivate += ToDelete_Deactivate;
+            VisibleChanged += ToDelete_VisibleChanged;
+            Leave += ToDelete_Leave;
             ResumeLayout(false);
         }
 

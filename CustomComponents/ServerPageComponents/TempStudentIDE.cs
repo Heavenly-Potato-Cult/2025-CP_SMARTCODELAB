@@ -55,19 +55,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
             editor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);
             editor.notifAction = NotifyHost;
-            //editor.srcCode.KeyUp += (s, e) =>
-            //{
-            //    //if (isFocused)
-            //    //{
-            //    debounceTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-
-            //    // Start a new timer
-            //    debounceTimer = new System.Threading.Timer(async _ =>
-            //    {
-            //        await ProgressSender();
-            //    }, null, debounceDelay, Timeout.Infinite);
-            //    //}
-            //};
             codeEditorContainer.Controls.Add(editor);
             _ = StreamListener();
 
@@ -156,31 +143,39 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             });
         }
 
+        //running code
         private void smartButton1_Click(object sender, EventArgs e)
         {
             editor.RunCode();
         }
 
+        //running codeTest
         private void smartButton3_Click(object sender, EventArgs e)
         {
             editor.RunTest();
         }
-
+        
         private async void smartButton5_Click(object sender, EventArgs e)
         {
             Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, new ServerMessage.Builder(MessageType.PROGRESS_REQUEST).Build(), PrefixStyle.Base128);
             await stream.FlushAsync();
         }
 
+        //code submision
         private void smartButton2_Click(object sender, EventArgs e)
         {
-            Task.Run(async () => 
+            Task.Run(async () =>
             {
                 Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
                     new ServerMessage.Builder(MessageType.CODE_SUBMISSION).SubmittedCode(new SubmittedCode(editor.srcCode.Text)).Build(),
                     PrefixStyle.Base128);
                 await stream.FlushAsync();
             });
+        }
+
+        private void panel16_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

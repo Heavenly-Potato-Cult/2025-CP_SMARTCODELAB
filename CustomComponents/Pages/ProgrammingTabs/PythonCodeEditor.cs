@@ -13,7 +13,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class PythonCodeEditor : BaseCodeEditor
     {
-        public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
+        public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
            
         }
@@ -91,6 +91,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
                             lintOutput = lintOutput.Remove(lintOutput.LastIndexOf('\n'));
                             string[] errors = lintOutput.Split("\n");
+                            List<string> standardErrors = new List<string>();
                             foreach (var error in errors)
                             {
                                 string[] splicedErrorLine = error.Split(':');
@@ -99,15 +100,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                                 //if i == 0, this means pylint was used and error message is in index 5, while it will be on index 4 if ruff was used
                                 errorMessage = splicedErrorLine[i == 0 ? 5 : 4];
                                 line = int.Parse(splicedErrorLine[2]) - 1;
+                                standardErrors.Add(errorMessage);
                                 errorCounts++;
                                 base.HighLightStandardError(line, errorMessage);
                             }
+                            updateStats?.Invoke(2, errorCounts, standardErrors);
                         }
                     }
                 );
                 i++;
             }
-            updateStats?.Invoke(2, errorCounts);
         }
     }
 }

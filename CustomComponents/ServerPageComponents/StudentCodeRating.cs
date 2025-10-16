@@ -23,7 +23,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public StudentCodeRating()
         {
             InitializeComponent();
-            statsTotal = new Dictionary<int, Panel>() 
+            statsTotal = new Dictionary<int, Panel>()
             {
                 {1, panel3 },
                 {2, readabilityContainer },
@@ -64,7 +64,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         public void SetStudentStats(Dictionary<int, int> stats)
         {
-            if(stats != null)
+            if (stats != null)
             {
                 foreach (var item in stats)
                 {
@@ -78,7 +78,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             foreach (var item in recordedStats)
             {
-                currentCodeStats.Add(item, statsBar[item].Value);
+                try
+                {
+                    currentCodeStats.Add(item, statsBar[item].Value);
+                }catch (KeyNotFoundException) { }
             }
 
             return currentCodeStats;
@@ -91,15 +94,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 readabilityContainer.Size = new Size(436, 406);
                 readabilityContainer.Invalidate();
             }
-            else 
+            else
             {
                 readabilityContainer.Size = new Size(436, 39);
                 readabilityContainer.Invalidate();
             }
         }
 
-        public void UpdateStats(int i, int value)
+        public void UpdateStats(int i, int value, List<string>? reasons)
         {
+            if (!recordedStats.Contains(i))
+                return;
             if (i == 1)
             {
                 accuracy.ChangeValue(value);
@@ -107,6 +112,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             else if (i == 2)
             {
                 readability.ChangeValue(100 - value);
+                string violations = "Standard Violations:\n";
+                reasons?.ForEach(reason =>  violations += "- " + reason + "\n" );
+                standardErrors.Text = violations;
             }
             else if (i == 4)
             {
@@ -116,6 +124,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             50;
                 complexity.ChangeValue(score);
             }
+        }
+
+        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Visible = customToggleButton1.Checked;
         }
     }
 }

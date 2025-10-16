@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -32,27 +33,6 @@ namespace SmartCodeLab
             tabControl1.ItemSize = new Size(0, 1);
             SystemSingleton.Instance.page1 = tabPage1;
         }
-        //public void OpenNetshAsAdmin(string command)
-        //{
-        //    ProcessStartInfo startInfo = new ProcessStartInfo
-        //    {
-        //        FileName = "netsh",
-        //        Arguments = command,
-        //        Verb = "runas", // This requests admin privileges
-        //        UseShellExecute = true,
-        //        WindowStyle = ProcessWindowStyle.Normal
-        //    };
-
-        //    try
-        //    {
-        //        Process.Start(startInfo);
-        //    }
-        //    catch (System.ComponentModel.Win32Exception ex)
-        //    {
-        //        // User cancelled the UAC prompt
-        //        Console.WriteLine("Admin privileges required: " + ex.Message);
-        //    }
-        //}
         private void btnMenu2_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 0;
@@ -75,7 +55,7 @@ namespace SmartCodeLab
         {
             //change backcolor
             FocusInAndOut(btnSideMenu_TaskManagement);
-
+            Debug.WriteLine(SystemSingleton.Instance._loggedIn);
             if (!SystemSingleton.Instance._loggedIn)
             {
                 TcpClient client = new TcpClient();
@@ -86,13 +66,9 @@ namespace SmartCodeLab
                     var userLogIn = new UserLogInDIalog(client);
                     if (userLogIn.ShowDialog() == DialogResult.OK)
                     {
-                        var studentProgramming = new TempStudentIDE(userLogIn._userName, userLogIn.serverTask, userLogIn.progress, userLogIn._stream);
-                        this.Invoke((Action)(() =>
-                        {
-                            tabPage3.Controls.Clear();
-                            tabPage3.Controls.Add(studentProgramming);
-                        }));
+                        var studentProgramming = new TempIDE(userLogIn._userName, userLogIn.serverTask, userLogIn.progress, userLogIn._stream);
                         SystemSingleton.Instance._loggedIn = true;
+                        studentProgramming.ShowDialog();
                     }
                     else
                     {
@@ -201,16 +177,6 @@ namespace SmartCodeLab
                     button.Padding = new Padding(10, 0, 0, 0);
                 }
             }
-        }
-
-        private void sideMenuPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void serverSetUp2_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

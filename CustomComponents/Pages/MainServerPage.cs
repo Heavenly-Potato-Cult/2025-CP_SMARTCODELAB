@@ -174,7 +174,13 @@ namespace SmartCodeLab.CustomComponents.Pages
                                 //will retrieve the full student profile from the table using studentId
                                 userProfile = userTable.GetUserProfile(userProfile._studentId);
                                 if (currentStudents.Contains(userProfile._studentName))
+                                {
                                     errorMsg = "This student is already logged in";
+                                }
+                                else if(obj._userProfile._password != server.Password)
+                                {
+                                    errorMsg = "Incorrect Password";
+                                }
                                 else
                                 {
                                     if (!userProgress.ContainsKey(userProfile._studentId))
@@ -183,6 +189,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     }
 
                                     currentStudents.Add(userProfile._studentName);
+                                    Debug.WriteLine("What was sent " + currentTask.ratingFactors.Count);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                         new ServerMessage.Builder(MessageType.LOG_IN_SUCCESSFUL).
                                         Task(currentTask).
@@ -202,7 +209,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                             await networkStream.FlushAsync();
                             break;
                         case MessageType.STUDENT_PROGRESS:
-                            Debug.WriteLine("Received with " + obj._progress.codeStats[4]);
                             UpdateUserProgress(userProfile._studentId, obj._progress);
                             serverPage.UpdateStudentProgressDisplay(userProfile, obj._progress);
                             break;

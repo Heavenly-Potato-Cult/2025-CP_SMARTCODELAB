@@ -1,4 +1,9 @@
-﻿using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+using SmartCodeLab.CustomComponents.TaskPageComponents;
+using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,12 +11,14 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 using System.Windows.Media;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using EH = System.Windows.Forms.Integration.ElementHost;
 using WpfBrushes = System.Windows.Media.Brushes;
 using WpfColor = System.Windows.Media.Color;
@@ -26,7 +33,15 @@ namespace SmartCodeLab
     public partial class TempIDE : Form
     {
 
-
+        private NetworkStream stream;
+        private CancellationTokenSource _cancellationTokenSource;
+        //private ISet<string> openedFiles = new HashSet<string>();
+        private BaseCodeEditor mainEditor;
+        private System.Threading.Timer? debounceTimer;
+        private readonly int debounceDelay = 700;
+        //private bool isFocused = false;
+        private string userName;
+        //private StudentCodingProgress progress;
 
         private bool isResizingTabs = false;
         private System.Windows.Controls.TreeView wpfTree;
@@ -37,8 +52,137 @@ namespace SmartCodeLab
 
         }
 
+        public TempIDE(string userName, TaskModel task, StudentCodingProgress progress, NetworkStream client)
+        {
+            InitializeComponent();
+            InitializeWPFTree();
 
+            stream = client;
+            this.userName = userName;
+            new Thread(() =>
+            {
+                System.Threading.Thread.Sleep(1000);
+                SystemSingleton.Instance._loggedIn = true;
+            }).Start();
 
+            //create the activity directory then return the file path of the main file
+            string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName, progress.sourceCode ?? "");
+
+            //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
+            //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
+            mainEditor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);
+            mainEditor.notifAction = NotifyHost;
+            customTabControl1.AddTab(Path.GetFileName(mainFile), mainEditor);
+
+            if (wpfTree == null) return;
+
+            wpfTree.Items.Clear();
+
+            var rootNode = CreateFolderNode(Path.GetDirectoryName(mainFile));
+            if (rootNode == null) return;
+
+            wpfTree.Items.Add(rootNode);
+
+            _ = StreamListener();
+
+            this.Load += (s, e) =>
+            {
+                UpdateTaskDisplay(task);
+                studentCodeRating.SetStats(task.ratingFactors);
+            };
+        }
+
+        public void UpdateTaskDisplay(TaskModel task)
+        {
+            mainEditor.UpdateTask(task);
+            Task.Run(() =>
+                this.Invoke((Action)(() =>
+                {
+                    //set task description display
+                    actName.Text = task._taskName;
+                    description.Text = task._instructions;
+                    int i = 1;
+                    testCaseContainer.Controls.Clear();
+                    if (task._testCases != null && task._testCases.Count > 0)
+                        foreach (var item in task._testCases)
+                        {
+                            testCaseContainer.Controls.Add(new TestCaseView(i++, item.Key, item.Value));
+                        }
+                }))
+            );
+        }
+
+        private async Task ProgressSender()
+        {
+            var message = new ServerMessage.Builder(MessageType.STUDENT_PROGRESS)
+                .StudentProgress(mainEditor.GetProgress(studentCodeRating.GetStats()))
+                .Build();
+            Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
+            await stream.FlushAsync();
+        }
+
+        private async Task StreamListener()
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+            var token = _cancellationTokenSource.Token;
+            try
+            {
+                while (!token.IsCancellationRequested)
+                {
+                    var task = Task.Run(() =>
+                    {
+                        try
+                        {
+                            return Serializer.DeserializeWithLengthPrefix<ServerMessage>(stream, PrefixStyle.Base128);
+                        }
+                        catch (IOException)
+                        {
+                            return null;
+                        }
+                    });
+
+                    Console.WriteLine("Task created, awaiting...");
+                    var serverMsg = await task;
+
+                    if (serverMsg == null) break; // End of stream or error
+                    switch (serverMsg._messageType)
+                    {
+                        case MessageType.TASK_UPDATE:
+                            UpdateTaskDisplay(serverMsg._task);
+                            MessageBox.Show("Task updated boiiii");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (IOException)
+            {
+                // Stream closed
+            }
+            catch (Exception ex)
+            {
+                // Log unexpected errors
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        private void NotifyHost(NotificationType type, string result)
+        {
+            Task.Run(async () =>
+            {
+                try
+                {
+                    var message = new ServerMessage.Builder(MessageType.NOTIFICATION)
+                        .Notification(new Notification(type, userName, result))
+                        .Build();
+                    Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
+                    await stream.FlushAsync();
+                }
+                catch (ProtoException) { }
+            });
+        }
 
         private void ResizeTabs()
         {
@@ -61,7 +205,7 @@ namespace SmartCodeLab
 
                 tabControl_RightSide.Font = new Font("Segoe UI", 12F);
                 tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-                tabControl_RightSide.ItemSize = new Size(tabWidth, 50); // 50 = tab height
+                //tabControl_RightSide.ItemSize = new Size(tabWidth, 50); // 50 = tab height
             }
             finally
             {
@@ -127,8 +271,6 @@ namespace SmartCodeLab
                 // Skip folders we can't access
             }
         }
-
-
 
         private WpfTreeViewItem CreateFolderNode(string path)
         {
@@ -201,13 +343,47 @@ namespace SmartCodeLab
             wpfTree.Items.Add(rootNode);
         }
 
-        private void TempIDE_Load(object sender, EventArgs e)
+        private void smartButton1_Click(object sender, EventArgs e)
         {
-            var editor1 = new CodeEditor { Dock = DockStyle.Fill };
-            var editor2 = new CodeEditor { Dock = DockStyle.Fill };
+            mainEditor.RunCode();
+        }
 
-            customTabControl1.AddTab("main.cpp", editor1);
-            customTabControl1.AddTab("helper.cpp", editor2);
+        private void smartButton2_Click(object sender, EventArgs e)
+        {
+            Task.Run(async () =>
+            {
+                Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
+                    new ServerMessage.Builder(MessageType.CODE_SUBMISSION).SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text)).Build(),
+                    PrefixStyle.Base128);
+                await stream.FlushAsync();
+            });
+        }
+
+        private void smartButton3_Click(object sender, EventArgs e)
+        {
+            mainEditor.RunTest();
+        }
+
+        private void TempIDE_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _cancellationTokenSource?.Cancel();
+            stream?.Close();
+            SystemSingleton.Instance._loggedIn = false;
+        }
+
+        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            description.Visible = customToggleButton1.Checked;
+        }
+
+        private void customToggleButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            testCaseContainer.Visible = customToggleButton2.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

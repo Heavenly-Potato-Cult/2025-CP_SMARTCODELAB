@@ -49,7 +49,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         private void smartButton2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(userName.Texts))
+            if (string.IsNullOrEmpty(userName.Texts) || string.IsNullOrEmpty(password.Texts))
             {
                 MessageBox.Show("Please fill in all fields", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -98,7 +98,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
                     // Send the login request
                     var loginMessage = new ServerMessage.Builder(MessageType.USER_PROFILE)
-                        .UserProfile(new UserProfile(userName.Texts))
+                        .UserProfile(new UserProfile(userName.Texts, password.Texts))
                         .Build();
 
                     Serializer.SerializeWithLengthPrefix(_stream, loginMessage, PrefixStyle.Base128);

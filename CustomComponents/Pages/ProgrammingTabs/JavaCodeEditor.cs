@@ -26,7 +26,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
         //TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
         //MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
-        public JavaCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
+        public JavaCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
         {
             srcCode.TextChanged += (s, e) =>
             {
@@ -143,18 +143,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 () =>
                 {
                     reRun?.Invoke();
-
+                    List<string> errorsList = new List<string>();
                     string[] errors = (errorLine.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
                     foreach (string standardError in errors)
                     {
                         if (errors[errors.Length - 1] != standardError)
                         {
                             string[] e = standardError.Split(':');
-                            base.HighLightStandardError(int.Parse(e[2]) - 1, e[e.Length - 1]);
+                            string errorMessage = e[e.Length - 1];
+                            errorsList.Add(errorMessage);
+                            base.HighLightStandardError(int.Parse(e[2]) - 1, errorMessage);
                             errorCounts++;
                         }
                     }
-                    updateStats?.Invoke(2, errorCounts);
+                    updateStats?.Invoke(2, errorCounts, errorsList);
                 });
         }
 

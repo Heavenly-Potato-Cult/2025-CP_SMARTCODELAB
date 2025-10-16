@@ -85,7 +85,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         if (atMax)
                         {
                             studentCode.Text = studentProgress.sourceCode;
-                            codeTrack.Value = studentProgLength;
+                            codeTrack.Value = studentProgLength < 0 ? 0 : studentProgLength;
                         }
 
                         copypastedCodes.Controls.Clear();
