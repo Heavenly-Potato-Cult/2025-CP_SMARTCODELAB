@@ -48,6 +48,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(8)]
         public Dictionary<int, decimal[]> ratingFactors { get; set; }
 
+        [ProtoMember(9)]
+        public bool isTabLocked { get; set; }
+
         [ProtoIgnore]
         public string filePath { get; set; }
         public TaskModel() {

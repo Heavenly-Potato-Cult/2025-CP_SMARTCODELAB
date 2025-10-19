@@ -618,13 +618,10 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(headerPanel);
-            FormBorderStyle = FormBorderStyle.Sizable;
             Margin = new Padding(3, 2, 3, 2);
             Name = "TempIDE";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TempIDE";
-            TopMost = true;
-            WindowState = FormWindowState.Maximized;
             FormClosing += TempIDE_FormClosing;
             Shown += TempIDE_Shown;
             headerPanel.ResumeLayout(false);

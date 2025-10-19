@@ -46,13 +46,14 @@ namespace SmartCodeLab.Models
 
 
         [ProtoMember(4)]
-        public Dictionary<String,UserProfile> Users = new Dictionary<String, UserProfile>();
+        public Dictionary<string,UserProfile> Users = new Dictionary<string, UserProfile>();
 
         [ProtoMember(5)]
         public int submittedCount { get; set; }
 
         [ProtoMember(6)]
         public Dictionary<int, int> CodeRatingFactors { get; set; }
+
         public Server()
         {
         }
