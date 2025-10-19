@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempIDE));
             headerPanel = new Panel();
+            button1 = new Button();
             pictureBox8 = new PictureBox();
             label14 = new Label();
             label13 = new Label();
@@ -67,7 +68,6 @@
             smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_OpenFolder = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             tableLayoutPanel2 = new TableLayoutPanel();
-            button1 = new Button();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -100,6 +100,16 @@
             headerPanel.Name = "headerPanel";
             headerPanel.Size = new Size(1348, 60);
             headerPanel.TabIndex = 2;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(1273, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 17;
+            button1.Text = "Close";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // pictureBox8
             // 
@@ -598,16 +608,6 @@
             tableLayoutPanel2.Size = new Size(1348, 572);
             tableLayoutPanel2.TabIndex = 18;
             // 
-            // button1
-            // 
-            button1.Location = new Point(1273, 0);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 17;
-            button1.Text = "Close";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // TempIDE
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -618,7 +618,7 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(headerPanel);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.Sizable;
             Margin = new Padding(3, 2, 3, 2);
             Name = "TempIDE";
             StartPosition = FormStartPosition.CenterScreen;

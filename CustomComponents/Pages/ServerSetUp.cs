@@ -56,7 +56,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 selectedTask = new TaskModel();
             }
-            selectedTask.ratingFactors = codeQualityChoices.GetRatingFactors();
+            //selectedTask.ratingFactors = codeQualityChoices.GetRatingFactors();
             Server server = new Server(serverName.Texts.Trim(),"",selectedTask,language.SelectedItem.ToString(), new Dictionary<string, UserProfile>() { {"2",new UserProfile("Clifford","2","Slimparroot")} });
 
             SystemSingleton.Instance.page1.Controls.Clear();

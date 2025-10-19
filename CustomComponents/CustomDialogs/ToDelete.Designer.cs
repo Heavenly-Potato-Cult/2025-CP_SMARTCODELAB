@@ -28,34 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            studentCodeRating1 = new SmartCodeLab.CustomComponents.ServerPageComponents.StudentCodeRating();
+            codeQualityChoices1 = new SmartCodeLab.CustomComponents.GeneralComponents.CodeQualityChoices();
             SuspendLayout();
             // 
-            // studentCodeRating1
+            // codeQualityChoices1
             // 
-            studentCodeRating1.Location = new Point(4, 9);
-            studentCodeRating1.Margin = new Padding(3, 2, 3, 2);
-            studentCodeRating1.Name = "studentCodeRating1";
-            studentCodeRating1.Size = new Size(395, 494);
-            studentCodeRating1.TabIndex = 0;
+            codeQualityChoices1.Location = new Point(58, 143);
+            codeQualityChoices1.Margin = new Padding(3, 2, 3, 2);
+            codeQualityChoices1.Name = "codeQualityChoices1";
+            codeQualityChoices1.Size = new Size(212, 111);
+            codeQualityChoices1.TabIndex = 0;
             // 
             // ToDelete
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(402, 512);
-            Controls.Add(studentCodeRating1);
+            Controls.Add(codeQualityChoices1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ToDelete";
             Text = "ToDelete";
-            Deactivate += ToDelete_Deactivate;
-            VisibleChanged += ToDelete_VisibleChanged;
-            Leave += ToDelete_Leave;
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ServerPageComponents.StudentCodeRating studentCodeRating1;
+        private GeneralComponents.CodeQualityChoices codeQualityChoices1;
     }
 }
