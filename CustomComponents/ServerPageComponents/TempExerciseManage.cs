@@ -144,5 +144,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
 
         }
+
+        private void btn_AddNewExercise_Click(object sender, EventArgs e)
+        {
+            AddNewExercise newExercise = new AddNewExercise();
+            newExercise.Show();
+        }
     }
 }

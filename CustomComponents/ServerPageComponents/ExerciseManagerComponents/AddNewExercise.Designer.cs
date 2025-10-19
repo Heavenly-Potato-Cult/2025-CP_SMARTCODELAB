@@ -48,6 +48,9 @@
             panel6 = new Panel();
             customComboBox1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             label3 = new Label();
+            btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            label6 = new Label();
             panel6.SuspendLayout();
             SuspendLayout();
             // 
@@ -192,9 +195,9 @@
             btn_CancelAddExercise.FlatStyle = FlatStyle.Flat;
             btn_CancelAddExercise.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_CancelAddExercise.ForeColor = Color.Black;
-            btn_CancelAddExercise.Location = new Point(272, 546);
+            btn_CancelAddExercise.Location = new Point(34, 730);
             btn_CancelAddExercise.Name = "btn_CancelAddExercise";
-            btn_CancelAddExercise.Size = new Size(123, 50);
+            btn_CancelAddExercise.Size = new Size(195, 50);
             btn_CancelAddExercise.TabIndex = 49;
             btn_CancelAddExercise.Text = "Cancel";
             btn_CancelAddExercise.TextColor = Color.Black;
@@ -210,11 +213,11 @@
             btn_ConfirmAddExercise.FlatStyle = FlatStyle.Flat;
             btn_ConfirmAddExercise.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_ConfirmAddExercise.ForeColor = Color.White;
-            btn_ConfirmAddExercise.Location = new Point(412, 546);
+            btn_ConfirmAddExercise.Location = new Point(235, 730);
             btn_ConfirmAddExercise.Name = "btn_ConfirmAddExercise";
-            btn_ConfirmAddExercise.Size = new Size(84, 50);
+            btn_ConfirmAddExercise.Size = new Size(262, 50);
             btn_ConfirmAddExercise.TabIndex = 48;
-            btn_ConfirmAddExercise.Text = "OK";
+            btn_ConfirmAddExercise.Text = "Create Exercise";
             btn_ConfirmAddExercise.UseVisualStyleBackColor = false;
             btn_ConfirmAddExercise.Click += btn_ConfirmAddExercise_Click;
             // 
@@ -226,7 +229,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(659, 6);
+            btnClose.Location = new Point(492, 6);
             btnClose.Margin = new Padding(3, 4, 3, 4);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(46, 42);
@@ -241,7 +244,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(745, 1);
+            panel2.Size = new Size(538, 1);
             panel2.TabIndex = 52;
             // 
             // panel3
@@ -250,25 +253,25 @@
             panel3.Dock = DockStyle.Left;
             panel3.Location = new Point(0, 1);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1, 622);
+            panel3.Size = new Size(1, 780);
             panel3.TabIndex = 53;
             // 
             // panel4
             // 
             panel4.BackColor = Color.DimGray;
             panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(744, 1);
+            panel4.Location = new Point(537, 1);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1, 622);
+            panel4.Size = new Size(1, 780);
             panel4.TabIndex = 54;
             // 
             // panel5
             // 
             panel5.BackColor = Color.DimGray;
             panel5.Dock = DockStyle.Bottom;
-            panel5.Location = new Point(1, 622);
+            panel5.Location = new Point(1, 780);
             panel5.Name = "panel5";
-            panel5.Size = new Size(743, 1);
+            panel5.Size = new Size(536, 1);
             panel5.TabIndex = 54;
             // 
             // panel1
@@ -277,7 +280,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(1, 59);
             panel1.Name = "panel1";
-            panel1.Size = new Size(743, 1);
+            panel1.Size = new Size(536, 1);
             panel1.TabIndex = 53;
             // 
             // panel6
@@ -288,7 +291,7 @@
             panel6.Dock = DockStyle.Top;
             panel6.Location = new Point(1, 1);
             panel6.Name = "panel6";
-            panel6.Size = new Size(743, 58);
+            panel6.Size = new Size(536, 58);
             panel6.TabIndex = 54;
             // 
             // customComboBox1
@@ -321,12 +324,49 @@
             label3.TabIndex = 55;
             label3.Text = "Section";
             // 
+            // btn_AddTestCase
+            // 
+            btn_AddTestCase.BackColor = Color.MediumSlateBlue;
+            btn_AddTestCase.BorderRadius = 10;
+            btn_AddTestCase.FlatAppearance.BorderSize = 0;
+            btn_AddTestCase.FlatStyle = FlatStyle.Flat;
+            btn_AddTestCase.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btn_AddTestCase.ForeColor = Color.White;
+            btn_AddTestCase.Location = new Point(389, 533);
+            btn_AddTestCase.Name = "btn_AddTestCase";
+            btn_AddTestCase.Size = new Size(108, 32);
+            btn_AddTestCase.TabIndex = 57;
+            btn_AddTestCase.Text = "Add";
+            btn_AddTestCase.UseVisualStyleBackColor = false;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Location = new Point(34, 568);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(463, 125);
+            flowLayoutPanel1.TabIndex = 58;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label6.ForeColor = Color.Black;
+            label6.Location = new Point(34, 542);
+            label6.Name = "label6";
+            label6.Size = new Size(87, 23);
+            label6.TabIndex = 59;
+            label6.Text = "Test Cases";
+            // 
             // AddNewExercise
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             BackColor = Color.White;
-            ClientSize = new Size(745, 623);
+            ClientSize = new Size(559, 519);
+            Controls.Add(label6);
+            Controls.Add(flowLayoutPanel1);
+            Controls.Add(btn_AddTestCase);
             Controls.Add(customComboBox1);
             Controls.Add(label3);
             Controls.Add(panel1);
@@ -378,5 +418,8 @@
         private Panel panel6;
         private GeneralComponents.CustomComboBox customComboBox1;
         private Label label3;
+        private GeneralComponents.SmartButton btn_AddTestCase;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Label label6;
     }
 }

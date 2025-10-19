@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempExerciseManage));
             label12 = new Label();
             panel3 = new Panel();
-            smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            btn_AddNewExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label2 = new Label();
             panel1 = new Panel();
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -106,7 +106,7 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(smartButton3);
+            panel3.Controls.Add(btn_AddNewExercise);
             panel3.Controls.Add(label2);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
@@ -114,26 +114,27 @@
             panel3.Size = new Size(1362, 127);
             panel3.TabIndex = 55;
             // 
-            // smartButton3
+            // btn_AddNewExercise
             // 
-            smartButton3.Anchor = AnchorStyles.None;
-            smartButton3.BackColor = SystemColors.Highlight;
-            smartButton3.BackgroundColor = SystemColors.Highlight;
-            smartButton3.BorderRadius = 10;
-            smartButton3.FlatAppearance.BorderSize = 0;
-            smartButton3.FlatStyle = FlatStyle.Flat;
-            smartButton3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton3.ForeColor = Color.White;
-            smartButton3.Image = (Image)resources.GetObject("smartButton3.Image");
-            smartButton3.Location = new Point(985, 42);
-            smartButton3.Margin = new Padding(3, 4, 3, 4);
-            smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(212, 52);
-            smartButton3.TabIndex = 57;
-            smartButton3.Text = "Add New Exercise";
-            smartButton3.TextAlign = ContentAlignment.MiddleRight;
-            smartButton3.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton3.UseVisualStyleBackColor = false;
+            btn_AddNewExercise.Anchor = AnchorStyles.None;
+            btn_AddNewExercise.BackColor = SystemColors.Highlight;
+            btn_AddNewExercise.BackgroundColor = SystemColors.Highlight;
+            btn_AddNewExercise.BorderRadius = 10;
+            btn_AddNewExercise.FlatAppearance.BorderSize = 0;
+            btn_AddNewExercise.FlatStyle = FlatStyle.Flat;
+            btn_AddNewExercise.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_AddNewExercise.ForeColor = Color.White;
+            btn_AddNewExercise.Image = (Image)resources.GetObject("btn_AddNewExercise.Image");
+            btn_AddNewExercise.Location = new Point(985, 42);
+            btn_AddNewExercise.Margin = new Padding(3, 4, 3, 4);
+            btn_AddNewExercise.Name = "btn_AddNewExercise";
+            btn_AddNewExercise.Size = new Size(212, 52);
+            btn_AddNewExercise.TabIndex = 57;
+            btn_AddNewExercise.Text = "Add New Exercise";
+            btn_AddNewExercise.TextAlign = ContentAlignment.MiddleRight;
+            btn_AddNewExercise.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_AddNewExercise.UseVisualStyleBackColor = false;
+            btn_AddNewExercise.Click += btn_AddNewExercise_Click;
             // 
             // label2
             // 
@@ -925,7 +926,7 @@
         private Label label12;
         private Panel panel3;
         private Label label2;
-        private GeneralComponents.SmartButton smartButton3;
+        private GeneralComponents.SmartButton btn_AddNewExercise;
         private Panel panel1;
         private GeneralComponents.SmartButton smartButton4;
         private FlowLayoutPanel flowLayoutPanel1;
