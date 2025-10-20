@@ -35,10 +35,11 @@
             label2 = new Label();
             panel1 = new Panel();
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            flowLayoutPanel_Exercises = new FlowLayoutPanel();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton9 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton8 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            smartButton7 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label5 = new Label();
             label4 = new Label();
             label7 = new Label();
@@ -46,11 +47,8 @@
             label3 = new Label();
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton10 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton11 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton12 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton7 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label1 = new Label();
             label6 = new Label();
             label8 = new Label();
@@ -61,7 +59,6 @@
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton13 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton14 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label22 = new Label();
             label23 = new Label();
             label24 = new Label();
@@ -92,7 +89,7 @@
             customTextBox1 = new CustomTextBox();
             customComboBox1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             panel3.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            flowLayoutPanel_Exercises.SuspendLayout();
             customCard1.SuspendLayout();
             customCard2.SuspendLayout();
             customCard3.SuspendLayout();
@@ -186,20 +183,20 @@
             smartButton4.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton4.UseVisualStyleBackColor = false;
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanel_Exercises
             // 
-            flowLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Controls.Add(customCard1);
-            flowLayoutPanel1.Controls.Add(customCard3);
-            flowLayoutPanel1.Controls.Add(customCard9);
-            flowLayoutPanel1.Controls.Add(customCard6);
-            flowLayoutPanel1.Controls.Add(customCard8);
-            flowLayoutPanel1.Location = new Point(126, 270);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Padding = new Padding(0, 0, 0, 100);
-            flowLayoutPanel1.Size = new Size(1173, 581);
-            flowLayoutPanel1.TabIndex = 59;
+            flowLayoutPanel_Exercises.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            flowLayoutPanel_Exercises.AutoScroll = true;
+            flowLayoutPanel_Exercises.Controls.Add(customCard1);
+            flowLayoutPanel_Exercises.Controls.Add(customCard3);
+            flowLayoutPanel_Exercises.Controls.Add(customCard9);
+            flowLayoutPanel_Exercises.Controls.Add(customCard6);
+            flowLayoutPanel_Exercises.Controls.Add(customCard8);
+            flowLayoutPanel_Exercises.Location = new Point(126, 270);
+            flowLayoutPanel_Exercises.Name = "flowLayoutPanel_Exercises";
+            flowLayoutPanel_Exercises.Padding = new Padding(0, 0, 0, 100);
+            flowLayoutPanel_Exercises.Size = new Size(1173, 581);
+            flowLayoutPanel_Exercises.TabIndex = 59;
             // 
             // customCard1
             // 
@@ -209,6 +206,7 @@
             customCard1.BorderSize = 1;
             customCard1.Controls.Add(smartButton9);
             customCard1.Controls.Add(smartButton8);
+            customCard1.Controls.Add(smartButton7);
             customCard1.Controls.Add(label5);
             customCard1.Controls.Add(label4);
             customCard1.Controls.Add(label7);
@@ -259,6 +257,26 @@
             smartButton8.TextColor = Color.DimGray;
             smartButton8.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton8.UseVisualStyleBackColor = false;
+            // 
+            // smartButton7
+            // 
+            smartButton7.Anchor = AnchorStyles.None;
+            smartButton7.BackColor = Color.FromArgb(240, 247, 255);
+            smartButton7.BackgroundColor = Color.FromArgb(240, 247, 255);
+            smartButton7.BorderRadius = 10;
+            smartButton7.FlatAppearance.BorderSize = 0;
+            smartButton7.FlatStyle = FlatStyle.Flat;
+            smartButton7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton7.ForeColor = Color.DodgerBlue;
+            smartButton7.Location = new Point(18, 198);
+            smartButton7.Margin = new Padding(3, 4, 3, 4);
+            smartButton7.Name = "smartButton7";
+            smartButton7.Size = new Size(255, 52);
+            smartButton7.TabIndex = 60;
+            smartButton7.Text = "Edit";
+            smartButton7.TextColor = Color.DodgerBlue;
+            smartButton7.TextImageRelation = TextImageRelation.ImageBeforeText;
+            smartButton7.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -324,11 +342,8 @@
             customCard3.BorderRadius = 10;
             customCard3.BorderSize = 1;
             customCard3.Controls.Add(smartButton10);
-            customCard3.Controls.Add(smartButton2);
             customCard3.Controls.Add(smartButton11);
-            customCard3.Controls.Add(smartButton6);
             customCard3.Controls.Add(smartButton12);
-            customCard3.Controls.Add(smartButton7);
             customCard3.Controls.Add(label1);
             customCard3.Controls.Add(label6);
             customCard3.Controls.Add(label8);
@@ -359,26 +374,6 @@
             smartButton10.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton10.UseVisualStyleBackColor = false;
             // 
-            // smartButton2
-            // 
-            smartButton2.Anchor = AnchorStyles.None;
-            smartButton2.BackColor = Color.FromArgb(239, 67, 67);
-            smartButton2.BackgroundColor = Color.FromArgb(239, 67, 67);
-            smartButton2.BorderRadius = 10;
-            smartButton2.FlatAppearance.BorderSize = 0;
-            smartButton2.FlatStyle = FlatStyle.Flat;
-            smartButton2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton2.ForeColor = Color.DimGray;
-            smartButton2.Image = (Image)resources.GetObject("smartButton2.Image");
-            smartButton2.Location = new Point(562, 280);
-            smartButton2.Margin = new Padding(3, 4, 3, 4);
-            smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(64, 52);
-            smartButton2.TabIndex = 62;
-            smartButton2.TextColor = Color.DimGray;
-            smartButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton2.UseVisualStyleBackColor = false;
-            // 
             // smartButton11
             // 
             smartButton11.Anchor = AnchorStyles.None;
@@ -399,26 +394,6 @@
             smartButton11.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton11.UseVisualStyleBackColor = false;
             // 
-            // smartButton6
-            // 
-            smartButton6.Anchor = AnchorStyles.None;
-            smartButton6.BackColor = Color.WhiteSmoke;
-            smartButton6.BackgroundColor = Color.WhiteSmoke;
-            smartButton6.BorderRadius = 10;
-            smartButton6.FlatAppearance.BorderSize = 0;
-            smartButton6.FlatStyle = FlatStyle.Flat;
-            smartButton6.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton6.ForeColor = Color.DimGray;
-            smartButton6.Location = new Point(437, 280);
-            smartButton6.Margin = new Padding(3, 4, 3, 4);
-            smartButton6.Name = "smartButton6";
-            smartButton6.Size = new Size(119, 52);
-            smartButton6.TabIndex = 61;
-            smartButton6.Text = "Link";
-            smartButton6.TextColor = Color.DimGray;
-            smartButton6.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton6.UseVisualStyleBackColor = false;
-            // 
             // smartButton12
             // 
             smartButton12.Anchor = AnchorStyles.None;
@@ -438,26 +413,6 @@
             smartButton12.TextColor = Color.DodgerBlue;
             smartButton12.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton12.UseVisualStyleBackColor = false;
-            // 
-            // smartButton7
-            // 
-            smartButton7.Anchor = AnchorStyles.None;
-            smartButton7.BackColor = Color.FromArgb(240, 247, 255);
-            smartButton7.BackgroundColor = Color.FromArgb(240, 247, 255);
-            smartButton7.BorderRadius = 10;
-            smartButton7.FlatAppearance.BorderSize = 0;
-            smartButton7.FlatStyle = FlatStyle.Flat;
-            smartButton7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton7.ForeColor = Color.DodgerBlue;
-            smartButton7.Location = new Point(166, 280);
-            smartButton7.Margin = new Padding(3, 4, 3, 4);
-            smartButton7.Name = "smartButton7";
-            smartButton7.Size = new Size(255, 52);
-            smartButton7.TabIndex = 60;
-            smartButton7.Text = "Edit";
-            smartButton7.TextColor = Color.DodgerBlue;
-            smartButton7.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton7.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
@@ -536,7 +491,6 @@
             customCard9.Controls.Add(smartButton3);
             customCard9.Controls.Add(smartButton13);
             customCard9.Controls.Add(smartButton5);
-            customCard9.Controls.Add(smartButton14);
             customCard9.Controls.Add(label22);
             customCard9.Controls.Add(label23);
             customCard9.Controls.Add(label24);
@@ -608,26 +562,6 @@
             smartButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton5.UseVisualStyleBackColor = false;
             // 
-            // smartButton14
-            // 
-            smartButton14.Anchor = AnchorStyles.None;
-            smartButton14.BackColor = Color.FromArgb(240, 247, 255);
-            smartButton14.BackgroundColor = Color.FromArgb(240, 247, 255);
-            smartButton14.BorderRadius = 10;
-            smartButton14.FlatAppearance.BorderSize = 0;
-            smartButton14.FlatStyle = FlatStyle.Flat;
-            smartButton14.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton14.ForeColor = Color.DodgerBlue;
-            smartButton14.Location = new Point(40, 189);
-            smartButton14.Margin = new Padding(3, 4, 3, 4);
-            smartButton14.Name = "smartButton14";
-            smartButton14.Size = new Size(255, 52);
-            smartButton14.TabIndex = 60;
-            smartButton14.Text = "Edit";
-            smartButton14.TextColor = Color.DodgerBlue;
-            smartButton14.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton14.UseVisualStyleBackColor = false;
-            // 
             // label22
             // 
             label22.AutoSize = true;
@@ -669,7 +603,7 @@
             customCard10.BorderRadius = 15;
             customCard10.BorderSize = 0;
             customCard10.Controls.Add(label25);
-            customCard10.Location = new Point(338, 31);
+            customCard10.Location = new Point(393, 31);
             customCard10.Name = "customCard10";
             customCard10.Size = new Size(87, 31);
             customCard10.TabIndex = 21;
@@ -1054,7 +988,7 @@
             Controls.Add(customTextBox1);
             Controls.Add(smartButton1);
             Controls.Add(smartButton4);
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(flowLayoutPanel_Exercises);
             Controls.Add(panel1);
             Controls.Add(panel3);
             DoubleBuffered = true;
@@ -1063,7 +997,7 @@
             Load += TempExerciseManage_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
+            flowLayoutPanel_Exercises.ResumeLayout(false);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
             customCard2.ResumeLayout(false);
@@ -1094,7 +1028,7 @@
         private GeneralComponents.SmartButton btn_AddNewExercise;
         private Panel panel1;
         private GeneralComponents.SmartButton smartButton4;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel_Exercises;
         private GeneralComponents.CustomCard customCard1;
         private GeneralComponents.CustomCard customCard2;
         private Label label3;
@@ -1109,9 +1043,7 @@
         private GeneralComponents.CustomComboBox customComboBox1;
         private GeneralComponents.CustomCard customCard3;
         private GeneralComponents.SmartButton smartButton10;
-        private GeneralComponents.SmartButton smartButton2;
         private GeneralComponents.SmartButton smartButton11;
-        private GeneralComponents.SmartButton smartButton6;
         private GeneralComponents.SmartButton smartButton12;
         private GeneralComponents.SmartButton smartButton7;
         private Label label1;
@@ -1143,7 +1075,6 @@
         private GeneralComponents.CustomCard customCard9;
         private GeneralComponents.SmartButton smartButton3;
         private GeneralComponents.SmartButton smartButton13;
-        private GeneralComponents.SmartButton smartButton14;
         private Label label22;
         private Label label23;
         private Label label24;
