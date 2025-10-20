@@ -39,7 +39,6 @@
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton9 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton8 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label5 = new Label();
             label4 = new Label();
             label7 = new Label();
@@ -58,6 +57,17 @@
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label9 = new Label();
             label10 = new Label();
+            customCard9 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            smartButton13 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            smartButton14 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            label22 = new Label();
+            label23 = new Label();
+            label24 = new Label();
+            customCard10 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            label25 = new Label();
+            label26 = new Label();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton19 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton20 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -87,6 +97,8 @@
             customCard2.SuspendLayout();
             customCard3.SuspendLayout();
             customCard4.SuspendLayout();
+            customCard9.SuspendLayout();
+            customCard10.SuspendLayout();
             customCard6.SuspendLayout();
             customCard5.SuspendLayout();
             customCard8.SuspendLayout();
@@ -149,7 +161,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Gainsboro;
+            panel1.BackColor = Color.DimGray;
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 127);
             panel1.Name = "panel1";
@@ -165,7 +177,7 @@
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(125, 177);
+            smartButton4.Location = new Point(125, 147);
             smartButton4.Margin = new Padding(3, 4, 3, 4);
             smartButton4.Name = "smartButton4";
             smartButton4.Size = new Size(157, 52);
@@ -180,11 +192,13 @@
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Controls.Add(customCard1);
             flowLayoutPanel1.Controls.Add(customCard3);
+            flowLayoutPanel1.Controls.Add(customCard9);
             flowLayoutPanel1.Controls.Add(customCard6);
             flowLayoutPanel1.Controls.Add(customCard8);
-            flowLayoutPanel1.Location = new Point(125, 320);
+            flowLayoutPanel1.Location = new Point(126, 270);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1152, 581);
+            flowLayoutPanel1.Padding = new Padding(0, 0, 0, 100);
+            flowLayoutPanel1.Size = new Size(1173, 581);
             flowLayoutPanel1.TabIndex = 59;
             // 
             // customCard1
@@ -195,7 +209,6 @@
             customCard1.BorderSize = 1;
             customCard1.Controls.Add(smartButton9);
             customCard1.Controls.Add(smartButton8);
-            customCard1.Controls.Add(smartButton5);
             customCard1.Controls.Add(label5);
             customCard1.Controls.Add(label4);
             customCard1.Controls.Add(label7);
@@ -246,26 +259,6 @@
             smartButton8.TextColor = Color.DimGray;
             smartButton8.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton8.UseVisualStyleBackColor = false;
-            // 
-            // smartButton5
-            // 
-            smartButton5.Anchor = AnchorStyles.None;
-            smartButton5.BackColor = Color.FromArgb(240, 247, 255);
-            smartButton5.BackgroundColor = Color.FromArgb(240, 247, 255);
-            smartButton5.BorderRadius = 10;
-            smartButton5.FlatAppearance.BorderSize = 0;
-            smartButton5.FlatStyle = FlatStyle.Flat;
-            smartButton5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton5.ForeColor = Color.DodgerBlue;
-            smartButton5.Location = new Point(18, 198);
-            smartButton5.Margin = new Padding(3, 4, 3, 4);
-            smartButton5.Name = "smartButton5";
-            smartButton5.Size = new Size(255, 52);
-            smartButton5.TabIndex = 60;
-            smartButton5.Text = "Edit";
-            smartButton5.TextColor = Color.DodgerBlue;
-            smartButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton5.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -534,6 +527,175 @@
             label10.TabIndex = 19;
             label10.Text = "Hello World";
             // 
+            // customCard9
+            // 
+            customCard9.BackColor = Color.White;
+            customCard9.BorderColor = Color.Gray;
+            customCard9.BorderRadius = 10;
+            customCard9.BorderSize = 1;
+            customCard9.Controls.Add(smartButton3);
+            customCard9.Controls.Add(smartButton13);
+            customCard9.Controls.Add(smartButton5);
+            customCard9.Controls.Add(smartButton14);
+            customCard9.Controls.Add(label22);
+            customCard9.Controls.Add(label23);
+            customCard9.Controls.Add(label24);
+            customCard9.Controls.Add(customCard10);
+            customCard9.Controls.Add(label26);
+            customCard9.Location = new Point(3, 290);
+            customCard9.Margin = new Padding(3, 3, 30, 20);
+            customCard9.Name = "customCard9";
+            customCard9.Size = new Size(496, 264);
+            customCard9.TabIndex = 68;
+            // 
+            // smartButton3
+            // 
+            smartButton3.Anchor = AnchorStyles.None;
+            smartButton3.BackColor = Color.FromArgb(239, 67, 67);
+            smartButton3.BackgroundColor = Color.FromArgb(239, 67, 67);
+            smartButton3.BorderRadius = 10;
+            smartButton3.FlatAppearance.BorderSize = 0;
+            smartButton3.FlatStyle = FlatStyle.Flat;
+            smartButton3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton3.ForeColor = Color.DimGray;
+            smartButton3.Image = (Image)resources.GetObject("smartButton3.Image");
+            smartButton3.Location = new Point(414, 193);
+            smartButton3.Margin = new Padding(3, 4, 3, 4);
+            smartButton3.Name = "smartButton3";
+            smartButton3.Size = new Size(64, 52);
+            smartButton3.TabIndex = 62;
+            smartButton3.TextColor = Color.DimGray;
+            smartButton3.TextImageRelation = TextImageRelation.ImageBeforeText;
+            smartButton3.UseVisualStyleBackColor = false;
+            // 
+            // smartButton13
+            // 
+            smartButton13.Anchor = AnchorStyles.None;
+            smartButton13.BackColor = Color.WhiteSmoke;
+            smartButton13.BackgroundColor = Color.WhiteSmoke;
+            smartButton13.BorderRadius = 10;
+            smartButton13.FlatAppearance.BorderSize = 0;
+            smartButton13.FlatStyle = FlatStyle.Flat;
+            smartButton13.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton13.ForeColor = Color.DimGray;
+            smartButton13.Location = new Point(289, 193);
+            smartButton13.Margin = new Padding(3, 4, 3, 4);
+            smartButton13.Name = "smartButton13";
+            smartButton13.Size = new Size(119, 52);
+            smartButton13.TabIndex = 61;
+            smartButton13.Text = "Link";
+            smartButton13.TextColor = Color.DimGray;
+            smartButton13.TextImageRelation = TextImageRelation.ImageBeforeText;
+            smartButton13.UseVisualStyleBackColor = false;
+            // 
+            // smartButton5
+            // 
+            smartButton5.Anchor = AnchorStyles.None;
+            smartButton5.BackColor = Color.FromArgb(240, 247, 255);
+            smartButton5.BackgroundColor = Color.FromArgb(240, 247, 255);
+            smartButton5.BorderRadius = 10;
+            smartButton5.FlatAppearance.BorderSize = 0;
+            smartButton5.FlatStyle = FlatStyle.Flat;
+            smartButton5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton5.ForeColor = Color.DodgerBlue;
+            smartButton5.Location = new Point(18, 193);
+            smartButton5.Margin = new Padding(3, 4, 3, 4);
+            smartButton5.Name = "smartButton5";
+            smartButton5.Size = new Size(255, 52);
+            smartButton5.TabIndex = 60;
+            smartButton5.Text = "Edit";
+            smartButton5.TextColor = Color.DodgerBlue;
+            smartButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
+            smartButton5.UseVisualStyleBackColor = false;
+            // 
+            // smartButton14
+            // 
+            smartButton14.Anchor = AnchorStyles.None;
+            smartButton14.BackColor = Color.FromArgb(240, 247, 255);
+            smartButton14.BackgroundColor = Color.FromArgb(240, 247, 255);
+            smartButton14.BorderRadius = 10;
+            smartButton14.FlatAppearance.BorderSize = 0;
+            smartButton14.FlatStyle = FlatStyle.Flat;
+            smartButton14.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton14.ForeColor = Color.DodgerBlue;
+            smartButton14.Location = new Point(40, 189);
+            smartButton14.Margin = new Padding(3, 4, 3, 4);
+            smartButton14.Name = "smartButton14";
+            smartButton14.Size = new Size(255, 52);
+            smartButton14.TabIndex = 60;
+            smartButton14.Text = "Edit";
+            smartButton14.TextColor = Color.DodgerBlue;
+            smartButton14.TextImageRelation = TextImageRelation.ImageBeforeText;
+            smartButton14.UseVisualStyleBackColor = false;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label22.ForeColor = Color.DimGray;
+            label22.Location = new Point(338, 127);
+            label22.Name = "label22";
+            label22.Size = new Size(135, 25);
+            label22.TabIndex = 24;
+            label22.Text = "Modified today";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label23.ForeColor = Color.DimGray;
+            label23.Location = new Point(18, 127);
+            label23.Name = "label23";
+            label23.Size = new Size(142, 25);
+            label23.TabIndex = 23;
+            label23.Text = "Linked to 1 class";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label24.ForeColor = Color.Black;
+            label24.Location = new Point(18, 76);
+            label24.Name = "label24";
+            label24.Size = new Size(75, 25);
+            label24.TabIndex = 22;
+            label24.Text = "BSIT-3A";
+            // 
+            // customCard10
+            // 
+            customCard10.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            customCard10.BackColor = Color.FromArgb(192, 255, 192);
+            customCard10.BorderColor = Color.Gray;
+            customCard10.BorderRadius = 15;
+            customCard10.BorderSize = 0;
+            customCard10.Controls.Add(label25);
+            customCard10.Location = new Point(338, 31);
+            customCard10.Name = "customCard10";
+            customCard10.Size = new Size(87, 31);
+            customCard10.TabIndex = 21;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label25.ForeColor = Color.Green;
+            label25.Location = new Point(11, 2);
+            label25.Name = "label25";
+            label25.Size = new Size(68, 25);
+            label25.TabIndex = 21;
+            label25.Text = "Python";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label26.ForeColor = Color.FromArgb(13, 13, 13);
+            label26.Location = new Point(18, 35);
+            label26.Name = "label26";
+            label26.Size = new Size(144, 31);
+            label26.TabIndex = 19;
+            label26.Text = "Hello World";
+            // 
             // customCard6
             // 
             customCard6.BackColor = Color.White;
@@ -548,7 +710,7 @@
             customCard6.Controls.Add(label14);
             customCard6.Controls.Add(customCard5);
             customCard6.Controls.Add(label16);
-            customCard6.Location = new Point(3, 290);
+            customCard6.Location = new Point(532, 290);
             customCard6.Margin = new Padding(3, 3, 30, 3);
             customCard6.Name = "customCard6";
             customCard6.Size = new Size(496, 264);
@@ -696,8 +858,8 @@
             customCard8.Controls.Add(label19);
             customCard8.Controls.Add(customCard7);
             customCard8.Controls.Add(label21);
-            customCard8.Location = new Point(532, 290);
-            customCard8.Margin = new Padding(3, 3, 30, 3);
+            customCard8.Location = new Point(3, 577);
+            customCard8.Margin = new Padding(3, 3, 30, 20);
             customCard8.Name = "customCard8";
             customCard8.Size = new Size(496, 264);
             customCard8.TabIndex = 63;
@@ -839,7 +1001,7 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.DimGray;
-            smartButton1.Location = new Point(288, 177);
+            smartButton1.Location = new Point(288, 147);
             smartButton1.Margin = new Padding(3, 4, 3, 4);
             smartButton1.Name = "smartButton1";
             smartButton1.Size = new Size(119, 52);
@@ -854,7 +1016,7 @@
             customTextBox1.BackColor = SystemColors.Window;
             customTextBox1.BorderColor = Color.Gray;
             customTextBox1.ForeColor = Color.DimGray;
-            customTextBox1.Location = new Point(125, 248);
+            customTextBox1.Location = new Point(125, 206);
             customTextBox1.Name = "customTextBox1";
             customTextBox1.Padding = new Padding(10, 7, 10, 7);
             customTextBox1.PlaceHolderColor = Color.DarkGray;
@@ -875,7 +1037,7 @@
             customComboBox1.Items.AddRange(new object[] { "Python", "Java", "C++" });
             customComboBox1.ListBackColor = Color.FromArgb(230, 228, 245);
             customComboBox1.ListTextColor = Color.DimGray;
-            customComboBox1.Location = new Point(933, 248);
+            customComboBox1.Location = new Point(933, 206);
             customComboBox1.MinimumSize = new Size(200, 30);
             customComboBox1.Name = "customComboBox1";
             customComboBox1.Padding = new Padding(2);
@@ -888,7 +1050,6 @@
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoScroll = true;
             Controls.Add(customComboBox1);
             Controls.Add(customTextBox1);
             Controls.Add(smartButton1);
@@ -911,6 +1072,10 @@
             customCard3.PerformLayout();
             customCard4.ResumeLayout(false);
             customCard4.PerformLayout();
+            customCard9.ResumeLayout(false);
+            customCard9.PerformLayout();
+            customCard10.ResumeLayout(false);
+            customCard10.PerformLayout();
             customCard6.ResumeLayout(false);
             customCard6.PerformLayout();
             customCard5.ResumeLayout(false);
@@ -975,5 +1140,15 @@
         private GeneralComponents.CustomCard customCard7;
         private Label label20;
         private Label label21;
+        private GeneralComponents.CustomCard customCard9;
+        private GeneralComponents.SmartButton smartButton3;
+        private GeneralComponents.SmartButton smartButton13;
+        private GeneralComponents.SmartButton smartButton14;
+        private Label label22;
+        private Label label23;
+        private Label label24;
+        private GeneralComponents.CustomCard customCard10;
+        private Label label25;
+        private Label label26;
     }
 }

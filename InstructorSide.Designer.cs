@@ -61,12 +61,12 @@
             tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
             tabPage4 = new TabPage();
             tabPage5 = new TabPage();
+            tempExerciseManage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             tabPage6 = new TabPage();
             tempCodeEvaluation1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempCodeEvaluation();
             tabPage7 = new TabPage();
             button4 = new Button();
             panel2 = new Panel();
-            tempExerciseManage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -488,7 +488,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1346, 880);
+            tabPage2.Size = new Size(192, 67);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
@@ -498,7 +498,7 @@
             tempDashboard1.Dock = DockStyle.Fill;
             tempDashboard1.Location = new Point(3, 3);
             tempDashboard1.Name = "tempDashboard1";
-            tempDashboard1.Size = new Size(1340, 874);
+            tempDashboard1.Size = new Size(186, 61);
             tempDashboard1.TabIndex = 0;
             // 
             // tabPage1
@@ -543,9 +543,9 @@
             // tabPage3
             // 
             tabPage3.Controls.Add(tempServerPage1);
-            tabPage3.Location = new Point(4, 29);
+            tabPage3.Location = new Point(4, 54);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1346, 880);
+            tabPage3.Size = new Size(192, 42);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
@@ -558,14 +558,14 @@
             tempServerPage1.Location = new Point(0, 0);
             tempServerPage1.Margin = new Padding(3, 4, 3, 4);
             tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(1346, 880);
+            tempServerPage1.Size = new Size(192, 42);
             tempServerPage1.TabIndex = 1;
             // 
             // tabPage4
             // 
-            tabPage4.Location = new Point(4, 29);
+            tabPage4.Location = new Point(4, 54);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1346, 880);
+            tabPage4.Size = new Size(192, 42);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
@@ -580,12 +580,21 @@
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
             // 
+            // tempExerciseManage1
+            // 
+            tempExerciseManage1.AllowDrop = true;
+            tempExerciseManage1.Dock = DockStyle.Fill;
+            tempExerciseManage1.Location = new Point(0, 0);
+            tempExerciseManage1.Name = "tempExerciseManage1";
+            tempExerciseManage1.Size = new Size(1346, 880);
+            tempExerciseManage1.TabIndex = 0;
+            // 
             // tabPage6
             // 
             tabPage6.Controls.Add(tempCodeEvaluation1);
-            tabPage6.Location = new Point(4, 29);
+            tabPage6.Location = new Point(4, 79);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1346, 880);
+            tabPage6.Size = new Size(192, 17);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "tabPage6";
             tabPage6.UseVisualStyleBackColor = true;
@@ -596,15 +605,15 @@
             tempCodeEvaluation1.Dock = DockStyle.Fill;
             tempCodeEvaluation1.Location = new Point(0, 0);
             tempCodeEvaluation1.Name = "tempCodeEvaluation1";
-            tempCodeEvaluation1.Size = new Size(1346, 880);
+            tempCodeEvaluation1.Size = new Size(192, 17);
             tempCodeEvaluation1.TabIndex = 0;
             // 
             // tabPage7
             // 
             tabPage7.Controls.Add(button4);
-            tabPage7.Location = new Point(4, 29);
+            tabPage7.Location = new Point(4, 104);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1346, 880);
+            tabPage7.Size = new Size(192, 0);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "tabPage7";
             tabPage7.UseVisualStyleBackColor = true;
@@ -627,16 +636,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1354, 1);
             panel2.TabIndex = 8;
-            // 
-            // tempExerciseManage1
-            // 
-            tempExerciseManage1.AllowDrop = true;
-            tempExerciseManage1.AutoScroll = true;
-            tempExerciseManage1.Dock = DockStyle.Fill;
-            tempExerciseManage1.Location = new Point(0, 0);
-            tempExerciseManage1.Name = "tempExerciseManage1";
-            tempExerciseManage1.Size = new Size(1346, 880);
-            tempExerciseManage1.TabIndex = 0;
             // 
             // InstructorSide
             // 
