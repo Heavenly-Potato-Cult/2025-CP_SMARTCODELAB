@@ -17,22 +17,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.IO;
+using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
     public partial class TempExerciseManage : UserControl
     {
-        private string btnStatus = "Edit";
-        private string folderPath = "";
+        //private string btnStatus = "Edit";
+        //private string folderPath = "";
 
-        private TaskModel selectedTaskModel;
+        //private TaskModel selectedTaskModel;
 
-        private readonly Dictionary<string, string> languageExtension = new Dictionary<string, string>()
-        {
-            {"Cpp","Cpp file(.cpp)|*.cpp" },
-            {"Java",".Java file(.java)|*.java" },
-            {"Python","Python file(.py)|*.py" }
-        };
+        //private readonly Dictionary<string, string> languageExtension = new Dictionary<string, string>()
+        //{
+        //    {"Cpp","Cpp file(.cpp)|*.cpp" },
+        //    {"Java",".Java file(.java)|*.java" },
+        //    {"Python","Python file(.py)|*.py" }
+        //};
         public TempExerciseManage()
         {
             InitializeComponent();
@@ -147,8 +148,30 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void btn_AddNewExercise_Click(object sender, EventArgs e)
         {
-            AddNewExercise newExercise = new AddNewExercise();
-            newExercise.Show();
+            using (var exerciseForm = new AddNewExercise())
+            {
+                var dialogResult = exerciseForm.ShowDialog();
+
+                bool userCancelled = (dialogResult != DialogResult.OK);
+                if (userCancelled)
+                {
+                    return;
+                }
+
+                AddNewExerciseCard(exerciseForm);
+            }
+        }
+
+        private void AddNewExerciseCard(AddNewExercise exerciseForm)
+        {
+            var newCard = new ExerciseCard();
+
+            newCard.Title = exerciseForm.Title;
+            newCard.ProgrammingLanguage = exerciseForm.ProgrammingLanguage;
+            newCard.ClassCourse = exerciseForm.Course;
+            newCard.ClassYearAndSection = exerciseForm.YearAndSection;
+
+            flowLayoutPanel_Exercises.Controls.Add(newCard);
         }
     }
 }
