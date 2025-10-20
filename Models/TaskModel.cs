@@ -46,7 +46,10 @@ namespace SmartCodeLab.Models
         public Dictionary<string, string>? _testCases { get; set; }
 
         [ProtoMember(8)]
-        public Dictionary<int, int> ratingFactors { get; set; }
+        public Dictionary<int, decimal[]> ratingFactors { get; set; }
+
+        [ProtoMember(9)]
+        public bool isTabLocked { get; set; }
 
         [ProtoIgnore]
         public string filePath { get; set; }

@@ -19,7 +19,6 @@ namespace SmartCodeLab.Services
                 });
 
                 File.WriteAllText(filePath, jsonString);
-                Console.WriteLine($"Object saved to {filePath}");
             }
             catch (Exception ex)
             {
@@ -38,19 +37,6 @@ namespace SmartCodeLab.Services
 
                 string jsonString = File.ReadAllText(filePath);
                 return JsonSerializer.Deserialize<T>(jsonString);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error loading file: {ex.Message}");
-                return default;
-            }
-        }
-
-        public static T LoadFromText<T>(string content)
-        {
-            try
-            {
-                return JsonSerializer.Deserialize<T>(content);
             }
             catch (Exception ex)
             {

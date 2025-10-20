@@ -57,6 +57,14 @@ namespace SmartCodeLab
             InitializeComponent();
             InitializeWPFTree();
 
+            if (task.isTabLocked) 
+            {
+                FormBorderStyle = FormBorderStyle.None;
+                TopMost = true;
+                WindowState = FormWindowState.Maximized;
+                this.Controls.Remove(button1);
+            }
+
             stream = client;
             this.userName = userName;
             new Thread(() =>

@@ -42,5 +42,11 @@ namespace SmartCodeLab.Models
             _password = password;
             _computerAddress = NetworkServices.GetIpv4();
         }
+
+        public UserProfile(string studentId, string studentName, bool isForTable)
+        {
+            _studentId = studentId;
+            _studentName = studentName;
+        }
     }
 }

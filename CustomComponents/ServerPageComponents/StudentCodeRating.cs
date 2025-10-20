@@ -41,7 +41,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             };
         }
 
-        public void SetStats(Dictionary<int, int> stats)
+        public void SetStats(Dictionary<int, decimal[]> stats)
         {
             if (stats != null)
             {
@@ -55,7 +55,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                 if (stats.ContainsKey(4))
                 {
-                    standardCycComplexity = stats[4];
+                    standardCycComplexity = Convert.ToInt32(stats[4][1]);
                 }
                 stats.Remove(0);
                 recordedStats = stats.Keys.ToList();
@@ -118,7 +118,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
             else if (i == 4)
             {
-                float remainder = value % standardCycComplexity;
+                float remainder = value - standardCycComplexity;
                 int score = remainder <= (standardCycComplexity * .1) ? 100 :
                             remainder <= (standardCycComplexity * .4) ? 75 :
                             50;

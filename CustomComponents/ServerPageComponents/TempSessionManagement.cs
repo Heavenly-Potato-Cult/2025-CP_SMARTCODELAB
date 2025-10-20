@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.Models;
 using System;
@@ -16,19 +17,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
     public partial class TempSessionManagement : UserControl
     {
         private TaskModel selectedTask;
+        private Dictionary<string, UserProfile> userProfiles;
         public TempSessionManagement()
         {
             InitializeComponent();
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void customComboBox2_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            userProfiles = new Dictionary<string, UserProfile>()
+            {
+                { "2", new UserProfile("Clifford", "2", "Slimparroot") },
+            };
         }
 
         private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
@@ -63,11 +59,25 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 selectedTask = new TaskModel();
             }
             selectedTask.ratingFactors = codeQualityChoices.GetRatingFactors();
-            Server server = new Server(serverName.Texts.Trim(),serverPW.Texts, selectedTask, language.SelectedItem.ToString(), new Dictionary<string, UserProfile>() { { "2", new UserProfile("Clifford", "2", "Slimparroot") } });
+            selectedTask.isTabLocked = tabNavigationLocked.Checked;
+            Server server = new Server(serverName.Texts.Trim(), serverPW.Texts, selectedTask, language.SelectedItem.ToString(), userProfiles);
 
             SystemSingleton.Instance.page1.Controls.Clear();
             SystemSingleton.Instance.page1.AutoScroll = true;
             SystemSingleton.Instance.page1.Controls.Add(new MainServerPage(server));
+        }
+
+        private void smartButton2_Click(object sender, EventArgs e)
+        {
+            var studentTable = new StudTable(userProfiles);
+            studentTable.ShowDialog();
+            userProfiles = studentTable.expectedUsers;
+            studentsCount.Text = userProfiles.Count.ToString();
+        }
+
+        private void smartButton4_Click(object sender, EventArgs e)
+        {
+            serverPW.Texts = new Random().Next(10000,100000).ToString();
         }
     }
 }

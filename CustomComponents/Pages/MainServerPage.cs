@@ -189,7 +189,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     }
 
                                     currentStudents.Add(userProfile._studentName);
-                                    Debug.WriteLine("What was sent " + currentTask.ratingFactors.Count);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                         new ServerMessage.Builder(MessageType.LOG_IN_SUCCESSFUL).
                                         Task(currentTask).
