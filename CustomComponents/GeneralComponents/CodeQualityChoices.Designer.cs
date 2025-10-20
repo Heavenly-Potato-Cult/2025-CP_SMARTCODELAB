@@ -137,6 +137,7 @@
             accuracyW.Size = new Size(57, 23);
             accuracyW.TabIndex = 8;
             accuracyW.Value = new decimal(new int[] { 100, 0, 0, 0 });
+            accuracyW.recentValue = 100;
             // 
             // readabilityW
             // 

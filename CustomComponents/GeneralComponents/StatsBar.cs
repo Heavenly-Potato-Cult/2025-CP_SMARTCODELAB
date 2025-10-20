@@ -14,6 +14,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         private readonly object _animationLock = new object();
         private int _targetValue;
 
+        public float theValue {  get; private set; }
         public StatsBar()
         {
             this.SetStyle(ControlStyles.AllPaintingInWmPaint |
@@ -45,9 +46,11 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         public void ChangeValue(int value)
         {
+            theValue = Convert.ToSingle(Math.Clamp(value, 0, 100));
             lock (_animationLock)
             {
                 _targetValue = Math.Clamp(value, 0, 100);
+
 
                 // Cancel previous animation
                 if (_updateDisplay != null && !_updateDisplay.IsCompleted)
@@ -113,6 +116,10 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             }
         }
 
+        public float GetValue()
+        {
+            return Convert.ToSingle(this.Value);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

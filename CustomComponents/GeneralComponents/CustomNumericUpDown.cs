@@ -22,13 +22,11 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         public decimal recentValue;
         public CustomNumericUpDown()
         {
-            recentValue = 0;
             ValueChanged += (sender, e) =>
             {
                 if (remainingUnallocated != null) 
                 {
                     updateUnallocatedValue?.Invoke(recentValue - this.Value);
-
                     if(remainingUnallocated.Invoke() < 0)
                     {
                         decimal val = this.Value + remainingUnallocated.Invoke();

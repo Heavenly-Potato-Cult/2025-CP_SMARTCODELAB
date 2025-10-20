@@ -49,6 +49,7 @@
             panel1 = new Panel();
             complexity = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             label1 = new Label();
+            score = new Label();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             flowLayoutPanel1.SuspendLayout();
@@ -62,6 +63,7 @@
             // panel19
             // 
             panel19.BackColor = Color.FromArgb(240, 247, 255);
+            panel19.Controls.Add(score);
             panel19.Controls.Add(customToggleButton1);
             panel19.Controls.Add(pictureBox7);
             panel19.Controls.Add(label9);
@@ -77,7 +79,7 @@
             customToggleButton1.AutoSize = true;
             customToggleButton1.Checked = true;
             customToggleButton1.CheckState = CheckState.Checked;
-            customToggleButton1.Location = new Point(113, 11);
+            customToggleButton1.Location = new Point(291, 11);
             customToggleButton1.MinimumSize = new Size(45, 22);
             customToggleButton1.Name = "customToggleButton1";
             customToggleButton1.OffBackColor = Color.Gray;
@@ -277,6 +279,17 @@
             label1.TabIndex = 80;
             label1.Text = "Complexity";
             // 
+            // score
+            // 
+            score.AutoSize = true;
+            score.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            score.ForeColor = Color.FromArgb(66, 110, 232);
+            score.Location = new Point(109, 10);
+            score.Name = "score";
+            score.Size = new Size(23, 25);
+            score.TabIndex = 81;
+            score.Text = "0";
+            // 
             // StudentCodeRating
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -324,5 +337,6 @@
         private GeneralComponents.StatsBar efficiency;
         private Label label3;
         private GeneralComponents.CustomToggleButton customToggleButton1;
+        private Label score;
     }
 }

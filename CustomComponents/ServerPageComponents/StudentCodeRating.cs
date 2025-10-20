@@ -14,15 +14,30 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
     public partial class StudentCodeRating : UserControl
     {
+        /*for the list and dictionary keys, the following digits are the equivalent stats value:
+        * 1 - Accuracy
+        * 2 - Readability
+        * 3 - Efficiency
+        * 4 - Complexity
+        */
+
         private List<int> recordedStats = new List<int>();
         private readonly Dictionary<int, Panel> statsTotal;
         private readonly Dictionary<int, StatsBar> statsBar;
         private int standardCycComplexity;
 
-        public Dictionary<int, int> codeStats;
+        public Dictionary<int, decimal> statsWeight;
+        public Dictionary<int, float> statsGrade;
         public StudentCodeRating()
         {
             InitializeComponent();
+            statsGrade = new Dictionary<int, float>()
+            {
+                {1, 0 },
+                {2, 0 },
+                {3, 0 },
+                {4, 0 }
+            };
             statsTotal = new Dictionary<int, Panel>()
             {
                 {1, panel3 },
@@ -33,7 +48,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             statsBar = new Dictionary<int, StatsBar>()
             {
-                {0, null },
                 {1, accuracy},
                 {2, readability},
                 {3, efficiency},
@@ -43,6 +57,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         public void SetStats(Dictionary<int, decimal[]> stats)
         {
+            statsWeight = new Dictionary<int, decimal>();
             if (stats != null)
             {
                 foreach (var item in statsTotal.Keys)
@@ -51,13 +66,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     {
                         statsTotal[item]?.Hide();
                     }
+                    else
+                        statsWeight.Add(item, stats[item][0]);
                 }
 
                 if (stats.ContainsKey(4))
                 {
                     standardCycComplexity = Convert.ToInt32(stats[4][1]);
                 }
-                stats.Remove(0);
+
                 recordedStats = stats.Keys.ToList();
             }
         }
@@ -101,7 +118,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
-        public void UpdateStats(int i, int value, List<string>? reasons)
+        public async void UpdateStats(int i, int value, List<string>? reasons)
         {
             if (!recordedStats.Contains(i))
                 return;
@@ -119,16 +136,28 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             else if (i == 4)
             {
                 float remainder = value - standardCycComplexity;
-                int score = remainder <= (standardCycComplexity * .1) ? 100 :
+                int scoreComp = remainder <= (standardCycComplexity * .1) ? 100 :
                             remainder <= (standardCycComplexity * .4) ? 75 :
                             50;
-                complexity.ChangeValue(score);
+                complexity.ChangeValue(scoreComp);
             }
+            statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
+            await Task.Run(() => this.Invoke(new Action(() => score.Text = GetScore().ToString())));
         }
 
         private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
         {
             flowLayoutPanel1.Visible = customToggleButton1.Checked;
+        }
+
+        public float GetScore()
+        {
+            float totalScore = 0;
+            foreach (var score in statsGrade.Values)
+            {
+                totalScore += score;
+            }
+            return totalScore;
         }
     }
 }
