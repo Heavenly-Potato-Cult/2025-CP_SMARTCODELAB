@@ -96,6 +96,7 @@
             cbox_ExerciseProgrammingLanguage.Font = new Font("Segoe UI", 10F);
             cbox_ExerciseProgrammingLanguage.ForeColor = Color.DimGray;
             cbox_ExerciseProgrammingLanguage.IconColor = Color.Gray;
+            cbox_ExerciseProgrammingLanguage.Items.AddRange(new object[] { "Java", "C++", "Python", "None" });
             cbox_ExerciseProgrammingLanguage.ListBackColor = Color.FromArgb(230, 228, 245);
             cbox_ExerciseProgrammingLanguage.ListTextColor = Color.DimGray;
             cbox_ExerciseProgrammingLanguage.Location = new Point(32, 121);
@@ -126,6 +127,7 @@
             cbox_ExerciseCourse.Font = new Font("Segoe UI", 10F);
             cbox_ExerciseCourse.ForeColor = Color.DimGray;
             cbox_ExerciseCourse.IconColor = Color.Gray;
+            cbox_ExerciseCourse.Items.AddRange(new object[] { "None", "BSIT", "BSCS" });
             cbox_ExerciseCourse.ListBackColor = Color.FromArgb(230, 228, 245);
             cbox_ExerciseCourse.ListTextColor = Color.DimGray;
             cbox_ExerciseCourse.Location = new Point(32, 214);
@@ -210,6 +212,7 @@
             cbox_ExerciseYearAndSection.Font = new Font("Segoe UI", 10F);
             cbox_ExerciseYearAndSection.ForeColor = Color.DimGray;
             cbox_ExerciseYearAndSection.IconColor = Color.Gray;
+            cbox_ExerciseYearAndSection.Items.AddRange(new object[] { "None", "1A", "1B", "1C", "2A", "2B", "2C" });
             cbox_ExerciseYearAndSection.ListBackColor = Color.FromArgb(230, 228, 245);
             cbox_ExerciseYearAndSection.ListTextColor = Color.DimGray;
             cbox_ExerciseYearAndSection.Location = new Point(295, 214);
