@@ -36,5 +36,10 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             this.Close();
         }
+
+        private void AddNewExercise_Load(object sender, EventArgs e)
+        {
+            panel_temp_spacer.BackColor = Color.Transparent;
+        }
     }
 }
