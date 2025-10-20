@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExerciseCard));
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            lbl_ExerciseYearAndSection = new Label();
             lbl_ExerciseModifiedUpdate = new Label();
             lbl_ExerciseTotalLinkedClass = new Label();
             lbl_ExerciseCourse = new Label();
@@ -39,7 +40,6 @@
             smartButton9 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton8 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton7 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            lbl_ExerciseYearAndSection = new Label();
             customCard1.SuspendLayout();
             customCard2.SuspendLayout();
             SuspendLayout();
@@ -47,9 +47,9 @@
             // customCard1
             // 
             customCard1.BackColor = Color.White;
-            customCard1.BorderColor = Color.Gray;
+            customCard1.BorderColor = Color.Silver;
             customCard1.BorderRadius = 10;
-            customCard1.BorderSize = 0;
+            customCard1.BorderSize = 1;
             customCard1.Controls.Add(lbl_ExerciseYearAndSection);
             customCard1.Controls.Add(lbl_ExerciseModifiedUpdate);
             customCard1.Controls.Add(lbl_ExerciseTotalLinkedClass);
@@ -59,12 +59,22 @@
             customCard1.Controls.Add(smartButton9);
             customCard1.Controls.Add(smartButton8);
             customCard1.Controls.Add(smartButton7);
-            customCard1.Dock = DockStyle.Fill;
             customCard1.Location = new Point(0, 0);
             customCard1.Margin = new Padding(3, 3, 30, 20);
             customCard1.Name = "customCard1";
             customCard1.Size = new Size(496, 264);
             customCard1.TabIndex = 1;
+            // 
+            // lbl_ExerciseYearAndSection
+            // 
+            lbl_ExerciseYearAndSection.AutoSize = true;
+            lbl_ExerciseYearAndSection.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_ExerciseYearAndSection.ForeColor = Color.Black;
+            lbl_ExerciseYearAndSection.Location = new Point(60, 76);
+            lbl_ExerciseYearAndSection.Name = "lbl_ExerciseYearAndSection";
+            lbl_ExerciseYearAndSection.Size = new Size(34, 25);
+            lbl_ExerciseYearAndSection.TabIndex = 63;
+            lbl_ExerciseYearAndSection.Text = "4A";
             // 
             // lbl_ExerciseModifiedUpdate
             // 
@@ -193,17 +203,6 @@
             smartButton7.TextColor = Color.DodgerBlue;
             smartButton7.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton7.UseVisualStyleBackColor = false;
-            // 
-            // lbl_ExerciseYearAndSection
-            // 
-            lbl_ExerciseYearAndSection.AutoSize = true;
-            lbl_ExerciseYearAndSection.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_ExerciseYearAndSection.ForeColor = Color.Black;
-            lbl_ExerciseYearAndSection.Location = new Point(60, 76);
-            lbl_ExerciseYearAndSection.Name = "lbl_ExerciseYearAndSection";
-            lbl_ExerciseYearAndSection.Size = new Size(34, 25);
-            lbl_ExerciseYearAndSection.TabIndex = 63;
-            lbl_ExerciseYearAndSection.Text = "4A";
             // 
             // ExerciseCard
             // 
