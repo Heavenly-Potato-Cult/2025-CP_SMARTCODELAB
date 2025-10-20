@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
@@ -12,20 +13,26 @@ using System.Windows.Forms;
 
 namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
+    [ProtoContract]
     public partial class StudentSubmittedIcon : RoundedUserControl
     {
-        private SubmittedCode submittedCode;
+        [ProtoMember(1)]
+        public SubmittedCode submittedCode;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [ProtoMember(2)]
         public int currentPlacement { get; set; }
 
-        public StudentSubmittedIcon(SubmittedCode submittedCode, int placement)
+        public StudentSubmittedIcon(SubmittedCode submittedCode, int placement, Action updateDisplayClick = null)
         {
             InitializeComponent();
             this.submittedCode = submittedCode;
             currentPlacement = placement;
             placing.Text = placement.ToString();
             name.Text = submittedCode.user._studentName;
+            score.Text = submittedCode.progress.codeStats[5].ToString(); //the codeStats[5] contains the student score
+
+            this.Click += (sender, e) => updateDisplayClick?.Invoke();
         }
 
         public void UpdatePlacement(int newPlacement, string newSourceCode)

@@ -319,8 +319,6 @@ namespace SmartCodeLab
                 return;
             }
 
-
-
             foreach (var dir in dirs)
             {
                 var dirNode = CreateFolderNode(dir);
@@ -361,7 +359,8 @@ namespace SmartCodeLab
             Task.Run(async () =>
             {
                 Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
-                    new ServerMessage.Builder(MessageType.CODE_SUBMISSION).SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text)).Build(),
+                    new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
+                        SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetStats()))).Build(),
                     PrefixStyle.Base128);
                 await stream.FlushAsync();
             });

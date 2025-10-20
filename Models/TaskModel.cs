@@ -13,7 +13,7 @@ namespace SmartCodeLab.Models
     public class TaskModel
     {
         [ProtoMember(1)]
-        private static readonly Dictionary<string, LanguageSupported> languageMap = new()
+        public static readonly Dictionary<string, LanguageSupported> languageMap = new()
         {
             { "C++", LanguageSupported.Cpp },
             { "Python", LanguageSupported.Python },

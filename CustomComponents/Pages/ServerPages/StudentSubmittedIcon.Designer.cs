@@ -30,7 +30,7 @@
         {
             placing = new Label();
             name = new Label();
-            label2 = new Label();
+            score = new Label();
             SuspendLayout();
             // 
             // placing
@@ -53,22 +53,22 @@
             name.TabIndex = 1;
             name.Text = "Name";
             // 
-            // label2
+            // score
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(423, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(62, 28);
-            label2.TabIndex = 2;
-            label2.Text = "score";
-            label2.TextAlign = ContentAlignment.TopCenter;
+            score.AutoSize = true;
+            score.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            score.Location = new Point(402, 11);
+            score.Name = "score";
+            score.Size = new Size(62, 28);
+            score.TabIndex = 2;
+            score.Text = "score";
+            score.TextAlign = ContentAlignment.TopCenter;
             // 
             // StudentSubmittedIcon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label2);
+            Controls.Add(score);
             Controls.Add(name);
             Controls.Add(placing);
             Name = "StudentSubmittedIcon";
@@ -81,6 +81,6 @@
 
         private Label placing;
         private Label name;
-        private Label label2;
+        private Label score;
     }
 }

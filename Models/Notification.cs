@@ -26,6 +26,7 @@ namespace SmartCodeLab.Models
 
         public Notification(NotificationType type, string userName, string testResult = "")
         {
+            Type = type;
             UserName = userName;
             this.testResult = testResult;
             Message = NotificationMessage(type, testResult);

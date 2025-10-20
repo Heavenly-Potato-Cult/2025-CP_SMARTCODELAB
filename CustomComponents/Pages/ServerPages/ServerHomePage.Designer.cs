@@ -40,7 +40,7 @@
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             pictureBox2 = new PictureBox();
             label4 = new Label();
-            label6 = new Label();
+            submissionCount = new Label();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             pictureBox1 = new PictureBox();
             label2 = new Label();
@@ -48,6 +48,7 @@
             label5 = new Label();
             label3 = new Label();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            studentName = new CustomTextBox();
             notifContainer = new FlowLayoutPanel();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label27 = new Label();
@@ -182,7 +183,7 @@
             customCard2.BorderSize = 1;
             customCard2.Controls.Add(pictureBox2);
             customCard2.Controls.Add(label4);
-            customCard2.Controls.Add(label6);
+            customCard2.Controls.Add(submissionCount);
             customCard2.Location = new Point(368, 126);
             customCard2.Name = "customCard2";
             customCard2.Size = new Size(262, 128);
@@ -204,20 +205,20 @@
             label4.ForeColor = Color.Gray;
             label4.Location = new Point(100, 66);
             label4.Name = "label4";
-            label4.Size = new Size(159, 25);
+            label4.Size = new Size(161, 25);
             label4.TabIndex = 14;
-            label4.Text = "Code Submissions";
+            label4.Text = "Student Submitted";
             // 
-            // label6
+            // submissionCount
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            label6.ForeColor = Color.FromArgb(13, 13, 13);
-            label6.Location = new Point(100, 28);
-            label6.Name = "label6";
-            label6.Size = new Size(33, 38);
-            label6.TabIndex = 12;
-            label6.Text = "0";
+            submissionCount.AutoSize = true;
+            submissionCount.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
+            submissionCount.ForeColor = Color.FromArgb(13, 13, 13);
+            submissionCount.Location = new Point(100, 28);
+            submissionCount.Name = "submissionCount";
+            submissionCount.Size = new Size(33, 38);
+            submissionCount.TabIndex = 12;
+            submissionCount.Text = "0";
             // 
             // customCard1
             // 
@@ -292,19 +293,33 @@
             customCard5.BorderColor = Color.Gray;
             customCard5.BorderRadius = 10;
             customCard5.BorderSize = 1;
+            customCard5.Controls.Add(studentName);
             customCard5.Controls.Add(notifContainer);
             customCard5.Location = new Point(46, 316);
             customCard5.Name = "customCard5";
-            customCard5.Size = new Size(736, 477);
+            customCard5.Size = new Size(736, 507);
             customCard5.TabIndex = 24;
+            // 
+            // studentName
+            // 
+            studentName.BackColor = SystemColors.Window;
+            studentName.ForeColor = Color.DimGray;
+            studentName.Location = new Point(3, 71);
+            studentName.Name = "studentName";
+            studentName.Padding = new Padding(10, 7, 10, 7);
+            studentName.PlaceHolderColor = Color.DarkGray;
+            studentName.PlaceholderText = "Search Student";
+            studentName.ScrollBars = ScrollBars.None;
+            studentName.Size = new Size(312, 41);
+            studentName.TabIndex = 1;
             // 
             // notifContainer
             // 
             notifContainer.AutoScroll = true;
             notifContainer.FlowDirection = FlowDirection.TopDown;
-            notifContainer.Location = new Point(10, 75);
+            notifContainer.Location = new Point(3, 111);
             notifContainer.Name = "notifContainer";
-            notifContainer.Size = new Size(720, 393);
+            notifContainer.Size = new Size(730, 393);
             notifContainer.TabIndex = 0;
             notifContainer.WrapContents = false;
             // 
@@ -573,7 +588,7 @@
         private GeneralComponents.CustomCard customCard2;
         private PictureBox pictureBox2;
         private Label label4;
-        private Label label6;
+        private Label submissionCount;
         private GeneralComponents.CustomCard customCard1;
         private PictureBox pictureBox1;
         private Label label2;
@@ -600,5 +615,6 @@
         private Label label30;
         private GeneralComponents.CustomCard customCard14;
         private Label label34;
+        private CustomTextBox studentName;
     }
 }

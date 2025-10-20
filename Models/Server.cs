@@ -18,7 +18,7 @@ namespace SmartCodeLab.Models
         public TaskModel ServerTask { get; set; }
 
         [ProtoMember(3)]
-        private LanguageSupported ProgrammingLanguage { get; set; }
+        public LanguageSupported ProgrammingLanguage { get; set; }
 
         [ProtoMember(4)]
         public string Password { get; set; }

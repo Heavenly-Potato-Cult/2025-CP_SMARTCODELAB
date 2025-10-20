@@ -25,10 +25,19 @@ namespace SmartCodeLab.Models
             this.sourceCode = sourceCode;
         }
 
+        public SubmittedCode(string sourceCode, StudentCodingProgress progress)
+        {
+            this.sourceCode = sourceCode;
+            this.progress = progress;
+        }
+
         [ProtoMember(1)]
         public string sourceCode { get; set; }
 
         [ProtoMember(2)]
         public UserProfile user {  get; set; }
+
+        [ProtoMember(3)]
+        public StudentCodingProgress progress {  get; set; }
     }
 }

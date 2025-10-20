@@ -100,7 +100,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     currentCodeStats.Add(item, statsBar[item].Value);
                 }catch (KeyNotFoundException) { }
             }
-
+            //5 will be the total score
+            currentCodeStats.Add(5, Convert.ToInt32(GetScore()));
             return currentCodeStats;
         }
 

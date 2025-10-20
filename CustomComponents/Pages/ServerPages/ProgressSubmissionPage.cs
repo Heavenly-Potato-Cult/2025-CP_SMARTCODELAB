@@ -14,7 +14,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
     public partial class ProgressSubmissionPage : UserControl
     {
-        public Dictionary<string, StudentSubmittedIcon> codeSubmission;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Dictionary<string, StudentSubmittedIcon> codeSubmission {  get; private set; }
         private int submittedCount;
         public ProgressSubmissionPage()
         {
@@ -47,7 +48,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 else
                 {
                     submittedCount++;
-                    codeSubmission.Add(submitted.user._studentId, new StudentSubmittedIcon(submitted, submittedCount));
+                    var updateDisplayAction = new Action(() => UpdateDisplay(submitted.progress, submitted.user));
+                    codeSubmission.Add(submitted.user._studentId, 
+                        new StudentSubmittedIcon(submitted, submittedCount, updateDisplayAction));
                     this.Invoke((Action)(() => { 
                         submittedContainer.Controls.Add(codeSubmission[submitted.user._studentId]);
                         submitCount.Text = (int.Parse(submitCount.Text) + 1).ToString();
@@ -57,9 +60,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             });
         }
 
-        private void submitCount_Click(object sender, EventArgs e)
+        private Task UpdateDisplay(StudentCodingProgress progress, UserProfile student)
         {
+            this.Invoke((Action)(() => 
+            {
+                studentName.Text = student._studentName;
+                score.Text = progress.codeStats[5].ToString();
+                studentCode.Text = progress.sourceCode;
+            }));
 
+            return Task.CompletedTask;
         }
     }
 }

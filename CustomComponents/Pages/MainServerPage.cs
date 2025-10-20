@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Timers;
 
 namespace SmartCodeLab.CustomComponents.Pages
 {
@@ -42,9 +43,10 @@ namespace SmartCodeLab.CustomComponents.Pages
         //users related
         private Dictionary<NetworkStream, string> connectedUsers;
         private List<string> currentStudents = new List<string>();
-
         //will use userId as a KEY
         private Dictionary<string, StudentCodingProgress> userProgress;
+
+        private System.Threading.Timer saveSessionFile;
         public MainServerPage(Server server)
         {
             InitializeComponent();
@@ -64,6 +66,28 @@ namespace SmartCodeLab.CustomComponents.Pages
             tabPage2.Controls.Add(serverPage);
             tabPage3.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
             tabPage4.Controls.Add(progressSubmissionPage);
+
+            saveSessionFile = new System.Threading.Timer(async(state) =>
+            {
+                try
+                {
+                    string filePath = Path.Combine(SystemConfigurations.SESSIONS_FOLDER, server.ServerName + ".session");
+
+                    using (var fileStream = File.Create(filePath))
+                    {
+                        Serializer.SerializeWithLengthPrefix(fileStream,
+                            new ProgrammingSession(/*server,*/ userProgress, homePage.notifications, progressSubmissionPage.codeSubmission),
+                            PrefixStyle.Base128);
+                        await fileStream.FlushAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Log the error instead of crashing the timer
+                    Console.WriteLine($"Failed to save session: {ex.Message}");
+                    // Or use your logging framework
+                }
+            },null, 1000, 2000);
         }
 
         private void codeMonitoringToolStripMenuItem_Click(object sender, EventArgs e)
@@ -214,7 +238,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                         case MessageType.CODE_SUBMISSION:
                             obj.submittedCode.user = userProfile;
                             progressSubmissionPage.StudentSubmitted(obj.submittedCode);
-                            homePage.NewNotification(new Notification(NotificationType.Submitted, userProfile._studentName,""));
+                            homePage.NewNotification(new Notification(NotificationType.Submitted, userProfile._studentName,""), userProfile);
                             break;
                         case MessageType.NOTIFICATION:
                             homePage.NewNotification(obj.notification);

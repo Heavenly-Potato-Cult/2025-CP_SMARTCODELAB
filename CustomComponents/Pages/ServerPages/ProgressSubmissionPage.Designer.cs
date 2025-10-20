@@ -40,10 +40,11 @@
             label3 = new Label();
             submittedContainer = new FlowLayoutPanel();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            score = new Label();
             label20 = new Label();
             label18 = new Label();
             label13 = new Label();
-            label17 = new Label();
+            studentName = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             studentCode = new TextBox();
@@ -64,7 +65,6 @@
             customCard12 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label34 = new Label();
             label35 = new Label();
-            label36 = new Label();
             label24 = new Label();
             customCard13 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label37 = new Label();
@@ -226,14 +226,26 @@
             customCard2.BorderColor = Color.Gray;
             customCard2.BorderRadius = 2;
             customCard2.BorderSize = 0;
+            customCard2.Controls.Add(score);
             customCard2.Controls.Add(label20);
             customCard2.Controls.Add(label18);
             customCard2.Controls.Add(label13);
-            customCard2.Controls.Add(label17);
+            customCard2.Controls.Add(studentName);
             customCard2.Location = new Point(626, 126);
             customCard2.Name = "customCard2";
             customCard2.Size = new Size(694, 104);
             customCard2.TabIndex = 69;
+            // 
+            // score
+            // 
+            score.AutoSize = true;
+            score.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            score.ForeColor = Color.Gray;
+            score.Location = new Point(353, 52);
+            score.Name = "score";
+            score.Size = new Size(22, 25);
+            score.TabIndex = 65;
+            score.Text = "0";
             // 
             // label20
             // 
@@ -253,9 +265,9 @@
             label18.ForeColor = Color.Gray;
             label18.Location = new Point(282, 52);
             label18.Name = "label18";
-            label18.Size = new Size(100, 25);
+            label18.Size = new Size(65, 25);
             label18.TabIndex = 63;
-            label18.Text = "Score : 100";
+            label18.Text = "Score :";
             // 
             // label13
             // 
@@ -268,16 +280,16 @@
             label13.TabIndex = 61;
             label13.Text = "Submission Details";
             // 
-            // label17
+            // studentName
             // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.Gray;
-            label17.Location = new Point(18, 52);
-            label17.Name = "label17";
-            label17.Size = new Size(170, 25);
-            label17.TabIndex = 62;
-            label17.Text = "Jimmuel Sanggayan";
+            studentName.AutoSize = true;
+            studentName.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            studentName.ForeColor = Color.Gray;
+            studentName.Location = new Point(18, 52);
+            studentName.Name = "studentName";
+            studentName.Size = new Size(170, 25);
+            studentName.TabIndex = 62;
+            studentName.Text = "Jimmuel Sanggayan";
             // 
             // flowLayoutPanel1
             // 
@@ -310,6 +322,7 @@
             studentCode.Location = new Point(24, 53);
             studentCode.Multiline = true;
             studentCode.Name = "studentCode";
+            studentCode.ReadOnly = true;
             studentCode.Size = new Size(640, 323);
             studentCode.TabIndex = 67;
             // 
@@ -489,7 +502,6 @@
             customCard12.BorderSize = 0;
             customCard12.Controls.Add(label34);
             customCard12.Controls.Add(label35);
-            customCard12.Controls.Add(label36);
             customCard12.Location = new Point(18, 53);
             customCard12.Name = "customCard12";
             customCard12.Size = new Size(649, 34);
@@ -500,7 +512,7 @@
             label34.AutoSize = true;
             label34.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label34.ForeColor = Color.Gray;
-            label34.Location = new Point(475, 5);
+            label34.Location = new Point(332, 5);
             label34.Name = "label34";
             label34.Size = new Size(123, 25);
             label34.TabIndex = 20;
@@ -511,22 +523,11 @@
             label35.AutoSize = true;
             label35.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label35.ForeColor = Color.Gray;
-            label35.Location = new Point(265, 5);
+            label35.Location = new Point(0, 5);
             label35.Name = "label35";
             label35.Size = new Size(145, 25);
             label35.TabIndex = 19;
             label35.Text = "Expected Output";
-            // 
-            // label36
-            // 
-            label36.AutoSize = true;
-            label36.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label36.ForeColor = Color.Gray;
-            label36.Location = new Point(16, 5);
-            label36.Name = "label36";
-            label36.Size = new Size(54, 25);
-            label36.TabIndex = 18;
-            label36.Text = "Input";
             // 
             // label24
             // 
@@ -535,9 +536,9 @@
             label24.ForeColor = Color.FromArgb(13, 13, 13);
             label24.Location = new Point(18, 22);
             label24.Name = "label24";
-            label24.Size = new Size(260, 28);
+            label24.Size = new Size(166, 28);
             label24.TabIndex = 65;
-            label24.Text = "Test Case Execution Results";
+            label24.Text = "Test Case Results";
             // 
             // customCard13
             // 
@@ -596,7 +597,6 @@
             submitCount.Size = new Size(22, 25);
             submitCount.TabIndex = 71;
             submitCount.Text = "0";
-            submitCount.Click += submitCount_Click;
             // 
             // ProgressSubmissionPage
             // 
@@ -654,7 +654,7 @@
         private Label label20;
         private Label label18;
         private Label label13;
-        private Label label17;
+        private Label studentName;
         private FlowLayoutPanel flowLayoutPanel1;
         private GeneralComponents.CustomCard customCard3;
         private Label label22;
@@ -675,7 +675,6 @@
         private GeneralComponents.CustomCard customCard12;
         private Label label34;
         private Label label35;
-        private Label label36;
         private Label label24;
         private GeneralComponents.CustomCard customCard13;
         private Label label37;
@@ -683,5 +682,6 @@
         private Label label49;
         private Label submitCount;
         private Label label1;
+        private Label score;
     }
 }

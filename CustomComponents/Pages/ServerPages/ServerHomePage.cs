@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,46 +16,42 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
     public partial class ServerHomePage : UserControl
     {
         private readonly SemaphoreSlim _semaphore = new(1, 1);
+        private System.Threading.Timer searchTimer;
+        private List<string> studentsSubmitted;
+        public List<Notification> notifications { get; }
+        private int submittedCount;
         public ServerHomePage()
         {
             InitializeComponent();
+            submittedCount = 0;
+            studentsSubmitted = new List<string>();
+            notifications = new List<Notification>();
+            studentName._TextChanged += (sender, e) =>
+            {
+                searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                searchTimer = new System.Threading.Timer(async _ => await SearchStudent(), null, 500, Timeout.Infinite);
+            };
+
             Object h = this.Handle;
         }
 
-        public void NewNotification(Notification notification)
+        public async void NewNotification(Notification notification, UserProfile notifFrom = null)
         {
-            Task.Run(() => 
+            await Task.Run(() => 
             {
+
                 this.Invoke(new Action(() =>
                 {
 
-                    var notifCard = new NotificationIcon(notification);
-
-
-                    switch (notification.Type)
+                    if (notification.Type == NotificationType.Submitted && notifFrom != null && !studentsSubmitted.Contains(notifFrom._studentId))
                     {
-                        case NotificationType.CopyPasted:
-                            notifCard.BackColor = Color.FromArgb(230, 250, 250); // soft cyan
-                            break;
-                        case NotificationType.Submitted:
-                            notifCard.BackColor = Color.FromArgb(235, 255, 235); // light mint green
-                            break;
-                        case NotificationType.TestResult:
-                            notifCard.BackColor = Color.FromArgb(255, 250, 225); // pale yellow
-                            break;
-                        case NotificationType.LoggedIn:
-                            notifCard.BackColor = Color.FromArgb(230, 245, 255); // sky blue
-                            break;
-                        case NotificationType.LoggedOut:
-                            notifCard.BackColor = Color.FromArgb(250, 235, 235); // soft pink
-                            break;
-                        case NotificationType.ExceptionThrown:
-                            notifCard.BackColor = Color.FromArgb(255, 235, 230); // light coral
-                            break;
-                        default:
-                            notifCard.BackColor = SystemColors.ControlLightLight;
-                            break;
+                        studentsSubmitted.Add(notifFrom._studentId);
+                        submissionCount.Text = (submittedCount + 1).ToString();
+                        submittedCount++;
                     }
+                    var notifCard = new NotificationIcon(notification);
+                    notifications.Add(notification);
 
                     notifContainer.Controls.Add(notifCard);
                 }));
@@ -77,6 +74,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 _semaphore.Release();
             }
+        }
+
+        private Task SearchStudent()
+        {
+            string searchedName = studentName.Texts.Trim();
+            this.Invoke((Action)(() => 
+            {
+                notifContainer.Controls.Clear();
+
+                notifications.
+                    Where(notif => notif.UserName.Contains(searchedName, StringComparison.OrdinalIgnoreCase)).
+                    ToList().
+                    ForEach(studNotif => notifContainer.Controls.Add(new NotificationIcon(studNotif)));
+            }));
+
+
+            return Task.CompletedTask;
         }
     }
 }

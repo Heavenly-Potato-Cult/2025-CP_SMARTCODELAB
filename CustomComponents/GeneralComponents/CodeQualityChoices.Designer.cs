@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            accuracy = new CheckBox();
             readability = new CheckBox();
             label2 = new Label();
             label3 = new Label();
@@ -51,29 +50,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(3, 35);
+            label1.Location = new Point(3, 47);
             label1.Name = "label1";
-            label1.Size = new Size(57, 15);
+            label1.Size = new Size(72, 20);
             label1.TabIndex = 0;
             label1.Text = "Accuracy";
-            // 
-            // accuracy
-            // 
-            accuracy.AutoSize = true;
-            accuracy.Location = new Point(131, 37);
-            accuracy.Margin = new Padding(3, 2, 3, 2);
-            accuracy.Name = "accuracy";
-            accuracy.Size = new Size(15, 14);
-            accuracy.TabIndex = 1;
-            accuracy.UseVisualStyleBackColor = true;
             // 
             // readability
             // 
             readability.AutoSize = true;
-            readability.Location = new Point(131, 66);
-            readability.Margin = new Padding(3, 2, 3, 2);
+            readability.Location = new Point(150, 88);
             readability.Name = "readability";
-            readability.Size = new Size(15, 14);
+            readability.Size = new Size(18, 17);
             readability.TabIndex = 3;
             readability.UseVisualStyleBackColor = true;
             readability.CheckedChanged += readability_CheckedChanged;
@@ -82,9 +70,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(3, 64);
+            label2.Location = new Point(3, 85);
             label2.Name = "label2";
-            label2.Size = new Size(68, 15);
+            label2.Size = new Size(87, 20);
             label2.TabIndex = 2;
             label2.Text = "Readability";
             // 
@@ -92,9 +80,9 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(3, 92);
+            label3.Location = new Point(3, 123);
             label3.Name = "label3";
-            label3.Size = new Size(61, 15);
+            label3.Size = new Size(76, 20);
             label3.TabIndex = 4;
             label3.Text = "Efficiency";
             // 
@@ -102,19 +90,18 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(3, 116);
+            label4.Location = new Point(3, 155);
             label4.Name = "label4";
-            label4.Size = new Size(111, 15);
+            label4.Size = new Size(141, 20);
             label4.TabIndex = 5;
             label4.Text = "Logical Complexity";
             // 
             // efficiency
             // 
             efficiency.AutoSize = true;
-            efficiency.Location = new Point(131, 94);
-            efficiency.Margin = new Padding(3, 2, 3, 2);
+            efficiency.Location = new Point(150, 125);
             efficiency.Name = "efficiency";
-            efficiency.Size = new Size(15, 14);
+            efficiency.Size = new Size(18, 17);
             efficiency.TabIndex = 6;
             efficiency.UseVisualStyleBackColor = true;
             efficiency.CheckedChanged += efficiency_CheckedChanged;
@@ -122,19 +109,19 @@
             // complexity
             // 
             complexity.AutoSize = true;
-            complexity.Location = new Point(131, 118);
-            complexity.Margin = new Padding(3, 2, 3, 2);
+            complexity.Location = new Point(150, 157);
             complexity.Name = "complexity";
-            complexity.Size = new Size(15, 14);
+            complexity.Size = new Size(18, 17);
             complexity.TabIndex = 7;
             complexity.UseVisualStyleBackColor = true;
             complexity.CheckedChanged += checkBox3_CheckedChanged;
             // 
             // accuracyW
             // 
-            accuracyW.Location = new Point(152, 29);
+            accuracyW.Location = new Point(174, 39);
+            accuracyW.Margin = new Padding(3, 4, 3, 4);
             accuracyW.Name = "accuracyW";
-            accuracyW.Size = new Size(57, 23);
+            accuracyW.Size = new Size(65, 27);
             accuracyW.TabIndex = 8;
             accuracyW.Value = new decimal(new int[] { 100, 0, 0, 0 });
             accuracyW.recentValue = 100;
@@ -142,40 +129,43 @@
             // readabilityW
             // 
             readabilityW.Enabled = false;
-            readabilityW.Location = new Point(152, 58);
+            readabilityW.Location = new Point(174, 77);
+            readabilityW.Margin = new Padding(3, 4, 3, 4);
             readabilityW.Name = "readabilityW";
-            readabilityW.Size = new Size(57, 23);
+            readabilityW.Size = new Size(65, 27);
             readabilityW.TabIndex = 9;
             // 
             // efficiencyW
             // 
             efficiencyW.Enabled = false;
-            efficiencyW.Location = new Point(152, 84);
+            efficiencyW.Location = new Point(174, 112);
+            efficiencyW.Margin = new Padding(3, 4, 3, 4);
             efficiencyW.Name = "efficiencyW";
-            efficiencyW.Size = new Size(57, 23);
+            efficiencyW.Size = new Size(65, 27);
             efficiencyW.TabIndex = 10;
             // 
             // complexityW
             // 
             complexityW.Enabled = false;
-            complexityW.Location = new Point(152, 108);
+            complexityW.Location = new Point(174, 144);
+            complexityW.Margin = new Padding(3, 4, 3, 4);
             complexityW.Name = "complexityW";
-            complexityW.Size = new Size(57, 23);
+            complexityW.Size = new Size(65, 27);
             complexityW.TabIndex = 11;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(152, 11);
+            label5.Location = new Point(174, 15);
             label5.Name = "label5";
-            label5.Size = new Size(48, 15);
+            label5.Size = new Size(60, 20);
             label5.TabIndex = 12;
             label5.Text = "Weight";
             // 
             // CodeQualityChoices
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(label5);
             Controls.Add(complexityW);
@@ -188,11 +178,9 @@
             Controls.Add(label3);
             Controls.Add(readability);
             Controls.Add(label2);
-            Controls.Add(accuracy);
             Controls.Add(label1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "CodeQualityChoices";
-            Size = new Size(227, 138);
+            Size = new Size(259, 184);
             ((System.ComponentModel.ISupportInitialize)accuracyW).EndInit();
             ((System.ComponentModel.ISupportInitialize)readabilityW).EndInit();
             ((System.ComponentModel.ISupportInitialize)efficiencyW).EndInit();
@@ -204,7 +192,6 @@
         #endregion
 
         private Label label1;
-        private CheckBox accuracy;
         private CheckBox readability;
         private Label label2;
         private Label label3;
