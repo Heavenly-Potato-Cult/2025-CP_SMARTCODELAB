@@ -488,7 +488,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1346, 880);
+            tabPage2.Size = new Size(192, 67);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
@@ -498,7 +498,7 @@
             tempDashboard1.Dock = DockStyle.Fill;
             tempDashboard1.Location = new Point(3, 3);
             tempDashboard1.Name = "tempDashboard1";
-            tempDashboard1.Size = new Size(1340, 874);
+            tempDashboard1.Size = new Size(186, 61);
             tempDashboard1.TabIndex = 0;
             // 
             // tabPage1
@@ -514,6 +514,7 @@
             // 
             // tempSessionManagement1
             // 
+            tempSessionManagement1.AutoScroll = true;
             tempSessionManagement1.Dock = DockStyle.Fill;
             tempSessionManagement1.Location = new Point(3, 3);
             tempSessionManagement1.Name = "tempSessionManagement1";
@@ -542,9 +543,9 @@
             // tabPage3
             // 
             tabPage3.Controls.Add(tempServerPage1);
-            tabPage3.Location = new Point(4, 29);
+            tabPage3.Location = new Point(4, 54);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1346, 880);
+            tabPage3.Size = new Size(192, 42);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
@@ -555,15 +556,16 @@
             tempServerPage1.BackColor = Color.WhiteSmoke;
             tempServerPage1.Dock = DockStyle.Fill;
             tempServerPage1.Location = new Point(0, 0);
+            tempServerPage1.Margin = new Padding(3, 4, 3, 4);
             tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(1346, 880);
+            tempServerPage1.Size = new Size(192, 42);
             tempServerPage1.TabIndex = 1;
             // 
             // tabPage4
             // 
-            tabPage4.Location = new Point(4, 29);
+            tabPage4.Location = new Point(4, 54);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1346, 880);
+            tabPage4.Size = new Size(192, 42);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
@@ -580,7 +582,7 @@
             // 
             // tempExerciseManage1
             // 
-            tempExerciseManage1.AutoScroll = true;
+            tempExerciseManage1.AllowDrop = true;
             tempExerciseManage1.Dock = DockStyle.Fill;
             tempExerciseManage1.Location = new Point(0, 0);
             tempExerciseManage1.Name = "tempExerciseManage1";
@@ -590,9 +592,9 @@
             // tabPage6
             // 
             tabPage6.Controls.Add(tempCodeEvaluation1);
-            tabPage6.Location = new Point(4, 29);
+            tabPage6.Location = new Point(4, 79);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(1346, 880);
+            tabPage6.Size = new Size(192, 17);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "tabPage6";
             tabPage6.UseVisualStyleBackColor = true;
@@ -603,15 +605,15 @@
             tempCodeEvaluation1.Dock = DockStyle.Fill;
             tempCodeEvaluation1.Location = new Point(0, 0);
             tempCodeEvaluation1.Name = "tempCodeEvaluation1";
-            tempCodeEvaluation1.Size = new Size(1346, 880);
+            tempCodeEvaluation1.Size = new Size(192, 17);
             tempCodeEvaluation1.TabIndex = 0;
             // 
             // tabPage7
             // 
             tabPage7.Controls.Add(button4);
-            tabPage7.Location = new Point(4, 29);
+            tabPage7.Location = new Point(4, 104);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(1346, 880);
+            tabPage7.Size = new Size(192, 0);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "tabPage7";
             tabPage7.UseVisualStyleBackColor = true;
@@ -706,7 +708,7 @@
         private CustomComponents.ServerPageComponents.TempSessionManagement tempSessionManagement1;
         private CustomComponents.ServerPageComponents.TempDashboard tempDashboard1;
         private CustomComponents.ServerPageComponents.TempServerPage tempServerPage1;
-        private CustomComponents.ServerPageComponents.TempExerciseManage tempExerciseManage1;
         private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
+        private CustomComponents.ServerPageComponents.TempExerciseManage tempExerciseManage1;
     }
 }
