@@ -45,17 +45,21 @@ namespace SmartCodeLab.Models
         };
 
 
-        [ProtoMember(4)]
-        public Dictionary<string,UserProfile> Users = new Dictionary<string, UserProfile>();
-
         [ProtoMember(5)]
-        public int submittedCount { get; set; }
+        public Dictionary<string, UserProfile> Users;
 
         [ProtoMember(6)]
+        public int submittedCount { get; set; }
+
+        [ProtoMember(7)]
         public Dictionary<int, int> CodeRatingFactors { get; set; }
+
+        [ProtoMember(8)]
+        public DateTime createdAt { get; set; }
 
         public Server()
         {
+            Users = new Dictionary<string, UserProfile>();
         }
 
         public Server(string serverName, string password, TaskModel serverTask, string programmingLanguage, Dictionary<string,UserProfile> users)
@@ -68,6 +72,7 @@ namespace SmartCodeLab.Models
             ServerTask._taskName = serverName;
             Users = users;
             submittedCount = 0;
+            createdAt = DateTime.Now;
         }
     }
 }

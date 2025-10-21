@@ -16,6 +16,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
@@ -33,7 +34,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private StudentCodingProgress studentProgress;
 
         private string selectedStudentId = string.Empty;
-
         private Func<string, StudentCodingProgress> progressRetriever;
         public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string, StudentCodingProgress> progressRetriever)
         {
@@ -51,6 +51,35 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }
             });
             studentCodeRating1.SetStats(task.ratingFactors);
+        }
+
+        public TempServerPage(Dictionary<string, UserProfile> expectedUsers, Dictionary<string, StudentCodingProgress> userProgress)
+        {
+            InitializeComponent();
+            Load += (s, e) =>
+            {
+                Task.Run(() =>
+                {
+                    foreach (var item in userProgress.Keys)
+                    {
+                        this.Invoke((Action)(() =>
+                        {
+                            Action<UserProfile> NewUserSelected = new Action<UserProfile>(userProfile =>
+                            {
+                                selectedStudentId = userProfile._studentId;
+                                try
+                                {
+                                    UpdateStudentProgressDisplay(userProfile, userProgress[userProfile._studentId]);
+                                }
+                                catch (KeyNotFoundException) { }
+                                studentName.Text = userProfile._studentName;
+                            });
+                                                                      //user profile will be retrieved
+                            iconsContainer.Controls.Add(new UserIcons(expectedUsers[item], NewUserSelected));
+                        }));
+                    }
+                });
+            };
         }
 
         public void AddStudent(UserProfile profile)
@@ -73,7 +102,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             if (user._studentId == selectedStudentId)
             {
-                await Task.Run((Action)(() =>
+                await Task.Run(() =>
                 {
                     this.Invoke((Delegate)(() =>
                     {
@@ -98,7 +127,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         }
                         this.studentCodeRating1.SetStudentStats(progress.codeStats);
                     }));
-                }));
+                });
             }
         }
 

@@ -47,6 +47,22 @@ namespace SmartCodeLab.CustomComponents.Pages
         private Dictionary<string, StudentCodingProgress> userProgress;
 
         private System.Threading.Timer saveSessionFile;
+
+        public MainServerPage(ProgrammingSession session)//this is for viewing the selected past session
+        {
+            InitializeComponent();
+            serverPage = new TempServerPage(session.users, session.userProgress);
+            homePage = new ServerHomePage(session.notifications);
+            progressSubmissionPage = new ProgressSubmissionPage(session.codeSubmission);
+
+            tabPage1.Controls.Add(homePage);
+            tabPage2.Controls.Add(serverPage);
+            tabPage4.Controls.Add(progressSubmissionPage);
+
+            menuStrip1.Items.Remove(viewUsersToolStripMenuItem);
+            menuStrip1.Items.Remove(viewUsersToolStripMenuItem1);
+        }
+
         public MainServerPage(Server server)
         {
             InitializeComponent();
@@ -59,35 +75,14 @@ namespace SmartCodeLab.CustomComponents.Pages
 
             userTable = new StudTable(server.Users);
             serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress);
-            homePage = new ServerHomePage();
+            homePage = new ServerHomePage(server.Users.Count);
+            homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
 
             tabPage1.Controls.Add(homePage);
             tabPage2.Controls.Add(serverPage);
             tabPage3.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
             tabPage4.Controls.Add(progressSubmissionPage);
-
-            saveSessionFile = new System.Threading.Timer(async(state) =>
-            {
-                try
-                {
-                    string filePath = Path.Combine(SystemConfigurations.SESSIONS_FOLDER, server.ServerName + ".session");
-
-                    using (var fileStream = File.Create(filePath))
-                    {
-                        Serializer.SerializeWithLengthPrefix(fileStream,
-                            new ProgrammingSession(/*server,*/ userProgress, homePage.notifications, progressSubmissionPage.codeSubmission),
-                            PrefixStyle.Base128);
-                        await fileStream.FlushAsync();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Log the error instead of crashing the timer
-                    Console.WriteLine($"Failed to save session: {ex.Message}");
-                    // Or use your logging framework
-                }
-            },null, 1000, 2000);
         }
 
         private void codeMonitoringToolStripMenuItem_Click(object sender, EventArgs e)
@@ -201,7 +196,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                                 {
                                     errorMsg = "This student is already logged in";
                                 }
-                                else if(obj._userProfile._password != server.Password)
+                                else if (obj._userProfile._password != server.Password)
                                 {
                                     errorMsg = "Incorrect Password";
                                 }
@@ -223,7 +218,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     serverPage.StudentLoggedIn(userProfile);
                                     HandleUserStream(networkStream, userProfile, true, didLoggedIn);
                                     homePage.NewNotification(new Notification(NotificationType.LoggedIn, userProfile._studentName));
-                                    await homePage.UpdateActiveStudentsCount(NotificationType.LoggedIn);
                                 }
                             }
                             if (!didLoggedIn)
@@ -238,7 +232,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                         case MessageType.CODE_SUBMISSION:
                             obj.submittedCode.user = userProfile;
                             progressSubmissionPage.StudentSubmitted(obj.submittedCode);
-                            homePage.NewNotification(new Notification(NotificationType.Submitted, userProfile._studentName,""), userProfile);
+                            homePage.NewNotification(new Notification(NotificationType.Submitted, userProfile._studentName, ""), userProfile);
                             break;
                         case MessageType.NOTIFICATION:
                             homePage.NewNotification(obj.notification);
@@ -284,7 +278,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                 if (didLoggedIn)
                 {
                     homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
-                    await homePage.UpdateActiveStudentsCount(NotificationType.LoggedOut);
                 }
             }
         }
@@ -300,6 +293,34 @@ namespace SmartCodeLab.CustomComponents.Pages
                     await item.Key.FlushAsync();
                 }
             });
+        }
+
+        private async void saveSessionFIleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = Path.Combine(SystemConfigurations.SESSIONS_FOLDER, server.ServerName + ".session");
+                using (var fileStream = new FileStream(
+                                            filePath,
+                                            FileMode.Create,            // always create or overwrite file
+                                            FileAccess.Write,           // write-only access
+                                            FileShare.None              // don't allow other processes to open it simultaneously
+                                        ))
+                {
+                    Debug.WriteLine(progressSubmissionPage.GetAllSubmitted());
+                    Serializer.SerializeWithLengthPrefix(fileStream,
+                        new ProgrammingSession(server, userProgress, homePage.notifications, progressSubmissionPage.GetAllSubmitted(), userTable.expectedUsers),
+                        PrefixStyle.Base128);
+                    await fileStream.FlushAsync();
+                    Debug.WriteLine("Session saved successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the error instead of crashing the timer
+                Console.WriteLine($"Failed to save session: {ex.Message}");
+                // Or use your logging framework
+            }
         }
     }
 }

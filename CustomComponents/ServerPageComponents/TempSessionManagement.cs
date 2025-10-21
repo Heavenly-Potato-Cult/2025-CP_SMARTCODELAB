@@ -1,12 +1,16 @@
 ﻿using FastColoredTextBoxNS;
+using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.Models;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +28,27 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             userProfiles = new Dictionary<string, UserProfile>()
             {
                 { "2", new UserProfile("Clifford", "2", "Slimparroot") },
+            };
+
+            Load += async (sender,e ) =>
+            {
+                foreach (var sessionFile in Directory.GetFiles(SystemConfigurations.SESSIONS_FOLDER).Where(file => file.EndsWith(".session")))
+                {
+                    await Task.Run(() =>
+                    {
+                        try {
+                            var programmingSession = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(File.OpenRead(sessionFile), PrefixStyle.Base128);
+                            this.Invoke((Action)(() =>
+                            {
+                                logsContaier.Controls.Add(new SessionLogsDisplay(programmingSession));
+                            }));
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"Failed to load session file {Path.GetFileName(sessionFile)}: {ex.Message}");
+                        }
+                });
+                }
             };
         }
 

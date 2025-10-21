@@ -13,15 +13,18 @@ using System.Windows.Forms;
 
 namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
-    [ProtoContract]
     public partial class StudentSubmittedIcon : RoundedUserControl
     {
-        [ProtoMember(1)]
         public SubmittedCode submittedCode;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [ProtoMember(2)]
-        public int currentPlacement { get; set; }
+        public int currentPlacement {
+            get => submittedCode.placement;
+            set
+            {
+                submittedCode.placement = value;
+            }
+        }
 
         public StudentSubmittedIcon(SubmittedCode submittedCode, int placement, Action updateDisplayClick = null)
         {

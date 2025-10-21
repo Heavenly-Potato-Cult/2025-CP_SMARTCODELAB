@@ -33,13 +33,14 @@
             submissionStatusToolStripMenuItem = new ToolStripMenuItem();
             viewUsersToolStripMenuItem = new ToolStripMenuItem();
             viewUsersToolStripMenuItem1 = new ToolStripMenuItem();
+            submissionToolStripMenuItem = new ToolStripMenuItem();
             container = new SmartCodeLab.CustomComponents.GeneralComponents.SmoothTabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
-            submissionToolStripMenuItem = new ToolStripMenuItem();
             tabPage5 = new TabPage();
+            saveSessionFIleToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             container.SuspendLayout();
             SuspendLayout();
@@ -47,7 +48,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { codeMonitoringToolStripMenuItem, submissionStatusToolStripMenuItem, viewUsersToolStripMenuItem, viewUsersToolStripMenuItem1, submissionToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { codeMonitoringToolStripMenuItem, submissionStatusToolStripMenuItem, viewUsersToolStripMenuItem, viewUsersToolStripMenuItem1, submissionToolStripMenuItem, saveSessionFIleToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1345, 28);
@@ -81,6 +82,13 @@
             viewUsersToolStripMenuItem1.Size = new Size(94, 24);
             viewUsersToolStripMenuItem1.Text = "View Users";
             viewUsersToolStripMenuItem1.Click += viewUsersToolStripMenuItem1_Click;
+            // 
+            // submissionToolStripMenuItem
+            // 
+            submissionToolStripMenuItem.Name = "submissionToolStripMenuItem";
+            submissionToolStripMenuItem.Size = new Size(98, 24);
+            submissionToolStripMenuItem.Text = "Submission";
+            submissionToolStripMenuItem.Click += submissionToolStripMenuItem_Click;
             // 
             // container
             // 
@@ -138,13 +146,6 @@
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // submissionToolStripMenuItem
-            // 
-            submissionToolStripMenuItem.Name = "submissionToolStripMenuItem";
-            submissionToolStripMenuItem.Size = new Size(98, 24);
-            submissionToolStripMenuItem.Text = "Submission";
-            submissionToolStripMenuItem.Click += submissionToolStripMenuItem_Click;
-            // 
             // tabPage5
             // 
             tabPage5.Location = new Point(4, 29);
@@ -154,6 +155,13 @@
             tabPage5.TabIndex = 4;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // saveSessionFIleToolStripMenuItem
+            // 
+            saveSessionFIleToolStripMenuItem.Name = "saveSessionFIleToolStripMenuItem";
+            saveSessionFIleToolStripMenuItem.Size = new Size(134, 24);
+            saveSessionFIleToolStripMenuItem.Text = "Save Session FIle";
+            saveSessionFIleToolStripMenuItem.Click += saveSessionFIleToolStripMenuItem_Click;
             // 
             // MainServerPage
             // 
@@ -185,5 +193,6 @@
         private ToolStripMenuItem viewUsersToolStripMenuItem1;
         private ToolStripMenuItem submissionToolStripMenuItem;
         private TabPage tabPage5;
+        private ToolStripMenuItem saveSessionFIleToolStripMenuItem;
     }
 }

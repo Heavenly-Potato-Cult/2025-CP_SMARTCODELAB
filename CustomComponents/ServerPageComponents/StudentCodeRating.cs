@@ -83,7 +83,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             if (stats != null)
             {
-                foreach (var item in stats)
+                foreach (var item in stats.Where(item => item.Key != 5))
                 {
                     statsBar[item.Key]?.ChangeValue(item.Value);
                 }

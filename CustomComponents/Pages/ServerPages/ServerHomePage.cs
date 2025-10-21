@@ -19,11 +19,26 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         private System.Threading.Timer searchTimer;
         private List<string> studentsSubmitted;
         public List<Notification> notifications { get; }
-        private int submittedCount;
-        public ServerHomePage()
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int _totalStudents { 
+            get => totalStudents; 
+            set
+            {
+                totalStudents = value;
+                setActiveStudentDisplay();
+            } }
+
+        private int totalStudents;
+        private int totalActiveStudents = 0;
+        private int totalLoggedInStudents = 0;
+        public int submittedCount { get; private set; }
+        public int copyPasteDetectedCount { get; private set; }
+        public ServerHomePage(int totalStudents)
         {
             InitializeComponent();
+            this.totalStudents = totalStudents;
             submittedCount = 0;
+            copyPasteDetectedCount = 0;
             studentsSubmitted = new List<string>();
             notifications = new List<Notification>();
             studentName._TextChanged += (sender, e) =>
@@ -34,23 +49,49 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             };
 
             Object h = this.Handle;
+            activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}";
+            submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}";
+        }
+
+        public ServerHomePage(List<Notification> existingNotifications)
+        {
+            InitializeComponent();
+            notifications = new List<Notification>();
+            Load += (sender, e) =>
+            {
+                if (existingNotifications != null && existingNotifications.Count > 0)
+                {
+                    foreach (var notif in existingNotifications)
+                    {
+                        NewNotification(notif);
+                    }
+                }
+            };
         }
 
         public async void NewNotification(Notification notification, UserProfile notifFrom = null)
         {
-            await Task.Run(() => 
+            await Task.Run(() =>
             {
 
-                this.Invoke(new Action(() =>
+                this.Invoke(new Action(async() =>
                 {
 
                     if (notification.Type == NotificationType.Submitted && notifFrom != null && !studentsSubmitted.Contains(notifFrom._studentId))
                     {
                         studentsSubmitted.Add(notifFrom._studentId);
-                        submissionCount.Text = (submittedCount + 1).ToString();
                         submittedCount++;
+                        setStudentSubmittedDisplay();
                     }
-                    var notifCard = new NotificationIcon(notification);
+                    else if (notification.Type == NotificationType.CopyPasted)
+                    {
+                        copyPasteDetectedCount++;
+                    }
+                    else if (notification.Type == NotificationType.LoggedIn || notification.Type == NotificationType.LoggedOut)
+                    {
+                        await UpdateActiveStudentsCount(notification.Type);
+                    }
+                        var notifCard = new NotificationIcon(notification);
                     notifications.Add(notification);
 
                     notifContainer.Controls.Add(notifCard);
@@ -58,17 +99,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             });
         }
 
-        public async Task UpdateActiveStudentsCount(NotificationType notificationType) 
+        public async Task UpdateActiveStudentsCount(NotificationType notificationType)
         {
             await _semaphore.WaitAsync();
             try
             {
-                int currentActiveCount = int.Parse(activeCount.Text);
                 if (notificationType == NotificationType.LoggedIn)
-                    currentActiveCount++;
+                    totalActiveStudents++;
                 else
-                    currentActiveCount--;
-                this.Invoke((Action)(() => activeCount.Text = currentActiveCount.ToString()));
+                    totalActiveStudents--;
+                setActiveStudentDisplay();
             }
             finally
             {
@@ -76,10 +116,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }
         }
 
+        private void setActiveStudentDisplay()
+        {
+            this.Invoke((Action)(() => activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}"));
+        }
+
+        private void setStudentSubmittedDisplay()
+        {
+            this.Invoke((Action)(() => submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}"));
+        }
+
         private Task SearchStudent()
         {
             string searchedName = studentName.Texts.Trim();
-            this.Invoke((Action)(() => 
+            this.Invoke((Action)(() =>
             {
                 notifContainer.Controls.Clear();
 

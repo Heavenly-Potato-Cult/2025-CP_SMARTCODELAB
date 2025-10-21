@@ -17,6 +17,21 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Dictionary<string, StudentSubmittedIcon> codeSubmission {  get; private set; }
         private int submittedCount;
+
+        public ProgressSubmissionPage(List<SubmittedCode> codeSubmissions)
+        {
+            InitializeComponent();
+            codeSubmission = new Dictionary<string, StudentSubmittedIcon>();
+            submitCount.Text = codeSubmissions.Count.ToString();
+            Load += (sender, e) => 
+            {
+                codeSubmissions.ForEach(submissionIcon => 
+                {
+                    StudentSubmitted(submissionIcon);
+                });
+            };
+        }
+
         public ProgressSubmissionPage()
         {
             InitializeComponent();
@@ -58,6 +73,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     ));
                 }
             });
+        }
+
+        public List<SubmittedCode> GetAllSubmitted()
+        {
+            return codeSubmission.Values.Select(item => item.submittedCode).ToList();
         }
 
         private Task UpdateDisplay(StudentCodingProgress progress, UserProfile student)

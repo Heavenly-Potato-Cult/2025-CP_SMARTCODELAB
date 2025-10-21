@@ -10,11 +10,8 @@ namespace SmartCodeLab.Models.Enums
     [ProtoContract]
     public enum LanguageSupported
     {
-        [ProtoEnum]
         Cpp = 0,
-        [ProtoEnum]
         Java = 1,
-        [ProtoEnum]
         Python = 2
     }
 }

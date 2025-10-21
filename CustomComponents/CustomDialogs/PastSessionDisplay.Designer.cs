@@ -1,6 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents.CustomDialogs
+﻿namespace SmartCodeLab.CustomComponents
 {
-    partial class ToDelete
+    partial class PastSessionDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            panel1 = new Panel();
             SuspendLayout();
             // 
-            // button1
+            // panel1
             // 
-            button1.Location = new Point(34, 127);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            panel1.AutoScroll = true;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
+            panel1.Location = new Point(1, 1);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1314, 842);
+            panel1.TabIndex = 0;
             // 
-            // ToDelete
+            // PastSessionDisplay
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(459, 683);
-            Controls.Add(button1);
-            Name = "ToDelete";
-            Text = "ToDelete";
+            ClientSize = new Size(1327, 843);
+            Controls.Add(panel1);
+            Name = "PastSessionDisplay";
+            Text = "PastSessionDisplay";
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Button button1;
+        private Panel panel1;
     }
 }

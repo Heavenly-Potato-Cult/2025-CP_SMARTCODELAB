@@ -39,5 +39,8 @@ namespace SmartCodeLab.Models
 
         [ProtoMember(3)]
         public StudentCodingProgress progress {  get; set; }
+
+        [ProtoMember(4)]
+        public int placement { get; set; }
     }
 }
