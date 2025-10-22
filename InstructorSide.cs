@@ -26,19 +26,6 @@ namespace SmartCodeLab
             panel.Visible = !panel.Visible;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void smartButton13_Click(object sender, EventArgs e)
         {
             this.Close();
