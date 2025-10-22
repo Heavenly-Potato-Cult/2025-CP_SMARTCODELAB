@@ -34,13 +34,48 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public async override void RunLinting()
         {
+            SaveCode();
+            string errors = string.Empty;
             commandLine = $"/c {ProgrammingConfiguration.gccExe} -fsyntax-only \"{filePath}\"";
             process = CommandRunner(commandLine);
             await StartprocessAsyncExit(
                 process,
                 output => Debug.WriteLine("At output"),
-                error => Debug.WriteLine("At error"),
-                () => Debug.WriteLine("Doneeeeeeeeeeeeeeeeee"));
+                error =>
+                {
+                    if (error.Split(':').Length >= 6)
+                        errors += error;
+                },
+                () => {
+                    NoError();
+                    if (errors != string.Empty)
+                        foreach (var error in errors.Split(Environment.NewLine))
+                        {
+                            (int errorLine, string errorMsg) = GetLineMessage(error);
+                            HighlightError(errorLine - 1, errorMsg);
+                        }
+                }
+            );
+        }
+
+        private (int,string) GetLineMessage(string line)
+        {
+            string errorMessage = line.Replace($"{filePath}:", "");
+            string lineError = string.Empty;
+            int secondColon = 1;
+
+            foreach (var item in errorMessage.ToCharArray())
+            {
+                if (char.IsDigit(item))
+                    lineError += item;
+                else
+                    break;
+
+                secondColon++;
+            }
+            errorMessage = errorMessage.Remove(0, secondColon);
+            errorMessage = errorMessage.Remove(0, errorMessage.IndexOf(':') + 1).Replace(" error:","");
+            return (int.Parse(lineError), errorMessage);
         }
         //protected override void SendInput(string input)
         //{
