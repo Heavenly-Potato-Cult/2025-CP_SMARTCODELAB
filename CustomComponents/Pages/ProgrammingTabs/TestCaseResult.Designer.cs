@@ -114,12 +114,11 @@
     '\'',
     '\''
     };
-            inputs.AutoScrollMinSize = new Size(141, 18);
+            inputs.AutoScrollMinSize = new Size(112, 18);
             inputs.BackBrush = null;
             inputs.CharHeight = 18;
             inputs.CharWidth = 10;
             inputs.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            inputs.Font = new Font("Courier New", 9.75F);
             inputs.Hotkeys = resources.GetString("inputs.Hotkeys");
             inputs.IsReplaceMode = false;
             inputs.Location = new Point(3, 34);
@@ -148,11 +147,12 @@
     '\'',
     '\''
     };
-            expectedOutput.AutoScrollMinSize = new Size(141, 18);
+            expectedOutput.AutoScrollMinSize = new Size(112, 18);
             expectedOutput.BackBrush = null;
             expectedOutput.CharHeight = 18;
             expectedOutput.CharWidth = 10;
             expectedOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            expectedOutput.Font = new Font("Courier New", 9.75F);
             expectedOutput.Hotkeys = resources.GetString("expectedOutput.Hotkeys");
             expectedOutput.IsReplaceMode = false;
             expectedOutput.Location = new Point(479, 34);
@@ -181,12 +181,11 @@
     '\'',
     '\''
     };
-            actualOutput.AutoScrollMinSize = new Size(141, 18);
+            actualOutput.AutoScrollMinSize = new Size(112, 18);
             actualOutput.BackBrush = null;
             actualOutput.CharHeight = 18;
             actualOutput.CharWidth = 10;
             actualOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            actualOutput.Font = new Font("Courier New", 9.75F);
             actualOutput.Hotkeys = resources.GetString("actualOutput.Hotkeys");
             actualOutput.IsReplaceMode = false;
             actualOutput.Location = new Point(757, 34);
@@ -210,7 +209,7 @@
             panel1.Controls.Add(button1);
             panel1.Location = new Point(3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1024, 31);
+            panel1.Size = new Size(1024, 28);
             panel1.TabIndex = 86;
             // 
             // TestCaseResult
@@ -222,7 +221,7 @@
             Controls.Add(expectedOutput);
             Controls.Add(inputs);
             Name = "TestCaseResult";
-            Size = new Size(1030, 241);
+            Size = new Size(1030, 31);
             ((System.ComponentModel.ISupportInitialize)inputs).EndInit();
             ((System.ComponentModel.ISupportInitialize)expectedOutput).EndInit();
             ((System.ComponentModel.ISupportInitialize)actualOutput).EndInit();

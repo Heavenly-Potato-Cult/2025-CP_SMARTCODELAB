@@ -25,6 +25,8 @@ namespace SmartCodeLab.Services
         //C++
         public static string gccExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "C++", "MinGW64", "bin","g++");
         public static string gccBin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "C++", "MinGW64", "bin");
+        public static string CPPLINT_EXE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "cpplint_wrapper.exe");
+        public static string CPPLINT_CONFIG = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "syntax_checker.cpplintrc");
 
         //Java
         public static Dictionary<NamingConvention, string> namingConventionProperties = new Dictionary<NamingConvention, string>()

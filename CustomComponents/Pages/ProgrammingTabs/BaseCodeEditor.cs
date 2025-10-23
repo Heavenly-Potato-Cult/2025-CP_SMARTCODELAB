@@ -165,7 +165,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 try
                 {
-                    process.Kill();
                     process.Dispose();
                 }
                 catch (InvalidOperationException) { }
