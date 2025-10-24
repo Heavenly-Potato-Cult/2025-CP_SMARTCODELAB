@@ -68,6 +68,7 @@
             label31 = new Label();
             pictureBox9 = new PictureBox();
             label30 = new Label();
+            comboBox1 = new ComboBox();
             customCard4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             customCard3.SuspendLayout();
@@ -293,6 +294,7 @@
             customCard5.BorderColor = Color.Gray;
             customCard5.BorderRadius = 10;
             customCard5.BorderSize = 1;
+            customCard5.Controls.Add(comboBox1);
             customCard5.Controls.Add(studentName);
             customCard5.Controls.Add(notifContainer);
             customCard5.Location = new Point(46, 316);
@@ -532,6 +534,15 @@
             label30.TabIndex = 22;
             label30.Text = "Monitor Students";
             // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
+            comboBox1.Location = new Point(321, 77);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 2;
+            // 
             // ServerHomePage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -616,5 +627,6 @@
         private GeneralComponents.CustomCard customCard14;
         private Label label34;
         private CustomTextBox studentName;
+        private ComboBox comboBox1;
     }
 }

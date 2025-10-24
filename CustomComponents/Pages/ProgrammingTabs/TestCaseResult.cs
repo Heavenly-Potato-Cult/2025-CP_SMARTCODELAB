@@ -14,17 +14,30 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         public TestCaseResult()
         {
+            Size = new Size(1030, 30);
             InitializeComponent();
-            this.Size = new Size(1030, 31);
         }
 
-        public TestCaseResult(string input, string expOutput, string actOutput)
+        public TestCaseResult(int number, bool isCorrect, string input, string expOutput, string actOutput)
         {
+            this.Size = new Size(1030, 30);
             InitializeComponent();
-            this.Size = new Size(1030, 31);
             this.inputs.Text = input;
             this.expectedOutput.Text = expOutput;
             this.actualOutput.Text = actOutput;
+            num.Text = number.ToString();
+            if (isCorrect)
+            {
+                BackColor = Color.LightGreen;
+                panel1.BackColor = Color.LightGreen;
+                result.Text = "Correct";
+            }
+            else
+            {
+                BackColor = Color.Red;
+                panel1.BackColor = Color.Red;
+                result.Text = "Incorrect";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

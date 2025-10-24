@@ -39,6 +39,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private async void RunTest()
         {
             score = 0;
+            int sequence = 1;
             foreach (var item in task._testCases)
             {
                 string input = item.Key;
@@ -79,12 +80,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     error => testOutput += (error),
                     null
                 );
-
-                if (testOutput == item.Value)
+                bool isCorrect = testOutput == item.Value;
+                if (isCorrect)
                     score++;
 
                 currentScore.Text = score.ToString();
-                flowLayoutPanel1.Controls.Add(new TestCaseResult(item.Key, item.Value, testOutput));
+                flowLayoutPanel1.Controls.Add(new TestCaseResult(sequence++, isCorrect, item.Key, item.Value, testOutput));
 
                 //return the tester file content to its original content
                 File.WriteAllText(testFile, testSrcCode.Replace(input, "userInput"));

@@ -51,14 +51,41 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     if (errors != string.Empty)
                         foreach (var error in errors.Split(Environment.NewLine))
                         {
-                            (int errorLine, string errorMsg) = GetLineMessage(error);
+                            (int errorLine, string errorMsg) = GetErrorLineMessage(error);
                             HighlightError(errorLine - 1, errorMsg);
                         }
                 }
             );
+            string fileDirectory = Path.GetDirectoryName(filePath);
+
+            if(!File.Exists(Path.Combine(fileDirectory, "syntax_checker.cpplintrc"))) //if the config file does not exist in the file directory, copy it there
+            {
+                File.Copy(ProgrammingConfiguration.CPPLINT_CONFIG, Path.Combine(fileDirectory, "syntax_checker.cpplintrc"));
+            }
+
+            process = CommandRunner($"/c {ProgrammingConfiguration.CPPLINT_EXE} --config=syntax_checker.cpplintrc \"{filePath}\"");
+            string standardsViolations = string.Empty;
+            await StartprocessAsyncExit(
+                process,
+                output => Debug.WriteLine("At output"),
+                violation =>
+                {
+                    if (violation.StartsWith(filePath))
+                        standardsViolations += violation + Environment.NewLine;
+                },
+                () => {
+                    standardsViolations = standardsViolations.Remove(standardsViolations.Length - 1);
+                    foreach (var violation in standardsViolations.Split(Environment.NewLine))
+                    {
+                        (int violationLine, string violationMsg) = GetViolationLineMessage(violation);
+                        violationLine = violationLine == 0 ? 0 : violationLine - 1;
+                        base.HighLightStandardError(violationLine, violationMsg);
+                    }
+                }
+            );
         }
 
-        private (int,string) GetLineMessage(string line)
+        private (int,string) GetErrorLineMessage(string line)
         {
             string errorMessage = line.Replace($"{filePath}:", "");
             string lineError = string.Empty;
@@ -77,13 +104,26 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             errorMessage = errorMessage.Remove(0, errorMessage.IndexOf(':') + 1).Replace(" error:","");
             return (int.Parse(lineError), errorMessage);
         }
-        //protected override void SendInput(string input)
-        //{
-        //    if (process != null && !process.HasExited)
-        //    {
-        //        process.StandardInput.Write(input + Environment.NewLine);
-        //        process.StandardInput.Flush();
-        //    }
-        //}
+
+        private (int, string) GetViolationLineMessage(string line)
+        {
+            string violationMessage = line.Replace($"{filePath}:", "");
+            string lineError = string.Empty;
+            int secondColon = 1;
+
+            foreach (var item in violationMessage.ToCharArray())
+            {
+                if (char.IsDigit(item))
+                    lineError += item;
+                else
+                    break;
+
+                secondColon++;
+            }
+            violationMessage = violationMessage.Remove(0, secondColon+2);
+
+            Debug.WriteLine($"{lineError} = {violationMessage}");
+            return (int.Parse(lineError), violationMessage);
+        }
     }
 }
