@@ -2,6 +2,7 @@
 using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages;
+using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System;
@@ -22,6 +23,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
     {
         private TaskModel selectedTask;
         private Dictionary<string, UserProfile> userProfiles;
+        private SelectedExercise selectedExercise;
         public TempSessionManagement()
         {
             InitializeComponent();
@@ -30,13 +32,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 { "2", new UserProfile("Clifford", "2", "Slimparroot") },
             };
 
-            Load += async (sender,e ) =>
+            Load += async (sender, e) =>
             {
                 foreach (var sessionFile in Directory.GetFiles(SystemConfigurations.SESSIONS_FOLDER).Where(file => file.EndsWith(".session")))
                 {
                     await Task.Run(() =>
                     {
-                        try {
+                        try
+                        {
                             var programmingSession = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(File.OpenRead(sessionFile), PrefixStyle.Base128);
                             this.Invoke((Action)(() =>
                             {
@@ -47,7 +50,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         {
                             Debug.WriteLine($"Failed to load session file {Path.GetFileName(sessionFile)}: {ex.Message}");
                         }
-                });
+                    });
                 }
             };
         }
@@ -102,7 +105,31 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton4_Click(object sender, EventArgs e)
         {
-            serverPW.Texts = new Random().Next(10000,100000).ToString();
+            serverPW.Texts = new Random().Next(10000, 100000).ToString();
         }
+
+        private void smartButton3_Click(object sender, EventArgs e)
+        {
+            using(var selectExercise = new SelectExercise(exerciseSelectedCallback))
+            {
+                selectExercise.ShowDialog();
+            }
+        }
+
+        private Action<TaskModel> exerciseSelectedCallback => (task) =>
+        {
+            selectedTask = task;
+            if(selectedExercise != null)
+                taskView.Controls.Remove(selectedExercise);
+            selectedExercise = new SelectedExercise(task, removeSelectedTask);
+            taskView.Controls.Add(selectedExercise);
+        };
+
+        private Action removeSelectedTask => () =>
+        {
+            selectedTask = null;
+            taskView.Controls.Remove(selectedExercise);
+            selectedExercise = null;
+        };
     }
 }

@@ -18,132 +18,35 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.IO;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
+using ProtoBuf;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
     public partial class TempExerciseManage : UserControl
     {
-        //private string btnStatus = "Edit";
-        //private string folderPath = "";
-
-        //private TaskModel selectedTaskModel;
-
-        //private readonly Dictionary<string, string> languageExtension = new Dictionary<string, string>()
-        //{
-        //    {"Cpp","Cpp file(.cpp)|*.cpp" },
-        //    {"Java",".Java file(.java)|*.java" },
-        //    {"Python","Python file(.py)|*.py" }
-        //};
+        private System.Threading.Timer searchTimer;
         public TempExerciseManage()
         {
             InitializeComponent();
-            //folderPath = SystemConfigurations.TASK_FOLDER;
-            //fileView.Nodes.Add(new TreeNodeObj(folderPath, null, FillFields));
         }
-
-        //private void btn_EditExerciseDetails_Click(object sender, EventArgs e)
-        //{
-        //    SaveEditBtn(btnStatus == "Edit");
-        //}
-
-        //private void SaveEditBtn(bool isEditing)
-        //{
-        //    exerciseName.Enabled = isEditing;
-        //    subject.Enabled = isEditing;
-        //    instruction.Enabled = isEditing;
-        //    btn_EditExerciseDetails.Text = isEditing ? "Save" : "Edit";
-        //    reference.ReadOnly = !isEditing;
-        //    btnStatus = isEditing ? "Save" : "Edit";
-        //    if (!isEditing)
-        //    {
-        //        SaveTask();
-        //    }
-        //}
-
-        //private void SaveTask()
-        //{
-        //    TaskModel task = selectedTaskModel;
-        //    task._taskName = exerciseName.Texts;
-        //    task.subject = subject.Texts;
-        //    task._instructions = instruction.Texts;
-        //    task._referenceFile = reference.Text;
-        //    task._testCases = TestCases();
-        //    JsonFileService.SaveToFile<TaskModel>(task, task.filePath);
-        //    MessageBox.Show("Task Saved Successfully");
-        //}
-
-        //private void FillFields(TaskModel task)
-        //{
-        //    selectedTaskModel = task;
-        //    this.Invoke((Action)(() =>
-        //    {
-        //        exerciseName.Texts = task._taskName;
-        //        subject.Texts = task.subject;
-        //        instruction.Texts = task._instructions;
-        //        reference.Text = task._referenceFile?.ToString() ?? "";
-        //        SetTestCases(task._testCases);
-        //    }));
-        //}
-
-        //private void smartButton1_Click_1(object sender, EventArgs e)
-        //{
-        //    OpenFileDialog openFileDialog = new OpenFileDialog();
-        //    if (openFileDialog.ShowDialog() == DialogResult.OK)
-        //    {
-        //        MessageBox.Show(openFileDialog.FileName);
-        //        reference.Text = File.ReadAllText(openFileDialog.FileName);
-        //    }
-        //}
-
-        //private void btn_AddTestCase_Click(object sender, EventArgs e)
-        //{
-        //    this.Invoke(new Action(() => testContainer.Controls.Add(new TestCase())));
-        //}
-
-        //private Dictionary<string, string> TestCases()
-        //{
-        //    Dictionary<string, string> ActivityTestCases = new Dictionary<string, string>();
-
-        //    foreach (TestCase testCase in testContainer.Controls.OfType<TestCase>())
-        //    {
-        //        try
-        //        {
-        //            KeyValuePair<string, string> value = testCase.Value();
-        //            ActivityTestCases.Add(value.Key, value.Value);
-        //        }
-        //        catch (ArgumentException)
-        //        {
-        //            MessageBox.Show("Similar Input Already Exists");
-        //        }
-        //    }
-        //    return ActivityTestCases;
-        //}
-
-        //private void SetTestCases(Dictionary<string, string> TestCases)
-        //{
-        //    Task.Run(() =>
-        //    {
-        //        this.Invoke((Action)(() =>
-        //        {
-        //            testContainer.Controls.Clear();
-
-        //            if (TestCases == null || TestCases.Count == 0)
-        //                return;
-
-        //            foreach (var kv in TestCases)
-        //                testContainer.Controls.Add(new TestCase(kv));
-        //        }));
-        //    });
-        //}
-
-        //private void fileView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        //{
-        //    ((TreeNodeObj)e.Node).SimulateClicked(e);
-        //}
-
-        private void TempExerciseManage_Load(object sender, EventArgs e)
+        private async void TempExerciseManage_Load(object sender, EventArgs e)
         {
-
+            await Task.Run(async () =>
+            {
+                var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task");
+                foreach (var file in exerciseFiles)
+                {
+                    using (var fileOpened = File.OpenRead(file))
+                    {
+                        var exercise = Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, PrefixStyle.Base128);
+                        exercise.filePath = file;
+                        this.Invoke(new Action(() =>
+                        {
+                            flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise));
+                        }));
+                    }
+                }
+            });
         }
 
         private void btn_AddNewExercise_Click(object sender, EventArgs e)
@@ -152,26 +55,35 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 var dialogResult = exerciseForm.ShowDialog();
 
-                bool userCancelled = (dialogResult != DialogResult.OK);
-                if (userCancelled)
+                if (dialogResult == DialogResult.OK)
                 {
-                    return;
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise));
                 }
-
-                AddNewExerciseCard(exerciseForm);
             }
         }
 
-        private void AddNewExerciseCard(AddNewExercise exerciseForm)
+        private void customTextBox1__TextChanged(object sender, EventArgs e)
         {
-            var newCard = new ExerciseCard();
-
-            newCard.Title = exerciseForm.Title;
-            newCard.ProgrammingLanguage = exerciseForm.ProgrammingLanguage;
-            newCard.ClassCourse = exerciseForm.Course;
-            newCard.ClassYearAndSection = exerciseForm.YearAndSection;
-
-            flowLayoutPanel_Exercises.Controls.Add(newCard);
+            searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+            searchTimer = new System.Threading.Timer(_ =>
+            {
+                string search = customTextBox1.Texts.ToLower();
+                var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task").
+                    Where(file => Path.GetFileName(file).ToLower().Contains(search)).ToList();
+                this.Invoke(new Action(() => flowLayoutPanel_Exercises.Controls.Clear()));
+                foreach (var file in exerciseFiles)
+                {
+                    using (var fileOpened = File.OpenRead(file))
+                    {
+                        var exercise = Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, PrefixStyle.Base128);
+                        exercise.filePath = file;
+                        this.Invoke(new Action(() =>
+                        {
+                            flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise));
+                        }));
+                    }
+                }
+            }, null, 400, Timeout.Infinite);
         }
     }
 }

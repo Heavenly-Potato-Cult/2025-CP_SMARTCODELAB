@@ -44,7 +44,6 @@
             serverName = new CustomTextBox();
             codeQualityChoices = new SmartCodeLab.CustomComponents.GeneralComponents.CodeQualityChoices();
             label6 = new Label();
-            customComboBox2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             label15 = new Label();
             serverPW = new CustomTextBox();
             label7 = new Label();
@@ -54,6 +53,8 @@
             panel5 = new Panel();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label8 = new Label();
+            taskView = new Panel();
+            smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel7 = new Panel();
             panel4 = new Panel();
             label14 = new Label();
@@ -70,6 +71,7 @@
             panel8.SuspendLayout();
             customCard1.SuspendLayout();
             customCard3.SuspendLayout();
+            taskView.SuspendLayout();
             customCard4.SuspendLayout();
             tbllayoutpanel_realtime_activity.SuspendLayout();
             panel3.SuspendLayout();
@@ -128,12 +130,12 @@
             tableLayoutPanel1.Controls.Add(serverName, 0, 1);
             tableLayoutPanel1.Controls.Add(codeQualityChoices, 0, 4);
             tableLayoutPanel1.Controls.Add(label6, 0, 2);
-            tableLayoutPanel1.Controls.Add(customComboBox2, 1, 3);
             tableLayoutPanel1.Controls.Add(label15, 1, 2);
             tableLayoutPanel1.Controls.Add(serverPW, 0, 3);
             tableLayoutPanel1.Controls.Add(label7, 1, 0);
             tableLayoutPanel1.Controls.Add(language, 1, 1);
             tableLayoutPanel1.Controls.Add(customCard3, 2, 0);
+            tableLayoutPanel1.Controls.Add(taskView, 1, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(10, 67);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -297,25 +299,6 @@
             label6.TabIndex = 19;
             label6.Text = "Session Code";
             // 
-            // customComboBox2
-            // 
-            customComboBox2.BackColor = Color.White;
-            customComboBox2.BorderColor = Color.LightGray;
-            customComboBox2.BorderSize = 1;
-            customComboBox2.DropDownStyle = ComboBoxStyle.DropDown;
-            customComboBox2.Font = new Font("Segoe UI", 10F);
-            customComboBox2.ForeColor = Color.DimGray;
-            customComboBox2.IconColor = Color.Gray;
-            customComboBox2.ListBackColor = Color.FromArgb(230, 228, 245);
-            customComboBox2.ListTextColor = Color.DimGray;
-            customComboBox2.Location = new Point(315, 197);
-            customComboBox2.MinimumSize = new Size(200, 29);
-            customComboBox2.Name = "customComboBox2";
-            customComboBox2.Padding = new Padding(1);
-            customComboBox2.Size = new Size(200, 41);
-            customComboBox2.TabIndex = 26;
-            customComboBox2.Texts = "";
-            // 
             // label15
             // 
             label15.AutoSize = true;
@@ -444,6 +427,29 @@
             label8.Size = new Size(157, 28);
             label8.TabIndex = 25;
             label8.Text = "Session Actions";
+            // 
+            // taskView
+            // 
+            taskView.Controls.Add(smartButton3);
+            taskView.Location = new Point(315, 197);
+            taskView.Name = "taskView";
+            taskView.Size = new Size(286, 52);
+            taskView.TabIndex = 37;
+            // 
+            // smartButton3
+            // 
+            smartButton3.BackColor = Color.MediumSlateBlue;
+            smartButton3.BorderRadius = 20;
+            smartButton3.FlatAppearance.BorderSize = 0;
+            smartButton3.FlatStyle = FlatStyle.Flat;
+            smartButton3.ForeColor = Color.White;
+            smartButton3.Location = new Point(227, 6);
+            smartButton3.Name = "smartButton3";
+            smartButton3.Size = new Size(59, 42);
+            smartButton3.TabIndex = 0;
+            smartButton3.Text = "S";
+            smartButton3.UseVisualStyleBackColor = false;
+            smartButton3.Click += smartButton3_Click;
             // 
             // panel7
             // 
@@ -590,6 +596,7 @@
             customCard1.PerformLayout();
             customCard3.ResumeLayout(false);
             customCard3.PerformLayout();
+            taskView.ResumeLayout(false);
             customCard4.ResumeLayout(false);
             customCard4.PerformLayout();
             tbllayoutpanel_realtime_activity.ResumeLayout(false);
@@ -617,7 +624,6 @@
         private Label label4;
         private CustomTextBox serverName;
         private Label label6;
-        private GeneralComponents.CustomComboBox customComboBox2;
         private Label label15;
         private CustomTextBox serverPW;
         private Label label7;
@@ -638,5 +644,7 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private FlowLayoutPanel logsContaier;
         private Panel panel8;
+        private Panel taskView;
+        private GeneralComponents.SmartButton smartButton3;
     }
 }

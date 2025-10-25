@@ -30,18 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExerciseCard));
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            lbl_ExerciseYearAndSection = new Label();
+            dateModified = new Label();
+            subject = new Label();
             lbl_ExerciseModifiedUpdate = new Label();
-            lbl_ExerciseTotalLinkedClass = new Label();
-            lbl_ExerciseCourse = new Label();
-            customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            lbl_ExerciseLanguange = new Label();
             lbl_ExerciseTitle = new Label();
             smartButton9 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton8 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton7 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            label1 = new Label();
+            testCounts = new Label();
             customCard1.SuspendLayout();
-            customCard2.SuspendLayout();
             SuspendLayout();
             // 
             // customCard1
@@ -50,14 +47,13 @@
             customCard1.BorderColor = Color.Silver;
             customCard1.BorderRadius = 10;
             customCard1.BorderSize = 1;
-            customCard1.Controls.Add(lbl_ExerciseYearAndSection);
+            customCard1.Controls.Add(testCounts);
+            customCard1.Controls.Add(label1);
+            customCard1.Controls.Add(dateModified);
+            customCard1.Controls.Add(subject);
             customCard1.Controls.Add(lbl_ExerciseModifiedUpdate);
-            customCard1.Controls.Add(lbl_ExerciseTotalLinkedClass);
-            customCard1.Controls.Add(lbl_ExerciseCourse);
-            customCard1.Controls.Add(customCard2);
             customCard1.Controls.Add(lbl_ExerciseTitle);
             customCard1.Controls.Add(smartButton9);
-            customCard1.Controls.Add(smartButton8);
             customCard1.Controls.Add(smartButton7);
             customCard1.Location = new Point(0, 0);
             customCard1.Margin = new Padding(3, 3, 30, 20);
@@ -65,73 +61,38 @@
             customCard1.Size = new Size(496, 264);
             customCard1.TabIndex = 1;
             // 
-            // lbl_ExerciseYearAndSection
+            // dateModified
             // 
-            lbl_ExerciseYearAndSection.AutoSize = true;
-            lbl_ExerciseYearAndSection.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_ExerciseYearAndSection.ForeColor = Color.Black;
-            lbl_ExerciseYearAndSection.Location = new Point(60, 76);
-            lbl_ExerciseYearAndSection.Name = "lbl_ExerciseYearAndSection";
-            lbl_ExerciseYearAndSection.Size = new Size(34, 25);
-            lbl_ExerciseYearAndSection.TabIndex = 63;
-            lbl_ExerciseYearAndSection.Text = "4A";
+            dateModified.AutoSize = true;
+            dateModified.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dateModified.ForeColor = Color.DimGray;
+            dateModified.Location = new Point(298, 152);
+            dateModified.Name = "dateModified";
+            dateModified.Size = new Size(120, 25);
+            dateModified.TabIndex = 64;
+            dateModified.Text = "Last Modified";
+            // 
+            // subject
+            // 
+            subject.AutoSize = true;
+            subject.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            subject.ForeColor = Color.DimGray;
+            subject.Location = new Point(18, 66);
+            subject.Name = "subject";
+            subject.Size = new Size(70, 25);
+            subject.TabIndex = 63;
+            subject.Text = "Subject";
             // 
             // lbl_ExerciseModifiedUpdate
             // 
             lbl_ExerciseModifiedUpdate.AutoSize = true;
             lbl_ExerciseModifiedUpdate.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_ExerciseModifiedUpdate.ForeColor = Color.DimGray;
-            lbl_ExerciseModifiedUpdate.Location = new Point(338, 127);
+            lbl_ExerciseModifiedUpdate.Location = new Point(298, 127);
             lbl_ExerciseModifiedUpdate.Name = "lbl_ExerciseModifiedUpdate";
-            lbl_ExerciseModifiedUpdate.Size = new Size(135, 25);
+            lbl_ExerciseModifiedUpdate.Size = new Size(120, 25);
             lbl_ExerciseModifiedUpdate.TabIndex = 24;
-            lbl_ExerciseModifiedUpdate.Text = "Modified today";
-            // 
-            // lbl_ExerciseTotalLinkedClass
-            // 
-            lbl_ExerciseTotalLinkedClass.AutoSize = true;
-            lbl_ExerciseTotalLinkedClass.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_ExerciseTotalLinkedClass.ForeColor = Color.DimGray;
-            lbl_ExerciseTotalLinkedClass.Location = new Point(18, 127);
-            lbl_ExerciseTotalLinkedClass.Name = "lbl_ExerciseTotalLinkedClass";
-            lbl_ExerciseTotalLinkedClass.Size = new Size(142, 25);
-            lbl_ExerciseTotalLinkedClass.TabIndex = 23;
-            lbl_ExerciseTotalLinkedClass.Text = "Linked to 1 class";
-            // 
-            // lbl_ExerciseCourse
-            // 
-            lbl_ExerciseCourse.AutoSize = true;
-            lbl_ExerciseCourse.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_ExerciseCourse.ForeColor = Color.Black;
-            lbl_ExerciseCourse.Location = new Point(18, 76);
-            lbl_ExerciseCourse.Name = "lbl_ExerciseCourse";
-            lbl_ExerciseCourse.Size = new Size(46, 25);
-            lbl_ExerciseCourse.TabIndex = 22;
-            lbl_ExerciseCourse.Text = "BSIT";
-            // 
-            // customCard2
-            // 
-            customCard2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            customCard2.BackColor = Color.FromArgb(192, 255, 192);
-            customCard2.BorderColor = Color.Gray;
-            customCard2.BorderRadius = 15;
-            customCard2.BorderSize = 0;
-            customCard2.Controls.Add(lbl_ExerciseLanguange);
-            customCard2.Location = new Point(386, 35);
-            customCard2.Name = "customCard2";
-            customCard2.Size = new Size(87, 31);
-            customCard2.TabIndex = 21;
-            // 
-            // lbl_ExerciseLanguange
-            // 
-            lbl_ExerciseLanguange.AutoSize = true;
-            lbl_ExerciseLanguange.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lbl_ExerciseLanguange.ForeColor = Color.Green;
-            lbl_ExerciseLanguange.Location = new Point(11, 2);
-            lbl_ExerciseLanguange.Name = "lbl_ExerciseLanguange";
-            lbl_ExerciseLanguange.Size = new Size(68, 25);
-            lbl_ExerciseLanguange.TabIndex = 21;
-            lbl_ExerciseLanguange.Text = "Python";
+            lbl_ExerciseModifiedUpdate.Text = "Last Modified";
             // 
             // lbl_ExerciseTitle
             // 
@@ -155,7 +116,7 @@
             smartButton9.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton9.ForeColor = Color.DimGray;
             smartButton9.Image = (Image)resources.GetObject("smartButton9.Image");
-            smartButton9.Location = new Point(409, 194);
+            smartButton9.Location = new Point(401, 194);
             smartButton9.Margin = new Padding(3, 4, 3, 4);
             smartButton9.Name = "smartButton9";
             smartButton9.Size = new Size(64, 52);
@@ -163,26 +124,7 @@
             smartButton9.TextColor = Color.DimGray;
             smartButton9.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton9.UseVisualStyleBackColor = false;
-            // 
-            // smartButton8
-            // 
-            smartButton8.Anchor = AnchorStyles.None;
-            smartButton8.BackColor = Color.WhiteSmoke;
-            smartButton8.BackgroundColor = Color.WhiteSmoke;
-            smartButton8.BorderRadius = 10;
-            smartButton8.FlatAppearance.BorderSize = 0;
-            smartButton8.FlatStyle = FlatStyle.Flat;
-            smartButton8.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton8.ForeColor = Color.DimGray;
-            smartButton8.Location = new Point(278, 194);
-            smartButton8.Margin = new Padding(3, 4, 3, 4);
-            smartButton8.Name = "smartButton8";
-            smartButton8.Size = new Size(127, 52);
-            smartButton8.TabIndex = 61;
-            smartButton8.Text = "Link";
-            smartButton8.TextColor = Color.DimGray;
-            smartButton8.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton8.UseVisualStyleBackColor = false;
+            smartButton9.Click += smartButton9_Click;
             // 
             // smartButton7
             // 
@@ -203,6 +145,29 @@
             smartButton7.TextColor = Color.DodgerBlue;
             smartButton7.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton7.UseVisualStyleBackColor = false;
+            smartButton7.Click += smartButton7_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(18, 127);
+            label1.Name = "label1";
+            label1.Size = new Size(134, 25);
+            label1.TabIndex = 65;
+            label1.Text = "Total Test Cases";
+            // 
+            // testCounts
+            // 
+            testCounts.AutoSize = true;
+            testCounts.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            testCounts.ForeColor = Color.FromArgb(13, 13, 13);
+            testCounts.Location = new Point(18, 152);
+            testCounts.Name = "testCounts";
+            testCounts.Size = new Size(27, 31);
+            testCounts.TabIndex = 66;
+            testCounts.Text = "0";
             // 
             // ExerciseCard
             // 
@@ -215,8 +180,6 @@
             Size = new Size(496, 264);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
-            customCard2.ResumeLayout(false);
-            customCard2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -224,14 +187,12 @@
 
         private GeneralComponents.CustomCard customCard1;
         private Label lbl_ExerciseModifiedUpdate;
-        private Label lbl_ExerciseTotalLinkedClass;
-        private Label lbl_ExerciseCourse;
-        private GeneralComponents.CustomCard customCard2;
-        private Label lbl_ExerciseLanguange;
         private Label lbl_ExerciseTitle;
         private GeneralComponents.SmartButton smartButton9;
-        private GeneralComponents.SmartButton smartButton8;
         private GeneralComponents.SmartButton smartButton7;
-        private Label lbl_ExerciseYearAndSection;
+        private Label subject;
+        private Label dateModified;
+        private Label testCounts;
+        private Label label1;
     }
 }

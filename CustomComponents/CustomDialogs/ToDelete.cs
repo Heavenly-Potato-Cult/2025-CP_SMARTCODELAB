@@ -1,6 +1,7 @@
 ﻿using ProtoBuf;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
+using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
@@ -32,6 +33,14 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         private void button1_Click(object sender, EventArgs e)
         {
             Debug.WriteLine(DateTime.Now.Date);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            using(var existingExercises = new SelectExercise())
+            {
+                existingExercises.ShowDialog();
+            }
         }
     }
 }

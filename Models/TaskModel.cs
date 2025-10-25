@@ -51,6 +51,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(9)]
         public bool isTabLocked { get; set; }
 
+        [ProtoMember(10)]
+        public DateTime lastModified { get; private set; }
+
         [ProtoIgnore]
         public string filePath { get; set; }
         public TaskModel() {
@@ -62,6 +65,14 @@ namespace SmartCodeLab.Models
             _taskName = taskName;
         }
 
+        public TaskModel(string taskName, string subject, string instruction, Dictionary<string, string> testCases)
+        {
+            this._taskName = taskName;
+            this.subject = subject;
+            this._instructions = instruction;
+            _testCases = testCases;
+            lastModified = DateTime.Now;
+        }
         public class Builder
         {
             private readonly TaskModel task = new TaskModel();
