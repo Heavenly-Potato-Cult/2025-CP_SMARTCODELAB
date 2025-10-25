@@ -28,7 +28,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.py");
-            commandLine = $"/c {ProgrammingConfiguration.pythonExe} \"{testerFile}\"";
+            commandLine = $"/c \"{ProgrammingConfiguration.pythonExe}\" \"{testerFile}\"";
             base .RunTest();
         }
 
@@ -37,11 +37,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             SaveCode();
             NoError();
             List<string> readabilityCommands = [
-                $"/c {ProgrammingConfiguration.pylintExe} --rcfile={ProgrammingConfiguration.readabilityConfig} {filePath}",
-                $"/c {ProgrammingConfiguration.ruffExe} check {filePath} --config {ProgrammingConfiguration.ruffConfig}"];
+                $"/c \"{ProgrammingConfiguration.pylintExe}\" --rcfile={ProgrammingConfiguration.readabilityConfig} {filePath}",
+                $"/c \"{ProgrammingConfiguration.ruffExe}\" check {filePath} --config {ProgrammingConfiguration.ruffConfig}"];
 
             //for error checking
-            process = CommandRunner($"/c {ProgrammingConfiguration.pylintExe} --rcfile={ProgrammingConfiguration.errorConfig} {filePath}");
+            process = CommandRunner($"/c \"{ProgrammingConfiguration.pylintExe}\" --rcfile={ProgrammingConfiguration.errorConfig} {filePath}");
             string errorOutput = "";
             await StartprocessAsyncExit(
                 process,

@@ -21,13 +21,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public override void RunCode()
         {
             string fileExe = filePath.Replace(".cpp", ".exe");
-            commandLine = $"/c {ProgrammingConfiguration.gccExe} {filePath} -o {fileExe} && {fileExe}";
+            commandLine = $"/c \"{ProgrammingConfiguration.gccExe}\" {filePath} -o {fileExe} && {fileExe}";
             base.RunCode();
         }
 
         public override void RunTest()
         {
-            commandLine = $"/c cd {ProgrammingConfiguration.gccBin} && g++ {Path.GetDirectoryName(filePath)+"\\Tester.cpp"} -o test.exe && test.exe";
+            commandLine = $"/c cd \"{ProgrammingConfiguration.gccBin}\" && g++ {Path.GetDirectoryName(filePath)+"\\Tester.cpp"} -o test.exe && test.exe";
             testerFile = Path.GetDirectoryName(filePath) + "\\\\" + "Tester.cpp";
             base.RunTest();
         }
@@ -36,7 +36,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             SaveCode();
             string errors = string.Empty;
-            commandLine = $"/c {ProgrammingConfiguration.gccExe} -fsyntax-only \"{filePath}\"";
+            commandLine = $"/c \"{ProgrammingConfiguration.gccExe}\" -fsyntax-only \"{filePath}\"";
             process = CommandRunner(commandLine);
             await StartprocessAsyncExit(
                 process,
@@ -62,8 +62,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 File.Copy(ProgrammingConfiguration.CPPLINT_CONFIG, Path.Combine(fileDirectory, "syntax_checker.cpplintrc"));
             }
-
-            process = CommandRunner($"/c {ProgrammingConfiguration.CPPLINT_EXE} --config=syntax_checker.cpplintrc \"{filePath}\"");
+            process = CommandRunner($"/c \"{ProgrammingConfiguration.CPPLINT_EXE}\" --config=syntax_checker.cpplintrc {filePath}");
             string standardsViolations = string.Empty;
             await StartprocessAsyncExit(
                 process,
@@ -74,12 +73,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         standardsViolations += violation + Environment.NewLine;
                 },
                 () => {
-                    standardsViolations = standardsViolations.Remove(standardsViolations.Length - 1);
-                    foreach (var violation in standardsViolations.Split(Environment.NewLine))
+                    if (!standardsViolations.Trim().IsWhiteSpace())
                     {
-                        (int violationLine, string violationMsg) = GetViolationLineMessage(violation);
-                        violationLine = violationLine == 0 ? 0 : violationLine - 1;
-                        base.HighLightStandardError(violationLine, violationMsg);
+                        standardsViolations = standardsViolations.Remove(standardsViolations.Length - 1);
+                        foreach (var violation in standardsViolations.Split(Environment.NewLine))
+                        {
+                            (int violationLine, string violationMsg) = GetViolationLineMessage(violation);
+                            violationLine = violationLine == 0 ? 0 : violationLine - 1;
+                            base.HighLightStandardError(violationLine, violationMsg);
+                        }
                     }
                 }
             );
@@ -122,7 +124,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
             violationMessage = violationMessage.Remove(0, secondColon+2);
 
-            Debug.WriteLine($"{lineError} = {violationMessage}");
             return (int.Parse(lineError), violationMessage);
         }
     }
