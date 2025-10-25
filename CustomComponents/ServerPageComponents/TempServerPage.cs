@@ -125,7 +125,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                                 copypastedCodes.Controls.Add(new PastedCodeIcon(item));
                             }
                         }
-                        this.studentCodeRating1.SetStudentStats(progress.codeStats);
+                        this.studentCodeRating1.UpdateStatsDisplay(progress.codeRating);
                     }));
                 });
             }

@@ -52,10 +52,9 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 process.ErrorDataReceived += (s, e) => { if (e.Data != null) Debug.WriteLine("ERR: " + e.Data); };
                 process.Exited += (s, e) =>
                 {
-                    string fourthLine = allOutput.Split('\n')[3];
                     try
                     {
-                        totalComplexity = int.Parse(((fourthLine.Split("      ")[2]).ToCharArray()[0]).ToString());
+                        totalComplexity = cycComplexityOutputExtractor(allOutput);
                     }
                     catch (IndexOutOfRangeException) { totalComplexity = 1; }
                     if (willDeleteAfter)
@@ -71,6 +70,33 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 int exitCode = process.ExitCode;
                 return totalComplexity;
             }
+        }
+
+        public static int cycComplexityOutputExtractor(string outputLine)
+        {
+            string[] outputs = outputLine.Split('\n');
+            List<string> complexitiesCounted = new List<string>();
+            //will determine which index the 'file analyzed is'
+            int lastIndex = 0;
+            for (int i = 3; i < outputs.Length; i++)
+            {
+                if (outputs[i].ToLower().Contains("file analyzed."))
+                    break;
+                else
+                    complexitiesCounted.Add(outputs[i]);
+
+                lastIndex++;
+            }
+
+            if (lastIndex == 0 || complexitiesCounted.Count == 0)
+                return 1;
+
+            int totalCycComplexity = 0;
+            foreach (var line in complexitiesCounted)
+            {
+                totalCycComplexity += int.Parse(((line.Split("      ")[2]).ToCharArray()[0]).ToString());
+            }
+            return totalCycComplexity;
         }
 
         private void smartButton1_Click(object sender, EventArgs e)

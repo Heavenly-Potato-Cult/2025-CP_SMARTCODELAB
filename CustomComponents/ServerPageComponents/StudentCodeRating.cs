@@ -1,4 +1,5 @@
 ﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,12 +26,19 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private readonly Dictionary<int, Panel> statsTotal;
         private readonly Dictionary<int, StatsBar> statsBar;
         private int standardCycComplexity;
-
+        private int testScore;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int maxTestScore { get; set; }
         public Dictionary<int, decimal> statsWeight;
         public Dictionary<int, float> statsGrade;
+
+        private List<string> standardViolations;
         public StudentCodeRating()
         {
             InitializeComponent();
+            standardViolations = new List<string>();
+            maxTestScore = 0;
+            testScore = 0;
             statsGrade = new Dictionary<int, float>()
             {
                 {1, 0 },
@@ -40,7 +48,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             };
             statsTotal = new Dictionary<int, Panel>()
             {
-                {1, panel3 },
+                {1, accuracyPanel },
                 {2, readabilityContainer },
                 {3, efficiencyContainer },
                 {4, panel1 },
@@ -73,6 +81,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 if (stats.ContainsKey(4))
                 {
                     standardCycComplexity = Convert.ToInt32(stats[4][1]);
+                    expectedCycComplexity.Text = standardCycComplexity.ToString();
                 }
 
                 recordedStats = stats.Keys.ToList();
@@ -98,26 +107,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 try
                 {
                     currentCodeStats.Add(item, statsBar[item].Value);
-                }catch (KeyNotFoundException) { }
+                }
+                catch (KeyNotFoundException) { }
             }
             //5 will be the total score
             currentCodeStats.Add(5, Convert.ToInt32(GetScore()));
             return currentCodeStats;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (readabilityContainer.Size.Height < 406)
-            {
-                readabilityContainer.Size = new Size(436, 406);
-                readabilityContainer.Invalidate();
-            }
-            else
-            {
-                readabilityContainer.Size = new Size(436, 39);
-                readabilityContainer.Invalidate();
-            }
-        }
+
 
         public async void UpdateStats(int i, int value, List<string>? reasons)
         {
@@ -125,21 +123,26 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 return;
             if (i == 1)
             {
-                accuracy.ChangeValue(value);
+                testScore = value;
+                int score = (value / maxTestScore) * 100;
+                this.Invoke(new Action(() => result.Text = $"{value.ToString()}/{maxTestScore}"));
+                accuracy.ChangeValue(score);
             }
             else if (i == 2)
             {
                 readability.ChangeValue(100 - value);
                 string violations = "Standard Violations:\n";
-                reasons?.ForEach(reason =>  violations += "- " + reason + "\n" );
+                reasons?.ForEach(reason => violations += "- " + reason + "\n");
                 standardErrors.Text = violations;
+                standardViolations = reasons ?? new List<string>();
             }
             else if (i == 4)
             {
-                float remainder = value - standardCycComplexity;
-                int scoreComp = remainder <= (standardCycComplexity * .1) ? 100 :
-                            remainder <= (standardCycComplexity * .4) ? 75 :
-                            50;
+                int difference = value - standardCycComplexity;
+                int scoreComp = difference <= (standardCycComplexity * .1) ? 100 :
+                                difference <= (standardCycComplexity * .4) ? 75 : 50;
+
+                this.Invoke(new Action(() => actualCycComplexity.Text = value.ToString()));
                 complexity.ChangeValue(scoreComp);
             }
             statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
@@ -159,6 +162,72 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 totalScore += score;
             }
             return totalScore;
+        }
+
+        public void UpdateStatsDisplay(CodeRating codeRating)
+        {
+            this.Invoke(new Action(() =>
+            {
+                SetStudentStats(codeRating.statsGrade);
+                testScore = codeRating.testScore;
+                maxTestScore = codeRating.maxTestScore;
+                result.Text = $"{testScore}/{maxTestScore}";
+                actualCycComplexity.Text = codeRating.actualCycComplexity.ToString();
+                standardViolations = codeRating.readabilityViolations;
+                string violations = "Standard Violations:\n";
+                standardViolations.ForEach(reason => violations += "- " + reason + "\n");
+                standardErrors.Text = violations;
+                score.Text = codeRating.totalRating.ToString();
+            }));
+        }
+
+        public CodeRating GetCodeRating()
+        {
+            return new CodeRating.Builder()
+                .WithTotalRating(Convert.ToInt32(GetScore()))
+                .WithTestScore(testScore)
+                .WithMaxTestScore(maxTestScore)
+                .WithReadabilityViolations(standardViolations)
+                .WithRecommendedCycComplexity(standardCycComplexity)
+                .WithActualCycComplexity(Convert.ToInt32(actualCycComplexity.Text))
+                .WithStatsGrade(GetStats())
+                .Build();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (panel1.Size.Height < 96)
+            {
+                panel1.Size = new Size(385, 96);
+            }
+            else
+            {
+                panel1.Size = new Size(385, 39);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (accuracyPanel.Size.Height < 70)
+            {
+                accuracyPanel.Size = new Size(385, 70);
+            }
+            else
+            {
+                accuracyPanel.Size = new Size(385, 39);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (readabilityContainer.Size.Height < 385)
+            {
+                readabilityContainer.Size = new Size(385, 406);
+            }
+            else
+            {
+                readabilityContainer.Size = new Size(385, 39);
+            }
         }
     }
 }

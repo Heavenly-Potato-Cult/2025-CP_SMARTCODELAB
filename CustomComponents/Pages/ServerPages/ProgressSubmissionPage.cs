@@ -85,7 +85,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             this.Invoke((Action)(() => 
             {
                 studentName.Text = student._studentName;
-                score.Text = progress.codeStats[5].ToString();
+                score.Text = progress.codeRating.totalRating.ToString();
                 studentCode.Text = progress.sourceCode;
             }));
 

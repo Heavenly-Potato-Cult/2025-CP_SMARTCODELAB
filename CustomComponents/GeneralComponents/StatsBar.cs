@@ -20,7 +20,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             this.SetStyle(ControlStyles.AllPaintingInWmPaint |
                          ControlStyles.UserPaint |
                          ControlStyles.OptimizedDoubleBuffer, true);
-            Value = 38;
+            Value = 100;
             _cancellationTokenSource = new CancellationTokenSource();
         }
 

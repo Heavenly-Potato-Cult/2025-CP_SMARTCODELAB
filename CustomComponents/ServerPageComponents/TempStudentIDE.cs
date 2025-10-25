@@ -88,7 +88,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private async Task ProgressSender()
         {
             var message = new ServerMessage.Builder(MessageType.STUDENT_PROGRESS)
-                .StudentProgress(editor.GetProgress(studentCodeRating.GetStats()))
+                .StudentProgress(editor.GetProgress(studentCodeRating.GetCodeRating()))
                 .Build();
             Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
             await stream.FlushAsync();

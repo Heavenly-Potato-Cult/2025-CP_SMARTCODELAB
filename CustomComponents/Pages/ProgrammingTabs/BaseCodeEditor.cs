@@ -152,10 +152,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             this.task = task;
         }
 
-        public StudentCodingProgress GetProgress(Dictionary<int, int> currentStats)
+        public StudentCodingProgress GetProgress(CodeRating codeRating)
         {
             StudentProgress.sourceCode = srcCode.Text;
-            StudentProgress.codeStats = currentStats;
+            StudentProgress.codeRating = codeRating;
             return StudentProgress;
         }
 
@@ -307,8 +307,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             else {
                 TestCodeForm testCodeForm = new TestCodeForm(commandLine, testerFile, task);
                 testCodeForm.ShowDialog();
-                int percentage = (testCodeForm.score / task._testCases.Count) * 100;
-                updateStats?.Invoke(1, percentage, null);
+                updateStats?.Invoke(1, testCodeForm.score, null);
             }
         }
         protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)

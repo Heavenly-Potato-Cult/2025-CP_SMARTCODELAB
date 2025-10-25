@@ -33,7 +33,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             currentPlacement = placement;
             placing.Text = placement.ToString();
             name.Text = submittedCode.user._studentName;
-            score.Text = submittedCode.progress.codeStats[5].ToString(); //the codeStats[5] contains the student score
+            score.Text = submittedCode.progress.codeRating.ToString(); //the codeStats[5] contains the student score
 
             this.Click += (sender, e) => updateDisplayClick?.Invoke();
         }

@@ -1,4 +1,5 @@
 ﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+using System.Diagnostics;
 
 namespace SmartCodeLab.CustomComponents.GeneralComponents
 {

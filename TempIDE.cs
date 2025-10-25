@@ -97,6 +97,7 @@ namespace SmartCodeLab
             {
                 UpdateTaskDisplay(task);
                 studentCodeRating.SetStats(task.ratingFactors);
+                studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
             };
         }
 
@@ -111,6 +112,7 @@ namespace SmartCodeLab
                     description.Text = task._instructions;
                     int i = 1;
                     testCaseContainer.Controls.Clear();
+                    studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
                     if (task._testCases != null && task._testCases.Count > 0)
                         foreach (var item in task._testCases)
                         {
@@ -123,7 +125,7 @@ namespace SmartCodeLab
         private async Task ProgressSender()
         {
             var message = new ServerMessage.Builder(MessageType.STUDENT_PROGRESS)
-                .StudentProgress(mainEditor.GetProgress(studentCodeRating.GetStats()))
+                .StudentProgress(mainEditor.GetProgress(studentCodeRating.GetCodeRating()))
                 .Build();
             Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
             await stream.FlushAsync();
@@ -360,7 +362,7 @@ namespace SmartCodeLab
             {
                 Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
                     new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
-                        SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetStats()))).Build(),
+                        SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetCodeRating()))).Build(),
                     PrefixStyle.Base128);
                 await stream.FlushAsync();
             });

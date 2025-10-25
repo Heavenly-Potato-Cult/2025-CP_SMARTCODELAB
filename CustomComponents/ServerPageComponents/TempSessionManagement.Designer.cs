@@ -114,7 +114,7 @@
             customCard2.Location = new Point(3, 3);
             customCard2.Name = "customCard2";
             customCard2.Padding = new Padding(10, 20, 10, 11);
-            customCard2.Size = new Size(1039, 478);
+            customCard2.Size = new Size(1039, 602);
             customCard2.TabIndex = 16;
             // 
             // tableLayoutPanel1
@@ -146,7 +146,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.74843F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15.5155592F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.46197F));
-            tableLayoutPanel1.Size = new Size(1019, 400);
+            tableLayoutPanel1.Size = new Size(1019, 524);
             tableLayoutPanel1.TabIndex = 30;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint_1;
             // 
@@ -154,7 +154,7 @@
             // 
             panel8.Controls.Add(label2);
             panel8.Controls.Add(tabNavigationLocked);
-            panel8.Location = new Point(607, 255);
+            panel8.Location = new Point(607, 332);
             panel8.Name = "panel8";
             panel8.Size = new Size(250, 50);
             panel8.TabIndex = 36;
@@ -191,7 +191,7 @@
             smartButton4.FlatAppearance.BorderSize = 0;
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(315, 256);
+            smartButton4.Location = new Point(315, 333);
             smartButton4.Margin = new Padding(3, 4, 3, 4);
             smartButton4.Name = "smartButton4";
             smartButton4.Size = new Size(113, 43);
@@ -209,7 +209,7 @@
             customCard1.Controls.Add(smartButton2);
             customCard1.Controls.Add(studentsCount);
             customCard1.Controls.Add(label1);
-            customCard1.Location = new Point(607, 198);
+            customCard1.Location = new Point(607, 255);
             customCard1.Margin = new Padding(3, 4, 3, 4);
             customCard1.Name = "customCard1";
             customCard1.Size = new Size(229, 47);
@@ -257,7 +257,7 @@
             label4.Dock = DockStyle.Bottom;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.DimGray;
-            label4.Location = new Point(13, 41);
+            label4.Location = new Point(13, 56);
             label4.Name = "label4";
             label4.Size = new Size(296, 25);
             label4.TabIndex = 17;
@@ -271,7 +271,7 @@
             serverName.BorderRadius = 10;
             serverName.BorderSize = 1;
             serverName.ForeColor = SystemColors.ControlText;
-            serverName.Location = new Point(13, 69);
+            serverName.Location = new Point(13, 84);
             serverName.Name = "serverName";
             serverName.Padding = new Padding(10, 7, 10, 7);
             serverName.PlaceHolderColor = Color.DarkGray;
@@ -282,9 +282,9 @@
             // 
             // codeQualityChoices
             // 
-            codeQualityChoices.Location = new Point(13, 255);
+            codeQualityChoices.Location = new Point(13, 332);
             codeQualityChoices.Name = "codeQualityChoices";
-            codeQualityChoices.Size = new Size(245, 142);
+            codeQualityChoices.Size = new Size(266, 189);
             codeQualityChoices.TabIndex = 30;
             // 
             // label6
@@ -293,7 +293,7 @@
             label6.Dock = DockStyle.Bottom;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.DimGray;
-            label6.Location = new Point(13, 169);
+            label6.Location = new Point(13, 226);
             label6.Name = "label6";
             label6.Size = new Size(296, 25);
             label6.TabIndex = 19;
@@ -305,7 +305,7 @@
             label15.Dock = DockStyle.Bottom;
             label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.DimGray;
-            label15.Location = new Point(315, 169);
+            label15.Location = new Point(315, 226);
             label15.Name = "label15";
             label15.Size = new Size(286, 25);
             label15.TabIndex = 25;
@@ -320,7 +320,7 @@
             serverPW.BorderRadius = 10;
             serverPW.BorderSize = 1;
             serverPW.ForeColor = SystemColors.ControlText;
-            serverPW.Location = new Point(13, 197);
+            serverPW.Location = new Point(13, 254);
             serverPW.Name = "serverPW";
             serverPW.Padding = new Padding(10, 7, 10, 7);
             serverPW.PlaceHolderColor = Color.DarkGray;
@@ -335,7 +335,7 @@
             label7.Dock = DockStyle.Bottom;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.DimGray;
-            label7.Location = new Point(315, 41);
+            label7.Location = new Point(315, 56);
             label7.Name = "label7";
             label7.Size = new Size(286, 25);
             label7.TabIndex = 27;
@@ -353,7 +353,7 @@
             language.Items.AddRange(new object[] { "C++", "Java", "Python" });
             language.ListBackColor = Color.FromArgb(230, 228, 245);
             language.ListTextColor = Color.DimGray;
-            language.Location = new Point(315, 69);
+            language.Location = new Point(315, 84);
             language.MinimumSize = new Size(200, 29);
             language.Name = "language";
             language.Padding = new Padding(1);
@@ -431,7 +431,7 @@
             // taskView
             // 
             taskView.Controls.Add(smartButton3);
-            taskView.Location = new Point(315, 197);
+            taskView.Location = new Point(315, 254);
             taskView.Name = "taskView";
             taskView.Size = new Size(286, 52);
             taskView.TabIndex = 37;
@@ -493,7 +493,7 @@
             customCard4.Controls.Add(panel2);
             customCard4.Controls.Add(panel1);
             customCard4.Controls.Add(label16);
-            customCard4.Location = new Point(3, 487);
+            customCard4.Location = new Point(3, 611);
             customCard4.Name = "customCard4";
             customCard4.Padding = new Padding(10, 20, 10, 11);
             customCard4.Size = new Size(811, 337);
