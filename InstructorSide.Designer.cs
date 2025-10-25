@@ -28,7 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InstructorSide));
+            ListViewItem listViewItem4 = new ListViewItem(new string[] { "1", "1", "2" }, -1);
+            ListViewItem listViewItem5 = new ListViewItem(new string[] { "1", "1", "1" }, -1);
+            ListViewItem listViewItem6 = new ListViewItem(new string[] { "5", "5", "5" }, -1);
+            ListViewItem listViewItem7 = new ListViewItem(new string[] { "\"Hello World\"", "\"Hello World\"", "\"Hillo\"" }, -1);
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "Readability", "15" }, -1);
+            ListViewItem listViewItem2 = new ListViewItem(new string[] { "Efficiency", "20" }, -1);
+            ListViewItem listViewItem3 = new ListViewItem(new string[] { "Complexity", "30" }, -1);
             pictureBox1 = new PictureBox();
             lblTitle = new Label();
             smartButton11 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -60,6 +68,19 @@
             tabPage3 = new TabPage();
             tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
             tabPage4 = new TabPage();
+            flowLayoutPanel2 = new FlowLayoutPanel();
+            materialExpansionPanel1 = new MaterialSkin.Controls.MaterialExpansionPanel();
+            actualOutput = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            expectedOutput = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            inputs = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            materialExpansionPanel2 = new MaterialSkin.Controls.MaterialExpansionPanel();
+            codeEditor1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            codeEditor2 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            codeEditor3 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            materialExpansionPanel3 = new MaterialSkin.Controls.MaterialExpansionPanel();
+            codeEditor4 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            codeEditor5 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            codeEditor6 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             tabPage5 = new TabPage();
             tempExerciseManage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             tabPage6 = new TabPage();
@@ -67,6 +88,14 @@
             tabPage7 = new TabPage();
             button4 = new Button();
             panel2 = new Panel();
+            materialListView1 = new MaterialSkin.Controls.MaterialListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            label2 = new Label();
+            materialListView2 = new MaterialSkin.Controls.MaterialListView();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             sideMenuPanel.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -78,6 +107,20 @@
             tabPage1.SuspendLayout();
             smthTabControl_Main.SuspendLayout();
             tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
+            flowLayoutPanel2.SuspendLayout();
+            materialExpansionPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)actualOutput).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)expectedOutput).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)inputs).BeginInit();
+            materialExpansionPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)codeEditor1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)codeEditor2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)codeEditor3).BeginInit();
+            materialExpansionPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)codeEditor4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)codeEditor5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)codeEditor6).BeginInit();
             tabPage5.SuspendLayout();
             tabPage6.SuspendLayout();
             tabPage7.SuspendLayout();
@@ -369,6 +412,7 @@
             btn_SubMenu_ClassManagement.Text = "   Class Management";
             btn_SubMenu_ClassManagement.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_SubMenu_ClassManagement.UseVisualStyleBackColor = false;
+            btn_SubMenu_ClassManagement.Click += btn_SubMenu_ClassManagement_Click;
             // 
             // btn_SideMenu_SubmissionReview
             // 
@@ -488,7 +532,7 @@
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(192, 67);
+            tabPage2.Size = new Size(1346, 880);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             tabPage2.UseVisualStyleBackColor = true;
@@ -498,7 +542,7 @@
             tempDashboard1.Dock = DockStyle.Fill;
             tempDashboard1.Location = new Point(3, 3);
             tempDashboard1.Name = "tempDashboard1";
-            tempDashboard1.Size = new Size(186, 61);
+            tempDashboard1.Size = new Size(1340, 874);
             tempDashboard1.TabIndex = 0;
             // 
             // tabPage1
@@ -543,9 +587,9 @@
             // tabPage3
             // 
             tabPage3.Controls.Add(tempServerPage1);
-            tabPage3.Location = new Point(4, 54);
+            tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(192, 42);
+            tabPage3.Size = new Size(1346, 880);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
@@ -558,17 +602,390 @@
             tempServerPage1.Location = new Point(0, 0);
             tempServerPage1.Margin = new Padding(3, 4, 3, 4);
             tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(192, 42);
+            tempServerPage1.Size = new Size(1346, 880);
             tempServerPage1.TabIndex = 1;
             // 
             // tabPage4
             // 
-            tabPage4.Location = new Point(4, 54);
+            tabPage4.Controls.Add(flowLayoutPanel2);
+            tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(192, 42);
+            tabPage4.Size = new Size(1346, 880);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel2
+            // 
+            flowLayoutPanel2.AutoSize = true;
+            flowLayoutPanel2.Controls.Add(materialExpansionPanel1);
+            flowLayoutPanel2.Controls.Add(materialExpansionPanel2);
+            flowLayoutPanel2.Controls.Add(materialExpansionPanel3);
+            flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
+            flowLayoutPanel2.Location = new Point(5, 22);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(1163, 1182);
+            flowLayoutPanel2.TabIndex = 90;
+            // 
+            // materialExpansionPanel1
+            // 
+            materialExpansionPanel1.BackColor = Color.FromArgb(255, 255, 255);
+            materialExpansionPanel1.CancelButtonText = "Ayaw kol";
+            materialExpansionPanel1.Controls.Add(actualOutput);
+            materialExpansionPanel1.Controls.Add(expectedOutput);
+            materialExpansionPanel1.Controls.Add(inputs);
+            materialExpansionPanel1.Depth = 0;
+            materialExpansionPanel1.Description = "1";
+            materialExpansionPanel1.ExpandHeight = 362;
+            materialExpansionPanel1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialExpansionPanel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialExpansionPanel1.Location = new Point(16, 16);
+            materialExpansionPanel1.Margin = new Padding(16);
+            materialExpansionPanel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialExpansionPanel1.Name = "materialExpansionPanel1";
+            materialExpansionPanel1.Padding = new Padding(24, 64, 24, 16);
+            materialExpansionPanel1.Size = new Size(1131, 362);
+            materialExpansionPanel1.TabIndex = 0;
+            materialExpansionPanel1.Title = "Test Case";
+            // 
+            // actualOutput
+            // 
+            actualOutput.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            actualOutput.AutoScrollMinSize = new Size(112, 18);
+            actualOutput.BackBrush = null;
+            actualOutput.CharHeight = 18;
+            actualOutput.CharWidth = 10;
+            actualOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            actualOutput.Hotkeys = resources.GetString("actualOutput.Hotkeys");
+            actualOutput.IsReplaceMode = false;
+            actualOutput.Location = new Point(772, 67);
+            actualOutput.Name = "actualOutput";
+            actualOutput.Paddings = new Padding(0);
+            actualOutput.ReadOnly = true;
+            actualOutput.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            actualOutput.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("actualOutput.ServiceColors");
+            actualOutput.Size = new Size(270, 204);
+            actualOutput.TabIndex = 88;
+            actualOutput.Text = "codeEditor3";
+            actualOutput.Zoom = 100;
+            // 
+            // expectedOutput
+            // 
+            expectedOutput.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            expectedOutput.AutoScrollMinSize = new Size(112, 18);
+            expectedOutput.BackBrush = null;
+            expectedOutput.CharHeight = 18;
+            expectedOutput.CharWidth = 10;
+            expectedOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            expectedOutput.Hotkeys = resources.GetString("expectedOutput.Hotkeys");
+            expectedOutput.IsReplaceMode = false;
+            expectedOutput.Location = new Point(494, 67);
+            expectedOutput.Name = "expectedOutput";
+            expectedOutput.Paddings = new Padding(0);
+            expectedOutput.ReadOnly = true;
+            expectedOutput.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            expectedOutput.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("expectedOutput.ServiceColors");
+            expectedOutput.Size = new Size(270, 204);
+            expectedOutput.TabIndex = 87;
+            expectedOutput.Text = "codeEditor2";
+            expectedOutput.Zoom = 100;
+            // 
+            // inputs
+            // 
+            inputs.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            inputs.AutoScrollMinSize = new Size(112, 18);
+            inputs.BackBrush = null;
+            inputs.CharHeight = 18;
+            inputs.CharWidth = 10;
+            inputs.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            inputs.Hotkeys = resources.GetString("inputs.Hotkeys");
+            inputs.IsReplaceMode = false;
+            inputs.Location = new Point(18, 67);
+            inputs.Name = "inputs";
+            inputs.Paddings = new Padding(0);
+            inputs.ReadOnly = true;
+            inputs.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            inputs.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("inputs.ServiceColors");
+            inputs.Size = new Size(470, 207);
+            inputs.TabIndex = 86;
+            inputs.Text = "codeEditor1";
+            inputs.Zoom = 100;
+            // 
+            // materialExpansionPanel2
+            // 
+            materialExpansionPanel2.BackColor = Color.FromArgb(255, 255, 255);
+            materialExpansionPanel2.CancelButtonText = "Ayaw kol";
+            materialExpansionPanel2.Controls.Add(codeEditor1);
+            materialExpansionPanel2.Controls.Add(codeEditor2);
+            materialExpansionPanel2.Controls.Add(codeEditor3);
+            materialExpansionPanel2.Depth = 0;
+            materialExpansionPanel2.Description = "2";
+            materialExpansionPanel2.ExpandHeight = 362;
+            materialExpansionPanel2.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialExpansionPanel2.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialExpansionPanel2.Location = new Point(16, 410);
+            materialExpansionPanel2.Margin = new Padding(16);
+            materialExpansionPanel2.MouseState = MaterialSkin.MouseState.HOVER;
+            materialExpansionPanel2.Name = "materialExpansionPanel2";
+            materialExpansionPanel2.Padding = new Padding(24, 64, 24, 16);
+            materialExpansionPanel2.Size = new Size(1131, 362);
+            materialExpansionPanel2.TabIndex = 1;
+            materialExpansionPanel2.Title = "Test Case";
+            // 
+            // codeEditor1
+            // 
+            codeEditor1.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            codeEditor1.AutoScrollMinSize = new Size(112, 18);
+            codeEditor1.BackBrush = null;
+            codeEditor1.CharHeight = 18;
+            codeEditor1.CharWidth = 10;
+            codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
+            codeEditor1.IsReplaceMode = false;
+            codeEditor1.Location = new Point(772, 67);
+            codeEditor1.Name = "codeEditor1";
+            codeEditor1.Paddings = new Padding(0);
+            codeEditor1.ReadOnly = true;
+            codeEditor1.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            codeEditor1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor1.ServiceColors");
+            codeEditor1.Size = new Size(270, 204);
+            codeEditor1.TabIndex = 88;
+            codeEditor1.Text = "codeEditor3";
+            codeEditor1.Zoom = 100;
+            // 
+            // codeEditor2
+            // 
+            codeEditor2.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            codeEditor2.AutoScrollMinSize = new Size(112, 18);
+            codeEditor2.BackBrush = null;
+            codeEditor2.CharHeight = 18;
+            codeEditor2.CharWidth = 10;
+            codeEditor2.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            codeEditor2.Hotkeys = resources.GetString("codeEditor2.Hotkeys");
+            codeEditor2.IsReplaceMode = false;
+            codeEditor2.Location = new Point(494, 67);
+            codeEditor2.Name = "codeEditor2";
+            codeEditor2.Paddings = new Padding(0);
+            codeEditor2.ReadOnly = true;
+            codeEditor2.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            codeEditor2.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor2.ServiceColors");
+            codeEditor2.Size = new Size(270, 204);
+            codeEditor2.TabIndex = 87;
+            codeEditor2.Text = "codeEditor2";
+            codeEditor2.Zoom = 100;
+            // 
+            // codeEditor3
+            // 
+            codeEditor3.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            codeEditor3.AutoScrollMinSize = new Size(112, 18);
+            codeEditor3.BackBrush = null;
+            codeEditor3.CharHeight = 18;
+            codeEditor3.CharWidth = 10;
+            codeEditor3.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            codeEditor3.Hotkeys = resources.GetString("codeEditor3.Hotkeys");
+            codeEditor3.IsReplaceMode = false;
+            codeEditor3.Location = new Point(18, 67);
+            codeEditor3.Name = "codeEditor3";
+            codeEditor3.Paddings = new Padding(0);
+            codeEditor3.ReadOnly = true;
+            codeEditor3.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            codeEditor3.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor3.ServiceColors");
+            codeEditor3.Size = new Size(470, 207);
+            codeEditor3.TabIndex = 86;
+            codeEditor3.Text = "codeEditor1";
+            codeEditor3.Zoom = 100;
+            // 
+            // materialExpansionPanel3
+            // 
+            materialExpansionPanel3.BackColor = Color.FromArgb(255, 255, 255);
+            materialExpansionPanel3.CancelButtonText = "Ayaw kol";
+            materialExpansionPanel3.Controls.Add(codeEditor4);
+            materialExpansionPanel3.Controls.Add(codeEditor5);
+            materialExpansionPanel3.Controls.Add(codeEditor6);
+            materialExpansionPanel3.Depth = 0;
+            materialExpansionPanel3.Description = "3";
+            materialExpansionPanel3.ExpandHeight = 362;
+            materialExpansionPanel3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialExpansionPanel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialExpansionPanel3.Location = new Point(16, 804);
+            materialExpansionPanel3.Margin = new Padding(16);
+            materialExpansionPanel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialExpansionPanel3.Name = "materialExpansionPanel3";
+            materialExpansionPanel3.Padding = new Padding(24, 64, 24, 16);
+            materialExpansionPanel3.Size = new Size(1131, 362);
+            materialExpansionPanel3.TabIndex = 2;
+            materialExpansionPanel3.Title = "Test Case";
+            // 
+            // codeEditor4
+            // 
+            codeEditor4.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            codeEditor4.AutoScrollMinSize = new Size(112, 18);
+            codeEditor4.BackBrush = null;
+            codeEditor4.CharHeight = 18;
+            codeEditor4.CharWidth = 10;
+            codeEditor4.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            codeEditor4.Hotkeys = resources.GetString("codeEditor4.Hotkeys");
+            codeEditor4.IsReplaceMode = false;
+            codeEditor4.Location = new Point(772, 67);
+            codeEditor4.Name = "codeEditor4";
+            codeEditor4.Paddings = new Padding(0);
+            codeEditor4.ReadOnly = true;
+            codeEditor4.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            codeEditor4.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor4.ServiceColors");
+            codeEditor4.Size = new Size(270, 204);
+            codeEditor4.TabIndex = 88;
+            codeEditor4.Text = "codeEditor3";
+            codeEditor4.Zoom = 100;
+            // 
+            // codeEditor5
+            // 
+            codeEditor5.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            codeEditor5.AutoScrollMinSize = new Size(112, 18);
+            codeEditor5.BackBrush = null;
+            codeEditor5.CharHeight = 18;
+            codeEditor5.CharWidth = 10;
+            codeEditor5.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            codeEditor5.Hotkeys = resources.GetString("codeEditor5.Hotkeys");
+            codeEditor5.IsReplaceMode = false;
+            codeEditor5.Location = new Point(494, 67);
+            codeEditor5.Name = "codeEditor5";
+            codeEditor5.Paddings = new Padding(0);
+            codeEditor5.ReadOnly = true;
+            codeEditor5.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            codeEditor5.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor5.ServiceColors");
+            codeEditor5.Size = new Size(270, 204);
+            codeEditor5.TabIndex = 87;
+            codeEditor5.Text = "codeEditor2";
+            codeEditor5.Zoom = 100;
+            // 
+            // codeEditor6
+            // 
+            codeEditor6.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            codeEditor6.AutoScrollMinSize = new Size(112, 18);
+            codeEditor6.BackBrush = null;
+            codeEditor6.CharHeight = 18;
+            codeEditor6.CharWidth = 10;
+            codeEditor6.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            codeEditor6.Hotkeys = resources.GetString("codeEditor6.Hotkeys");
+            codeEditor6.IsReplaceMode = false;
+            codeEditor6.Location = new Point(18, 67);
+            codeEditor6.Name = "codeEditor6";
+            codeEditor6.Paddings = new Padding(0);
+            codeEditor6.ReadOnly = true;
+            codeEditor6.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            codeEditor6.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor6.ServiceColors");
+            codeEditor6.Size = new Size(470, 207);
+            codeEditor6.TabIndex = 86;
+            codeEditor6.Text = "codeEditor1";
+            codeEditor6.Zoom = 100;
             // 
             // tabPage5
             // 
@@ -592,9 +1009,9 @@
             // tabPage6
             // 
             tabPage6.Controls.Add(tempCodeEvaluation1);
-            tabPage6.Location = new Point(4, 79);
+            tabPage6.Location = new Point(4, 29);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new Size(192, 17);
+            tabPage6.Size = new Size(1346, 880);
             tabPage6.TabIndex = 5;
             tabPage6.Text = "tabPage6";
             tabPage6.UseVisualStyleBackColor = true;
@@ -605,15 +1022,18 @@
             tempCodeEvaluation1.Dock = DockStyle.Fill;
             tempCodeEvaluation1.Location = new Point(0, 0);
             tempCodeEvaluation1.Name = "tempCodeEvaluation1";
-            tempCodeEvaluation1.Size = new Size(192, 17);
+            tempCodeEvaluation1.Size = new Size(1346, 880);
             tempCodeEvaluation1.TabIndex = 0;
             // 
             // tabPage7
             // 
+            tabPage7.Controls.Add(materialListView2);
+            tabPage7.Controls.Add(label2);
+            tabPage7.Controls.Add(materialListView1);
             tabPage7.Controls.Add(button4);
-            tabPage7.Location = new Point(4, 104);
+            tabPage7.Location = new Point(4, 29);
             tabPage7.Name = "tabPage7";
-            tabPage7.Size = new Size(192, 0);
+            tabPage7.Size = new Size(1346, 880);
             tabPage7.TabIndex = 6;
             tabPage7.Text = "tabPage7";
             tabPage7.UseVisualStyleBackColor = true;
@@ -636,6 +1056,82 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1354, 1);
             panel2.TabIndex = 8;
+            // 
+            // materialListView1
+            // 
+            materialListView1.AutoSizeTable = false;
+            materialListView1.BackColor = Color.FromArgb(255, 255, 255);
+            materialListView1.BorderStyle = BorderStyle.None;
+            materialListView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
+            materialListView1.Depth = 0;
+            materialListView1.FullRowSelect = true;
+            materialListView1.Items.AddRange(new ListViewItem[] { listViewItem4, listViewItem5, listViewItem6, listViewItem7 });
+            materialListView1.Location = new Point(238, 250);
+            materialListView1.MinimumSize = new Size(200, 100);
+            materialListView1.MouseLocation = new Point(-1, -1);
+            materialListView1.MouseState = MaterialSkin.MouseState.OUT;
+            materialListView1.Name = "materialListView1";
+            materialListView1.OwnerDraw = true;
+            materialListView1.Size = new Size(494, 144);
+            materialListView1.TabIndex = 2;
+            materialListView1.UseCompatibleStateImageBehavior = false;
+            materialListView1.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Input";
+            columnHeader1.Width = 150;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Expected Ouput";
+            columnHeader2.Width = 150;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Expected Output";
+            columnHeader3.Width = 150;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(247, 200);
+            label2.Name = "label2";
+            label2.Size = new Size(206, 32);
+            label2.TabIndex = 17;
+            label2.Text = "Test Cases Result";
+            // 
+            // materialListView2
+            // 
+            materialListView2.AutoSizeTable = false;
+            materialListView2.BackColor = Color.FromArgb(255, 255, 255);
+            materialListView2.BorderStyle = BorderStyle.None;
+            materialListView2.Columns.AddRange(new ColumnHeader[] { columnHeader4, columnHeader5 });
+            materialListView2.Depth = 0;
+            materialListView2.FullRowSelect = true;
+            materialListView2.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
+            materialListView2.Location = new Point(247, 493);
+            materialListView2.MinimumSize = new Size(200, 100);
+            materialListView2.MouseLocation = new Point(-1, -1);
+            materialListView2.MouseState = MaterialSkin.MouseState.OUT;
+            materialListView2.Name = "materialListView2";
+            materialListView2.OwnerDraw = true;
+            materialListView2.Size = new Size(332, 125);
+            materialListView2.TabIndex = 18;
+            materialListView2.UseCompatibleStateImageBehavior = false;
+            materialListView2.View = View.Details;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "";
+            columnHeader4.Width = 200;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "Scores";
+            columnHeader5.Width = 100;
             // 
             // InstructorSide
             // 
@@ -665,9 +1161,28 @@
             tabPage1.ResumeLayout(false);
             smthTabControl_Main.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            materialExpansionPanel1.ResumeLayout(false);
+            materialExpansionPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)actualOutput).EndInit();
+            ((System.ComponentModel.ISupportInitialize)expectedOutput).EndInit();
+            ((System.ComponentModel.ISupportInitialize)inputs).EndInit();
+            materialExpansionPanel2.ResumeLayout(false);
+            materialExpansionPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)codeEditor1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)codeEditor2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)codeEditor3).EndInit();
+            materialExpansionPanel3.ResumeLayout(false);
+            materialExpansionPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)codeEditor4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)codeEditor5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)codeEditor6).EndInit();
             tabPage5.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
+            tabPage7.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -710,5 +1225,26 @@
         private CustomComponents.ServerPageComponents.TempServerPage tempServerPage1;
         private CustomComponents.ServerPageComponents.TempCodeEvaluation tempCodeEvaluation1;
         private CustomComponents.ServerPageComponents.TempExerciseManage tempExerciseManage1;
+        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel1;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor actualOutput;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor expectedOutput;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor inputs;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel2;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor1;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor2;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor3;
+        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel3;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor4;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor5;
+        private CustomComponents.Pages.ProgrammingTabs.CodeEditor codeEditor6;
+        private ColumnHeader columnHeader2;
+        private MaterialSkin.Controls.MaterialListView materialListView1;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader3;
+        private MaterialSkin.Controls.MaterialListView materialListView2;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private Label label2;
     }
 }

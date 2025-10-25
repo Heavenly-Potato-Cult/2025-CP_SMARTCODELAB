@@ -96,5 +96,10 @@ namespace SmartCodeLab
         {
             smthTabControl_Main.SelectedIndex = 6;
         }
+
+        private void btn_SubMenu_ClassManagement_Click(object sender, EventArgs e)
+        {
+            smthTabControl_Main.SelectedIndex = 3;
+        }
     }
 }
