@@ -66,9 +66,9 @@
     <Grid Height="46">
         <Menu VerticalAlignment="Top" Height="46">
 
-            <MenuItem Header="SESSION"/>
-            <MenuItem Header="EXERCISE EXPLORER"/>
-            <MenuItem Header="SETTINGS"/>
+            <MenuItem x:Name="nav_session" Header="SESSION" Click="nav_session_Click"/>
+            <MenuItem x:Name="nav_explorer" Header="EXERCISE EXPLORER" Click="nav_explorer_Click"/>
+            <MenuItem x:Name="nav_settings" Header="SETTINGS" Click="nav_settings_Click"/>
 
         </Menu>
     </Grid>

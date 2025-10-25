@@ -16,31 +16,25 @@ using System.Windows.Shapes;
 namespace SmartCodeLab.CustomComponents.WPFComponents
 {
     /// <summary>
-    /// Interaction logic for Navbar.xaml
+    /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class Navbar : System.Windows.Controls.UserControl
+    public partial class UserControl1 : System.Windows.Controls.UserControl
     {
-        public Action<int> OnNavigationClicked { get; set; }
-        public Navbar()
+        public event RoutedEventHandler Click;
+        public UserControl1()
         {
             InitializeComponent();
         }
 
-        private void nav_session_Click(object sender, RoutedEventArgs e)
+        public object Content
         {
-            OnNavigationClicked?.Invoke(0);
+            get { return TestButton.Content;}
+            private set { TestButton.Content = value; }
         }
 
-        private void nav_explorer_Click(object sender, RoutedEventArgs e)
+        private void TestButton_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigationClicked?.Invoke(1);
-
-        }
-
-        private void nav_settings_Click(object sender, RoutedEventArgs e)
-        {
-            OnNavigationClicked?.Invoke(2);
-
+            Click?.Invoke(this, e);
         }
     }
 }

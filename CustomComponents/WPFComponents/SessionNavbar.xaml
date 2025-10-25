@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SmartCodeLab.CustomComponents.WPFComponents"
-             mc:Ignorable="d" 
-             d:DesignHeight="45.904" d:DesignWidth="800" Height="46">
+             mc:Ignorable="d" d:DesignWidth="800" Height="36">
     <UserControl.Resources>
         <SolidColorBrush x:Key="SteamDarkGray" Color="#2a2e35"/>
         <SolidColorBrush x:Key="SteamLightGray" Color="#c7d5e0"/>
@@ -63,8 +62,8 @@
 
     </UserControl.Resources>
 
-    <Grid Height="46">
-        <Menu Height="46">
+    <Grid Height="36">
+        <Menu Height="36" Padding="0,0,20,0" Margin="10,0,0,0">
 
             <MenuItem x:Name="nav_dashboard" Header="Dashboard" Click="nav_dashboard_Click"/>
             <MenuItem x:Name="nav_taskeditor" Header="Task Editor" Click="nav_taskeditor_Click"/>
