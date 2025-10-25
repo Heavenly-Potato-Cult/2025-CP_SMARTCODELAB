@@ -53,8 +53,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             {
                 udpClient.EnableBroadcast = true;
-
-                IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Broadcast, 1902);
+                if(NetworkServices.GetWiFiBroadcast() == null)
+                {
+                    Debug.WriteLine("No WiFi Broadcast Address Found.");
+                    Close();
+                }
+                IPEndPoint broadcastEP = new IPEndPoint(NetworkServices.GetWiFiBroadcast(), 1902);
 
                 //sender
                 Task.Run(async () =>
@@ -89,7 +93,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                                 senders.Add(result.RemoteEndPoint);
                                 this.Invoke((Action)(() => serverContainer.Controls.Add(new ServerPageIcon(task, result.RemoteEndPoint, ConnectClient))));
 
-                                UpdateLoadingVisibility();
+                                //UpdateLoadingVisibility();
                             }
                         }
                     }

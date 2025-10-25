@@ -30,7 +30,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         }
         private Server server;
         //controls handling and pages
-        private TempServerPage serverPage;
+        private TempServerPage serverPage;  
         private StudTable userTable;
         private ServerHomePage homePage;
         private ProgressSubmissionPage progressSubmissionPage;
@@ -67,7 +67,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             InitializeComponent();
             this.server = server;
-            serverListener = new TcpListener(IPAddress.Parse(NetworkServices.GetIpv4()), 1901);
+            serverListener = new TcpListener(IPAddress.Any, 1901);
             currentTask = server.ServerTask;
             Task.Run(async () => await StartServerAsync());
             connectedUsers = new Dictionary<NetworkStream, string>();
@@ -131,6 +131,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                 while (true)
                 {
                     TcpClient client = await AcceptTcpClientAsync(serverListener);
+                    Debug.WriteLine("Someone attempting connnection...");
                     NetworkStream stream = client.GetStream();
 
                     // Handle each client in a separate task
