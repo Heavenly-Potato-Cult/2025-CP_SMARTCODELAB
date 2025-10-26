@@ -69,6 +69,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             };
         }
 
+        public ServerHomePage()
+        {
+            InitializeComponent();
+
+            // Initialize collections to avoid NullReferenceException in the designer
+            notifications = new List<Notification>();
+            studentsSubmitted = new List<string>();
+
+            // Set default values for display in the designer
+            activeCount.Text = "0/0";
+            submissionCount.Text = "0/0";
+        }
+
         public async void NewNotification(Notification notification, UserProfile notifFrom = null)
         {
             await Task.Run(() =>
