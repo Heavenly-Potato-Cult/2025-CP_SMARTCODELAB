@@ -66,6 +66,7 @@
         <Menu Height="36" Padding="0,0,20,0" Margin="10,0,0,0">
 
             <MenuItem x:Name="nav_dashboard" Header="Dashboard" Click="nav_dashboard_Click"/>
+            <MenuItem x:Name="nav_monitoring" Header="Monitoring" Click="nav_monitoring_Click"/>
             <MenuItem x:Name="nav_taskeditor" Header="Task Editor" Click="nav_taskeditor_Click"/>
             <MenuItem x:Name="nav_viewusers" Header="View Users" Click="nav_viewusers_Click"/>
             <MenuItem x:Name="nav_submission" Header="Submission" Click="nav_submission_Click"/>
