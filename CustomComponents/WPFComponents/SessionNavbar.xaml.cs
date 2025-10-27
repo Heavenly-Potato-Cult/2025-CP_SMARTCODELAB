@@ -46,7 +46,9 @@ namespace SmartCodeLab.CustomComponents.WPFComponents
 
         private void nav_viewusers_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigationClicked?.Invoke(3);
+            //OnNavigationClicked?.Invoke(3);
+            var StudTable = new CustomDialogs.StudentTable.StudTable();
+            StudTable.ShowDialog();
 
         }
 
