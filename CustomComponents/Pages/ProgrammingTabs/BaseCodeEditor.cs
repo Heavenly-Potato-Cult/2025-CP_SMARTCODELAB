@@ -126,7 +126,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 try
                 {
-                    if (wholeCodeLines[i].Trim() == pastedCodeLines[0].Trim() && wholeCodeLines[i + 1].Trim() == pastedCodeLines[1].Trim())
+                    if (wholeCodeLines[i].Trim().Contains(pastedCodeLines[0].Trim()) && wholeCodeLines[i + (pastedCodeLines.Length - 1)].Trim() == pastedCodeLines[pastedCodeLines.Length - 1].Trim())
                     {
                         if (StudentProgress.pastedCode == null)
                             StudentProgress.pastedCode = new List<CopyPastedCode>();

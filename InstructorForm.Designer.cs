@@ -49,7 +49,6 @@
             tabPage7 = new TabPage();
             tempExerciseManage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             tabPage8 = new TabPage();
-            mainServerPage21 = new SmartCodeLab.CustomComponents.Pages.MainServerPage2();
             tabPage6 = new TabPage();
             tabcontrol_session.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -61,7 +60,6 @@
             tabcontrol_MainNav.SuspendLayout();
             tabPage10.SuspendLayout();
             tabPage7.SuspendLayout();
-            tabPage8.SuspendLayout();
             tabPage6.SuspendLayout();
             SuspendLayout();
             // 
@@ -83,7 +81,7 @@
             panelNavHost2.Location = new Point(2, 2);
             panelNavHost2.Margin = new Padding(0, 0, 0, 5);
             panelNavHost2.Name = "panelNavHost2";
-            panelNavHost2.Size = new Size(188, 46);
+            panelNavHost2.Size = new Size(1472, 46);
             panelNavHost2.TabIndex = 1;
             // 
             // tabcontrol_session
@@ -102,18 +100,18 @@
             tabcontrol_session.Multiline = true;
             tabcontrol_session.Name = "tabcontrol_session";
             tabcontrol_session.SelectedIndex = 0;
-            tabcontrol_session.Size = new Size(188, 2);
+            tabcontrol_session.Size = new Size(1472, 648);
             tabcontrol_session.TabIndex = 2;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = SystemColors.Control;
             tabPage1.Controls.Add(serverHomePage1);
-            tabPage1.Location = new Point(4, 44);
+            tabPage1.Location = new Point(4, 24);
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(180, 0);
+            tabPage1.Size = new Size(1464, 620);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             // 
@@ -123,7 +121,7 @@
             serverHomePage1.Location = new Point(2, 2);
             serverHomePage1.Margin = new Padding(3, 2, 50, 2);
             serverHomePage1.Name = "serverHomePage1";
-            serverHomePage1.Size = new Size(176, 0);
+            serverHomePage1.Size = new Size(1460, 616);
             serverHomePage1.TabIndex = 0;
             // 
             // tabPage2
@@ -184,6 +182,7 @@
             // 
             studentTable21.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             studentTable21.Location = new Point(244, 35);
+            studentTable21.Margin = new Padding(3, 4, 3, 4);
             studentTable21.Name = "studentTable21";
             studentTable21.Size = new Size(1284, 874);
             studentTable21.TabIndex = 0;
@@ -258,7 +257,7 @@
             // 
             // tempSessionManagement21
             // 
-            tempSessionManagement21.Location = new Point(219, 0);
+            tempSessionManagement21.Location = new Point(104, 2);
             tempSessionManagement21.Margin = new Padding(3, 2, 3, 2);
             tempSessionManagement21.Name = "tempSessionManagement21";
             tempSessionManagement21.Size = new Size(1093, 947);
@@ -289,34 +288,24 @@
             // tabPage8
             // 
             tabPage8.BackColor = Color.Tomato;
-            tabPage8.Controls.Add(mainServerPage21);
-            tabPage8.Location = new Point(4, 44);
+            tabPage8.Location = new Point(4, 24);
             tabPage8.Margin = new Padding(2);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(192, 52);
+            tabPage8.Size = new Size(1476, 698);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "tabPage8";
-            // 
-            // mainServerPage21
-            // 
-            mainServerPage21.BackColor = SystemColors.AppWorkspace;
-            mainServerPage21.Dock = DockStyle.Fill;
-            mainServerPage21.Location = new Point(0, 0);
-            mainServerPage21.Margin = new Padding(3, 2, 3, 2);
-            mainServerPage21.Name = "mainServerPage21";
-            mainServerPage21.Size = new Size(192, 52);
-            mainServerPage21.TabIndex = 0;
+            tabPage8.Enter += tabPage8_Enter;
             // 
             // tabPage6
             // 
             tabPage6.BackColor = SystemColors.Control;
             tabPage6.Controls.Add(tabcontrol_session);
             tabPage6.Controls.Add(panelNavHost2);
-            tabPage6.Location = new Point(4, 44);
+            tabPage6.Location = new Point(4, 24);
             tabPage6.Margin = new Padding(2);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(2);
-            tabPage6.Size = new Size(192, 52);
+            tabPage6.Size = new Size(1476, 698);
             tabPage6.TabIndex = 0;
             tabPage6.Text = "tabPage6";
             // 
@@ -343,7 +332,6 @@
             tabcontrol_MainNav.ResumeLayout(false);
             tabPage10.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
-            tabPage8.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -372,7 +360,6 @@
         private CustomComponents.Pages.ServerPages.StudentTable2 studentTable21;
         private CustomComponents.Pages.ServerPages.ProgressSubmissionPage progressSubmissionPage1;
         private TabPage tabPage10;
-        private CustomComponents.Pages.MainServerPage2 mainServerPage21;
         private CustomComponents.ServerPageComponents.TempSessionManagement2 tempSessionManagement21;
     }
 }

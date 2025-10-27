@@ -40,7 +40,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Func<string, UserMessage, bool> sendMessage;
         private Func<string, bool> isStudentActive;
         private ChatBox chatBox;
-        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string, 
+        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string,
             StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
         {
             InitializeComponent();
@@ -61,6 +61,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     AddStudent(item);
                 }
             });
+            Debug.WriteLine(task.ratingFactors.Count);
             studentCodeRating1.SetStats(task.ratingFactors);
         }
 
@@ -118,18 +119,18 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             message.isFromMe = false;
             userMessages[studentId].Add(message);
 
-            if(chatBox != null && chatBox.studentId == studentId)
+            if (chatBox != null && chatBox.studentId == studentId)
             {
                 chatBox.receivedMessage(message.message);
             }
         }
 
-        private bool SendMessageToStudent(string studentId,string message)
+        private bool SendMessageToStudent(string studentId, string message)
         {
-            if(isStudentActive(studentId))
+            if (isStudentActive(studentId))
             {
                 var messageObj = new UserMessage(message);
-                if(sendMessage(studentId, messageObj))
+                if (sendMessage(studentId, messageObj))
                 {
                     if (!userMessages.ContainsKey(studentId))
                         userMessages[studentId] = new List<UserMessage>();
@@ -202,7 +203,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton3_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(selectedStudentId))
+            if (string.IsNullOrEmpty(selectedStudentId))
                 return;
             chatBox = new ChatBox(SendMessageToStudent, userMessages[selectedStudentId] ?? null, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
             chatBox.ShowDialog();

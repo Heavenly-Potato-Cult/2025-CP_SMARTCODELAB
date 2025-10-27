@@ -16,9 +16,9 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         {
             InitializeComponent();
 
-            SetupTrackBar(accuracyTrackBar, 80);
-            SetupTrackBar(readabilityTrackBar, 10);
-            SetupTrackBar(efficiencyTrackBar, 10);
+            SetupTrackBar(accuracyTrackBar, 100);
+            SetupTrackBar(readabilityTrackBar, 0);
+            SetupTrackBar(efficiencyTrackBar, 0);
             SetupTrackBar(logicalComplexityTrackBar, 0);
 
             InitializeGradingControls();

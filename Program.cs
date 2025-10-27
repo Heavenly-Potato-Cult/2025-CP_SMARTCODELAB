@@ -15,7 +15,7 @@ namespace SmartCodeLab
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             ConfigureFirewallRules();
-            Application.Run(new MonitoringForm());
+            Application.Run(new InstructorForm());
         }
 
         private static void ConfigureFirewallRules()

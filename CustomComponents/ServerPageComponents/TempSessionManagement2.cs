@@ -53,21 +53,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     });
                 }
             };
-
-
-            
         }
-
-        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void TempSessionManagement_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void smartButton2_Click(object sender, EventArgs e)
         {
@@ -104,7 +90,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             SystemSingleton.Instance.page1.Controls.Clear();
             SystemSingleton.Instance.page1.AutoScroll = true;
-            SystemSingleton.Instance.page1.Controls.Add(new MainServerPage(server));
+            SystemSingleton.Instance.page1.Controls.Add(new MainServerPage2(server));
         }
 
         private void smartButton4_Click_1(object sender, EventArgs e)

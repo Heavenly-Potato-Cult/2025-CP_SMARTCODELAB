@@ -28,25 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            panel1 = new Panel();
             SuspendLayout();
             // 
-            // button1
+            // panel1
             // 
-            button1.Location = new Point(202, 171);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            panel1.Location = new Point(64, 57);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(566, 308);
+            panel1.TabIndex = 0;
             // 
             // ToDelete
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1052, 683);
-            Controls.Add(button1);
+            ClientSize = new Size(920, 512);
+            Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "ToDelete";
             Text = "ToDelete";
             ResumeLayout(false);
@@ -54,6 +52,6 @@
 
         #endregion
 
-        private Button button1;
+        private Panel panel1;
     }
 }

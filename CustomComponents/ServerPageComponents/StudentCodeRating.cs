@@ -72,7 +72,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     if (!stats.ContainsKey(item))
                     {
-                        statsTotal[item]?.Hide();
+                        statsTotal[item]?.Visible = false;
                     }
                     else
                         statsWeight.Add(item, stats[item][0]);

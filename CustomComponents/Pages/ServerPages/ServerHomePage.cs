@@ -20,17 +20,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         private List<string> studentsSubmitted;
         public List<Notification> notifications { get; }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public int _totalStudents { 
-            get => totalStudents; 
+        public int _totalStudents
+        {
+            get => totalStudents;
             set
             {
                 totalStudents = value;
                 setActiveStudentDisplay();
-            } }
+            }
+        }
 
         private int totalStudents;
         private int totalActiveStudents = 0;
-        private int totalLoggedInStudents = 0;
         public int submittedCount { get; private set; }
         public int copyPasteDetectedCount { get; private set; }
         public ServerHomePage(int totalStudents)
@@ -87,7 +88,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             await Task.Run(() =>
             {
 
-                this.Invoke(new Action(async() =>
+                this.Invoke(new Action(async () =>
                 {
 
                     if (notification.Type == NotificationType.Submitted && notifFrom != null && !studentsSubmitted.Contains(notifFrom._studentId))
@@ -104,7 +105,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     {
                         await UpdateActiveStudentsCount(notification.Type);
                     }
-                        var notifCard = new NotificationIcon(notification);
+                    var notifCard = new NotificationIcon(notification);
                     notifications.Add(notification);
 
                     notifContainer.Controls.Add(notifCard);
@@ -154,6 +155,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
 
             return Task.CompletedTask;
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

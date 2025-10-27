@@ -52,12 +52,13 @@
             label3 = new Label();
             panel1 = new Panel();
             button1 = new Button();
-            actualCycComplexity = new Label();
-            expectedCycComplexity = new Label();
-            label5 = new Label();
             label4 = new Label();
-            complexity = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            actualCycComplexity = new Label();
             label1 = new Label();
+            expectedCycComplexity = new Label();
+            complexity = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            label5 = new Label();
+            panel2 = new Panel();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             flowLayoutPanel1.SuspendLayout();
@@ -89,9 +90,9 @@
             score.ForeColor = Color.FromArgb(66, 110, 232);
             score.Location = new Point(109, 10);
             score.Name = "score";
-            score.Size = new Size(23, 25);
+            score.Size = new Size(45, 25);
             score.TabIndex = 81;
-            score.Text = "0";
+            score.Text = "100";
             // 
             // customToggleButton1
             // 
@@ -139,7 +140,7 @@
             accuracy.Name = "accuracy";
             accuracy.Size = new Size(180, 10);
             accuracy.TabIndex = 81;
-            accuracy.Value = 38;
+            accuracy.Value = 100;
             // 
             // label15
             // 
@@ -155,15 +156,17 @@
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.BackColor = Color.White;
             flowLayoutPanel1.Controls.Add(accuracyPanel);
             flowLayoutPanel1.Controls.Add(readabilityContainer);
             flowLayoutPanel1.Controls.Add(efficiencyContainer);
             flowLayoutPanel1.Controls.Add(panel1);
+            flowLayoutPanel1.Controls.Add(panel2);
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel1.Location = new Point(3, 46);
             flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(337, 124);
+            flowLayoutPanel1.Size = new Size(339, 141);
             flowLayoutPanel1.TabIndex = 79;
             flowLayoutPanel1.WrapContents = false;
             // 
@@ -178,7 +181,7 @@
             accuracyPanel.Location = new Point(3, 2);
             accuracyPanel.Margin = new Padding(3, 2, 3, 2);
             accuracyPanel.Name = "accuracyPanel";
-            accuracyPanel.Size = new Size(330, 27);
+            accuracyPanel.Size = new Size(333, 27);
             accuracyPanel.TabIndex = 0;
             // 
             // button3
@@ -220,11 +223,12 @@
             readabilityContainer.Location = new Point(3, 33);
             readabilityContainer.Margin = new Padding(3, 2, 3, 2);
             readabilityContainer.Name = "readabilityContainer";
-            readabilityContainer.Size = new Size(330, 27);
+            readabilityContainer.Size = new Size(333, 27);
             readabilityContainer.TabIndex = 83;
             // 
             // panel4
             // 
+            panel4.BackColor = Color.White;
             panel4.Controls.Add(readability);
             panel4.Controls.Add(button2);
             panel4.Controls.Add(label2);
@@ -241,7 +245,7 @@
             readability.Name = "readability";
             readability.Size = new Size(183, 10);
             readability.TabIndex = 83;
-            readability.Value = 38;
+            readability.Value = 100;
             // 
             // button2
             // 
@@ -277,13 +281,12 @@
             // 
             // efficiencyContainer
             // 
-            efficiencyContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             efficiencyContainer.Controls.Add(efficiency);
             efficiencyContainer.Controls.Add(label3);
             efficiencyContainer.Location = new Point(3, 64);
             efficiencyContainer.Margin = new Padding(3, 2, 3, 2);
             efficiencyContainer.Name = "efficiencyContainer";
-            efficiencyContainer.Size = new Size(330, 25);
+            efficiencyContainer.Size = new Size(333, 25);
             efficiencyContainer.TabIndex = 85;
             // 
             // efficiency
@@ -293,7 +296,7 @@
             efficiency.Name = "efficiency";
             efficiency.Size = new Size(205, 10);
             efficiency.TabIndex = 81;
-            efficiency.Value = 38;
+            efficiency.Value = 100;
             // 
             // label3
             // 
@@ -309,21 +312,20 @@
             // panel1
             // 
             panel1.Controls.Add(button1);
-            panel1.Controls.Add(actualCycComplexity);
-            panel1.Controls.Add(expectedCycComplexity);
-            panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(complexity);
+            panel1.Controls.Add(actualCycComplexity);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(3, 93);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Controls.Add(expectedCycComplexity);
+            panel1.Controls.Add(complexity);
+            panel1.Controls.Add(label5);
+            panel1.Location = new Point(3, 94);
             panel1.Name = "panel1";
-            panel1.Size = new Size(330, 25);
-            panel1.TabIndex = 84;
+            panel1.Size = new Size(330, 28);
+            panel1.TabIndex = 86;
             // 
             // button1
             // 
-            button1.Location = new Point(289, 2);
+            button1.Location = new Point(291, 2);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(20, 18);
@@ -332,65 +334,72 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // actualCycComplexity
-            // 
-            actualCycComplexity.AutoSize = true;
-            actualCycComplexity.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            actualCycComplexity.Location = new Point(193, 50);
-            actualCycComplexity.Name = "actualCycComplexity";
-            actualCycComplexity.Size = new Size(14, 15);
-            actualCycComplexity.TabIndex = 88;
-            actualCycComplexity.Text = "0";
-            // 
-            // expectedCycComplexity
-            // 
-            expectedCycComplexity.AutoSize = true;
-            expectedCycComplexity.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            expectedCycComplexity.Location = new Point(193, 27);
-            expectedCycComplexity.Name = "expectedCycComplexity";
-            expectedCycComplexity.Size = new Size(14, 15);
-            expectedCycComplexity.TabIndex = 87;
-            expectedCycComplexity.Text = "0";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.Location = new Point(8, 50);
-            label5.Name = "label5";
-            label5.Size = new Size(155, 13);
-            label5.TabIndex = 86;
-            label5.Text = "Actual Cyclomatic Complexity";
-            // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(8, 27);
+            label4.Location = new Point(8, 28);
             label4.Name = "label4";
             label4.Size = new Size(154, 13);
             label4.TabIndex = 85;
             label4.Text = "Target Cyclomatic Complexity";
             // 
-            // complexity
+            // actualCycComplexity
             // 
-            complexity.Location = new Point(105, 8);
-            complexity.Margin = new Padding(3, 2, 3, 2);
-            complexity.Name = "complexity";
-            complexity.Size = new Size(180, 10);
-            complexity.TabIndex = 84;
-            complexity.Value = 38;
+            actualCycComplexity.AutoSize = true;
+            actualCycComplexity.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            actualCycComplexity.Location = new Point(193, 51);
+            actualCycComplexity.Name = "actualCycComplexity";
+            actualCycComplexity.Size = new Size(14, 15);
+            actualCycComplexity.TabIndex = 88;
+            actualCycComplexity.Text = "0";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(4, 3);
+            label1.Location = new Point(4, 4);
             label1.Name = "label1";
             label1.Size = new Size(86, 20);
             label1.TabIndex = 80;
             label1.Text = "Complexity";
+            // 
+            // expectedCycComplexity
+            // 
+            expectedCycComplexity.AutoSize = true;
+            expectedCycComplexity.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            expectedCycComplexity.Location = new Point(193, 28);
+            expectedCycComplexity.Name = "expectedCycComplexity";
+            expectedCycComplexity.Size = new Size(14, 15);
+            expectedCycComplexity.TabIndex = 87;
+            expectedCycComplexity.Text = "0";
+            // 
+            // complexity
+            // 
+            complexity.Location = new Point(105, 9);
+            complexity.Margin = new Padding(3, 2, 3, 2);
+            complexity.Name = "complexity";
+            complexity.Size = new Size(180, 10);
+            complexity.TabIndex = 84;
+            complexity.Value = 100;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(8, 51);
+            label5.Name = "label5";
+            label5.Size = new Size(155, 13);
+            label5.TabIndex = 86;
+            label5.Text = "Actual Cyclomatic Complexity";
+            // 
+            // panel2
+            // 
+            panel2.Location = new Point(3, 128);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(333, 10);
+            panel2.TabIndex = 87;
             // 
             // StudentCodeRating
             // 
@@ -400,7 +409,7 @@
             Controls.Add(panel19);
             Margin = new Padding(3, 2, 3, 2);
             Name = "StudentCodeRating";
-            Size = new Size(342, 172);
+            Size = new Size(342, 188);
             panel19.ResumeLayout(false);
             panel19.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
@@ -432,7 +441,6 @@
         private Button button2;
         private Label label2;
         private RichTextBox standardErrors;
-        private Panel panel1;
         private Label label1;
         private GeneralComponents.StatsBar complexity;
         private Panel efficiencyContainer;
@@ -448,5 +456,7 @@
         private Label result;
         private Label label7;
         private Button button3;
+        private Panel panel1;
+        private Panel panel2;
     }
 }

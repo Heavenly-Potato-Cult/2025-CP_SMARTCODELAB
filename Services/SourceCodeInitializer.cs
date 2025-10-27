@@ -40,47 +40,43 @@ namespace SmartCodeLab.Services
             activityDirectory = activityDirectory.Replace(' ', '_');
             string mainFile = Path.Combine(activityDirectory, $"Main{extension[language]}");
             string srcCode = sourceCode;
-
             if (!Directory.Exists(activityDirectory))
                 Directory.CreateDirectory(activityDirectory);
 
-            if (!File.Exists(mainFile))
+            if (srcCode == "")
             {
-                if (srcCode == "")
-                {
-                    switch (language)
-                    {//other languages implementations will come next
-                        case LanguageSupported.Java:
-                            srcCode =
-                                """
-                            public class Main{
-                                public static void main(String[] args) {
-                                    System.out.println("Hello, World!");
-                                }
-                            }
-                        """;
-                            break;
-                        case LanguageSupported.Python:
-                            srcCode =
-                                """
-                            #pagsugod na dra ug code
-                        """;
-                            break;
-                        default:
-                            srcCode = """
-                        #include <iostream>
-
-                        int main() {
-                            std::cout << "Hello, World!" << std::endl;
-
-                            return 0;
+                switch (language)
+                {//other languages implementations will come next
+                    case LanguageSupported.Java:
+                        srcCode =
+                            """
+                    public class Main{
+                        public static void main(String[] args) {
+                            System.out.println("Hello, World!");
                         }
-                        """;
-                            break;
                     }
+                    """;
+                        break;
+                    case LanguageSupported.Python:
+                        srcCode =
+                            """
+                    #start coding now
+                    """;
+                        break;
+                    default:
+                        srcCode = """
+                    #include <iostream>
+
+                    int main() {
+                        std::cout << "Hello, World!" << std::endl;
+
+                        return 0;
+                    }
+                    """;
+                        break;
                 }
-                File.WriteAllText(mainFile, srcCode);
             }
+            File.WriteAllText(mainFile, srcCode);
             InitializeTesterSourceCode(language, activityDirectory);
             return mainFile;
         }

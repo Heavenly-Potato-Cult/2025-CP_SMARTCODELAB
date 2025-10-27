@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
@@ -28,11 +29,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         public ToDelete()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Debug.WriteLine(DateTime.Now.Date);
+            panel1.Controls.Add(new ReadabilityReasons("Improper or Inconsistent Indentation", ProgrammingConfiguration.readabilityIssues["Improper or Inconsistent Indentation"]));
         }
 
         private void button1_Click_1(object sender, EventArgs e)

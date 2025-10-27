@@ -42,7 +42,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 foreach (var message in messages)
                 {
                     string from = message.isFromMe ? "Me" : studentName;
-                    richTextBox1.AppendText($"{from} : {message.message}\n");
+                    richTextBox1.AppendText($"{from} : {message.message}");
                 }
             }
         }

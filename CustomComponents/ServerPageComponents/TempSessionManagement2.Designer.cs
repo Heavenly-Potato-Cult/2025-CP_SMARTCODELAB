@@ -545,7 +545,6 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "TempSessionManagement2";
             Size = new Size(1093, 947);
-            Load += TempSessionManagement_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             customCard3.ResumeLayout(false);

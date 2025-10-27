@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -124,11 +125,14 @@ namespace SmartCodeLab
 
         private async Task ProgressSender()
         {
-            var message = new ServerMessage.Builder(MessageType.STUDENT_PROGRESS)
-                .StudentProgress(mainEditor.GetProgress(studentCodeRating.GetCodeRating()))
-                .Build();
-            Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
-            await stream.FlushAsync();
+            try
+            {
+                var message = new ServerMessage.Builder(MessageType.STUDENT_PROGRESS)
+                    .StudentProgress(mainEditor.GetProgress(studentCodeRating.GetCodeRating()))
+                    .Build();
+                Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
+                await stream.FlushAsync();
+            }catch(ArgumentException) { }
         }
 
         private async Task StreamListener()
@@ -402,7 +406,7 @@ namespace SmartCodeLab
         {
             if(e.KeyCode == Keys.Enter)
             {
-                string msg = "Me : " + richTextBox2.Text.Trim() + Environment.NewLine;
+                string msg = richTextBox2.Text.Trim() + Environment.NewLine;
 
                 Task.Run(async () =>
                 {
@@ -413,6 +417,8 @@ namespace SmartCodeLab
                             .Build();
                         Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
                         await stream.FlushAsync();
+                        Debug.WriteLine($"Sent message: {msg}");
+                        this.Invoke((Action)(() => msgBox.AppendText($"Me : {msg}")));
                     }
                     catch (ProtoException) { }
                 });

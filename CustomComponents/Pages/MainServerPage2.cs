@@ -44,7 +44,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         private TcpListener serverListener;
 
         //users related
-        private Dictionary<NetworkStream, string> connectedUsers;
+        private Dictionary<string, NetworkStream> connectedUsers;
         private List<string> currentStudents = new List<string>();
         //will use userId as a KEY
         private Dictionary<string, StudentCodingProgress> userProgress;
@@ -54,6 +54,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         public MainServerPage2(ProgrammingSession session)//this is for viewing the selected past session
         {
             InitializeComponent();
+            SessionNavigationMenu();
             serverPage = new TempServerPage(session.users, session.userProgress);
             homePage = new ServerHomePage(session.notifications);
             progressSubmissionPage = new ProgressSubmissionPage(session.codeSubmission);
@@ -61,22 +62,21 @@ namespace SmartCodeLab.CustomComponents.Pages
             tabPage1.Controls.Add(homePage);
             tabPage2.Controls.Add(serverPage);
             tabPage4.Controls.Add(progressSubmissionPage);
-
-           
         }
 
         public MainServerPage2(Server server)
         {
             InitializeComponent();
+            SessionNavigationMenu();
             this.server = server;
             serverListener = new TcpListener(IPAddress.Any, 1901);
             currentTask = server.ServerTask;
             Task.Run(async () => await StartServerAsync());
-            connectedUsers = new Dictionary<NetworkStream, string>();
+            connectedUsers = new Dictionary<string, NetworkStream>();
             userProgress = [];
 
             userTable = new StudTable(server.Users);
-            serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress);
+            serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress, isConnected, sendStudentMessage);
             homePage = new ServerHomePage(server.Users.Count);
             homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
@@ -85,6 +85,27 @@ namespace SmartCodeLab.CustomComponents.Pages
             tabPage2.Controls.Add(serverPage);
             tabPage3.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
             tabPage4.Controls.Add(progressSubmissionPage);
+        }
+
+        public bool sendStudentMessage(string studentId, UserMessage message)
+        {
+            if (connectedUsers.ContainsKey(studentId))
+            {
+                NetworkStream stream = connectedUsers[studentId];
+                Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
+                    new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(message).Build(), PrefixStyle.Base128);
+                stream.Flush();
+                return true;
+            }
+            else
+                MessageBox.Show("Student is not connected.");
+
+            return false;
+        }
+
+        private bool isConnected(string studentId)
+        {
+            return connectedUsers.ContainsKey(studentId);
         }
 
         private void SessionNavigationMenu()
@@ -129,31 +150,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
 
         }
-
-        private void codeMonitoringToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            container.SelectedIndex = 0;
-        }
-
-        private void submissionStatusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            container.SelectedIndex = 1;
-        }
-
-        private void viewUsersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            container.SelectedIndex = 2;
-        }
-        private void submissionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            container.SelectedIndex = 3;
-        }
-
-        private void viewUsersToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            userTable.ShowDialog();
-        }
-
         //network related stuffs
         private async Task UdpServerInfoSender()
         {
@@ -176,7 +172,6 @@ namespace SmartCodeLab.CustomComponents.Pages
                 while (true)
                 {
                     TcpClient client = await AcceptTcpClientAsync(serverListener);
-                    Debug.WriteLine("Someone attempting connnection...");
                     NetworkStream stream = client.GetStream();
 
                     // Handle each client in a separate task
@@ -283,6 +278,9 @@ namespace SmartCodeLab.CustomComponents.Pages
                         case MessageType.NOTIFICATION:
                             homePage.NewNotification(obj.notification);
                             break;
+                        case MessageType.USER_MESSAGE:
+                            serverPage.ReceivedStudentMessage(obj.userMessage, userProfile._studentId);
+                            break;
                         default:
                             break;
                     }
@@ -316,10 +314,10 @@ namespace SmartCodeLab.CustomComponents.Pages
         private async void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd, bool didLoggedIn)
         {
             if (isAdd)
-                connectedUsers.Add(networkStream, profile._studentId);
+                connectedUsers.Add(profile._studentId, networkStream);
             else
             {
-                connectedUsers.Remove(networkStream);
+                connectedUsers.Remove(profile._studentId);
                 currentStudents.Remove(profile._studentName);
                 if (didLoggedIn)
                 {
@@ -335,8 +333,8 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 foreach (var item in connectedUsers)
                 {
-                    Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Key, new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), PrefixStyle.Base128);
-                    await item.Key.FlushAsync();
+                    Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), PrefixStyle.Base128);
+                    await item.Value.FlushAsync();
                 }
             });
         }
@@ -353,12 +351,10 @@ namespace SmartCodeLab.CustomComponents.Pages
                                             FileShare.None              // don't allow other processes to open it simultaneously
                                         ))
                 {
-                    Debug.WriteLine(progressSubmissionPage.GetAllSubmitted());
                     Serializer.SerializeWithLengthPrefix(fileStream,
                         new ProgrammingSession(server, userProgress, homePage.notifications, progressSubmissionPage.GetAllSubmitted(), userTable.expectedUsers),
                         PrefixStyle.Base128);
                     await fileStream.FlushAsync();
-                    Debug.WriteLine("Session saved successfully.");
                 }
             }
             catch (Exception ex)

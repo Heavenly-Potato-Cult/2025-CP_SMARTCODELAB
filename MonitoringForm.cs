@@ -55,7 +55,6 @@ namespace SmartCodeLab
         {
             //change backcolor
             FocusInAndOut(btnSideMenu_TaskManagement);
-            Debug.WriteLine(SystemSingleton.Instance._loggedIn);
             if (!SystemSingleton.Instance._loggedIn)
             {
                 TcpClient client = new TcpClient();
@@ -82,7 +81,6 @@ namespace SmartCodeLab
                 else
                     return;
             }
-            tabControl1.SelectedIndex = 1;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
