@@ -32,21 +32,23 @@ namespace SmartCodeLab.CustomComponents.WPFComponents
             OnNavigationClicked?.Invoke(0);
         }
 
-
-        private void nav_taskeditor_Click(object sender, RoutedEventArgs e)
+        private void nav_monitoring_Click(object sender, RoutedEventArgs e)
         {
             OnNavigationClicked?.Invoke(1);
 
         }
 
-        private void nav_monitoring_Click(object sender, RoutedEventArgs e)
+        private void nav_taskeditor_Click(object sender, RoutedEventArgs e)
         {
             OnNavigationClicked?.Invoke(2);
 
         }
+
         private void nav_viewusers_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigationClicked?.Invoke(3);
+            //OnNavigationClicked?.Invoke(3);
+            var StudTable = new CustomDialogs.StudentTable.StudTable();
+            StudTable.ShowDialog();
 
         }
 

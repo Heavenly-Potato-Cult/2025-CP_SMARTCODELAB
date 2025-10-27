@@ -39,45 +39,48 @@
             studentName = new Label();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             copypastedCodes = new FlowLayoutPanel();
-            customCard12 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label20 = new Label();
-            codeTrack = new TrackBar();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            panel4 = new Panel();
             panel1 = new Panel();
-            studentCodeRating1 = new StudentCodeRating();
+            label34 = new Label();
+            codeTrack = new TrackBar();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
             label7 = new Label();
             iconsContainer = new FlowLayoutPanel();
-            tableLayoutPanel1 = new TableLayoutPanel();
+            panel3 = new Panel();
+            studentCodeRating1 = new StudentCodeRating();
+            panel5 = new Panel();
             customCard8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             customCard6.SuspendLayout();
             customCard1.SuspendLayout();
-            customCard12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)codeTrack).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
             customCard2.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
+            panel3.SuspendLayout();
+            panel5.SuspendLayout();
             SuspendLayout();
             // 
             // customCard8
             // 
+            customCard8.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             customCard8.BackColor = Color.WhiteSmoke;
             customCard8.BorderColor = Color.Gray;
             customCard8.BorderRadius = 10;
             customCard8.BorderSize = 1;
             customCard8.Controls.Add(studentCode);
             customCard8.Controls.Add(label15);
-            customCard8.Location = new Point(3, 202);
+            customCard8.Location = new Point(3, 117);
+            customCard8.Margin = new Padding(3, 2, 3, 2);
+            customCard8.MinimumSize = new Size(514, 281);
             customCard8.Name = "customCard8";
-            customCard8.Size = new Size(905, 500);
+            customCard8.Padding = new Padding(0, 0, 0, 15);
+            customCard8.Size = new Size(788, 498);
             customCard8.TabIndex = 14;
             // 
             // studentCode
             // 
+            studentCode.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             studentCode.AutoCompleteBracketsList = new char[]
     {
     '(',
@@ -91,21 +94,22 @@
     '\'',
     '\''
     };
-            studentCode.AutoScrollMinSize = new Size(31, 18);
+            studentCode.AutoScrollMinSize = new Size(2, 14);
             studentCode.BackBrush = null;
-            studentCode.CharHeight = 18;
-            studentCode.CharWidth = 10;
+            studentCode.CharHeight = 14;
+            studentCode.CharWidth = 8;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
-            studentCode.Location = new Point(27, 53);
+            studentCode.Location = new Point(14, 40);
+            studentCode.Margin = new Padding(3, 2, 3, 2);
             studentCode.Name = "studentCode";
             studentCode.Paddings = new Padding(0);
             studentCode.ReadOnly = true;
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
-            studentCode.Size = new Size(857, 444);
+            studentCode.Size = new Size(771, 441);
             studentCode.TabIndex = 15;
             studentCode.Zoom = 100;
             // 
@@ -114,14 +118,15 @@
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.FromArgb(13, 13, 13);
-            label15.Location = new Point(27, 13);
+            label15.Location = new Point(14, 17);
             label15.Name = "label15";
-            label15.Size = new Size(193, 28);
+            label15.Size = new Size(157, 21);
             label15.TabIndex = 14;
             label15.Text = "Live Coding Viewer";
             // 
             // customCard6
             // 
+            customCard6.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             customCard6.BackColor = Color.White;
             customCard6.BorderColor = Color.Gray;
             customCard6.BorderRadius = 10;
@@ -129,13 +134,15 @@
             customCard6.Controls.Add(smartButton3);
             customCard6.Controls.Add(ipaddress);
             customCard6.Controls.Add(studentName);
-            customCard6.Location = new Point(3, 3);
+            customCard6.Location = new Point(3, 9);
+            customCard6.Margin = new Padding(3, 2, 3, 2);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(905, 131);
+            customCard6.Size = new Size(791, 55);
             customCard6.TabIndex = 13;
             // 
             // smartButton3
             // 
+            smartButton3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             smartButton3.BackColor = Color.FromArgb(0, 0, 192);
             smartButton3.BackgroundColor = Color.FromArgb(0, 0, 192);
             smartButton3.BorderRadius = 10;
@@ -143,10 +150,10 @@
             smartButton3.FlatStyle = FlatStyle.Flat;
             smartButton3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton3.ForeColor = Color.White;
-            smartButton3.Location = new Point(718, 33);
-            smartButton3.Margin = new Padding(3, 4, 3, 4);
+            smartButton3.Location = new Point(642, 4);
+            smartButton3.Margin = new Padding(3, 2, 3, 2);
             smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(167, 65);
+            smartButton3.Size = new Size(146, 49);
             smartButton3.TabIndex = 13;
             smartButton3.Text = "Send Message";
             smartButton3.UseVisualStyleBackColor = false;
@@ -157,9 +164,9 @@
             ipaddress.AutoSize = true;
             ipaddress.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ipaddress.ForeColor = Color.Gray;
-            ipaddress.Location = new Point(27, 48);
+            ipaddress.Location = new Point(18, 29);
             ipaddress.Name = "ipaddress";
-            ipaddress.Size = new Size(317, 25);
+            ipaddress.Size = new Size(257, 20);
             ipaddress.TabIndex = 8;
             ipaddress.Text = "IT2024001 | LAB-PC-1 | 192.168.1.101 ";
             // 
@@ -168,101 +175,89 @@
             studentName.AutoSize = true;
             studentName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             studentName.ForeColor = Color.FromArgb(13, 13, 13);
-            studentName.Location = new Point(27, 13);
+            studentName.Location = new Point(24, 5);
             studentName.Name = "studentName";
-            studentName.Size = new Size(201, 28);
+            studentName.Size = new Size(165, 21);
             studentName.TabIndex = 11;
             studentName.Text = "Jimmuel Sanggayan";
             // 
             // customCard1
             // 
+            customCard1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             customCard1.BackColor = Color.White;
             customCard1.BorderColor = Color.Gray;
             customCard1.BorderRadius = 10;
             customCard1.BorderSize = 1;
             customCard1.Controls.Add(copypastedCodes);
-            customCard1.Controls.Add(customCard12);
-            customCard1.Location = new Point(3, 3);
+            customCard1.Controls.Add(panel4);
+            customCard1.Controls.Add(panel1);
+            customCard1.Controls.Add(label34);
+            customCard1.Location = new Point(1121, 18);
+            customCard1.Margin = new Padding(3, 2, 3, 2);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(431, 335);
+            customCard1.Padding = new Padding(4, 6, 4, 6);
+            customCard1.Size = new Size(329, 332);
             customCard1.TabIndex = 13;
             // 
             // copypastedCodes
             // 
             copypastedCodes.AutoScroll = true;
+            copypastedCodes.Dock = DockStyle.Top;
             copypastedCodes.FlowDirection = FlowDirection.TopDown;
-            copypastedCodes.Location = new Point(19, 89);
+            copypastedCodes.Location = new Point(4, 36);
+            copypastedCodes.Margin = new Padding(3, 2, 3, 2);
             copypastedCodes.Name = "copypastedCodes";
-            copypastedCodes.Size = new Size(409, 199);
+            copypastedCodes.Size = new Size(321, 293);
             copypastedCodes.TabIndex = 13;
             copypastedCodes.WrapContents = false;
             // 
-            // customCard12
+            // panel4
             // 
-            customCard12.BackColor = Color.White;
-            customCard12.BorderColor = Color.Gray;
-            customCard12.BorderRadius = 10;
-            customCard12.BorderSize = 1;
-            customCard12.Controls.Add(label20);
-            customCard12.Location = new Point(3, 3);
-            customCard12.Name = "customCard12";
-            customCard12.Size = new Size(425, 68);
-            customCard12.TabIndex = 14;
-            // 
-            // label20
-            // 
-            label20.AutoSize = true;
-            label20.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label20.ForeColor = Color.FromArgb(13, 13, 13);
-            label20.Location = new Point(11, 19);
-            label20.Name = "label20";
-            label20.Size = new Size(198, 28);
-            label20.TabIndex = 6;
-            label20.Text = "Copy-Paste Activity";
-            // 
-            // codeTrack
-            // 
-            codeTrack.Location = new Point(3, 140);
-            codeTrack.Maximum = 0;
-            codeTrack.Name = "codeTrack";
-            codeTrack.Size = new Size(909, 56);
-            codeTrack.TabIndex = 100;
-            codeTrack.Scroll += codeTrack_Scroll;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Controls.Add(customCard6);
-            flowLayoutPanel1.Controls.Add(codeTrack);
-            flowLayoutPanel1.Controls.Add(customCard8);
-            flowLayoutPanel1.Controls.Add(panel1);
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(435, 71);
-            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1093, 784);
-            flowLayoutPanel1.TabIndex = 102;
-            flowLayoutPanel1.WrapContents = false;
+            panel4.BackColor = Color.DarkGray;
+            panel4.Dock = DockStyle.Top;
+            panel4.Location = new Point(4, 35);
+            panel4.Margin = new Padding(3, 11, 3, 2);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(321, 1);
+            panel4.TabIndex = 31;
             // 
             // panel1
             // 
-            panel1.Controls.Add(studentCodeRating1);
-            panel1.Controls.Add(customCard1);
-            panel1.Location = new Point(3, 709);
-            panel1.Margin = new Padding(3, 4, 3, 4);
+            panel1.BackColor = Color.White;
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(4, 27);
+            panel1.Margin = new Padding(3, 11, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(909, 365);
-            panel1.TabIndex = 101;
+            panel1.Size = new Size(321, 8);
+            panel1.TabIndex = 30;
             // 
-            // studentCodeRating1
+            // label34
             // 
-            studentCodeRating1.Location = new Point(441, 5);
-            studentCodeRating1.Name = "studentCodeRating1";
-            studentCodeRating1.Size = new Size(455, 332);
-            studentCodeRating1.TabIndex = 14;
+            label34.AutoSize = true;
+            label34.Dock = DockStyle.Top;
+            label34.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label34.ForeColor = Color.FromArgb(13, 13, 13);
+            label34.Location = new Point(4, 6);
+            label34.Name = "label34";
+            label34.Padding = new Padding(8, 0, 0, 0);
+            label34.Size = new Size(167, 21);
+            label34.TabIndex = 29;
+            label34.Text = "Copy-Paste Activity";
+            // 
+            // codeTrack
+            // 
+            codeTrack.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            codeTrack.Location = new Point(3, 68);
+            codeTrack.Margin = new Padding(3, 2, 3, 2);
+            codeTrack.Maximum = 0;
+            codeTrack.Name = "codeTrack";
+            codeTrack.Size = new Size(788, 45);
+            codeTrack.TabIndex = 100;
+            codeTrack.Scroll += codeTrack_Scroll;
             // 
             // customCard2
             // 
+            customCard2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             customCard2.BackColor = Color.White;
             customCard2.BorderColor = Color.Gray;
             customCard2.BorderRadius = 10;
@@ -271,15 +266,15 @@
             customCard2.Controls.Add(panel2);
             customCard2.Controls.Add(label7);
             customCard2.Controls.Add(iconsContainer);
-            customCard2.Location = new Point(26, 71);
-            customCard2.Margin = new Padding(3, 4, 3, 4);
+            customCard2.Location = new Point(3, 25);
             customCard2.Name = "customCard2";
-            customCard2.Padding = new Padding(23, 0, 23, 40);
-            customCard2.Size = new Size(360, 784);
+            customCard2.Padding = new Padding(18, 0, 18, 22);
+            customCard2.Size = new Size(309, 609);
             customCard2.TabIndex = 103;
             // 
             // smartButton1
             // 
+            smartButton1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             smartButton1.BackColor = Color.FromArgb(0, 0, 192);
             smartButton1.BackgroundColor = Color.FromArgb(0, 0, 192);
             smartButton1.BorderRadius = 10;
@@ -287,10 +282,10 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(23, 67);
-            smartButton1.Margin = new Padding(3, 4, 3, 4);
+            smartButton1.Location = new Point(18, 40);
+            smartButton1.Margin = new Padding(3, 2, 3, 2);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(314, 52);
+            smartButton1.Size = new Size(274, 29);
             smartButton1.TabIndex = 14;
             smartButton1.Text = "Broadcast Message";
             smartButton1.UseVisualStyleBackColor = false;
@@ -299,10 +294,10 @@
             // 
             panel2.BackColor = Color.Gainsboro;
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(23, 126);
-            panel2.Margin = new Padding(3, 4, 3, 4);
+            panel2.Location = new Point(18, 79);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(314, 1);
+            panel2.Size = new Size(273, 1);
             panel2.TabIndex = 15;
             // 
             // label7
@@ -311,9 +306,9 @@
             label7.BackColor = Color.Transparent;
             label7.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(13, 13, 13);
-            label7.Location = new Point(41, 23);
+            label7.Location = new Point(32, 13);
             label7.Name = "label7";
-            label7.Size = new Size(132, 38);
+            label7.Size = new Size(104, 30);
             label7.TabIndex = 11;
             label7.Text = "Students";
             // 
@@ -322,57 +317,67 @@
             iconsContainer.AutoScroll = true;
             iconsContainer.Dock = DockStyle.Bottom;
             iconsContainer.FlowDirection = FlowDirection.TopDown;
-            iconsContainer.Location = new Point(23, 127);
-            iconsContainer.Margin = new Padding(3, 4, 3, 4);
+            iconsContainer.Location = new Point(18, 80);
             iconsContainer.Name = "iconsContainer";
-            iconsContainer.Size = new Size(314, 617);
+            iconsContainer.Size = new Size(273, 507);
             iconsContainer.TabIndex = 12;
             iconsContainer.TabStop = true;
             iconsContainer.WrapContents = false;
             // 
-            // tableLayoutPanel1
+            // panel3
             // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.1311474F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 72.86885F));
-            tableLayoutPanel1.Controls.Add(customCard2, 0, 0);
-            tableLayoutPanel1.Controls.Add(flowLayoutPanel1, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(23, 67, 0, 0);
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
-            tableLayoutPanel1.Size = new Size(1531, 1165);
-            tableLayoutPanel1.TabIndex = 105;
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel3.BackColor = Color.WhiteSmoke;
+            panel3.Controls.Add(customCard6);
+            panel3.Controls.Add(customCard8);
+            panel3.Controls.Add(codeTrack);
+            panel3.Location = new Point(318, 18);
+            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(797, 617);
+            panel3.TabIndex = 101;
+            // 
+            // studentCodeRating1
+            // 
+            studentCodeRating1.Location = new Point(1121, 368);
+            studentCodeRating1.Margin = new Padding(3, 2, 3, 2);
+            studentCodeRating1.Name = "studentCodeRating1";
+            studentCodeRating1.Size = new Size(329, 171);
+            studentCodeRating1.TabIndex = 104;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(customCard2);
+            panel5.Controls.Add(studentCodeRating1);
+            panel5.Controls.Add(panel3);
+            panel5.Controls.Add(customCard1);
+            panel5.Location = new Point(3, 3);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1462, 637);
+            panel5.TabIndex = 105;
             // 
             // TempServerPage
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.WhiteSmoke;
-            Controls.Add(tableLayoutPanel1);
-            Margin = new Padding(3, 4, 3, 4);
+            Controls.Add(panel5);
             Name = "TempServerPage";
-            Size = new Size(1531, 1165);
+            Size = new Size(1468, 643);
             customCard8.ResumeLayout(false);
             customCard8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();
             customCard6.ResumeLayout(false);
             customCard6.PerformLayout();
             customCard1.ResumeLayout(false);
-            customCard12.ResumeLayout(false);
-            customCard12.PerformLayout();
+            customCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)codeTrack).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
-            panel1.ResumeLayout(false);
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
-            tableLayoutPanel1.ResumeLayout(false);
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel5.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -385,25 +390,25 @@
         private Label ipaddress;
         private Label studentName;
         private GeneralComponents.CustomCard customCard1;
-        private Label label20;
-        private GeneralComponents.CustomCard customCard12;
         private Pages.ProgrammingTabs.CodeEditor studentCode;
         private TrackBar codeTrack;
         private FlowLayoutPanel copypastedCodes;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel1;
         private GeneralComponents.CustomCard customCard2;
         private FlowLayoutPanel iconsContainer;
-        private StudentCodeRating studentCodeRating1;
         private GeneralComponents.StatsBar accuracy;
         private Label label1;
         private GeneralComponents.StatsBar statsBar2;
         private Label label6;
         private GeneralComponents.StatsBar readability;
         private Label label2;
-        private TableLayoutPanel tableLayoutPanel1;
         private GeneralComponents.SmartButton smartButton1;
         private Label label7;
         private Panel panel2;
+        private Panel panel3;
+        private Panel panel1;
+        private Label label34;
+        private Panel panel4;
+        private StudentCodeRating studentCodeRating1;
+        private Panel panel5;
     }
 }
