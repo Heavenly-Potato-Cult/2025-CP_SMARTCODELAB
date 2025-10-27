@@ -112,33 +112,33 @@ namespace SmartCodeLab
 
         private void tabPage8_Enter(object sender, EventArgs e)
         {
-            new ToDelete().ShowDialog();
-            //if (!SystemSingleton.Instance._loggedIn)
-            //{
-            //    TcpClient client = new TcpClient();
-            //    var searchServer = new LoadingDialog(client);
-            //    searchServer.ShowDialog();
-            //    if (client.Connected)
-            //    {
-            //        var userLogIn = new UserLogInDIalog(client);
-            //        if (userLogIn.ShowDialog() == DialogResult.OK)
-            //        {
-            //            var studentProgramming = new TempIDE(userLogIn._userName, userLogIn.serverTask, userLogIn.progress, userLogIn._stream);
-            //            SystemSingleton.Instance._loggedIn = true;
-            //            studentProgramming.ShowDialog();
-            //        }
-            //        else
-            //        {
-            //            SystemSingleton.Instance._loggedIn = false;
-            //            userLogIn.Dispose();
-            //            return;
-            //        }
-            //        searchServer.CloseMe();
-            //        userLogIn.Dispose();
-            //    }
-            //    else
-            //        return;
-            //}
+            //new ToDelete().ShowDialog();
+            if (!SystemSingleton.Instance._loggedIn)
+            {
+                TcpClient client = new TcpClient();
+                var searchServer = new LoadingDialog(client);
+                searchServer.ShowDialog();
+                if (client.Connected)
+                {
+                    var userLogIn = new UserLogInDIalog(client);
+                    if (userLogIn.ShowDialog() == DialogResult.OK)
+                    {
+                        var studentProgramming = new TempIDE(userLogIn._userName, userLogIn.serverTask, userLogIn.progress, userLogIn._stream);
+                        SystemSingleton.Instance._loggedIn = true;
+                        studentProgramming.ShowDialog();
+                    }
+                    else
+                    {
+                        SystemSingleton.Instance._loggedIn = false;
+                        userLogIn.Dispose();
+                        return;
+                    }
+                    searchServer.CloseMe();
+                    userLogIn.Dispose();
+                }
+                else
+                    return;
+            }
         }
     }
 
