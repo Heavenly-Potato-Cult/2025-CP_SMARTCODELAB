@@ -31,7 +31,7 @@
 	<None Include="$(RootDir)SmartCodeLabConfig\**" LinkBase="smartcodelabconfig">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
-	<None Include="$(RootDir)SessionsFolder\**" LinkBase="sessionsfolder">
+	<None Include="$(RootDir)SessionsFolder\**" LinkBase="SessionsFolder">
 		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	</None>
   </ItemGroup>

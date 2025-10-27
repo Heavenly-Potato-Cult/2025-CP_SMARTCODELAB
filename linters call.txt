@@ -1,0 +1,2 @@
+//how to use clang-tidy
+C:\Users\magno\OneDrive\Desktop\Capstone\2025-CP_SMARTCODELAB\Linters\cpp\clang-tidy\LLVM\bin\clang-tidy Main.cpp --config-file="C:\Users\magno\OneDrive\Desktop\Capstone\2025-CP_SMARTCODELAB\Linters\cpp\rules\readability_rules.clang-tidy" -- -std=c++17

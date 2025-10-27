@@ -57,7 +57,7 @@ namespace SmartCodeLab
             InitializeComponent();
             InitializeWPFTree();
 
-            if (task.isTabLocked) 
+            if (task.isTabLocked)
             {
                 FormBorderStyle = FormBorderStyle.None;
                 TopMost = true;
@@ -150,8 +150,6 @@ namespace SmartCodeLab
                             return null;
                         }
                     });
-
-                    Console.WriteLine("Task created, awaiting...");
                     var serverMsg = await task;
 
                     if (serverMsg == null) break; // End of stream or error
@@ -160,6 +158,9 @@ namespace SmartCodeLab
                         case MessageType.TASK_UPDATE:
                             UpdateTaskDisplay(serverMsg._task);
                             MessageBox.Show("Task updated boiiii");
+                            break;
+                        case MessageType.USER_MESSAGE:
+                            this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}\n") ));
                             break;
                         default:
                             break;
@@ -203,10 +204,7 @@ namespace SmartCodeLab
             int totalWidth = tabControl_RightSide.ClientSize.Width;
             if (totalWidth <= 0) { return; }
 
-
-
             isResizingTabs = true;
-
 
             try
             {
@@ -393,6 +391,33 @@ namespace SmartCodeLab
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                string msg = "Me : " + richTextBox2.Text.Trim() + Environment.NewLine;
+
+                Task.Run(async () =>
+                {
+                    try
+                    {
+                        var message = new ServerMessage.Builder(MessageType.USER_MESSAGE)
+                            .UserMessage(new UserMessage(msg))
+                            .Build();
+                        Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
+                        await stream.FlushAsync();
+                    }
+                    catch (ProtoException) { }
+                });
+                richTextBox2.Clear();
+            }
         }
     }
 }

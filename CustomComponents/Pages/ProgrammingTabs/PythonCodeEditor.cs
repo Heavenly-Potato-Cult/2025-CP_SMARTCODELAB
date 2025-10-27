@@ -20,7 +20,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public override void RunCode()
         {
-            commandLine = $"/c {ProgrammingConfiguration.pythonExe} {filePath}";
+            commandLine = $"/c \"{ProgrammingConfiguration.pythonExe}\" {filePath}";
             base.RunCode();
         }
 

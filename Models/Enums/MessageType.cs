@@ -14,6 +14,7 @@ namespace SmartCodeLab.Models.Enums
         LOG_IN_FAILED,
         TASK_UPDATE,
         NOTIFICATION,
-        CODE_SUBMISSION
+        CODE_SUBMISSION,
+        USER_MESSAGE
     }
 }

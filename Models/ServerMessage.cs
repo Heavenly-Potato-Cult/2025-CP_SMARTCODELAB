@@ -32,6 +32,9 @@ namespace SmartCodeLab.Models
 
         [ProtoMember(7)]
         public SubmittedCode submittedCode { get; set; }
+
+        [ProtoMember(8)]
+        public UserMessage userMessage { get; private set; }
         public ServerMessage()
         {
         }
@@ -87,6 +90,11 @@ namespace SmartCodeLab.Models
             public Builder SubmittedCode(SubmittedCode submittedCode)
             {
                 msg.submittedCode = submittedCode;
+                return this;
+            }
+            public Builder UserMessage(UserMessage userMessage)
+            {
+                msg.userMessage = userMessage;
                 return this;
             }
 

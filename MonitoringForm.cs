@@ -129,7 +129,7 @@ namespace SmartCodeLab
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var todelete = new ToDelete();
+            var todelete = new ChatBox();
             todelete.ShowDialog();
             todelete.Close();
         }

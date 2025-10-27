@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.Models;
@@ -35,11 +36,20 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private string selectedStudentId = string.Empty;
         private Func<string, StudentCodingProgress> progressRetriever;
-        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string, StudentCodingProgress> progressRetriever)
+        private Dictionary<string, List<UserMessage>> userMessages;
+        private Func<string, UserMessage, bool> sendMessage;
+        private Func<string, bool> isStudentActive;
+        private ChatBox chatBox;
+        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string, 
+            StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
         {
             InitializeComponent();
+            userMessages = new Dictionary<string, List<UserMessage>>();
+            chatBox = null;
             currentTask = task;
             this.progressRetriever = progressRetriever;
+            this.sendMessage = sendMessage;
+            this.isStudentActive = isStudentActive;
 
             //will ensure that the handle is created before accessing the UI thread
             var obj = this.Handle;
@@ -47,6 +57,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 foreach (var item in users.Values)
                 {
+                    userMessages.Add(item._studentId, new List<UserMessage>());
                     AddStudent(item);
                 }
             });
@@ -74,7 +85,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                                 catch (KeyNotFoundException) { }
                                 studentName.Text = userProfile._studentName;
                             });
-                                                                      //user profile will be retrieved
+                            //user profile will be retrieved
                             iconsContainer.Controls.Add(new UserIcons(expectedUsers[item], NewUserSelected));
                         }));
                     }
@@ -96,6 +107,39 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public void StudentLoggedIn(UserProfile profile)
         {
             userIcons[profile._studentId].profile._computerAddress = profile._computerAddress;
+        }
+
+        public void ReceivedStudentMessage(UserMessage message, string studentId)
+        {
+            if (!userMessages.ContainsKey(studentId))
+            {
+                userMessages[studentId] = new List<UserMessage>();
+            }
+            message.isFromMe = false;
+            userMessages[studentId].Add(message);
+
+            if(chatBox != null && chatBox.studentId == studentId)
+            {
+                chatBox.receivedMessage(message.message);
+            }
+        }
+
+        private bool SendMessageToStudent(string studentId,string message)
+        {
+            if(isStudentActive(studentId))
+            {
+                var messageObj = new UserMessage(message);
+                if(sendMessage(studentId, messageObj))
+                {
+                    if (!userMessages.ContainsKey(studentId))
+                        userMessages[studentId] = new List<UserMessage>();
+
+                    userMessages[studentId].Add(messageObj);
+
+                    return true;
+                }
+            }
+            return false;
         }
 
         public async void UpdateStudentProgressDisplay(UserProfile user, StudentCodingProgress progress)
@@ -154,6 +198,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 return;
 
             studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
+        }
+
+        private void smartButton3_Click(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(selectedStudentId))
+                return;
+            chatBox = new ChatBox(SendMessageToStudent, userMessages[selectedStudentId] ?? null, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
+            chatBox.ShowDialog();
+            chatBox = null;
         }
     }
 }

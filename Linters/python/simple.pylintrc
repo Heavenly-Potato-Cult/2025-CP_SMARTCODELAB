@@ -25,7 +25,7 @@ enable=C0301,     # line-too-long
        R1710,     # inconsistent-return-statements
        R1730,     # consider-using-generator
        C0321,     # multiple-statements on one line
-       C0325      # superfluous-parens
+       C0325      # superfluous-parents
 
 [FORMAT]
 # Max line length (PEP 8 recommends 79, but 100 is more practical for students)
