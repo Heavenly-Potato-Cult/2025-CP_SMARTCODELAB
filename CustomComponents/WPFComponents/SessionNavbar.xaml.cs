@@ -39,22 +39,28 @@ namespace SmartCodeLab.CustomComponents.WPFComponents
 
         }
 
-        private void nav_viewusers_Click(object sender, RoutedEventArgs e)
+        private void nav_monitoring_Click(object sender, RoutedEventArgs e)
         {
             OnNavigationClicked?.Invoke(2);
 
         }
-
-        private void nav_submission_Click(object sender, RoutedEventArgs e)
+        private void nav_viewusers_Click(object sender, RoutedEventArgs e)
         {
             OnNavigationClicked?.Invoke(3);
 
         }
 
-        private void nav_save_Click(object sender, RoutedEventArgs e)
+        private void nav_submission_Click(object sender, RoutedEventArgs e)
         {
             OnNavigationClicked?.Invoke(4);
 
         }
+
+        private void nav_save_Click(object sender, RoutedEventArgs e)
+        {
+            OnNavigationClicked?.Invoke(5);
+
+        }
+
     }
 }
