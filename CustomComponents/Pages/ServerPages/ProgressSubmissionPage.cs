@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 
 namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
@@ -95,7 +96,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void btn_viewmore_Click(object sender, EventArgs e)
         {
-
+            var ViewMoreForm = new ViewMoreSubmissionsForm();
+            ViewMoreForm.ShowDialog();
         }
     }
 }
