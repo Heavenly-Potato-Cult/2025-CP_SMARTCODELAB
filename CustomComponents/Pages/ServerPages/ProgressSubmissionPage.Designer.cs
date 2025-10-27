@@ -30,10 +30,11 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressSubmissionPage));
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "Readbility", "20" }, -1);
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "Efficiency", "30" }, -1);
-            ListViewItem listViewItem3 = new ListViewItem(new string[] { "Complexity", "50" }, -1);
-            ListViewItem listViewItem4 = new ListViewItem(new string[] { "Total", "100" }, -1);
+            ListViewItem listViewItem6 = new ListViewItem(new string[] { "Accurary", "50" }, -1);
+            ListViewItem listViewItem7 = new ListViewItem(new string[] { "Readbility", "20" }, -1);
+            ListViewItem listViewItem8 = new ListViewItem(new string[] { "Efficiency", "30" }, -1);
+            ListViewItem listViewItem9 = new ListViewItem(new string[] { "Complexity", "20" }, -1);
+            ListViewItem listViewItem10 = new ListViewItem(new string[] { "Total", "100" }, -1);
             label11 = new Label();
             customComboBox2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             customTextBox2 = new CustomTextBox();
@@ -55,11 +56,11 @@
             flowLayoutPanel2 = new FlowLayoutPanel();
             materialExpansionPanel1 = new MaterialSkin.Controls.MaterialExpansionPanel();
             studentCode = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            materialExpansionPanel3 = new MaterialSkin.Controls.MaterialExpansionPanel();
+            btn_viewmore = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             materialListView1 = new MaterialSkin.Controls.MaterialListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
-            materialExpansionPanel3 = new MaterialSkin.Controls.MaterialExpansionPanel();
             customCard7.SuspendLayout();
             customCard2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
@@ -298,7 +299,7 @@
             flowLayoutPanel2.Controls.Add(materialExpansionPanel1);
             flowLayoutPanel2.Controls.Add(materialExpansionPanel3);
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(559, 242);
+            flowLayoutPanel2.Location = new Point(546, 241);
             flowLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
             flowLayoutPanel2.Size = new Size(633, 751);
@@ -340,7 +341,7 @@
     '\'',
     '\''
     };
-            studentCode.AutoScrollMinSize = new Size(90, 14);
+            studentCode.AutoScrollMinSize = new Size(115, 14);
             studentCode.BackBrush = null;
             studentCode.BorderStyle = BorderStyle.FixedSingle;
             studentCode.CharHeight = 14;
@@ -358,57 +359,11 @@
             studentCode.Text = "codeEditor1";
             studentCode.Zoom = 100;
             // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 5;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(50, 235);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(283, 40);
-            smartButton1.TabIndex = 3;
-            smartButton1.Text = "View More";
-            smartButton1.UseVisualStyleBackColor = false;
-            // 
-            // materialListView1
-            // 
-            materialListView1.AutoSizeTable = true;
-            materialListView1.BackColor = Color.FromArgb(255, 255, 255);
-            materialListView1.BorderStyle = BorderStyle.None;
-            materialListView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
-            materialListView1.Depth = 0;
-            materialListView1.Font = new Font("Microsoft Sans Serif", 14.25F);
-            materialListView1.FullRowSelect = true;
-            materialListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4 });
-            materialListView1.Location = new Point(36, 67);
-            materialListView1.MinimumSize = new Size(200, 100);
-            materialListView1.MouseLocation = new Point(-1, -1);
-            materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            materialListView1.Name = "materialListView1";
-            materialListView1.OwnerDraw = true;
-            materialListView1.Scrollable = false;
-            materialListView1.Size = new Size(500, 140);
-            materialListView1.TabIndex = 2;
-            materialListView1.UseCompatibleStateImageBehavior = false;
-            materialListView1.View = View.Details;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "Criteria";
-            columnHeader1.Width = 400;
-            // 
-            // columnHeader2
-            // 
-            columnHeader2.Text = "Scores";
-            columnHeader2.Width = 100;
-            // 
             // materialExpansionPanel3
             // 
             materialExpansionPanel3.BackColor = Color.FromArgb(255, 255, 255);
             materialExpansionPanel3.CancelButtonText = "";
-            materialExpansionPanel3.Controls.Add(smartButton1);
+            materialExpansionPanel3.Controls.Add(btn_viewmore);
             materialExpansionPanel3.Controls.Add(materialListView1);
             materialExpansionPanel3.Depth = 0;
             materialExpansionPanel3.Description = "";
@@ -422,8 +377,55 @@
             materialExpansionPanel3.Padding = new Padding(24, 64, 24, 16);
             materialExpansionPanel3.Size = new Size(601, 294);
             materialExpansionPanel3.TabIndex = 95;
-            materialExpansionPanel3.Title = "Score";
+            materialExpansionPanel3.Title = "Scores";
             materialExpansionPanel3.ValidationButtonText = "";
+            // 
+            // btn_viewmore
+            // 
+            btn_viewmore.BackColor = Color.MediumSlateBlue;
+            btn_viewmore.BorderRadius = 5;
+            btn_viewmore.FlatAppearance.BorderSize = 0;
+            btn_viewmore.FlatStyle = FlatStyle.Flat;
+            btn_viewmore.ForeColor = Color.White;
+            btn_viewmore.Location = new Point(50, 235);
+            btn_viewmore.Name = "btn_viewmore";
+            btn_viewmore.Size = new Size(283, 40);
+            btn_viewmore.TabIndex = 3;
+            btn_viewmore.Text = "View More";
+            btn_viewmore.UseVisualStyleBackColor = false;
+            btn_viewmore.Click += btn_viewmore_Click;
+            // 
+            // materialListView1
+            // 
+            materialListView1.AutoSizeTable = true;
+            materialListView1.BackColor = Color.FromArgb(255, 255, 255);
+            materialListView1.BorderStyle = BorderStyle.None;
+            materialListView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
+            materialListView1.Depth = 0;
+            materialListView1.Font = new Font("Microsoft Sans Serif", 14.25F);
+            materialListView1.FullRowSelect = true;
+            materialListView1.Items.AddRange(new ListViewItem[] { listViewItem6, listViewItem7, listViewItem8, listViewItem9, listViewItem10 });
+            materialListView1.Location = new Point(50, 51);
+            materialListView1.MinimumSize = new Size(200, 100);
+            materialListView1.MouseLocation = new Point(-1, -1);
+            materialListView1.MouseState = MaterialSkin.MouseState.OUT;
+            materialListView1.Name = "materialListView1";
+            materialListView1.OwnerDraw = true;
+            materialListView1.Scrollable = false;
+            materialListView1.Size = new Size(500, 168);
+            materialListView1.TabIndex = 2;
+            materialListView1.UseCompatibleStateImageBehavior = false;
+            materialListView1.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "Criteria";
+            columnHeader1.Width = 400;
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "Scores";
+            columnHeader2.Width = 100;
             // 
             // ProgressSubmissionPage
             // 
@@ -485,7 +487,7 @@
         private ColumnHeader columnHeader2;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel1;
         private ProgrammingTabs.CodeEditor studentCode;
-        private GeneralComponents.SmartButton smartButton1;
+        private GeneralComponents.SmartButton btn_viewmore;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel3;
     }
 }
