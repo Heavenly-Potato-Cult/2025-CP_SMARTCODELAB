@@ -43,7 +43,7 @@ namespace SmartCodeLab
             var navMenu = new Navbar();
             navMenu.OnNavigationClicked = (tabIndex) =>
             {
-                if (tabcontrol_MainNav != null) // Guard clause
+                if (tabcontrol_MainNav != null)
                 {
                     tabcontrol_MainNav.SelectedIndex = tabIndex;
                 }
@@ -65,7 +65,7 @@ namespace SmartCodeLab
 
         private void SessionNavigationMenu()
         {
-            // 1. Guard clause at the top
+
             if (panelNavHost2 == null)
             {
                 return;
@@ -86,7 +86,7 @@ namespace SmartCodeLab
 
             navMenu.OnNavigationClicked = (tabIndex) =>
             {
-                if (tabcontrol_session != null) // Guard clause
+                if (tabcontrol_session != null)
                 {
                     tabcontrol_session.SelectedIndex = tabIndex;
                 }
@@ -140,6 +140,8 @@ namespace SmartCodeLab
             //        return;
             //}
         }
+
+       
     }
 
 

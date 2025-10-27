@@ -54,13 +54,13 @@ namespace SmartCodeLab.CustomComponents.WPFComponents
 
         private void nav_submission_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigationClicked?.Invoke(4);
+            OnNavigationClicked?.Invoke(3);
 
         }
 
         private void nav_save_Click(object sender, RoutedEventArgs e)
         {
-            OnNavigationClicked?.Invoke(5);
+            //OnNavigationClicked?.Invoke(5);
 
         }
 
