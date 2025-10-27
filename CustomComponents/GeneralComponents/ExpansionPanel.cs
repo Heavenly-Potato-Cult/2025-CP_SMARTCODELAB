@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace SmartCodeLab.CustomComponents.GeneralComponents
 {
+    [Designer(typeof(ParentControlDesigner))]
     public partial class ExpansionPanel : UserControl
     {
         private bool _isExpanded = true;

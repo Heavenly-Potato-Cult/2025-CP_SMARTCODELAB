@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "1", "1", "2" }, -1);
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "1", "1", "1" }, -1);
-            ListViewItem listViewItem3 = new ListViewItem(new string[] { "5", "5", "5" }, -1);
-            ListViewItem listViewItem4 = new ListViewItem(new string[] { "\"Hello World\"", "\"Hello World\"", "\"Hillo\"" }, -1);
-            ListViewItem listViewItem5 = new ListViewItem(new string[] { "Readability", "15" }, -1);
-            ListViewItem listViewItem6 = new ListViewItem(new string[] { "Efficiency", "20" }, -1);
-            ListViewItem listViewItem7 = new ListViewItem(new string[] { "Complexity", "30" }, -1);
+            ListViewItem listViewItem1 = new ListViewItem(new string[] { "Readability", "15" }, -1);
+            ListViewItem listViewItem2 = new ListViewItem(new string[] { "Efficiency", "20" }, -1);
+            ListViewItem listViewItem3 = new ListViewItem(new string[] { "Complexity", "30" }, -1);
             label5 = new Label();
             label3 = new Label();
             label12 = new Label();
@@ -72,10 +68,7 @@
             textBox1 = new TextBox();
             flowLayoutPanel2 = new FlowLayoutPanel();
             materialExpansionPanel3 = new MaterialSkin.Controls.MaterialExpansionPanel();
-            materialListView1 = new MaterialSkin.Controls.MaterialListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
+            flowLayoutPanel1 = new FlowLayoutPanel();
             materialExpansionPanel4 = new MaterialSkin.Controls.MaterialExpansionPanel();
             materialListView2 = new MaterialSkin.Controls.MaterialListView();
             columnHeader4 = new ColumnHeader();
@@ -445,7 +438,7 @@
             customCard13.Controls.Add(label37);
             customCard13.Controls.Add(label45);
             customCard13.Controls.Add(label49);
-            customCard13.Location = new Point(16, 212);
+            customCard13.Location = new Point(16, 568);
             customCard13.Margin = new Padding(16);
             customCard13.Name = "customCard13";
             customCard13.Size = new Size(584, 73);
@@ -554,60 +547,29 @@
             // 
             materialExpansionPanel3.BackColor = Color.FromArgb(255, 255, 255);
             materialExpansionPanel3.CancelButtonText = "Close";
-            materialExpansionPanel3.Collapse = true;
-            materialExpansionPanel3.Controls.Add(materialListView1);
+            materialExpansionPanel3.Controls.Add(flowLayoutPanel1);
             materialExpansionPanel3.Depth = 0;
             materialExpansionPanel3.Description = "";
-            materialExpansionPanel3.ExpandHeight = 292;
+            materialExpansionPanel3.ExpandHeight = 373;
             materialExpansionPanel3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialExpansionPanel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialExpansionPanel3.Location = new Point(16, 99);
-            materialExpansionPanel3.Margin = new Padding(16, 1, 16, 0);
+            materialExpansionPanel3.Location = new Point(16, 114);
+            materialExpansionPanel3.Margin = new Padding(16);
             materialExpansionPanel3.MouseState = MaterialSkin.MouseState.HOVER;
             materialExpansionPanel3.Name = "materialExpansionPanel3";
             materialExpansionPanel3.Padding = new Padding(24, 64, 24, 16);
-            materialExpansionPanel3.Size = new Size(584, 48);
+            materialExpansionPanel3.Size = new Size(584, 373);
             materialExpansionPanel3.TabIndex = 92;
             materialExpansionPanel3.Title = "Test Case Results";
             materialExpansionPanel3.ValidationButtonText = "";
             // 
-            // materialListView1
+            // flowLayoutPanel1
             // 
-            materialListView1.AutoSizeTable = true;
-            materialListView1.BackColor = Color.FromArgb(255, 255, 255);
-            materialListView1.BorderStyle = BorderStyle.None;
-            materialListView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
-            materialListView1.Depth = 0;
-            materialListView1.FullRowSelect = true;
-            materialListView1.GridLines = true;
-            materialListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4 });
-            materialListView1.Location = new Point(7, 66);
-            materialListView1.Margin = new Padding(3, 2, 3, 2);
-            materialListView1.MinimumSize = new Size(175, 75);
-            materialListView1.MouseLocation = new Point(-1, -1);
-            materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            materialListView1.Name = "materialListView1";
-            materialListView1.OwnerDraw = true;
-            materialListView1.Scrollable = false;
-            materialListView1.Size = new Size(550, 108);
-            materialListView1.TabIndex = 3;
-            materialListView1.UseCompatibleStateImageBehavior = false;
-            materialListView1.View = View.Details;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "Input";
-            columnHeader1.Width = 250;
-            // 
-            // columnHeader2
-            // 
-            columnHeader2.Text = "Expected Ouput";
-            columnHeader2.Width = 150;
-            // 
-            // columnHeader3
-            // 
-            columnHeader3.Text = "Actual Output";
-            columnHeader3.Width = 150;
+            flowLayoutPanel1.AutoScroll = true;
+            flowLayoutPanel1.Location = new Point(20, 52);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(548, 251);
+            flowLayoutPanel1.TabIndex = 2;
             // 
             // materialExpansionPanel4
             // 
@@ -620,7 +582,7 @@
             materialExpansionPanel4.ExpandHeight = 292;
             materialExpansionPanel4.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             materialExpansionPanel4.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialExpansionPanel4.Location = new Point(16, 148);
+            materialExpansionPanel4.Location = new Point(16, 504);
             materialExpansionPanel4.Margin = new Padding(16, 1, 16, 0);
             materialExpansionPanel4.MouseState = MaterialSkin.MouseState.HOVER;
             materialExpansionPanel4.Name = "materialExpansionPanel4";
@@ -639,7 +601,7 @@
             materialListView2.Depth = 0;
             materialListView2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             materialListView2.FullRowSelect = true;
-            materialListView2.Items.AddRange(new ListViewItem[] { listViewItem5, listViewItem6, listViewItem7 });
+            materialListView2.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
             materialListView2.Location = new Point(27, 82);
             materialListView2.Margin = new Padding(3, 2, 3, 2);
             materialListView2.MinimumSize = new Size(175, 75);
@@ -744,16 +706,13 @@
         private Label label49;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel1;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel2;
-        private TextBox textBox1;
         private FlowLayoutPanel flowLayoutPanel2;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel3;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ColumnHeader columnHeader3;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel4;
         private MaterialSkin.Controls.MaterialListView materialListView2;
         private ColumnHeader columnHeader4;
         private ColumnHeader columnHeader5;
+        private TextBox textBox1;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

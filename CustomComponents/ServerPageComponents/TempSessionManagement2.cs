@@ -53,6 +53,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     });
                 }
             };
+
+
+            
         }
 
         private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
@@ -65,7 +68,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         }
 
-        private void smartButton1_Click(object sender, EventArgs e)
+
+        private void smartButton2_Click(object sender, EventArgs e)
+        {
+            var studentTable = new StudTable(userProfiles);
+            studentTable.ShowDialog();
+            userProfiles = studentTable.expectedUsers;
+            studentsCount.Text = userProfiles.Count.ToString();
+        }
+
+        private void smartButton1_Click_1(object sender, EventArgs e)
         {
             if (serverName.Texts.IsWhiteSpace())
             {
@@ -95,22 +107,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             SystemSingleton.Instance.page1.Controls.Add(new MainServerPage(server));
         }
 
-        private void smartButton2_Click(object sender, EventArgs e)
-        {
-            var studentTable = new StudTable(userProfiles);
-            studentTable.ShowDialog();
-            userProfiles = studentTable.expectedUsers;
-            studentsCount.Text = userProfiles.Count.ToString();
-        }
-
-        private void smartButton4_Click(object sender, EventArgs e)
+        private void smartButton4_Click_1(object sender, EventArgs e)
         {
             serverPW.Texts = new Random().Next(10000, 100000).ToString();
         }
 
-        private void smartButton3_Click(object sender, EventArgs e)
+        private void smartButton3_Click_1(object sender, EventArgs e)
         {
-            using(var selectExercise = new SelectExercise(exerciseSelectedCallback))
+            using (var selectExercise = new SelectExercise(exerciseSelectedCallback))
             {
                 selectExercise.ShowDialog();
             }
@@ -119,7 +123,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Action<TaskModel> exerciseSelectedCallback => (task) =>
         {
             selectedTask = task;
-            if(selectedExercise != null)
+            if (selectedExercise != null)
                 taskView.Controls.Remove(selectedExercise);
             selectedExercise = new SelectedExercise(task, removeSelectedTask);
             taskView.Controls.Add(selectedExercise);
@@ -131,5 +135,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             taskView.Controls.Remove(selectedExercise);
             selectedExercise = null;
         };
+
+        
+
     }
 }

@@ -83,9 +83,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Gray;
-            label5.Location = new Point(127, 79);
+            label5.Location = new Point(111, 59);
             label5.Name = "label5";
-            label5.Size = new Size(391, 25);
+            label5.Size = new Size(322, 20);
             label5.TabIndex = 14;
             label5.Text = "Control and monitor programming lab sessions";
             // 
@@ -94,9 +94,9 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(126, 35);
+            label3.Location = new Point(110, 26);
             label3.Name = "label3";
-            label3.Size = new Size(297, 38);
+            label3.Size = new Size(233, 30);
             label3.TabIndex = 13;
             label3.Text = "Session Management";
             // 
@@ -111,10 +111,11 @@
             customCard2.Controls.Add(panel7);
             customCard2.Controls.Add(panel4);
             customCard2.Controls.Add(label14);
-            customCard2.Location = new Point(3, 3);
+            customCard2.Location = new Point(3, 2);
+            customCard2.Margin = new Padding(3, 2, 3, 2);
             customCard2.Name = "customCard2";
-            customCard2.Padding = new Padding(10, 20, 10, 11);
-            customCard2.Size = new Size(1039, 602);
+            customCard2.Padding = new Padding(9, 15, 9, 8);
+            customCard2.Size = new Size(909, 452);
             customCard2.TabIndex = 16;
             // 
             // tableLayoutPanel1
@@ -137,16 +138,17 @@
             tableLayoutPanel1.Controls.Add(customCard3, 2, 0);
             tableLayoutPanel1.Controls.Add(taskView, 1, 3);
             tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(10, 67);
+            tableLayoutPanel1.Location = new Point(9, 52);
+            tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(10, 20, 21, 0);
+            tableLayoutPanel1.Padding = new Padding(9, 15, 18, 0);
             tableLayoutPanel1.RowCount = 5;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.136198F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 19.137846F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 14.74843F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 15.5155592F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 38.46197F));
-            tableLayoutPanel1.Size = new Size(1019, 524);
+            tableLayoutPanel1.Size = new Size(891, 392);
             tableLayoutPanel1.TabIndex = 30;
             tableLayoutPanel1.Paint += tableLayoutPanel1_Paint_1;
             // 
@@ -154,33 +156,33 @@
             // 
             panel8.Controls.Add(label2);
             panel8.Controls.Add(tabNavigationLocked);
-            panel8.Location = new Point(607, 332);
+            panel8.Location = new Point(532, 247);
+            panel8.Margin = new Padding(3, 2, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(250, 50);
+            panel8.Size = new Size(219, 38);
             panel8.TabIndex = 36;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(0, 13);
+            label2.Location = new Point(0, 10);
             label2.Name = "label2";
-            label2.Size = new Size(173, 20);
+            label2.Size = new Size(136, 15);
             label2.TabIndex = 35;
             label2.Text = "Restrict Tab Navigation";
             // 
             // tabNavigationLocked
             // 
             tabNavigationLocked.AutoSize = true;
-            tabNavigationLocked.Location = new Point(196, 13);
-            tabNavigationLocked.Margin = new Padding(3, 4, 3, 4);
-            tabNavigationLocked.MinimumSize = new Size(51, 29);
+            tabNavigationLocked.Location = new Point(172, 10);
+            tabNavigationLocked.MinimumSize = new Size(45, 22);
             tabNavigationLocked.Name = "tabNavigationLocked";
             tabNavigationLocked.OffBackColor = Color.Gray;
             tabNavigationLocked.OffToggleColor = Color.Gainsboro;
             tabNavigationLocked.OnBackColor = Color.MediumSlateBlue;
             tabNavigationLocked.OnToggleColor = Color.WhiteSmoke;
-            tabNavigationLocked.Size = new Size(51, 29);
+            tabNavigationLocked.Size = new Size(45, 22);
             tabNavigationLocked.TabIndex = 34;
             tabNavigationLocked.UseVisualStyleBackColor = true;
             // 
@@ -191,10 +193,9 @@
             smartButton4.FlatAppearance.BorderSize = 0;
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(315, 333);
-            smartButton4.Margin = new Padding(3, 4, 3, 4);
+            smartButton4.Location = new Point(276, 248);
             smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(113, 43);
+            smartButton4.Size = new Size(99, 32);
             smartButton4.TabIndex = 33;
             smartButton4.Text = "Generate";
             smartButton4.UseVisualStyleBackColor = false;
@@ -209,10 +210,9 @@
             customCard1.Controls.Add(smartButton2);
             customCard1.Controls.Add(studentsCount);
             customCard1.Controls.Add(label1);
-            customCard1.Location = new Point(607, 255);
-            customCard1.Margin = new Padding(3, 4, 3, 4);
+            customCard1.Location = new Point(532, 190);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(229, 47);
+            customCard1.Size = new Size(200, 35);
             customCard1.TabIndex = 32;
             // 
             // smartButton2
@@ -222,10 +222,9 @@
             smartButton2.FlatAppearance.BorderSize = 0;
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(113, 5);
-            smartButton2.Margin = new Padding(3, 4, 3, 4);
+            smartButton2.Location = new Point(99, 4);
             smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(104, 35);
+            smartButton2.Size = new Size(91, 26);
             smartButton2.TabIndex = 33;
             smartButton2.Text = "View";
             smartButton2.UseVisualStyleBackColor = false;
@@ -235,9 +234,9 @@
             // 
             studentsCount.AutoSize = true;
             studentsCount.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            studentsCount.Location = new Point(86, 13);
+            studentsCount.Location = new Point(75, 10);
             studentsCount.Name = "studentsCount";
-            studentsCount.Size = new Size(18, 20);
+            studentsCount.Size = new Size(14, 15);
             studentsCount.TabIndex = 32;
             studentsCount.Text = "0";
             // 
@@ -245,9 +244,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(17, 13);
+            label1.Location = new Point(15, 10);
             label1.Name = "label1";
-            label1.Size = new Size(71, 20);
+            label1.Size = new Size(57, 15);
             label1.TabIndex = 31;
             label1.Text = "Students";
             // 
@@ -257,9 +256,9 @@
             label4.Dock = DockStyle.Bottom;
             label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.DimGray;
-            label4.Location = new Point(13, 56);
+            label4.Location = new Point(12, 40);
             label4.Name = "label4";
-            label4.Size = new Size(296, 25);
+            label4.Size = new Size(258, 20);
             label4.TabIndex = 17;
             label4.Text = "Session Name";
             // 
@@ -271,20 +270,22 @@
             serverName.BorderRadius = 10;
             serverName.BorderSize = 1;
             serverName.ForeColor = SystemColors.ControlText;
-            serverName.Location = new Point(13, 84);
+            serverName.Location = new Point(12, 62);
+            serverName.Margin = new Padding(3, 2, 3, 2);
             serverName.Name = "serverName";
-            serverName.Padding = new Padding(10, 7, 10, 7);
+            serverName.Padding = new Padding(9, 5, 9, 5);
             serverName.PlaceHolderColor = Color.DarkGray;
             serverName.PlaceholderText = "";
             serverName.ScrollBars = ScrollBars.None;
-            serverName.Size = new Size(223, 41);
+            serverName.Size = new Size(195, 32);
             serverName.TabIndex = 18;
             // 
             // codeQualityChoices
             // 
-            codeQualityChoices.Location = new Point(13, 332);
+            codeQualityChoices.Location = new Point(12, 247);
+            codeQualityChoices.Margin = new Padding(3, 2, 3, 2);
             codeQualityChoices.Name = "codeQualityChoices";
-            codeQualityChoices.Size = new Size(266, 189);
+            codeQualityChoices.Size = new Size(233, 142);
             codeQualityChoices.TabIndex = 30;
             // 
             // label6
@@ -293,9 +294,9 @@
             label6.Dock = DockStyle.Bottom;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.DimGray;
-            label6.Location = new Point(13, 226);
+            label6.Location = new Point(12, 167);
             label6.Name = "label6";
-            label6.Size = new Size(296, 25);
+            label6.Size = new Size(258, 20);
             label6.TabIndex = 19;
             label6.Text = "Session Code";
             // 
@@ -305,9 +306,9 @@
             label15.Dock = DockStyle.Bottom;
             label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.DimGray;
-            label15.Location = new Point(315, 226);
+            label15.Location = new Point(276, 167);
             label15.Name = "label15";
-            label15.Size = new Size(286, 25);
+            label15.Size = new Size(250, 20);
             label15.TabIndex = 25;
             label15.Text = "Select Exercise";
             label15.TextAlign = ContentAlignment.BottomLeft;
@@ -320,13 +321,14 @@
             serverPW.BorderRadius = 10;
             serverPW.BorderSize = 1;
             serverPW.ForeColor = SystemColors.ControlText;
-            serverPW.Location = new Point(13, 254);
+            serverPW.Location = new Point(12, 189);
+            serverPW.Margin = new Padding(3, 2, 3, 2);
             serverPW.Name = "serverPW";
-            serverPW.Padding = new Padding(10, 7, 10, 7);
+            serverPW.Padding = new Padding(9, 5, 9, 5);
             serverPW.PlaceHolderColor = Color.DarkGray;
             serverPW.PlaceholderText = "";
             serverPW.ScrollBars = ScrollBars.None;
-            serverPW.Size = new Size(223, 41);
+            serverPW.Size = new Size(195, 32);
             serverPW.TabIndex = 20;
             // 
             // label7
@@ -335,9 +337,9 @@
             label7.Dock = DockStyle.Bottom;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.DimGray;
-            label7.Location = new Point(315, 56);
+            label7.Location = new Point(276, 40);
             label7.Name = "label7";
-            label7.Size = new Size(286, 25);
+            label7.Size = new Size(250, 20);
             label7.TabIndex = 27;
             label7.Text = "Programming Language";
             // 
@@ -353,11 +355,12 @@
             language.Items.AddRange(new object[] { "C++", "Java", "Python" });
             language.ListBackColor = Color.FromArgb(230, 228, 245);
             language.ListTextColor = Color.DimGray;
-            language.Location = new Point(315, 84);
-            language.MinimumSize = new Size(200, 29);
+            language.Location = new Point(276, 62);
+            language.Margin = new Padding(3, 2, 3, 2);
+            language.MinimumSize = new Size(175, 22);
             language.Name = "language";
             language.Padding = new Padding(1);
-            language.Size = new Size(200, 40);
+            language.Size = new Size(175, 30);
             language.TabIndex = 28;
             language.Texts = "";
             // 
@@ -371,30 +374,33 @@
             customCard3.Controls.Add(panel5);
             customCard3.Controls.Add(smartButton1);
             customCard3.Controls.Add(label8);
-            customCard3.Location = new Point(607, 23);
-            customCard3.MaximumSize = new Size(439, 208);
+            customCard3.Location = new Point(532, 17);
+            customCard3.Margin = new Padding(3, 2, 3, 2);
+            customCard3.MaximumSize = new Size(384, 156);
             customCard3.Name = "customCard3";
-            customCard3.Padding = new Padding(10, 11, 10, 0);
+            customCard3.Padding = new Padding(9, 8, 9, 0);
             tableLayoutPanel1.SetRowSpan(customCard3, 3);
-            customCard3.Size = new Size(354, 144);
+            customCard3.Size = new Size(310, 108);
             customCard3.TabIndex = 24;
             // 
             // panel6
             // 
             panel6.BackColor = Color.DarkGray;
             panel6.Dock = DockStyle.Top;
-            panel6.Location = new Point(10, 50);
+            panel6.Location = new Point(9, 37);
+            panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(334, 1);
+            panel6.Size = new Size(292, 1);
             panel6.TabIndex = 31;
             // 
             // panel5
             // 
             panel5.BackColor = Color.White;
             panel5.Dock = DockStyle.Top;
-            panel5.Location = new Point(10, 39);
+            panel5.Location = new Point(9, 29);
+            panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(334, 11);
+            panel5.Size = new Size(292, 8);
             panel5.TabIndex = 30;
             // 
             // smartButton1
@@ -407,9 +413,10 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(10, 59);
+            smartButton1.Location = new Point(9, 44);
+            smartButton1.Margin = new Padding(3, 2, 3, 2);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(333, 56);
+            smartButton1.Size = new Size(291, 42);
             smartButton1.TabIndex = 26;
             smartButton1.Text = "Start Session";
             smartButton1.UseVisualStyleBackColor = false;
@@ -421,19 +428,20 @@
             label8.Dock = DockStyle.Top;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(13, 13, 13);
-            label8.Location = new Point(10, 11);
+            label8.Location = new Point(9, 8);
             label8.Name = "label8";
-            label8.Padding = new Padding(10, 0, 0, 0);
-            label8.Size = new Size(157, 28);
+            label8.Padding = new Padding(9, 0, 0, 0);
+            label8.Size = new Size(127, 21);
             label8.TabIndex = 25;
             label8.Text = "Session Actions";
             // 
             // taskView
             // 
             taskView.Controls.Add(smartButton3);
-            taskView.Location = new Point(315, 254);
+            taskView.Location = new Point(276, 189);
+            taskView.Margin = new Padding(3, 2, 3, 2);
             taskView.Name = "taskView";
-            taskView.Size = new Size(286, 52);
+            taskView.Size = new Size(250, 39);
             taskView.TabIndex = 37;
             // 
             // smartButton3
@@ -443,9 +451,10 @@
             smartButton3.FlatAppearance.BorderSize = 0;
             smartButton3.FlatStyle = FlatStyle.Flat;
             smartButton3.ForeColor = Color.White;
-            smartButton3.Location = new Point(227, 6);
+            smartButton3.Location = new Point(199, 4);
+            smartButton3.Margin = new Padding(3, 2, 3, 2);
             smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(59, 42);
+            smartButton3.Size = new Size(52, 32);
             smartButton3.TabIndex = 0;
             smartButton3.Text = "S";
             smartButton3.UseVisualStyleBackColor = false;
@@ -455,18 +464,20 @@
             // 
             panel7.BackColor = Color.DarkGray;
             panel7.Dock = DockStyle.Top;
-            panel7.Location = new Point(10, 66);
+            panel7.Location = new Point(9, 51);
+            panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1019, 1);
+            panel7.Size = new Size(891, 1);
             panel7.TabIndex = 32;
             // 
             // panel4
             // 
             panel4.BackColor = Color.White;
             panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(10, 51);
+            panel4.Location = new Point(9, 40);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1019, 15);
+            panel4.Size = new Size(891, 11);
             panel4.TabIndex = 31;
             // 
             // label14
@@ -475,10 +486,10 @@
             label14.Dock = DockStyle.Top;
             label14.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.FromArgb(13, 13, 13);
-            label14.Location = new Point(10, 20);
+            label14.Location = new Point(9, 15);
             label14.Name = "label14";
-            label14.Padding = new Padding(10, 0, 0, 0);
-            label14.Size = new Size(191, 31);
+            label14.Padding = new Padding(9, 0, 0, 0);
+            label14.Size = new Size(160, 25);
             label14.TabIndex = 29;
             label14.Text = "Session Control";
             // 
@@ -493,10 +504,11 @@
             customCard4.Controls.Add(panel2);
             customCard4.Controls.Add(panel1);
             customCard4.Controls.Add(label16);
-            customCard4.Location = new Point(3, 611);
+            customCard4.Location = new Point(3, 458);
+            customCard4.Margin = new Padding(3, 2, 3, 2);
             customCard4.Name = "customCard4";
-            customCard4.Padding = new Padding(10, 20, 10, 11);
-            customCard4.Size = new Size(811, 337);
+            customCard4.Padding = new Padding(9, 15, 9, 8);
+            customCard4.Size = new Size(710, 253);
             customCard4.TabIndex = 25;
             // 
             // tbllayoutpanel_realtime_activity
@@ -506,22 +518,24 @@
             tbllayoutpanel_realtime_activity.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tbllayoutpanel_realtime_activity.Controls.Add(logsContaier, 0, 1);
             tbllayoutpanel_realtime_activity.Dock = DockStyle.Fill;
-            tbllayoutpanel_realtime_activity.Location = new Point(10, 67);
+            tbllayoutpanel_realtime_activity.Location = new Point(9, 52);
+            tbllayoutpanel_realtime_activity.Margin = new Padding(3, 2, 3, 2);
             tbllayoutpanel_realtime_activity.Name = "tbllayoutpanel_realtime_activity";
-            tbllayoutpanel_realtime_activity.Padding = new Padding(10, 20, 21, 20);
+            tbllayoutpanel_realtime_activity.Padding = new Padding(9, 15, 18, 15);
             tbllayoutpanel_realtime_activity.RowCount = 2;
             tbllayoutpanel_realtime_activity.RowStyles.Add(new RowStyle());
             tbllayoutpanel_realtime_activity.RowStyles.Add(new RowStyle());
-            tbllayoutpanel_realtime_activity.Size = new Size(791, 259);
+            tbllayoutpanel_realtime_activity.Size = new Size(692, 193);
             tbllayoutpanel_realtime_activity.TabIndex = 27;
             // 
             // logsContaier
             // 
             logsContaier.AutoScroll = true;
             logsContaier.FlowDirection = FlowDirection.TopDown;
-            logsContaier.Location = new Point(13, 23);
+            logsContaier.Location = new Point(12, 17);
+            logsContaier.Margin = new Padding(3, 2, 3, 2);
             logsContaier.Name = "logsContaier";
-            logsContaier.Size = new Size(754, 233);
+            logsContaier.Size = new Size(659, 175);
             logsContaier.TabIndex = 0;
             logsContaier.WrapContents = false;
             // 
@@ -529,18 +543,20 @@
             // 
             panel2.BackColor = Color.DarkGray;
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(10, 66);
+            panel2.Location = new Point(9, 51);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(791, 1);
+            panel2.Size = new Size(692, 1);
             panel2.TabIndex = 30;
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(10, 51);
+            panel1.Location = new Point(9, 40);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(791, 15);
+            panel1.Size = new Size(692, 11);
             panel1.TabIndex = 29;
             // 
             // label16
@@ -549,10 +565,10 @@
             label16.Dock = DockStyle.Top;
             label16.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label16.ForeColor = Color.FromArgb(13, 13, 13);
-            label16.Location = new Point(10, 20);
+            label16.Location = new Point(9, 15);
             label16.Name = "label16";
-            label16.Padding = new Padding(10, 0, 0, 0);
-            label16.Size = new Size(160, 31);
+            label16.Padding = new Padding(9, 0, 0, 0);
+            label16.Size = new Size(134, 25);
             label16.TabIndex = 28;
             label16.Text = "Session Logs";
             // 
@@ -562,8 +578,9 @@
             panel3.Controls.Add(label5);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1083, 156);
+            panel3.Size = new Size(948, 117);
             panel3.TabIndex = 26;
             // 
             // flowLayoutPanel1
@@ -571,20 +588,22 @@
             flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Controls.Add(customCard2);
             flowLayoutPanel1.Controls.Add(customCard4);
-            flowLayoutPanel1.Location = new Point(8, 162);
+            flowLayoutPanel1.Location = new Point(7, 122);
+            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1042, 548);
+            flowLayoutPanel1.Size = new Size(912, 411);
             flowLayoutPanel1.TabIndex = 27;
             // 
             // TempSessionManagement
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             Controls.Add(flowLayoutPanel1);
             Controls.Add(panel3);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TempSessionManagement";
-            Size = new Size(1083, 713);
+            Size = new Size(948, 535);
             Load += TempSessionManagement_Load;
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
