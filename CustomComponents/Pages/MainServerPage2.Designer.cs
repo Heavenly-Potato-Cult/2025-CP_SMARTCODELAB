@@ -51,7 +51,7 @@
             container.Multiline = true;
             container.Name = "container";
             container.SelectedIndex = 0;
-            container.Size = new Size(1476, 671);
+            container.Size = new Size(1484, 690);
             container.TabIndex = 1;
             // 
             // tabPage1
@@ -60,7 +60,7 @@
             tabPage1.Margin = new Padding(3, 2, 3, 2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(1468, 643);
+            tabPage1.Size = new Size(1476, 662);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -106,7 +106,7 @@
             panelNavHost2.Location = new Point(0, 0);
             panelNavHost2.Margin = new Padding(0);
             panelNavHost2.Name = "panelNavHost2";
-            panelNavHost2.Size = new Size(1476, 36);
+            panelNavHost2.Size = new Size(1484, 36);
             panelNavHost2.TabIndex = 2;
             // 
             // MainServerPage2
@@ -118,7 +118,7 @@
             Controls.Add(panelNavHost2);
             Margin = new Padding(3, 2, 3, 2);
             Name = "MainServerPage2";
-            Size = new Size(1476, 707);
+            Size = new Size(1484, 726);
             container.ResumeLayout(false);
             ResumeLayout(false);
         }

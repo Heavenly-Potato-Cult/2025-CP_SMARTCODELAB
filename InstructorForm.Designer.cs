@@ -37,10 +37,10 @@
             tempServerPage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempServerPage();
             tabPage3 = new TabPage();
             serverTaskUpdate1 = new SmartCodeLab.CustomComponents.Pages.ServerPages.ServerTaskUpdate();
-            tabPage4 = new TabPage();
-            studentTable21 = new SmartCodeLab.CustomComponents.Pages.ServerPages.StudentTable2();
             tabPage5 = new TabPage();
             progressSubmissionPage1 = new SmartCodeLab.CustomComponents.Pages.ServerPages.ProgressSubmissionPage();
+            tabPage4 = new TabPage();
+            studentTable21 = new SmartCodeLab.CustomComponents.Pages.ServerPages.StudentTable2();
             tabPage9 = new TabPage();
             label5 = new Label();
             tabcontrol_MainNav = new SmartCodeLab.CustomComponents.GeneralComponents.SmoothTabControl();
@@ -54,8 +54,8 @@
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
-            tabPage4.SuspendLayout();
             tabPage5.SuspendLayout();
+            tabPage4.SuspendLayout();
             tabPage9.SuspendLayout();
             tabcontrol_MainNav.SuspendLayout();
             tabPage10.SuspendLayout();
@@ -89,8 +89,8 @@
             tabcontrol_session.Controls.Add(tabPage1);
             tabcontrol_session.Controls.Add(tabPage2);
             tabcontrol_session.Controls.Add(tabPage3);
-            tabcontrol_session.Controls.Add(tabPage4);
             tabcontrol_session.Controls.Add(tabPage5);
+            tabcontrol_session.Controls.Add(tabPage4);
             tabcontrol_session.Controls.Add(tabPage9);
             tabcontrol_session.Depth = 0;
             tabcontrol_session.Dock = DockStyle.Fill;
@@ -167,6 +167,27 @@
             serverTaskUpdate1.Size = new Size(1186, 629);
             serverTaskUpdate1.TabIndex = 0;
             // 
+            // tabPage5
+            // 
+            tabPage5.AutoScroll = true;
+            tabPage5.Controls.Add(progressSubmissionPage1);
+            tabPage5.Location = new Point(4, 24);
+            tabPage5.Margin = new Padding(2);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(1464, 620);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "tabPage5";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // progressSubmissionPage1
+            // 
+            progressSubmissionPage1.BackColor = Color.Gray;
+            progressSubmissionPage1.Location = new Point(127, 35);
+            progressSubmissionPage1.Margin = new Padding(3, 2, 3, 2);
+            progressSubmissionPage1.Name = "progressSubmissionPage1";
+            progressSubmissionPage1.Size = new Size(1192, 1416);
+            progressSubmissionPage1.TabIndex = 0;
+            // 
             // tabPage4
             // 
             tabPage4.Controls.Add(studentTable21);
@@ -186,26 +207,6 @@
             studentTable21.Name = "studentTable21";
             studentTable21.Size = new Size(1284, 874);
             studentTable21.TabIndex = 0;
-            // 
-            // tabPage5
-            // 
-            tabPage5.AutoScroll = true;
-            tabPage5.Controls.Add(progressSubmissionPage1);
-            tabPage5.Location = new Point(4, 24);
-            tabPage5.Margin = new Padding(2);
-            tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1464, 620);
-            tabPage5.TabIndex = 4;
-            tabPage5.Text = "tabPage5";
-            tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // progressSubmissionPage1
-            // 
-            progressSubmissionPage1.Location = new Point(127, 35);
-            progressSubmissionPage1.Margin = new Padding(3, 2, 3, 2);
-            progressSubmissionPage1.Name = "progressSubmissionPage1";
-            progressSubmissionPage1.Size = new Size(1192, 1416);
-            progressSubmissionPage1.TabIndex = 0;
             // 
             // tabPage9
             // 
@@ -288,10 +289,10 @@
             // tabPage8
             // 
             tabPage8.BackColor = Color.Tomato;
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 44);
             tabPage8.Margin = new Padding(2);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1476, 698);
+            tabPage8.Size = new Size(192, 52);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "tabPage8";
             tabPage8.Enter += tabPage8_Enter;
@@ -325,8 +326,8 @@
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
-            tabPage4.ResumeLayout(false);
             tabPage5.ResumeLayout(false);
+            tabPage4.ResumeLayout(false);
             tabPage9.ResumeLayout(false);
             tabPage9.PerformLayout();
             tabcontrol_MainNav.ResumeLayout(false);
