@@ -20,20 +20,20 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         #region Public Properties
 
-       
+
         [Category("Appearance")]
         [Description("The main title text shown in the header.")]
-        [DefaultValue("")] 
+        [DefaultValue("")]
         public string Title
         {
             get => lblTitle1.Text;
             set => lblTitle1.Text = value;
         }
 
-        
+
         [Category("Appearance")]
         [Description("The subtitle text shown next to the main title.")]
-        [DefaultValue("")] 
+        [DefaultValue("")]
         public string Subtitle
         {
             get => lblTitle2.Text;
@@ -44,7 +44,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             }
         }
 
-        
+
         [Category("Layout")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public Panel ContentPanel
@@ -52,16 +52,16 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             get => contentPanel;
         }
 
-        
+
         [Category("Appearance")]
         [Description("Controls whether the panel is in its collapsed state.")]
-        [DefaultValue(false)] 
+        [DefaultValue(false)]
         public bool Collapsed
         {
             get => !_isExpanded;
             set
             {
-              
+
                 if (value == !_isExpanded)
                 {
                     return;
@@ -92,7 +92,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             lblTitle1.Click += TogglePanel_Click;
             lblTitle2.Click += TogglePanel_Click;
 
-            
+
             if (Collapsed)
             {
                 Collapse();
@@ -103,14 +103,14 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             }
         }
 
-        
+
         private void TogglePanel_Click(object sender, EventArgs e)
         {
-            
+
             this.Collapsed = !this.Collapsed;
         }
 
-        
+
         public void Expand()
         {
             _isExpanded = true;
@@ -119,11 +119,11 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             lblIcon.Text = "v";
         }
 
-        
+
         public void Collapse()
         {
-            
-            if (_isExpanded) 
+
+            if (_isExpanded)
             {
                 _expandedHeight = this.Height;
             }
@@ -132,6 +132,11 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             this.Height = _collapsedHeight;
             contentPanel.Visible = false;
             lblIcon.Text = ">";
+        }
+
+        private void lblIcon_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

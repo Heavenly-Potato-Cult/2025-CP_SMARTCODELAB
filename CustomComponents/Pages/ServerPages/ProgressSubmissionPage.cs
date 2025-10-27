@@ -9,13 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 
 namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
     public partial class ProgressSubmissionPage : UserControl
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Dictionary<string, StudentSubmittedIcon> codeSubmission {  get; private set; }
+        public Dictionary<string, StudentSubmittedIcon> codeSubmission { get; private set; }
         private int submittedCount;
 
         public ProgressSubmissionPage(List<SubmittedCode> codeSubmissions)
@@ -23,9 +24,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             InitializeComponent();
             codeSubmission = new Dictionary<string, StudentSubmittedIcon>();
             submitCount.Text = codeSubmissions.Count.ToString();
-            Load += (sender, e) => 
+            Load += (sender, e) =>
             {
-                codeSubmissions.ForEach(submissionIcon => 
+                codeSubmissions.ForEach(submissionIcon =>
                 {
                     StudentSubmitted(submissionIcon);
                 });
@@ -64,9 +65,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 {
                     submittedCount++;
                     var updateDisplayAction = new Action(() => UpdateDisplay(submitted.progress, submitted.user));
-                    codeSubmission.Add(submitted.user._studentId, 
+                    codeSubmission.Add(submitted.user._studentId,
                         new StudentSubmittedIcon(submitted, submittedCount, updateDisplayAction));
-                    this.Invoke((Action)(() => { 
+                    this.Invoke((Action)(() =>
+                    {
                         submittedContainer.Controls.Add(codeSubmission[submitted.user._studentId]);
                         submitCount.Text = (int.Parse(submitCount.Text) + 1).ToString();
                     }
@@ -82,7 +84,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private Task UpdateDisplay(StudentCodingProgress progress, UserProfile student)
         {
-            this.Invoke((Action)(() => 
+            this.Invoke((Action)(() =>
             {
                 studentName.Text = student._studentName;
                 score.Text = progress.codeRating.totalRating.ToString();
@@ -90,6 +92,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }));
 
             return Task.CompletedTask;
+        }
+
+        private void btn_viewmore_Click(object sender, EventArgs e)
+        {
+            var ViewMoreForm = new ViewMoreSubmissionsForm();
+            ViewMoreForm.ShowDialog();
         }
     }
 }

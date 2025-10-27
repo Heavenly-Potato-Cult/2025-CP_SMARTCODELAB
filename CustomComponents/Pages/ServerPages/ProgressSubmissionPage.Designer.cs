@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "Readbility", "20" }, -1);
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "Efficiency", "30" }, -1);
-            ListViewItem listViewItem3 = new ListViewItem(new string[] { "Complexity", "50" }, -1);
-            ListViewItem listViewItem4 = new ListViewItem(new string[] { "Total", "100" }, -1);
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressSubmissionPage));
+            ListViewItem listViewItem6 = new ListViewItem(new string[] { "Accurary", "50" }, -1);
+            ListViewItem listViewItem7 = new ListViewItem(new string[] { "Readbility", "20" }, -1);
+            ListViewItem listViewItem8 = new ListViewItem(new string[] { "Efficiency", "30" }, -1);
+            ListViewItem listViewItem9 = new ListViewItem(new string[] { "Complexity", "20" }, -1);
+            ListViewItem listViewItem10 = new ListViewItem(new string[] { "Total", "100" }, -1);
             label11 = new Label();
             customComboBox2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             customTextBox2 = new CustomTextBox();
@@ -51,18 +54,19 @@
             studentName = new Label();
             submitCount = new Label();
             flowLayoutPanel2 = new FlowLayoutPanel();
-            expansionPanel1 = new SmartCodeLab.CustomComponents.GeneralComponents.ExpansionPanel();
-            expansionPanel2 = new SmartCodeLab.CustomComponents.GeneralComponents.ExpansionPanel();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            materialExpansionPanel1 = new MaterialSkin.Controls.MaterialExpansionPanel();
+            studentCode = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            materialExpansionPanel3 = new MaterialSkin.Controls.MaterialExpansionPanel();
+            btn_viewmore = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             materialListView1 = new MaterialSkin.Controls.MaterialListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
-            studentCode = new TextBox();
             customCard7.SuspendLayout();
             customCard2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
-            expansionPanel1.SuspendLayout();
-            expansionPanel2.SuspendLayout();
+            materialExpansionPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
+            materialExpansionPanel3.SuspendLayout();
             SuspendLayout();
             // 
             // label11
@@ -292,73 +296,104 @@
             // flowLayoutPanel2
             // 
             flowLayoutPanel2.AutoSize = true;
-            flowLayoutPanel2.Controls.Add(expansionPanel1);
-            flowLayoutPanel2.Controls.Add(expansionPanel2);
+            flowLayoutPanel2.Controls.Add(materialExpansionPanel1);
+            flowLayoutPanel2.Controls.Add(materialExpansionPanel3);
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(546, 244);
+            flowLayoutPanel2.Location = new Point(546, 241);
             flowLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(620, 751);
+            flowLayoutPanel2.Size = new Size(633, 751);
             flowLayoutPanel2.TabIndex = 92;
             // 
-            // expansionPanel1
+            // materialExpansionPanel1
             // 
-            expansionPanel1.BorderStyle = BorderStyle.FixedSingle;
+            materialExpansionPanel1.BackColor = Color.FromArgb(255, 255, 255);
+            materialExpansionPanel1.CancelButtonText = "";
+            materialExpansionPanel1.Collapse = true;
+            materialExpansionPanel1.Controls.Add(studentCode);
+            materialExpansionPanel1.Depth = 0;
+            materialExpansionPanel1.Description = "";
+            materialExpansionPanel1.ExpandHeight = 294;
+            materialExpansionPanel1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialExpansionPanel1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialExpansionPanel1.Location = new Point(16, 1);
+            materialExpansionPanel1.Margin = new Padding(16, 1, 16, 0);
+            materialExpansionPanel1.MouseState = MaterialSkin.MouseState.HOVER;
+            materialExpansionPanel1.Name = "materialExpansionPanel1";
+            materialExpansionPanel1.Padding = new Padding(24, 64, 24, 16);
+            materialExpansionPanel1.Size = new Size(601, 48);
+            materialExpansionPanel1.TabIndex = 93;
+            materialExpansionPanel1.Title = "Student Code";
+            materialExpansionPanel1.ValidationButtonText = "";
             // 
+            // studentCode
             // 
+            studentCode.AutoCompleteBracketsList = new char[]
+    {
+    '(',
+    ')',
+    '{',
+    '}',
+    '[',
+    ']',
+    '"',
+    '"',
+    '\'',
+    '\''
+    };
+            studentCode.AutoScrollMinSize = new Size(115, 14);
+            studentCode.BackBrush = null;
+            studentCode.BorderStyle = BorderStyle.FixedSingle;
+            studentCode.CharHeight = 14;
+            studentCode.CharWidth = 8;
+            studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
+            studentCode.IsReplaceMode = false;
+            studentCode.Location = new Point(27, 67);
+            studentCode.Name = "studentCode";
+            studentCode.Paddings = new Padding(0);
+            studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
+            studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
+            studentCode.Size = new Size(547, 159);
+            studentCode.TabIndex = 2;
+            studentCode.Text = "codeEditor1";
+            studentCode.Zoom = 100;
             // 
-            expansionPanel1.ContentPanel.BackColor = Color.White;
-            expansionPanel1.ContentPanel.Cursor = Cursors.Hand;
-            expansionPanel1.ContentPanel.Dock = DockStyle.Fill;
-            expansionPanel1.ContentPanel.Location = new Point(0, 48);
-            expansionPanel1.ContentPanel.Name = "contentPanel";
-            expansionPanel1.ContentPanel.Size = new Size(582, 266);
-            expansionPanel1.ContentPanel.TabIndex = 1;
-            expansionPanel1.Controls.Add(studentCode);
-            expansionPanel1.Location = new Point(16, 16);
-            expansionPanel1.Margin = new Padding(16, 16, 16, 0);
-            expansionPanel1.Name = "expansionPanel1";
-            expansionPanel1.Size = new Size(584, 316);
-            expansionPanel1.Subtitle = "1";
-            expansionPanel1.TabIndex = 93;
-            expansionPanel1.Title = "Student Code";
+            // materialExpansionPanel3
             // 
-            // expansionPanel2
+            materialExpansionPanel3.BackColor = Color.FromArgb(255, 255, 255);
+            materialExpansionPanel3.CancelButtonText = "";
+            materialExpansionPanel3.Controls.Add(btn_viewmore);
+            materialExpansionPanel3.Controls.Add(materialListView1);
+            materialExpansionPanel3.Depth = 0;
+            materialExpansionPanel3.Description = "";
+            materialExpansionPanel3.ExpandHeight = 294;
+            materialExpansionPanel3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialExpansionPanel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialExpansionPanel3.Location = new Point(16, 65);
+            materialExpansionPanel3.Margin = new Padding(16);
+            materialExpansionPanel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialExpansionPanel3.Name = "materialExpansionPanel3";
+            materialExpansionPanel3.Padding = new Padding(24, 64, 24, 16);
+            materialExpansionPanel3.Size = new Size(601, 294);
+            materialExpansionPanel3.TabIndex = 95;
+            materialExpansionPanel3.Title = "Scores";
+            materialExpansionPanel3.ValidationButtonText = "";
             // 
-            expansionPanel2.BorderStyle = BorderStyle.FixedSingle;
+            // btn_viewmore
             // 
-            // 
-            // 
-            expansionPanel2.ContentPanel.BackColor = Color.White;
-            expansionPanel2.ContentPanel.Cursor = Cursors.Hand;
-            expansionPanel2.ContentPanel.Dock = DockStyle.Fill;
-            expansionPanel2.ContentPanel.Location = new Point(0, 48);
-            expansionPanel2.ContentPanel.Name = "contentPanel";
-            expansionPanel2.ContentPanel.Size = new Size(582, 266);
-            expansionPanel2.ContentPanel.TabIndex = 1;
-            expansionPanel2.Controls.Add(smartButton1);
-            expansionPanel2.Controls.Add(materialListView1);
-            expansionPanel2.Location = new Point(16, 332);
-            expansionPanel2.Margin = new Padding(16, 0, 16, 16);
-            expansionPanel2.Name = "expansionPanel2";
-            expansionPanel2.Size = new Size(584, 316);
-            expansionPanel2.Subtitle = "1";
-            expansionPanel2.TabIndex = 94;
-            expansionPanel2.Title = "Score Results";
-            // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 10;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(350, 235);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(202, 40);
-            smartButton1.TabIndex = 3;
-            smartButton1.Text = "View More";
-            smartButton1.UseVisualStyleBackColor = false;
+            btn_viewmore.BackColor = Color.MediumSlateBlue;
+            btn_viewmore.BorderRadius = 5;
+            btn_viewmore.FlatAppearance.BorderSize = 0;
+            btn_viewmore.FlatStyle = FlatStyle.Flat;
+            btn_viewmore.ForeColor = Color.White;
+            btn_viewmore.Location = new Point(50, 235);
+            btn_viewmore.Name = "btn_viewmore";
+            btn_viewmore.Size = new Size(283, 40);
+            btn_viewmore.TabIndex = 3;
+            btn_viewmore.Text = "View More";
+            btn_viewmore.UseVisualStyleBackColor = false;
+            btn_viewmore.Click += btn_viewmore_Click;
             // 
             // materialListView1
             // 
@@ -369,15 +404,15 @@
             materialListView1.Depth = 0;
             materialListView1.Font = new Font("Microsoft Sans Serif", 14.25F);
             materialListView1.FullRowSelect = true;
-            materialListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4 });
-            materialListView1.Location = new Point(29, 63);
+            materialListView1.Items.AddRange(new ListViewItem[] { listViewItem6, listViewItem7, listViewItem8, listViewItem9, listViewItem10 });
+            materialListView1.Location = new Point(50, 51);
             materialListView1.MinimumSize = new Size(200, 100);
             materialListView1.MouseLocation = new Point(-1, -1);
             materialListView1.MouseState = MaterialSkin.MouseState.OUT;
             materialListView1.Name = "materialListView1";
             materialListView1.OwnerDraw = true;
             materialListView1.Scrollable = false;
-            materialListView1.Size = new Size(500, 140);
+            materialListView1.Size = new Size(500, 168);
             materialListView1.TabIndex = 2;
             materialListView1.UseCompatibleStateImageBehavior = false;
             materialListView1.View = View.Details;
@@ -391,15 +426,6 @@
             // 
             columnHeader2.Text = "Scores";
             columnHeader2.Width = 100;
-            // 
-            // studentCode
-            // 
-            studentCode.BackColor = Color.Gainsboro;
-            studentCode.Location = new Point(13, 59);
-            studentCode.Multiline = true;
-            studentCode.Name = "studentCode";
-            studentCode.Size = new Size(554, 214);
-            studentCode.TabIndex = 2;
             // 
             // ProgressSubmissionPage
             // 
@@ -418,15 +444,17 @@
             Controls.Add(label3);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ProgressSubmissionPage";
-            Size = new Size(1192, 1416);
+            Size = new Size(1192, 1130);
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
-            expansionPanel1.ResumeLayout(false);
-            expansionPanel1.PerformLayout();
-            expansionPanel2.ResumeLayout(false);
+            materialExpansionPanel1.ResumeLayout(false);
+            materialExpansionPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();
+            materialExpansionPanel3.ResumeLayout(false);
+            materialExpansionPanel3.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -457,7 +485,9 @@
         private MaterialSkin.Controls.MaterialListView materialListView1;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
-        private GeneralComponents.SmartButton smartButton1;
-        private TextBox studentCode;
+        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel1;
+        private ProgrammingTabs.CodeEditor studentCode;
+        private GeneralComponents.SmartButton btn_viewmore;
+        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel3;
     }
 }

@@ -102,6 +102,7 @@
             lblIcon.TabIndex = 0;
             lblIcon.Text = "v";
             lblIcon.TextAlign = ContentAlignment.MiddleCenter;
+            lblIcon.Click += lblIcon_Click;
             // 
             // contentPanel
             // 
