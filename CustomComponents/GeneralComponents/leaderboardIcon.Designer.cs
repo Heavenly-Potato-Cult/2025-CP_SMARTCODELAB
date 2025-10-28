@@ -28,44 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label14 = new Label();
-            label1 = new Label();
-            label2 = new Label();
+            ranking = new Label();
+            name = new Label();
+            studscore = new Label();
             SuspendLayout();
             // 
-            // label14
+            // ranking
             // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label14.ForeColor = Color.Black;
-            label14.Location = new Point(12, 11);
-            label14.Name = "label14";
-            label14.Size = new Size(23, 25);
-            label14.TabIndex = 15;
-            label14.Text = "1";
+            ranking.AutoSize = true;
+            ranking.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ranking.ForeColor = Color.Black;
+            ranking.Location = new Point(14, 11);
+            ranking.Name = "ranking";
+            ranking.Size = new Size(23, 25);
+            ranking.TabIndex = 15;
+            ranking.Text = "1";
             // 
-            // label1
+            // name
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(76, 11);
-            label1.Name = "label1";
-            label1.Size = new Size(149, 25);
-            label1.TabIndex = 16;
-            label1.Text = "Clifford Magno";
+            name.AutoSize = true;
+            name.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            name.ForeColor = Color.Black;
+            name.Location = new Point(78, 11);
+            name.Name = "name";
+            name.Size = new Size(149, 25);
+            name.TabIndex = 16;
+            name.Text = "Clifford Magno";
             // 
-            // label2
+            // studscore
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Black;
-            label2.Location = new Point(400, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(45, 25);
-            label2.TabIndex = 17;
-            label2.Text = "100";
+            studscore.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            studscore.AutoSize = true;
+            studscore.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            studscore.ForeColor = Color.Black;
+            studscore.Location = new Point(402, 11);
+            studscore.Name = "studscore";
+            studscore.Size = new Size(45, 25);
+            studscore.TabIndex = 17;
+            studscore.Text = "100";
             // 
             // leaderboardIcon
             // 
@@ -73,9 +73,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Gold;
             BorderRadius = 5;
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(label14);
+            Controls.Add(studscore);
+            Controls.Add(name);
+            Controls.Add(ranking);
             Name = "leaderboardIcon";
             Size = new Size(461, 47);
             ResumeLayout(false);
@@ -84,8 +84,8 @@
 
         #endregion
 
-        private Label label14;
-        private Label label1;
-        private Label label2;
+        private Label ranking;
+        private Label name;
+        private Label studscore;
     }
 }

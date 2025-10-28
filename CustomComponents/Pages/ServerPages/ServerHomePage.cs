@@ -161,5 +161,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         {
 
         }
+
+        private void btn_viewstudents_Click(object sender, EventArgs e)
+        {
+            var StudTable = new CustomDialogs.StudentTable.StudTable();
+            StudTable.ShowDialog();
+        }
     }
 }

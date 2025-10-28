@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
@@ -50,7 +51,41 @@ namespace SmartCodeLab
         {
             InitializeComponent();
             InitializeWPFTree();
+            AddLeaderboardIcon(1, "Alice", 100);
+            AddLeaderboardIcon(2, "Bob", 50);
+            AddLeaderboardIcon(3, "Charles", 30);
+            // ...
+            AddLeaderboardIcon(6, "David", 79);
 
+        }
+
+        private void AddLeaderboardIcon(int ranking, string playerName, int score)
+        {
+            
+            var newIcon = new leaderboardIcon();
+
+          
+            newIcon.Dock = DockStyle.Top;
+
+         
+            newIcon.Ranking = ranking;
+            newIcon.Name = playerName;
+            newIcon.Score = score;
+
+            
+            if (ranking >= 1 && ranking <= 5)
+            {
+                newIcon.BackColor = System.Drawing.Color.Gold;
+            }
+            else
+            {
+                newIcon.BackColor = System.Drawing.Color.Silver;
+            }
+
+            panel_leaderboards.Controls.Add(newIcon);
+
+           
+            newIcon.BringToFront();
         }
 
         public TempIDE(string userName, TaskModel task, StudentCodingProgress progress, NetworkStream client)

@@ -33,6 +33,10 @@
             label6 = new Label();
             customCard24 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             tableLayoutPanel1 = new TableLayoutPanel();
+            pictureBox6 = new PictureBox();
+            label5 = new Label();
+            pictureBox5 = new PictureBox();
+            btn_viewstudents = new Label();
             pictureBox13 = new PictureBox();
             pictureBox14 = new PictureBox();
             pictureBox15 = new PictureBox();
@@ -65,24 +69,22 @@
             panel_line = new Panel();
             label45 = new Label();
             label44 = new Label();
-            customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            pictureBox1 = new PictureBox();
-            label2 = new Label();
-            activeCount = new Label();
-            customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            pictureBox2 = new PictureBox();
-            label4 = new Label();
-            submissionCount = new Label();
-            customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            pictureBox3 = new PictureBox();
-            label7 = new Label();
-            label8 = new Label();
-            customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            pictureBox4 = new PictureBox();
-            label9 = new Label();
-            label10 = new Label();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            panel7 = new Panel();
+            customCard4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            customCard3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            customCard2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            customCard1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
+            panel6.SuspendLayout();
             customCard24.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
@@ -92,14 +94,8 @@
             panel7.SuspendLayout();
             customCard7.SuspendLayout();
             panel8.SuspendLayout();
-            customCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            customCard2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            customCard3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            customCard4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            tableLayoutPanel3.SuspendLayout();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -135,11 +131,11 @@
             customCard24.Controls.Add(panel3);
             customCard24.Controls.Add(panel2);
             customCard24.Controls.Add(label64);
-            customCard24.Location = new Point(886, 226);
+            customCard24.Location = new Point(9, 7);
             customCard24.Margin = new Padding(3, 2, 3, 2);
             customCard24.Name = "customCard24";
             customCard24.Padding = new Padding(4, 8, 4, 8);
-            customCard24.Size = new Size(358, 209);
+            customCard24.Size = new Size(358, 264);
             customCard24.TabIndex = 18;
             // 
             // tableLayoutPanel1
@@ -147,6 +143,10 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.6029005F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85.3970947F));
+            tableLayoutPanel1.Controls.Add(pictureBox6, 0, 5);
+            tableLayoutPanel1.Controls.Add(label5, 1, 5);
+            tableLayoutPanel1.Controls.Add(pictureBox5, 0, 4);
+            tableLayoutPanel1.Controls.Add(btn_viewstudents, 1, 4);
             tableLayoutPanel1.Controls.Add(pictureBox13, 0, 0);
             tableLayoutPanel1.Controls.Add(pictureBox14, 0, 1);
             tableLayoutPanel1.Controls.Add(pictureBox15, 0, 2);
@@ -160,14 +160,62 @@
             tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.Padding = new Padding(18, 8, 18, 8);
-            tableLayoutPanel1.RowCount = 4;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tableLayoutPanel1.Size = new Size(350, 161);
+            tableLayoutPanel1.RowCount = 6;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.Size = new Size(350, 216);
             tableLayoutPanel1.TabIndex = 30;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(21, 175);
+            pictureBox6.Margin = new Padding(3, 2, 3, 2);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(32, 22);
+            pictureBox6.TabIndex = 31;
+            pictureBox6.TabStop = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(13, 13, 13);
+            label5.Location = new Point(66, 173);
+            label5.Name = "label5";
+            label5.Padding = new Padding(0, 2, 0, 0);
+            label5.Size = new Size(44, 23);
+            label5.TabIndex = 30;
+            label5.Text = "Save";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(21, 142);
+            pictureBox5.Margin = new Padding(3, 2, 3, 2);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(32, 22);
+            pictureBox5.TabIndex = 29;
+            pictureBox5.TabStop = false;
+            // 
+            // btn_viewstudents
+            // 
+            btn_viewstudents.AutoSize = true;
+            btn_viewstudents.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_viewstudents.ForeColor = Color.FromArgb(13, 13, 13);
+            btn_viewstudents.Location = new Point(66, 140);
+            btn_viewstudents.Name = "btn_viewstudents";
+            btn_viewstudents.Padding = new Padding(0, 2, 0, 0);
+            btn_viewstudents.Size = new Size(114, 23);
+            btn_viewstudents.TabIndex = 28;
+            btn_viewstudents.Text = "View Students";
+            btn_viewstudents.TextAlign = ContentAlignment.MiddleCenter;
+            btn_viewstudents.Click += btn_viewstudents_Click;
             // 
             // pictureBox13
             // 
@@ -182,7 +230,7 @@
             // pictureBox14
             // 
             pictureBox14.Image = (Image)resources.GetObject("pictureBox14.Image");
-            pictureBox14.Location = new Point(21, 46);
+            pictureBox14.Location = new Point(21, 43);
             pictureBox14.Margin = new Padding(3, 2, 3, 2);
             pictureBox14.Name = "pictureBox14";
             pictureBox14.Size = new Size(32, 22);
@@ -192,7 +240,7 @@
             // pictureBox15
             // 
             pictureBox15.Image = (Image)resources.GetObject("pictureBox15.Image");
-            pictureBox15.Location = new Point(21, 82);
+            pictureBox15.Location = new Point(21, 76);
             pictureBox15.Margin = new Padding(3, 2, 3, 2);
             pictureBox15.Name = "pictureBox15";
             pictureBox15.Size = new Size(32, 22);
@@ -202,7 +250,7 @@
             // pictureBox16
             // 
             pictureBox16.Image = (Image)resources.GetObject("pictureBox16.Image");
-            pictureBox16.Location = new Point(21, 118);
+            pictureBox16.Location = new Point(21, 109);
             pictureBox16.Margin = new Padding(3, 2, 3, 2);
             pictureBox16.Name = "pictureBox16";
             pictureBox16.Size = new Size(32, 22);
@@ -214,7 +262,7 @@
             label60.AutoSize = true;
             label60.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label60.ForeColor = Color.FromArgb(13, 13, 13);
-            label60.Location = new Point(66, 116);
+            label60.Location = new Point(66, 107);
             label60.Name = "label60";
             label60.Padding = new Padding(0, 2, 0, 0);
             label60.Size = new Size(152, 23);
@@ -227,7 +275,7 @@
             label61.AutoSize = true;
             label61.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label61.ForeColor = Color.FromArgb(13, 13, 13);
-            label61.Location = new Point(66, 80);
+            label61.Location = new Point(66, 74);
             label61.Name = "label61";
             label61.Padding = new Padding(0, 2, 0, 0);
             label61.Size = new Size(104, 23);
@@ -240,7 +288,7 @@
             label62.AutoSize = true;
             label62.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label62.ForeColor = Color.FromArgb(13, 13, 13);
-            label62.Location = new Point(66, 44);
+            label62.Location = new Point(66, 41);
             label62.Name = "label62";
             label62.Padding = new Padding(0, 2, 0, 0);
             label62.Size = new Size(139, 23);
@@ -305,7 +353,7 @@
             customCard23.Controls.Add(panel5);
             customCard23.Controls.Add(panel4);
             customCard23.Controls.Add(label59);
-            customCard23.Location = new Point(886, 504);
+            customCard23.Location = new Point(9, 284);
             customCard23.Margin = new Padding(3, 2, 3, 2);
             customCard23.Name = "customCard23";
             customCard23.Padding = new Padding(4, 8, 4, 8);
@@ -469,7 +517,7 @@
             customCard7.Margin = new Padding(3, 2, 44, 2);
             customCard7.Name = "customCard7";
             customCard7.Padding = new Padding(4, 8, 4, 15);
-            customCard7.Size = new Size(583, 442);
+            customCard7.Size = new Size(606, 477);
             customCard7.TabIndex = 18;
             // 
             // panel8
@@ -482,7 +530,7 @@
             panel8.Location = new Point(4, 40);
             panel8.Margin = new Padding(3, 15, 3, 2);
             panel8.Name = "panel8";
-            panel8.Size = new Size(575, 387);
+            panel8.Size = new Size(598, 419);
             panel8.TabIndex = 24;
             // 
             // notifContainer
@@ -502,7 +550,7 @@
             notifContainer.RowStyles.Add(new RowStyle());
             notifContainer.RowStyles.Add(new RowStyle());
             notifContainer.RowStyles.Add(new RowStyle());
-            notifContainer.Size = new Size(569, 330);
+            notifContainer.Size = new Size(592, 348);
             notifContainer.TabIndex = 26;
             // 
             // comboBox1
@@ -538,7 +586,7 @@
             panel_line2.Location = new Point(4, 39);
             panel_line2.Margin = new Padding(3, 15, 3, 2);
             panel_line2.Name = "panel_line2";
-            panel_line2.Size = new Size(575, 1);
+            panel_line2.Size = new Size(598, 1);
             panel_line2.TabIndex = 24;
             // 
             // panel_line
@@ -548,7 +596,7 @@
             panel_line.Location = new Point(4, 29);
             panel_line.Margin = new Padding(3, 15, 3, 2);
             panel_line.Name = "panel_line";
-            panel_line.Size = new Size(575, 10);
+            panel_line.Size = new Size(598, 10);
             panel_line.TabIndex = 23;
             // 
             // label45
@@ -557,7 +605,7 @@
             label45.AutoSize = true;
             label45.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label45.ForeColor = Color.FromArgb(0, 192, 0);
-            label45.Location = new Point(541, 5);
+            label45.Location = new Point(564, 5);
             label45.Name = "label45";
             label45.Size = new Size(35, 20);
             label45.TabIndex = 22;
@@ -580,191 +628,29 @@
             // 
             // customCard1
             // 
-            customCard1.BackColor = Color.White;
-            customCard1.BorderColor = Color.Gray;
-            customCard1.BorderRadius = 10;
-            customCard1.BorderSize = 1;
-            customCard1.Controls.Add(pictureBox1);
-            customCard1.Controls.Add(label2);
-            customCard1.Controls.Add(activeCount);
-            customCard1.Location = new Point(147, 99);
-            customCard1.Margin = new Padding(3, 2, 50, 2);
-            customCard1.Name = "customCard1";
-            customCard1.Size = new Size(228, 96);
-            customCard1.TabIndex = 24;
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63.47068F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36.52932F));
+            tableLayoutPanel3.Controls.Add(panel7, 1, 0);
+            tableLayoutPanel3.Controls.Add(customCard7, 0, 0);
+            tableLayoutPanel3.Location = new Point(0, 246);
+            tableLayoutPanel3.Margin = new Padding(3, 2, 3, 2);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.Padding = new Padding(105, 10, 70, 38);
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel3.Size = new Size(1204, 529);
+            tableLayoutPanel3.TabIndex = 33;
             // 
-            // pictureBox1
+            // panel7
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 21);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(55, 46);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.Gray;
-            label2.Location = new Point(88, 50);
-            label2.Name = "label2";
-            label2.Size = new Size(111, 20);
-            label2.TabIndex = 14;
-            label2.Text = "Active Students";
-            // 
-            // activeCount
-            // 
-            activeCount.AutoSize = true;
-            activeCount.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            activeCount.ForeColor = Color.FromArgb(13, 13, 13);
-            activeCount.Location = new Point(88, 21);
-            activeCount.Name = "activeCount";
-            activeCount.Size = new Size(26, 30);
-            activeCount.TabIndex = 12;
-            activeCount.Text = "0";
-            // 
-            // customCard2
-            // 
-            customCard2.BackColor = Color.White;
-            customCard2.BorderColor = Color.Gray;
-            customCard2.BorderRadius = 10;
-            customCard2.BorderSize = 1;
-            customCard2.Controls.Add(pictureBox2);
-            customCard2.Controls.Add(label4);
-            customCard2.Controls.Add(submissionCount);
-            customCard2.Location = new Point(428, 99);
-            customCard2.Margin = new Padding(3, 2, 50, 2);
-            customCard2.Name = "customCard2";
-            customCard2.Size = new Size(229, 96);
-            customCard2.TabIndex = 25;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(12, 21);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(55, 46);
-            pictureBox2.TabIndex = 15;
-            pictureBox2.TabStop = false;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Gray;
-            label4.Location = new Point(88, 50);
-            label4.Name = "label4";
-            label4.Size = new Size(133, 20);
-            label4.TabIndex = 14;
-            label4.Text = "Student Submitted";
-            // 
-            // submissionCount
-            // 
-            submissionCount.AutoSize = true;
-            submissionCount.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            submissionCount.ForeColor = Color.FromArgb(13, 13, 13);
-            submissionCount.Location = new Point(88, 21);
-            submissionCount.Name = "submissionCount";
-            submissionCount.Size = new Size(26, 30);
-            submissionCount.TabIndex = 12;
-            submissionCount.Text = "0";
-            // 
-            // customCard3
-            // 
-            customCard3.BackColor = Color.White;
-            customCard3.BorderColor = Color.Gray;
-            customCard3.BorderRadius = 10;
-            customCard3.BorderSize = 1;
-            customCard3.Controls.Add(pictureBox3);
-            customCard3.Controls.Add(label7);
-            customCard3.Controls.Add(label8);
-            customCard3.Location = new Point(710, 99);
-            customCard3.Margin = new Padding(3, 2, 50, 2);
-            customCard3.Name = "customCard3";
-            customCard3.Size = new Size(229, 96);
-            customCard3.TabIndex = 26;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(16, 22);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(55, 46);
-            pictureBox3.TabIndex = 16;
-            pictureBox3.TabStop = false;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Gray;
-            label7.Location = new Point(73, 49);
-            label7.Name = "label7";
-            label7.Size = new Size(146, 20);
-            label7.TabIndex = 14;
-            label7.Text = "Copy Paste Detected";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            label8.ForeColor = Color.FromArgb(13, 13, 13);
-            label8.Location = new Point(76, 21);
-            label8.Name = "label8";
-            label8.Size = new Size(26, 30);
-            label8.TabIndex = 12;
-            label8.Text = "3";
-            // 
-            // customCard4
-            // 
-            customCard4.BackColor = Color.White;
-            customCard4.BorderColor = Color.Gray;
-            customCard4.BorderRadius = 10;
-            customCard4.BorderSize = 1;
-            customCard4.Controls.Add(pictureBox4);
-            customCard4.Controls.Add(label9);
-            customCard4.Controls.Add(label10);
-            customCard4.Location = new Point(992, 99);
-            customCard4.Margin = new Padding(3, 2, 50, 2);
-            customCard4.Name = "customCard4";
-            customCard4.Size = new Size(238, 96);
-            customCard4.TabIndex = 27;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(23, 21);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(55, 46);
-            pictureBox4.TabIndex = 17;
-            pictureBox4.TabStop = false;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.Gray;
-            label9.Location = new Point(93, 50);
-            label9.Name = "label9";
-            label9.Size = new Size(128, 20);
-            label9.TabIndex = 14;
-            label9.Text = "Avg. Session Time";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            label10.ForeColor = Color.FromArgb(13, 13, 13);
-            label10.Location = new Point(93, 21);
-            label10.Name = "label10";
-            label10.Size = new Size(58, 30);
-            label10.TabIndex = 12;
-            label10.Text = "4.2h";
+            panel7.Controls.Add(customCard24);
+            panel7.Controls.Add(customCard23);
+            panel7.Location = new Point(761, 13);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(370, 475);
+            panel7.TabIndex = 13;
             // 
             // ServerHomePage
             // 
@@ -773,11 +659,29 @@
             Controls.Add(panel7);
             Margin = new Padding(3, 2, 50, 2);
             Name = "ServerHomePage";
-            Size = new Size(1484, 690);
+            Padding = new Padding(0, 0, 0, 30);
+            Size = new Size(1204, 988);
+            customCard4.ResumeLayout(false);
+            customCard4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            customCard3.ResumeLayout(false);
+            customCard3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            customCard2.ResumeLayout(false);
+            customCard2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            customCard1.ResumeLayout(false);
+            customCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel6.ResumeLayout(false);
             customCard24.ResumeLayout(false);
             customCard24.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
@@ -791,18 +695,9 @@
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             panel8.ResumeLayout(false);
-            customCard1.ResumeLayout(false);
-            customCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            customCard2.ResumeLayout(false);
-            customCard2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            customCard3.ResumeLayout(false);
-            customCard3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            customCard4.ResumeLayout(false);
-            customCard4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            panel7.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -859,5 +754,11 @@
         private Panel panel_line;
         private Label label45;
         private Label label44;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Panel panel7;
+        private PictureBox pictureBox6;
+        private Label label5;
+        private PictureBox pictureBox5;
+        private Label btn_viewstudents;
     }
 }
