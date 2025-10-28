@@ -81,32 +81,34 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 if (stats.ContainsKey(4))
                 {
                     standardCycComplexity = Convert.ToInt32(stats[4][1]);
-                    expectedCycComplexity.Text = standardCycComplexity.ToString();
+                    //expectedCycComplexity.Text = standardCycComplexity.ToString();
                 }
 
                 recordedStats = stats.Keys.ToList();
             }
         }
 
-        public void SetStudentStats(Dictionary<int, int> stats)
+        public void SetStudentStats(Dictionary<int, float> stats)
         {
             if (stats != null)
             {
                 foreach (var item in stats.Where(item => item.Key != 5))
                 {
-                    statsBar[item.Key]?.ChangeValue(item.Value);
+                    int k = item.Key;
+                    int percentageScore = Convert.ToInt32((Convert.ToDecimal(item.Value) / statsWeight[k]) * 100);
+                    statsBar[item.Key]?.ChangeValue(percentageScore);
                 }
             }
         }
-        public Dictionary<int, int> GetStats()
+        public Dictionary<int, float> GetStats()
         {
-            var currentCodeStats = new Dictionary<int, int>();
+            var currentCodeStats = new Dictionary<int, float>();
 
             foreach (var item in recordedStats)
             {
                 try
                 {
-                    currentCodeStats.Add(item, statsBar[item].Value);
+                    currentCodeStats.Add(item, statsGrade[item]);
                 }
                 catch (KeyNotFoundException) { }
             }
@@ -125,7 +127,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 testScore = value;
                 int score = (value / maxTestScore) * 100;
-                this.Invoke(new Action(() => result.Text = $"{value.ToString()}/{maxTestScore}"));
+                //this.Invoke(new Action(() => result.Text = $"{value.ToString()}/{maxTestScore}"));
                 accuracy.ChangeValue(score);
             }
             else if (i == 2)
@@ -133,7 +135,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 readability.ChangeValue(100 - value);
                 string violations = "Standard Violations:\n";
                 reasons?.ForEach(reason => violations += "- " + reason + "\n");
-                standardErrors.Text = violations;
+                //standardErrors.Text = violations;
                 standardViolations = reasons ?? new List<string>();
             }
             else if (i == 4)
@@ -142,14 +144,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 int scoreComp = difference <= (standardCycComplexity * .1) ? 100 :
                                 difference <= (standardCycComplexity * .4) ? 75 : 50;
 
-                this.Invoke(new Action(() => actualCycComplexity.Text = value.ToString()));
+                //this.Invoke(new Action(() => actualCycComplexity.Text = value.ToString()));
                 complexity.ChangeValue(scoreComp);
             }
             statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
             await Task.Run(() => this.Invoke(new Action(() => score.Text = GetScore().ToString())));
         }
 
-        
+
 
         public float GetScore()
         {
@@ -168,12 +170,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 SetStudentStats(codeRating.statsGrade);
                 testScore = codeRating.testScore;
                 maxTestScore = codeRating.maxTestScore;
-                result.Text = $"{testScore}/{maxTestScore}";
-                actualCycComplexity.Text = codeRating.actualCycComplexity.ToString();
+                //result.Text = $"{testScore}/{maxTestScore}";
+                //actualCycComplexity.Text = codeRating.actualCycComplexity.ToString();
                 standardViolations = codeRating.readabilityViolations;
                 string violations = "Standard Violations:\n";
                 standardViolations.ForEach(reason => violations += "- " + reason + "\n");
-                standardErrors.Text = violations;
+                //standardErrors.Text = violations;
                 score.Text = codeRating.totalRating.ToString();
             }));
         }
@@ -181,50 +183,18 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public CodeRating GetCodeRating()
         {
             return new CodeRating.Builder()
-                .WithTotalRating(Convert.ToInt32(GetScore()))
+                .WithTotalRating(Convert.ToDecimal(score.Text))
                 .WithTestScore(testScore)
                 .WithMaxTestScore(maxTestScore)
                 .WithReadabilityViolations(standardViolations)
                 .WithRecommendedCycComplexity(standardCycComplexity)
-                .WithActualCycComplexity(Convert.ToInt32(actualCycComplexity.Text))
+                .WithActualCycComplexity(Convert.ToInt32(10))
                 .WithStatsGrade(GetStats())
                 .Build();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
         {
-            if (panel1.Size.Height < 96)
-            {
-                panel1.Size = new Size(385, 96);
-            }
-            else
-            {
-                panel1.Size = new Size(385, 39);
-            }
-        }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if (accuracyPanel.Size.Height < 70)
-            {
-                accuracyPanel.Size = new Size(385, 70);
-            }
-            else
-            {
-                accuracyPanel.Size = new Size(385, 39);
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (readabilityContainer.Size.Height < 385)
-            {
-                readabilityContainer.Size = new Size(385, 406);
-            }
-            else
-            {
-                readabilityContainer.Size = new Size(385, 39);
-            }
         }
     }
 }

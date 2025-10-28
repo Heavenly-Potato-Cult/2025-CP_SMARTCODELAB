@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,7 +34,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             currentPlacement = placement;
             placing.Text = placement.ToString();
             name.Text = submittedCode.user._studentName;
-            score.Text = submittedCode.progress.codeRating.ToString(); //the codeStats[5] contains the student score
+            Debug.WriteLine("Score "+submittedCode.progress.codeRating.totalRating);
+            score.Text = submittedCode.progress.codeRating.totalRating.ToString(); //the codeStats[5] contains the student score
 
             this.Click += (sender, e) => updateDisplayClick?.Invoke();
         }

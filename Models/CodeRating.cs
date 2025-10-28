@@ -18,11 +18,11 @@ namespace SmartCodeLab.Models
             readabilityViolations = new List<string>();
             recommendedCycComplexity = 0;
             actualCycComplexity = 0;
-            statsGrade = new Dictionary<int, int>();
+            statsGrade = new Dictionary<int, float>();
         }
 
         [ProtoMember(1)]
-        public int totalRating { get; set; }
+        public decimal totalRating { get; set; }
 
         [ProtoMember(2)]
         public int testScore { get; set; }
@@ -40,7 +40,7 @@ namespace SmartCodeLab.Models
         public int actualCycComplexity { get; set; }
 
         [ProtoMember(7)]
-        public Dictionary<int, int> statsGrade { get; set; }
+        public Dictionary<int, float> statsGrade { get; set; }
 
         public class Builder
         {
@@ -51,11 +51,11 @@ namespace SmartCodeLab.Models
                 _codeRating = new CodeRating
                 {
                     readabilityViolations = new List<string>(),
-                    statsGrade = new Dictionary<int, int>()
+                    statsGrade = new Dictionary<int, float>()
                 };
             }
 
-            public Builder WithTotalRating(int totalRating)
+            public Builder WithTotalRating(decimal totalRating)
             {
                 _codeRating.totalRating = totalRating;
                 return this;
@@ -103,9 +103,9 @@ namespace SmartCodeLab.Models
                 return this;
             }
 
-            public Builder WithStatsGrade(Dictionary<int, int> statsGrade)
+            public Builder WithStatsGrade(Dictionary<int, float> statsGrade)
             {
-                _codeRating.statsGrade = statsGrade ?? new Dictionary<int, int>();
+                _codeRating.statsGrade = statsGrade ?? new Dictionary<int, float>();
                 return this;
             }
 

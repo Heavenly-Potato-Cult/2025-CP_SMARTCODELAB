@@ -67,7 +67,7 @@
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage1);
-            tabControl1.Location = new Point(76, 65);
+            tabControl1.Location = new Point(95, 71);
             tabControl1.Margin = new Padding(3, 2, 3, 2);
             tabControl1.MaximumSize = new Size(1019, 452);
             tabControl1.Name = "tabControl1";
@@ -221,6 +221,7 @@
             reference.CharHeight = 14;
             reference.CharWidth = 8;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            reference.Font = new Font("Courier New", 9.75F);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IsReplaceMode = false;
             reference.Location = new Point(25, 50);
@@ -379,7 +380,7 @@
             btn_EditExerciseDetails.FlatStyle = FlatStyle.Flat;
             btn_EditExerciseDetails.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_EditExerciseDetails.ForeColor = Color.White;
-            btn_EditExerciseDetails.Location = new Point(76, 549);
+            btn_EditExerciseDetails.Location = new Point(95, 602);
             btn_EditExerciseDetails.Margin = new Padding(3, 2, 3, 2);
             btn_EditExerciseDetails.Name = "btn_EditExerciseDetails";
             btn_EditExerciseDetails.Size = new Size(266, 38);
@@ -393,7 +394,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(76, 0);
+            label3.Location = new Point(95, 0);
             label3.Name = "label3";
             label3.Size = new Size(196, 30);
             label3.TabIndex = 54;
@@ -415,7 +416,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10.0507956F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 77.03246F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.9167376F));
-            tableLayoutPanel1.Size = new Size(1186, 629);
+            tableLayoutPanel1.Size = new Size(1484, 690);
             tableLayoutPanel1.TabIndex = 55;
             // 
             // ServerTaskUpdate
@@ -425,7 +426,7 @@
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ServerTaskUpdate";
-            Size = new Size(1186, 629);
+            Size = new Size(1484, 690);
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();

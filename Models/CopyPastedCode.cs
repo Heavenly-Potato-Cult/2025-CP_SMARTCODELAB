@@ -19,6 +19,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(3)]
         public int end { get; set; }
 
+        [ProtoMember(4)]
+        public TimeOnly detectedAt { get; set; } = TimeOnly.FromDateTime(DateTime.Now);
+
         public CopyPastedCode(string wholeCode, int start, int end)
         {
             this.wholeCode = wholeCode;

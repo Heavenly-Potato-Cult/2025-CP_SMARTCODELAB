@@ -403,6 +403,7 @@
             smartButton2.TabIndex = 33;
             smartButton2.Text = "View";
             smartButton2.UseVisualStyleBackColor = false;
+            smartButton2.Click += smartButton2_Click;
             // 
             // codeQualityChoices
             // 

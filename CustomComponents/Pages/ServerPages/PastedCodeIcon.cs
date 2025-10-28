@@ -17,6 +17,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public PastedCodeIcon(CopyPastedCode code)
         {
             InitializeComponent();
+            int lines =  (code.end + 1) - code.start;
+            string line = lines > 1 ? " lines" : " line";
+            codeLine.Text = lines.ToString() + line;
+            time.Text = code.detectedAt.ToString("hh\\:mm tt");
             this.Click += (s, e) =>
             {
                 var dialog = new ViewCopyPastedCode(code);

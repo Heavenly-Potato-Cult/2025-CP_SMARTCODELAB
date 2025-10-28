@@ -55,7 +55,8 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         {
             var ratingFactors = new Dictionary<int, decimal[]>()
             {
-                {1, [accuracyW.Value] }
+                {1, [50] },
+                {2, [50] }
             };
 
             if (readability.Checked)
