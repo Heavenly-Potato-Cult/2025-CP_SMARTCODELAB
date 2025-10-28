@@ -100,7 +100,6 @@
             studentCode.CharHeight = 14;
             studentCode.CharWidth = 8;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
             studentCode.Location = new Point(14, 40);

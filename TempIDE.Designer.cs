@@ -65,12 +65,14 @@
             smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_OpenFolder = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             tableLayoutPanel2 = new TableLayoutPanel();
+            panel_leaderboards = new FlowLayoutPanel();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel_MiddlePart_Main.SuspendLayout();
             panel1.SuspendLayout();
             tabControl_RightSide.SuspendLayout();
+            BroadcastsTab.SuspendLayout();
             MessagesTab.SuspendLayout();
             ActivityTab.SuspendLayout();
             panel3.SuspendLayout();
@@ -347,6 +349,7 @@
             // 
             // BroadcastsTab
             // 
+            BroadcastsTab.Controls.Add(panel_leaderboards);
             BroadcastsTab.Location = new Point(4, 24);
             BroadcastsTab.Margin = new Padding(3, 2, 3, 2);
             BroadcastsTab.Name = "BroadcastsTab";
@@ -591,6 +594,16 @@
             tableLayoutPanel2.Size = new Size(1345, 572);
             tableLayoutPanel2.TabIndex = 18;
             // 
+            // panel_leaderboards
+            // 
+            panel_leaderboards.AutoScroll = true;
+            panel_leaderboards.FlowDirection = FlowDirection.TopDown;
+            panel_leaderboards.Location = new Point(6, 32);
+            panel_leaderboards.Name = "panel_leaderboards";
+            panel_leaderboards.Size = new Size(347, 314);
+            panel_leaderboards.TabIndex = 0;
+            panel_leaderboards.WrapContents = false;
+            // 
             // TempIDE
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -614,6 +627,7 @@
             panel_MiddlePart_Main.ResumeLayout(false);
             panel1.ResumeLayout(false);
             tabControl_RightSide.ResumeLayout(false);
+            BroadcastsTab.ResumeLayout(false);
             MessagesTab.ResumeLayout(false);
             ActivityTab.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -670,5 +684,6 @@
         private MaterialSkin.Controls.MaterialExpansionPanel expansion_expansion_panel;
         private MaterialSkin.Controls.MaterialExpansionPanel testcase_expansion_panel;
         private MaterialSkin.Controls.MaterialExpansionPanel activity_expansion_panel;
+        private FlowLayoutPanel panel_leaderboards;
     }
 }
