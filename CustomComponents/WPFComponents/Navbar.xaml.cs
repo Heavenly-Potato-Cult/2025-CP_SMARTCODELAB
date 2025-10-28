@@ -37,7 +37,9 @@ namespace SmartCodeLab.CustomComponents.WPFComponents
 
         }
 
-        private void nav_settings_Click(object sender, RoutedEventArgs e)
+        
+
+        private void nav_sessionlogs_Click(object sender, RoutedEventArgs e)
         {
             OnNavigationClicked?.Invoke(2);
 
