@@ -625,9 +625,9 @@
             label59.Location = new Point(4, 8);
             label59.Name = "label59";
             label59.Padding = new Padding(9, 0, 0, 0);
-            label59.Size = new Size(125, 21);
+            label59.Size = new Size(111, 21);
             label59.TabIndex = 26;
-            label59.Text = "System Status";
+            label59.Text = "Session Info";
             // 
             // customCard7
             // 
