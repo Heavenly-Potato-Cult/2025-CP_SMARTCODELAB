@@ -44,7 +44,7 @@
             label34 = new Label();
             codeTrack = new TrackBar();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            customTextBox1 = new CustomTextBox();
+            searchStudent = new CustomTextBox();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
             label7 = new Label();
@@ -263,7 +263,7 @@
             customCard2.BorderColor = Color.Gray;
             customCard2.BorderRadius = 10;
             customCard2.BorderSize = 1;
-            customCard2.Controls.Add(customTextBox1);
+            customCard2.Controls.Add(searchStudent);
             customCard2.Controls.Add(smartButton1);
             customCard2.Controls.Add(panel2);
             customCard2.Controls.Add(label7);
@@ -274,18 +274,19 @@
             customCard2.Size = new Size(309, 678);
             customCard2.TabIndex = 103;
             // 
-            // customTextBox1
+            // searchStudent
             // 
-            customTextBox1.BackColor = SystemColors.Window;
-            customTextBox1.ForeColor = Color.DimGray;
-            customTextBox1.Location = new Point(21, 116);
-            customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(10, 7, 10, 7);
-            customTextBox1.PlaceHolderColor = Color.DarkGray;
-            customTextBox1.PlaceholderText = "Search Student";
-            customTextBox1.ScrollBars = ScrollBars.None;
-            customTextBox1.Size = new Size(270, 36);
-            customTextBox1.TabIndex = 16;
+            searchStudent.BackColor = SystemColors.Window;
+            searchStudent.ForeColor = Color.DimGray;
+            searchStudent.Location = new Point(21, 116);
+            searchStudent.Name = "searchStudent";
+            searchStudent.Padding = new Padding(10, 7, 10, 7);
+            searchStudent.PlaceHolderColor = Color.DarkGray;
+            searchStudent.PlaceholderText = "Search Student";
+            searchStudent.ScrollBars = ScrollBars.None;
+            searchStudent.Size = new Size(270, 36);
+            searchStudent.TabIndex = 16;
+            searchStudent._TextChanged += customTextBox1__TextChanged;
             // 
             // smartButton1
             // 
@@ -354,6 +355,7 @@
             // 
             // studentCodeRating1
             // 
+            studentCodeRating1.BackColor = Color.White;
             studentCodeRating1.Location = new Point(1121, 370);
             studentCodeRating1.Margin = new Padding(3, 2, 3, 2);
             studentCodeRating1.Name = "studentCodeRating1";
@@ -426,6 +428,6 @@
         private Panel panel4;
         private StudentCodeRating studentCodeRating1;
         private Panel panel5;
-        private CustomTextBox customTextBox1;
+        private CustomTextBox searchStudent;
     }
 }

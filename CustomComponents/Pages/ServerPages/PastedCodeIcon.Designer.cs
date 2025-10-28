@@ -28,39 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label14 = new Label();
+            time = new Label();
+            codeLine = new Label();
             SuspendLayout();
             // 
-            // label1
+            // time
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(227, 10);
-            label1.Name = "label1";
-            label1.Size = new Size(89, 25);
-            label1.TabIndex = 18;
-            label1.Text = "12:43 PM";
+            time.AutoSize = true;
+            time.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            time.ForeColor = Color.Black;
+            time.Location = new Point(227, 10);
+            time.Name = "time";
+            time.Size = new Size(89, 25);
+            time.TabIndex = 18;
+            time.Text = "12:43 PM";
             // 
-            // label14
+            // codeLine
             // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.ForeColor = Color.Black;
-            label14.Location = new Point(16, 10);
-            label14.Name = "label14";
-            label14.Size = new Size(32, 25);
-            label14.TabIndex = 17;
-            label14.Text = "12";
+            codeLine.AutoSize = true;
+            codeLine.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            codeLine.ForeColor = Color.Black;
+            codeLine.Location = new Point(16, 10);
+            codeLine.Name = "codeLine";
+            codeLine.Size = new Size(32, 25);
+            codeLine.TabIndex = 17;
+            codeLine.Text = "12";
             // 
             // PastedCodeIcon
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
-            Controls.Add(label1);
-            Controls.Add(label14);
+            Controls.Add(time);
+            Controls.Add(codeLine);
             Margin = new Padding(3, 2, 3, 2);
             Name = "PastedCodeIcon";
             Size = new Size(343, 46);
@@ -70,7 +70,7 @@
 
         #endregion
 
-        private Label label1;
-        private Label label14;
+        private Label time;
+        private Label codeLine;
     }
 }

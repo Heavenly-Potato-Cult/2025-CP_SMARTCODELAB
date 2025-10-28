@@ -16,9 +16,9 @@ namespace SmartCodeLab
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             ConfigureFirewallRules();
-            var startup = new StudentStartUp();
-            Application.Run(startup);
-            startup.Dispose();
+            //var startup = new StudentStartUp();
+            Application.Run(new InstructorForm());
+            //startup.Dispose();
         }
 
         private static void ConfigureFirewallRules()

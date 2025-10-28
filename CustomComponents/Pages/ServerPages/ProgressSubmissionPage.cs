@@ -21,7 +21,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         private int submittedCount;
         private List<UserProfile> submittedStudents;
         private System.Threading.Timer displayIcons;
-
+        private readonly List<string> ratingFactors = new List<string>()
+        {
+            "",
+            "Accuracy",
+            "Readability",
+            "Efficiency",
+            "Complexity",
+            "Total Score"
+        };
         public ProgressSubmissionPage(List<SubmittedCode> codeSubmissions)
         {
             InitializeComponent();
@@ -122,6 +130,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 studentName.Text = student._studentName;
                 score.Text = progress.codeRating.totalRating.ToString();
                 studentCode.Text = progress.sourceCode;
+                materialListView1.Items.Clear();
+                progress.codeRating.statsGrade.ToList().ForEach(kv =>
+                {
+                    materialListView1.Items.Add(new ListViewItem(new string[] { ratingFactors[kv.Key], kv.Value.ToString("0.00") }));
+                });
             }));
 
             return Task.CompletedTask;

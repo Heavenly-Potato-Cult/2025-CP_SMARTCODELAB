@@ -34,12 +34,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Dictionary<string, UserIcons> userIcons = new Dictionary<string, UserIcons>();
         private StudentCodingProgress studentProgress;
 
+        private System.Threading.Timer updateStudentList;
         private string selectedStudentId = string.Empty;
         private Func<string, StudentCodingProgress> progressRetriever;
         private Dictionary<string, List<UserMessage>> userMessages;
         private Func<string, UserMessage, bool> sendMessage;
         private Func<string, bool> isStudentActive;
         private ChatBox chatBox;
+        private List<UserProfile> displayedUsers = new List<UserProfile>();
         public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string,
             StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
         {
@@ -50,19 +52,36 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             this.progressRetriever = progressRetriever;
             this.sendMessage = sendMessage;
             this.isStudentActive = isStudentActive;
+            displayedUsers = new List<UserProfile>(users.Values);
 
             //will ensure that the handle is created before accessing the UI thread
             var obj = this.Handle;
             Task.Run(() =>
             {
-                foreach (var item in users.Values)
+                foreach (var user in users.Values)
                 {
-                    userMessages.Add(item._studentId, new List<UserMessage>());
-                    AddStudent(item);
+                    userMessages.Add(user._studentId, new List<UserMessage>());
+                    userIcons.Add(user._studentId, new UserIcons(user, NewUserSelected));
                 }
+                displayStudents();
             });
-            Debug.WriteLine(task.ratingFactors.Count);
             studentCodeRating1.SetStats(task.ratingFactors);
+        }
+
+        private void displayStudents()
+        {
+            string search = searchStudent.Texts.ToLower();
+            var searchedUserIds = displayedUsers.Where(user => user._studentName.ToLower().Contains(search)).Select(user => user._studentId).ToList();
+            var searchedIcons = userIcons.Keys.Where(id => searchedUserIds.Contains(id)).ToList();
+
+            this.Invoke((Action)(() =>
+            {
+                iconsContainer.Controls.Clear();
+                foreach (var ids in searchedIcons)
+                {
+                iconsContainer.Controls.Add(userIcons[ids]);
+                }
+            }));
         }
 
         public TempServerPage(Dictionary<string, UserProfile> expectedUsers, Dictionary<string, StudentCodingProgress> userProgress)
@@ -208,6 +227,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             chatBox = new ChatBox(SendMessageToStudent, userMessages[selectedStudentId] ?? null, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
             chatBox.ShowDialog();
             chatBox = null;
+        }
+
+        private void customTextBox1__TextChanged(object sender, EventArgs e)
+        {
+            updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
+
+            updateStudentList = new System.Threading.Timer(async _ => displayStudents(), null, 500, Timeout.Infinite);
         }
     }
 }
