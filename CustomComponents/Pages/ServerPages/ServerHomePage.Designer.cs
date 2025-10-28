@@ -33,17 +33,9 @@
             label6 = new Label();
             customCard24 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             tableLayoutPanel1 = new TableLayoutPanel();
-            pictureBox6 = new PictureBox();
-            label5 = new Label();
-            pictureBox5 = new PictureBox();
-            btn_viewstudents = new Label();
             pictureBox13 = new PictureBox();
-            pictureBox14 = new PictureBox();
-            pictureBox15 = new PictureBox();
             pictureBox16 = new PictureBox();
             label60 = new Label();
-            label61 = new Label();
-            label62 = new Label();
             label63 = new Label();
             panel3 = new Panel();
             panel2 = new Panel();
@@ -71,6 +63,10 @@
             label44 = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
             panel7 = new Panel();
+            btn_viewstudents = new Label();
+            pictureBox5 = new PictureBox();
+            label5 = new Label();
+            pictureBox6 = new PictureBox();
             customCard4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             customCard3.SuspendLayout();
@@ -83,11 +79,7 @@
             panel6.SuspendLayout();
             customCard24.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox14).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox15).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             customCard23.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
@@ -96,6 +88,8 @@
             panel8.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -143,79 +137,28 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 14.6029005F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 85.3970947F));
-            tableLayoutPanel1.Controls.Add(pictureBox6, 0, 5);
-            tableLayoutPanel1.Controls.Add(label5, 1, 5);
-            tableLayoutPanel1.Controls.Add(pictureBox5, 0, 4);
-            tableLayoutPanel1.Controls.Add(btn_viewstudents, 1, 4);
+            tableLayoutPanel1.Controls.Add(pictureBox6, 0, 3);
+            tableLayoutPanel1.Controls.Add(label5, 1, 3);
+            tableLayoutPanel1.Controls.Add(pictureBox5, 0, 2);
+            tableLayoutPanel1.Controls.Add(btn_viewstudents, 1, 2);
             tableLayoutPanel1.Controls.Add(pictureBox13, 0, 0);
-            tableLayoutPanel1.Controls.Add(pictureBox14, 0, 1);
-            tableLayoutPanel1.Controls.Add(pictureBox15, 0, 2);
-            tableLayoutPanel1.Controls.Add(pictureBox16, 0, 3);
-            tableLayoutPanel1.Controls.Add(label60, 1, 3);
-            tableLayoutPanel1.Controls.Add(label61, 1, 2);
-            tableLayoutPanel1.Controls.Add(label62, 1, 1);
+            tableLayoutPanel1.Controls.Add(pictureBox16, 0, 1);
+            tableLayoutPanel1.Controls.Add(label60, 1, 1);
             tableLayoutPanel1.Controls.Add(label63, 1, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(4, 40);
             tableLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.Padding = new Padding(18, 8, 18, 8);
-            tableLayoutPanel1.RowCount = 6;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
+            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.0000038F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.0000038F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.9999981F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.9999981F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(350, 216);
             tableLayoutPanel1.TabIndex = 30;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(21, 175);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(32, 22);
-            pictureBox6.TabIndex = 31;
-            pictureBox6.TabStop = false;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(13, 13, 13);
-            label5.Location = new Point(66, 173);
-            label5.Name = "label5";
-            label5.Padding = new Padding(0, 2, 0, 0);
-            label5.Size = new Size(44, 23);
-            label5.TabIndex = 30;
-            label5.Text = "Save";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(21, 142);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(32, 22);
-            pictureBox5.TabIndex = 29;
-            pictureBox5.TabStop = false;
-            // 
-            // btn_viewstudents
-            // 
-            btn_viewstudents.AutoSize = true;
-            btn_viewstudents.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_viewstudents.ForeColor = Color.FromArgb(13, 13, 13);
-            btn_viewstudents.Location = new Point(66, 140);
-            btn_viewstudents.Name = "btn_viewstudents";
-            btn_viewstudents.Padding = new Padding(0, 2, 0, 0);
-            btn_viewstudents.Size = new Size(114, 23);
-            btn_viewstudents.TabIndex = 28;
-            btn_viewstudents.Text = "View Students";
-            btn_viewstudents.TextAlign = ContentAlignment.MiddleCenter;
-            btn_viewstudents.Click += btn_viewstudents_Click;
             // 
             // pictureBox13
             // 
@@ -227,30 +170,10 @@
             pictureBox13.TabIndex = 21;
             pictureBox13.TabStop = false;
             // 
-            // pictureBox14
-            // 
-            pictureBox14.Image = (Image)resources.GetObject("pictureBox14.Image");
-            pictureBox14.Location = new Point(21, 43);
-            pictureBox14.Margin = new Padding(3, 2, 3, 2);
-            pictureBox14.Name = "pictureBox14";
-            pictureBox14.Size = new Size(32, 22);
-            pictureBox14.TabIndex = 23;
-            pictureBox14.TabStop = false;
-            // 
-            // pictureBox15
-            // 
-            pictureBox15.Image = (Image)resources.GetObject("pictureBox15.Image");
-            pictureBox15.Location = new Point(21, 76);
-            pictureBox15.Margin = new Padding(3, 2, 3, 2);
-            pictureBox15.Name = "pictureBox15";
-            pictureBox15.Size = new Size(32, 22);
-            pictureBox15.TabIndex = 25;
-            pictureBox15.TabStop = false;
-            // 
             // pictureBox16
             // 
             pictureBox16.Image = (Image)resources.GetObject("pictureBox16.Image");
-            pictureBox16.Location = new Point(21, 109);
+            pictureBox16.Location = new Point(21, 60);
             pictureBox16.Margin = new Padding(3, 2, 3, 2);
             pictureBox16.Name = "pictureBox16";
             pictureBox16.Size = new Size(32, 22);
@@ -262,39 +185,13 @@
             label60.AutoSize = true;
             label60.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label60.ForeColor = Color.FromArgb(13, 13, 13);
-            label60.Location = new Point(66, 107);
+            label60.Location = new Point(66, 58);
             label60.Name = "label60";
             label60.Padding = new Padding(0, 2, 0, 0);
             label60.Size = new Size(152, 23);
             label60.TabIndex = 26;
             label60.Text = "Broadcast Message";
             label60.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label61
-            // 
-            label61.AutoSize = true;
-            label61.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label61.ForeColor = Color.FromArgb(13, 13, 13);
-            label61.Location = new Point(66, 74);
-            label61.Name = "label61";
-            label61.Padding = new Padding(0, 2, 0, 0);
-            label61.Size = new Size(104, 23);
-            label61.TabIndex = 24;
-            label61.Text = "Add Exercise";
-            label61.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // label62
-            // 
-            label62.AutoSize = true;
-            label62.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label62.ForeColor = Color.FromArgb(13, 13, 13);
-            label62.Location = new Point(66, 41);
-            label62.Name = "label62";
-            label62.Padding = new Padding(0, 2, 0, 0);
-            label62.Size = new Size(139, 23);
-            label62.TabIndex = 22;
-            label62.Text = "Monitor Students";
-            label62.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label63
             // 
@@ -652,6 +549,53 @@
             panel7.Size = new Size(370, 475);
             panel7.TabIndex = 13;
             // 
+            // btn_viewstudents
+            // 
+            btn_viewstudents.AutoSize = true;
+            btn_viewstudents.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_viewstudents.ForeColor = Color.FromArgb(13, 13, 13);
+            btn_viewstudents.Location = new Point(66, 108);
+            btn_viewstudents.Name = "btn_viewstudents";
+            btn_viewstudents.Padding = new Padding(0, 2, 0, 0);
+            btn_viewstudents.Size = new Size(114, 23);
+            btn_viewstudents.TabIndex = 28;
+            btn_viewstudents.Text = "View Students";
+            btn_viewstudents.TextAlign = ContentAlignment.MiddleCenter;
+            btn_viewstudents.Click += btn_viewstudents_Click;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(21, 110);
+            pictureBox5.Margin = new Padding(3, 2, 3, 2);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(32, 22);
+            pictureBox5.TabIndex = 29;
+            pictureBox5.TabStop = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(13, 13, 13);
+            label5.Location = new Point(66, 157);
+            label5.Name = "label5";
+            label5.Padding = new Padding(0, 2, 0, 0);
+            label5.Size = new Size(44, 23);
+            label5.TabIndex = 30;
+            label5.Text = "Save";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(21, 159);
+            pictureBox6.Margin = new Padding(3, 2, 3, 2);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(32, 22);
+            pictureBox6.TabIndex = 31;
+            pictureBox6.TabStop = false;
+            // 
             // ServerHomePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -680,11 +624,7 @@
             customCard24.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox14).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox15).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             customCard23.ResumeLayout(false);
             customCard23.PerformLayout();
@@ -698,6 +638,8 @@
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
             panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
         }
 
@@ -707,12 +649,8 @@
         private GeneralComponents.CustomCard customCard24;
         private TableLayoutPanel tableLayoutPanel1;
         private PictureBox pictureBox13;
-        private PictureBox pictureBox14;
-        private PictureBox pictureBox15;
         private PictureBox pictureBox16;
         private Label label60;
-        private Label label61;
-        private Label label62;
         private Label label63;
         private Panel panel3;
         private Panel panel2;
