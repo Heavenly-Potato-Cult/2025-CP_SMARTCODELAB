@@ -109,7 +109,7 @@ namespace SmartCodeLab
                 this.Invoke((Action)(() =>
                 {
                     //set task description display
-                    actName.Text = task._taskName;
+                    activity_expansion_panel.Title = task._taskName;
                     description.Text = task._instructions;
                     int i = 1;
                     testCaseContainer.Controls.Clear();
@@ -217,7 +217,7 @@ namespace SmartCodeLab
 
                 tabControl_RightSide.Font = new Font("Segoe UI", 12F);
                 tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-                //tabControl_RightSide.ItemSize = new Size(tabWidth, 50); // 50 = tab height
+                tabControl_RightSide.ItemSize = new Size(tabWidth, 50); // 50 = tab height
             }
             finally
             {
@@ -382,15 +382,7 @@ namespace SmartCodeLab
             SystemSingleton.Instance._loggedIn = false;
         }
 
-        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            description.Visible = customToggleButton1.Checked;
-        }
-
-        private void customToggleButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            testCaseContainer.Visible = customToggleButton2.Checked;
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {

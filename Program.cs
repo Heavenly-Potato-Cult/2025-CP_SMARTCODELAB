@@ -1,3 +1,4 @@
+using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Services;
 using System.Diagnostics;
 
@@ -15,7 +16,9 @@ namespace SmartCodeLab
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             ConfigureFirewallRules();
-            Application.Run(new InstructorForm());
+            var startup = new StudentStartUp();
+            Application.Run(startup);
+            startup.Dispose();
         }
 
         private static void ConfigureFirewallRules()
