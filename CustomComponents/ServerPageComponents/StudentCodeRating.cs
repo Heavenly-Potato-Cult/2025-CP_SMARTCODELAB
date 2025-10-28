@@ -184,7 +184,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public CodeRating GetCodeRating()
         {
             return new CodeRating.Builder()
-                .WithTotalRating(Convert.ToInt32(GetScore()))
+                .WithTotalRating(Convert.ToInt32(score.Text))
                 .WithTestScore(testScore)
                 .WithMaxTestScore(maxTestScore)
                 .WithReadabilityViolations(standardViolations)

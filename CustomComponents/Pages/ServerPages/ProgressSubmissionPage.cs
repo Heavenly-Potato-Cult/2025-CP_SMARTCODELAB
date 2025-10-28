@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SmartCodeLab.CustomComponents.CustomDialogs;
+using System.Diagnostics;
 
 namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
@@ -18,10 +19,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Dictionary<string, StudentSubmittedIcon> codeSubmission { get; private set; }
         private int submittedCount;
+        private List<UserProfile> submittedStudents;
+        private System.Threading.Timer displayIcons;
 
         public ProgressSubmissionPage(List<SubmittedCode> codeSubmissions)
         {
             InitializeComponent();
+            submittedStudents = new List<UserProfile>();
             codeSubmission = new Dictionary<string, StudentSubmittedIcon>();
             submitCount.Text = codeSubmissions.Count.ToString();
             Load += (sender, e) =>
@@ -36,6 +40,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public ProgressSubmissionPage()
         {
             InitializeComponent();
+            submittedStudents = new List<UserProfile>();
             submittedCount = 0;
             codeSubmission = new Dictionary<string, StudentSubmittedIcon>();
         }
@@ -57,8 +62,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     this.Invoke((Action)(() =>
                     {
                         submissionIcon.UpdatePlacement(codeSubmission.Count, submitted.sourceCode);
-                        submittedContainer.Controls.Remove(submissionIcon);
-                        submittedContainer.Controls.Add(submissionIcon);
+                        //submittedContainer.Controls.Remove(submissionIcon);
+                        //submittedContainer.Controls.Add(submissionIcon);
                     }));
                 }
                 else
@@ -67,14 +72,42 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     var updateDisplayAction = new Action(() => UpdateDisplay(submitted.progress, submitted.user));
                     codeSubmission.Add(submitted.user._studentId,
                         new StudentSubmittedIcon(submitted, submittedCount, updateDisplayAction));
+                    submittedStudents.Add(submitted.user);
                     this.Invoke((Action)(() =>
                     {
-                        submittedContainer.Controls.Add(codeSubmission[submitted.user._studentId]);
+                        //submittedContainer.Controls.Add(codeSubmission[submitted.user._studentId]);
                         submitCount.Text = (int.Parse(submitCount.Text) + 1).ToString();
                     }
                     ));
                 }
+                displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                displayIcons = new System.Threading.Timer((e) =>
+                {
+                    DisplayIcons();
+                }, null, 500, Timeout.Infinite);
             });
+        }
+
+        private void DisplayIcons()
+        {
+            string search = searchBox.Texts.ToLower();
+            var studLists = submittedStudents.
+                Where(student => student._studentName.ToLower().Contains(search) ||
+                student._studentId.ToLower().Contains(search)).
+                ToList();
+            var filteredIcons = codeSubmission.Keys.
+                Where(studentId => studLists.Any(stud => stud._studentId == studentId)).
+                Select(studentId => codeSubmission[studentId]).
+                ToList();
+            this.Invoke((Action)(() =>
+            {
+                submittedContainer.Controls.Clear();
+                filteredIcons.ForEach(icon =>
+                {
+                    submittedContainer.Controls.Add(icon);
+                });
+            }));
         }
 
         public List<SubmittedCode> GetAllSubmitted()
@@ -98,6 +131,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         {
             var ViewMoreForm = new ViewMoreSubmissionsForm();
             ViewMoreForm.ShowDialog();
+        }
+
+        private void searchBox__TextChanged(object sender, EventArgs e)
+        {
+            displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
+
+            displayIcons = new System.Threading.Timer((e) =>
+            {
+                DisplayIcons();
+            }, null, 500, Timeout.Infinite);
         }
     }
 }

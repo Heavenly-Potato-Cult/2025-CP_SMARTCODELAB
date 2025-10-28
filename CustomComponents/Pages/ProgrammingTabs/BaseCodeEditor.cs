@@ -111,6 +111,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private void GetPastedCode(string codeSnippet, string wholeCode, string[] history)
         {
+            if (StudentProgress.pastedCode == null)
+                StudentProgress.pastedCode = new List<CopyPastedCode>();
+
             foreach (var item in history)
             {
                 if (item != null && item != wholeCode && item.Contains(codeSnippet))
@@ -124,18 +127,29 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             for (int i = 0; i < wholeCodeLines.Length; i++)
             {
-                try
+                if(pastedCodeLines.Length == 1)
                 {
-                    if (wholeCodeLines[i].Trim().Contains(pastedCodeLines[0].Trim()) && wholeCodeLines[i + (pastedCodeLines.Length - 1)].Trim() == pastedCodeLines[pastedCodeLines.Length - 1].Trim())
+                    if (wholeCodeLines[i].Trim().Contains(pastedCodeLines[0].Trim()))
                     {
-                        if (StudentProgress.pastedCode == null)
-                            StudentProgress.pastedCode = new List<CopyPastedCode>();
-                        StudentProgress.pastedCode.Add(new CopyPastedCode(wholeCode, i, i + (pastedCodeLines.Length - 1)));
+                        StudentProgress.pastedCode.Add(new CopyPastedCode(wholeCode, i, i));
                         notifAction?.Invoke(NotificationType.CopyPasted, "");
                         break;
                     }
                 }
-                catch (IndexOutOfRangeException) { }
+                else
+                {
+                    try
+                    {
+                        if (wholeCodeLines[i].Trim().Contains(pastedCodeLines[0].Trim()) && wholeCodeLines[i + (pastedCodeLines.Length - 1)].Trim() == pastedCodeLines[pastedCodeLines.Length - 1].Trim())
+                        {
+                            StudentProgress.pastedCode.Add(new CopyPastedCode(wholeCode, i, i + (pastedCodeLines.Length - 1)));
+                            notifAction?.Invoke(NotificationType.CopyPasted, "");
+                            break;
+                        }
+                    }
+                    catch (IndexOutOfRangeException) { }
+                }
+
             }
 
         }

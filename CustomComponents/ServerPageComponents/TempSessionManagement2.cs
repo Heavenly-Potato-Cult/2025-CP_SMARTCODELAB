@@ -54,15 +54,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }
             };
         }
-
-        private void smartButton2_Click(object sender, EventArgs e)
-        {
-            var studentTable = new StudTable(userProfiles);
-            studentTable.ShowDialog();
-            userProfiles = studentTable.expectedUsers;
-            studentsCount.Text = userProfiles.Count.ToString();
-        }
-
         private void smartButton1_Click_1(object sender, EventArgs e)
         {
             if (serverName.Texts.IsWhiteSpace())
@@ -106,6 +97,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
+        private void smartButton2_Click(object sender, EventArgs e)
+        {
+            var studentTable = new StudTable(userProfiles);
+            studentTable.ShowDialog();
+            userProfiles = studentTable.expectedUsers;
+            studentsCount.Text = userProfiles.Count.ToString();
+        }
+
         private Action<TaskModel> exerciseSelectedCallback => (task) =>
         {
             selectedTask = task;
@@ -122,7 +121,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             selectedExercise = null;
         };
 
-        
+
 
     }
 }

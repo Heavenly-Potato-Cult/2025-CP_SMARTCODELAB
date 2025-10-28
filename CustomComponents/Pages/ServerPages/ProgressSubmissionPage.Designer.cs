@@ -37,7 +37,7 @@
             ListViewItem listViewItem5 = new ListViewItem(new string[] { "Total", "100" }, -1);
             label11 = new Label();
             customComboBox2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
-            customTextBox2 = new CustomTextBox();
+            searchBox = new CustomTextBox();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label1 = new Label();
             label6 = new Label();
@@ -100,23 +100,24 @@
             customComboBox2.TabIndex = 66;
             customComboBox2.Texts = "";
             // 
-            // customTextBox2
+            // searchBox
             // 
-            customTextBox2.BackColor = Color.White;
-            customTextBox2.BorderColor = Color.LightGray;
-            customTextBox2.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            customTextBox2.BorderRadius = 2;
-            customTextBox2.BorderSize = 1;
-            customTextBox2.ForeColor = SystemColors.ControlText;
-            customTextBox2.Location = new Point(42, 147);
-            customTextBox2.Margin = new Padding(3, 2, 3, 2);
-            customTextBox2.Name = "customTextBox2";
-            customTextBox2.Padding = new Padding(9, 5, 9, 5);
-            customTextBox2.PlaceHolderColor = Color.DarkGray;
-            customTextBox2.PlaceholderText = "Search Student";
-            customTextBox2.ScrollBars = ScrollBars.None;
-            customTextBox2.Size = new Size(272, 32);
-            customTextBox2.TabIndex = 65;
+            searchBox.BackColor = Color.White;
+            searchBox.BorderColor = Color.LightGray;
+            searchBox.BorderFocusColor = Color.FromArgb(64, 64, 64);
+            searchBox.BorderRadius = 2;
+            searchBox.BorderSize = 1;
+            searchBox.ForeColor = SystemColors.ControlText;
+            searchBox.Location = new Point(42, 147);
+            searchBox.Margin = new Padding(3, 2, 3, 2);
+            searchBox.Name = "searchBox";
+            searchBox.Padding = new Padding(9, 5, 9, 5);
+            searchBox.PlaceHolderColor = Color.DarkGray;
+            searchBox.PlaceholderText = "Search Student";
+            searchBox.ScrollBars = ScrollBars.None;
+            searchBox.Size = new Size(272, 32);
+            searchBox.TabIndex = 65;
+            searchBox._TextChanged += searchBox__TextChanged;
             // 
             // customCard7
             // 
@@ -299,10 +300,10 @@
             flowLayoutPanel2.Controls.Add(materialExpansionPanel1);
             flowLayoutPanel2.Controls.Add(materialExpansionPanel3);
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(572, 132);
+            flowLayoutPanel2.Location = new Point(556, 132);
             flowLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(892, 549);
+            flowLayoutPanel2.Size = new Size(889, 549);
             flowLayoutPanel2.TabIndex = 92;
             flowLayoutPanel2.WrapContents = false;
             // 
@@ -439,14 +440,14 @@
             Controls.Add(submittedContainer);
             Controls.Add(label11);
             Controls.Add(customComboBox2);
-            Controls.Add(customTextBox2);
+            Controls.Add(searchBox);
             Controls.Add(customCard7);
             Controls.Add(label12);
             Controls.Add(label5);
             Controls.Add(label3);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ProgressSubmissionPage";
-            Size = new Size(1476, 698);
+            Size = new Size(1484, 690);
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             customCard2.ResumeLayout(false);
@@ -465,7 +466,7 @@
 
         private Label label11;
         private GeneralComponents.CustomComboBox customComboBox2;
-        private CustomTextBox customTextBox2;
+        private CustomTextBox searchBox;
         private GeneralComponents.CustomCard customCard7;
         private Label label6;
         private Label label14;
