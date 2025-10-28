@@ -51,6 +51,10 @@
             panel6 = new Panel();
             customCard24 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             tableLayoutPanel1 = new TableLayoutPanel();
+            pictureBox6 = new PictureBox();
+            label5 = new Label();
+            pictureBox5 = new PictureBox();
+            btn_viewstudents = new Label();
             pictureBox13 = new PictureBox();
             pictureBox16 = new PictureBox();
             label60 = new Label();
@@ -80,10 +84,6 @@
             label44 = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
             panel7 = new Panel();
-            btn_viewstudents = new Label();
-            pictureBox5 = new PictureBox();
-            label5 = new Label();
-            pictureBox6 = new PictureBox();
             customCard4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             customCard3.SuspendLayout();
@@ -96,6 +96,8 @@
             panel6.SuspendLayout();
             customCard24.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).BeginInit();
             customCard23.SuspendLayout();
@@ -104,8 +106,6 @@
             panel8.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             SuspendLayout();
             // 
             // customCard4
@@ -386,6 +386,53 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Size = new Size(350, 216);
             tableLayoutPanel1.TabIndex = 30;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(21, 159);
+            pictureBox6.Margin = new Padding(3, 2, 3, 2);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(32, 22);
+            pictureBox6.TabIndex = 31;
+            pictureBox6.TabStop = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.FromArgb(13, 13, 13);
+            label5.Location = new Point(66, 157);
+            label5.Name = "label5";
+            label5.Padding = new Padding(0, 2, 0, 0);
+            label5.Size = new Size(44, 23);
+            label5.TabIndex = 30;
+            label5.Text = "Save";
+            label5.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(21, 110);
+            pictureBox5.Margin = new Padding(3, 2, 3, 2);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(32, 22);
+            pictureBox5.TabIndex = 29;
+            pictureBox5.TabStop = false;
+            // 
+            // btn_viewstudents
+            // 
+            btn_viewstudents.AutoSize = true;
+            btn_viewstudents.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_viewstudents.ForeColor = Color.FromArgb(13, 13, 13);
+            btn_viewstudents.Location = new Point(66, 108);
+            btn_viewstudents.Name = "btn_viewstudents";
+            btn_viewstudents.Padding = new Padding(0, 2, 0, 0);
+            btn_viewstudents.Size = new Size(114, 23);
+            btn_viewstudents.TabIndex = 28;
+            btn_viewstudents.Text = "View Students";
+            btn_viewstudents.TextAlign = ContentAlignment.MiddleCenter;
+            btn_viewstudents.Click += btn_viewstudents_Click;
             // 
             // pictureBox13
             // 
@@ -761,53 +808,6 @@
             panel7.Size = new Size(370, 475);
             panel7.TabIndex = 13;
             // 
-            // btn_viewstudents
-            // 
-            btn_viewstudents.AutoSize = true;
-            btn_viewstudents.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_viewstudents.ForeColor = Color.FromArgb(13, 13, 13);
-            btn_viewstudents.Location = new Point(66, 108);
-            btn_viewstudents.Name = "btn_viewstudents";
-            btn_viewstudents.Padding = new Padding(0, 2, 0, 0);
-            btn_viewstudents.Size = new Size(114, 23);
-            btn_viewstudents.TabIndex = 28;
-            btn_viewstudents.Text = "View Students";
-            btn_viewstudents.TextAlign = ContentAlignment.MiddleCenter;
-            btn_viewstudents.Click += btn_viewstudents_Click;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(21, 110);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(32, 22);
-            pictureBox5.TabIndex = 29;
-            pictureBox5.TabStop = false;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.FromArgb(13, 13, 13);
-            label5.Location = new Point(66, 157);
-            label5.Name = "label5";
-            label5.Padding = new Padding(0, 2, 0, 0);
-            label5.Size = new Size(44, 23);
-            label5.TabIndex = 30;
-            label5.Text = "Save";
-            label5.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(21, 159);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(32, 22);
-            pictureBox6.TabIndex = 31;
-            pictureBox6.TabStop = false;
-            // 
             // ServerHomePage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -838,6 +838,8 @@
             customCard24.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox13).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox16).EndInit();
             customCard23.ResumeLayout(false);
@@ -850,8 +852,6 @@
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel3.PerformLayout();
             panel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ResumeLayout(false);
         }
 

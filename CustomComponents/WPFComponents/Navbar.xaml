@@ -68,7 +68,7 @@
 
             <MenuItem x:Name="nav_session" Header="SESSION" Click="nav_session_Click"/>
             <MenuItem x:Name="nav_explorer" Header="EXERCISE EXPLORER" Click="nav_explorer_Click"/>
-            <MenuItem x:Name="nav_settings" Header="SETTINGS" Click="nav_settings_Click"/>
+            <MenuItem x:Name="nav_sessionlogs" Header="SESSION LOGS" Click="nav_sessionlogs_Click"/>
 
         </Menu>
     </Grid>
