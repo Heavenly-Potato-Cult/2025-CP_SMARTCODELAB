@@ -26,7 +26,6 @@ using WpfBrushes = System.Windows.Media.Brushes;
 using WpfColor = System.Windows.Media.Color;
 using WpfSolidColorBrush = System.Windows.Media.SolidColorBrush;
 using WpfSystemColors = System.Windows.SystemColors;
-using SmartCodeLab.CustomComponents.GeneralComponents;
 //For WPF ;>
 using WpfTreeView = System.Windows.Controls.TreeView;
 using WpfTreeViewItem = System.Windows.Controls.TreeViewItem;
