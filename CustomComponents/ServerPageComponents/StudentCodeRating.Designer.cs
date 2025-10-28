@@ -36,13 +36,11 @@
             label9 = new Label();
             accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             label15 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             accuracyPanel = new Panel();
             button3 = new Button();
             result = new Label();
             label7 = new Label();
             readabilityContainer = new FlowLayoutPanel();
-            panel4 = new Panel();
             readability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             button2 = new Button();
             label2 = new Label();
@@ -59,28 +57,28 @@
             complexity = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             label5 = new Label();
             panel2 = new Panel();
+            panel4 = new Panel();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            flowLayoutPanel1.SuspendLayout();
             accuracyPanel.SuspendLayout();
             readabilityContainer.SuspendLayout();
-            panel4.SuspendLayout();
             efficiencyContainer.SuspendLayout();
             panel1.SuspendLayout();
+            panel4.SuspendLayout();
             SuspendLayout();
             // 
             // panel19
             // 
-            panel19.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel19.BackColor = Color.FromArgb(240, 247, 255);
             panel19.Controls.Add(score);
             panel19.Controls.Add(customToggleButton1);
             panel19.Controls.Add(pictureBox7);
             panel19.Controls.Add(label9);
+            panel19.Dock = DockStyle.Top;
             panel19.Location = new Point(0, 0);
             panel19.Margin = new Padding(3, 2, 3, 2);
             panel19.Name = "panel19";
-            panel19.Size = new Size(342, 42);
+            panel19.Size = new Size(391, 42);
             panel19.TabIndex = 77;
             // 
             // score
@@ -100,7 +98,7 @@
             customToggleButton1.AutoSize = true;
             customToggleButton1.Checked = true;
             customToggleButton1.CheckState = CheckState.Checked;
-            customToggleButton1.Location = new Point(291, 11);
+            customToggleButton1.Location = new Point(340, 11);
             customToggleButton1.MinimumSize = new Size(45, 22);
             customToggleButton1.Name = "customToggleButton1";
             customToggleButton1.OffBackColor = Color.Gray;
@@ -110,7 +108,6 @@
             customToggleButton1.Size = new Size(45, 22);
             customToggleButton1.TabIndex = 80;
             customToggleButton1.UseVisualStyleBackColor = true;
-            customToggleButton1.CheckedChanged += customToggleButton1_CheckedChanged;
             // 
             // pictureBox7
             // 
@@ -153,40 +150,24 @@
             label15.TabIndex = 80;
             label15.Text = "Accuracy";
             // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.BackColor = Color.White;
-            flowLayoutPanel1.Controls.Add(accuracyPanel);
-            flowLayoutPanel1.Controls.Add(readabilityContainer);
-            flowLayoutPanel1.Controls.Add(efficiencyContainer);
-            flowLayoutPanel1.Controls.Add(panel1);
-            flowLayoutPanel1.Controls.Add(panel2);
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(3, 46);
-            flowLayoutPanel1.Margin = new Padding(3, 2, 3, 2);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(339, 141);
-            flowLayoutPanel1.TabIndex = 79;
-            flowLayoutPanel1.WrapContents = false;
-            // 
             // accuracyPanel
             // 
-            accuracyPanel.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             accuracyPanel.Controls.Add(button3);
             accuracyPanel.Controls.Add(result);
             accuracyPanel.Controls.Add(label7);
             accuracyPanel.Controls.Add(accuracy);
             accuracyPanel.Controls.Add(label15);
-            accuracyPanel.Location = new Point(3, 2);
+            accuracyPanel.Dock = DockStyle.Top;
+            accuracyPanel.Location = new Point(0, 42);
             accuracyPanel.Margin = new Padding(3, 2, 3, 2);
             accuracyPanel.Name = "accuracyPanel";
-            accuracyPanel.Size = new Size(333, 27);
+            accuracyPanel.Size = new Size(391, 27);
             accuracyPanel.TabIndex = 0;
             // 
             // button3
             // 
-            button3.Location = new Point(289, 2);
+            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button3.Location = new Point(347, 2);
             button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
             button3.Size = new Size(20, 18);
@@ -217,26 +198,14 @@
             // 
             // readabilityContainer
             // 
-            readabilityContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             readabilityContainer.Controls.Add(panel4);
             readabilityContainer.Controls.Add(standardErrors);
-            readabilityContainer.Location = new Point(3, 33);
+            readabilityContainer.Dock = DockStyle.Top;
+            readabilityContainer.Location = new Point(0, 79);
             readabilityContainer.Margin = new Padding(3, 2, 3, 2);
             readabilityContainer.Name = "readabilityContainer";
-            readabilityContainer.Size = new Size(333, 27);
+            readabilityContainer.Size = new Size(391, 27);
             readabilityContainer.TabIndex = 83;
-            // 
-            // panel4
-            // 
-            panel4.BackColor = Color.White;
-            panel4.Controls.Add(readability);
-            panel4.Controls.Add(button2);
-            panel4.Controls.Add(label2);
-            panel4.Location = new Point(3, 2);
-            panel4.Margin = new Padding(3, 2, 3, 2);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(307, 23);
-            panel4.TabIndex = 0;
             // 
             // readability
             // 
@@ -249,7 +218,8 @@
             // 
             // button2
             // 
-            button2.Location = new Point(287, 2);
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button2.Location = new Point(344, 1);
             button2.Margin = new Padding(3, 2, 3, 2);
             button2.Name = "button2";
             button2.Size = new Size(20, 18);
@@ -283,10 +253,11 @@
             // 
             efficiencyContainer.Controls.Add(efficiency);
             efficiencyContainer.Controls.Add(label3);
-            efficiencyContainer.Location = new Point(3, 64);
+            efficiencyContainer.Dock = DockStyle.Top;
+            efficiencyContainer.Location = new Point(0, 106);
             efficiencyContainer.Margin = new Padding(3, 2, 3, 2);
             efficiencyContainer.Name = "efficiencyContainer";
-            efficiencyContainer.Size = new Size(333, 25);
+            efficiencyContainer.Size = new Size(391, 25);
             efficiencyContainer.TabIndex = 85;
             // 
             // efficiency
@@ -311,6 +282,7 @@
             // 
             // panel1
             // 
+            panel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(actualCycComplexity);
@@ -318,14 +290,15 @@
             panel1.Controls.Add(expectedCycComplexity);
             panel1.Controls.Add(complexity);
             panel1.Controls.Add(label5);
-            panel1.Location = new Point(3, 94);
+            panel1.Location = new Point(1, 136);
             panel1.Name = "panel1";
-            panel1.Size = new Size(330, 28);
+            panel1.Size = new Size(333, 28);
             panel1.TabIndex = 86;
             // 
             // button1
             // 
-            button1.Location = new Point(291, 2);
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.Location = new Point(294, 2);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
             button1.Size = new Size(20, 18);
@@ -396,33 +369,50 @@
             // 
             // panel2
             // 
-            panel2.Location = new Point(3, 128);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 69);
             panel2.Name = "panel2";
-            panel2.Size = new Size(333, 10);
+            panel2.Size = new Size(391, 10);
             panel2.TabIndex = 87;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.White;
+            panel4.Controls.Add(readability);
+            panel4.Controls.Add(button2);
+            panel4.Controls.Add(label2);
+            panel4.Location = new Point(3, 2);
+            panel4.Margin = new Padding(3, 2, 3, 2);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(388, 23);
+            panel4.TabIndex = 0;
             // 
             // StudentCodeRating
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(flowLayoutPanel1);
+            BackColor = Color.White;
+            Controls.Add(efficiencyContainer);
+            Controls.Add(readabilityContainer);
+            Controls.Add(panel1);
+            Controls.Add(panel2);
+            Controls.Add(accuracyPanel);
             Controls.Add(panel19);
             Margin = new Padding(3, 2, 3, 2);
             Name = "StudentCodeRating";
-            Size = new Size(342, 188);
+            Size = new Size(391, 188);
             panel19.ResumeLayout(false);
             panel19.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            flowLayoutPanel1.ResumeLayout(false);
             accuracyPanel.ResumeLayout(false);
             accuracyPanel.PerformLayout();
             readabilityContainer.ResumeLayout(false);
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
             efficiencyContainer.ResumeLayout(false);
             efficiencyContainer.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -433,10 +423,8 @@
         private Label label9;
         private GeneralComponents.StatsBar accuracy;
         private Label label15;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Panel accuracyPanel;
         private FlowLayoutPanel readabilityContainer;
-        private Panel panel4;
         private GeneralComponents.StatsBar readability;
         private Button button2;
         private Label label2;
@@ -458,5 +446,6 @@
         private Button button3;
         private Panel panel1;
         private Panel panel2;
+        private Panel panel4;
     }
 }

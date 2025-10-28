@@ -149,10 +149,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             await Task.Run(() => this.Invoke(new Action(() => score.Text = GetScore().ToString())));
         }
 
-        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            flowLayoutPanel1.Visible = customToggleButton1.Checked;
-        }
+        
 
         public float GetScore()
         {

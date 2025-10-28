@@ -46,24 +46,19 @@
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            description = new TextBox();
             tabControl_RightSide = new TabControl();
             BroadcastsTab = new TabPage();
             MessagesTab = new TabPage();
             richTextBox2 = new RichTextBox();
             msgBox = new RichTextBox();
             ActivityTab = new TabPage();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            panel15 = new Panel();
-            customToggleButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomToggleButton();
-            pictureBox5 = new PictureBox();
-            actName = new Label();
-            description = new TextBox();
-            panel16 = new Panel();
-            customToggleButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomToggleButton();
-            pictureBox6 = new PictureBox();
-            label17 = new Label();
-            testCaseContainer = new FlowLayoutPanel();
+            panel3 = new Panel();
+            expansion_expansion_panel = new MaterialSkin.Controls.MaterialExpansionPanel();
             studentCodeRating = new SmartCodeLab.CustomComponents.ServerPageComponents.StudentCodeRating();
+            testcase_expansion_panel = new MaterialSkin.Controls.MaterialExpansionPanel();
+            testCaseContainer = new FlowLayoutPanel();
+            activity_expansion_panel = new MaterialSkin.Controls.MaterialExpansionPanel();
             panel_LeftSide_Main = new Panel();
             panel_LeftSide_Directory = new Panel();
             panel_LeftSide_Buttons = new Panel();
@@ -78,11 +73,10 @@
             tabControl_RightSide.SuspendLayout();
             MessagesTab.SuspendLayout();
             ActivityTab.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
-            panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            panel16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            panel3.SuspendLayout();
+            expansion_expansion_panel.SuspendLayout();
+            testcase_expansion_panel.SuspendLayout();
+            activity_expansion_panel.SuspendLayout();
             panel_LeftSide_Main.SuspendLayout();
             panel_LeftSide_Buttons.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -101,12 +95,13 @@
             headerPanel.Dock = DockStyle.Top;
             headerPanel.Location = new Point(0, 0);
             headerPanel.Name = "headerPanel";
-            headerPanel.Size = new Size(1348, 60);
+            headerPanel.Size = new Size(1345, 60);
             headerPanel.TabIndex = 2;
             // 
             // button1
             // 
-            button1.Location = new Point(1273, 0);
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.Location = new Point(1220, 0);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 17;
@@ -116,8 +111,9 @@
             // 
             // pictureBox8
             // 
+            pictureBox8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(1368, 20);
+            pictureBox8.Location = new Point(1315, 20);
             pictureBox8.Margin = new Padding(3, 2, 3, 2);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(23, 20);
@@ -137,10 +133,11 @@
             // 
             // label13
             // 
+            label13.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.Gray;
-            label13.Location = new Point(1107, 21);
+            label13.Location = new Point(1054, 21);
             label13.Name = "label13";
             label13.Size = new Size(231, 20);
             label13.TabIndex = 13;
@@ -185,7 +182,7 @@
             panel2.Location = new Point(0, 60);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1348, 1);
+            panel2.Size = new Size(1345, 1);
             panel2.TabIndex = 0;
             // 
             // panel4
@@ -195,7 +192,7 @@
             panel4.Location = new Point(0, 61);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1348, 1);
+            panel4.Size = new Size(1345, 1);
             panel4.TabIndex = 10;
             // 
             // panel_MiddlePart_Main
@@ -203,10 +200,10 @@
             panel_MiddlePart_Main.Controls.Add(customTabControl1);
             panel_MiddlePart_Main.Controls.Add(panel1);
             panel_MiddlePart_Main.Dock = DockStyle.Fill;
-            panel_MiddlePart_Main.Location = new Point(250, 2);
+            panel_MiddlePart_Main.Location = new Point(249, 2);
             panel_MiddlePart_Main.Margin = new Padding(3, 2, 3, 2);
             panel_MiddlePart_Main.Name = "panel_MiddlePart_Main";
-            panel_MiddlePart_Main.Size = new Size(722, 560);
+            panel_MiddlePart_Main.Size = new Size(720, 560);
             panel_MiddlePart_Main.TabIndex = 20;
             // 
             // customTabControl1
@@ -215,7 +212,7 @@
             customTabControl1.Location = new Point(0, 46);
             customTabControl1.Margin = new Padding(3, 2, 3, 2);
             customTabControl1.Name = "customTabControl1";
-            customTabControl1.Size = new Size(722, 514);
+            customTabControl1.Size = new Size(720, 514);
             customTabControl1.TabIndex = 20;
             // 
             // panel1
@@ -229,7 +226,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(722, 46);
+            panel1.Size = new Size(720, 46);
             panel1.TabIndex = 9;
             // 
             // smartButton5
@@ -320,13 +317,24 @@
             smartButton2.UseVisualStyleBackColor = false;
             smartButton2.Click += smartButton2_Click;
             // 
+            // description
+            // 
+            description.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            description.Location = new Point(27, 53);
+            description.Margin = new Padding(3, 2, 3, 2);
+            description.Multiline = true;
+            description.Name = "description";
+            description.ScrollBars = ScrollBars.Vertical;
+            description.Size = new Size(320, 182);
+            description.TabIndex = 76;
+            // 
             // tabControl_RightSide
             // 
             tabControl_RightSide.Controls.Add(BroadcastsTab);
             tabControl_RightSide.Controls.Add(MessagesTab);
             tabControl_RightSide.Controls.Add(ActivityTab);
             tabControl_RightSide.Dock = DockStyle.Fill;
-            tabControl_RightSide.Location = new Point(978, 2);
+            tabControl_RightSide.Location = new Point(975, 2);
             tabControl_RightSide.Margin = new Padding(3, 2, 3, 2);
             tabControl_RightSide.Multiline = true;
             tabControl_RightSide.Name = "tabControl_RightSide";
@@ -356,7 +364,7 @@
             MessagesTab.Margin = new Padding(3, 2, 3, 2);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3, 2, 3, 2);
-            MessagesTab.Size = new Size(360, 540);
+            MessagesTab.Size = new Size(359, 540);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -383,161 +391,111 @@
             // 
             // ActivityTab
             // 
-            ActivityTab.Controls.Add(flowLayoutPanel1);
+            ActivityTab.Controls.Add(panel3);
             ActivityTab.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ActivityTab.Location = new Point(4, 24);
             ActivityTab.Margin = new Padding(3, 2, 3, 2);
             ActivityTab.Name = "ActivityTab";
-            ActivityTab.Padding = new Padding(9, 8, 9, 15);
-            ActivityTab.Size = new Size(360, 540);
+            ActivityTab.Size = new Size(359, 540);
             ActivityTab.TabIndex = 2;
             ActivityTab.Text = "Activity";
             ActivityTab.UseVisualStyleBackColor = true;
             // 
-            // flowLayoutPanel1
+            // panel3
             // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Controls.Add(panel15);
-            flowLayoutPanel1.Controls.Add(description);
-            flowLayoutPanel1.Controls.Add(panel16);
-            flowLayoutPanel1.Controls.Add(testCaseContainer);
-            flowLayoutPanel1.Controls.Add(studentCodeRating);
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(0, 3);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(354, 536);
-            flowLayoutPanel1.TabIndex = 0;
-            flowLayoutPanel1.WrapContents = false;
+            panel3.Controls.Add(expansion_expansion_panel);
+            panel3.Controls.Add(testcase_expansion_panel);
+            panel3.Controls.Add(activity_expansion_panel);
+            panel3.Dock = DockStyle.Fill;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(359, 540);
+            panel3.TabIndex = 0;
             // 
-            // panel15
+            // expansion_expansion_panel
             // 
-            panel15.BackColor = Color.FromArgb(240, 247, 255);
-            panel15.Controls.Add(customToggleButton1);
-            panel15.Controls.Add(pictureBox5);
-            panel15.Controls.Add(actName);
-            panel15.Location = new Point(3, 2);
-            panel15.Margin = new Padding(3, 2, 3, 2);
-            panel15.Name = "panel15";
-            panel15.Size = new Size(337, 42);
-            panel15.TabIndex = 75;
+            expansion_expansion_panel.BackColor = Color.FromArgb(255, 255, 255);
+            expansion_expansion_panel.CancelButtonText = "";
+            expansion_expansion_panel.Controls.Add(studentCodeRating);
+            expansion_expansion_panel.Depth = 0;
+            expansion_expansion_panel.Description = "";
+            expansion_expansion_panel.Dock = DockStyle.Top;
+            expansion_expansion_panel.ExpandHeight = 303;
+            expansion_expansion_panel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            expansion_expansion_panel.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            expansion_expansion_panel.Location = new Point(0, 351);
+            expansion_expansion_panel.Margin = new Padding(3, 16, 3, 16);
+            expansion_expansion_panel.MouseState = MaterialSkin.MouseState.HOVER;
+            expansion_expansion_panel.Name = "expansion_expansion_panel";
+            expansion_expansion_panel.Padding = new Padding(24, 64, 24, 16);
+            expansion_expansion_panel.Size = new Size(359, 303);
+            expansion_expansion_panel.TabIndex = 81;
+            expansion_expansion_panel.Title = "Scores";
+            expansion_expansion_panel.ValidationButtonText = " ";
             // 
-            // customToggleButton1
+            // studentCodeRating
             // 
-            customToggleButton1.AutoSize = true;
-            customToggleButton1.Checked = true;
-            customToggleButton1.CheckState = CheckState.Checked;
-            customToggleButton1.Location = new Point(239, 9);
-            customToggleButton1.MinimumSize = new Size(45, 22);
-            customToggleButton1.Name = "customToggleButton1";
-            customToggleButton1.OffBackColor = Color.Gray;
-            customToggleButton1.OffToggleColor = Color.Gainsboro;
-            customToggleButton1.OnBackColor = Color.MediumSlateBlue;
-            customToggleButton1.OnToggleColor = Color.WhiteSmoke;
-            customToggleButton1.Size = new Size(45, 22);
-            customToggleButton1.TabIndex = 62;
-            customToggleButton1.UseVisualStyleBackColor = true;
-            customToggleButton1.CheckedChanged += customToggleButton1_CheckedChanged;
+            studentCodeRating.BackColor = Color.White;
+            studentCodeRating.Location = new Point(6, 66);
+            studentCodeRating.Margin = new Padding(3, 2, 3, 2);
+            studentCodeRating.Name = "studentCodeRating";
+            studentCodeRating.Size = new Size(334, 185);
+            studentCodeRating.TabIndex = 79;
             // 
-            // pictureBox5
+            // testcase_expansion_panel
             // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(10, 14);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(24, 19);
-            pictureBox5.TabIndex = 17;
-            pictureBox5.TabStop = false;
-            // 
-            // actName
-            // 
-            actName.AutoSize = true;
-            actName.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            actName.ForeColor = Color.FromArgb(66, 110, 232);
-            actName.Location = new Point(37, 9);
-            actName.Name = "actName";
-            actName.Size = new Size(196, 25);
-            actName.TabIndex = 61;
-            actName.Text = "Buble sort algorithm";
-            // 
-            // description
-            // 
-            description.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            description.Location = new Point(3, 48);
-            description.Margin = new Padding(3, 2, 3, 2);
-            description.Multiline = true;
-            description.Name = "description";
-            description.ScrollBars = ScrollBars.Vertical;
-            description.Size = new Size(351, 182);
-            description.TabIndex = 76;
-            // 
-            // panel16
-            // 
-            panel16.BackColor = Color.FromArgb(240, 247, 255);
-            panel16.Controls.Add(customToggleButton2);
-            panel16.Controls.Add(pictureBox6);
-            panel16.Controls.Add(label17);
-            panel16.Location = new Point(3, 234);
-            panel16.Margin = new Padding(3, 2, 3, 2);
-            panel16.Name = "panel16";
-            panel16.Size = new Size(337, 42);
-            panel16.TabIndex = 77;
-            // 
-            // customToggleButton2
-            // 
-            customToggleButton2.AutoSize = true;
-            customToggleButton2.Checked = true;
-            customToggleButton2.CheckState = CheckState.Checked;
-            customToggleButton2.Location = new Point(153, 10);
-            customToggleButton2.MinimumSize = new Size(45, 22);
-            customToggleButton2.Name = "customToggleButton2";
-            customToggleButton2.OffBackColor = Color.Gray;
-            customToggleButton2.OffToggleColor = Color.Gainsboro;
-            customToggleButton2.OnBackColor = Color.MediumSlateBlue;
-            customToggleButton2.OnToggleColor = Color.WhiteSmoke;
-            customToggleButton2.Size = new Size(45, 22);
-            customToggleButton2.TabIndex = 78;
-            customToggleButton2.UseVisualStyleBackColor = true;
-            customToggleButton2.CheckedChanged += customToggleButton2_CheckedChanged;
-            // 
-            // pictureBox6
-            // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(21, 14);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(24, 19);
-            pictureBox6.TabIndex = 76;
-            pictureBox6.TabStop = false;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label17.ForeColor = Color.FromArgb(66, 110, 232);
-            label17.Location = new Point(48, 10);
-            label17.Name = "label17";
-            label17.Size = new Size(99, 25);
-            label17.TabIndex = 77;
-            label17.Text = "Test Cases";
+            testcase_expansion_panel.BackColor = Color.FromArgb(255, 255, 255);
+            testcase_expansion_panel.CancelButtonText = "";
+            testcase_expansion_panel.Collapse = true;
+            testcase_expansion_panel.Controls.Add(testCaseContainer);
+            testcase_expansion_panel.Depth = 0;
+            testcase_expansion_panel.Description = "";
+            testcase_expansion_panel.Dock = DockStyle.Top;
+            testcase_expansion_panel.ExpandHeight = 303;
+            testcase_expansion_panel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            testcase_expansion_panel.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            testcase_expansion_panel.Location = new Point(0, 303);
+            testcase_expansion_panel.Margin = new Padding(16, 1, 16, 0);
+            testcase_expansion_panel.MouseState = MaterialSkin.MouseState.HOVER;
+            testcase_expansion_panel.Name = "testcase_expansion_panel";
+            testcase_expansion_panel.Padding = new Padding(24, 64, 24, 16);
+            testcase_expansion_panel.Size = new Size(359, 48);
+            testcase_expansion_panel.TabIndex = 80;
+            testcase_expansion_panel.Title = "TestCases";
+            testcase_expansion_panel.ValidationButtonText = " ";
             // 
             // testCaseContainer
             // 
             testCaseContainer.AutoScroll = true;
+            testCaseContainer.BackColor = Color.White;
             testCaseContainer.FlowDirection = FlowDirection.TopDown;
-            testCaseContainer.Location = new Point(3, 280);
+            testCaseContainer.Location = new Point(11, 66);
             testCaseContainer.Margin = new Padding(3, 2, 3, 2);
             testCaseContainer.Name = "testCaseContainer";
-            testCaseContainer.Size = new Size(351, 143);
+            testCaseContainer.Size = new Size(333, 160);
             testCaseContainer.TabIndex = 78;
             testCaseContainer.WrapContents = false;
             // 
-            // studentCodeRating
+            // activity_expansion_panel
             // 
-            studentCodeRating.Location = new Point(3, 427);
-            studentCodeRating.Margin = new Padding(3, 2, 3, 2);
-            studentCodeRating.Name = "studentCodeRating";
-            studentCodeRating.Size = new Size(337, 172);
-            studentCodeRating.TabIndex = 79;
+            activity_expansion_panel.BackColor = Color.FromArgb(255, 255, 255);
+            activity_expansion_panel.CancelButtonText = "";
+            activity_expansion_panel.Controls.Add(description);
+            activity_expansion_panel.Depth = 0;
+            activity_expansion_panel.Description = "";
+            activity_expansion_panel.Dock = DockStyle.Top;
+            activity_expansion_panel.ExpandHeight = 303;
+            activity_expansion_panel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            activity_expansion_panel.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            activity_expansion_panel.Location = new Point(0, 0);
+            activity_expansion_panel.Margin = new Padding(16);
+            activity_expansion_panel.MouseState = MaterialSkin.MouseState.HOVER;
+            activity_expansion_panel.Name = "activity_expansion_panel";
+            activity_expansion_panel.Padding = new Padding(24, 64, 24, 16);
+            activity_expansion_panel.Size = new Size(359, 303);
+            activity_expansion_panel.TabIndex = 0;
+            activity_expansion_panel.Title = "Bubble Sort";
+            activity_expansion_panel.ValidationButtonText = " ";
             // 
             // panel_LeftSide_Main
             // 
@@ -548,7 +506,7 @@
             panel_LeftSide_Main.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Main.Name = "panel_LeftSide_Main";
             tableLayoutPanel2.SetRowSpan(panel_LeftSide_Main, 2);
-            panel_LeftSide_Main.Size = new Size(241, 568);
+            panel_LeftSide_Main.Size = new Size(240, 568);
             panel_LeftSide_Main.TabIndex = 19;
             // 
             // panel_LeftSide_Directory
@@ -557,7 +515,7 @@
             panel_LeftSide_Directory.Location = new Point(0, 46);
             panel_LeftSide_Directory.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Directory.Name = "panel_LeftSide_Directory";
-            panel_LeftSide_Directory.Size = new Size(241, 522);
+            panel_LeftSide_Directory.Size = new Size(240, 522);
             panel_LeftSide_Directory.TabIndex = 15;
             // 
             // panel_LeftSide_Buttons
@@ -568,7 +526,7 @@
             panel_LeftSide_Buttons.Location = new Point(0, 0);
             panel_LeftSide_Buttons.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Buttons.Name = "panel_LeftSide_Buttons";
-            panel_LeftSide_Buttons.Size = new Size(241, 46);
+            panel_LeftSide_Buttons.Size = new Size(240, 46);
             panel_LeftSide_Buttons.TabIndex = 16;
             // 
             // smartButton6
@@ -619,8 +577,8 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.3457718F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.04229F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.61194F));
-            tableLayoutPanel2.Controls.Add(panel_LeftSide_Main, 0, 0);
             tableLayoutPanel2.Controls.Add(tabControl_RightSide, 2, 0);
+            tableLayoutPanel2.Controls.Add(panel_LeftSide_Main, 0, 0);
             tableLayoutPanel2.Controls.Add(panel_MiddlePart_Main, 1, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 62);
@@ -630,7 +588,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 98.6014F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.39860141F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tableLayoutPanel2.Size = new Size(1348, 572);
+            tableLayoutPanel2.Size = new Size(1345, 572);
             tableLayoutPanel2.TabIndex = 18;
             // 
             // TempIDE
@@ -638,7 +596,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1348, 634);
+            ClientSize = new Size(1345, 634);
             Controls.Add(tableLayoutPanel2);
             Controls.Add(panel4);
             Controls.Add(panel2);
@@ -658,14 +616,13 @@
             tabControl_RightSide.ResumeLayout(false);
             MessagesTab.ResumeLayout(false);
             ActivityTab.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
-            flowLayoutPanel1.PerformLayout();
-            panel15.ResumeLayout(false);
-            panel15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            panel16.ResumeLayout(false);
-            panel16.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            panel3.ResumeLayout(false);
+            expansion_expansion_panel.ResumeLayout(false);
+            expansion_expansion_panel.PerformLayout();
+            testcase_expansion_panel.ResumeLayout(false);
+            testcase_expansion_panel.PerformLayout();
+            activity_expansion_panel.ResumeLayout(false);
+            activity_expansion_panel.PerformLayout();
             panel_LeftSide_Main.ResumeLayout(false);
             panel_LeftSide_Buttons.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
@@ -694,14 +651,7 @@
         private TabPage BroadcastsTab;
         private TabPage MessagesTab;
         private TabPage ActivityTab;
-        private FlowLayoutPanel flowLayoutPanel1;
-        private Panel panel15;
-        private PictureBox pictureBox5;
-        private Label actName;
         private TextBox description;
-        private Panel panel16;
-        private PictureBox pictureBox6;
-        private Label label17;
         private FlowLayoutPanel testCaseContainer;
         private CustomComponents.ServerPageComponents.StudentCodeRating studentCodeRating;
         private TableLayoutPanel tableLayoutPanel2;
@@ -710,10 +660,15 @@
         private Panel panel_LeftSide_Buttons;
         private CustomComponents.GeneralComponents.SmartButton smartButton6;
         private CustomComponents.GeneralComponents.SmartButton btn_OpenFolder;
-        private CustomComponents.GeneralComponents.CustomToggleButton customToggleButton1;
-        private CustomComponents.GeneralComponents.CustomToggleButton customToggleButton2;
         private Button button1;
         private RichTextBox richTextBox2;
         private RichTextBox msgBox;
+        private Panel panel3;
+        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel1;
+        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel3;
+        private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel2;
+        private MaterialSkin.Controls.MaterialExpansionPanel expansion_expansion_panel;
+        private MaterialSkin.Controls.MaterialExpansionPanel testcase_expansion_panel;
+        private MaterialSkin.Controls.MaterialExpansionPanel activity_expansion_panel;
     }
 }
