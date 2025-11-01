@@ -42,7 +42,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             string classname = Path.GetFileNameWithoutExtension(filePath);
             string directory = Path.GetDirectoryName(filePath);
-            commandLine = $"/c \"{ProgrammingConfiguration.javac}\" -cp {directory} {filePath} && {ProgrammingConfiguration.javaExe} -cp {directory} {classname}";
+            commandLine = $"/c javac -cp {directory} {filePath} && java -cp {directory} {classname}";
             base.RunCode();
         }
 
@@ -102,7 +102,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string fileName = Path.GetFileName(filePath);
             string directory = Path.GetDirectoryName(filePath);
             string errorLine = "";
-            process = CommandRunner($"/c cd {directory} && \"{ProgrammingConfiguration.javac}\" -Xlint {fileName}");
+            process = CommandRunner($"/c cd {directory} && javac -Xlint {fileName}");
 
             await StartprocessAsyncExit(
                 process,
@@ -126,7 +126,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 string updatedFile = File.ReadAllText(ProgrammingConfiguration.checkStyleConfig).Replace("regex!!", expression);
                 File.WriteAllText(ProgrammingConfiguration.checkStyleConfig, updatedFile);
 
-                CheckCodingStandards($"/c {ProgrammingConfiguration.javaExe} -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkStyleConfig} {filePath}",
+                CheckCodingStandards($"/c java -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkStyleConfig} {filePath}",
                     new Action(() => File.WriteAllTextAsync(ProgrammingConfiguration.namingConventionChecker, updatedFile.Replace(expression, "regex!!"))));
             }
         }
@@ -177,7 +177,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.java");
-            commandLine = $"/c cd {directory} && \"{ProgrammingConfiguration.javac}\" Tester.java && {ProgrammingConfiguration.javaExe} Tester";
+            commandLine = $"/c cd {directory} && javac Tester.java && java Tester";
             base.RunTest();
         }
     }

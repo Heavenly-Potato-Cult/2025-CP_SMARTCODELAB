@@ -49,6 +49,7 @@
             description = new TextBox();
             tabControl_RightSide = new TabControl();
             BroadcastsTab = new TabPage();
+            panel_leaderboards = new FlowLayoutPanel();
             MessagesTab = new TabPage();
             richTextBox2 = new RichTextBox();
             msgBox = new RichTextBox();
@@ -65,7 +66,6 @@
             smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_OpenFolder = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             tableLayoutPanel2 = new TableLayoutPanel();
-            panel_leaderboards = new FlowLayoutPanel();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -359,6 +359,16 @@
             BroadcastsTab.Text = "Leaderboards";
             BroadcastsTab.UseVisualStyleBackColor = true;
             // 
+            // panel_leaderboards
+            // 
+            panel_leaderboards.AutoScroll = true;
+            //panel_leaderboards.FlowDirection = FlowDirection.TopDown;
+            panel_leaderboards.Location = new Point(6, 32);
+            panel_leaderboards.Name = "panel_leaderboards";
+            panel_leaderboards.Size = new Size(347, 502);
+            panel_leaderboards.TabIndex = 0;
+            //panel_leaderboards.WrapContents = false;
+            // 
             // MessagesTab
             // 
             MessagesTab.Controls.Add(richTextBox2);
@@ -594,16 +604,6 @@
             tableLayoutPanel2.Size = new Size(1345, 572);
             tableLayoutPanel2.TabIndex = 18;
             // 
-            // panel_leaderboards
-            // 
-            panel_leaderboards.AutoScroll = true;
-            panel_leaderboards.FlowDirection = FlowDirection.TopDown;
-            panel_leaderboards.Location = new Point(6, 32);
-            panel_leaderboards.Name = "panel_leaderboards";
-            panel_leaderboards.Size = new Size(347, 314);
-            panel_leaderboards.TabIndex = 0;
-            panel_leaderboards.WrapContents = false;
-            // 
             // TempIDE
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -684,6 +684,6 @@
         private MaterialSkin.Controls.MaterialExpansionPanel expansion_expansion_panel;
         private MaterialSkin.Controls.MaterialExpansionPanel testcase_expansion_panel;
         private MaterialSkin.Controls.MaterialExpansionPanel activity_expansion_panel;
-        private FlowLayoutPanel panel_leaderboards;
+        private Panel panel_leaderboards;
     }
 }

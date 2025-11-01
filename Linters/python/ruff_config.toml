@@ -28,6 +28,7 @@ lint.select = ["N815",
 		"F406",		#undefined-local-with-nested-import-star-usage
 		"E306",		#blank-lines-before-nested-definition //TO ADD
 		"E301",		#blank-line-between-methods //TO ADD
+		"SIM202"
 ]
 line-length = 100
 target-version = "py310"

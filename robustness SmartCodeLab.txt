@@ -1,0 +1,21 @@
+PMD Rules for Robustness: (Java)
+BrokenNullCheck
+CompareObjectsWithEquals
+EqualsNull
+MisplacedNullCheck
+NullAssignment
+UnusedNullCheckInEquals
+ReturnEmptyCollectionRatherThanNull
+
+ (Python)
+Flake 8/Ruff
+"F632",
+"E721",
+"E722",
+"TRY004",
+"TRY201",
+"TRY002",
+"TRY003",
+"TRY203",
+"TRY300",
+"TRY301"

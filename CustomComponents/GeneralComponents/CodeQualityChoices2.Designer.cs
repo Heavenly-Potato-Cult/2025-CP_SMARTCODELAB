@@ -32,23 +32,22 @@
             efficiencyLabel = new Label();
             accuracyLabel = new Label();
             label14 = new Label();
-            efficiencyTrackBar = new TrackBar();
+            efficiencyT = new TrackBar();
             label11 = new Label();
-            logicalComplexityTrackBar = new TrackBar();
+            complexityT = new TrackBar();
             label2 = new Label();
-            readabilityTrackBar = new TrackBar();
+            readabilityT = new TrackBar();
             label8 = new Label();
-            accuracyTrackBar = new TrackBar();
+            accuracyT = new TrackBar();
             label13 = new Label();
             readabilityLabel = new Label();
-            checkBox1 = new CheckBox();
             checkBox2 = new CheckBox();
             checkBox3 = new CheckBox();
             checkBox4 = new CheckBox();
-            ((System.ComponentModel.ISupportInitialize)efficiencyTrackBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)logicalComplexityTrackBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)readabilityTrackBar).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)accuracyTrackBar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)efficiencyT).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)complexityT).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)readabilityT).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)accuracyT).BeginInit();
             SuspendLayout();
             // 
             // logicalComplexityLabel
@@ -95,12 +94,12 @@
             label14.TabIndex = 43;
             label14.Text = "Efficiency";
             // 
-            // efficiencyTrackBar
+            // efficiencyT
             // 
-            efficiencyTrackBar.Location = new Point(26, 243);
-            efficiencyTrackBar.Name = "efficiencyTrackBar";
-            efficiencyTrackBar.Size = new Size(342, 45);
-            efficiencyTrackBar.TabIndex = 42;
+            efficiencyT.Location = new Point(26, 243);
+            efficiencyT.Name = "efficiencyT";
+            efficiencyT.Size = new Size(342, 45);
+            efficiencyT.TabIndex = 42;
             // 
             // label11
             // 
@@ -113,12 +112,12 @@
             label11.TabIndex = 41;
             label11.Text = "Logical Complexity";
             // 
-            // logicalComplexityTrackBar
+            // complexityT
             // 
-            logicalComplexityTrackBar.Location = new Point(26, 314);
-            logicalComplexityTrackBar.Name = "logicalComplexityTrackBar";
-            logicalComplexityTrackBar.Size = new Size(342, 45);
-            logicalComplexityTrackBar.TabIndex = 40;
+            complexityT.Location = new Point(26, 314);
+            complexityT.Name = "complexityT";
+            complexityT.Size = new Size(342, 45);
+            complexityT.TabIndex = 40;
             // 
             // label2
             // 
@@ -131,12 +130,12 @@
             label2.TabIndex = 39;
             label2.Text = "Readabilty";
             // 
-            // readabilityTrackBar
+            // readabilityT
             // 
-            readabilityTrackBar.Location = new Point(26, 172);
-            readabilityTrackBar.Name = "readabilityTrackBar";
-            readabilityTrackBar.Size = new Size(342, 45);
-            readabilityTrackBar.TabIndex = 38;
+            readabilityT.Location = new Point(26, 172);
+            readabilityT.Name = "readabilityT";
+            readabilityT.Size = new Size(342, 45);
+            readabilityT.TabIndex = 38;
             // 
             // label8
             // 
@@ -149,12 +148,12 @@
             label8.TabIndex = 37;
             label8.Text = "Code Accuracy";
             // 
-            // accuracyTrackBar
+            // accuracyT
             // 
-            accuracyTrackBar.Location = new Point(26, 101);
-            accuracyTrackBar.Name = "accuracyTrackBar";
-            accuracyTrackBar.Size = new Size(342, 45);
-            accuracyTrackBar.TabIndex = 36;
+            accuracyT.Location = new Point(26, 101);
+            accuracyT.Name = "accuracyT";
+            accuracyT.Size = new Size(342, 45);
+            accuracyT.TabIndex = 36;
             // 
             // label13
             // 
@@ -178,15 +177,6 @@
             readabilityLabel.TabIndex = 47;
             readabilityLabel.Text = "0%";
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(139, 82);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(15, 14);
-            checkBox1.TabIndex = 48;
-            checkBox1.UseVisualStyleBackColor = true;
-            // 
             // checkBox2
             // 
             checkBox2.AutoSize = true;
@@ -195,6 +185,7 @@
             checkBox2.Size = new Size(15, 14);
             checkBox2.TabIndex = 49;
             checkBox2.UseVisualStyleBackColor = true;
+            checkBox2.CheckedChanged += checkBox2_CheckedChanged;
             // 
             // checkBox3
             // 
@@ -213,6 +204,7 @@
             checkBox4.Size = new Size(15, 14);
             checkBox4.TabIndex = 51;
             checkBox4.UseVisualStyleBackColor = true;
+            checkBox4.CheckedChanged += checkBox4_CheckedChanged;
             // 
             // CodeQualityChoices2
             // 
@@ -223,26 +215,26 @@
             Controls.Add(checkBox4);
             Controls.Add(checkBox3);
             Controls.Add(checkBox2);
-            Controls.Add(checkBox1);
             Controls.Add(readabilityLabel);
             Controls.Add(logicalComplexityLabel);
             Controls.Add(efficiencyLabel);
             Controls.Add(accuracyLabel);
             Controls.Add(label14);
-            Controls.Add(efficiencyTrackBar);
+            Controls.Add(efficiencyT);
             Controls.Add(label11);
-            Controls.Add(logicalComplexityTrackBar);
+            Controls.Add(complexityT);
             Controls.Add(label2);
-            Controls.Add(readabilityTrackBar);
+            Controls.Add(readabilityT);
             Controls.Add(label8);
-            Controls.Add(accuracyTrackBar);
+            Controls.Add(accuracyT);
             Controls.Add(label13);
             Name = "CodeQualityChoices2";
             Size = new Size(395, 383);
-            ((System.ComponentModel.ISupportInitialize)efficiencyTrackBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)logicalComplexityTrackBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)readabilityTrackBar).EndInit();
-            ((System.ComponentModel.ISupportInitialize)accuracyTrackBar).EndInit();
+            Load += CodeQualityChoices2_Load;
+            ((System.ComponentModel.ISupportInitialize)efficiencyT).EndInit();
+            ((System.ComponentModel.ISupportInitialize)complexityT).EndInit();
+            ((System.ComponentModel.ISupportInitialize)readabilityT).EndInit();
+            ((System.ComponentModel.ISupportInitialize)accuracyT).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -253,16 +245,15 @@
         private Label efficiencyLabel;
         private Label accuracyLabel;
         private Label label14;
-        private TrackBar efficiencyTrackBar;
+        private TrackBar efficiencyT;
         private Label label11;
-        private TrackBar logicalComplexityTrackBar;
+        private TrackBar complexityT;
         private Label label2;
-        private TrackBar readabilityTrackBar;
+        private TrackBar readabilityT;
         private Label label8;
-        private TrackBar accuracyTrackBar;
+        private TrackBar accuracyT;
         private Label label13;
         private Label readabilityLabel;
-        private CheckBox checkBox1;
         private CheckBox checkBox2;
         private CheckBox checkBox3;
         private CheckBox checkBox4;

@@ -1,0 +1,29 @@
+# ruff_config.toml - standalone
+output-format = "concise"
+preview = true
+lint.select = [	#naming convention
+		"N801", "N802", "N803", "N804", "N805", "N806", "N807", 
+    		"N811", "N812", "N813", "N814", "N815", "N816", "N817", 
+    		"N818", "N999",
+		#unnecessary whitespaces
+		"E201", "E202", "E203", "E211", "E225", "E226", "E227",
+		"E228", "E231", "E252", "E275", "W291", "W293", "E306", 
+		"E301",	"E114", "E115", "E116",
+		"RET504",	#unnecessary assignment
+		"F823",		#undefined-local
+		"PLR6104",	#non-augmented-assignment
+		"PLW0642",	#self-or-cls-assignment
+		"RUF018",	#assignment-in-assert
+		"FURB187",	#list-reverse-copy -- optional for now
+		"E301",		#blank-line-between-methods //TO ADD READABILITY
+		"SIM102",	#collapsible-if //TO ADD
+		"SIM202",
+		"PLW3301",	#nested-min-max
+		"F406",		#undefined-local-with-nested-import-star-usage
+		"PLR2044",
+]
+line-length = 100
+target-version = "py310"
+
+[format]
+quote-style = "double"

@@ -92,7 +92,6 @@ namespace SmartCodeLab
         {
             InitializeComponent();
             InitializeWPFTree();
-
             if (task.isTabLocked)
             {
                 FormBorderStyle = FormBorderStyle.None;
@@ -134,6 +133,21 @@ namespace SmartCodeLab
                 UpdateTaskDisplay(task);
                 studentCodeRating.SetStats(task.ratingFactors);
                 studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
+                AddLeaderboardIcon(1, "Alice", 100);
+                AddLeaderboardIcon(2, "Bob", 50);
+                AddLeaderboardIcon(3, "Charles", 30);
+                // ...
+                AddLeaderboardIcon(6, "David", 79);
+                AddLeaderboardIcon(1, "Alice", 100);
+                AddLeaderboardIcon(2, "Bob", 50);
+                AddLeaderboardIcon(3, "Charles", 30);
+                // ...
+                AddLeaderboardIcon(6, "David", 79);
+                AddLeaderboardIcon(1, "Alice", 100);
+                AddLeaderboardIcon(2, "Bob", 50);
+                AddLeaderboardIcon(3, "Charles", 30);
+                // ...
+                AddLeaderboardIcon(6, "David", 79);
             };
         }
 

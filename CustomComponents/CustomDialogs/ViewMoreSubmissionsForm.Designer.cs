@@ -114,7 +114,7 @@
             expandPanel_Accuracy.MouseState = MaterialSkin.MouseState.HOVER;
             expandPanel_Accuracy.Name = "expandPanel_Accuracy";
             expandPanel_Accuracy.Padding = new Padding(0, 64, 0, 0);
-            expandPanel_Accuracy.Size = new Size(638, 200);
+            expandPanel_Accuracy.Size = new Size(718, 200);
             expandPanel_Accuracy.TabIndex = 99;
             expandPanel_Accuracy.Title = "Accuracy";
             expandPanel_Accuracy.ValidationButtonText = "";

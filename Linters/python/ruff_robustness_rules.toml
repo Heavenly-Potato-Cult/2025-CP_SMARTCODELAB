@@ -1,0 +1,16 @@
+# ruff_config.toml - standalone
+output-format = "concise"
+preview = true
+lint.select = [
+"F632",
+"E721",
+"E722",
+"TRY004",
+"TRY201",
+"TRY002",
+"TRY003",
+"TRY203",
+"TRY300",
+"TRY301"
+]
+target-version = "py310"

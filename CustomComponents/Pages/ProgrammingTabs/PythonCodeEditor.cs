@@ -63,7 +63,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             HighlightError(line, errorMessage);
                         }
                     }
-                    catch (ArgumentOutOfRangeException) { }
+                    catch (ArgumentOutOfRangeException) { Debug.WriteLine("No syntax error detected"); }//will be thrown if no syntax error detected
                 }
             );
 
@@ -82,11 +82,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     {
                         string errorMessage = string.Empty;
                         int line = 0;
-                        if(!lintOutput.Contains("All checks passed!"))//this means the linter used was pylint
+                        if (!lintOutput.Contains("All checks passed!"))//this means the linter used was pylint
                         {
                             lintOutput = lintOutput.Replace("************* Module Main\n", "");
 
-                            if(i == 1)
+                            if (i == 1)
                                 lintOutput = lintOutput.Remove(lintOutput.LastIndexOf("Found "));
 
                             lintOutput = lintOutput.Remove(lintOutput.LastIndexOf('\n'));
@@ -96,7 +96,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             {
                                 string[] splicedErrorLine = error.Split(':');
                                 int splicedLength = splicedErrorLine.Length;
-
                                 //if i == 0, this means pylint was used and error message is in index 5, while it will be on index 4 if ruff was used
                                 errorMessage = splicedErrorLine[i == 0 ? 5 : 4];
                                 line = int.Parse(splicedErrorLine[2]) - 1;

@@ -29,7 +29,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             InitializeComponent();
             userProfiles = new Dictionary<string, UserProfile>()
             {
-                { "2", new UserProfile("Clifford", "2", "Slimparroot") },
+                {"2", new UserProfile("Jimmuel", "2", "Belloq") },
+                {"3", new UserProfile("Angelo", "3", "Jimmuel")  }
             };
 
             Load += async (sender, e) =>
