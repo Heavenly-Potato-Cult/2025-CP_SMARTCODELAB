@@ -66,10 +66,8 @@
             tableLayoutPanel4 = new TableLayoutPanel();
             label46 = new Label();
             label47 = new Label();
-            label55 = new Label();
-            label56 = new Label();
-            label57 = new Label();
-            label58 = new Label();
+            lbl_sessionname = new Label();
+            lbl_sessionpassword = new Label();
             panel5 = new Panel();
             panel4 = new Panel();
             label59 = new Label();
@@ -534,23 +532,21 @@
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 77.98165F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 22.0183487F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 42.2943954F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 57.7056046F));
             tableLayoutPanel4.Controls.Add(label46, 0, 0);
             tableLayoutPanel4.Controls.Add(label47, 0, 1);
-            tableLayoutPanel4.Controls.Add(label55, 1, 2);
-            tableLayoutPanel4.Controls.Add(label56, 0, 2);
-            tableLayoutPanel4.Controls.Add(label57, 1, 0);
-            tableLayoutPanel4.Controls.Add(label58, 1, 1);
+            tableLayoutPanel4.Controls.Add(lbl_sessionname, 1, 0);
+            tableLayoutPanel4.Controls.Add(lbl_sessionpassword, 1, 1);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(4, 40);
             tableLayoutPanel4.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.Padding = new Padding(9, 8, 9, 0);
-            tableLayoutPanel4.RowCount = 3;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanel4.RowCount = 2;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Size = new Size(350, 110);
             tableLayoutPanel4.TabIndex = 31;
             // 
@@ -561,67 +557,44 @@
             label46.ForeColor = Color.Gray;
             label46.Location = new Point(12, 8);
             label46.Name = "label46";
-            label46.Size = new Size(109, 20);
+            label46.Size = new Size(102, 20);
             label46.TabIndex = 21;
-            label46.Text = "Code Compiler";
+            label46.Text = "Session Name";
             // 
             // label47
             // 
             label47.AutoSize = true;
             label47.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label47.ForeColor = Color.Gray;
-            label47.Location = new Point(12, 41);
+            label47.Location = new Point(12, 59);
             label47.Name = "label47";
-            label47.Size = new Size(72, 20);
+            label47.Size = new Size(70, 20);
             label47.TabIndex = 22;
-            label47.Text = "Database";
+            label47.Text = "Password";
             // 
-            // label55
+            // lbl_sessionname
             // 
-            label55.AutoSize = true;
-            label55.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label55.ForeColor = Color.FromArgb(255, 128, 128);
-            label55.Location = new Point(270, 74);
-            label55.Name = "label55";
-            label55.Size = new Size(39, 20);
-            label55.TabIndex = 25;
-            label55.Text = "Busy";
-            label55.TextAlign = ContentAlignment.TopRight;
+            lbl_sessionname.AutoSize = true;
+            lbl_sessionname.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_sessionname.ForeColor = Color.FromArgb(0, 192, 0);
+            lbl_sessionname.Location = new Point(152, 8);
+            lbl_sessionname.Name = "lbl_sessionname";
+            lbl_sessionname.RightToLeft = RightToLeft.No;
+            lbl_sessionname.Size = new Size(46, 20);
+            lbl_sessionname.TabIndex = 24;
+            lbl_sessionname.Text = "name";
             // 
-            // label56
+            // lbl_sessionpassword
             // 
-            label56.AutoSize = true;
-            label56.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label56.ForeColor = Color.Gray;
-            label56.Location = new Point(12, 74);
-            label56.Name = "label56";
-            label56.Size = new Size(85, 20);
-            label56.TabIndex = 23;
-            label56.Text = "Test Runner";
-            // 
-            // label57
-            // 
-            label57.AutoSize = true;
-            label57.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label57.ForeColor = Color.FromArgb(0, 192, 0);
-            label57.Location = new Point(270, 8);
-            label57.Name = "label57";
-            label57.RightToLeft = RightToLeft.No;
-            label57.Size = new Size(52, 20);
-            label57.TabIndex = 24;
-            label57.Text = "Online";
-            // 
-            // label58
-            // 
-            label58.AutoSize = true;
-            label58.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label58.ForeColor = Color.FromArgb(0, 192, 0);
-            label58.Location = new Point(270, 41);
-            label58.Name = "label58";
-            label58.Size = new Size(52, 20);
-            label58.TabIndex = 23;
-            label58.Text = "Online";
-            label58.TextAlign = ContentAlignment.TopRight;
+            lbl_sessionpassword.AutoSize = true;
+            lbl_sessionpassword.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lbl_sessionpassword.ForeColor = Color.FromArgb(0, 192, 0);
+            lbl_sessionpassword.Location = new Point(152, 59);
+            lbl_sessionpassword.Name = "lbl_sessionpassword";
+            lbl_sessionpassword.Size = new Size(72, 20);
+            lbl_sessionpassword.TabIndex = 23;
+            lbl_sessionpassword.Text = "password";
+            lbl_sessionpassword.TextAlign = ContentAlignment.TopRight;
             // 
             // panel5
             // 
@@ -652,9 +625,9 @@
             label59.Location = new Point(4, 8);
             label59.Name = "label59";
             label59.Padding = new Padding(9, 0, 0, 0);
-            label59.Size = new Size(125, 21);
+            label59.Size = new Size(111, 21);
             label59.TabIndex = 26;
-            label59.Text = "System Status";
+            label59.Text = "Session Info";
             // 
             // customCard7
             // 
@@ -890,10 +863,8 @@
         private TableLayoutPanel tableLayoutPanel4;
         private Label label46;
         private Label label47;
-        private Label label55;
-        private Label label56;
-        private Label label57;
-        private Label label58;
+        private Label lbl_sessionname;
+        private Label lbl_sessionpassword;
         private Panel panel5;
         private Panel panel4;
         private Label label59;

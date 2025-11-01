@@ -52,6 +52,31 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             Object h = this.Handle;
             activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}";
             submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}";
+
+        }
+
+        public ServerHomePage(int totalStudents, string sessionName, string sessionPass)
+        {
+            InitializeComponent();
+            this.totalStudents = totalStudents;
+            submittedCount = 0;
+            copyPasteDetectedCount = 0;
+            studentsSubmitted = new List<string>();
+            notifications = new List<Notification>();
+            studentName._TextChanged += (sender, e) =>
+            {
+                searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                searchTimer = new System.Threading.Timer(async _ => await SearchStudent(), null, 500, Timeout.Infinite);
+            };
+
+            Object h = this.Handle;
+            activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}";
+            submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}";
+
+           
+            lbl_sessionname.Text = sessionName;
+            lbl_sessionpassword.Text = sessionPass;
         }
 
         public ServerHomePage(List<Notification> existingNotifications)

@@ -77,7 +77,8 @@ namespace SmartCodeLab.CustomComponents.Pages
 
             userTable = new StudTable(server.Users);
             serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress, isConnected, sendStudentMessage);
-            homePage = new ServerHomePage(server.Users.Count);
+            //homePage = new ServerHomePage(server.Users.Count);
+            homePage = new ServerHomePage(server.Users.Count, server.ServerName, server.Password);
             homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
 
