@@ -327,8 +327,9 @@
             description.Margin = new Padding(3, 2, 3, 2);
             description.Multiline = true;
             description.Name = "description";
+            description.ReadOnly = true;
             description.ScrollBars = ScrollBars.Vertical;
-            description.Size = new Size(311, 170);
+            description.Size = new Size(309, 170);
             description.TabIndex = 76;
             // 
             // tabControl_RightSide
@@ -385,10 +386,12 @@
             // 
             // richTextBox2
             // 
+            richTextBox2.BorderStyle = BorderStyle.FixedSingle;
             richTextBox2.Dock = DockStyle.Top;
             richTextBox2.Location = new Point(3, 397);
             richTextBox2.Margin = new Padding(3, 2, 3, 2);
             richTextBox2.Name = "richTextBox2";
+            richTextBox2.ReadOnly = true;
             richTextBox2.Size = new Size(353, 79);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
@@ -397,10 +400,12 @@
             // 
             // msgBox
             // 
+            msgBox.BorderStyle = BorderStyle.FixedSingle;
             msgBox.Dock = DockStyle.Top;
             msgBox.Location = new Point(3, 2);
             msgBox.Margin = new Padding(3, 2, 3, 2);
             msgBox.Name = "msgBox";
+            msgBox.ReadOnly = true;
             msgBox.Size = new Size(353, 395);
             msgBox.TabIndex = 0;
             msgBox.Text = "";
@@ -431,6 +436,7 @@
             // expansion_expansion_panel
             // 
             expansion_expansion_panel.BackColor = Color.FromArgb(255, 255, 255);
+            expansion_expansion_panel.BorderStyle = BorderStyle.FixedSingle;
             expansion_expansion_panel.CancelButtonText = "";
             expansion_expansion_panel.Controls.Add(studentCodeRating);
             expansion_expansion_panel.Depth = 0;
@@ -456,12 +462,13 @@
             studentCodeRating.Location = new Point(24, 64);
             studentCodeRating.Margin = new Padding(3, 2, 3, 2);
             studentCodeRating.Name = "studentCodeRating";
-            studentCodeRating.Size = new Size(311, 223);
+            studentCodeRating.Size = new Size(309, 221);
             studentCodeRating.TabIndex = 79;
             // 
             // testcase_expansion_panel
             // 
             testcase_expansion_panel.BackColor = Color.FromArgb(255, 255, 255);
+            testcase_expansion_panel.BorderStyle = BorderStyle.FixedSingle;
             testcase_expansion_panel.CancelButtonText = "";
             testcase_expansion_panel.Collapse = true;
             testcase_expansion_panel.Controls.Add(testCaseContainer);
@@ -496,6 +503,7 @@
             // activity_expansion_panel
             // 
             activity_expansion_panel.BackColor = Color.FromArgb(255, 255, 255);
+            activity_expansion_panel.BorderStyle = BorderStyle.FixedSingle;
             activity_expansion_panel.CancelButtonText = "";
             activity_expansion_panel.Controls.Add(description);
             activity_expansion_panel.Depth = 0;
