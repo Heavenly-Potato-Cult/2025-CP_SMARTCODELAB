@@ -174,7 +174,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 err => Debug.WriteLine(err),
                 () =>
                 {
-                    Debug.WriteLine("maintainability Errors:");
                     List<string> errorsList = new List<string>();
                     string[] errors = (maintainabilityErrors.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
                     foreach (string standardError in errors)
@@ -188,7 +187,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             maintainabilityCounts++;
                         }
                     }
-                    updateStats?.Invoke(3, maintainabilityCounts, errorsList);
+                    updateStats?.Invoke(4, maintainabilityCounts, errorsList);
                 });
         }
 
@@ -245,18 +244,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             string[] errorSliced = standardError.Replace(filePath + ":", "").Split(':');
                             int errorLine = int.Parse(errorSliced[0]);
                             string errorMessage = errorSliced[2].Trim();
-                            //if (errors[errors.Length - 1] != standardError)
-                            //{
-                            //    string[] e = standardError.Split(':');
-                            //    string errorMessage = e[e.Length - 1];
-                            //    errorsList.Add(errorMessage);
                             base.HighlightRobustnessIssue(errorLine - 1, errorMessage);
-                            //    robustnessCounts++;
-                            //}
                         }
                         catch (FormatException) { }
                     }
-                    updateStats?.Invoke(2, robustnessCounts, errorsList);
+                    updateStats?.Invoke(3, robustnessCounts, errorsList);
                 });
         }
 

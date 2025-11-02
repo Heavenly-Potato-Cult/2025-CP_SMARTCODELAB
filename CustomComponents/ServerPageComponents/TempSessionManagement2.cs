@@ -32,28 +32,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {"2", new UserProfile("Jimmuel", "2", "Belloq") },
                 {"3", new UserProfile("Angelo", "3", "Jimmuel")  }
             };
-
-            Load += async (sender, e) =>
-            {
-                foreach (var sessionFile in Directory.GetFiles(SystemConfigurations.SESSIONS_FOLDER).Where(file => file.EndsWith(".session")))
-                {
-                    await Task.Run(() =>
-                    {
-                        try
-                        {
-                            var programmingSession = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(File.OpenRead(sessionFile), PrefixStyle.Base128);
-                            this.Invoke((Action)(() =>
-                            {
-                                logsContaier.Controls.Add(new SessionLogsDisplay(programmingSession));
-                            }));
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"Failed to load session file {Path.GetFileName(sessionFile)}: {ex.Message}");
-                        }
-                    });
-                }
-            };
         }
         private void smartButton1_Click_1(object sender, EventArgs e)
         {
@@ -76,7 +54,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 selectedTask = new TaskModel();
             }
-            selectedTask.ratingFactors = codeQualityChoices.GetRatingFactors();
+            selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
             selectedTask.isTabLocked = tabNavigationLocked.Checked;
             Server server = new Server(serverName.Texts.Trim(), serverPW.Texts, selectedTask, language.SelectedItem.ToString(), userProfiles);
 

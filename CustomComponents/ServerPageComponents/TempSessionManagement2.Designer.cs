@@ -52,13 +52,6 @@
             studentsCount = new Label();
             label1 = new Label();
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            codeQualityChoices = new SmartCodeLab.CustomComponents.GeneralComponents.CodeQualityChoices();
-            customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            tbllayoutpanel_realtime_activity = new TableLayoutPanel();
-            logsContaier = new FlowLayoutPanel();
-            panel2 = new Panel();
-            panel1 = new Panel();
-            label16 = new Label();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label19 = new Label();
             codeQualityChoices21 = new SmartCodeLab.CustomComponents.GeneralComponents.CodeQualityChoices2();
@@ -67,9 +60,6 @@
             customCard5.SuspendLayout();
             customCard2.SuspendLayout();
             customCard1.SuspendLayout();
-            customCard4.SuspendLayout();
-            tbllayoutpanel_realtime_activity.SuspendLayout();
-            logsContaier.SuspendLayout();
             customCard7.SuspendLayout();
             SuspendLayout();
             // 
@@ -405,94 +395,6 @@
             smartButton2.UseVisualStyleBackColor = false;
             smartButton2.Click += smartButton2_Click;
             // 
-            // codeQualityChoices
-            // 
-            codeQualityChoices.Location = new Point(3, 2);
-            codeQualityChoices.Margin = new Padding(3, 2, 3, 2);
-            codeQualityChoices.Name = "codeQualityChoices";
-            codeQualityChoices.Size = new Size(233, 142);
-            codeQualityChoices.TabIndex = 42;
-            // 
-            // customCard4
-            // 
-            customCard4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            customCard4.BackColor = Color.White;
-            customCard4.BorderColor = Color.Gray;
-            customCard4.BorderRadius = 10;
-            customCard4.BorderSize = 1;
-            customCard4.Controls.Add(tbllayoutpanel_realtime_activity);
-            customCard4.Controls.Add(panel2);
-            customCard4.Controls.Add(panel1);
-            customCard4.Controls.Add(label16);
-            customCard4.Location = new Point(104, 780);
-            customCard4.Margin = new Padding(3, 2, 3, 2);
-            customCard4.Name = "customCard4";
-            customCard4.Padding = new Padding(9, 15, 9, 8);
-            customCard4.Size = new Size(918, 253);
-            customCard4.TabIndex = 47;
-            // 
-            // tbllayoutpanel_realtime_activity
-            // 
-            tbllayoutpanel_realtime_activity.AutoScroll = true;
-            tbllayoutpanel_realtime_activity.ColumnCount = 1;
-            tbllayoutpanel_realtime_activity.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tbllayoutpanel_realtime_activity.Controls.Add(logsContaier, 0, 1);
-            tbllayoutpanel_realtime_activity.Dock = DockStyle.Fill;
-            tbllayoutpanel_realtime_activity.Location = new Point(9, 52);
-            tbllayoutpanel_realtime_activity.Margin = new Padding(3, 2, 3, 2);
-            tbllayoutpanel_realtime_activity.Name = "tbllayoutpanel_realtime_activity";
-            tbllayoutpanel_realtime_activity.Padding = new Padding(9, 15, 18, 15);
-            tbllayoutpanel_realtime_activity.RowCount = 2;
-            tbllayoutpanel_realtime_activity.RowStyles.Add(new RowStyle());
-            tbllayoutpanel_realtime_activity.RowStyles.Add(new RowStyle());
-            tbllayoutpanel_realtime_activity.Size = new Size(900, 193);
-            tbllayoutpanel_realtime_activity.TabIndex = 27;
-            // 
-            // logsContaier
-            // 
-            logsContaier.AutoScroll = true;
-            logsContaier.Controls.Add(codeQualityChoices);
-            logsContaier.FlowDirection = FlowDirection.TopDown;
-            logsContaier.Location = new Point(12, 17);
-            logsContaier.Margin = new Padding(3, 2, 3, 2);
-            logsContaier.Name = "logsContaier";
-            logsContaier.Size = new Size(867, 175);
-            logsContaier.TabIndex = 0;
-            logsContaier.WrapContents = false;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.DarkGray;
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(9, 51);
-            panel2.Margin = new Padding(3, 2, 3, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(900, 1);
-            panel2.TabIndex = 30;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.White;
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(9, 40);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(900, 11);
-            panel1.TabIndex = 29;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Dock = DockStyle.Top;
-            label16.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label16.ForeColor = Color.FromArgb(13, 13, 13);
-            label16.Location = new Point(9, 15);
-            label16.Name = "label16";
-            label16.Padding = new Padding(9, 0, 0, 0);
-            label16.Size = new Size(134, 25);
-            label16.TabIndex = 28;
-            label16.Text = "Session Logs";
-            // 
             // customCard7
             // 
             customCard7.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -539,7 +441,6 @@
             Controls.Add(codeQualityChoices21);
             Controls.Add(customCard3);
             Controls.Add(customCard7);
-            Controls.Add(customCard4);
             Controls.Add(customCard5);
             Controls.Add(customCard2);
             Controls.Add(panel3);
@@ -555,10 +456,6 @@
             customCard2.PerformLayout();
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
-            customCard4.ResumeLayout(false);
-            customCard4.PerformLayout();
-            tbllayoutpanel_realtime_activity.ResumeLayout(false);
-            logsContaier.ResumeLayout(false);
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             ResumeLayout(false);
@@ -589,13 +486,6 @@
         private Label label1;
         private GeneralComponents.CustomCard customCard3;
         private GeneralComponents.SmartButton smartButton1;
-        private GeneralComponents.CodeQualityChoices codeQualityChoices;
-        private GeneralComponents.CustomCard customCard4;
-        private TableLayoutPanel tbllayoutpanel_realtime_activity;
-        private FlowLayoutPanel logsContaier;
-        private Panel panel2;
-        private Panel panel1;
-        private Label label16;
         private GeneralComponents.CustomCard customCard7;
         private Label label19;
         private GeneralComponents.CodeQualityChoices2 codeQualityChoices21;
