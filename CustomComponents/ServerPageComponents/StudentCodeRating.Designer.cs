@@ -133,7 +133,7 @@
             // 
             // readability
             // 
-            readability.Location = new Point(105, 12);
+            readability.Location = new Point(122, 12);
             readability.Margin = new Padding(3, 2, 3, 2);
             readability.Name = "readability";
             readability.Size = new Size(242, 10);
@@ -163,7 +163,7 @@
             // 
             // efficiency
             // 
-            efficiency.Location = new Point(105, 8);
+            efficiency.Location = new Point(122, 9);
             efficiency.Margin = new Padding(3, 2, 3, 2);
             efficiency.Name = "efficiency";
             efficiency.Size = new Size(242, 10);
@@ -177,9 +177,9 @@
             label3.ForeColor = Color.DimGray;
             label3.Location = new Point(4, 3);
             label3.Name = "label3";
-            label3.Size = new Size(74, 20);
+            label3.Size = new Size(85, 20);
             label3.TabIndex = 80;
-            label3.Text = "Efficiency";
+            label3.Text = "Robustness";
             // 
             // panel1
             // 
@@ -198,13 +198,13 @@
             label1.ForeColor = Color.DimGray;
             label1.Location = new Point(4, 4);
             label1.Name = "label1";
-            label1.Size = new Size(86, 20);
+            label1.Size = new Size(112, 20);
             label1.TabIndex = 80;
-            label1.Text = "Complexity";
+            label1.Text = "Maintainability";
             // 
             // complexity
             // 
-            complexity.Location = new Point(105, 9);
+            complexity.Location = new Point(122, 10);
             complexity.Margin = new Padding(3, 2, 3, 2);
             complexity.Name = "complexity";
             complexity.Size = new Size(242, 10);
@@ -237,7 +237,7 @@
             // 
             // accuracy
             // 
-            accuracy.Location = new Point(105, 8);
+            accuracy.Location = new Point(122, 10);
             accuracy.Margin = new Padding(3, 2, 3, 2);
             accuracy.Name = "accuracy";
             accuracy.Size = new Size(242, 10);

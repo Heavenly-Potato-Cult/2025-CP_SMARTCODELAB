@@ -26,23 +26,23 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             {
                 {accuracyT, 100 },
                 {readabilityT, 0 },
-                {efficiencyT, 0 },
-                {complexityT, 0 }
+                {robustnessT, 0 },
+                {maintainabilityT, 0 }
             };
 
             unallocated = 0;
             SetupTrackBar(accuracyT, 100);
             SetupTrackBar(readabilityT, 0);
-            SetupTrackBar(efficiencyT, 0);
-            SetupTrackBar(complexityT, 0);
+            SetupTrackBar(robustnessT, 0);
+            SetupTrackBar(maintainabilityT, 0);
 
             InitializeGradingControls();
 
             foreach (var item in new List<TrackBar>(){
                 accuracyT,
                 readabilityT,
-                efficiencyT,
-                complexityT
+                robustnessT,
+                maintainabilityT
             })
             {
                 item.ValueChanged += (sender, e) =>
@@ -56,7 +56,6 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                         unallocated = 0;
                         item.Value = recentValue[item];
                     }
-                    Debug.WriteLine(unallocated);
                     recentValue[item] = item.Value;
                 };
             }
@@ -96,8 +95,8 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         {
             LinkTrackBarToLabel(accuracyT, accuracyLabel);
             LinkTrackBarToLabel(readabilityT, readabilityLabel);
-            LinkTrackBarToLabel(efficiencyT, efficiencyLabel);
-            LinkTrackBarToLabel(complexityT, logicalComplexityLabel);
+            LinkTrackBarToLabel(robustnessT, efficiencyLabel);
+            LinkTrackBarToLabel(maintainabilityT, logicalComplexityLabel);
         }
 
         private void LinkTrackBarToLabel(TrackBar trackBar, Label label)
@@ -117,12 +116,29 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
-            complexityT.Enabled = checkBox4.Checked;
+            maintainabilityT.Enabled = maintainabilityBox.Checked;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            readabilityT.Enabled = checkBox2.Checked;
+            readabilityT.Enabled = readabilityBox.Checked;
+        }
+
+        public Dictionary<int, decimal[]> GetRatingFactors()
+        {
+            var ratingFactors = new Dictionary<int, decimal[]>()
+            {
+                {1, [accuracyT.Value] },
+            };
+
+            if (readabilityBox.Checked)
+                ratingFactors.Add(2, [readabilityT.Value]);
+            if (robustnessBox.Checked)
+                ratingFactors.Add(3, [robustnessT.Value]);
+            if (maintainabilityBox.Checked)
+                ratingFactors.Add(4, [maintainabilityT.Value, complexity_sandard]);
+
+            return ratingFactors;
         }
 
         private void CodeQualityChoices2_Load(object sender, EventArgs e)

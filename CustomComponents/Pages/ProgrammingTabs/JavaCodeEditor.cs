@@ -119,15 +119,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             else
             {
                 NoError();
-                standardError.Clear();
-                errorCounts = 0;
-                NamingConvention namingConvention = JavaVariableExtractor.GetVariableNamingConvention(srcCode.Text);
-                string expression = ProgrammingConfiguration.namingConventionProperties[namingConvention];
-                string updatedFile = File.ReadAllText(ProgrammingConfiguration.checkStyleConfig).Replace("regex!!", expression);
-                File.WriteAllText(ProgrammingConfiguration.checkStyleConfig, updatedFile);
-
-                CheckCodingStandards($"/c java -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkStyleConfig} {filePath}",
-                    new Action(() => File.WriteAllTextAsync(ProgrammingConfiguration.namingConventionChecker, updatedFile.Replace(expression, "regex!!"))));
+                await checkMaintainability();
+                await checkReadability();
+                await checkRobustness();
             }
         }
 
@@ -160,19 +154,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 });
         }
 
-        //protected override void HighLightStandardError(int errorLine, string msg)
-        //{
-        //    try
-        //    {
-        //        var lineRange = srcCode.GetLine(errorLine);
-        //        lineRange.SetStyle(yellowWavy);
-        //        if (standardError.ContainsKey(errorLine))
-        //            standardError.Remove(errorLine);
-        //        standardError.Add(errorLine, msg);
-        //    }
-        //    catch (ArgumentException) {}
-        //}
-
         public override void RunTest()
         {
             string directory = Path.GetDirectoryName(filePath);
@@ -180,5 +161,96 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             commandLine = $"/c cd {directory} && javac Tester.java && java Tester";
             base.RunTest();
         }
+
+        private async Task checkMaintainability()
+        {
+            maintainabilityWarning.Clear();
+            int maintainabilityCounts = 0;
+            string maintainabilityErrors = "";
+            process = CommandRunner($"/c java -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkstyleMaintainability} {filePath}");
+            await StartprocessAsyncExit(
+                process,
+                outp => { maintainabilityErrors += (outp + Environment.NewLine); },
+                err => Debug.WriteLine(err),
+                () =>
+                {
+                    List<string> errorsList = new List<string>();
+                    string[] errors = (maintainabilityErrors.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
+                    foreach (string standardError in errors)
+                    {
+                        if (errors[errors.Length - 1] != standardError)
+                        {
+                            string[] e = standardError.Split(':');
+                            string errorMessage = e[e.Length - 1];
+                            errorsList.Add(errorMessage);
+                            base.HighlightMaintainabilityIssue(int.Parse(e[2]) - 1, errorMessage);
+                            maintainabilityCounts++;
+                        }
+                    }
+                    updateStats?.Invoke(4, maintainabilityCounts, errorsList);
+                });
+        }
+
+        private async Task checkReadability()
+        {
+            readabilityWarning.Clear();
+            int readabilityCounts = 0;
+            string readabilityErrors = "";
+            process = CommandRunner($"/c java -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkstyleReadability} {filePath}");
+            await StartprocessAsyncExit(
+                process,
+                outp => { readabilityErrors += (outp + Environment.NewLine); },
+                err => Debug.WriteLine(err),
+                () =>
+                {
+                    List<string> errorsList = new List<string>();
+                    string[] errors = (readabilityErrors.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
+                    foreach (string standardError in errors)
+                    {
+                        if (errors[errors.Length - 1] != standardError)
+                        {
+                            string[] e = standardError.Split(':');
+                            string errorMessage = e[e.Length - 1];
+                            errorsList.Add(errorMessage);
+                            base.HighlightReadabilityIssue(int.Parse(e[2]) - 1, errorMessage);
+                            readabilityCounts++;
+                        }
+                    }
+                    updateStats?.Invoke(2, readabilityCounts, errorsList);
+                });
+        }
+
+        private async Task checkRobustness()
+        {
+            robustnessWarning.Clear();
+            int robustnessCounts = 0;
+            string robustnessErrors = "";
+            process = CommandRunner($"/c {ProgrammingConfiguration.pmdPath} check --cache ./pmd-cache -d {filePath} -R {ProgrammingConfiguration.pmdRobustness} -f text");
+            await StartprocessAsyncExit(
+                process,
+                outp => { 
+                    robustnessErrors += (outp + Environment.NewLine); 
+                },
+                null,
+                () =>
+                {
+                    Debug.WriteLine(robustnessErrors);
+                    List<string> errorsList = new List<string>();
+                    string[] errors = robustnessErrors.Split(Environment.NewLine);
+                    foreach (string standardError in errors)
+                    {
+                        try
+                        {
+                            string[] errorSliced = standardError.Replace(filePath + ":", "").Split(':');
+                            int errorLine = int.Parse(errorSliced[0]);
+                            string errorMessage = errorSliced[2].Trim();
+                            base.HighlightRobustnessIssue(errorLine - 1, errorMessage);
+                        }
+                        catch (FormatException) { }
+                    }
+                    updateStats?.Invoke(3, robustnessCounts, errorsList);
+                });
+        }
+
     }
 }

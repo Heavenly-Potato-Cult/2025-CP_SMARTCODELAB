@@ -58,8 +58,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 {1, accuracy},
                 {2, readability},
-                {3, efficiency},
-                {4, complexity},
+                {3, efficiency},//robustness
+                {4, complexity},//maintainability
             };
         }
 
@@ -130,7 +130,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 //this.Invoke(new Action(() => result.Text = $"{value.ToString()}/{maxTestScore}"));
                 accuracy.ChangeValue(score);
             }
-            else if (i == 2)
+            else if (i == 2)//readability
             {
                 readability.ChangeValue(100 - value);
                 string violations = "Standard Violations:\n";
@@ -138,7 +138,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 //standardErrors.Text = violations;
                 standardViolations = reasons ?? new List<string>();
             }
-            else if (i == 4)
+            else if(i == 3)//robustness
+            {
+                int scoreRobustness = 100 - value;
+                //this.Invoke(new Action(() => actualEfficiency.Text = value.ToString()));
+                efficiency.ChangeValue(scoreRobustness);
+            }
+            else if (i == 4)//maintainability
             {
                 int difference = value - standardCycComplexity;
                 int scoreComp = difference <= (standardCycComplexity * .1) ? 100 :
