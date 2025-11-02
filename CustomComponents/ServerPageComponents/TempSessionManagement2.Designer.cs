@@ -30,7 +30,6 @@
         {
             label3 = new Label();
             panel3 = new Panel();
-            customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label10 = new Label();
@@ -56,7 +55,6 @@
             label19 = new Label();
             codeQualityChoices21 = new SmartCodeLab.CustomComponents.GeneralComponents.CodeQualityChoices2();
             panel3.SuspendLayout();
-            customCard3.SuspendLayout();
             customCard5.SuspendLayout();
             customCard2.SuspendLayout();
             customCard1.SuspendLayout();
@@ -68,7 +66,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(110, 25);
+            label3.Location = new Point(305, 32);
             label3.Name = "label3";
             label3.Size = new Size(233, 30);
             label3.TabIndex = 13;
@@ -81,23 +79,8 @@
             panel3.Location = new Point(0, 0);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1093, 80);
+            panel3.Size = new Size(1576, 95);
             panel3.TabIndex = 26;
-            // 
-            // customCard3
-            // 
-            customCard3.BackColor = Color.White;
-            customCard3.BorderColor = Color.LightGray;
-            customCard3.BorderRadius = 5;
-            customCard3.BorderSize = 1;
-            customCard3.Controls.Add(smartButton1);
-            customCard3.Location = new Point(617, 649);
-            customCard3.Margin = new Padding(3, 2, 3, 2);
-            customCard3.MaximumSize = new Size(384, 156);
-            customCard3.Name = "customCard3";
-            customCard3.Padding = new Padding(9, 8, 9, 0);
-            customCard3.Size = new Size(384, 56);
-            customCard3.TabIndex = 41;
             // 
             // smartButton1
             // 
@@ -109,10 +92,10 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(9, 7);
+            smartButton1.Location = new Point(852, 664);
             smartButton1.Margin = new Padding(3, 2, 3, 2);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(365, 42);
+            smartButton1.Size = new Size(395, 42);
             smartButton1.TabIndex = 26;
             smartButton1.Text = "Start Session";
             smartButton1.UseVisualStyleBackColor = false;
@@ -129,11 +112,11 @@
             customCard5.Controls.Add(tabNavigationLocked);
             customCard5.Controls.Add(label9);
             customCard5.Controls.Add(label12);
-            customCard5.Location = new Point(116, 510);
+            customCard5.Location = new Point(311, 510);
             customCard5.Margin = new Padding(3, 2, 3, 2);
             customCard5.Name = "customCard5";
             customCard5.Padding = new Padding(9, 15, 9, 8);
-            customCard5.Size = new Size(454, 124);
+            customCard5.Size = new Size(471, 124);
             customCard5.TabIndex = 45;
             // 
             // label10
@@ -199,11 +182,11 @@
             customCard2.Controls.Add(label15);
             customCard2.Controls.Add(serverPW);
             customCard2.Controls.Add(label6);
-            customCard2.Location = new Point(110, 102);
+            customCard2.Location = new Point(305, 102);
             customCard2.Margin = new Padding(3, 2, 3, 2);
             customCard2.Name = "customCard2";
             customCard2.Padding = new Padding(9, 15, 9, 8);
-            customCard2.Size = new Size(460, 383);
+            customCard2.Size = new Size(477, 383);
             customCard2.TabIndex = 40;
             // 
             // smartButton3
@@ -213,12 +196,12 @@
             smartButton3.FlatAppearance.BorderSize = 0;
             smartButton3.FlatStyle = FlatStyle.Flat;
             smartButton3.ForeColor = Color.White;
-            smartButton3.Location = new Point(375, 334);
+            smartButton3.Location = new Point(239, 341);
             smartButton3.Margin = new Padding(3, 2, 3, 2);
             smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(52, 39);
+            smartButton3.Size = new Size(78, 32);
             smartButton3.TabIndex = 0;
-            smartButton3.Text = "S";
+            smartButton3.Text = "Select";
             smartButton3.UseVisualStyleBackColor = false;
             smartButton3.Click += smartButton3_Click_1;
             // 
@@ -300,10 +283,11 @@
             // 
             // taskView
             // 
-            taskView.Location = new Point(29, 334);
+            taskView.BorderStyle = BorderStyle.FixedSingle;
+            taskView.Location = new Point(29, 341);
             taskView.Margin = new Padding(3, 2, 3, 2);
             taskView.Name = "taskView";
-            taskView.Size = new Size(340, 39);
+            taskView.Size = new Size(204, 32);
             taskView.TabIndex = 37;
             // 
             // label15
@@ -313,9 +297,9 @@
             label15.ForeColor = Color.DimGray;
             label15.Location = new Point(29, 312);
             label15.Name = "label15";
-            label15.Size = new Size(106, 20);
+            label15.Size = new Size(62, 20);
             label15.TabIndex = 25;
-            label15.Text = "Select Exercise";
+            label15.Text = "Exercise";
             label15.TextAlign = ContentAlignment.BottomLeft;
             // 
             // serverPW
@@ -405,7 +389,7 @@
             customCard7.Controls.Add(smartButton2);
             customCard7.Controls.Add(label19);
             customCard7.Controls.Add(customCard1);
-            customCard7.Location = new Point(606, 510);
+            customCard7.Location = new Point(852, 510);
             customCard7.Margin = new Padding(3, 2, 3, 2);
             customCard7.Name = "customCard7";
             customCard7.Padding = new Padding(9, 15, 9, 8);
@@ -429,7 +413,7 @@
             codeQualityChoices21.BorderColor = Color.Gray;
             codeQualityChoices21.BorderRadius = 10;
             codeQualityChoices21.BorderSize = 0;
-            codeQualityChoices21.Location = new Point(606, 102);
+            codeQualityChoices21.Location = new Point(852, 102);
             codeQualityChoices21.Name = "codeQualityChoices21";
             codeQualityChoices21.Size = new Size(395, 383);
             codeQualityChoices21.TabIndex = 48;
@@ -438,18 +422,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(smartButton1);
             Controls.Add(codeQualityChoices21);
-            Controls.Add(customCard3);
             Controls.Add(customCard7);
             Controls.Add(customCard5);
             Controls.Add(customCard2);
             Controls.Add(panel3);
             Margin = new Padding(3, 2, 3, 2);
             Name = "TempSessionManagement2";
-            Size = new Size(1093, 947);
+            Size = new Size(1576, 787);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            customCard3.ResumeLayout(false);
             customCard5.ResumeLayout(false);
             customCard5.PerformLayout();
             customCard2.ResumeLayout(false);
@@ -484,7 +467,6 @@
         private GeneralComponents.SmartButton smartButton2;
         private Label studentsCount;
         private Label label1;
-        private GeneralComponents.CustomCard customCard3;
         private GeneralComponents.SmartButton smartButton1;
         private GeneralComponents.CustomCard customCard7;
         private Label label19;

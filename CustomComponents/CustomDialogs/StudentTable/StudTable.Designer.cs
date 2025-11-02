@@ -32,16 +32,12 @@
             studtab = new FlowLayoutPanel();
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
-            panel1 = new Panel();
-            btnClose = new Button();
-            label12 = new Label();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label3 = new Label();
             label14 = new Label();
             label4 = new Label();
             count = new Label();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            panel1.SuspendLayout();
             customCard7.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,7 +46,7 @@
             studtab.AutoScroll = true;
             studtab.BorderStyle = BorderStyle.FixedSingle;
             studtab.FlowDirection = FlowDirection.TopDown;
-            studtab.Location = new Point(30, 150);
+            studtab.Location = new Point(30, 121);
             studtab.Margin = new Padding(3, 2, 3, 2);
             studtab.Name = "studtab";
             studtab.Size = new Size(551, 274);
@@ -68,7 +64,7 @@
             smartButton2.ForeColor = Color.White;
             smartButton2.Image = (Image)resources.GetObject("smartButton2.Image");
             smartButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton2.Location = new Point(30, 62);
+            smartButton2.Location = new Point(30, 33);
             smartButton2.Margin = new Padding(3, 2, 3, 2);
             smartButton2.Name = "smartButton2";
             smartButton2.Padding = new Padding(9, 0, 0, 0);
@@ -83,50 +79,11 @@
             // 
             panel2.BackColor = Color.Gainsboro;
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 44);
+            panel2.Location = new Point(0, 0);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
             panel2.Size = new Size(611, 2);
             panel2.TabIndex = 63;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.White;
-            panel1.Controls.Add(btnClose);
-            panel1.Controls.Add(label12);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(611, 44);
-            panel1.TabIndex = 62;
-            // 
-            // btnClose
-            // 
-            btnClose.BackColor = Color.White;
-            btnClose.Cursor = Cursors.Hand;
-            btnClose.FlatAppearance.BorderSize = 0;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnClose.ForeColor = Color.White;
-            btnClose.Image = (Image)resources.GetObject("btnClose.Image");
-            btnClose.Location = new Point(566, 17);
-            btnClose.Name = "btnClose";
-            btnClose.Size = new Size(14, 12);
-            btnClose.TabIndex = 25;
-            btnClose.UseVisualStyleBackColor = false;
-            btnClose.Click += btnClose_Click;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.ForeColor = Color.FromArgb(13, 13, 13);
-            label12.Location = new Point(30, 7);
-            label12.Name = "label12";
-            label12.Size = new Size(155, 30);
-            label12.TabIndex = 24;
-            label12.Text = "Student Table";
             // 
             // customCard7
             // 
@@ -136,7 +93,7 @@
             customCard7.BorderSize = 1;
             customCard7.Controls.Add(label3);
             customCard7.Controls.Add(label14);
-            customCard7.Location = new Point(30, 125);
+            customCard7.Location = new Point(30, 96);
             customCard7.Margin = new Padding(3, 2, 3, 2);
             customCard7.Name = "customCard7";
             customCard7.Size = new Size(550, 26);
@@ -169,7 +126,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.FromArgb(13, 13, 13);
-            label4.Location = new Point(30, 440);
+            label4.Location = new Point(30, 411);
             label4.Name = "label4";
             label4.Size = new Size(127, 21);
             label4.TabIndex = 65;
@@ -180,7 +137,7 @@
             count.AutoSize = true;
             count.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             count.ForeColor = Color.FromArgb(13, 13, 13);
-            count.Location = new Point(165, 440);
+            count.Location = new Point(165, 411);
             count.Name = "count";
             count.Size = new Size(19, 21);
             count.TabIndex = 66;
@@ -197,7 +154,7 @@
             smartButton1.ForeColor = Color.White;
             smartButton1.Image = (Image)resources.GetObject("smartButton1.Image");
             smartButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton1.Location = new Point(165, 62);
+            smartButton1.Location = new Point(165, 33);
             smartButton1.Margin = new Padding(3, 2, 3, 2);
             smartButton1.Name = "smartButton1";
             smartButton1.Padding = new Padding(9, 0, 0, 0);
@@ -219,16 +176,13 @@
             Controls.Add(label4);
             Controls.Add(customCard7);
             Controls.Add(panel2);
-            Controls.Add(panel1);
             Controls.Add(smartButton2);
             Controls.Add(studtab);
-            FormBorderStyle = FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Margin = new Padding(3, 2, 3, 2);
             Name = "StudTable";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "StudTable";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            Text = "Student Table";
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             ResumeLayout(false);

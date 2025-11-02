@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExerciseCard));
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            testCounts = new Label();
+            label1 = new Label();
             dateModified = new Label();
             subject = new Label();
             lbl_ExerciseModifiedUpdate = new Label();
             lbl_ExerciseTitle = new Label();
             smartButton9 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton7 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            label1 = new Label();
-            testCounts = new Label();
             customCard1.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,7 +46,7 @@
             customCard1.BackColor = Color.White;
             customCard1.BorderColor = Color.Silver;
             customCard1.BorderRadius = 10;
-            customCard1.BorderSize = 1;
+            customCard1.BorderSize = 0;
             customCard1.Controls.Add(testCounts);
             customCard1.Controls.Add(label1);
             customCard1.Controls.Add(dateModified);
@@ -56,19 +56,41 @@
             customCard1.Controls.Add(smartButton9);
             customCard1.Controls.Add(smartButton7);
             customCard1.Location = new Point(0, 0);
-            customCard1.Margin = new Padding(3, 3, 30, 20);
+            customCard1.Margin = new Padding(3, 2, 26, 15);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(496, 264);
+            customCard1.Size = new Size(434, 198);
             customCard1.TabIndex = 1;
+            // 
+            // testCounts
+            // 
+            testCounts.AutoSize = true;
+            testCounts.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            testCounts.ForeColor = Color.FromArgb(13, 13, 13);
+            testCounts.Location = new Point(16, 114);
+            testCounts.Name = "testCounts";
+            testCounts.Size = new Size(23, 25);
+            testCounts.TabIndex = 66;
+            testCounts.Text = "0";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(16, 95);
+            label1.Name = "label1";
+            label1.Size = new Size(113, 20);
+            label1.TabIndex = 65;
+            label1.Text = "Total Test Cases";
             // 
             // dateModified
             // 
             dateModified.AutoSize = true;
             dateModified.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dateModified.ForeColor = Color.DimGray;
-            dateModified.Location = new Point(298, 152);
+            dateModified.Location = new Point(261, 114);
             dateModified.Name = "dateModified";
-            dateModified.Size = new Size(120, 25);
+            dateModified.Size = new Size(100, 20);
             dateModified.TabIndex = 64;
             dateModified.Text = "Last Modified";
             // 
@@ -77,9 +99,9 @@
             subject.AutoSize = true;
             subject.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             subject.ForeColor = Color.DimGray;
-            subject.Location = new Point(18, 66);
+            subject.Location = new Point(16, 50);
             subject.Name = "subject";
-            subject.Size = new Size(70, 25);
+            subject.Size = new Size(58, 20);
             subject.TabIndex = 63;
             subject.Text = "Subject";
             // 
@@ -88,9 +110,9 @@
             lbl_ExerciseModifiedUpdate.AutoSize = true;
             lbl_ExerciseModifiedUpdate.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lbl_ExerciseModifiedUpdate.ForeColor = Color.DimGray;
-            lbl_ExerciseModifiedUpdate.Location = new Point(298, 127);
+            lbl_ExerciseModifiedUpdate.Location = new Point(261, 95);
             lbl_ExerciseModifiedUpdate.Name = "lbl_ExerciseModifiedUpdate";
-            lbl_ExerciseModifiedUpdate.Size = new Size(120, 25);
+            lbl_ExerciseModifiedUpdate.Size = new Size(100, 20);
             lbl_ExerciseModifiedUpdate.TabIndex = 24;
             lbl_ExerciseModifiedUpdate.Text = "Last Modified";
             // 
@@ -99,9 +121,9 @@
             lbl_ExerciseTitle.AutoSize = true;
             lbl_ExerciseTitle.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbl_ExerciseTitle.ForeColor = Color.FromArgb(13, 13, 13);
-            lbl_ExerciseTitle.Location = new Point(18, 35);
+            lbl_ExerciseTitle.Location = new Point(16, 26);
             lbl_ExerciseTitle.Name = "lbl_ExerciseTitle";
-            lbl_ExerciseTitle.Size = new Size(144, 31);
+            lbl_ExerciseTitle.Size = new Size(119, 25);
             lbl_ExerciseTitle.TabIndex = 19;
             lbl_ExerciseTitle.Text = "Hello World";
             // 
@@ -116,10 +138,9 @@
             smartButton9.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton9.ForeColor = Color.DimGray;
             smartButton9.Image = (Image)resources.GetObject("smartButton9.Image");
-            smartButton9.Location = new Point(401, 194);
-            smartButton9.Margin = new Padding(3, 4, 3, 4);
+            smartButton9.Location = new Point(351, 146);
             smartButton9.Name = "smartButton9";
-            smartButton9.Size = new Size(64, 52);
+            smartButton9.Size = new Size(56, 39);
             smartButton9.TabIndex = 62;
             smartButton9.TextColor = Color.DimGray;
             smartButton9.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -136,10 +157,9 @@
             smartButton7.FlatStyle = FlatStyle.Flat;
             smartButton7.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton7.ForeColor = Color.DodgerBlue;
-            smartButton7.Location = new Point(18, 194);
-            smartButton7.Margin = new Padding(3, 4, 3, 4);
+            smartButton7.Location = new Point(16, 146);
             smartButton7.Name = "smartButton7";
-            smartButton7.Size = new Size(255, 52);
+            smartButton7.Size = new Size(223, 39);
             smartButton7.TabIndex = 60;
             smartButton7.Text = "Edit";
             smartButton7.TextColor = Color.DodgerBlue;
@@ -147,37 +167,16 @@
             smartButton7.UseVisualStyleBackColor = false;
             smartButton7.Click += smartButton7_Click;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(18, 127);
-            label1.Name = "label1";
-            label1.Size = new Size(134, 25);
-            label1.TabIndex = 65;
-            label1.Text = "Total Test Cases";
-            // 
-            // testCounts
-            // 
-            testCounts.AutoSize = true;
-            testCounts.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            testCounts.ForeColor = Color.FromArgb(13, 13, 13);
-            testCounts.Location = new Point(18, 152);
-            testCounts.Name = "testCounts";
-            testCounts.Size = new Size(27, 31);
-            testCounts.TabIndex = 66;
-            testCounts.Text = "0";
-            // 
             // ExerciseCard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             BorderRadius = 10;
             Controls.Add(customCard1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "ExerciseCard";
-            Size = new Size(496, 264);
+            Size = new Size(434, 198);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
             ResumeLayout(false);

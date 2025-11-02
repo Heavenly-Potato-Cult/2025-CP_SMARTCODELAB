@@ -121,20 +121,10 @@
   <data name="smartButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABuSURBVDhP3ZNR
+        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAABuSURBVDhP3ZNR
         CoAgEAW9iJ4uAn88W8fRLjPxQEgWzMqvGlgQHw64q851AAKw1/I2HwJETqLNhwCpESSbD/mQoHZ7AVZT
         WyPQ2uY6EyTQmN5SJCh29wFZAj9xhf4Du93EHv8QTH8mPTCNOF91+wAivZ11RgQ8AgAAAABJRU5ErkJg
         gg==
-</value>
-  </data>
-  <data name="btnClose.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        iQAAAIkBOZtwtgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADRSURBVDhPjZBL
-        CsIwEEBzC8EPeAmnihvJqKd21QuoqItWqwW9gUldKlMyRcK0nQfdNPMeyRhnYecQ9n6zHBolNEsOucYh
-        nB3C1yFkmkiQs9qxcDLVKhn7NVxDJK/sYhRLjMNk4BAuYbb8rObT+kATaZWZrkivzEgRtcz8RzxC0SxM
-        IzMhcg8ifU+1TIRr503AwkNarEj05pfHpJQWKyItrNrOJh7h1huRZD7rjXTJTGtEIzNixCEc6ccboaCB
-        WIqhGZoNkQMFUrqBRmZoNtw6/QFHgRZFdYxZDAAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>
