@@ -48,11 +48,6 @@
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             description = new TextBox();
             tabControl_RightSide = new TabControl();
-            BroadcastsTab = new TabPage();
-            panel_leaderboards = new Panel();
-            MessagesTab = new TabPage();
-            richTextBox2 = new RichTextBox();
-            msgBox = new RichTextBox();
             ActivityTab = new TabPage();
             panel3 = new Panel();
             expansion_expansion_panel = new MaterialSkin.Controls.MaterialExpansionPanel();
@@ -60,6 +55,11 @@
             testcase_expansion_panel = new MaterialSkin.Controls.MaterialExpansionPanel();
             testCaseContainer = new FlowLayoutPanel();
             activity_expansion_panel = new MaterialSkin.Controls.MaterialExpansionPanel();
+            MessagesTab = new TabPage();
+            richTextBox2 = new RichTextBox();
+            msgBox = new RichTextBox();
+            BroadcastsTab = new TabPage();
+            panel_leaderboards = new Panel();
             panel_LeftSide_Main = new Panel();
             panel_LeftSide_Directory = new Panel();
             panel_LeftSide_Buttons = new Panel();
@@ -72,13 +72,13 @@
             panel_MiddlePart_Main.SuspendLayout();
             panel1.SuspendLayout();
             tabControl_RightSide.SuspendLayout();
-            BroadcastsTab.SuspendLayout();
-            MessagesTab.SuspendLayout();
             ActivityTab.SuspendLayout();
             panel3.SuspendLayout();
             expansion_expansion_panel.SuspendLayout();
             testcase_expansion_panel.SuspendLayout();
             activity_expansion_panel.SuspendLayout();
+            MessagesTab.SuspendLayout();
+            BroadcastsTab.SuspendLayout();
             panel_LeftSide_Main.SuspendLayout();
             panel_LeftSide_Buttons.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -349,67 +349,6 @@
             tabControl_RightSide.TabIndex = 9;
             tabControl_RightSide.Resize += tabControl_RightSide_Resize;
             // 
-            // BroadcastsTab
-            // 
-            BroadcastsTab.Controls.Add(panel_leaderboards);
-            BroadcastsTab.Location = new Point(4, 24);
-            BroadcastsTab.Margin = new Padding(3, 2, 3, 2);
-            BroadcastsTab.Name = "BroadcastsTab";
-            BroadcastsTab.Padding = new Padding(3, 2, 3, 2);
-            BroadcastsTab.Size = new Size(359, 540);
-            BroadcastsTab.TabIndex = 0;
-            BroadcastsTab.Text = "Leaderboards";
-            BroadcastsTab.UseVisualStyleBackColor = true;
-            // 
-            // panel_leaderboards
-            // 
-            panel_leaderboards.AutoScroll = true;
-            panel_leaderboards.Dock = DockStyle.Fill;
-            panel_leaderboards.Location = new Point(3, 2);
-            panel_leaderboards.Name = "panel_leaderboards";
-            panel_leaderboards.Padding = new Padding(0, 20, 0, 0);
-            panel_leaderboards.Size = new Size(353, 536);
-            panel_leaderboards.TabIndex = 18;
-            // 
-            // MessagesTab
-            // 
-            MessagesTab.Controls.Add(richTextBox2);
-            MessagesTab.Controls.Add(msgBox);
-            MessagesTab.Location = new Point(4, 24);
-            MessagesTab.Margin = new Padding(3, 2, 3, 2);
-            MessagesTab.Name = "MessagesTab";
-            MessagesTab.Padding = new Padding(3, 2, 3, 2);
-            MessagesTab.Size = new Size(359, 540);
-            MessagesTab.TabIndex = 1;
-            MessagesTab.Text = "Messages";
-            MessagesTab.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox2
-            // 
-            richTextBox2.BorderStyle = BorderStyle.FixedSingle;
-            richTextBox2.Dock = DockStyle.Top;
-            richTextBox2.Location = new Point(3, 397);
-            richTextBox2.Margin = new Padding(3, 2, 3, 2);
-            richTextBox2.Name = "richTextBox2";
-            richTextBox2.ReadOnly = true;
-            richTextBox2.Size = new Size(353, 79);
-            richTextBox2.TabIndex = 1;
-            richTextBox2.Text = "";
-            richTextBox2.TextChanged += richTextBox2_TextChanged;
-            richTextBox2.KeyUp += richTextBox2_KeyUp;
-            // 
-            // msgBox
-            // 
-            msgBox.BorderStyle = BorderStyle.FixedSingle;
-            msgBox.Dock = DockStyle.Top;
-            msgBox.Location = new Point(3, 2);
-            msgBox.Margin = new Padding(3, 2, 3, 2);
-            msgBox.Name = "msgBox";
-            msgBox.ReadOnly = true;
-            msgBox.Size = new Size(353, 395);
-            msgBox.TabIndex = 0;
-            msgBox.Text = "";
-            // 
             // ActivityTab
             // 
             ActivityTab.Controls.Add(panel3);
@@ -521,6 +460,66 @@
             activity_expansion_panel.TabIndex = 0;
             activity_expansion_panel.Title = "Bubble Sort";
             activity_expansion_panel.ValidationButtonText = " ";
+            // 
+            // MessagesTab
+            // 
+            MessagesTab.Controls.Add(richTextBox2);
+            MessagesTab.Controls.Add(msgBox);
+            MessagesTab.Location = new Point(4, 24);
+            MessagesTab.Margin = new Padding(3, 2, 3, 2);
+            MessagesTab.Name = "MessagesTab";
+            MessagesTab.Padding = new Padding(3, 2, 3, 2);
+            MessagesTab.Size = new Size(359, 540);
+            MessagesTab.TabIndex = 1;
+            MessagesTab.Text = "Messages";
+            MessagesTab.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox2
+            // 
+            richTextBox2.BorderStyle = BorderStyle.FixedSingle;
+            richTextBox2.Dock = DockStyle.Top;
+            richTextBox2.Location = new Point(3, 397);
+            richTextBox2.Margin = new Padding(3, 2, 3, 2);
+            richTextBox2.Name = "richTextBox2";
+            richTextBox2.Size = new Size(353, 79);
+            richTextBox2.TabIndex = 1;
+            richTextBox2.Text = "";
+            richTextBox2.TextChanged += richTextBox2_TextChanged;
+            richTextBox2.KeyUp += richTextBox2_KeyUp;
+            // 
+            // msgBox
+            // 
+            msgBox.BorderStyle = BorderStyle.FixedSingle;
+            msgBox.Dock = DockStyle.Top;
+            msgBox.Location = new Point(3, 2);
+            msgBox.Margin = new Padding(3, 2, 3, 2);
+            msgBox.Name = "msgBox";
+            msgBox.ReadOnly = true;
+            msgBox.Size = new Size(353, 395);
+            msgBox.TabIndex = 0;
+            msgBox.Text = "";
+            // 
+            // BroadcastsTab
+            // 
+            BroadcastsTab.Controls.Add(panel_leaderboards);
+            BroadcastsTab.Location = new Point(4, 24);
+            BroadcastsTab.Margin = new Padding(3, 2, 3, 2);
+            BroadcastsTab.Name = "BroadcastsTab";
+            BroadcastsTab.Padding = new Padding(3, 2, 3, 2);
+            BroadcastsTab.Size = new Size(359, 540);
+            BroadcastsTab.TabIndex = 0;
+            BroadcastsTab.Text = "Leaderboards";
+            BroadcastsTab.UseVisualStyleBackColor = true;
+            // 
+            // panel_leaderboards
+            // 
+            panel_leaderboards.AutoScroll = true;
+            panel_leaderboards.Dock = DockStyle.Fill;
+            panel_leaderboards.Location = new Point(3, 2);
+            panel_leaderboards.Name = "panel_leaderboards";
+            panel_leaderboards.Padding = new Padding(0, 20, 0, 0);
+            panel_leaderboards.Size = new Size(353, 536);
+            panel_leaderboards.TabIndex = 18;
             // 
             // panel_LeftSide_Main
             // 
@@ -640,8 +639,6 @@
             panel_MiddlePart_Main.ResumeLayout(false);
             panel1.ResumeLayout(false);
             tabControl_RightSide.ResumeLayout(false);
-            BroadcastsTab.ResumeLayout(false);
-            MessagesTab.ResumeLayout(false);
             ActivityTab.ResumeLayout(false);
             panel3.ResumeLayout(false);
             expansion_expansion_panel.ResumeLayout(false);
@@ -650,6 +647,8 @@
             testcase_expansion_panel.PerformLayout();
             activity_expansion_panel.ResumeLayout(false);
             activity_expansion_panel.PerformLayout();
+            MessagesTab.ResumeLayout(false);
+            BroadcastsTab.ResumeLayout(false);
             panel_LeftSide_Main.ResumeLayout(false);
             panel_LeftSide_Buttons.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
