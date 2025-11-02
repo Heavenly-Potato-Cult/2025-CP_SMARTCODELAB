@@ -259,19 +259,19 @@ namespace SmartCodeLab
 
             isResizingTabs = true;
 
-            //try
-            //{
-            //    int tabCount = tabControl_RightSide.TabPages.Count;
-            //    int tabWidth = (totalWidth / tabCount) - 2;
+            try
+            {
+                int tabCount = tabControl_RightSide.TabPages.Count;
+                int tabWidth = (totalWidth / tabCount) - 2;
 
-            //    tabControl_RightSide.Font = new Font("Segoe UI", 12F);
-            //    tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-            //    tabControl_RightSide.ItemSize = new Size(tabWidth, 50); // 50 = tab height
-            //}
-            //finally
-            //{
-            //    isResizingTabs = false;
-            //}
+                tabControl_RightSide.Font = new Font("Segoe UI", 12F);
+                tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
+                tabControl_RightSide.ItemSize = new Size(tabWidth, 50); // 50 = tab height
+            }
+            finally
+            {
+                isResizingTabs = false;
+            }
         }
 
         private void tabControl_RightSide_Resize(object sender, EventArgs e)
