@@ -43,7 +43,6 @@
             label6 = new Label();
             label14 = new Label();
             label12 = new Label();
-            label5 = new Label();
             label3 = new Label();
             submittedContainer = new FlowLayoutPanel();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -56,11 +55,11 @@
             flowLayoutPanel2 = new FlowLayoutPanel();
             materialExpansionPanel1 = new MaterialSkin.Controls.MaterialExpansionPanel();
             studentCode = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
+            materialExpansionPanel3 = new MaterialSkin.Controls.MaterialExpansionPanel();
+            btn_viewmore = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             materialListView1 = new MaterialSkin.Controls.MaterialListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
-            btn_viewmore = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            materialExpansionPanel3 = new MaterialSkin.Controls.MaterialExpansionPanel();
             customCard7.SuspendLayout();
             customCard2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
@@ -74,7 +73,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Gray;
-            label11.Location = new Point(43, 106);
+            label11.Location = new Point(257, 140);
             label11.Name = "label11";
             label11.Size = new Size(132, 20);
             label11.TabIndex = 67;
@@ -91,7 +90,7 @@
             customComboBox2.IconColor = Color.Gray;
             customComboBox2.ListBackColor = Color.FromArgb(230, 228, 245);
             customComboBox2.ListTextColor = Color.DimGray;
-            customComboBox2.Location = new Point(333, 147);
+            customComboBox2.Location = new Point(546, 227);
             customComboBox2.Margin = new Padding(3, 2, 3, 2);
             customComboBox2.MinimumSize = new Size(175, 22);
             customComboBox2.Name = "customComboBox2";
@@ -108,7 +107,7 @@
             searchBox.BorderRadius = 2;
             searchBox.BorderSize = 1;
             searchBox.ForeColor = SystemColors.ControlText;
-            searchBox.Location = new Point(42, 147);
+            searchBox.Location = new Point(255, 227);
             searchBox.Margin = new Padding(3, 2, 3, 2);
             searchBox.Name = "searchBox";
             searchBox.Padding = new Padding(9, 5, 9, 5);
@@ -128,7 +127,7 @@
             customCard7.Controls.Add(label1);
             customCard7.Controls.Add(label6);
             customCard7.Controls.Add(label14);
-            customCard7.Location = new Point(42, 260);
+            customCard7.Location = new Point(255, 275);
             customCard7.Margin = new Padding(3, 2, 3, 2);
             customCard7.Name = "customCard7";
             customCard7.Size = new Size(466, 26);
@@ -172,29 +171,18 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.FromArgb(13, 13, 13);
-            label12.Location = new Point(42, 81);
+            label12.Location = new Point(256, 115);
             label12.Name = "label12";
             label12.Size = new Size(198, 25);
             label12.TabIndex = 63;
             label12.Text = "Student Submissions";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Gray;
-            label5.Location = new Point(43, 61);
-            label5.Name = "label5";
-            label5.Size = new Size(479, 20);
-            label5.TabIndex = 62;
-            label5.Text = "Evaluate and analyze student code submissions with automated testing";
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(42, 28);
+            label3.Location = new Point(255, 32);
             label3.Name = "label3";
             label3.Size = new Size(180, 30);
             label3.TabIndex = 61;
@@ -204,10 +192,10 @@
             // 
             submittedContainer.AutoScroll = true;
             submittedContainer.FlowDirection = FlowDirection.TopDown;
-            submittedContainer.Location = new Point(42, 196);
+            submittedContainer.Location = new Point(255, 301);
             submittedContainer.Margin = new Padding(3, 2, 3, 2);
             submittedContainer.Name = "submittedContainer";
-            submittedContainer.Size = new Size(466, 485);
+            submittedContainer.Size = new Size(466, 410);
             submittedContainer.TabIndex = 68;
             submittedContainer.WrapContents = false;
             // 
@@ -222,7 +210,7 @@
             customCard2.Controls.Add(label18);
             customCard2.Controls.Add(label13);
             customCard2.Controls.Add(studentName);
-            customCard2.Location = new Point(572, 28);
+            customCard2.Location = new Point(816, 106);
             customCard2.Margin = new Padding(3, 2, 3, 2);
             customCard2.Name = "customCard2";
             customCard2.Size = new Size(607, 78);
@@ -288,7 +276,7 @@
             submitCount.AutoSize = true;
             submitCount.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             submitCount.ForeColor = Color.Black;
-            submitCount.Location = new Point(181, 106);
+            submitCount.Location = new Point(395, 140);
             submitCount.Name = "submitCount";
             submitCount.Size = new Size(18, 20);
             submitCount.TabIndex = 71;
@@ -300,10 +288,10 @@
             flowLayoutPanel2.Controls.Add(materialExpansionPanel1);
             flowLayoutPanel2.Controls.Add(materialExpansionPanel3);
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(556, 132);
+            flowLayoutPanel2.Location = new Point(800, 210);
             flowLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(889, 549);
+            flowLayoutPanel2.Size = new Size(653, 549);
             flowLayoutPanel2.TabIndex = 92;
             flowLayoutPanel2.WrapContents = false;
             // 
@@ -323,13 +311,14 @@
             materialExpansionPanel1.MouseState = MaterialSkin.MouseState.HOVER;
             materialExpansionPanel1.Name = "materialExpansionPanel1";
             materialExpansionPanel1.Padding = new Padding(24, 64, 24, 16);
-            materialExpansionPanel1.Size = new Size(836, 48);
+            materialExpansionPanel1.Size = new Size(601, 48);
             materialExpansionPanel1.TabIndex = 93;
             materialExpansionPanel1.Title = "Student Code";
             materialExpansionPanel1.ValidationButtonText = "";
             // 
             // studentCode
             // 
+            studentCode.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             studentCode.AutoCompleteBracketsList = new char[]
     {
     '(',
@@ -349,17 +338,55 @@
             studentCode.CharHeight = 14;
             studentCode.CharWidth = 8;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
-            studentCode.Location = new Point(27, 67);
+            studentCode.Location = new Point(16, 53);
             studentCode.Name = "studentCode";
             studentCode.Paddings = new Padding(0);
+            studentCode.ReadOnly = true;
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
-            studentCode.Size = new Size(806, 415);
+            studentCode.Size = new Size(570, 375);
             studentCode.TabIndex = 2;
             studentCode.Text = "codeEditor1";
             studentCode.Zoom = 100;
+            // 
+            // materialExpansionPanel3
+            // 
+            materialExpansionPanel3.BackColor = Color.FromArgb(255, 255, 255);
+            materialExpansionPanel3.CancelButtonText = "";
+            materialExpansionPanel3.Controls.Add(btn_viewmore);
+            materialExpansionPanel3.Controls.Add(materialListView1);
+            materialExpansionPanel3.Depth = 0;
+            materialExpansionPanel3.Description = "";
+            materialExpansionPanel3.ExpandHeight = 294;
+            materialExpansionPanel3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            materialExpansionPanel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialExpansionPanel3.Location = new Point(16, 65);
+            materialExpansionPanel3.Margin = new Padding(16);
+            materialExpansionPanel3.MouseState = MaterialSkin.MouseState.HOVER;
+            materialExpansionPanel3.Name = "materialExpansionPanel3";
+            materialExpansionPanel3.Padding = new Padding(24, 64, 24, 16);
+            materialExpansionPanel3.Size = new Size(601, 294);
+            materialExpansionPanel3.TabIndex = 95;
+            materialExpansionPanel3.Title = "Scores";
+            materialExpansionPanel3.ValidationButtonText = "";
+            // 
+            // btn_viewmore
+            // 
+            btn_viewmore.BackColor = Color.MediumSlateBlue;
+            btn_viewmore.BorderRadius = 5;
+            btn_viewmore.FlatAppearance.BorderSize = 0;
+            btn_viewmore.FlatStyle = FlatStyle.Flat;
+            btn_viewmore.ForeColor = Color.White;
+            btn_viewmore.Location = new Point(50, 235);
+            btn_viewmore.Name = "btn_viewmore";
+            btn_viewmore.Size = new Size(283, 40);
+            btn_viewmore.TabIndex = 3;
+            btn_viewmore.Text = "View More";
+            btn_viewmore.UseVisualStyleBackColor = false;
+            btn_viewmore.Click += btn_viewmore_Click;
             // 
             // materialListView1
             // 
@@ -393,42 +420,6 @@
             columnHeader2.Text = "Scores";
             columnHeader2.Width = 100;
             // 
-            // btn_viewmore
-            // 
-            btn_viewmore.BackColor = Color.MediumSlateBlue;
-            btn_viewmore.BorderRadius = 5;
-            btn_viewmore.FlatAppearance.BorderSize = 0;
-            btn_viewmore.FlatStyle = FlatStyle.Flat;
-            btn_viewmore.ForeColor = Color.White;
-            btn_viewmore.Location = new Point(50, 235);
-            btn_viewmore.Name = "btn_viewmore";
-            btn_viewmore.Size = new Size(283, 40);
-            btn_viewmore.TabIndex = 3;
-            btn_viewmore.Text = "View More";
-            btn_viewmore.UseVisualStyleBackColor = false;
-            btn_viewmore.Click += btn_viewmore_Click;
-            // 
-            // materialExpansionPanel3
-            // 
-            materialExpansionPanel3.BackColor = Color.FromArgb(255, 255, 255);
-            materialExpansionPanel3.CancelButtonText = "";
-            materialExpansionPanel3.Controls.Add(btn_viewmore);
-            materialExpansionPanel3.Controls.Add(materialListView1);
-            materialExpansionPanel3.Depth = 0;
-            materialExpansionPanel3.Description = "";
-            materialExpansionPanel3.ExpandHeight = 294;
-            materialExpansionPanel3.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            materialExpansionPanel3.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialExpansionPanel3.Location = new Point(16, 65);
-            materialExpansionPanel3.Margin = new Padding(16);
-            materialExpansionPanel3.MouseState = MaterialSkin.MouseState.HOVER;
-            materialExpansionPanel3.Name = "materialExpansionPanel3";
-            materialExpansionPanel3.Padding = new Padding(24, 64, 24, 16);
-            materialExpansionPanel3.Size = new Size(601, 294);
-            materialExpansionPanel3.TabIndex = 95;
-            materialExpansionPanel3.Title = "Scores";
-            materialExpansionPanel3.ValidationButtonText = "";
-            // 
             // ProgressSubmissionPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -442,11 +433,10 @@
             Controls.Add(searchBox);
             Controls.Add(customCard7);
             Controls.Add(label12);
-            Controls.Add(label5);
             Controls.Add(label3);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ProgressSubmissionPage";
-            Size = new Size(1484, 690);
+            Size = new Size(1576, 787);
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             customCard2.ResumeLayout(false);
@@ -470,7 +460,6 @@
         private Label label6;
         private Label label14;
         private Label label12;
-        private Label label5;
         private Label label3;
         private FlowLayoutPanel submittedContainer;
         private GeneralComponents.CustomCard customCard2;
