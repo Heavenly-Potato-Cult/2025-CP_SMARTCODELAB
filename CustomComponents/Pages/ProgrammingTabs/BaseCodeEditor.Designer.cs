@@ -61,26 +61,29 @@
             srcCode.CharHeight = 14;
             srcCode.CharWidth = 8;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            srcCode.Dock = DockStyle.Fill;
+            srcCode.Font = new Font("Courier New", 9.75F);
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IsReplaceMode = false;
-            srcCode.Location = new Point(3, 2);
+            srcCode.Location = new Point(0, 0);
             srcCode.Margin = new Padding(3, 2, 3, 2);
             srcCode.Name = "srcCode";
             srcCode.Paddings = new Padding(0);
             srcCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             srcCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("srcCode.ServiceColors");
-            srcCode.Size = new Size(716, 353);
+            srcCode.Size = new Size(722, 514);
             srcCode.TabIndex = 0;
             srcCode.Zoom = 100;
             // 
             // tabControl2
             // 
             tabControl2.Controls.Add(tabPage1);
-            tabControl2.Location = new Point(3, 359);
+            tabControl2.Dock = DockStyle.Bottom;
+            tabControl2.Location = new Point(0, 361);
             tabControl2.Margin = new Padding(3, 2, 3, 2);
             tabControl2.Name = "tabControl2";
             tabControl2.SelectedIndex = 0;
-            tabControl2.Size = new Size(712, 153);
+            tabControl2.Size = new Size(722, 153);
             tabControl2.TabIndex = 16;
             // 
             // tabPage1
@@ -90,7 +93,7 @@
             tabPage1.Margin = new Padding(3, 2, 3, 2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(704, 125);
+            tabPage1.Size = new Size(714, 125);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Output";
             tabPage1.UseVisualStyleBackColor = true;
@@ -115,16 +118,16 @@
             output.CharHeight = 14;
             output.CharWidth = 8;
             output.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            output.Font = new Font("Courier New", 9.75F);
+            output.Dock = DockStyle.Fill;
             output.Hotkeys = resources.GetString("output.Hotkeys");
             output.IsReplaceMode = false;
-            output.Location = new Point(8, 4);
+            output.Location = new Point(3, 2);
             output.Margin = new Padding(3, 2, 3, 2);
             output.Name = "output";
             output.Paddings = new Padding(0);
             output.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             output.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("output.ServiceColors");
-            output.Size = new Size(690, 117);
+            output.Size = new Size(708, 121);
             output.TabIndex = 0;
             output.Zoom = 100;
             // 
