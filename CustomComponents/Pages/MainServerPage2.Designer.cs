@@ -33,12 +33,12 @@
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
-            panelNavHost2 = new Panel();
             tabPage5 = new TabPage();
+            label3 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             sessionLogsDisplay1 = new SmartCodeLab.CustomComponents.ServerPageComponents.SessionLogsDisplay();
-            label3 = new Label();
             panel1 = new Panel();
+            panelNavHost2 = new Panel();
             container.SuspendLayout();
             tabPage5.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -75,6 +75,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.BackColor = Color.White;
             tabPage2.Location = new Point(4, 24);
             tabPage2.Margin = new Padding(3, 2, 3, 2);
             tabPage2.Name = "tabPage2";
@@ -82,7 +83,6 @@
             tabPage2.Size = new Size(1476, 662);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -107,16 +107,6 @@
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
             // 
-            // panelNavHost2
-            // 
-            panelNavHost2.BackColor = Color.FromArgb(42, 46, 53);
-            panelNavHost2.Dock = DockStyle.Top;
-            panelNavHost2.Location = new Point(0, 0);
-            panelNavHost2.Margin = new Padding(0);
-            panelNavHost2.Name = "panelNavHost2";
-            panelNavHost2.Size = new Size(1484, 36);
-            panelNavHost2.TabIndex = 2;
-            // 
             // tabPage5
             // 
             tabPage5.Controls.Add(label3);
@@ -128,6 +118,17 @@
             tabPage5.TabIndex = 5;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(13, 13, 13);
+            label3.Location = new Point(500, 55);
+            label3.Name = "label3";
+            label3.Size = new Size(143, 30);
+            label3.TabIndex = 14;
+            label3.Text = "Session Logs";
             // 
             // flowLayoutPanel1
             // 
@@ -149,23 +150,22 @@
             sessionLogsDisplay1.Size = new Size(660, 64);
             sessionLogsDisplay1.TabIndex = 0;
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(500, 55);
-            label3.Name = "label3";
-            label3.Size = new Size(143, 30);
-            label3.TabIndex = 14;
-            label3.Text = "Session Logs";
-            // 
             // panel1
             // 
             panel1.Location = new Point(462, 116);
             panel1.Name = "panel1";
             panel1.Size = new Size(708, 376);
             panel1.TabIndex = 15;
+            // 
+            // panelNavHost2
+            // 
+            panelNavHost2.BackColor = Color.FromArgb(42, 46, 53);
+            panelNavHost2.Dock = DockStyle.Top;
+            panelNavHost2.Location = new Point(0, 0);
+            panelNavHost2.Margin = new Padding(0);
+            panelNavHost2.Name = "panelNavHost2";
+            panelNavHost2.Size = new Size(1484, 36);
+            panelNavHost2.TabIndex = 2;
             // 
             // MainServerPage2
             // 

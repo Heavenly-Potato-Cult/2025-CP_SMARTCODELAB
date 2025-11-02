@@ -81,10 +81,16 @@ namespace SmartCodeLab.CustomComponents.Pages
             homePage = new ServerHomePage(server.Users.Count, server.ServerName, server.Password);
             homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
+            var taskUpdatePage = new ServerTaskUpdate(currentTask, UpdateServerTask);
+
+            homePage.Dock = DockStyle.Fill;
+            serverPage.Dock = DockStyle.Fill;
+            taskUpdatePage.Dock = DockStyle.Fill;
+            progressSubmissionPage.Dock = DockStyle.Fill;
 
             tabPage1.Controls.Add(homePage);
             tabPage2.Controls.Add(serverPage);
-            tabPage3.Controls.Add(new ServerTaskUpdate(currentTask, UpdateServerTask));
+            tabPage3.Controls.Add(taskUpdatePage);
             tabPage4.Controls.Add(progressSubmissionPage);
         }
 

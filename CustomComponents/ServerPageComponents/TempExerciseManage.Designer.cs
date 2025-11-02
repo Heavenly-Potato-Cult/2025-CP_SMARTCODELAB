@@ -37,7 +37,7 @@
             flowLayoutPanel_Exercises = new FlowLayoutPanel();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customTextBox1 = new CustomTextBox();
-            customComboBox1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
+            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -47,8 +47,9 @@
             panel3.Controls.Add(label2);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1362, 127);
+            panel3.Size = new Size(1192, 95);
             panel3.TabIndex = 55;
             // 
             // btn_AddNewExercise
@@ -62,10 +63,9 @@
             btn_AddNewExercise.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_AddNewExercise.ForeColor = Color.White;
             btn_AddNewExercise.Image = (Image)resources.GetObject("btn_AddNewExercise.Image");
-            btn_AddNewExercise.Location = new Point(985, 42);
-            btn_AddNewExercise.Margin = new Padding(3, 4, 3, 4);
+            btn_AddNewExercise.Location = new Point(862, 32);
             btn_AddNewExercise.Name = "btn_AddNewExercise";
-            btn_AddNewExercise.Size = new Size(212, 52);
+            btn_AddNewExercise.Size = new Size(186, 39);
             btn_AddNewExercise.TabIndex = 57;
             btn_AddNewExercise.Text = "Add New Exercise";
             btn_AddNewExercise.TextAlign = ContentAlignment.MiddleRight;
@@ -78,9 +78,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.FromArgb(13, 13, 13);
-            label2.Location = new Point(126, 40);
+            label2.Location = new Point(110, 30);
             label2.Name = "label2";
-            label2.Size = new Size(299, 46);
+            label2.Size = new Size(242, 37);
             label2.TabIndex = 13;
             label2.Text = "Exercise Manager";
             // 
@@ -88,9 +88,10 @@
             // 
             panel1.BackColor = Color.DimGray;
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 127);
+            panel1.Location = new Point(0, 95);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1362, 1);
+            panel1.Size = new Size(1192, 1);
             panel1.TabIndex = 56;
             // 
             // smartButton4
@@ -102,10 +103,9 @@
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(125, 147);
-            smartButton4.Margin = new Padding(3, 4, 3, 4);
+            smartButton4.Location = new Point(109, 110);
             smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(157, 52);
+            smartButton4.Size = new Size(137, 39);
             smartButton4.TabIndex = 58;
             smartButton4.Text = "All Exercises";
             smartButton4.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -115,10 +115,11 @@
             // 
             flowLayoutPanel_Exercises.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             flowLayoutPanel_Exercises.AutoScroll = true;
-            flowLayoutPanel_Exercises.Location = new Point(126, 270);
+            flowLayoutPanel_Exercises.Location = new Point(110, 202);
+            flowLayoutPanel_Exercises.Margin = new Padding(3, 2, 3, 2);
             flowLayoutPanel_Exercises.Name = "flowLayoutPanel_Exercises";
-            flowLayoutPanel_Exercises.Padding = new Padding(0, 0, 0, 100);
-            flowLayoutPanel_Exercises.Size = new Size(1173, 581);
+            flowLayoutPanel_Exercises.Padding = new Padding(0, 0, 0, 75);
+            flowLayoutPanel_Exercises.Size = new Size(1026, 436);
             flowLayoutPanel_Exercises.TabIndex = 59;
             // 
             // smartButton1
@@ -130,10 +131,9 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.DimGray;
-            smartButton1.Location = new Point(288, 147);
-            smartButton1.Margin = new Padding(3, 4, 3, 4);
+            smartButton1.Location = new Point(252, 110);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(119, 52);
+            smartButton1.Size = new Size(104, 39);
             smartButton1.TabIndex = 63;
             smartButton1.Text = "By Class";
             smartButton1.TextColor = Color.DimGray;
@@ -145,42 +145,46 @@
             customTextBox1.BackColor = SystemColors.Window;
             customTextBox1.BorderColor = Color.Gray;
             customTextBox1.ForeColor = Color.DimGray;
-            customTextBox1.Location = new Point(125, 206);
+            customTextBox1.Location = new Point(109, 154);
+            customTextBox1.Margin = new Padding(3, 2, 3, 2);
             customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(10, 7, 10, 7);
+            customTextBox1.Padding = new Padding(9, 5, 9, 5);
             customTextBox1.PlaceHolderColor = Color.DarkGray;
             customTextBox1.PlaceholderText = "";
             customTextBox1.ScrollBars = ScrollBars.None;
-            customTextBox1.Size = new Size(791, 41);
+            customTextBox1.Size = new Size(692, 32);
             customTextBox1.TabIndex = 64;
             customTextBox1._TextChanged += customTextBox1__TextChanged;
             // 
-            // customComboBox1
+            // materialComboBox1
             // 
-            customComboBox1.BackColor = Color.WhiteSmoke;
-            customComboBox1.BorderColor = Color.DimGray;
-            customComboBox1.BorderSize = 2;
-            customComboBox1.DropDownStyle = ComboBoxStyle.DropDown;
-            customComboBox1.Font = new Font("Segoe UI", 10F);
-            customComboBox1.ForeColor = Color.DimGray;
-            customComboBox1.IconColor = Color.RoyalBlue;
-            customComboBox1.Items.AddRange(new object[] { "Python", "Java", "C++" });
-            customComboBox1.ListBackColor = Color.FromArgb(230, 228, 245);
-            customComboBox1.ListTextColor = Color.DimGray;
-            customComboBox1.Location = new Point(933, 206);
-            customComboBox1.MinimumSize = new Size(200, 30);
-            customComboBox1.Name = "customComboBox1";
-            customComboBox1.Padding = new Padding(2);
-            customComboBox1.Size = new Size(264, 41);
-            customComboBox1.TabIndex = 65;
-            customComboBox1.Texts = "";
+            materialComboBox1.AutoResize = false;
+            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
+            materialComboBox1.Depth = 0;
+            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
+            materialComboBox1.DropDownHeight = 118;
+            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            materialComboBox1.DropDownWidth = 121;
+            materialComboBox1.Font = new Font("Roboto Medium", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            materialComboBox1.FormattingEnabled = true;
+            materialComboBox1.IntegralHeight = false;
+            materialComboBox1.ItemHeight = 29;
+            materialComboBox1.Location = new Point(822, 154);
+            materialComboBox1.MaxDropDownItems = 4;
+            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
+            materialComboBox1.Name = "materialComboBox1";
+            materialComboBox1.Size = new Size(121, 35);
+            materialComboBox1.StartIndex = 0;
+            materialComboBox1.TabIndex = 65;
+            materialComboBox1.UseTallSize = false;
             // 
             // TempExerciseManage
             // 
             AllowDrop = true;
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(customComboBox1);
+            Controls.Add(materialComboBox1);
             Controls.Add(customTextBox1);
             Controls.Add(smartButton1);
             Controls.Add(smartButton4);
@@ -188,8 +192,9 @@
             Controls.Add(panel1);
             Controls.Add(panel3);
             DoubleBuffered = true;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TempExerciseManage";
-            Size = new Size(1362, 922);
+            Size = new Size(1192, 692);
             Load += TempExerciseManage_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -205,6 +210,6 @@
         private FlowLayoutPanel flowLayoutPanel_Exercises;
         private GeneralComponents.SmartButton smartButton1;
         private CustomTextBox customTextBox1;
-        private GeneralComponents.CustomComboBox customComboBox1;
+        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
     }
 }
