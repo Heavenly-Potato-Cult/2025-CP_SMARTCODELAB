@@ -79,9 +79,9 @@
             accuracyLabel.ForeColor = Color.DimGray;
             accuracyLabel.Location = new Point(339, 78);
             accuracyLabel.Name = "accuracyLabel";
-            accuracyLabel.Size = new Size(29, 20);
+            accuracyLabel.Size = new Size(45, 20);
             accuracyLabel.TabIndex = 44;
-            accuracyLabel.Text = "0%";
+            accuracyLabel.Text = "100%";
             // 
             // label14
             // 
@@ -90,9 +90,9 @@
             label14.ForeColor = Color.DimGray;
             label14.Location = new Point(26, 220);
             label14.Name = "label14";
-            label14.Size = new Size(72, 20);
+            label14.Size = new Size(83, 20);
             label14.TabIndex = 43;
-            label14.Text = "Efficiency";
+            label14.Text = "Robustness";
             // 
             // efficiencyT
             // 
@@ -108,9 +108,9 @@
             label11.ForeColor = Color.DimGray;
             label11.Location = new Point(26, 291);
             label11.Name = "label11";
-            label11.Size = new Size(136, 20);
+            label11.Size = new Size(108, 20);
             label11.TabIndex = 41;
-            label11.Text = "Logical Complexity";
+            label11.Text = "Maintainability";
             // 
             // complexityT
             // 
@@ -190,7 +190,7 @@
             // checkBox3
             // 
             checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(104, 226);
+            checkBox3.Location = new Point(109, 226);
             checkBox3.Name = "checkBox3";
             checkBox3.Size = new Size(15, 14);
             checkBox3.TabIndex = 50;
@@ -199,7 +199,7 @@
             // checkBox4
             // 
             checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(168, 297);
+            checkBox4.Location = new Point(135, 297);
             checkBox4.Name = "checkBox4";
             checkBox4.Size = new Size(15, 14);
             checkBox4.TabIndex = 51;

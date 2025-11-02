@@ -15,10 +15,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected string filePath;
         protected TaskModel task;
 
-        protected readonly WavyLineStyle redWavy = new WavyLineStyle(255, Color.Red);
-        protected readonly WavyLineStyle yellowWavy = new WavyLineStyle(255, Color.Orange);
-        private string errorMsg = "";
+        //different highlight styles
+        protected readonly WavyLineStyle syntaxErrorHighlight = new WavyLineStyle(255, Color.Red);
+        protected readonly WavyLineStyle readabilityHighlight = new WavyLineStyle(255, Color.Orange);
+        protected readonly WavyLineStyle robustnessHighlight = new WavyLineStyle(255, Color.Green);
+        protected readonly WavyLineStyle maintainabilityHighlight = new WavyLineStyle(255, Color.Blue);
+
+        //stores the different errors and warnings, the error line is the key, message is the value
         protected Dictionary<int, string> standardError;
+        protected Dictionary<int, string> readabilityWarning;
+        protected Dictionary<int, string> maintainabilityWarning;
+        protected Dictionary<int, string> robustnessWarning;
+
+        private string errorMsg = "";
         private int? errorLine = null;
         private System.Threading.Timer? _debounceTimer;
         private System.Threading.Timer? inputTimer;
@@ -48,6 +57,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
             this.updateStats = updateStats;
             standardError = new Dictionary<int, string>();
+            readabilityWarning = new Dictionary<int, string>();
+            maintainabilityWarning = new Dictionary<int, string>();
+            robustnessWarning = new Dictionary<int, string>();
             this.task = task;
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
@@ -59,14 +71,29 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             RunLinting();// i check agad ang syntax ng code
             srcCode.ToolTipNeeded += (s, e) =>
             {
+                string msg = "";
                 if (errorLine != null && e.Place.iLine == errorLine)
                 {
-                    e.ToolTipText = errorMsg;
+                    msg = errorMsg;
                 }
                 if (standardError.ContainsKey(e.Place.iLine))
                 {
-                    e.ToolTipText = standardError.GetValueOrDefault(e.Place.iLine, "No Error Found");
+                    msg += (standardError.GetValueOrDefault(e.Place.iLine, "No Error Found") + Environment.NewLine);
                 }
+                if (readabilityWarning.ContainsKey(e.Place.iLine))
+                {
+                    msg += (readabilityWarning.GetValueOrDefault(e.Place.iLine, "No Readability Issue Found") + Environment.NewLine);
+                }
+                if (maintainabilityWarning.ContainsKey(e.Place.iLine))
+                {
+                    msg += (maintainabilityWarning.GetValueOrDefault(e.Place.iLine, "No Maintainability Issue Found") + Environment.NewLine);
+                }
+                if (robustnessWarning.ContainsKey(e.Place.iLine))
+                {
+                    msg += (robustnessWarning.GetValueOrDefault(e.Place.iLine, "No Robustness Issue Found") + Environment.NewLine);
+                }
+
+                e.ToolTipText = msg;
             };
             int i = 0;
             srcCode.TextChanged += (s, e) =>
@@ -417,7 +444,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 standardError.Remove(errorLine);
                 var lineRange = srcCode.GetLine(errorLine);
-                lineRange.SetStyle(redWavy);
+                lineRange.SetStyle(syntaxErrorHighlight);
                 this.errorLine = errorLine;
                 this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
             }
@@ -429,10 +456,49 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             try
             {
                 var lineRange = srcCode.GetLine(errorLine);
-                lineRange.SetStyle(yellowWavy);
+                lineRange.SetStyle(readabilityHighlight);
                 if (standardError.ContainsKey(errorLine))
                     standardError.Remove(errorLine);
                 standardError.Add(errorLine, msg);
+            }
+            catch (ArgumentException) { }
+        }
+
+        protected virtual void HighlightReadabilityIssue(int errorLine, string msg)
+        {
+            try
+            {
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(readabilityHighlight);
+                if (readabilityWarning.ContainsKey(errorLine))
+                    readabilityWarning.Remove(errorLine);
+                readabilityWarning.Add(errorLine, msg);
+            }
+            catch (ArgumentException) { }
+        }
+
+        protected virtual void HighlightMaintainabilityIssue(int errorLine, string msg)
+        {
+            try
+            {
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(maintainabilityHighlight);
+                if (maintainabilityWarning.ContainsKey(errorLine))
+                    maintainabilityWarning.Remove(errorLine);
+                maintainabilityWarning.Add(errorLine, msg);
+            }
+            catch (ArgumentException) { }
+        }
+
+        protected virtual void HighlightRobustnessIssue(int errorLine, string msg)
+        {
+            try
+            {
+                var lineRange = srcCode.GetLine(errorLine);
+                lineRange.SetStyle(readabilityHighlight);
+                if (robustnessWarning.ContainsKey(errorLine))
+                    robustnessWarning.Remove(errorLine);
+                robustnessWarning.Add(errorLine, msg);
             }
             catch (ArgumentException) { }
         }
@@ -441,8 +507,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             errorLine = null;
             errorMsg = "";
-            srcCode.Range.ClearStyle(yellowWavy);
-            srcCode.Range.ClearStyle(redWavy);
+            srcCode.Range.ClearStyle(syntaxErrorHighlight);
+            srcCode.Range.ClearStyle(readabilityHighlight);
+            srcCode.Range.ClearStyle(maintainabilityHighlight);
+            srcCode.Range.ClearStyle(robustnessHighlight);
         }
 
         private Task CountComplexity1()

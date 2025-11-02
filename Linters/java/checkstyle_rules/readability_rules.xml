@@ -4,7 +4,6 @@
     "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-	
 	<module name="LineLength">
 		<property name="max" value="80"/> <!--The max will be based on how much the code editor can take without the need for scrolling horizontally -->
 	</module>
@@ -64,6 +63,6 @@
 		<module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
     	<module name="UnnecessarySemicolonInTryWithResources"/>
     	<module name="UnusedCatchParameterShouldBeUnnamed"/>
-		<module name="UnusedLocalVariable">
+		<module name="UnusedLocalVariable"/>
     </module>
 </module>

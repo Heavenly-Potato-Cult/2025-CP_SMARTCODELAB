@@ -56,7 +56,6 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                         unallocated = 0;
                         item.Value = recentValue[item];
                     }
-                    Debug.WriteLine(unallocated);
                     recentValue[item] = item.Value;
                 };
             }

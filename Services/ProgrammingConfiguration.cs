@@ -22,6 +22,9 @@ namespace SmartCodeLab.Services
 
         public static string ruffExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff.exe");
         public static string ruffConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff_config.toml");
+        public static string ruffReadability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff_config.toml");
+        public static string ruffMaintainability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff_maintainability_rules.toml");
+        public static string ruffRobustness = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff_robustness_rules.toml");
 
         //C++
         public static string gccExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "C++", "MinGW64", "bin","g++");
@@ -39,10 +42,14 @@ namespace SmartCodeLab.Services
             {NamingConvention.UpperSnakeCase, "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$" },
         };
         public static string checkStylePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "checkstyle-11.0.1-all.jar");
+        public static string pmdPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "pmd-bin-7.17.0", "bin", "pmd");
         public static string checkStyleConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "simple_checks.xml");
         public static string javaExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "Java", "jdk-21.0.8", "bin", "java.exe");
         public static string javac = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "Java", "jdk-21.0.8", "bin", "javac");
         public static string namingConventionChecker = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "defaultNamingConvention.xml");
+        public static string checkstyleReadability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java","checkstyle_rules", "readability_rules.xml");
+        public static string checkstyleMaintainability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "checkstyle_rules", "maintainability_rules.xml");
+        public static string pmdRobustness = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "pmd_rules", "robustness_rules.xml");
 
         //activity file locations
         public static string javaFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "java");
