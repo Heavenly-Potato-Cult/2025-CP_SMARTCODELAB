@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentCodeRating));
             panel19 = new Panel();
             score = new Label();
-            customToggleButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomToggleButton();
             pictureBox7 = new PictureBox();
             label9 = new Label();
             readabilityContainer = new Panel();
@@ -47,6 +46,7 @@
             accuracyPanel = new Panel();
             accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             label15 = new Label();
+            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             readabilityContainer.SuspendLayout();
@@ -59,8 +59,8 @@
             // panel19
             // 
             panel19.BackColor = Color.FromArgb(240, 247, 255);
+            panel19.Controls.Add(smartButton1);
             panel19.Controls.Add(score);
-            panel19.Controls.Add(customToggleButton1);
             panel19.Controls.Add(pictureBox7);
             panel19.Controls.Add(label9);
             panel19.Dock = DockStyle.Top;
@@ -80,24 +80,6 @@
             score.Size = new Size(45, 25);
             score.TabIndex = 81;
             score.Text = "100";
-            // 
-            // customToggleButton1
-            // 
-            customToggleButton1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            customToggleButton1.AutoSize = true;
-            customToggleButton1.Checked = true;
-            customToggleButton1.CheckState = CheckState.Checked;
-            customToggleButton1.Location = new Point(340, 11);
-            customToggleButton1.MinimumSize = new Size(45, 22);
-            customToggleButton1.Name = "customToggleButton1";
-            customToggleButton1.OffBackColor = Color.Gray;
-            customToggleButton1.OffToggleColor = Color.Gainsboro;
-            customToggleButton1.OnBackColor = Color.MediumSlateBlue;
-            customToggleButton1.OnToggleColor = Color.WhiteSmoke;
-            customToggleButton1.Size = new Size(45, 22);
-            customToggleButton1.TabIndex = 80;
-            customToggleButton1.UseVisualStyleBackColor = true;
-            customToggleButton1.CheckedChanged += customToggleButton1_CheckedChanged;
             // 
             // pictureBox7
             // 
@@ -255,6 +237,21 @@
             label15.TabIndex = 80;
             label15.Text = "Accuracy";
             // 
+            // smartButton1
+            // 
+            smartButton1.BackColor = Color.MediumSlateBlue;
+            smartButton1.BorderRadius = 20;
+            smartButton1.FlatAppearance.BorderSize = 0;
+            smartButton1.FlatStyle = FlatStyle.Flat;
+            smartButton1.ForeColor = Color.White;
+            smartButton1.Location = new Point(230, 5);
+            smartButton1.Name = "smartButton1";
+            smartButton1.Size = new Size(140, 34);
+            smartButton1.TabIndex = 82;
+            smartButton1.Text = "View More";
+            smartButton1.UseVisualStyleBackColor = false;
+            smartButton1.Click += smartButton1_Click;
+            // 
             // StudentCodeRating
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -292,7 +289,6 @@
         private Panel efficiencyContainer;
         private GeneralComponents.StatsBar efficiency;
         private Label label3;
-        private GeneralComponents.CustomToggleButton customToggleButton1;
         private Label score;
         private Panel panel1;
         private Panel readabilityContainer;
@@ -300,5 +296,6 @@
         private Panel accuracyPanel;
         private GeneralComponents.StatsBar accuracy;
         private Label label15;
+        private GeneralComponents.SmartButton smartButton1;
     }
 }

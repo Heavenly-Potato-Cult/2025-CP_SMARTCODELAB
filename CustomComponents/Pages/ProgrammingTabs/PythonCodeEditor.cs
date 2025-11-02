@@ -2,11 +2,12 @@
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
@@ -67,48 +68,130 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
             );
 
-            //checks readability status
-            int i = 0;
-            int errorCounts = 0;
-            foreach (var item in readabilityCommands)
-            {
-                process = CommandRunner(item);
-                string lintOutput = "";
-                await StartprocessAsyncExit(
-                    process,
-                    err => lintOutput += (err + '\n'),
-                    null,
-                    () =>
+            await checkReadability();
+            await checkMaintainability();
+            await checkRobustness();
+        }
+
+        private async Task checkReadability()
+        {
+            readabilityRules.Clear();
+            process = CommandRunner($"/c \"{ProgrammingConfiguration.ruffExe}\" check {filePath} --config {ProgrammingConfiguration.ruffReadability}");
+            string readabilityViolations = "";
+            await StartprocessAsyncExit(
+                process,
+                output =>
+                {
+                    if (output.StartsWith(filePath))
+                        readabilityViolations += output.Replace(filePath+':',"") + Environment.NewLine;
+                },
+                null,
+                () =>
+                {
+                    if(readabilityViolations != "")
                     {
-                        string errorMessage = string.Empty;
-                        int line = 0;
-                        if (!lintOutput.Contains("All checks passed!"))//this means the linter used was pylint
+                        int violationCounts = 0;
+                        foreach (var item in readabilityViolations.Split(Environment.NewLine))
                         {
-                            lintOutput = lintOutput.Replace("************* Module Main\n", "");
-
-                            if (i == 1)
-                                lintOutput = lintOutput.Remove(lintOutput.LastIndexOf("Found "));
-
-                            lintOutput = lintOutput.Remove(lintOutput.LastIndexOf('\n'));
-                            string[] errors = lintOutput.Split("\n");
-                            List<string> standardErrors = new List<string>();
-                            foreach (var error in errors)
+                            try
                             {
-                                string[] splicedErrorLine = error.Split(':');
-                                int splicedLength = splicedErrorLine.Length;
-                                //if i == 0, this means pylint was used and error message is in index 5, while it will be on index 4 if ruff was used
-                                errorMessage = splicedErrorLine[i == 0 ? 5 : 4];
-                                line = int.Parse(splicedErrorLine[2]) - 1;
-                                standardErrors.Add(errorMessage);
-                                errorCounts++;
-                                base.HighLightStandardError(line, errorMessage);
+                                string[] slicedViolation = item.Split(':');
+                                int errorLine = int.Parse(slicedViolation[0]);
+                                string errorMessage = slicedViolation[2];
+
+                                HighlightReadabilityIssue(errorLine - 1, errorMessage);
+                                readabilityRules.Add(ruffCodeRetriever(errorMessage));
+                                violationCounts++;
                             }
-                            updateStats?.Invoke(2, errorCounts, standardErrors);
+                            catch (ArgumentOutOfRangeException) { }
+                            catch(FormatException) { }
                         }
+                        updateStats?.Invoke(2, violationCounts, new List<string>());
                     }
-                );
-                i++;
-            }
+                }
+            );
+        }
+        private async Task checkMaintainability()
+        {
+            maintainabilityRules.Clear();
+            process = CommandRunner($"/c \"{ProgrammingConfiguration.ruffExe}\" check {filePath} --config {ProgrammingConfiguration.ruffMaintainability}");
+            string maintainabilityViolations = "";
+            await StartprocessAsyncExit(
+                process,
+                output =>
+                {
+                    if (output.StartsWith(filePath))
+                        maintainabilityViolations += output.Replace(filePath + ':', "") + Environment.NewLine;
+                },
+                null,
+                () =>
+                {
+                    if (maintainabilityViolations != "")
+                    {
+                        int violationCounts = 0;
+                        foreach (var item in maintainabilityViolations.Split(Environment.NewLine))
+                        {
+                            try
+                            {
+                                string[] slicedViolation = item.Split(':');
+                                int errorLine = int.Parse(slicedViolation[0]);
+                                string errorMessage = slicedViolation[2];
+
+                                HighlightMaintainabilityIssue(errorLine - 1, errorMessage);
+                                maintainabilityRules.Add(ruffCodeRetriever(errorMessage));
+                                violationCounts++;
+                            }
+                            catch (ArgumentOutOfRangeException) { }
+                            catch (FormatException) { }
+                        }
+                        updateStats?.Invoke(4, violationCounts, new List<string>());
+                    }
+                }
+            );
+        }
+        private async Task checkRobustness()
+        {
+            robustnessRules.Clear();
+            process = CommandRunner($"/c \"{ProgrammingConfiguration.ruffExe}\" check {filePath} --config {ProgrammingConfiguration.ruffRobustness}");
+            string robustnessViolations = "";
+            await StartprocessAsyncExit(
+                process,
+                output =>
+                {
+                    if (output.StartsWith(filePath))
+                        robustnessViolations += output.Replace(filePath + ':', "") + Environment.NewLine;
+                },
+                null,
+                () =>
+                {
+                    if (robustnessViolations != "")
+                    {
+                        int violationCounts = 0;
+                        foreach (var item in robustnessViolations.Split(Environment.NewLine))
+                        {
+                            try
+                            {
+                                string[] slicedViolation = item.Split(':');
+                                int errorLine = int.Parse(slicedViolation[0]);
+                                string errorMessage = slicedViolation[2];
+
+                                HighlightRobustnessIssue(errorLine - 1, errorMessage);
+                                robustnessRules.Add(ruffCodeRetriever(errorMessage));
+                                violationCounts++;
+                            }
+                            catch (ArgumentOutOfRangeException) { }
+                            catch (FormatException) { }
+                        }
+                        updateStats?.Invoke(3, violationCounts, new List<string>());
+                    }
+                }
+            );
+        }
+
+        private string ruffCodeRetriever(string errorMsg)
+        {
+            string newMsg = errorMsg.Remove(0, 1);
+            return newMsg.Split(" ")[0];
         }
     }
 }

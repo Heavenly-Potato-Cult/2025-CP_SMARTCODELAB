@@ -27,6 +27,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected Dictionary<int, string> maintainabilityWarning;
         protected Dictionary<int, string> robustnessWarning;
 
+        //detected violated rules
+        protected HashSet<string> readabilityRules;
+        protected HashSet<string> maintainabilityRules;
+        protected HashSet<string> robustnessRules;
+
         private string errorMsg = "";
         private int? errorLine = null;
         private System.Threading.Timer? _debounceTimer;
@@ -60,6 +65,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             readabilityWarning = new Dictionary<int, string>();
             maintainabilityWarning = new Dictionary<int, string>();
             robustnessWarning = new Dictionary<int, string>();
+
+            readabilityRules = new HashSet<string>();
+            maintainabilityRules = new HashSet<string>();
+            robustnessRules = new HashSet<string>();
+
             this.task = task;
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
@@ -255,6 +265,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public async virtual void RunCode()
         {
+            if(errorMsg != "")
+            {
+                MessageBox.Show("Code contains syntax errors");
+                return;
+            }
+
             Invoker(() =>
             {
                 output.Clear();
@@ -271,11 +287,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     inputTimerStarter();
                 },
                 err => { 
-                    Invoker(() => output.WriteLine(err + Environment.NewLine));
+                    
                     exeptionThrown += (err + "\n");
                 },
                 async () =>
                 {
+                    if(exeptionThrown != string.Empty)
+                        Invoker(() => output.WriteLine(exeptionThrown));
+
                     Invoker(() => output.WriteLine(Environment.NewLine + "Program Finished"));
                     output.IsReadLineMode = false;
                     inputTimer?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -340,6 +359,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public async virtual void RunTest()
         {
+            if (errorMsg != "")
+            {
+                MessageBox.Show("Code contains syntax errors");
+                return;
+            }
             SaveCode();
             if (task._testCases.Count == 0)
             {
@@ -495,7 +519,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             try
             {
                 var lineRange = srcCode.GetLine(errorLine);
-                lineRange.SetStyle(readabilityHighlight);
+                lineRange.SetStyle(robustnessHighlight);
                 if (robustnessWarning.ContainsKey(errorLine))
                     robustnessWarning.Remove(errorLine);
                 robustnessWarning.Add(errorLine, msg);
@@ -551,6 +575,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 Invoker(() => SendInput(output.ReadLine()));
                 output.IsReadLineMode = true;
             }, null, 700, Timeout.Infinite);
+        }
+
+        public List<HashSet<string>> GetViolatedRules()
+        {
+            return new List<HashSet<string>>()
+            {
+                readabilityRules,
+                maintainabilityRules,
+                robustnessRules
+            };
         }
     }
 }

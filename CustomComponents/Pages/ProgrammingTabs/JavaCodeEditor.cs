@@ -168,10 +168,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int maintainabilityCounts = 0;
             string maintainabilityErrors = "";
             process = CommandRunner($"/c java -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkstyleMaintainability} {filePath}");
+            maintainabilityRules.Clear();
             await StartprocessAsyncExit(
                 process,
                 outp => { maintainabilityErrors += (outp + Environment.NewLine); },
-                err => Debug.WriteLine(err),
+                null,
                 () =>
                 {
                     List<string> errorsList = new List<string>();
@@ -180,11 +181,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     {
                         if (errors[errors.Length - 1] != standardError)
                         {
+                            Debug.WriteLine(standardError);
                             string[] e = standardError.Split(':');
                             string errorMessage = e[e.Length - 1];
                             errorsList.Add(errorMessage);
                             base.HighlightMaintainabilityIssue(int.Parse(e[2]) - 1, errorMessage);
                             maintainabilityCounts++;
+                            maintainabilityRules.Add(checkstyleErrorRetriever(errorMessage));
                         }
                     }
                     updateStats?.Invoke(4, maintainabilityCounts, errorsList);
@@ -196,11 +199,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             readabilityWarning.Clear();
             int readabilityCounts = 0;
             string readabilityErrors = "";
+            readabilityRules.Clear();
             process = CommandRunner($"/c java -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkstyleReadability} {filePath}");
             await StartprocessAsyncExit(
                 process,
                 outp => { readabilityErrors += (outp + Environment.NewLine); },
-                err => Debug.WriteLine(err),
+                null,
                 () =>
                 {
                     List<string> errorsList = new List<string>();
@@ -214,6 +218,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             errorsList.Add(errorMessage);
                             base.HighlightReadabilityIssue(int.Parse(e[2]) - 1, errorMessage);
                             readabilityCounts++;
+                            readabilityRules.Add(checkstyleErrorRetriever(errorMessage));
                         }
                     }
                     updateStats?.Invoke(2, readabilityCounts, errorsList);
@@ -222,6 +227,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private async Task checkRobustness()
         {
+            robustnessRules.Clear();
             robustnessWarning.Clear();
             int robustnessCounts = 0;
             string robustnessErrors = "";
@@ -234,7 +240,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 null,
                 () =>
                 {
-                    Debug.WriteLine(robustnessErrors);
                     List<string> errorsList = new List<string>();
                     string[] errors = robustnessErrors.Split(Environment.NewLine);
                     foreach (string standardError in errors)
@@ -245,11 +250,26 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             int errorLine = int.Parse(errorSliced[0]);
                             string errorMessage = errorSliced[2].Trim();
                             base.HighlightRobustnessIssue(errorLine - 1, errorMessage);
+                            robustnessRules.Add(errorSliced[1].Trim());
                         }
                         catch (FormatException) { }
                     }
                     updateStats?.Invoke(3, robustnessCounts, errorsList);
                 });
+        }
+
+        private string checkstyleErrorRetriever(string errorMsg)
+        {
+            string ruleName = "";
+            foreach (var item in errorMsg.Reverse())
+            {
+                if (item == '[')
+                    break;
+
+                ruleName = item + ruleName;
+            }
+
+            return ruleName.Replace("]", "");
         }
 
     }

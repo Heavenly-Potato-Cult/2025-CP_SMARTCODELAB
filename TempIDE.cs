@@ -54,7 +54,6 @@ namespace SmartCodeLab
             AddLeaderboardIcon(1, "Alice", 100);
             AddLeaderboardIcon(2, "Bob", 50);
             AddLeaderboardIcon(3, "Charles", 30);
-            // ...
             AddLeaderboardIcon(6, "David", 79);
 
         }
@@ -116,7 +115,7 @@ namespace SmartCodeLab
             mainEditor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);
             mainEditor.notifAction = NotifyHost;
             customTabControl1.AddTab(Path.GetFileName(mainFile), mainEditor);
-
+            studentCodeRating.SetViolationsRetriever(mainEditor.GetViolatedRules);
             if (wpfTree == null) return;
 
             wpfTree.Items.Clear();

@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         * 3 - Efficiency
         * 4 - Complexity
         */
-
+        
         private List<int> recordedStats = new List<int>();
         private readonly Dictionary<int, Panel> statsTotal;
         private readonly Dictionary<int, StatsBar> statsBar;
@@ -29,6 +30,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private int testScore;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int maxTestScore { get; set; }
+
+        private Func<List<HashSet<string>>> violations { get; set; }
+
         public Dictionary<int, decimal> statsWeight;
         public Dictionary<int, float> statsGrade;
 
@@ -138,7 +142,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 //standardErrors.Text = violations;
                 standardViolations = reasons ?? new List<string>();
             }
-            else if(i == 3)//robustness
+            else if (i == 3)//robustness
             {
                 int scoreRobustness = 100 - value;
                 //this.Invoke(new Action(() => actualEfficiency.Text = value.ToString()));
@@ -198,9 +202,20 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 .WithStatsGrade(GetStats())
                 .Build();
         }
-        private void customToggleButton1_CheckedChanged(object sender, EventArgs e)
-        {
 
+        private void smartButton1_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine((violations != null));
+            if(violations != null)
+            {
+                new ViewCodeViolations(violations.Invoke()).ShowDialog();
+            }
+        }
+
+        public void SetViolationsRetriever(Func<List<HashSet<string>>> violations)
+        {
+            Debug.WriteLine(violations);
+            this.violations = violations;
         }
     }
 }
