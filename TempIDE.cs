@@ -59,17 +59,17 @@ namespace SmartCodeLab
 
         }
 
-        private void AddLeaderboardIcon(int ranking, string playerName, int score)
+        private void AddLeaderboardIcon(int ranking, string studentName, int score)
         {
             
             var newIcon = new leaderboardIcon();
 
           
             newIcon.Dock = DockStyle.Top;
+            newIcon.Margin = new Padding(0, 0, 0, 5);
 
-         
             newIcon.Ranking = ranking;
-            newIcon.Name = playerName;
+            newIcon.Name = studentName;
             newIcon.Score = score;
 
             
@@ -266,7 +266,7 @@ namespace SmartCodeLab
 
                 tabControl_RightSide.Font = new Font("Segoe UI", 12F);
                 tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-                tabControl_RightSide.ItemSize = new Size(tabWidth, 50); // 50 = tab height
+                tabControl_RightSide.ItemSize = new Size(Math.Max(1, tabWidth), 50); // 50 = tab height. // butang Max 1 para dili mag negative
             }
             finally
             {
