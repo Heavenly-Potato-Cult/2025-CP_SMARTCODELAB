@@ -149,8 +149,6 @@ namespace SmartCodeLab
                 // ...
                 AddLeaderboardIcon(6, "David", 79);
             };
-
-            tabControl_RightSide.SelectedIndex = 2;
         }
 
         public void UpdateTaskDisplay(TaskModel task)

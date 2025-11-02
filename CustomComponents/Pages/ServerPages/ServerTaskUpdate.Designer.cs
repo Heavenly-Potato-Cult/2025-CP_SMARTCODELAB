@@ -214,11 +214,12 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(27, 14);
+            reference.AutoScrollMinSize = new Size(2, 14);
             reference.BackBrush = null;
             reference.CharHeight = 14;
             reference.CharWidth = 8;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            reference.Font = new Font("Courier New", 9.75F);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IsReplaceMode = false;
             reference.Location = new Point(25, 65);
@@ -393,9 +394,9 @@
             label3.ForeColor = Color.FromArgb(13, 13, 13);
             label3.Location = new Point(305, 32);
             label3.Name = "label3";
-            label3.Size = new Size(196, 30);
+            label3.Size = new Size(127, 30);
             label3.TabIndex = 54;
-            label3.Text = "Exercise Manager";
+            label3.Text = "Task Editor";
             // 
             // ServerTaskUpdate
             // 

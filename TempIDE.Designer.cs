@@ -205,7 +205,7 @@
             panel_MiddlePart_Main.Location = new Point(249, 2);
             panel_MiddlePart_Main.Margin = new Padding(3, 2, 3, 2);
             panel_MiddlePart_Main.Name = "panel_MiddlePart_Main";
-            panel_MiddlePart_Main.Size = new Size(720, 560);
+            panel_MiddlePart_Main.Size = new Size(720, 559);
             panel_MiddlePart_Main.TabIndex = 20;
             // 
             // customTabControl1
@@ -214,7 +214,7 @@
             customTabControl1.Location = new Point(0, 46);
             customTabControl1.Margin = new Padding(3, 2, 3, 2);
             customTabControl1.Name = "customTabControl1";
-            customTabControl1.Size = new Size(720, 514);
+            customTabControl1.Size = new Size(720, 513);
             customTabControl1.TabIndex = 20;
             // 
             // panel1
@@ -334,9 +334,9 @@
             // 
             // tabControl_RightSide
             // 
-            tabControl_RightSide.Controls.Add(BroadcastsTab);
-            tabControl_RightSide.Controls.Add(MessagesTab);
             tabControl_RightSide.Controls.Add(ActivityTab);
+            tabControl_RightSide.Controls.Add(MessagesTab);
+            tabControl_RightSide.Controls.Add(BroadcastsTab);
             tabControl_RightSide.Dock = DockStyle.Fill;
             tabControl_RightSide.Location = new Point(975, 2);
             tabControl_RightSide.Margin = new Padding(3, 2, 3, 2);
@@ -610,8 +610,8 @@
             tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 98.6014F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.39860141F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 98.4265747F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5734266F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
             tableLayoutPanel2.Size = new Size(1345, 572);
             tableLayoutPanel2.TabIndex = 18;
@@ -626,6 +626,7 @@
             Controls.Add(panel4);
             Controls.Add(panel2);
             Controls.Add(headerPanel);
+            DoubleBuffered = true;
             Margin = new Padding(3, 2, 3, 2);
             Name = "TempIDE";
             StartPosition = FormStartPosition.CenterScreen;
