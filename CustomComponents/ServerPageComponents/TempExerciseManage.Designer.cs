@@ -80,9 +80,9 @@
             label2.ForeColor = Color.FromArgb(13, 13, 13);
             label2.Location = new Point(305, 32);
             label2.Name = "label2";
-            label2.Size = new Size(196, 30);
+            label2.Size = new Size(190, 30);
             label2.TabIndex = 13;
-            label2.Text = "Exercise Manager";
+            label2.Text = "Exercise Explorer";
             // 
             // panel1
             // 

@@ -52,14 +52,12 @@
             label13 = new Label();
             btn_EditExerciseDetails = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label3 = new Label();
-            tableLayoutPanel1 = new TableLayoutPanel();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)reference).BeginInit();
             tabPage1.SuspendLayout();
             customCard7.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -67,7 +65,7 @@
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage1);
-            tabControl1.Location = new Point(95, 71);
+            tabControl1.Location = new Point(305, 108);
             tabControl1.Margin = new Padding(3, 2, 3, 2);
             tabControl1.MaximumSize = new Size(1019, 452);
             tabControl1.Name = "tabControl1";
@@ -216,22 +214,21 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(2, 14);
+            reference.AutoScrollMinSize = new Size(27, 14);
             reference.BackBrush = null;
             reference.CharHeight = 14;
             reference.CharWidth = 8;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            reference.Font = new Font("Courier New", 9.75F);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IsReplaceMode = false;
-            reference.Location = new Point(25, 50);
+            reference.Location = new Point(25, 65);
             reference.Margin = new Padding(3, 2, 3, 2);
             reference.Name = "reference";
             reference.Paddings = new Padding(0);
             reference.ReadOnly = true;
             reference.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             reference.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("reference.ServiceColors");
-            reference.Size = new Size(629, 260);
+            reference.Size = new Size(948, 260);
             reference.TabIndex = 57;
             reference.Zoom = 100;
             // 
@@ -244,7 +241,7 @@
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(538, 21);
+            smartButton2.Location = new Point(857, 24);
             smartButton2.Margin = new Padding(3, 2, 3, 2);
             smartButton2.Name = "smartButton2";
             smartButton2.Size = new Size(116, 26);
@@ -261,7 +258,7 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(416, 21);
+            smartButton1.Location = new Point(718, 24);
             smartButton1.Margin = new Padding(3, 2, 3, 2);
             smartButton1.Name = "smartButton1";
             smartButton1.Size = new Size(116, 26);
@@ -302,7 +299,7 @@
             testContainer.Location = new Point(179, 73);
             testContainer.Margin = new Padding(3, 2, 3, 2);
             testContainer.Name = "testContainer";
-            testContainer.Size = new Size(650, 342);
+            testContainer.Size = new Size(650, 324);
             testContainer.TabIndex = 58;
             testContainer.WrapContents = false;
             // 
@@ -375,15 +372,15 @@
             // 
             btn_EditExerciseDetails.BackColor = Color.MediumTurquoise;
             btn_EditExerciseDetails.BackgroundColor = Color.MediumTurquoise;
-            btn_EditExerciseDetails.BorderRadius = 20;
+            btn_EditExerciseDetails.BorderRadius = 10;
             btn_EditExerciseDetails.FlatAppearance.BorderSize = 0;
             btn_EditExerciseDetails.FlatStyle = FlatStyle.Flat;
             btn_EditExerciseDetails.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_EditExerciseDetails.ForeColor = Color.White;
-            btn_EditExerciseDetails.Location = new Point(95, 602);
+            btn_EditExerciseDetails.Location = new Point(309, 586);
             btn_EditExerciseDetails.Margin = new Padding(3, 2, 3, 2);
             btn_EditExerciseDetails.Name = "btn_EditExerciseDetails";
-            btn_EditExerciseDetails.Size = new Size(266, 38);
+            btn_EditExerciseDetails.Size = new Size(327, 38);
             btn_EditExerciseDetails.TabIndex = 35;
             btn_EditExerciseDetails.Text = "Update Task";
             btn_EditExerciseDetails.UseVisualStyleBackColor = false;
@@ -394,39 +391,22 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(95, 0);
+            label3.Location = new Point(305, 32);
             label3.Name = "label3";
             label3.Size = new Size(196, 30);
             label3.TabIndex = 54;
             label3.Text = "Exercise Manager";
             // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.222317F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.57759F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 6.2000947F));
-            tableLayoutPanel1.Controls.Add(tabControl1, 1, 1);
-            tableLayoutPanel1.Controls.Add(btn_EditExerciseDetails, 1, 2);
-            tableLayoutPanel1.Controls.Add(label3, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 10.0507956F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 77.03246F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 12.9167376F));
-            tableLayoutPanel1.Size = new Size(1484, 690);
-            tableLayoutPanel1.TabIndex = 55;
-            // 
             // ServerTaskUpdate
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(tableLayoutPanel1);
+            Controls.Add(btn_EditExerciseDetails);
+            Controls.Add(tabControl1);
+            Controls.Add(label3);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ServerTaskUpdate";
-            Size = new Size(1484, 690);
+            Size = new Size(1576, 787);
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
@@ -437,9 +417,8 @@
             tabPage1.PerformLayout();
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
-            tableLayoutPanel1.ResumeLayout(false);
-            tableLayoutPanel1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -466,6 +445,5 @@
         private GeneralComponents.SmartButton btn_AddTestCase;
         private Label label13;
         private Label label3;
-        private TableLayoutPanel tableLayoutPanel1;
     }
 }
