@@ -409,17 +409,26 @@ namespace SmartCodeLab
 
         private void smartButton2_Click(object sender, EventArgs e)
         {
-            Task.Run(async () =>
+            if (mainEditor.isCurrentCodeAccepted())
             {
-                try
+                Task.Run(async () =>
                 {
-                    Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
-                        new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
-                            SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetCodeRating()))).Build(),
-                        PrefixStyle.Base128);
-                    await stream.FlushAsync();
-                }catch(FormatException e) { Debug.WriteLine(e.Message); }
-            });
+                    try
+                    {
+                        Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
+                            new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
+                                SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetCodeRating()))).Build(),
+                            PrefixStyle.Base128);
+                        await stream.FlushAsync();
+                        MessageBox.Show("Code submitted successfully");
+                    }
+                    catch (FormatException e) { Debug.WriteLine(e.Message); }
+                });
+            }
+            else
+            {
+                MessageBox.Show("Please test the current code and ensure that all test cases are passed before submitting.");
+            }
         }
 
         private void smartButton3_Click(object sender, EventArgs e)

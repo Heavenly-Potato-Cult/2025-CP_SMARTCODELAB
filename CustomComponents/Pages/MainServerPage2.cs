@@ -320,17 +320,21 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private async void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd, bool didLoggedIn)
         {
-            if (isAdd)
-                connectedUsers.Add(profile._studentId, networkStream);
-            else
+            try
             {
-                connectedUsers.Remove(profile._studentId);
-                currentStudents.Remove(profile._studentName);
-                if (didLoggedIn)
+                if (isAdd)
+                    connectedUsers.Add(profile._studentId, networkStream);
+                else
                 {
-                    homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
+                    connectedUsers.Remove(profile._studentId);
+                    currentStudents.Remove(profile._studentName);
+                    if (didLoggedIn)
+                    {
+                        homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
+                    }
                 }
             }
+            catch (ArgumentNullException) { }
         }
 
         private void UpdateServerTask(TaskModel task)

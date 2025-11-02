@@ -29,7 +29,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.py");
-            commandLine = $"/c \"{ProgrammingConfiguration.pythonExe}\" \"{testerFile}\"";
+            commandLine = $"/c \"{ProgrammingConfiguration.pythonExe}\" {testerFile}";
             base .RunTest();
         }
 

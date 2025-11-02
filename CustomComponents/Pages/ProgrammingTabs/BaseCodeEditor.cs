@@ -32,6 +32,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected HashSet<string> maintainabilityRules;
         protected HashSet<string> robustnessRules;
 
+        private string acceptedCode;
         private string errorMsg = "";
         private int? errorLine = null;
         private System.Threading.Timer? _debounceTimer;
@@ -70,6 +71,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             maintainabilityRules = new HashSet<string>();
             robustnessRules = new HashSet<string>();
 
+            acceptedCode = "";
             this.task = task;
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
@@ -369,12 +371,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 MessageBox.Show("No available test cases");
             }
-            else {
+            else
+            {
                 TestCodeForm testCodeForm = new TestCodeForm(commandLine, testerFile, task);
                 testCodeForm.ShowDialog();
                 updateStats?.Invoke(1, testCodeForm.score, null);
+                if (task._testCases.Count == testCodeForm.score)
+                {
+                    acceptedCode = srcCode.Text;
+                }
             }
         }
+
         protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
             Invoker(() => output.Text = "Process Started" + Environment.NewLine);
@@ -557,6 +565,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 return new CppCodeEditor(filePath, task, progress, updateStats, sendProgress);
             }
+        }
+
+        public bool isCurrentCodeAccepted()
+        {
+            if (acceptedCode == "")
+                return false;
+
+            return srcCode.Text == acceptedCode;
         }
 
         private void Invoker(Action action) 

@@ -42,6 +42,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int sequence = 1;
             foreach (var item in task._testCases)
             {
+                Debug.WriteLine(testFile);
                 string input = item.Key;
                 //to check if the language is cpp or python, then will modify how the input will look like to satisfy how 
                 //it is need to be formatted in each language, java won't have any changes
