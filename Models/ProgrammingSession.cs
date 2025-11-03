@@ -15,36 +15,51 @@ namespace SmartCodeLab.Models
         [ProtoMember(1)]
         public Server server { get; set; }
 
-        [ProtoMember(2)]
-        public Dictionary<string, StudentCodingProgress> userProgress { get; set; }
 
-        [ProtoMember(3)]
+        [ProtoMember(2)]
         public List<Notification> notifications { get; set; }
 
-        [ProtoMember(4)]
-        public List<SubmittedCode> codeSubmission { get; set; }
+        //[ProtoMember(4)]
+        //public List<SubmittedCode> codeSubmission { get; set; }
 
-        [ProtoMember(5)]
+        [ProtoMember(3)]
         public DateTime lastModified { get; set; }
 
-        [ProtoMember(6)]
-        public Dictionary<string, UserProfile> users;
+        [ProtoMember(4)]
+        public int copyPasteCount { get; set; }
 
-        public ProgrammingSession(Server server, Dictionary<string,
-            StudentCodingProgress> userProgress,
+        [ProtoMember(5)]
+        public Dictionary<string, StudentCodingProgress> userProgress { get; set; }
+
+        //[ProtoMember(6)]
+        //public Dictionary<string, UserProfile> users;
+
+        public ProgrammingSession(Server server,
             List<Notification> notifications,
-            List<SubmittedCode> codeSubmission, Dictionary<string, UserProfile> users)
+            //List<SubmittedCode> codeSubmission, 
+            //Dictionary<string, UserProfile> users,
+            int copyPasteCount,
+            Dictionary<string, StudentCodingProgress> userProgress
+            )
         {
             this.server = server;
-            this.userProgress = userProgress;
-            this.notifications = notifications;
-            this.codeSubmission = codeSubmission;
+            this.userProgress = userProgress ?? new Dictionary<string, StudentCodingProgress>();
+            this.notifications = notifications  ?? new List<Notification>();
+            //this.codeSubmission = codeSubmission ?? new List<SubmittedCode>();
             lastModified = DateTime.Now;
-            this.users = users;
+            this.copyPasteCount = copyPasteCount;
+            //this.users = users;
         }
 
         public ProgrammingSession()
         {
+            server = new Server();
+            userProgress = new Dictionary<string, StudentCodingProgress>();
+            notifications = new List<Notification>();
+            //codeSubmission = new List<SubmittedCode>();
+            //users = new Dictionary<string, UserProfile>();
+            lastModified = DateTime.Now;
+            copyPasteCount = 0;
         }
     }
 }

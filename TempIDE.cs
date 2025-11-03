@@ -420,7 +420,7 @@ namespace SmartCodeLab
                                 SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetCodeRating()))).Build(),
                             PrefixStyle.Base128);
                         await stream.FlushAsync();
-                        MessageBox.Show("Code submitted successfully");
+                        this.Invoke(new Action(() => MessageBox.Show("Code submitted successfully")));
                     }
                     catch (FormatException e) { Debug.WriteLine(e.Message); }
                 });

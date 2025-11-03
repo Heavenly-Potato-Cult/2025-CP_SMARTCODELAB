@@ -1,12 +1,16 @@
-﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.CustomComponents.WPFComponents;
 using SmartCodeLab.Models;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Reflection.Metadata.Ecma335;
@@ -26,6 +30,30 @@ namespace SmartCodeLab
             NavigationMenu();
             SessionNavigationMenu();
             SystemSingleton.Instance.page1 = tabPage10;
+            this.Load += (sender, e) =>
+            {
+                Task.Run(() => 
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        sessionsContainer.Controls.Clear();
+                    }));
+                    foreach (var item in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
+                    {
+                        using (FileStream sessionFile = File.OpenRead(item)) 
+                        {
+                            ProgrammingSession session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
+                            if (session != null)
+                            {
+                                this.Invoke(new Action(() =>
+                                {
+                                    sessionsContainer.Controls.Add(new SessionLogsDisplay(session));
+                                }));
+                            }
+                        }
+                    }
+                });
+            };
         }
 
         private void NavigationMenu()

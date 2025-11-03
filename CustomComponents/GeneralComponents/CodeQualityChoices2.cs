@@ -37,6 +37,14 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             SetupTrackBar(maintainabilityT, 0);
 
             InitializeGradingControls();
+            foreach (var item in Controls.OfType<CheckBox>().Union<Control>(Controls.OfType<TrackBar>()))
+            {
+                item.LostFocus += (s, e) =>
+                {
+                    if (!IsFocusWithUs())
+                        accuracyT.Value = 100;
+                };
+            }
 
             foreach (var item in new List<TrackBar>(){
                 accuracyT,
@@ -47,7 +55,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             {
                 item.ValueChanged += (sender, e) =>
                 {
-                    unallocated +=  recentValue[item] - item.Value;
+                    unallocated += recentValue[item] - item.Value;
 
                     if (unallocated < 0)
                     {
@@ -107,21 +115,30 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                 return;
             }
 
-
             trackBar.Tag = label;
 
-
             trackBar.ValueChanged += AnyTrackBar_ValueChanged;
+
         }
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             maintainabilityT.Enabled = maintainabilityBox.Checked;
+            if (!maintainabilityBox.Checked)
+                IlostMyValueT_T(maintainabilityT);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             readabilityT.Enabled = readabilityBox.Checked;
+            if (!readabilityBox.Checked)
+                IlostMyValueT_T(readabilityT);
+        }
+        private void robustnessBox_CheckedChanged_1(object sender, EventArgs e)
+        {
+            robustnessT.Enabled = robustnessBox.Checked;
+            if (!robustnessBox.Checked)
+                IlostMyValueT_T(robustnessT);
         }
 
         public Dictionary<int, decimal[]> GetRatingFactors()
@@ -141,9 +158,15 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             return ratingFactors;
         }
 
-        private void CodeQualityChoices2_Load(object sender, EventArgs e)
+        private void IlostMyValueT_T(TrackBar bar)
         {
+            bar.Value = 0;
+        }
 
+        private bool IsFocusWithUs()
+        {
+            return Controls.OfType<CheckBox>().Union<Control>(Controls.OfType<TrackBar>())
+                        .Any(control => control.Focused);
         }
     }
 }

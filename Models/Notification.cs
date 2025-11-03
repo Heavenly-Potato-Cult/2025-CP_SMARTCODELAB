@@ -23,6 +23,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(4)]
         public string testResult { get; set; }
 
+        [ProtoMember(5)]
+        public DateTime timeOccurred { get; set; }
+
 
         public Notification(NotificationType type, string userName, string testResult = "")
         {
@@ -30,6 +33,7 @@ namespace SmartCodeLab.Models
             UserName = userName;
             this.testResult = testResult;
             Message = NotificationMessage(type, testResult);
+            timeOccurred = DateTime.Now;
         }
 
         public Notification()

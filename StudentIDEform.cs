@@ -19,8 +19,6 @@ namespace SmartCodeLab
 
         private void loginAsInstructorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new MonitoringForm();
-            form.ShowDialog();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

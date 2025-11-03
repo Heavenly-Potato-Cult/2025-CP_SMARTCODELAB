@@ -31,8 +31,8 @@
 		<module name="InterfaceTypeParameterName"/>
 		<module name="LambdaParameterName"/>
 		<module name="LocalFinalVariableName">
-       		<property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-    	</module>
+       			<property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    		</module>
 		<module name="LocalVariableName"/>
 		<module name="MemberName"/>
 		<module name="MethodName"/>

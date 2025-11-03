@@ -43,7 +43,7 @@
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             pictureBox3 = new PictureBox();
             label7 = new Label();
-            label8 = new Label();
+            pastedCount = new Label();
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             pictureBox4 = new PictureBox();
             label9 = new Label();
@@ -159,7 +159,7 @@
             pictureBox1.Location = new Point(12, 21);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(55, 46);
+            pictureBox1.Size = new Size(70, 62);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -206,7 +206,7 @@
             pictureBox2.Location = new Point(12, 21);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(55, 46);
+            pictureBox2.Size = new Size(70, 62);
             pictureBox2.TabIndex = 15;
             pictureBox2.TabStop = false;
             // 
@@ -240,7 +240,7 @@
             customCard3.BorderSize = 1;
             customCard3.Controls.Add(pictureBox3);
             customCard3.Controls.Add(label7);
-            customCard3.Controls.Add(label8);
+            customCard3.Controls.Add(pastedCount);
             customCard3.Location = new Point(810, 20);
             customCard3.Margin = new Padding(3, 2, 50, 2);
             customCard3.Name = "customCard3";
@@ -250,10 +250,10 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(16, 22);
+            pictureBox3.Location = new Point(3, 22);
             pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(55, 46);
+            pictureBox3.Size = new Size(68, 61);
             pictureBox3.TabIndex = 16;
             pictureBox3.TabStop = false;
             // 
@@ -268,16 +268,16 @@
             label7.TabIndex = 14;
             label7.Text = "Copy Paste Detected";
             // 
-            // label8
+            // pastedCount
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            label8.ForeColor = Color.FromArgb(13, 13, 13);
-            label8.Location = new Point(76, 21);
-            label8.Name = "label8";
-            label8.Size = new Size(26, 30);
-            label8.TabIndex = 12;
-            label8.Text = "3";
+            pastedCount.AutoSize = true;
+            pastedCount.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
+            pastedCount.ForeColor = Color.FromArgb(13, 13, 13);
+            pastedCount.Location = new Point(76, 21);
+            pastedCount.Name = "pastedCount";
+            pastedCount.Size = new Size(26, 30);
+            pastedCount.TabIndex = 12;
+            pastedCount.Text = "0";
             // 
             // customCard4
             // 
@@ -297,10 +297,10 @@
             // pictureBox4
             // 
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(23, 21);
+            pictureBox4.Location = new Point(15, 21);
             pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(55, 46);
+            pictureBox4.Size = new Size(63, 62);
             pictureBox4.TabIndex = 17;
             pictureBox4.TabStop = false;
             // 
@@ -417,7 +417,6 @@
             btn_viewstudents.TabIndex = 28;
             btn_viewstudents.Text = "View Students";
             btn_viewstudents.TextAlign = ContentAlignment.MiddleCenter;
-            btn_viewstudents.Click += btn_viewstudents_Click;
             // 
             // pictureBox13
             // 
@@ -864,7 +863,7 @@
         private GeneralComponents.CustomCard customCard3;
         private PictureBox pictureBox3;
         private Label label7;
-        private Label label8;
+        private Label pastedCount;
         private GeneralComponents.CustomCard customCard4;
         private PictureBox pictureBox4;
         private Label label9;

@@ -49,20 +49,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         //will use userId as a KEY
         private Dictionary<string, StudentCodingProgress> userProgress;
 
-        private System.Threading.Timer saveSessionFile;
-
-        public MainServerPage2(ProgrammingSession session)//this is for viewing the selected past session
-        {
-            InitializeComponent();
-            SessionNavigationMenu();
-            serverPage = new TempServerPage(session.users, session.userProgress);
-            homePage = new ServerHomePage(session.notifications);
-            progressSubmissionPage = new ProgressSubmissionPage(session.codeSubmission);
-
-            tabPage1.Controls.Add(homePage);
-            tabPage2.Controls.Add(serverPage);
-            tabPage4.Controls.Add(progressSubmissionPage);
-        }
+        private Dictionary<string, UserProfile> users;
 
         public MainServerPage2(Server server)
         {
@@ -73,12 +60,11 @@ namespace SmartCodeLab.CustomComponents.Pages
             currentTask = server.ServerTask;
             Task.Run(async () => await StartServerAsync());
             connectedUsers = new Dictionary<string, NetworkStream>();
-            userProgress = [];
-
-            userTable = new StudTable(server.Users);
+            userProgress = new Dictionary<string, StudentCodingProgress>();
+            users = server.Users;
             serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress, isConnected, sendStudentMessage);
-            //homePage = new ServerHomePage(server.Users.Count);
-            homePage = new ServerHomePage(server.Users.Count, server.ServerName, server.Password);
+
+            homePage = new ServerHomePage(server.Users.Count, server.ServerName, server.Password, displayStudentTable, saveSession);
             homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
             var taskUpdatePage = new ServerTaskUpdate(currentTask, UpdateServerTask);
@@ -92,6 +78,14 @@ namespace SmartCodeLab.CustomComponents.Pages
             tabPage2.Controls.Add(serverPage);
             tabPage3.Controls.Add(taskUpdatePage);
             tabPage4.Controls.Add(progressSubmissionPage);
+        }
+
+        private void displayStudentTable()
+        {
+            userTable = new StudTable(users);
+            userTable.Show();
+            users = userTable.expectedUsers;
+            server.Users = users;
         }
 
         public bool sendStudentMessage(string studentId, UserMessage message)
@@ -236,10 +230,10 @@ namespace SmartCodeLab.CustomComponents.Pages
                             userProfile = obj._userProfile;
                             didLoggedIn = false;
                             string errorMsg = "We can't find an account with that Student ID";
-                            if (userTable.ContainsUser(userProfile._studentId))
+                            if (users.ContainsKey(userProfile._studentId))
                             {
                                 //will retrieve the full student profile from the table using studentId
-                                userProfile = userTable.GetUserProfile(userProfile._studentId);
+                                userProfile = users[userProfile._studentId];
                                 if (currentStudents.Contains(userProfile._studentName))
                                 {
                                     errorMsg = "This student is already logged in";
@@ -350,7 +344,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             });
         }
 
-        private async void saveSessionFIleToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void saveSession()
         {
             try
             {
@@ -363,9 +357,11 @@ namespace SmartCodeLab.CustomComponents.Pages
                                         ))
                 {
                     Serializer.SerializeWithLengthPrefix(fileStream,
-                        new ProgrammingSession(server, userProgress, homePage.notifications, progressSubmissionPage.GetAllSubmitted(), userTable.expectedUsers),
+                        //new ProgrammingSession(server, userProgress, homePage.notifications, progressSubmissionPage.GetAllSubmitted(), users),
+                        new ProgrammingSession(server, homePage.notifications, homePage.copyPasteDetectedCount, userProgress),
                         PrefixStyle.Base128);
                     await fileStream.FlushAsync();
+                    MessageBox.Show("Session file saved successfully");
                 }
             }
             catch (Exception ex)

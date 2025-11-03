@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,8 @@ namespace SmartCodeLab.CustomComponents
         public PastSessionDisplay(ProgrammingSession session)
         {
             InitializeComponent();
-            panel1.Controls.Add(new MainServerPage(session));
+            //panel1.Controls.Add(new MainServerPage2(session));
+            panel1.Controls.Add(new SessionsLogsView(session));
         }
     }
 }

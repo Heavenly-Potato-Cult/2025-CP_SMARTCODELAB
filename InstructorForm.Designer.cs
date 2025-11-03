@@ -50,7 +50,7 @@
             tempExerciseManage1 = new SmartCodeLab.CustomComponents.ServerPageComponents.TempExerciseManage();
             tabPage8 = new TabPage();
             label3 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            sessionsContainer = new FlowLayoutPanel();
             sessionLogsDisplay1 = new SmartCodeLab.CustomComponents.ServerPageComponents.SessionLogsDisplay();
             panel1 = new Panel();
             tabPage6 = new TabPage();
@@ -65,7 +65,7 @@
             tabPage10.SuspendLayout();
             tabPage7.SuspendLayout();
             tabPage8.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            sessionsContainer.SuspendLayout();
             tabPage6.SuspendLayout();
             SuspendLayout();
             // 
@@ -276,11 +276,11 @@
             // 
             tabPage7.BackColor = SystemColors.Control;
             tabPage7.Controls.Add(tempExerciseManage1);
-            tabPage7.Location = new Point(4, 24);
+            tabPage7.Location = new Point(4, 44);
             tabPage7.Margin = new Padding(2);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new Padding(2);
-            tabPage7.Size = new Size(1576, 787);
+            tabPage7.Size = new Size(192, 52);
             tabPage7.TabIndex = 1;
             tabPage7.Text = "tabPage7";
             // 
@@ -291,19 +291,19 @@
             tempExerciseManage1.Location = new Point(2, 2);
             tempExerciseManage1.Margin = new Padding(2);
             tempExerciseManage1.Name = "tempExerciseManage1";
-            tempExerciseManage1.Size = new Size(1572, 783);
+            tempExerciseManage1.Size = new Size(188, 48);
             tempExerciseManage1.TabIndex = 0;
             // 
             // tabPage8
             // 
             tabPage8.BackColor = Color.White;
             tabPage8.Controls.Add(label3);
-            tabPage8.Controls.Add(flowLayoutPanel1);
+            tabPage8.Controls.Add(sessionsContainer);
             tabPage8.Controls.Add(panel1);
-            tabPage8.Location = new Point(4, 24);
+            tabPage8.Location = new Point(4, 44);
             tabPage8.Margin = new Padding(2);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1576, 787);
+            tabPage8.Size = new Size(192, 52);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "tabPage8";
             tabPage8.Enter += tabPage8_Enter;
@@ -319,13 +319,16 @@
             label3.TabIndex = 17;
             label3.Text = "Session Logs";
             // 
-            // flowLayoutPanel1
+            // sessionsContainer
             // 
-            flowLayoutPanel1.Controls.Add(sessionLogsDisplay1);
-            flowLayoutPanel1.Location = new Point(409, 112);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(676, 350);
-            flowLayoutPanel1.TabIndex = 16;
+            sessionsContainer.AutoScroll = true;
+            sessionsContainer.Controls.Add(sessionLogsDisplay1);
+            sessionsContainer.FlowDirection = FlowDirection.TopDown;
+            sessionsContainer.Location = new Point(409, 112);
+            sessionsContainer.Name = "sessionsContainer";
+            sessionsContainer.Size = new Size(676, 350);
+            sessionsContainer.TabIndex = 16;
+            sessionsContainer.WrapContents = false;
             // 
             // sessionLogsDisplay1
             // 
@@ -384,7 +387,7 @@
             tabPage7.ResumeLayout(false);
             tabPage8.ResumeLayout(false);
             tabPage8.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
+            sessionsContainer.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -415,7 +418,7 @@
         private TabPage tabPage10;
         private CustomComponents.ServerPageComponents.TempSessionManagement2 tempSessionManagement21;
         private Label label3;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel sessionsContainer;
         private CustomComponents.ServerPageComponents.SessionLogsDisplay sessionLogsDisplay1;
         private Panel panel1;
     }

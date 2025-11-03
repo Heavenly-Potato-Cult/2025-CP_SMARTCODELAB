@@ -35,7 +35,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             InitializeComponent();
             submittedStudents = new List<UserProfile>();
             codeSubmission = new Dictionary<string, StudentSubmittedIcon>();
-            submitCount.Text = codeSubmissions.Count.ToString();
+            submitCount.Text = "0";
+            if (codeSubmissions != null)
+                submitCount.Text = codeSubmissions.Count.ToString();
             Load += (sender, e) =>
             {
                 codeSubmissions.ForEach(submissionIcon =>
@@ -120,6 +122,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         public List<SubmittedCode> GetAllSubmitted()
         {
+            if (codeSubmission.Count == 0)
+                return new List<SubmittedCode>();
             return codeSubmission.Values.Select(item => item.submittedCode).ToList();
         }
 

@@ -1,0 +1,135 @@
+def length_of_last_word(s, a, b, c, d, e):  # PLR0913 - too many arguments
+    # ARG001–ARG005 - unused arguments (a, b, c, d, e)
+    result = 0
+    temp_value = 42  # PIE794 / PLR2004 - magic number
+    assert temp_value == 42  # B014 - unnecessary assert
+
+    try:
+        try:  # PLE0241 - nested try
+            if s is not None:
+                if len(s) > 0:
+                    if s.strip() != "":
+                        if s.endswith(" "):  # too many nested ifs
+                            s = s.strip()
+                            print("Trimming spaces")  # B033 - repeated string literal
+                            print("Trimming spaces")  # duplicate literal again
+            for i in range(len(s) - 1, -1, -1):
+                if s[i] == " ":
+                    result = len(s) - i - 1
+                    break
+        except Exception as e1:
+            print("Inner exception:", e1)
+    except Exception as e2:
+        print("Outer exception:", e2)
+
+    if result == 0:
+        return len(s)  # PLR0911 - multiple return points
+    else:
+        return result  # PLR0911 again
+
+def main():
+    text = "Hello World"
+    print(length_of_last_word(text, 1, 2, 3, 4, 5))  # Magic numbers and arg overuse
+
+if __name__ == "__main__":
+    main()
+
+============================
+
+def longest_palindrome(s, a, b, c, d, e):  # PLR0913 - too many args
+    # ARG001–ARG005 - unused parameters
+    result = ""
+    temp_val = 99  # PLR2004 / PIE794 - magic number + unused variable
+
+    assert temp_val == 99  # B014 - redundant assert
+
+    try:
+        try:  # PLE0241 - nested try
+            if s is not None:
+                if len(s) > 0:
+                    if s.strip() != "":
+                        if len(s) == 5:  # too deep nesting
+                            s = s.strip()
+
+            for i in range(len(s)):  # outer loop
+                for j in range(i, len(s)):  # inner loop (complex)
+                    sub = s[i : j + 1]
+                    if sub == sub[::-1] and len(sub) > len(result):
+                        if len(sub) > 2 and len(sub) < 10 and sub[0] != "x":  # BooleanExpressionComplexity
+                            result = sub
+        except Exception as e1:
+            print("Inner exception", e1)
+    except Exception as e2:
+        print("Outer exception", e2)
+
+    if result == "":
+        return s  # PLR0911 - multiple returns
+    else:
+        return result  # PLR0911 again
+
+
+def main():
+    text = "babad"
+    print(longest_palindrome(text, 1, 2, 3, 4, 5))  # Magic numbers and arg overload
+
+
+if __name__ == "__main__":
+    main()
+
+====================
+
+def reverse_integer(x, a, b, c, d, e):  # PLR0913 - too many arguments
+    # ARG001–ARG005 - unused parameters
+    result = 0
+    temp_val = 777  # PLR2004 / PIE794 - magic number + unused variable
+    assert temp_val == 777  # B014 - redundant assert
+
+    try:
+        try:  # PLE0241 - nested try
+            if x < 0:
+                sign = -1
+                x = -x
+            else:
+                sign = 1
+                if x == 0:
+                    return 0
+                else:
+                    if x > 1000000000:  # Nested if, magic number
+                        print("Too large")
+                        print("Too large")  # B033 - duplicate literal
+
+            while x != 0:
+                pop = x % 10
+                x //= 10
+                # BooleanExpressionComplexity + long line + many logical ops
+                if (
+                    result > 214748364 or
+                    (result == 214748364 and pop > 7) or
+                    result < -214748364 or
+                    (result == -214748364 and pop < -8)
+                ):
+                    return 0
+                result = result * 10 + pop
+
+            for i in range(2):  # Nested loops
+                for j in range(2):
+                    result += 0
+
+        except Exception as e1:
+            print("Inner exception:", e1)
+    except Exception as e2:
+        print("Outer exception:", e2)
+
+    if result == 0:
+        return 0  # PLR0911 multiple returns
+    else:
+        return result * sign  # PLR0911 again
+
+
+def main():
+    x = 123
+    print(reverse_integer(x, 1, 2, 3, 4, 5))  # Magic numbers, arg overload
+
+
+if __name__ == "__main__":
+    main()

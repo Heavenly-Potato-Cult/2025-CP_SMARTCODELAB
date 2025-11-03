@@ -36,16 +36,18 @@
             panel1.AutoScroll = true;
             panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Location = new Point(1, 1);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1314, 842);
+            panel1.Size = new Size(1462, 722);
             panel1.TabIndex = 0;
             // 
             // PastSessionDisplay
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1327, 843);
+            ClientSize = new Size(1468, 727);
             Controls.Add(panel1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "PastSessionDisplay";
             Text = "PastSessionDisplay";
             ResumeLayout(false);

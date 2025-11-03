@@ -16,16 +16,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
     public partial class NotificationIcon : RoundedUserControl
     {
-        public NotificationIcon()
-        {
-            InitializeComponent();
-        }
-
         public NotificationIcon(Notification notification)
         {
             InitializeComponent();
             userName.Text = notification.UserName;
             message.Text = notification.Message;
+            time.Text = notification.timeOccurred.ToString("h:mm tt");
 
             switch (notification.Type)
             {
@@ -51,6 +47,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     BackColor = SystemColors.ControlLightLight;
                     break;
             }
+        }
+
+        private void userName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

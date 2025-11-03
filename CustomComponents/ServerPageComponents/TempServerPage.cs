@@ -1,4 +1,5 @@
-﻿using ProtoBuf;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
@@ -17,6 +18,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Navigation;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
@@ -68,49 +70,42 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             studentCodeRating1.SetStats(task.ratingFactors);
         }
 
+        public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users)
+        {
+            InitializeComponent();
+            displayedUsers = users.Select(users => users.Value).ToList();
+            userMessages = new Dictionary<string, List<UserMessage>>();
+            progressRetriever = (student_id) => userProgress[student_id];
+            Load += (s, e) =>
+            {
+                Task.Run(() =>
+                {
+                    foreach (var user in users.Values)
+                    {
+                        userMessages.Add(user._studentId, new List<UserMessage>());
+                        userIcons.Add(user._studentId, new UserIcons(user, NewUserSelected));
+                    }
+                    displayStudents();
+                });
+            };
+        }
+
         private void displayStudents()
         {
+            Debug.WriteLine("to display");
             string search = searchStudent.Texts.ToLower();
             var searchedUserIds = displayedUsers.Where(user => user._studentName.ToLower().Contains(search)).Select(user => user._studentId).ToList();
             var searchedIcons = userIcons.Keys.Where(id => searchedUserIds.Contains(id)).ToList();
-
+            Debug.WriteLine(userIcons.Count + "count");
             this.Invoke((Action)(() =>
             {
                 iconsContainer.Controls.Clear();
                 foreach (var ids in searchedIcons)
                 {
-                iconsContainer.Controls.Add(userIcons[ids]);
+                    iconsContainer.Controls.Add(userIcons[ids]);
+                    Debug.WriteLine("Added");
                 }
             }));
-        }
-
-        public TempServerPage(Dictionary<string, UserProfile> expectedUsers, Dictionary<string, StudentCodingProgress> userProgress)
-        {
-            InitializeComponent();
-            Load += (s, e) =>
-            {
-                Task.Run(() =>
-                {
-                    foreach (var item in userProgress.Keys)
-                    {
-                        this.Invoke((Action)(() =>
-                        {
-                            Action<UserProfile> NewUserSelected = new Action<UserProfile>(userProfile =>
-                            {
-                                selectedStudentId = userProfile._studentId;
-                                try
-                                {
-                                    UpdateStudentProgressDisplay(userProfile, userProgress[userProfile._studentId]);
-                                }
-                                catch (KeyNotFoundException) { }
-                                studentName.Text = userProfile._studentName;
-                            });
-                            //user profile will be retrieved
-                            iconsContainer.Controls.Add(new UserIcons(expectedUsers[item], NewUserSelected));
-                        }));
-                    }
-                });
-            };
         }
 
         public void AddStudent(UserProfile profile)

@@ -1,14 +1,18 @@
-﻿using SmartCodeLab.Models;
+﻿using ProtoBuf;
+using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace SmartCodeLab.CustomComponents.Pages.ServerPages
@@ -55,7 +59,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         }
 
-        public ServerHomePage(int totalStudents, string sessionName, string sessionPass)
+        public ServerHomePage(int totalStudents, string sessionName, string sessionPass, Action displayStudentTable, Action saveSession)
         {
             InitializeComponent();
             this.totalStudents = totalStudents;
@@ -74,9 +78,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}";
             submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}";
 
-           
+
             lbl_sessionname.Text = sessionName;
             lbl_sessionpassword.Text = sessionPass;
+
+            btn_viewstudents.Click += (sender, e) => 
+            {
+                displayStudentTable?.Invoke();
+            };
+
+            label5.Click += (sender, e) =>
+            {
+                saveSession?.Invoke();
+            };
         }
 
         public ServerHomePage(List<Notification> existingNotifications)
@@ -125,6 +139,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     else if (notification.Type == NotificationType.CopyPasted)
                     {
                         copyPasteDetectedCount++;
+                        this.Invoke((Action)(() => pastedCount.Text = copyPasteDetectedCount.ToString() ));
                     }
                     else if (notification.Type == NotificationType.LoggedIn || notification.Type == NotificationType.LoggedOut)
                     {
@@ -180,17 +195,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
 
             return Task.CompletedTask;
-        }
-
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btn_viewstudents_Click(object sender, EventArgs e)
-        {
-            var StudTable = new CustomDialogs.StudentTable.StudTable();
-            StudTable.ShowDialog();
         }
     }
 }

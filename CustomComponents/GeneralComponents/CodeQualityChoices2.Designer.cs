@@ -96,6 +96,7 @@
             // 
             // robustnessT
             // 
+            robustnessT.Enabled = false;
             robustnessT.Location = new Point(26, 243);
             robustnessT.Name = "robustnessT";
             robustnessT.Size = new Size(342, 45);
@@ -114,6 +115,7 @@
             // 
             // maintainabilityT
             // 
+            maintainabilityT.Enabled = false;
             maintainabilityT.Location = new Point(26, 314);
             maintainabilityT.Name = "maintainabilityT";
             maintainabilityT.Size = new Size(342, 45);
@@ -132,6 +134,7 @@
             // 
             // readabilityT
             // 
+            readabilityT.Enabled = false;
             readabilityT.Location = new Point(26, 172);
             readabilityT.Name = "readabilityT";
             readabilityT.Size = new Size(342, 45);
@@ -195,6 +198,7 @@
             robustnessBox.Size = new Size(15, 14);
             robustnessBox.TabIndex = 50;
             robustnessBox.UseVisualStyleBackColor = true;
+            robustnessBox.CheckedChanged += robustnessBox_CheckedChanged_1;
             // 
             // maintainabilityBox
             // 
@@ -230,7 +234,6 @@
             Controls.Add(label13);
             Name = "CodeQualityChoices2";
             Size = new Size(395, 383);
-            Load += CodeQualityChoices2_Load;
             ((System.ComponentModel.ISupportInitialize)robustnessT).EndInit();
             ((System.ComponentModel.ISupportInitialize)maintainabilityT).EndInit();
             ((System.ComponentModel.ISupportInitialize)readabilityT).EndInit();
