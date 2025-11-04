@@ -47,22 +47,15 @@
 		<!--CODING-->
 		<module name="UnusedImports"/>
 		<module name="OneStatementPerLine"/>
-		<module name="DefaultComesLast"/>
 		<module name="EmptyStatement">
 			<message key="empty.statement" value="Either put some statements inside or remove this block"/>
 		</module>
-    	<module name="MultipleVariableDeclarations"/>
 		<module name="OneStatementPerLine"/>
-		<module name="OverloadMethodsDeclarationOrder"/>
-		<module name="ParameterAssignment"/><!--FOR REVIEWAL-->
-		<module name="RequireThis"/>
-		<module name="ReturnCount">
-      		<property name="max" value="3"/>
-    	</module>
 		<module name="UnnecessaryParentheses"/>
 		<module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
-    	<module name="UnnecessarySemicolonInTryWithResources"/>
-    	<module name="UnusedCatchParameterShouldBeUnnamed"/>
-		<module name="UnusedLocalVariable"/>
+    		<module name="UnnecessarySemicolonInTryWithResources"/>
+    		<module name="UnusedCatchParameterShouldBeUnnamed"/>
+		<module name="SimplifyBooleanExpression"/>
+		<module name="SimplifyBooleanReturn"/>
     </module>
 </module>

@@ -1,12 +1,12 @@
 # ruff_config.toml - standalone
 output-format = "concise"
 preview = true
-lint.select = [	
-	"B014", "B025", "B033",
+lint.select = [
+	"F406", "PLW0642", "F823"	
+	"B014", "B025",
 	"PIE794", "PYI062",
-	"SIM101",
 	"PLE0241",
-	"PLR0913", "PLR0911", "PLR0915", "PLR2004",
+	"PLR0913", "PLR0911", "PLR0915",
 	"ARG001", "ARG002", "ARG003", "ARG004", "ARG005",
 
 ]

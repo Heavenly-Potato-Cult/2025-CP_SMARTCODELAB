@@ -92,9 +92,9 @@
             score.ForeColor = Color.FromArgb(66, 110, 232);
             score.Location = new Point(109, 10);
             score.Name = "score";
-            score.Size = new Size(45, 25);
+            score.Size = new Size(23, 25);
             score.TabIndex = 81;
-            score.Text = "100";
+            score.Text = "0";
             // 
             // pictureBox7
             // 

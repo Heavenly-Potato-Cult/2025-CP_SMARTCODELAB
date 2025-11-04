@@ -215,11 +215,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             if (errors[errors.Length - 1] != standardError)
                             {
                                 string[] e = standardError.Split(':');
-                                string errorMessage = e[e.Length - 1];
+                                string errorMessage = ToolTipProgrammingMessages.javaExplanations[checkstyleErrorRetriever(e[e.Length - 1])];
                                 errorsList.Add(errorMessage);
                                 base.HighlightReadabilityIssue(int.Parse(e[2]) - 1, errorMessage);
                                 readabilityCounts++;
-                                readabilityRules.Add(checkstyleErrorRetriever(errorMessage));
+                                readabilityRules.Add(checkstyleErrorRetriever(e[e.Length - 1]));
                             }
                         }catch(IndexOutOfRangeException) { }
                     }
@@ -239,7 +239,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 outp => { 
                     robustnessErrors += (outp + Environment.NewLine); 
                 },
-                err => Debug.WriteLine(err),
+                null,
                 () =>
                 {
                     List<string> errorsList = new List<string>();
@@ -262,16 +262,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private string checkstyleErrorRetriever(string errorMsg)
         {
-            string ruleName = "";
-            foreach (var item in errorMsg.Reverse())
-            {
-                if (item == '[')
-                    break;
+            int startIndex = errorMsg.LastIndexOf('[');
+            if (startIndex == -1) return ""; // no [ found
 
-                ruleName = item + ruleName;
-            }
+            int endIndex = errorMsg.LastIndexOf(']');
+            if (endIndex == -1 || endIndex < startIndex) return "";
 
-            return ruleName.Replace("]", "");
+            return errorMsg.Substring(startIndex + 1, endIndex - startIndex - 1);
         }
 
     }

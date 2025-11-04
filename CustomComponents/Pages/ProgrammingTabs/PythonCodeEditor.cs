@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.Models;
+﻿using FastColoredTextBoxNS;
+using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
@@ -82,8 +83,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 process,
                 output =>
                 {
-                    if (output.StartsWith(filePath))
-                        readabilityViolations += output.Replace(filePath + ':', "") + Environment.NewLine;
+                    int mainPyIndex = output.IndexOf("Main.py");
+                    if (mainPyIndex > 0)
+                        readabilityViolations += output.Substring(output.IndexOf("Main.py") + 8) + Environment.NewLine;
                 },
                 null,
                 () =>
@@ -97,7 +99,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             {
                                 string[] slicedViolation = item.Split(':');
                                 int errorLine = int.Parse(slicedViolation[0]);
-                                string errorMessage = slicedViolation[2];
+                                string errorMessage = ToolTipProgrammingMessages.pythonRuffRules[ruffCodeRetriever(slicedViolation[2])];
 
                                 HighlightReadabilityIssue(errorLine - 1, errorMessage);
                                 readabilityRules.Add(ruffCodeRetriever(errorMessage));
@@ -105,6 +107,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             }
                             catch (ArgumentOutOfRangeException) { }
                             catch(FormatException) { }
+                            catch(KeyNotFoundException) { }
                         }
                         updateStats?.Invoke(2, violationCounts, new List<string>());
                     }
@@ -120,11 +123,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 process,
                 output =>
                 {
-                    if(output.IndexOf("Main.py") > 0)
-                        Debug.WriteLine(output.Substring(output.IndexOf("Main.py") + 7));
-
-                    if (output.StartsWith(filePath))
-                        maintainabilityViolations += output.Replace(filePath + ':', "") + Environment.NewLine;
+                    int mainPyIndex = output.IndexOf("Main.py");
+                    if (mainPyIndex > 0)
+                        maintainabilityViolations += output.Substring(output.IndexOf("Main.py") + 8) + Environment.NewLine;
                 },
                 null,
                 () =>
@@ -138,14 +139,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             {
                                 string[] slicedViolation = item.Split(':');
                                 int errorLine = int.Parse(slicedViolation[0]);
-                                string errorMessage = slicedViolation[2];
+                                string errorMessage = ToolTipProgrammingMessages.pythonRuffRules[ruffCodeRetriever(slicedViolation[2])];
 
                                 HighlightMaintainabilityIssue(errorLine - 1, errorMessage);
-                                maintainabilityRules.Add(ruffCodeRetriever(errorMessage));
                                 violationCounts++;
                             }
                             catch (ArgumentOutOfRangeException) { }
                             catch (FormatException) { }
+                            catch (KeyNotFoundException) { }
                         }
                         updateStats?.Invoke(4, violationCounts, new List<string>());
                     }
@@ -161,8 +162,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 process,
                 output =>
                 {
-                    if (output.StartsWith(filePath))
-                        robustnessViolations += output.Replace(filePath + ':', "") + Environment.NewLine;
+                    int mainPyIndex = output.IndexOf("Main.py");
+                    if (mainPyIndex > 0)
+                        robustnessViolations += output.Substring(output.IndexOf("Main.py") + 8) + Environment.NewLine;
                 },
                 null,
                 () =>
@@ -176,7 +178,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             {
                                 string[] slicedViolation = item.Split(':');
                                 int errorLine = int.Parse(slicedViolation[0]);
-                                string errorMessage = slicedViolation[2];
+                                string errorMessage = ToolTipProgrammingMessages.pythonRuffRules[ruffCodeRetriever(slicedViolation[2])];
 
                                 HighlightRobustnessIssue(errorLine - 1, errorMessage);
                                 robustnessRules.Add(ruffCodeRetriever(errorMessage));
@@ -184,6 +186,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             }
                             catch (ArgumentOutOfRangeException) { }
                             catch (FormatException) { }
+                            catch (KeyNotFoundException) { }
                         }
                         updateStats?.Invoke(3, violationCounts, new List<string>());
                     }

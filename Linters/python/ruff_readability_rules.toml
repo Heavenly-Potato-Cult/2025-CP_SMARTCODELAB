@@ -9,18 +9,17 @@ lint.select = [	#naming convention
 		"E201", "E202", "E203", "E211", "E225", "E226", "E227",
 		"E228", "E231", "E252", "E275", "W291", "W293", "E306", 
 		"E301",	"E114", "E115", "E116",
-		"RET504",	#unnecessary assignment
-		"F823",		#undefined-local
-		"PLR6104",	#non-augmented-assignment
-		"PLW0642",	#self-or-cls-assignment
-		"RUF018",	#assignment-in-assert
-		"FURB187",	#list-reverse-copy -- optional for now
-		"E301",		#blank-line-between-methods //TO ADD READABILITY
-		"SIM102",	#collapsible-if //TO ADD
-		"SIM202",
-		"PLW3301",	#nested-min-max
-		"F406",		#undefined-local-with-nested-import-star-usage
+		"E301",
+		"FURB187",
+		"RUF018",
+		"PLR6104",
+		"RET504",
+		"PLR2004",
+		"SIM101",
+		"B033",
 		"PLR2044",
+		"SIM202",
+		"SIM102"
 ]
 line-length = 100
 target-version = "py310"
