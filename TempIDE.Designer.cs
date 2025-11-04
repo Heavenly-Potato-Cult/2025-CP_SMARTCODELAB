@@ -428,7 +428,7 @@
             // 
             // testCaseContainer
             // 
-            testCaseContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            testCaseContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             testCaseContainer.AutoScroll = true;
             testCaseContainer.BackColor = Color.White;
             testCaseContainer.FlowDirection = FlowDirection.TopDown;
