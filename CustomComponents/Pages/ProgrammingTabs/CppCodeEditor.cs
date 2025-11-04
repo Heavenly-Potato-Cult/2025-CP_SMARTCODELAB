@@ -32,7 +32,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             base.RunTest();
         }
 
-        public async override void RunLinting()
+        public override async Task RunLinting()
         {
             SaveCode();
             string errors = string.Empty;

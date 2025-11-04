@@ -80,7 +80,6 @@ namespace SmartCodeLab
             {
                 newIcon.BackColor = System.Drawing.Color.Silver;
             }
-
             panel_leaderboards.Controls.Add(newIcon);
 
            
@@ -181,6 +180,10 @@ namespace SmartCodeLab
                 Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
                 await stream.FlushAsync();
             }catch(ArgumentException) { }
+            catch(IOException) 
+            {
+                MessageBox.Show("Connection Closed");
+            }
         }
 
         private async Task StreamListener()

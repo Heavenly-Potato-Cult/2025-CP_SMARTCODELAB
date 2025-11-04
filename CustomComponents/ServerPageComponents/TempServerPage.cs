@@ -34,6 +34,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         //private TcpListener _server;
         //student ID as the key
         private Dictionary<string, UserIcons> userIcons = new Dictionary<string, UserIcons>();
+        private UserIcons recentSelectedIcon;
         private StudentCodingProgress studentProgress;
 
         private System.Threading.Timer updateStudentList;
@@ -70,12 +71,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             studentCodeRating1.SetStats(task.ratingFactors);
         }
 
-        public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users)
+        public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users, Dictionary<int, decimal[]> ratingFactors)
         {
             InitializeComponent();
             displayedUsers = users.Select(users => users.Value).ToList();
             userMessages = new Dictionary<string, List<UserMessage>>();
             progressRetriever = (student_id) => userProgress[student_id];
+            studentCodeRating1.SetStats(ratingFactors);
             Load += (s, e) =>
             {
                 Task.Run(() =>
@@ -92,18 +94,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void displayStudents()
         {
-            Debug.WriteLine("to display");
             string search = searchStudent.Texts.ToLower();
             var searchedUserIds = displayedUsers.Where(user => user._studentName.ToLower().Contains(search)).Select(user => user._studentId).ToList();
             var searchedIcons = userIcons.Keys.Where(id => searchedUserIds.Contains(id)).ToList();
-            Debug.WriteLine(userIcons.Count + "count");
             this.Invoke((Action)(() =>
             {
                 iconsContainer.Controls.Clear();
                 foreach (var ids in searchedIcons)
                 {
                     iconsContainer.Controls.Add(userIcons[ids]);
-                    Debug.WriteLine("Added");
                 }
             }));
         }
@@ -195,14 +194,28 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             currentTask = task;
         }
 
-        private void NewUserSelected(UserProfile profile)
+        private void NewUserSelected(UserProfile profile, UserIcons newSelected)
         {
+            //set the icon color
+            recentSelectedIcon?.LostFocusDisplay();
+            recentSelectedIcon = newSelected;
+
             selectedStudentId = profile._studentId;
             try
             {
                 UpdateStudentProgressDisplay(profile, progressRetriever?.Invoke(profile._studentId));
             }
-            catch (KeyNotFoundException) { }
+            catch (KeyNotFoundException) 
+            {
+                this.Invoke((Delegate)(() =>
+                {
+                    codeTrack.Maximum = 0;
+                    codeTrack.Minimum = 0;
+                    studentCode.Text = "No Progress";
+                    copypastedCodes.Controls.Clear();
+                    //this.studentCodeRating1.UpdateStatsDisplay(progress.codeRating);
+                }));
+            }
 
             studentName.Text = profile._studentName;
             ipaddress.Text = profile._computerAddress;

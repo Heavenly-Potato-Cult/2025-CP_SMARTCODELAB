@@ -26,7 +26,7 @@ namespace SmartCodeLab.CustomComponents
         }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public UserProfile profile {  get; set; }
-        public UserIcons(UserProfile profile, Action<UserProfile> setSelectedUserId)
+        public UserIcons(UserProfile profile, Action<UserProfile, UserIcons> setSelectedUserId)
         {
             InitializeComponent();
             this.profile = profile;
@@ -36,7 +36,7 @@ namespace SmartCodeLab.CustomComponents
                 if (customCard3.BackColor == Color.White)
                 {
                     //_ = FocusStatus(true);
-                    setSelectedUserId?.Invoke(this.profile);
+                    setSelectedUserId?.Invoke(this.profile, this);
                     customCard3.BackColor = Color.Bisque;
                 }
             };
@@ -45,16 +45,6 @@ namespace SmartCodeLab.CustomComponents
         public void LostFocusDisplay()
         {
             this.Invoke((Action)(() => customCard3.BackColor = Color.White));
-            //_ = FocusStatus(false);
         }
-
-        //private async Task FocusStatus(bool isFocused)
-        //{
-        //    if (stream != null)
-        //    {
-        //        Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, new ServerMessage.Builder(MessageType.IsEyesOnMe).Focused(isFocused).Build(), PrefixStyle.Base128);
-        //        await stream.FlushAsync();
-        //    }
-        //}
     }
 }

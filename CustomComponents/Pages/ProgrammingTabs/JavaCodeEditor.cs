@@ -96,7 +96,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
                 null);
         }
-        public async override void RunLinting()
+        public override async Task RunLinting()
         {
             SaveCode();
             string fileName = Path.GetFileName(filePath);

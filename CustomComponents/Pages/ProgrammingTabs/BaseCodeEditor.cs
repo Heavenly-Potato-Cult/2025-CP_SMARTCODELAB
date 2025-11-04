@@ -116,7 +116,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 // Start a new timer
                 _debounceTimer = new System.Threading.Timer(async _ =>
                 {
-                    RunLinting();
+                    await RunLinting();
                     await CountComplexity1();
                     await sendProgress.Invoke();
                 }, null, 700, Timeout.Infinite);
@@ -466,7 +466,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             catch (InvalidOperationException) { }
         }
 
-        public virtual void RunLinting() { }
+        public virtual async Task RunLinting() { }
 
         public virtual void CheckCodingStandards(string command, Action reRun = null) { }
 

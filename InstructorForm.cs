@@ -40,7 +40,7 @@ namespace SmartCodeLab
                     }));
                     foreach (var item in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
                     {
-                        using (FileStream sessionFile = File.OpenRead(item)) 
+                        using (FileStream sessionFile = File.OpenRead(item))
                         {
                             ProgrammingSession session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
                             if (session != null)

@@ -19,10 +19,11 @@ namespace SmartCodeLab.Models
             recommendedCycComplexity = 0;
             actualCycComplexity = 0;
             statsGrade = new Dictionary<int, float>();
+            trackbarValues = new Dictionary<int, int>();
         }
 
         [ProtoMember(1)]
-        public decimal totalRating { get; set; }
+        public float totalRating { get; set; }
 
         [ProtoMember(2)]
         public int testScore { get; set; }
@@ -42,6 +43,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(7)]
         public Dictionary<int, float> statsGrade { get; set; }
 
+        [ProtoMember(8)]
+        public Dictionary<int, int> trackbarValues;
+
         public class Builder
         {
             private readonly CodeRating _codeRating;
@@ -55,7 +59,7 @@ namespace SmartCodeLab.Models
                 };
             }
 
-            public Builder WithTotalRating(decimal totalRating)
+            public Builder WithTotalRating(float totalRating)
             {
                 _codeRating.totalRating = totalRating;
                 return this;
@@ -109,12 +113,11 @@ namespace SmartCodeLab.Models
                 return this;
             }
 
-            public Builder AddStatGrade(int key, int value)
+            public Builder WithTrackBarValues(Dictionary<int, int> trackbarValues)
             {
-                _codeRating.statsGrade[key] = value;
+                _codeRating.trackbarValues = trackbarValues;
                 return this;
             }
-
             public CodeRating Build()
             {
                 return _codeRating;

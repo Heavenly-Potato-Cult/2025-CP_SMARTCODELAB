@@ -53,7 +53,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
-            editor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);
+            //editor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);
             editor.notifAction = NotifyHost;
             codeEditorContainer.Controls.Add(editor);
             _ = StreamListener();

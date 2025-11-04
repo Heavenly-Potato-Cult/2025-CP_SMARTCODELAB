@@ -121,44 +121,45 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             return currentCodeStats;
         }
 
-
-
         public async void UpdateStats(int i, int value, List<string>? reasons)
         {
-            if (!recordedStats.Contains(i))
-                return;
-            if (i == 1)
+            await Task.Run(() =>
             {
-                testScore = value;
-                int score = (value / maxTestScore) * 100;
-                //this.Invoke(new Action(() => result.Text = $"{value.ToString()}/{maxTestScore}"));
-                accuracy.ChangeValue(score);
-            }
-            else if (i == 2)//readability
-            {
-                readability.ChangeValue(100 - value);
-                string violations = "Standard Violations:\n";
-                reasons?.ForEach(reason => violations += "- " + reason + "\n");
-                //standardErrors.Text = violations;
-                standardViolations = reasons ?? new List<string>();
-            }
-            else if (i == 3)//robustness
-            {
-                int scoreRobustness = 100 - value;
-                //this.Invoke(new Action(() => actualEfficiency.Text = value.ToString()));
-                efficiency.ChangeValue(scoreRobustness);
-            }
-            else if (i == 4)//maintainability
-            {
-                int difference = value - standardCycComplexity;
-                int scoreComp = difference <= (standardCycComplexity * .1) ? 100 :
-                                difference <= (standardCycComplexity * .4) ? 75 : 50;
+                if (!recordedStats.Contains(i))
+                    return;
+                if (i == 1)
+                {
+                    testScore = value;
+                    int score = (value / maxTestScore) * 100;
+                    //this.Invoke(new Action(() => result.Text = $"{value.ToString()}/{maxTestScore}"));
+                    accuracy.ChangeValue(score);
+                }
+                else if (i == 2)//readability
+                {
+                    readability.ChangeValue(100 - value);
+                    string violations = "Standard Violations:\n";
+                    reasons?.ForEach(reason => violations += "- " + reason + "\n");
+                    //standardErrors.Text = violations;
+                    standardViolations = reasons ?? new List<string>();
+                }
+                else if (i == 3)//robustness
+                {
+                    int scoreRobustness = 100 - value;
+                    //this.Invoke(new Action(() => actualEfficiency.Text = value.ToString()));
+                    efficiency.ChangeValue(scoreRobustness);
+                }
+                else if (i == 4)//maintainability
+                {
+                    int difference = value - standardCycComplexity;
+                    int scoreComp = difference <= (standardCycComplexity * .1) ? 100 :
+                                    difference <= (standardCycComplexity * .4) ? 75 : 50;
 
-                //this.Invoke(new Action(() => actualCycComplexity.Text = value.ToString()));
-                complexity.ChangeValue(scoreComp);
-            }
-            statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
-            await Task.Run(() => this.Invoke(new Action(() => score.Text = GetScore().ToString())));
+                    //this.Invoke(new Action(() => actualCycComplexity.Text = value.ToString()));
+                    complexity.ChangeValue(scoreComp);
+                }
+                statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
+                this.Invoke(new Action(() => score.Text = GetScore().ToString()));
+            });
         }
 
 
@@ -177,39 +178,47 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             this.Invoke(new Action(() =>
             {
-                SetStudentStats(codeRating.statsGrade);
-                testScore = codeRating.testScore;
-                maxTestScore = codeRating.maxTestScore;
-                //result.Text = $"{testScore}/{maxTestScore}";
-                //actualCycComplexity.Text = codeRating.actualCycComplexity.ToString();
-                standardViolations = codeRating.readabilityViolations;
-                string violations = "Standard Violations:\n";
-                standardViolations.ForEach(reason => violations += "- " + reason + "\n");
-                //standardErrors.Text = violations;
+                Debug.WriteLine("Total rating" + codeRating.totalRating.ToString());
                 score.Text = codeRating.totalRating.ToString();
+
+                foreach (var item in codeRating.trackbarValues)
+                {
+                    statsBar[item.Key].ChangeValue(item.Value);
+                }
             }));
         }
 
         public CodeRating GetCodeRating()
         {
             return new CodeRating.Builder()
-                .WithTotalRating(Convert.ToDecimal(score.Text))
+                .WithTotalRating(GetScore())
                 .WithTestScore(testScore)
                 .WithMaxTestScore(maxTestScore)
                 .WithReadabilityViolations(standardViolations)
                 .WithRecommendedCycComplexity(standardCycComplexity)
                 .WithActualCycComplexity(Convert.ToInt32(10))
                 .WithStatsGrade(GetStats())
+                .WithTrackBarValues(getTrackBarValues())
                 .Build();
         }
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine((violations != null));
             if(violations != null)
             {
                 new ViewCodeViolations(violations.Invoke()).ShowDialog();
             }
+        }
+
+        private Dictionary<int, int> getTrackBarValues()
+        {
+            return new Dictionary<int, int>()
+            {
+                {1, accuracy.Value },
+                {2, readability.Value },
+                {3, efficiency.Value },
+                {4, complexity.Value }
+            };
         }
 
         public void SetViolationsRetriever(Func<List<HashSet<string>>> violations)

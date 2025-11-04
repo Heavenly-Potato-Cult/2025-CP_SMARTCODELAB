@@ -27,7 +27,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             tabPage1.Controls.Add(new SessionDisplayHome(session.server, session.notifications, session.lastModified, session.copyPasteCount));
             List<string> withProgressStudentsIds = session.userProgress.Select(s => s.Key).ToList();
             Dictionary<string, UserProfile> withProgressStudents = session.server.Users.Where(user => withProgressStudentsIds.Contains(user.Key)).ToDictionary();
-            tabPage2.Controls.Add(new TempServerPage(session.userProgress, withProgressStudents));
+            tabPage2.Controls.Add(new TempServerPage(session.userProgress, withProgressStudents, session.server.ServerTask.ratingFactors));
         }
     }
 }
