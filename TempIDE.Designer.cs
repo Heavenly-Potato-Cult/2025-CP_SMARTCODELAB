@@ -97,13 +97,13 @@
             headerPanel.Dock = DockStyle.Top;
             headerPanel.Location = new Point(0, 0);
             headerPanel.Name = "headerPanel";
-            headerPanel.Size = new Size(1345, 60);
+            headerPanel.Size = new Size(1402, 60);
             headerPanel.TabIndex = 2;
             // 
             // button1
             // 
             button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.Location = new Point(1220, 0);
+            button1.Location = new Point(1277, 0);
             button1.Name = "button1";
             button1.Size = new Size(75, 23);
             button1.TabIndex = 17;
@@ -115,7 +115,7 @@
             // 
             pictureBox8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(1315, 20);
+            pictureBox8.Location = new Point(1372, 20);
             pictureBox8.Margin = new Padding(3, 2, 3, 2);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(23, 20);
@@ -139,7 +139,7 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.Gray;
-            label13.Location = new Point(1054, 21);
+            label13.Location = new Point(1111, 21);
             label13.Name = "label13";
             label13.Size = new Size(231, 20);
             label13.TabIndex = 13;
@@ -184,7 +184,7 @@
             panel2.Location = new Point(0, 60);
             panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1345, 1);
+            panel2.Size = new Size(1402, 1);
             panel2.TabIndex = 0;
             // 
             // panel4
@@ -194,7 +194,7 @@
             panel4.Location = new Point(0, 61);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1345, 1);
+            panel4.Size = new Size(1402, 1);
             panel4.TabIndex = 10;
             // 
             // panel_MiddlePart_Main
@@ -202,10 +202,10 @@
             panel_MiddlePart_Main.Controls.Add(customTabControl1);
             panel_MiddlePart_Main.Controls.Add(panel1);
             panel_MiddlePart_Main.Dock = DockStyle.Fill;
-            panel_MiddlePart_Main.Location = new Point(249, 2);
+            panel_MiddlePart_Main.Location = new Point(260, 2);
             panel_MiddlePart_Main.Margin = new Padding(3, 2, 3, 2);
             panel_MiddlePart_Main.Name = "panel_MiddlePart_Main";
-            panel_MiddlePart_Main.Size = new Size(720, 559);
+            panel_MiddlePart_Main.Size = new Size(751, 684);
             panel_MiddlePart_Main.TabIndex = 20;
             // 
             // customTabControl1
@@ -214,7 +214,7 @@
             customTabControl1.Location = new Point(0, 46);
             customTabControl1.Margin = new Padding(3, 2, 3, 2);
             customTabControl1.Name = "customTabControl1";
-            customTabControl1.Size = new Size(720, 513);
+            customTabControl1.Size = new Size(751, 638);
             customTabControl1.TabIndex = 20;
             // 
             // panel1
@@ -228,7 +228,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(720, 46);
+            panel1.Size = new Size(751, 46);
             panel1.TabIndex = 9;
             // 
             // smartButton5
@@ -329,7 +329,7 @@
             description.Name = "description";
             description.ReadOnly = true;
             description.ScrollBars = ScrollBars.Vertical;
-            description.Size = new Size(309, 170);
+            description.Size = new Size(324, 170);
             description.TabIndex = 76;
             // 
             // tabControl_RightSide
@@ -338,13 +338,13 @@
             tabControl_RightSide.Controls.Add(MessagesTab);
             tabControl_RightSide.Controls.Add(BroadcastsTab);
             tabControl_RightSide.Dock = DockStyle.Fill;
-            tabControl_RightSide.Location = new Point(975, 2);
+            tabControl_RightSide.Location = new Point(1017, 2);
             tabControl_RightSide.Margin = new Padding(3, 2, 3, 2);
             tabControl_RightSide.Multiline = true;
             tabControl_RightSide.Name = "tabControl_RightSide";
             tableLayoutPanel2.SetRowSpan(tabControl_RightSide, 2);
             tabControl_RightSide.SelectedIndex = 0;
-            tabControl_RightSide.Size = new Size(367, 568);
+            tabControl_RightSide.Size = new Size(382, 696);
             tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
             tabControl_RightSide.TabIndex = 9;
             tabControl_RightSide.Resize += tabControl_RightSide_Resize;
@@ -356,7 +356,7 @@
             ActivityTab.Location = new Point(4, 24);
             ActivityTab.Margin = new Padding(3, 2, 3, 2);
             ActivityTab.Name = "ActivityTab";
-            ActivityTab.Size = new Size(359, 540);
+            ActivityTab.Size = new Size(374, 668);
             ActivityTab.TabIndex = 2;
             ActivityTab.Text = "Activity";
             ActivityTab.UseVisualStyleBackColor = true;
@@ -369,7 +369,7 @@
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(359, 540);
+            panel3.Size = new Size(374, 668);
             panel3.TabIndex = 0;
             // 
             // expansion_expansion_panel
@@ -384,12 +384,12 @@
             expansion_expansion_panel.ExpandHeight = 303;
             expansion_expansion_panel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             expansion_expansion_panel.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            expansion_expansion_panel.Location = new Point(0, 351);
+            expansion_expansion_panel.Location = new Point(0, 606);
             expansion_expansion_panel.Margin = new Padding(3, 16, 3, 16);
             expansion_expansion_panel.MouseState = MaterialSkin.MouseState.HOVER;
             expansion_expansion_panel.Name = "expansion_expansion_panel";
             expansion_expansion_panel.Padding = new Padding(24, 64, 24, 16);
-            expansion_expansion_panel.Size = new Size(359, 303);
+            expansion_expansion_panel.Size = new Size(374, 303);
             expansion_expansion_panel.TabIndex = 81;
             expansion_expansion_panel.Title = "Scores";
             expansion_expansion_panel.ValidationButtonText = " ";
@@ -401,7 +401,7 @@
             studentCodeRating.Location = new Point(24, 64);
             studentCodeRating.Margin = new Padding(3, 2, 3, 2);
             studentCodeRating.Name = "studentCodeRating";
-            studentCodeRating.Size = new Size(309, 221);
+            studentCodeRating.Size = new Size(324, 221);
             studentCodeRating.TabIndex = 79;
             // 
             // testcase_expansion_panel
@@ -409,7 +409,6 @@
             testcase_expansion_panel.BackColor = Color.FromArgb(255, 255, 255);
             testcase_expansion_panel.BorderStyle = BorderStyle.FixedSingle;
             testcase_expansion_panel.CancelButtonText = "";
-            testcase_expansion_panel.Collapse = true;
             testcase_expansion_panel.Controls.Add(testCaseContainer);
             testcase_expansion_panel.Depth = 0;
             testcase_expansion_panel.Description = "";
@@ -418,17 +417,18 @@
             testcase_expansion_panel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             testcase_expansion_panel.ForeColor = Color.FromArgb(222, 0, 0, 0);
             testcase_expansion_panel.Location = new Point(0, 303);
-            testcase_expansion_panel.Margin = new Padding(16, 1, 16, 0);
+            testcase_expansion_panel.Margin = new Padding(16);
             testcase_expansion_panel.MouseState = MaterialSkin.MouseState.HOVER;
             testcase_expansion_panel.Name = "testcase_expansion_panel";
             testcase_expansion_panel.Padding = new Padding(24, 64, 24, 16);
-            testcase_expansion_panel.Size = new Size(359, 48);
+            testcase_expansion_panel.Size = new Size(374, 303);
             testcase_expansion_panel.TabIndex = 80;
             testcase_expansion_panel.Title = "TestCases";
             testcase_expansion_panel.ValidationButtonText = " ";
             // 
             // testCaseContainer
             // 
+            testCaseContainer.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             testCaseContainer.AutoScroll = true;
             testCaseContainer.BackColor = Color.White;
             testCaseContainer.FlowDirection = FlowDirection.TopDown;
@@ -456,7 +456,7 @@
             activity_expansion_panel.MouseState = MaterialSkin.MouseState.HOVER;
             activity_expansion_panel.Name = "activity_expansion_panel";
             activity_expansion_panel.Padding = new Padding(24, 64, 24, 16);
-            activity_expansion_panel.Size = new Size(359, 303);
+            activity_expansion_panel.Size = new Size(374, 303);
             activity_expansion_panel.TabIndex = 0;
             activity_expansion_panel.Title = "Bubble Sort";
             activity_expansion_panel.ValidationButtonText = " ";
@@ -469,7 +469,7 @@
             MessagesTab.Margin = new Padding(3, 2, 3, 2);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3, 2, 3, 2);
-            MessagesTab.Size = new Size(359, 540);
+            MessagesTab.Size = new Size(374, 668);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -481,7 +481,7 @@
             richTextBox2.Location = new Point(3, 397);
             richTextBox2.Margin = new Padding(3, 2, 3, 2);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(353, 79);
+            richTextBox2.Size = new Size(368, 79);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
             richTextBox2.TextChanged += richTextBox2_TextChanged;
@@ -495,7 +495,7 @@
             msgBox.Margin = new Padding(3, 2, 3, 2);
             msgBox.Name = "msgBox";
             msgBox.ReadOnly = true;
-            msgBox.Size = new Size(353, 395);
+            msgBox.Size = new Size(368, 395);
             msgBox.TabIndex = 0;
             msgBox.Text = "";
             // 
@@ -506,7 +506,7 @@
             BroadcastsTab.Margin = new Padding(3, 2, 3, 2);
             BroadcastsTab.Name = "BroadcastsTab";
             BroadcastsTab.Padding = new Padding(3, 2, 3, 2);
-            BroadcastsTab.Size = new Size(359, 540);
+            BroadcastsTab.Size = new Size(374, 668);
             BroadcastsTab.TabIndex = 0;
             BroadcastsTab.Text = "Leaderboards";
             BroadcastsTab.UseVisualStyleBackColor = true;
@@ -518,7 +518,7 @@
             panel_leaderboards.Location = new Point(3, 2);
             panel_leaderboards.Name = "panel_leaderboards";
             panel_leaderboards.Padding = new Padding(0, 20, 0, 0);
-            panel_leaderboards.Size = new Size(353, 536);
+            panel_leaderboards.Size = new Size(368, 664);
             panel_leaderboards.TabIndex = 18;
             // 
             // panel_LeftSide_Main
@@ -530,7 +530,7 @@
             panel_LeftSide_Main.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Main.Name = "panel_LeftSide_Main";
             tableLayoutPanel2.SetRowSpan(panel_LeftSide_Main, 2);
-            panel_LeftSide_Main.Size = new Size(240, 568);
+            panel_LeftSide_Main.Size = new Size(251, 696);
             panel_LeftSide_Main.TabIndex = 19;
             // 
             // panel_LeftSide_Directory
@@ -539,7 +539,7 @@
             panel_LeftSide_Directory.Location = new Point(0, 46);
             panel_LeftSide_Directory.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Directory.Name = "panel_LeftSide_Directory";
-            panel_LeftSide_Directory.Size = new Size(240, 522);
+            panel_LeftSide_Directory.Size = new Size(251, 650);
             panel_LeftSide_Directory.TabIndex = 15;
             // 
             // panel_LeftSide_Buttons
@@ -550,7 +550,7 @@
             panel_LeftSide_Buttons.Location = new Point(0, 0);
             panel_LeftSide_Buttons.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Buttons.Name = "panel_LeftSide_Buttons";
-            panel_LeftSide_Buttons.Size = new Size(240, 46);
+            panel_LeftSide_Buttons.Size = new Size(251, 46);
             panel_LeftSide_Buttons.TabIndex = 16;
             // 
             // smartButton6
@@ -612,7 +612,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 98.4265747F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5734266F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
-            tableLayoutPanel2.Size = new Size(1345, 572);
+            tableLayoutPanel2.Size = new Size(1402, 700);
             tableLayoutPanel2.TabIndex = 18;
             // 
             // TempIDE
@@ -620,7 +620,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1345, 634);
+            ClientSize = new Size(1402, 762);
             Controls.Add(tableLayoutPanel2);
             Controls.Add(panel4);
             Controls.Add(panel2);
@@ -630,6 +630,7 @@
             Name = "TempIDE";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TempIDE";
+            WindowState = FormWindowState.Maximized;
             FormClosing += TempIDE_FormClosing;
             Shown += TempIDE_Shown;
             headerPanel.ResumeLayout(false);
