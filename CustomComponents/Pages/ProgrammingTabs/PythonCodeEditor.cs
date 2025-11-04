@@ -21,7 +21,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public override void RunCode()
         {
-            commandLine = $"/c \"{ProgrammingConfiguration.pythonExe}\" {filePath}";
+            commandLine = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{filePath}\"\"";
             base.RunCode();
         }
 
@@ -29,7 +29,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.py");
-            commandLine = $"/c \"{ProgrammingConfiguration.pythonExe}\" {testerFile}";
+            commandLine = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{testerFile}\"\"";
             base .RunTest();
         }
 
@@ -38,11 +38,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             SaveCode();
             NoError();
             List<string> readabilityCommands = [
-                $"/c \"{ProgrammingConfiguration.pylintExe}\" --rcfile={ProgrammingConfiguration.readabilityConfig} {filePath}",
-                $"/c \"{ProgrammingConfiguration.ruffExe}\" check {filePath} --config {ProgrammingConfiguration.ruffConfig}"];
+                $"/c \"\"{ProgrammingConfiguration.pylintExe}\" --rcfile={ProgrammingConfiguration.readabilityConfig} \"{filePath}\"\"",
+                $"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config {ProgrammingConfiguration.ruffConfig}\""];
 
             //for error checking
-            process = CommandRunner($"/c \"{ProgrammingConfiguration.pylintExe}\" --rcfile={ProgrammingConfiguration.errorConfig} {filePath}");
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.pylintExe}\" --rcfile={ProgrammingConfiguration.errorConfig} \"{filePath}\"\"");
             string errorOutput = "";
             await StartprocessAsyncExit(
                 process,
@@ -76,14 +76,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private async Task checkReadability()
         {
             readabilityRules.Clear();
-            process = CommandRunner($"/c \"{ProgrammingConfiguration.ruffExe}\" check {filePath} --config {ProgrammingConfiguration.ruffReadability}");
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffReadability}\"\"");
             string readabilityViolations = "";
             await StartprocessAsyncExit(
                 process,
                 output =>
                 {
                     if (output.StartsWith(filePath))
-                        readabilityViolations += output.Replace(filePath+':',"") + Environment.NewLine;
+                        readabilityViolations += output.Replace(filePath + ':', "") + Environment.NewLine;
                 },
                 null,
                 () =>
@@ -114,12 +114,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private async Task checkMaintainability()
         {
             maintainabilityRules.Clear();
-            process = CommandRunner($"/c \"{ProgrammingConfiguration.ruffExe}\" check {filePath} --config {ProgrammingConfiguration.ruffMaintainability}");
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffMaintainability}\"\"");
             string maintainabilityViolations = "";
             await StartprocessAsyncExit(
                 process,
                 output =>
                 {
+                    if(output.IndexOf("Main.py") > 0)
+                        Debug.WriteLine(output.Substring(output.IndexOf("Main.py") + 7));
+
                     if (output.StartsWith(filePath))
                         maintainabilityViolations += output.Replace(filePath + ':', "") + Environment.NewLine;
                 },
@@ -152,7 +155,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private async Task checkRobustness()
         {
             robustnessRules.Clear();
-            process = CommandRunner($"/c \"{ProgrammingConfiguration.ruffExe}\" check {filePath} --config {ProgrammingConfiguration.ruffRobustness}");
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffRobustness}\"\"");
             string robustnessViolations = "";
             await StartprocessAsyncExit(
                 process,

@@ -80,7 +80,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             //will initialize first, incase it is new
             StudentProgress = progress;
 
-            RunLinting();// i check agad ang syntax ng code
+            new Action(async () => await RunLinting()).Invoke();
             srcCode.ToolTipNeeded += (s, e) =>
             {
                 string msg = "";
@@ -359,7 +359,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
-        public async virtual void RunTest()
+        public virtual void RunTest()
         {
             if (errorMsg != "")
             {
@@ -418,7 +418,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                 });
             }
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException)
             {
                 Invoker(() => Debug.WriteLine(""));
             }

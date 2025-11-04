@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentCodeRating));
             panel19 = new Panel();
+            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             score = new Label();
             pictureBox7 = new PictureBox();
             label9 = new Label();
@@ -46,7 +47,6 @@
             accuracyPanel = new Panel();
             accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             label15 = new Label();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             readabilityContainer.SuspendLayout();
@@ -69,6 +69,21 @@
             panel19.Name = "panel19";
             panel19.Size = new Size(391, 42);
             panel19.TabIndex = 77;
+            // 
+            // smartButton1
+            // 
+            smartButton1.BackColor = Color.MediumSlateBlue;
+            smartButton1.BorderRadius = 20;
+            smartButton1.FlatAppearance.BorderSize = 0;
+            smartButton1.FlatStyle = FlatStyle.Flat;
+            smartButton1.ForeColor = Color.White;
+            smartButton1.Location = new Point(230, 5);
+            smartButton1.Name = "smartButton1";
+            smartButton1.Size = new Size(140, 34);
+            smartButton1.TabIndex = 82;
+            smartButton1.Text = "View More";
+            smartButton1.UseVisualStyleBackColor = false;
+            smartButton1.Click += smartButton1_Click;
             // 
             // score
             // 
@@ -224,7 +239,6 @@
             accuracy.Name = "accuracy";
             accuracy.Size = new Size(242, 10);
             accuracy.TabIndex = 81;
-            accuracy.Value = 100;
             // 
             // label15
             // 
@@ -236,21 +250,6 @@
             label15.Size = new Size(71, 20);
             label15.TabIndex = 80;
             label15.Text = "Accuracy";
-            // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 20;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(230, 5);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(140, 34);
-            smartButton1.TabIndex = 82;
-            smartButton1.Text = "View More";
-            smartButton1.UseVisualStyleBackColor = false;
-            smartButton1.Click += smartButton1_Click;
             // 
             // StudentCodeRating
             // 

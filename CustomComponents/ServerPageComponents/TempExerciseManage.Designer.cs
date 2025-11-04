@@ -33,9 +33,7 @@
             btn_AddNewExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label2 = new Label();
             panel1 = new Panel();
-            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             flowLayoutPanel_Exercises = new FlowLayoutPanel();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customTextBox1 = new CustomTextBox();
             materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             panel3.SuspendLayout();
@@ -94,23 +92,6 @@
             panel1.Size = new Size(1576, 1);
             panel1.TabIndex = 56;
             // 
-            // smartButton4
-            // 
-            smartButton4.BackColor = SystemColors.Highlight;
-            smartButton4.BackgroundColor = SystemColors.Highlight;
-            smartButton4.BorderRadius = 10;
-            smartButton4.FlatAppearance.BorderSize = 0;
-            smartButton4.FlatStyle = FlatStyle.Flat;
-            smartButton4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton4.ForeColor = Color.White;
-            smartButton4.Location = new Point(305, 110);
-            smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(137, 39);
-            smartButton4.TabIndex = 58;
-            smartButton4.Text = "All Exercises";
-            smartButton4.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton4.UseVisualStyleBackColor = false;
-            // 
             // flowLayoutPanel_Exercises
             // 
             flowLayoutPanel_Exercises.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -121,24 +102,6 @@
             flowLayoutPanel_Exercises.Padding = new Padding(0, 0, 0, 75);
             flowLayoutPanel_Exercises.Size = new Size(935, 436);
             flowLayoutPanel_Exercises.TabIndex = 59;
-            // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.Gainsboro;
-            smartButton1.BackgroundColor = Color.Gainsboro;
-            smartButton1.BorderRadius = 10;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton1.ForeColor = Color.DimGray;
-            smartButton1.Location = new Point(448, 110);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(104, 39);
-            smartButton1.TabIndex = 63;
-            smartButton1.Text = "By Class";
-            smartButton1.TextColor = Color.DimGray;
-            smartButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton1.UseVisualStyleBackColor = false;
             // 
             // customTextBox1
             // 
@@ -186,8 +149,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(materialComboBox1);
             Controls.Add(customTextBox1);
-            Controls.Add(smartButton1);
-            Controls.Add(smartButton4);
             Controls.Add(flowLayoutPanel_Exercises);
             Controls.Add(panel1);
             Controls.Add(panel3);
@@ -206,9 +167,7 @@
         private Label label2;
         private GeneralComponents.SmartButton btn_AddNewExercise;
         private Panel panel1;
-        private GeneralComponents.SmartButton smartButton4;
         private FlowLayoutPanel flowLayoutPanel_Exercises;
-        private GeneralComponents.SmartButton smartButton1;
         private CustomTextBox customTextBox1;
         private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
     }

@@ -15,12 +15,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
     {
         public TaskModel selectedTask { get; private set; }
         private Action removeMe;
-        public SelectedExercise()
-        {
-            InitializeComponent();
-            Location = new Point(0, 0);
-            this.removeMe = removeMe;
-        }
 
         public SelectedExercise(TaskModel task, Action removeMe)
         {

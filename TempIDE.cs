@@ -39,8 +39,6 @@ namespace SmartCodeLab
         private CancellationTokenSource _cancellationTokenSource;
         //private ISet<string> openedFiles = new HashSet<string>();
         private BaseCodeEditor mainEditor;
-        private System.Threading.Timer? debounceTimer;
-        private readonly int debounceDelay = 700;
         //private bool isFocused = false;
         private string userName;
         //private StudentCodingProgress progress;

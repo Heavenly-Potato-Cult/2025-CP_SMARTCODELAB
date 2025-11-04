@@ -194,7 +194,7 @@
         private FlowLayoutPanel studtab;
         private GeneralComponents.SmartButton smartButton2;
         private Panel panel2;
-        private Panel panel1;
+        //private Panel panel1;
         private Button btnClose;
         private Label label12;
         private GeneralComponents.CustomCard customCard7;

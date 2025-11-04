@@ -35,7 +35,6 @@ namespace SmartCodeLab.CustomComponents
 
             bool inMainMethod = false;
             bool mainMethodStarted = false;
-            int braceCount = 0;
             int mainMethodBraces = 0;
 
             for (int i = 0; i < lines.Length; i++)

@@ -88,22 +88,6 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             }
         }
 
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-
-        public override string Text
-        {
-            get
-            {
-                return base.Text;
-            }
-
-            set
-            {
-
-            }
-        }
-
         [Category("SmartCodeLab")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(true)]

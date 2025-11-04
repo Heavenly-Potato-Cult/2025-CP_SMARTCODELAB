@@ -19,11 +19,6 @@ namespace SmartCodeLab.CustomComponents
 {
     public partial class UserIcons : UserControl
     {
-        private NetworkStream stream;
-
-        public UserIcons()
-        {
-        }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public UserProfile profile {  get; set; }
         public UserIcons(UserProfile profile, Action<UserProfile, UserIcons> setSelectedUserId)

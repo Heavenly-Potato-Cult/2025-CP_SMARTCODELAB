@@ -94,7 +94,7 @@
     '\'',
     '\''
     };
-            studentCode.AutoScrollMinSize = new Size(27, 14);
+            studentCode.AutoScrollMinSize = new Size(2, 14);
             studentCode.BackBrush = null;
             studentCode.CharHeight = 14;
             studentCode.CharWidth = 8;
@@ -406,7 +406,6 @@
         private Label label1;
         private GeneralComponents.StatsBar statsBar2;
         private Label label6;
-        private GeneralComponents.StatsBar readability;
         private Label label2;
         private GeneralComponents.SmartButton smartButton1;
         private Label label7;

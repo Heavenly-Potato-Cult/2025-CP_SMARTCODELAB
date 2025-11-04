@@ -31,7 +31,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         }
         private async void TempExerciseManage_Load(object sender, EventArgs e)
         {
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
                 var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task");
                 foreach (var file in exerciseFiles)

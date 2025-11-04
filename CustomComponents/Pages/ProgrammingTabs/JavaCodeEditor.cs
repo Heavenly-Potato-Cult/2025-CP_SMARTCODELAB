@@ -167,7 +167,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             maintainabilityWarning.Clear();
             int maintainabilityCounts = 0;
             string maintainabilityErrors = "";
-            process = CommandRunner($"/c java -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkstyleMaintainability} {filePath}");
+            process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.checkStylePath}\" -c \"{ProgrammingConfiguration.checkstyleMaintainability}\" \"{filePath}\"\"");
             maintainabilityRules.Clear();
             await StartprocessAsyncExit(
                 process,
@@ -181,7 +181,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     {
                         if (errors[errors.Length - 1] != standardError)
                         {
-                            Debug.WriteLine(standardError);
                             string[] e = standardError.Split(':');
                             string errorMessage = e[e.Length - 1];
                             errorsList.Add(errorMessage);
@@ -200,7 +199,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int readabilityCounts = 0;
             string readabilityErrors = "";
             readabilityRules.Clear();
-            process = CommandRunner($"/c java -jar {ProgrammingConfiguration.checkStylePath} -c {ProgrammingConfiguration.checkstyleReadability} {filePath}");
+            process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.checkStylePath}\" -c \"{ProgrammingConfiguration.checkstyleReadability}\" \"{filePath}\"\"");
             await StartprocessAsyncExit(
                 process,
                 outp => { readabilityErrors += (outp + Environment.NewLine); },
@@ -211,15 +210,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     string[] errors = (readabilityErrors.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
                     foreach (string standardError in errors)
                     {
-                        if (errors[errors.Length - 1] != standardError)
+                        try
                         {
-                            string[] e = standardError.Split(':');
-                            string errorMessage = e[e.Length - 1];
-                            errorsList.Add(errorMessage);
-                            base.HighlightReadabilityIssue(int.Parse(e[2]) - 1, errorMessage);
-                            readabilityCounts++;
-                            readabilityRules.Add(checkstyleErrorRetriever(errorMessage));
-                        }
+                            if (errors[errors.Length - 1] != standardError)
+                            {
+                                string[] e = standardError.Split(':');
+                                string errorMessage = e[e.Length - 1];
+                                errorsList.Add(errorMessage);
+                                base.HighlightReadabilityIssue(int.Parse(e[2]) - 1, errorMessage);
+                                readabilityCounts++;
+                                readabilityRules.Add(checkstyleErrorRetriever(errorMessage));
+                            }
+                        }catch(IndexOutOfRangeException) { }
                     }
                     updateStats?.Invoke(2, readabilityCounts, errorsList);
                 });
@@ -231,13 +233,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             robustnessWarning.Clear();
             int robustnessCounts = 0;
             string robustnessErrors = "";
-            process = CommandRunner($"/c {ProgrammingConfiguration.pmdPath} check --cache ./pmd-cache -d {filePath} -R {ProgrammingConfiguration.pmdRobustness} -f text");
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.pmdPath}\" check --cache ./pmd-cache -d \"{filePath}\" -R \"{ProgrammingConfiguration.pmdRobustness}\" -f text\"");
             await StartprocessAsyncExit(
                 process,
                 outp => { 
                     robustnessErrors += (outp + Environment.NewLine); 
                 },
-                null,
+                err => Debug.WriteLine(err),
                 () =>
                 {
                     List<string> errorsList = new List<string>();

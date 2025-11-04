@@ -312,7 +312,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             return userProgress[studentId];
         }
 
-        private async void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd, bool didLoggedIn)
+        private void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd, bool didLoggedIn)
         {
             try
             {

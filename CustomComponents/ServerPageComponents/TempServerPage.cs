@@ -241,7 +241,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
 
-            updateStudentList = new System.Threading.Timer(async _ => displayStudents(), null, 500, Timeout.Infinite);
+            updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
         }
     }
 }

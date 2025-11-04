@@ -61,7 +61,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 try
                 {
                     // Start listening for server messages
-                    _ = Task.Run(async () =>
+                    _ = Task.Run(() =>
                     {
                         try
                         {
