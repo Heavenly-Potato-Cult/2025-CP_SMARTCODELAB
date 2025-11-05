@@ -154,7 +154,7 @@ namespace SmartCodeLab
                 this.Invoke((Action)(() =>
                 {
                     //set task description display
-                    activity_expansion_panel.Title = task._taskName;
+                    activity_expansion_panel.Title1 = task._taskName;
                     description.Text = task._instructions;
                     int i = 1;
                     testCaseContainer.Controls.Clear();
