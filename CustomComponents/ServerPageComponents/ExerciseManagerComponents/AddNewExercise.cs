@@ -109,8 +109,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 MessageBox.Show("Please provide the exercise subject.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
-
-            // --- All checks passed ---
             return false;
         }
 

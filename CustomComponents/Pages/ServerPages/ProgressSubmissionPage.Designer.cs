@@ -471,8 +471,6 @@
         private Label label1;
         private Label score;
         private FlowLayoutPanel flowLayoutPanel2;
-        private GeneralComponents.ExpansionPanel expansionPanel1;
-        private GeneralComponents.ExpansionPanel expansionPanel2;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel1;
         private ProgrammingTabs.CodeEditor studentCode;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel3;

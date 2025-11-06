@@ -15,12 +15,8 @@ namespace SmartCodeLab.Models
         [ProtoMember(1)]
         public Server server { get; set; }
 
-
         [ProtoMember(2)]
         public List<Notification> notifications { get; set; }
-
-        //[ProtoMember(4)]
-        //public List<SubmittedCode> codeSubmission { get; set; }
 
         [ProtoMember(3)]
         public DateTime lastModified { get; set; }
@@ -31,24 +27,22 @@ namespace SmartCodeLab.Models
         [ProtoMember(5)]
         public Dictionary<string, StudentCodingProgress> userProgress { get; set; }
 
-        //[ProtoMember(6)]
-        //public Dictionary<string, UserProfile> users;
+        [ProtoMember(6)]
+        public Dictionary<string, SubmittedCode> codeSubmission { get; set; }
 
         public ProgrammingSession(Server server,
-            List<Notification> notifications,
-            //List<SubmittedCode> codeSubmission, 
-            //Dictionary<string, UserProfile> users,
+            List<Notification> notifications, 
             int copyPasteCount,
-            Dictionary<string, StudentCodingProgress> userProgress
+            Dictionary<string, StudentCodingProgress> userProgress,
+            Dictionary<string, SubmittedCode> codeSubmission
             )
         {
             this.server = server;
             this.userProgress = userProgress ?? new Dictionary<string, StudentCodingProgress>();
             this.notifications = notifications  ?? new List<Notification>();
-            //this.codeSubmission = codeSubmission ?? new List<SubmittedCode>();
+            this.codeSubmission = codeSubmission ?? new Dictionary<string, SubmittedCode>();
             lastModified = DateTime.Now;
             this.copyPasteCount = copyPasteCount;
-            //this.users = users;
         }
 
         public ProgrammingSession()
@@ -56,7 +50,7 @@ namespace SmartCodeLab.Models
             server = new Server();
             userProgress = new Dictionary<string, StudentCodingProgress>();
             notifications = new List<Notification>();
-            //codeSubmission = new List<SubmittedCode>();
+            codeSubmission = new Dictionary<string, SubmittedCode>();
             //users = new Dictionary<string, UserProfile>();
             lastModified = DateTime.Now;
             copyPasteCount = 0;

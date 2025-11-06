@@ -35,6 +35,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         }
         private void smartButton1_Click_1(object sender, EventArgs e)
         {
+            foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
+            {
+                if (Path.GetFileNameWithoutExtension(file).Trim() == serverName.Texts.Trim())
+                {
+                    MessageBox.Show("Session Name is Already Used");
+                    return;
+                }
+            }
             if (serverName.Texts.IsWhiteSpace())
             {
                 MessageBox.Show("Invalid Server Name");
