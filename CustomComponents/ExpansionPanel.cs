@@ -1,20 +1,15 @@
-﻿// --- FinalAccordion.cs ---
-// This version adds the public IsExpanded property
-// and fixes the icon's visual style.
-
+﻿
 using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.Design; // This is for the "magic" attribute
+using System.Windows.Forms.Design;
 
 namespace SmartCodeLab.CustomComponents
 {
-    // This attribute is CRITICAL. It tells the VS Designer
-    // to treat this component like a normal Panel, so you
-    // can drag and drop other controls onto it.
+    
     [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design")]
-    public class ExpansionPanel : Panel // We inherit from Panel
+    public class ExpansionPanel : Panel 
     {
         // --- Internal Controls ---
         private Panel headerPanel;
@@ -31,35 +26,34 @@ namespace SmartCodeLab.CustomComponents
         // --- Constructor ---
         public ExpansionPanel()
         {
-            // This method (defined below) builds all the child controls
+            
             InitializeComponent();
 
-            // --- Store Heights ---
             this.collapsedHeight = this.headerPanel.Height;
             this.defaultHeight = this.Height;
 
-            // --- Wire up Events ---
+            
             this.headerPanel.Click += new EventHandler(ToggleCollapse);
             this.lblIcon.Click += new EventHandler(ToggleCollapse);
             this.titleFlowPanel.Click += new EventHandler(ToggleCollapse);
             this.lblTitle1.Click += new EventHandler(ToggleCollapse);
             this.lblTitle2.Click += new EventHandler(ToggleCollapse);
 
-            // This ensures the header is always on top of other controls
+            
             this.ControlAdded += new ControlEventHandler(this.FinalAccordion_ControlAdded);
 
-            // Apply the default state
+            
             UpdateVisualState();
         }
 
-        // --- NEW Toggle Logic ---
+        
         private void ToggleCollapse(object? sender, EventArgs e)
         {
-            // We just toggle the public property
+            
             this.IsExpanded = !this.IsExpanded;
         }
 
-        // --- This is the NEW Public Property ---
+        
         [Category("Appearance")]
         [Description("Determines if the panel is expanded or collapsed.")]
         [DefaultValue(true)]
@@ -98,23 +92,22 @@ namespace SmartCodeLab.CustomComponents
                 {
                     if (c == this.headerPanel)
                     {
-                        continue; // Guard clause: Don't hide the header
+                        continue;
                     }
                     c.Visible = false;
                 }
             }
             else
             {
-                // --- Expand ---
+                
                 this.Height = this.defaultHeight;
                 this.lblIcon.Text = "v";
 
-                // Loop through all controls and show them
                 foreach (Control c in this.Controls)
                 {
                     if (c == this.headerPanel)
                     {
-                        continue; // Guard clause
+                        continue; 
                     }
                     c.Visible = true;
                 }
@@ -158,10 +151,7 @@ namespace SmartCodeLab.CustomComponents
             set { headerPanel.BackColor = value; }
         }
 
-        // --- NO ContentPanel property ---
-        // We removed it. The component ITSELF is the content panel.
-
-        // This makes sure the header is always on top
+        
         private void FinalAccordion_ControlAdded(object? sender, ControlEventArgs e)
         {
             if (e.Control == null)
@@ -169,19 +159,14 @@ namespace SmartCodeLab.CustomComponents
                 return;
             }
 
-            // Guard clause: If the control being added is our
-            // built-in header, just ignore it.
             if (e.Control == this.headerPanel)
             {
                 return;
             }
 
-            // When a new (external) control is added,
-            // bring the header to the front so it's not covered.
             this.headerPanel.BringToFront();
         }
 
-        // We override the default Height property to store the default height
         [DefaultValue(186)]
         public new int Height
         {
@@ -189,7 +174,7 @@ namespace SmartCodeLab.CustomComponents
             set
             {
                 base.Height = value;
-                // Only store the new height if we are expanded
+                
                 if (isExpanded)
                 {
                     this.defaultHeight = value;
@@ -197,8 +182,7 @@ namespace SmartCodeLab.CustomComponents
             }
         }
 
-        // --- This is YOUR InitializeComponent code ---
-        // I've removed the `contentPanel` from it.
+        
         private void InitializeComponent()
         {
             headerPanel = new Panel();
@@ -276,14 +260,12 @@ namespace SmartCodeLab.CustomComponents
             lblIcon.Text = "v";
             lblIcon.TextAlign = ContentAlignment.MiddleCenter;
 
-            // --- THESE ARE THE NEW LINES TO FIX THE ICON ---
+            
             lblIcon.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblIcon.ForeColor = Color.DimGray;
             // ----------------------------------------------
 
-            // 
-            // FinalAccordion
-            // 
+           
             Controls.Add(headerPanel);
             Name = "FinalAccordion";
             Size = new Size(639, 186);
