@@ -79,11 +79,11 @@
             // 
             tabControl2.Controls.Add(tabPage1);
             tabControl2.Dock = DockStyle.Bottom;
-            tabControl2.Location = new Point(0, 361);
+            tabControl2.Location = new Point(0, 368);
             tabControl2.Margin = new Padding(3, 2, 3, 2);
             tabControl2.Name = "tabControl2";
             tabControl2.SelectedIndex = 0;
-            tabControl2.Size = new Size(722, 153);
+            tabControl2.Size = new Size(722, 146);
             tabControl2.TabIndex = 16;
             // 
             // tabPage1
@@ -93,7 +93,7 @@
             tabPage1.Margin = new Padding(3, 2, 3, 2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(714, 125);
+            tabPage1.Size = new Size(714, 118);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Output";
             tabPage1.UseVisualStyleBackColor = true;
@@ -127,7 +127,7 @@
             output.Paddings = new Padding(0);
             output.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             output.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("output.ServiceColors");
-            output.Size = new Size(708, 121);
+            output.Size = new Size(708, 114);
             output.TabIndex = 0;
             output.Zoom = 100;
             // 

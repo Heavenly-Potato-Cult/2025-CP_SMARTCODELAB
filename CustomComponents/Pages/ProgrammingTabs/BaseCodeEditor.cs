@@ -32,6 +32,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected HashSet<string> maintainabilityRules;
         protected HashSet<string> robustnessRules;
 
+        protected string maintainabilityCheck = string.Empty;
+
         private string acceptedCode;
         private string errorMsg = "";
         private int? errorLine = null;
@@ -84,10 +86,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             srcCode.ToolTipNeeded += (s, e) =>
             {
                 string msg = "";
-                if (errorLine != null && e.Place.iLine == errorLine)
-                {
-                    msg = errorMsg;
-                }
+                //if (errorLine != null && e.Place.iLine == errorLine)
+                //{
+                //    msg = errorMsg;
+                //}
                 if (standardError.ContainsKey(e.Place.iLine))
                 {
                     msg += (standardError.GetValueOrDefault(e.Place.iLine, "No Error Found") + Environment.NewLine);
@@ -468,17 +470,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public virtual async Task RunLinting() { }
 
-        public virtual void CheckCodingStandards(string command, Action reRun = null) { }
-
         protected void HighlightError(int errorLine, string errorMsg)
         {
             try
             {
-                standardError.Remove(errorLine);
                 var lineRange = srcCode.GetLine(errorLine);
                 lineRange.SetStyle(syntaxErrorHighlight);
-                this.errorLine = errorLine;
-                this.errorMsg = errorMsg.Split(new string[] { "    " }, StringSplitOptions.None)[0];
+                if (standardError.ContainsKey(errorLine))
+                    standardError.Remove(errorLine);
+                standardError.Add(errorLine, errorMsg);
+
+                this.errorMsg += errorMsg + Environment.NewLine;
             }
             catch (ArgumentOutOfRangeException) { }
         }
@@ -547,7 +549,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private Task CountComplexity1()
         {
-            updateStats?.Invoke(4, CodeComplexityReference.CodeComplexityCounter(filePath), null);
             return Task.CompletedTask;
         }
 

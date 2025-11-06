@@ -26,8 +26,22 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
         //TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
         //MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
+        private readonly List<string> linters = new List<string>() {ProgrammingConfiguration.checkstyleReadability, ProgrammingConfiguration.pmdRobustness, ProgrammingConfiguration.checkstyleMaintainability};
         public JavaCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
         {
+            foreach (var item in linters)
+            {
+                string content = LintersServices.javaLinters[item];
+
+                if (item == ProgrammingConfiguration.checkstyleMaintainability && task.ratingFactors.ContainsKey(4))
+                {
+                    maintainabilityCheck = content.Replace("999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
+                    content = maintainabilityCheck;
+                }
+                LintersServices.initializeLinter(item, content);
+            }
+
+
             srcCode.TextChanged += (s, e) =>
             {
                 JavaSyntaxHighlight(e);
@@ -125,35 +139,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
         }
 
-        public async override void CheckCodingStandards(string command, Action reRun = null)
-        {
-            standardError.Clear();
-            process = CommandRunner(command);
-            string errorLine = "";
-            await StartprocessAsyncExit(
-                process,
-                outp => { errorLine += (outp + Environment.NewLine); },
-                null,
-                () =>
-                {
-                    reRun?.Invoke();
-                    List<string> errorsList = new List<string>();
-                    string[] errors = (errorLine.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
-                    foreach (string standardError in errors)
-                    {
-                        if (errors[errors.Length - 1] != standardError)
-                        {
-                            string[] e = standardError.Split(':');
-                            string errorMessage = e[e.Length - 1];
-                            errorsList.Add(errorMessage);
-                            base.HighLightStandardError(int.Parse(e[2]) - 1, errorMessage);
-                            errorCounts++;
-                        }
-                    }
-                    updateStats?.Invoke(2, errorCounts, errorsList);
-                });
-        }
-
         public override void RunTest()
         {
             string directory = Path.GetDirectoryName(filePath);
@@ -167,6 +152,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             maintainabilityWarning.Clear();
             int maintainabilityCounts = 0;
             string maintainabilityErrors = "";
+
+            if (!File.Exists(ProgrammingConfiguration.checkstyleMaintainability))
+                LintersServices.initializeLinter(ProgrammingConfiguration.checkstyleMaintainability, maintainabilityCheck);
+
             process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.checkStylePath}\" -c \"{ProgrammingConfiguration.checkstyleMaintainability}\" \"{filePath}\"\"");
             maintainabilityRules.Clear();
             await StartprocessAsyncExit(
@@ -199,6 +188,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int readabilityCounts = 0;
             string readabilityErrors = "";
             readabilityRules.Clear();
+
+            if(!File.Exists(ProgrammingConfiguration.checkstyleReadability))
+                LintersServices.initializeLinter(ProgrammingConfiguration.checkstyleReadability, LintersServices.javaLinters[ProgrammingConfiguration.checkstyleReadability]);
+
             process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.checkStylePath}\" -c \"{ProgrammingConfiguration.checkstyleReadability}\" \"{filePath}\"\"");
             await StartprocessAsyncExit(
                 process,
@@ -233,6 +226,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             robustnessWarning.Clear();
             int robustnessCounts = 0;
             string robustnessErrors = "";
+
+            if (!File.Exists(ProgrammingConfiguration.pmdRobustness))
+                LintersServices.initializeLinter(ProgrammingConfiguration.pmdRobustness, LintersServices.javaLinters[ProgrammingConfiguration.pmdRobustness]);
+
             process = CommandRunner($"/c \"\"{ProgrammingConfiguration.pmdPath}\" check --cache ./pmd-cache -d \"{filePath}\" -R \"{ProgrammingConfiguration.pmdRobustness}\" -f text\"");
             await StartprocessAsyncExit(
                 process,
