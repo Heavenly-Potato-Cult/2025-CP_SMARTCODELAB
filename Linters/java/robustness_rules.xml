@@ -1,13 +1,19 @@
 <?xml version="1.0"?>
-<!DOCTYPE module PUBLIC
-    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-    "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
-<module name="Checker">
-	<module name="TreeWalker">
-    	<module name="IllegalCatch"/>
-  	</module>
-	<module name="TreeWalker">
-    	<module name="MissingNullCaseInSwitch"/>
-  	</module>
-</module>
+<ruleset name="Performance Rules"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        SmartCodeLab Robustness rules
+    </description>
+
+    <rule ref="category/java/errorprone.xml/BrokenNullCheck" />
+    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals" />
+    <rule ref="category/java/errorprone.xml/EqualsNull" />
+    <rule ref="category/java/errorprone.xml/MisplacedNullCheck" />
+    <rule ref="category/java/errorprone.xml/UnusedNullCheckInEquals" />
+    <rule ref="category/java/errorprone.xml/ReturnEmptyCollectionRatherThanNull" />
+    <rule ref="category/java/errorprone.xml/UseEqualsToCompareStrings" />
+</ruleset>

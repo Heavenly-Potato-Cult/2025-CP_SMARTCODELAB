@@ -150,12 +150,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }
                 else if (i == 4)//maintainability
                 {
-                    int difference = value - standardCycComplexity;
-                    int scoreComp = difference <= (standardCycComplexity * .1) ? 100 :
-                                    difference <= (standardCycComplexity * .4) ? 75 : 50;
-
-                    //this.Invoke(new Action(() => actualCycComplexity.Text = value.ToString()));
-                    complexity.ChangeValue(scoreComp);
+                    int difference = 100 - value;
+                    //int scoreComp = difference <= (standardCycComplexity * .1) ? 100 :
+                    //                difference <= (standardCycComplexity * .4) ? 75 : 50;
+                    Debug.WriteLine(value);
+                    complexity.ChangeValue(difference);
                 }
                 statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
                 this.Invoke(new Action(() => score.Text = GetScore().ToString()));

@@ -54,6 +54,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 {
                     try
                     {
+                        Debug.WriteLine(allOutput);
                         totalComplexity = cycComplexityOutputExtractor(allOutput);
                     }
                     catch (IndexOutOfRangeException) { totalComplexity = 1; }

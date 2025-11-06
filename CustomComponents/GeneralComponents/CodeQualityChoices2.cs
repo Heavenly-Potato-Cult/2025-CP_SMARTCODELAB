@@ -21,7 +21,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         public CodeQualityChoices2()
         {
             InitializeComponent();
-
+            complexity_sandard = 0;
             recentValue = new Dictionary<TrackBar, int>()
             {
                 {accuracyT, 100 },
