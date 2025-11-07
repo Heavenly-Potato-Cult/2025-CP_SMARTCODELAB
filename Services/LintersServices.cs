@@ -11,6 +11,14 @@ namespace SmartCodeLab.Services
 {
     public class LintersServices
     {
+
+        public readonly static Dictionary<string, List<int>> totalLanguageChecks = new Dictionary<string, List<int>>() 
+        {
+            { "java", new List<int>() { 0, 0, 40, 10, 15 }},
+            { "python",  new List<int> { 0, 0, 45, 10, 20 }},
+            { "cpp",  new List<int>() { 0, 0, 25, 20, 10}}
+        };
+
         public readonly static Dictionary<string, string> javaLinters = new Dictionary<string, string>()
         {
             {ProgrammingConfiguration.checkstyleReadability,

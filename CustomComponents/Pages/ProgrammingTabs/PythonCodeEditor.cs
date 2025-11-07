@@ -18,7 +18,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private Dictionary<string, string> linterCommands;
         private string[] checksToRun = [string.Empty, string.Empty, ProgrammingConfiguration.ruffReadability, ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability];
         private List<string> linters = new List<string>() {ProgrammingConfiguration.ruffReadability, ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability};
-        public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
+        public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
             foreach (var item in linters)
             {
@@ -149,7 +149,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                                 Debug.WriteLine(knfe.Message);
                             }
                         }
-                        updateStats?.Invoke(updateStatsNum, violationCounts, new List<string>());
+                        updateStats?.Invoke(updateStatsNum, violationCounts, "python");
                     }
                 }
             );
@@ -233,7 +233,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             catch(FormatException) { }
                             catch(KeyNotFoundException) { }
                         }
-                        updateStats?.Invoke(2, violationCounts, new List<string>());
+                        updateStats?.Invoke(2, violationCounts, "python");
                     }
                 }
             );
@@ -271,7 +271,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             catch (FormatException) { }
                             catch (KeyNotFoundException) { }
                         }
-                        updateStats?.Invoke(4, violationCounts, new List<string>());
+                        updateStats?.Invoke(4, violationCounts, "python");
                     }
                 }
             );
@@ -314,7 +314,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             catch (FormatException) { }
                             catch (KeyNotFoundException) { }
                         }
-                        updateStats?.Invoke(3, violationCounts, new List<string>());
+                        updateStats?.Invoke(3, violationCounts, "python");
                     }
                 }
             );

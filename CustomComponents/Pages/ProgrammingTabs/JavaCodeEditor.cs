@@ -27,7 +27,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         //TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
         //MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
         private readonly List<string> linters = new List<string>() {ProgrammingConfiguration.checkstyleReadability, ProgrammingConfiguration.pmdRobustness, ProgrammingConfiguration.checkstyleMaintainability};
-        public JavaCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
+        public JavaCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
         {
             foreach (var item in linters)
             {
@@ -178,7 +178,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             maintainabilityRules.Add(checkstyleErrorRetriever(errorMessage));
                         }
                     }
-                    updateStats?.Invoke(4, maintainabilityCounts, errorsList);
+                    updateStats?.Invoke(4, maintainabilityCounts, "java");
                 });
         }
 
@@ -216,7 +216,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             }
                         }catch(IndexOutOfRangeException) { }
                     }
-                    updateStats?.Invoke(2, readabilityCounts, errorsList);
+                    updateStats?.Invoke(2, readabilityCounts, "java");
                 });
         }
 
@@ -253,7 +253,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         }
                         catch (FormatException) { }
                     }
-                    updateStats?.Invoke(3, robustnessCounts, errorsList);
+                    updateStats?.Invoke(3, robustnessCounts, "java");
                 });
         }
 

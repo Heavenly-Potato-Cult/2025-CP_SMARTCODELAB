@@ -44,7 +44,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private string errorMsg = "";
         private System.Threading.Timer? _debounceTimer;
         private System.Threading.Timer? inputTimer;
-        protected Action<int, int, List<string>> updateStats;
+        protected Action<int, int, string> updateStats;
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Action<NotificationType, string>? notifAction { get; set; }//will be used to send activity notification to the server/host
@@ -65,7 +65,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
         }
 
-        protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress)
+        protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress)
         {
             InitializeComponent();
             this.updateStats = updateStats;
@@ -536,7 +536,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return Task.CompletedTask;
         }
 
-        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress)
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress)
         {
             if (filePath.EndsWith(".java"))
             {

@@ -17,7 +17,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private readonly List<string> toCheck = new List<string>() { "readability", "robustness", "maintainability" };
         private readonly Dictionary<string, Action<int, string>> highlighter = new Dictionary<string, Action<int, string>>();
         private readonly Dictionary<string, Action<int, string>> rateUpdater = new Dictionary<string, Action<int, string>>();
-        public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, List<string>> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
+        public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
             highlighter = new Dictionary<string, Action<int, string>>()
             {
@@ -131,7 +131,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             violationCounts++;
                         }
                     }
-                    updateStats?.Invoke(updateStatsNum, violationCounts, new List<string>());
+                    updateStats?.Invoke(updateStatsNum, violationCounts, "cpp");
                 }
             );
         }

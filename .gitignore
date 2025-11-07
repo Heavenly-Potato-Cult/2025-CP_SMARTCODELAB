@@ -1,6 +1,7 @@
 # Build folders
 bin/
 obj/
+Linters/cpp/LLVM
 
 # Visual Studio stuff
 .vs/

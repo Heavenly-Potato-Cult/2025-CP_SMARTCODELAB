@@ -1,6 +1,7 @@
 ﻿using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.Models;
+using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -121,7 +122,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             return currentCodeStats;
         }
 
-        public async void UpdateStats(int i, int value, List<string>? reasons)
+        public async void UpdateStats(int i, int value, string language)
         {
             await Task.Run(() =>
             {
@@ -136,24 +137,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }
                 else if (i == 2)//readability
                 {
-                    readability.ChangeValue(100 - value);
-                    string violations = "Standard Violations:\n";
-                    reasons?.ForEach(reason => violations += "- " + reason + "\n");
-                    //standardErrors.Text = violations;
-                    standardViolations = reasons ?? new List<string>();
+                    int newValue = Math.Max(0, 100 - getTotalDeduction(i, value, language));
+                    readability.ChangeValue(newValue);
                 }
                 else if (i == 3)//robustness
                 {
-                    int scoreRobustness = 100 - value;
-                    //this.Invoke(new Action(() => actualEfficiency.Text = value.ToString()));
+                    int scoreRobustness = Math.Max(0, 100 - getTotalDeduction(i, value, language));
                     efficiency.ChangeValue(scoreRobustness);
                 }
                 else if (i == 4)//maintainability
                 {
-                    int difference = 100 - value;
-                    //int scoreComp = difference <= (standardCycComplexity * .1) ? 100 :
-                    //                difference <= (standardCycComplexity * .4) ? 75 : 50;
-                    Debug.WriteLine(value);
+                    int difference = Math.Max(0, 100 - getTotalDeduction(i, value, language));
                     complexity.ChangeValue(difference);
                 }
                 statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
@@ -161,7 +155,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             });
         }
 
-
+        //Weighted Violation-Based Scoring System
+        private int getTotalDeduction(int factor, int totalViolations, string language)
+        {
+            decimal factorWeight = statsWeight[factor];
+            int totalChecks = LintersServices.totalLanguageChecks[language][factor];
+            return Convert.ToInt32(Math.Ceiling((factorWeight / totalChecks) * totalViolations));
+        }
 
         public float GetScore()
         {
