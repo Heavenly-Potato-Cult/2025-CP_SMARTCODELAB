@@ -27,17 +27,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }
         }
 
-        public StudentSubmittedIcon(SubmittedCode submittedCode, int placement, Action updateDisplayClick = null)
+        public StudentSubmittedIcon(SubmittedCode submittedCode, Action<SubmittedCode> updateDisplayClick = null)
         {
             InitializeComponent();
             this.submittedCode = submittedCode;
-            currentPlacement = placement;
-            placing.Text = placement.ToString();
+            currentPlacement = submittedCode.placement;
+            placing.Text = submittedCode.placement.ToString();
             name.Text = submittedCode.user._studentName;
-            Debug.WriteLine("Score "+submittedCode.progress.codeRating.totalRating);
             score.Text = submittedCode.progress.codeRating.totalRating.ToString(); //the codeStats[5] contains the student score
 
-            this.Click += (sender, e) => updateDisplayClick?.Invoke();
+            this.Click += (sender, e) => updateDisplayClick?.Invoke(submittedCode);
         }
 
         public void UpdatePlacement(int newPlacement, string newSourceCode)

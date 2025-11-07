@@ -5,9 +5,13 @@ using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Interop;
+using System.Windows.Shapes;
+using Path = System.IO.Path;
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public partial class BaseCodeEditor : UserControl
@@ -26,6 +30,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected Dictionary<int, string> readabilityWarning;
         protected Dictionary<int, string> maintainabilityWarning;
         protected Dictionary<int, string> robustnessWarning;
+        private List<KeyValuePair<int,string>> lineErrorAndMessage;
 
         //detected violated rules
         protected HashSet<string> readabilityRules;
@@ -34,9 +39,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected string maintainabilityCheck = string.Empty;
 
+        private Func<Task> sendProgress;
         private string acceptedCode;
         private string errorMsg = "";
-        private int? errorLine = null;
         private System.Threading.Timer? _debounceTimer;
         private System.Threading.Timer? inputTimer;
         protected Action<int, int, List<string>> updateStats;
@@ -68,6 +73,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             readabilityWarning = new Dictionary<int, string>();
             maintainabilityWarning = new Dictionary<int, string>();
             robustnessWarning = new Dictionary<int, string>();
+            lineErrorAndMessage = new List<KeyValuePair<int, string>>();
 
             readabilityRules = new HashSet<string>();
             maintainabilityRules = new HashSet<string>();
@@ -81,32 +87,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             //will initialize first, incase it is new
             StudentProgress = progress;
-
+            this.sendProgress = sendProgress;
             new Action(async () => await RunLinting()).Invoke();
             srcCode.ToolTipNeeded += (s, e) =>
             {
                 string msg = "";
-                //if (errorLine != null && e.Place.iLine == errorLine)
-                //{
-                //    msg = errorMsg;
-                //}
-                if (standardError.ContainsKey(e.Place.iLine))
-                {
-                    msg += (standardError.GetValueOrDefault(e.Place.iLine, "No Error Found") + Environment.NewLine);
-                }
-                if (readabilityWarning.ContainsKey(e.Place.iLine))
-                {
-                    msg += (readabilityWarning.GetValueOrDefault(e.Place.iLine, "No Readability Issue Found") + Environment.NewLine);
-                }
-                if (maintainabilityWarning.ContainsKey(e.Place.iLine))
-                {
-                    msg += (maintainabilityWarning.GetValueOrDefault(e.Place.iLine, "No Maintainability Issue Found") + Environment.NewLine);
-                }
-                if (robustnessWarning.ContainsKey(e.Place.iLine))
-                {
-                    msg += (robustnessWarning.GetValueOrDefault(e.Place.iLine, "No Robustness Issue Found") + Environment.NewLine);
-                }
 
+                List<KeyValuePair<int, string>> errorLines = lineErrorAndMessage;
+                List<string> messages = errorLines.Where(kv => kv.Key == e.Place.iLine).Select(kv => kv.Value).ToList();
+                foreach (var item in messages)
+                {
+                    msg += (item + Environment.NewLine);
+                }
                 e.ToolTipText = msg;
             };
             int i = 0;
@@ -119,8 +111,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 _debounceTimer = new System.Threading.Timer(async _ =>
                 {
                     await RunLinting();
-                    await CountComplexity1();
-                    await sendProgress.Invoke();
+                    //await CountComplexity1();
+                    await this.sendProgress.Invoke();
                 }, null, 700, Timeout.Infinite);
 
                 //add the new source code to the code history
@@ -361,7 +353,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
-        public virtual void RunTest()
+        public virtual async void RunTest()
         {
             if (errorMsg != "")
             {
@@ -382,6 +374,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     acceptedCode = srcCode.Text;
                 }
+                await RunLinting();
+                await sendProgress.Invoke();
             }
         }
 
@@ -476,9 +470,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 var lineRange = srcCode.GetLine(errorLine);
                 lineRange.SetStyle(syntaxErrorHighlight);
-                if (standardError.ContainsKey(errorLine))
-                    standardError.Remove(errorLine);
-                standardError.Add(errorLine, errorMsg);
+                lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, errorMsg));
 
                 this.errorMsg += errorMsg + Environment.NewLine;
             }
@@ -491,9 +483,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 var lineRange = srcCode.GetLine(errorLine);
                 lineRange.SetStyle(readabilityHighlight);
-                if (standardError.ContainsKey(errorLine))
-                    standardError.Remove(errorLine);
-                standardError.Add(errorLine, msg);
+                lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, msg));
             }
             catch (ArgumentException) { }
         }
@@ -504,9 +494,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 var lineRange = srcCode.GetLine(errorLine);
                 lineRange.SetStyle(readabilityHighlight);
-                if (readabilityWarning.ContainsKey(errorLine))
-                    readabilityWarning.Remove(errorLine);
-                readabilityWarning.Add(errorLine, msg);
+                lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, msg));
             }
             catch (ArgumentException) { }
         }
@@ -517,9 +505,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 var lineRange = srcCode.GetLine(errorLine);
                 lineRange.SetStyle(maintainabilityHighlight);
-                if (maintainabilityWarning.ContainsKey(errorLine))
-                    maintainabilityWarning.Remove(errorLine);
-                maintainabilityWarning.Add(errorLine, msg);
+                lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, msg));
             }
             catch (ArgumentException) { }
         }
@@ -530,21 +516,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 var lineRange = srcCode.GetLine(errorLine);
                 lineRange.SetStyle(robustnessHighlight);
-                if (robustnessWarning.ContainsKey(errorLine))
-                    robustnessWarning.Remove(errorLine);
-                robustnessWarning.Add(errorLine, msg);
+                lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, msg));
             }
             catch (ArgumentException) { }
         }
 
         protected void NoError()
         {
-            errorLine = null;
             errorMsg = "";
             srcCode.Range.ClearStyle(syntaxErrorHighlight);
             srcCode.Range.ClearStyle(readabilityHighlight);
             srcCode.Range.ClearStyle(maintainabilityHighlight);
             srcCode.Range.ClearStyle(robustnessHighlight);
+            lineErrorAndMessage?.Clear();
         }
 
         private Task CountComplexity1()

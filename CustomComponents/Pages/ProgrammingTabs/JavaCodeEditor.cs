@@ -56,7 +56,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             string classname = Path.GetFileNameWithoutExtension(filePath);
             string directory = Path.GetDirectoryName(filePath);
-            commandLine = $"/c javac -cp {directory} {filePath} && java -cp {directory} {classname}";
+            commandLine = $"/c \"javac -cp \"{directory}\" \"{filePath}\" && java -cp \"{directory}\" \"{classname}\"\"";
             base.RunCode();
         }
 
@@ -103,7 +103,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string classname = Path.GetFileNameWithoutExtension(filePath);
             string directory = Path.GetDirectoryName(filePath);
 
-            process = CommandRunner($"/c \"{ProgrammingConfiguration.javac}\" -cp {directory} {filePath}");
+            process = CommandRunner($"/c \"javac -cp \"{directory}\" \"{filePath}\"\"");
             await StartprocessAsync(
                 process,
                 null,
@@ -116,7 +116,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string fileName = Path.GetFileName(filePath);
             string directory = Path.GetDirectoryName(filePath);
             string errorLine = "";
-            process = CommandRunner($"/c cd {directory} && javac -Xlint {fileName}");
+            process = CommandRunner($"/c cd \"{directory}\" && javac -Xlint \"{fileName}\"");
 
             await StartprocessAsyncExit(
                 process,
@@ -143,7 +143,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.java");
-            commandLine = $"/c cd {directory} && javac Tester.java && java Tester";
+            commandLine = $"/c \"cd \"{directory}\" && javac Tester.java && java Tester\"";
             base.RunTest();
         }
 

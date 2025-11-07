@@ -137,6 +137,7 @@ namespace SmartCodeLab.Services
             { "ARG003", "Unused class method argument; clean it up to improve readability and maintainability." },
             { "ARG004", "Unused static method argument; can be safely removed." },
             { "ARG005", "Unused lambda argument; unused parameters make code harder to follow." },
+            { "C901", "Function is too complex. Try breaking it into smaller parts or reducing nested conditions." },
 
             // ROBUSTNESS RULES
             { "F632", "Use '==' to compare constant literals instead of 'is'. Using 'is' compares object identity, not value equality." },

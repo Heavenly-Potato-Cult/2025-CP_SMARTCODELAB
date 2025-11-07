@@ -358,7 +358,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                 {
                     Serializer.SerializeWithLengthPrefix(fileStream,
                         //new ProgrammingSession(server, userProgress, homePage.notifications, progressSubmissionPage.GetAllSubmitted(), users),
-                        new ProgrammingSession(server, homePage.notifications, homePage.copyPasteDetectedCount, userProgress),
+                        new ProgrammingSession(server, homePage.notifications, homePage.copyPasteDetectedCount, userProgress, progressSubmissionPage.codeSubmissions),
                         PrefixStyle.Base128);
                     await fileStream.FlushAsync();
                     MessageBox.Show("Session file saved successfully");

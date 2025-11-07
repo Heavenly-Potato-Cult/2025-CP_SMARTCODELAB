@@ -183,7 +183,7 @@ namespace SmartCodeLab.Services
                 preview = true
                 lint.select = [	
                 	"B014", "B025", "B033",
-                	"PIE794", PYI062",
+                	"PIE794", "PYI062",
                 	"SIM101",
                 	"PLE0241",
                 	"PLR0913", "PLR0911", "PLR0915", "PLR2004",
@@ -191,8 +191,7 @@ namespace SmartCodeLab.Services
                     "C901"
                 ]
                 target-version = "py310"
-                lint.mccabe.max-complexity = 9999
-
+                lint.mccabe.max-complexity = 999
                 [format]
                 quote-style = "double"
                 """},

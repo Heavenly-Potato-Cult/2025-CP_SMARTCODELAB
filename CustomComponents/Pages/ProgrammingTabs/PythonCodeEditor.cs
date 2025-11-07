@@ -52,7 +52,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.py");
             commandLine = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{testerFile}\"\"";
-            base .RunTest();
+            base.RunTest();
         }
 
         public override async Task RunLinting()
@@ -81,7 +81,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         {
                             for (int i = 2; i < 5; i++)
                             {
-                                await checkStandards(checksToRun[i], standardClearer(i), i);
+                                await checkStandards(checksToRun[i], standardClearer(i), violationsHighLighter(i), i);
                             }
                         }
                         else
@@ -105,7 +105,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
-        private async Task checkStandards(string ruffFilePath, Action warningClearer, int updateStatsNum)
+        private async Task checkStandards(string ruffFilePath, Action warningClearer, Action<int, string> highlighter, int updateStatsNum)
         {
             warningClearer?.Invoke();
 
@@ -124,7 +124,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     if (mainPyIndex > 0)
                         checksViolations += output.Substring(output.IndexOf("Main.py") + 8) + Environment.NewLine;
                 },
-                null,
+                err => Debug.WriteLine("Err "+ err),
                 () =>
                 {
                     if (checksViolations != "")
@@ -136,11 +136,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             {
                                 string[] slicedViolation = item.Split(':');
                                 int errorLine = int.Parse(slicedViolation[0]);
-                                Debug.WriteLine("-"+ ruffCodeRetriever(slicedViolation[2]) + "-");
                                 string errorMessage = ToolTipProgrammingMessages.pythonRuffRules[ruffCodeRetriever(slicedViolation[2])];
 
-                                HighlightReadabilityIssue(errorLine - 1, errorMessage);
-                                readabilityRules.Add(ruffCodeRetriever(errorMessage));
+                                highlighter.Invoke(errorLine - 1, errorMessage);
                                 violationCounts++;
                             }
                             catch (ArgumentOutOfRangeException) { }
@@ -157,6 +155,24 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
+        private Action<int, string> violationsHighLighter(int i)
+        {
+            if (i == 2)
+                return new Action<int, string>((int num, string msg) =>
+                {
+                    base.HighlightReadabilityIssue(num, msg);
+                });
+            else if (i == 3)
+                return new Action<int, string>((int num, string msg) =>
+                {
+                    base.HighlightRobustnessIssue(num, msg);
+                });
+            else
+                return new Action<int, string>((int num, string msg) =>
+                {
+                    base.HighlightMaintainabilityIssue(num, msg);
+                });
+        }
         private Action standardClearer(int lintercheck) //2 = readability , 3 = robustness, else = maintainability
         {
             if (lintercheck == 2)

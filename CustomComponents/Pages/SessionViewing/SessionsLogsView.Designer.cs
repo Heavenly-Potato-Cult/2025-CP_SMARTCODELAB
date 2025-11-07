@@ -31,6 +31,7 @@
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
@@ -38,6 +39,7 @@
             // 
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(tabPage3);
             tabControl1.Location = new Point(3, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -59,10 +61,20 @@
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(1564, 709);
+            tabPage2.Size = new Size(1579, 724);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Progress Monitoring";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(1579, 724);
+            tabPage3.TabIndex = 2;
+            tabPage3.Text = "Submissions";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // SessionsLogsView
             // 
@@ -80,5 +92,6 @@
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private TabPage tabPage3;
     }
 }
