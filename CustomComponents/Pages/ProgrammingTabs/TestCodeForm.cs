@@ -95,7 +95,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
                 if (isCorrect)
                 {
-                    BackColor = Color.LightGreen;
+       
                     testcase.HeaderColor = Color.LightGreen;
                     testcase.Title2 = "Correct";
                 }

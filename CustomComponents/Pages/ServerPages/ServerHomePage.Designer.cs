@@ -156,10 +156,11 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 21);
+            pictureBox1.Location = new Point(18, 21);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(70, 62);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -203,10 +204,11 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(12, 21);
+            pictureBox2.Location = new Point(15, 22);
             pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(70, 62);
+            pictureBox2.Size = new Size(67, 62);
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 15;
             pictureBox2.TabStop = false;
             // 
@@ -244,16 +246,16 @@
             customCard3.Location = new Point(810, 20);
             customCard3.Margin = new Padding(3, 2, 50, 2);
             customCard3.Name = "customCard3";
-            customCard3.Size = new Size(229, 96);
+            customCard3.Size = new Size(262, 96);
             customCard3.TabIndex = 22;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(3, 22);
+            pictureBox3.Location = new Point(26, 20);
             pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(68, 61);
+            pictureBox3.Size = new Size(66, 63);
             pictureBox3.TabIndex = 16;
             pictureBox3.TabStop = false;
             // 
@@ -262,7 +264,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Gray;
-            label7.Location = new Point(73, 49);
+            label7.Location = new Point(105, 50);
             label7.Name = "label7";
             label7.Size = new Size(146, 20);
             label7.TabIndex = 14;
@@ -273,7 +275,7 @@
             pastedCount.AutoSize = true;
             pastedCount.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             pastedCount.ForeColor = Color.FromArgb(13, 13, 13);
-            pastedCount.Location = new Point(76, 21);
+            pastedCount.Location = new Point(117, 21);
             pastedCount.Name = "pastedCount";
             pastedCount.Size = new Size(26, 30);
             pastedCount.TabIndex = 12;
@@ -288,7 +290,7 @@
             customCard4.Controls.Add(pictureBox4);
             customCard4.Controls.Add(label9);
             customCard4.Controls.Add(label10);
-            customCard4.Location = new Point(1092, 20);
+            customCard4.Location = new Point(1110, 20);
             customCard4.Margin = new Padding(3, 2, 50, 2);
             customCard4.Name = "customCard4";
             customCard4.Size = new Size(238, 96);
@@ -300,7 +302,7 @@
             pictureBox4.Location = new Point(15, 21);
             pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(63, 62);
+            pictureBox4.Size = new Size(72, 62);
             pictureBox4.TabIndex = 17;
             pictureBox4.TabStop = false;
             // 

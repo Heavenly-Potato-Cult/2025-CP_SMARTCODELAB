@@ -65,6 +65,7 @@
             smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_OpenFolder = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             tableLayoutPanel2 = new TableLayoutPanel();
+            splitContainer1 = new SplitContainer();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -81,6 +82,10 @@
             panel_LeftSide_Main.SuspendLayout();
             panel_LeftSide_Buttons.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel1.SuspendLayout();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
             SuspendLayout();
             // 
             // headerPanel
@@ -201,10 +206,10 @@
             panel_MiddlePart_Main.Controls.Add(customTabControl1);
             panel_MiddlePart_Main.Controls.Add(panel1);
             panel_MiddlePart_Main.Dock = DockStyle.Fill;
-            panel_MiddlePart_Main.Location = new Point(260, 2);
+            panel_MiddlePart_Main.Location = new Point(0, 0);
             panel_MiddlePart_Main.Margin = new Padding(3, 2, 3, 2);
             panel_MiddlePart_Main.Name = "panel_MiddlePart_Main";
-            panel_MiddlePart_Main.Size = new Size(751, 684);
+            panel_MiddlePart_Main.Size = new Size(802, 682);
             panel_MiddlePart_Main.TabIndex = 20;
             // 
             // customTabControl1
@@ -213,7 +218,7 @@
             customTabControl1.Location = new Point(0, 46);
             customTabControl1.Margin = new Padding(3, 2, 3, 2);
             customTabControl1.Name = "customTabControl1";
-            customTabControl1.Size = new Size(751, 638);
+            customTabControl1.Size = new Size(802, 636);
             customTabControl1.TabIndex = 20;
             // 
             // panel1
@@ -227,7 +232,7 @@
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(751, 46);
+            panel1.Size = new Size(802, 46);
             panel1.TabIndex = 9;
             // 
             // smartButton5
@@ -328,7 +333,7 @@
             description.Name = "description";
             description.ReadOnly = true;
             description.ScrollBars = ScrollBars.Vertical;
-            description.Size = new Size(374, 138);
+            description.Size = new Size(380, 138);
             description.TabIndex = 76;
             // 
             // tabControl_RightSide
@@ -338,13 +343,13 @@
             tabControl_RightSide.Controls.Add(Leaderboards);
             tabControl_RightSide.Controls.Add(Score);
             tabControl_RightSide.Dock = DockStyle.Fill;
-            tabControl_RightSide.Location = new Point(1017, 2);
+            tabControl_RightSide.Location = new Point(1011, 2);
             tabControl_RightSide.Margin = new Padding(3, 2, 3, 2);
             tabControl_RightSide.Multiline = true;
             tabControl_RightSide.Name = "tabControl_RightSide";
             tableLayoutPanel2.SetRowSpan(tabControl_RightSide, 2);
             tabControl_RightSide.SelectedIndex = 0;
-            tabControl_RightSide.Size = new Size(382, 696);
+            tabControl_RightSide.Size = new Size(388, 696);
             tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
             tabControl_RightSide.TabIndex = 9;
             tabControl_RightSide.Resize += tabControl_RightSide_Resize;
@@ -356,7 +361,7 @@
             ActivityTab.Location = new Point(4, 44);
             ActivityTab.Margin = new Padding(3, 2, 3, 2);
             ActivityTab.Name = "ActivityTab";
-            ActivityTab.Size = new Size(374, 648);
+            ActivityTab.Size = new Size(380, 648);
             ActivityTab.TabIndex = 2;
             ActivityTab.Text = "Activity";
             ActivityTab.UseVisualStyleBackColor = true;
@@ -367,7 +372,7 @@
             ActivityPanel.Dock = DockStyle.Fill;
             ActivityPanel.Location = new Point(0, 0);
             ActivityPanel.Name = "ActivityPanel";
-            ActivityPanel.Size = new Size(374, 648);
+            ActivityPanel.Size = new Size(380, 648);
             ActivityPanel.TabIndex = 0;
             // 
             // activity_expansion_panel
@@ -378,7 +383,7 @@
             activity_expansion_panel.IconText = "v";
             activity_expansion_panel.Location = new Point(0, 0);
             activity_expansion_panel.Name = "activity_expansion_panel";
-            activity_expansion_panel.Size = new Size(374, 186);
+            activity_expansion_panel.Size = new Size(380, 186);
             activity_expansion_panel.TabIndex = 18;
             activity_expansion_panel.Title1 = "ActivityName";
             activity_expansion_panel.Title2 = "";
@@ -391,7 +396,7 @@
             MessagesTab.Margin = new Padding(3, 2, 3, 2);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3, 2, 3, 2);
-            MessagesTab.Size = new Size(374, 648);
+            MessagesTab.Size = new Size(380, 648);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -403,7 +408,7 @@
             richTextBox2.Location = new Point(3, 397);
             richTextBox2.Margin = new Padding(3, 2, 3, 2);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(368, 79);
+            richTextBox2.Size = new Size(374, 79);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
             richTextBox2.TextChanged += richTextBox2_TextChanged;
@@ -417,7 +422,7 @@
             msgBox.Margin = new Padding(3, 2, 3, 2);
             msgBox.Name = "msgBox";
             msgBox.ReadOnly = true;
-            msgBox.Size = new Size(368, 395);
+            msgBox.Size = new Size(374, 395);
             msgBox.TabIndex = 0;
             msgBox.Text = "";
             // 
@@ -428,7 +433,7 @@
             Leaderboards.Margin = new Padding(3, 2, 3, 2);
             Leaderboards.Name = "Leaderboards";
             Leaderboards.Padding = new Padding(3, 2, 3, 2);
-            Leaderboards.Size = new Size(374, 648);
+            Leaderboards.Size = new Size(380, 648);
             Leaderboards.TabIndex = 0;
             Leaderboards.Text = "Leaderboards";
             Leaderboards.UseVisualStyleBackColor = true;
@@ -440,7 +445,7 @@
             panel_leaderboards.Location = new Point(3, 2);
             panel_leaderboards.Name = "panel_leaderboards";
             panel_leaderboards.Padding = new Padding(0, 20, 0, 0);
-            panel_leaderboards.Size = new Size(368, 644);
+            panel_leaderboards.Size = new Size(374, 644);
             panel_leaderboards.TabIndex = 18;
             // 
             // Score
@@ -448,7 +453,7 @@
             Score.Controls.Add(expansion_expansion_panel);
             Score.Location = new Point(4, 44);
             Score.Name = "Score";
-            Score.Size = new Size(374, 648);
+            Score.Size = new Size(380, 648);
             Score.TabIndex = 3;
             Score.Text = "Score";
             Score.UseVisualStyleBackColor = true;
@@ -470,7 +475,7 @@
             expansion_expansion_panel.MouseState = MaterialSkin.MouseState.HOVER;
             expansion_expansion_panel.Name = "expansion_expansion_panel";
             expansion_expansion_panel.Padding = new Padding(24, 64, 24, 16);
-            expansion_expansion_panel.Size = new Size(374, 303);
+            expansion_expansion_panel.Size = new Size(380, 303);
             expansion_expansion_panel.TabIndex = 81;
             expansion_expansion_panel.Title = "Scores";
             expansion_expansion_panel.ValidationButtonText = " ";
@@ -482,7 +487,7 @@
             studentCodeRating.Location = new Point(24, 64);
             studentCodeRating.Margin = new Padding(3, 2, 3, 2);
             studentCodeRating.Name = "studentCodeRating";
-            studentCodeRating.Size = new Size(324, 221);
+            studentCodeRating.Size = new Size(330, 221);
             studentCodeRating.TabIndex = 79;
             // 
             // panel_LeftSide_Main
@@ -490,11 +495,10 @@
             panel_LeftSide_Main.Controls.Add(panel_LeftSide_Directory);
             panel_LeftSide_Main.Controls.Add(panel_LeftSide_Buttons);
             panel_LeftSide_Main.Dock = DockStyle.Fill;
-            panel_LeftSide_Main.Location = new Point(3, 2);
+            panel_LeftSide_Main.Location = new Point(0, 0);
             panel_LeftSide_Main.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Main.Name = "panel_LeftSide_Main";
-            tableLayoutPanel2.SetRowSpan(panel_LeftSide_Main, 2);
-            panel_LeftSide_Main.Size = new Size(251, 696);
+            panel_LeftSide_Main.Size = new Size(196, 682);
             panel_LeftSide_Main.TabIndex = 19;
             // 
             // panel_LeftSide_Directory
@@ -503,7 +507,7 @@
             panel_LeftSide_Directory.Location = new Point(0, 46);
             panel_LeftSide_Directory.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Directory.Name = "panel_LeftSide_Directory";
-            panel_LeftSide_Directory.Size = new Size(251, 650);
+            panel_LeftSide_Directory.Size = new Size(196, 636);
             panel_LeftSide_Directory.TabIndex = 15;
             // 
             // panel_LeftSide_Buttons
@@ -514,7 +518,7 @@
             panel_LeftSide_Buttons.Location = new Point(0, 0);
             panel_LeftSide_Buttons.Margin = new Padding(3, 2, 3, 2);
             panel_LeftSide_Buttons.Name = "panel_LeftSide_Buttons";
-            panel_LeftSide_Buttons.Size = new Size(251, 46);
+            panel_LeftSide_Buttons.Size = new Size(196, 46);
             panel_LeftSide_Buttons.TabIndex = 16;
             // 
             // smartButton6
@@ -561,13 +565,11 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.ColumnCount = 3;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 18.3457718F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 54.04229F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 27.61194F));
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 71.89729F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.10271F));
             tableLayoutPanel2.Controls.Add(tabControl_RightSide, 2, 0);
-            tableLayoutPanel2.Controls.Add(panel_LeftSide_Main, 0, 0);
-            tableLayoutPanel2.Controls.Add(panel_MiddlePart_Main, 1, 0);
+            tableLayoutPanel2.Controls.Add(splitContainer1, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 62);
             tableLayoutPanel2.Margin = new Padding(3, 2, 3, 2);
@@ -575,9 +577,25 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 98.4265747F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 1.5734266F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 15F));
             tableLayoutPanel2.Size = new Size(1402, 700);
             tableLayoutPanel2.TabIndex = 18;
+            // 
+            // splitContainer1
+            // 
+            splitContainer1.Dock = DockStyle.Fill;
+            splitContainer1.Location = new Point(3, 3);
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            splitContainer1.Panel1.Controls.Add(panel_LeftSide_Main);
+            // 
+            // splitContainer1.Panel2
+            // 
+            splitContainer1.Panel2.Controls.Add(panel_MiddlePart_Main);
+            splitContainer1.Size = new Size(1002, 682);
+            splitContainer1.SplitterDistance = 196;
+            splitContainer1.TabIndex = 10;
             // 
             // TempIDE
             // 
@@ -616,6 +634,10 @@
             panel_LeftSide_Main.ResumeLayout(false);
             panel_LeftSide_Buttons.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
+            splitContainer1.Panel1.ResumeLayout(false);
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -660,5 +682,6 @@
         private Panel panel_leaderboards;
         private CustomComponents.ExpansionPanel activity_expansion_panel;
         private TabPage Score;
+        private SplitContainer splitContainer1;
     }
 }
