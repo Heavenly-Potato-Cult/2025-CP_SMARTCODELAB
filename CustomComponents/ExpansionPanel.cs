@@ -45,7 +45,7 @@ namespace SmartCodeLab.CustomComponents
             this.lblTitle2.Click += new EventHandler(ToggleCollapse);
 
             
-            this.ControlAdded += new ControlEventHandler(this.FinalAccordion_ControlAdded);
+            //this.ControlAdded += new ControlEventHandler(this.FinalAccordion_ControlAdded);
 
             
             UpdateVisualState();
@@ -174,20 +174,20 @@ namespace SmartCodeLab.CustomComponents
         }
 
         
-        private void FinalAccordion_ControlAdded(object? sender, ControlEventArgs e)
-        {
-            if (e.Control == null)
-            {
-                return;
-            }
+        //private void FinalAccordion_ControlAdded(object? sender, ControlEventArgs e)
+        //{
+        //    if (e.Control == null)
+        //    {
+        //        return;
+        //    }
 
-            if (e.Control == this.headerPanel)
-            {
-                return;
-            }
+        //    if (e.Control == this.headerPanel)
+        //    {
+        //        return;
+        //    }
 
-            this.headerPanel.BringToFront();
-        }
+        //    this.headerPanel.BringToFront();
+        //}
 
         [DefaultValue(186)]
         public new int Height
