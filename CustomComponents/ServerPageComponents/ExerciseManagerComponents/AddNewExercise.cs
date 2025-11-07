@@ -1,5 +1,6 @@
 ﻿using ProtoBuf;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
+using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace SmartCodeLab.CustomComponents.CustomDialogs
@@ -125,14 +127,42 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         private void btn_AddTestCase_Click(object sender, EventArgs e)
         {
-            testCasesContainer.Controls.Add(new TestCase());
+
+            var testcaseholder = new ExpansionPanel();
+            var testcasecontent= new TestCase2();
+            testcasecontent.RemoveRequested += (s, ev) =>
+            {
+                testcaseholder.Dispose();
+            };
+
+            testcaseholder.Title1 = "test case";
+            testcaseholder.Title2 = "";
+            testcaseholder.HeaderColor = Color.FromArgb(230, 240, 255);
+            //testcaseholder.BackColor = Color.Gray;
+            testcaseholder.HeaderHeight = 20;
+            testcasecontent.AutoSize = false;
+
+            testcasecontent.Dock = DockStyle.Fill;
+            testcasecontent.Padding = new Padding(20, 25, 20, 0);
+            testcaseholder.Controls.Add(testcasecontent);
+
+            testcaseholder.Dock = DockStyle.Top;
+            testCasesContainer.Controls.Add(testcaseholder);
+            
         }
 
         private Dictionary<string, string> GetTestCases()
         {
             var testCases = new Dictionary<string, string>();
-            foreach (TestCase testCaseControl in testCasesContainer.Controls.OfType<TestCase>())
+            var panels = testCasesContainer.Controls.OfType<ExpansionPanel>();
+            foreach (var panel in panels)
             {
+                var testCaseControl = panel.Controls.OfType<TestCase2>().FirstOrDefault();
+                if (testCaseControl == null)
+                {
+                    continue;
+                }
+
                 try
                 {
                     var testCase = testCaseControl.GetTestCase();
@@ -145,16 +175,38 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         private void SetTestCases(Dictionary<string, string> testCases)
         {
-            Task.Run(() =>
+            // Convert to a list so we can loop backward
+            var testCaseList = testCases.ToList();
+
+            
+            for (int i = testCaseList.Count - 1; i >= 0; i--)
             {
-                foreach (var testCase in testCases)
+                var testCase = testCaseList[i];
+                var testCaseNumber = i + 1;
+
+                var testcaseholder = new ExpansionPanel();
+
+                
+                var testcasecontent = new TestCase2(testCase);
+
+                testcasecontent.RemoveRequested += (s, ev) =>
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        testCasesContainer.Controls.Add(new TestCase(testCase));
-                    }));
-                }
-            });
+                    testcaseholder.Dispose();
+                };
+
+                testcaseholder.Title1 = "test case";
+                testcaseholder.Title2 = testCaseNumber.ToString();
+                testcaseholder.HeaderColor = Color.FromArgb(230, 240, 255);
+                testcaseholder.HeaderHeight = 20;
+
+                testcasecontent.AutoSize = false;
+                testcasecontent.Dock = DockStyle.Fill;
+                testcasecontent.Padding = new Padding(20, 25, 20, 0);
+                testcaseholder.Controls.Add(testcasecontent);
+
+                testcaseholder.Dock = DockStyle.Top;
+                testCasesContainer.Controls.Add(testcaseholder);
+            }
         }
     }
 }

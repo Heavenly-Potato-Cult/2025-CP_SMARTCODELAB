@@ -38,9 +38,9 @@
             btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label6 = new Label();
             panel7 = new Panel();
+            testCasesContainer = new Panel();
             subject = new CustomTextBox();
             panel_temp_spacer = new Panel();
-            testCasesContainer = new FlowLayoutPanel();
             panel7.SuspendLayout();
             SuspendLayout();
             // 
@@ -161,7 +161,7 @@
             btn_AddTestCase.FlatStyle = FlatStyle.Flat;
             btn_AddTestCase.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btn_AddTestCase.ForeColor = Color.White;
-            btn_AddTestCase.Location = new Point(796, 258);
+            btn_AddTestCase.Location = new Point(796, 269);
             btn_AddTestCase.Margin = new Padding(3, 2, 3, 2);
             btn_AddTestCase.Name = "btn_AddTestCase";
             btn_AddTestCase.Size = new Size(94, 30);
@@ -175,7 +175,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(24, 269);
+            label6.Location = new Point(24, 276);
             label6.Name = "label6";
             label6.Size = new Size(73, 19);
             label6.TabIndex = 59;
@@ -204,6 +204,15 @@
             panel7.Size = new Size(909, 614);
             panel7.TabIndex = 60;
             // 
+            // testCasesContainer
+            // 
+            testCasesContainer.AutoScroll = true;
+            testCasesContainer.AutoScrollMinSize = new Size(2, 0);
+            testCasesContainer.Location = new Point(24, 310);
+            testCasesContainer.Name = "testCasesContainer";
+            testCasesContainer.Size = new Size(866, 221);
+            testCasesContainer.TabIndex = 64;
+            // 
             // subject
             // 
             subject.BackColor = Color.White;
@@ -230,17 +239,6 @@
             panel_temp_spacer.Name = "panel_temp_spacer";
             panel_temp_spacer.Size = new Size(219, 16);
             panel_temp_spacer.TabIndex = 61;
-            // 
-            // testCasesContainer
-            // 
-            testCasesContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            testCasesContainer.AutoScroll = true;
-            testCasesContainer.Location = new Point(20, 290);
-            testCasesContainer.Margin = new Padding(3, 2, 3, 2);
-            testCasesContainer.Name = "testCasesContainer";
-            testCasesContainer.Padding = new Padding(0, 0, 0, 75);
-            testCasesContainer.Size = new Size(870, 252);
-            testCasesContainer.TabIndex = 63;
             // 
             // AddNewExercise
             // 
@@ -276,6 +274,6 @@
         private Panel panel7;
         private Panel panel_temp_spacer;
         private CustomTextBox subject;
-        private FlowLayoutPanel testCasesContainer;
+        private Panel testCasesContainer;
     }
 }
