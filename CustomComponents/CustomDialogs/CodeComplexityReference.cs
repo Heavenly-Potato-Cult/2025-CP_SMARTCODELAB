@@ -38,7 +38,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             ProcessStartInfo startInfo = new ProcessStartInfo
             {
                 FileName = ProgrammingConfiguration.lizardExe,
-                Arguments = filePath,
+                Arguments = $"\"{filePath}\"",
                 UseShellExecute = false,               // required for redirection
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
@@ -54,7 +54,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 {
                     try
                     {
-                        Debug.WriteLine(allOutput);
                         totalComplexity = cycComplexityOutputExtractor(allOutput);
                     }
                     catch (IndexOutOfRangeException) { totalComplexity = 1; }

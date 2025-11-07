@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,13 +16,13 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
     public partial class CodeQualityChoices2 : RoundedUserControl
     {
 
-        private int complexity_sandard;
+        private int complexity_standard;
         private int unallocated;
         private Dictionary<TrackBar, int> recentValue;
         public CodeQualityChoices2()
         {
             InitializeComponent();
-            complexity_sandard = 0;
+            complexity_standard = 0;
             recentValue = new Dictionary<TrackBar, int>()
             {
                 {accuracyT, 100 },
@@ -123,6 +124,11 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
+            var complexitySetter = new CodeComplexityReference();
+            maintainabilityBox.Checked = complexitySetter.ShowDialog() == DialogResult.OK;
+            complexity_standard = complexitySetter.total_cyclomatic_complexity;
+            Debug.WriteLine(complexity_standard);
+
             maintainabilityT.Enabled = maintainabilityBox.Checked;
             if (!maintainabilityBox.Checked)
                 IlostMyValueT_T(maintainabilityT);
@@ -134,6 +140,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             if (!readabilityBox.Checked)
                 IlostMyValueT_T(readabilityT);
         }
+
         private void robustnessBox_CheckedChanged_1(object sender, EventArgs e)
         {
             robustnessT.Enabled = robustnessBox.Checked;
@@ -153,7 +160,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             if (robustnessBox.Checked)
                 ratingFactors.Add(3, [robustnessT.Value]);
             if (maintainabilityBox.Checked)
-                ratingFactors.Add(4, [maintainabilityT.Value, complexity_sandard]);
+                ratingFactors.Add(4, [maintainabilityT.Value, complexity_standard]);
 
             return ratingFactors;
         }

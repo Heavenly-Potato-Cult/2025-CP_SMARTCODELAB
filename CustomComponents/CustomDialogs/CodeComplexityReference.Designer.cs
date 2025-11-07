@@ -56,7 +56,6 @@
             referenceCode.CharHeight = 14;
             referenceCode.CharWidth = 8;
             referenceCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            referenceCode.Font = new Font("Courier New", 9.75F);
             referenceCode.Hotkeys = resources.GetString("referenceCode.Hotkeys");
             referenceCode.IsReplaceMode = false;
             referenceCode.Location = new Point(0, 1);
@@ -65,7 +64,7 @@
             referenceCode.Paddings = new Padding(0);
             referenceCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             referenceCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("referenceCode.ServiceColors");
-            referenceCode.Size = new Size(635, 406);
+            referenceCode.Size = new Size(859, 578);
             referenceCode.TabIndex = 0;
             referenceCode.Zoom = 100;
             // 
@@ -76,7 +75,7 @@
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(122, 428);
+            smartButton1.Location = new Point(248, 602);
             smartButton1.Margin = new Padding(3, 2, 3, 2);
             smartButton1.Name = "smartButton1";
             smartButton1.Size = new Size(164, 38);
@@ -92,7 +91,7 @@
             smartButton2.FlatAppearance.BorderSize = 0;
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(326, 428);
+            smartButton2.Location = new Point(429, 602);
             smartButton2.Margin = new Padding(3, 2, 3, 2);
             smartButton2.Name = "smartButton2";
             smartButton2.Size = new Size(164, 38);
@@ -105,7 +104,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(638, 474);
+            ClientSize = new Size(859, 651);
             Controls.Add(smartButton2);
             Controls.Add(smartButton1);
             Controls.Add(referenceCode);
