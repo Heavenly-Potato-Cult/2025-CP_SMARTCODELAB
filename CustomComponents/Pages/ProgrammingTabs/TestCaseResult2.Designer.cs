@@ -66,12 +66,13 @@
     '\'',
     '\''
     };
-            actualOutput.AutoScrollMinSize = new Size(115, 14);
+            actualOutput.AutoScrollMinSize = new Size(90, 14);
             actualOutput.BackBrush = null;
             actualOutput.CharHeight = 14;
             actualOutput.CharWidth = 8;
             actualOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             actualOutput.Dock = DockStyle.Fill;
+            actualOutput.Font = new Font("Courier New", 9.75F);
             actualOutput.Hotkeys = resources.GetString("actualOutput.Hotkeys");
             actualOutput.IsReplaceMode = false;
             actualOutput.Location = new Point(0, 20);
@@ -101,12 +102,13 @@
     '\'',
     '\''
     };
-            expectedOutput.AutoScrollMinSize = new Size(115, 14);
+            expectedOutput.AutoScrollMinSize = new Size(90, 14);
             expectedOutput.BackBrush = null;
             expectedOutput.CharHeight = 14;
             expectedOutput.CharWidth = 8;
             expectedOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             expectedOutput.Dock = DockStyle.Fill;
+            expectedOutput.Font = new Font("Courier New", 9.75F);
             expectedOutput.Hotkeys = resources.GetString("expectedOutput.Hotkeys");
             expectedOutput.IsReplaceMode = false;
             expectedOutput.Location = new Point(0, 20);
@@ -136,12 +138,13 @@
     '\'',
     '\''
     };
-            inputs.AutoScrollMinSize = new Size(115, 14);
+            inputs.AutoScrollMinSize = new Size(90, 14);
             inputs.BackBrush = null;
             inputs.CharHeight = 14;
             inputs.CharWidth = 8;
             inputs.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             inputs.Dock = DockStyle.Fill;
+            inputs.Font = new Font("Courier New", 9.75F);
             inputs.Hotkeys = resources.GetString("inputs.Hotkeys");
             inputs.IsReplaceMode = false;
             inputs.Location = new Point(0, 20);
