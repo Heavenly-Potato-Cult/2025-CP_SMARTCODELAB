@@ -159,7 +159,7 @@
             smartButton7.ForeColor = Color.DodgerBlue;
             smartButton7.Location = new Point(16, 146);
             smartButton7.Name = "smartButton7";
-            smartButton7.Size = new Size(223, 39);
+            smartButton7.Size = new Size(329, 39);
             smartButton7.TabIndex = 60;
             smartButton7.Text = "Edit";
             smartButton7.TextColor = Color.DodgerBlue;
