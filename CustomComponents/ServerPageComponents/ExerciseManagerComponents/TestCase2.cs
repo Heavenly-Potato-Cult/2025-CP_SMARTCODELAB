@@ -17,6 +17,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             InitializeComponent();
         }
 
+        public event EventHandler RemoveRequested;
+
         public TestCase2(KeyValuePair<string, string> testCase)
         {
             InitializeComponent();
@@ -24,16 +26,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             codeEditor2.Text = testCase.Value;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Dispose();
-        }
-
-        
-
         public KeyValuePair<string, string> GetTestCase()
         {
             return new KeyValuePair<string, string>(codeEditor1.Text, codeEditor2.Text);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            RemoveRequested?.Invoke(this, EventArgs.Empty);
         }
     }
 }
