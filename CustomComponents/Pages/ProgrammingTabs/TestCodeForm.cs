@@ -1,15 +1,16 @@
-﻿using SmartCodeLab.Models;
+﻿using SmartCodeLab.CustomComponents.TaskPageComponents;
+using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
@@ -86,8 +87,37 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     score++;
 
                 currentScore.Text = score.ToString();
-                flowLayoutPanel1.Controls.Add(new TestCaseResult(sequence++, isCorrect, item.Key, item.Value, testOutput));
+                //flowLayoutPanel1.Controls.Add(new TestCaseResult(sequence++, isCorrect, item.Key, item.Value, testOutput));
+                var testcase = new ExpansionPanel();
+                var testcaseview = new TestCaseResult2(sequence, isCorrect, item.Key, item.Value, testOutput);
+                testcase.Title1 = "Test Case " + sequence.ToString();
+                
 
+                if (isCorrect)
+                {
+                    BackColor = Color.LightGreen;
+                    testcase.HeaderColor = Color.LightGreen;
+                    testcase.Title2 = "Correct";
+                }
+                else
+                {
+                    testcase.HeaderColor = Color.Red;
+                    testcase.Title2 = "Incorrect";
+
+                }
+
+                testcase.BackColor = Color.White;
+                testcaseview.AutoSize = false;
+
+                testcaseview.Padding = new Padding(0, 60, 0, 0);
+                testcase.Controls.Add(testcaseview);
+                testcaseview.Dock = DockStyle.Fill;
+
+                testcase.Dock = DockStyle.Top;
+
+                testcase.Controls.Add(testcaseview);
+                panel_results.Controls.Add(testcase);
+                sequence++;
                 //return the tester file content to its original content
                 File.WriteAllText(testFile, testSrcCode.Replace(input, "userInput"));
             }

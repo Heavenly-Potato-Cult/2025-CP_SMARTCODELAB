@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentCodeRating));
             panel19 = new Panel();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             score = new Label();
-            pictureBox7 = new PictureBox();
             label9 = new Label();
             readabilityContainer = new Panel();
             readability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
@@ -43,43 +41,42 @@
             panel1 = new Panel();
             label1 = new Label();
             complexity = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
-            flowLayoutPanel1 = new FlowLayoutPanel();
             accuracyPanel = new Panel();
             accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             label15 = new Label();
+            panel2 = new Panel();
             panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             readabilityContainer.SuspendLayout();
             efficiencyContainer.SuspendLayout();
             panel1.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
             accuracyPanel.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel19
             // 
-            panel19.BackColor = Color.FromArgb(240, 247, 255);
+            panel19.BackColor = Color.White;
             panel19.Controls.Add(smartButton1);
             panel19.Controls.Add(score);
-            panel19.Controls.Add(pictureBox7);
             panel19.Controls.Add(label9);
             panel19.Dock = DockStyle.Top;
             panel19.Location = new Point(0, 0);
             panel19.Margin = new Padding(3, 2, 3, 2);
             panel19.Name = "panel19";
-            panel19.Size = new Size(391, 42);
+            panel19.Size = new Size(387, 42);
             panel19.TabIndex = 77;
             // 
             // smartButton1
             // 
+            smartButton1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 20;
+            smartButton1.BorderRadius = 10;
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(230, 5);
+            smartButton1.Location = new Point(291, 5);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(140, 34);
+            smartButton1.Size = new Size(75, 28);
             smartButton1.TabIndex = 82;
             smartButton1.Text = "View More";
             smartButton1.UseVisualStyleBackColor = false;
@@ -90,28 +87,18 @@
             score.AutoSize = true;
             score.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             score.ForeColor = Color.FromArgb(66, 110, 232);
-            score.Location = new Point(109, 10);
+            score.Location = new Point(71, 8);
             score.Name = "score";
             score.Size = new Size(23, 25);
             score.TabIndex = 81;
             score.Text = "0";
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(20, 14);
-            pictureBox7.Margin = new Padding(3, 2, 3, 2);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(22, 19);
-            pictureBox7.TabIndex = 78;
-            pictureBox7.TabStop = false;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.FromArgb(66, 110, 232);
-            label9.Location = new Point(45, 10);
+            label9.Location = new Point(7, 8);
             label9.Name = "label9";
             label9.Size = new Size(62, 25);
             label9.TabIndex = 79;
@@ -122,18 +109,20 @@
             readabilityContainer.BackColor = Color.White;
             readabilityContainer.Controls.Add(readability);
             readabilityContainer.Controls.Add(label2);
-            readabilityContainer.Location = new Point(3, 36);
+            readabilityContainer.Dock = DockStyle.Top;
+            readabilityContainer.Location = new Point(0, 30);
             readabilityContainer.Margin = new Padding(3, 2, 3, 2);
             readabilityContainer.Name = "readabilityContainer";
-            readabilityContainer.Size = new Size(376, 30);
+            readabilityContainer.Size = new Size(382, 30);
             readabilityContainer.TabIndex = 0;
             // 
             // readability
             // 
+            readability.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             readability.Location = new Point(122, 12);
             readability.Margin = new Padding(3, 2, 3, 2);
             readability.Name = "readability";
-            readability.Size = new Size(242, 10);
+            readability.Size = new Size(248, 10);
             readability.TabIndex = 83;
             readability.Value = 100;
             // 
@@ -152,18 +141,20 @@
             // 
             efficiencyContainer.Controls.Add(efficiency);
             efficiencyContainer.Controls.Add(label3);
-            efficiencyContainer.Location = new Point(3, 70);
+            efficiencyContainer.Dock = DockStyle.Top;
+            efficiencyContainer.Location = new Point(0, 60);
             efficiencyContainer.Margin = new Padding(3, 2, 3, 2);
             efficiencyContainer.Name = "efficiencyContainer";
-            efficiencyContainer.Size = new Size(376, 30);
+            efficiencyContainer.Size = new Size(382, 30);
             efficiencyContainer.TabIndex = 85;
             // 
             // efficiency
             // 
+            efficiency.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             efficiency.Location = new Point(122, 9);
             efficiency.Margin = new Padding(3, 2, 3, 2);
             efficiency.Name = "efficiency";
-            efficiency.Size = new Size(242, 10);
+            efficiency.Size = new Size(248, 10);
             efficiency.TabIndex = 81;
             efficiency.Value = 100;
             // 
@@ -180,12 +171,12 @@
             // 
             // panel1
             // 
-            panel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             panel1.Controls.Add(label1);
             panel1.Controls.Add(complexity);
-            panel1.Location = new Point(3, 105);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 90);
             panel1.Name = "panel1";
-            panel1.Size = new Size(376, 30);
+            panel1.Size = new Size(382, 30);
             panel1.TabIndex = 86;
             // 
             // label1
@@ -201,43 +192,32 @@
             // 
             // complexity
             // 
+            complexity.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             complexity.Location = new Point(122, 10);
             complexity.Margin = new Padding(3, 2, 3, 2);
             complexity.Name = "complexity";
-            complexity.Size = new Size(242, 10);
+            complexity.Size = new Size(248, 10);
             complexity.TabIndex = 84;
             complexity.Value = 100;
-            // 
-            // flowLayoutPanel1
-            // 
-            flowLayoutPanel1.AutoScroll = true;
-            flowLayoutPanel1.Controls.Add(accuracyPanel);
-            flowLayoutPanel1.Controls.Add(readabilityContainer);
-            flowLayoutPanel1.Controls.Add(efficiencyContainer);
-            flowLayoutPanel1.Controls.Add(panel1);
-            flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel1.Location = new Point(3, 47);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(382, 143);
-            flowLayoutPanel1.TabIndex = 88;
-            flowLayoutPanel1.WrapContents = false;
             // 
             // accuracyPanel
             // 
             accuracyPanel.Controls.Add(accuracy);
             accuracyPanel.Controls.Add(label15);
-            accuracyPanel.Location = new Point(3, 2);
+            accuracyPanel.Dock = DockStyle.Top;
+            accuracyPanel.Location = new Point(0, 0);
             accuracyPanel.Margin = new Padding(3, 2, 3, 2);
             accuracyPanel.Name = "accuracyPanel";
-            accuracyPanel.Size = new Size(376, 30);
+            accuracyPanel.Size = new Size(382, 30);
             accuracyPanel.TabIndex = 1;
             // 
             // accuracy
             // 
+            accuracy.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             accuracy.Location = new Point(122, 10);
             accuracy.Margin = new Padding(3, 2, 3, 2);
             accuracy.Name = "accuracy";
-            accuracy.Size = new Size(242, 10);
+            accuracy.Size = new Size(248, 10);
             accuracy.TabIndex = 81;
             // 
             // label15
@@ -251,35 +231,44 @@
             label15.TabIndex = 80;
             label15.Text = "Accuracy";
             // 
+            // panel2
+            // 
+            panel2.Controls.Add(panel1);
+            panel2.Controls.Add(efficiencyContainer);
+            panel2.Controls.Add(readabilityContainer);
+            panel2.Controls.Add(accuracyPanel);
+            panel2.Location = new Point(3, 47);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(382, 143);
+            panel2.TabIndex = 89;
+            // 
             // StudentCodeRating
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(flowLayoutPanel1);
+            Controls.Add(panel2);
             Controls.Add(panel19);
             Margin = new Padding(3, 2, 3, 2);
             Name = "StudentCodeRating";
-            Size = new Size(391, 193);
+            Size = new Size(387, 192);
             panel19.ResumeLayout(false);
             panel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             readabilityContainer.ResumeLayout(false);
             readabilityContainer.PerformLayout();
             efficiencyContainer.ResumeLayout(false);
             efficiencyContainer.PerformLayout();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            flowLayoutPanel1.ResumeLayout(false);
             accuracyPanel.ResumeLayout(false);
             accuracyPanel.PerformLayout();
+            panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel19;
-        private PictureBox pictureBox7;
         private Label label9;
         private GeneralComponents.StatsBar readability;
         private Label label2;
@@ -291,10 +280,10 @@
         private Label score;
         private Panel panel1;
         private Panel readabilityContainer;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Panel accuracyPanel;
         private GeneralComponents.StatsBar accuracy;
         private Label label15;
         private GeneralComponents.SmartButton smartButton1;
+        private Panel panel2;
     }
 }
