@@ -40,18 +40,43 @@ namespace SmartCodeLab
                     }));
                     foreach (var item in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
                     {
-                        using (FileStream sessionFile = File.OpenRead(item))
+                        try
                         {
-                            ProgrammingSession session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
-                            if (session != null)
+                            using (FileStream sessionFile = File.OpenRead(item))
                             {
-                                this.Invoke(new Action(() =>
+                                ProgrammingSession session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
+                                if (session != null)
                                 {
-                                    sessionsContainer.Controls.Add(new SessionLogsDisplay(session));
-                                }));
+                                    this.Invoke(new Action(() =>
+                                    {
+                                        sessionsContainer.Controls.Add(new SessionLogsDisplay(session));
+                                    }));
+                                }
+                            }
+
+                        }
+                        catch (ProtoBuf.ProtoException ex)
+                        {
+                            // Corrupted protobuf data (likely from non-truncating write). Move the file aside and continue.
+                            Debug.WriteLine($"ProtoException while deserializing session file '{item}': {ex.Message}");
+                            try
+                            {
+                                var corruptPath = item + ".corrupt";
+                                if (File.Exists(corruptPath)) File.Delete(corruptPath);
+                                File.Move(item, corruptPath);
+                                Debug.WriteLine($"Moved corrupted session to '{corruptPath}'.");
+                            }
+                            catch (Exception mex)
+                            {
+                                Debug.WriteLine($"Failed to move corrupted session file '{item}': {mex.Message}");
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine($"Error reading session file '{item}': {ex.Message}");
+                        }
                     }
+
                 });
             };
         }
