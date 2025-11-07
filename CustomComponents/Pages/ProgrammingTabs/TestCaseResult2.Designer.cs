@@ -34,8 +34,8 @@
             expectedOutput = new CodeEditor();
             inputs = new CodeEditor();
             splitContainer1 = new SplitContainer();
-            splitContainer2 = new SplitContainer();
             label1 = new Label();
+            splitContainer2 = new SplitContainer();
             label2 = new Label();
             label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)actualOutput).BeginInit();
@@ -72,7 +72,6 @@
             actualOutput.CharWidth = 8;
             actualOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             actualOutput.Dock = DockStyle.Fill;
-            actualOutput.Font = new Font("Courier New", 9.75F);
             actualOutput.Hotkeys = resources.GetString("actualOutput.Hotkeys");
             actualOutput.IsReplaceMode = false;
             actualOutput.Location = new Point(0, 20);
@@ -108,7 +107,6 @@
             expectedOutput.CharWidth = 8;
             expectedOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             expectedOutput.Dock = DockStyle.Fill;
-            expectedOutput.Font = new Font("Courier New", 9.75F);
             expectedOutput.Hotkeys = resources.GetString("expectedOutput.Hotkeys");
             expectedOutput.IsReplaceMode = false;
             expectedOutput.Location = new Point(0, 20);
@@ -144,7 +142,6 @@
             inputs.CharWidth = 8;
             inputs.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             inputs.Dock = DockStyle.Fill;
-            inputs.Font = new Font("Courier New", 9.75F);
             inputs.Hotkeys = resources.GetString("inputs.Hotkeys");
             inputs.IsReplaceMode = false;
             inputs.Location = new Point(0, 20);
@@ -177,6 +174,18 @@
             splitContainer1.SplitterDistance = 231;
             splitContainer1.TabIndex = 89;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Dock = DockStyle.Top;
+            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(0, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(45, 20);
+            label1.TabIndex = 82;
+            label1.Text = "Input";
+            // 
             // splitContainer2
             // 
             splitContainer2.Dock = DockStyle.Fill;
@@ -196,18 +205,6 @@
             splitContainer2.SplitterDistance = 195;
             splitContainer2.TabIndex = 0;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(45, 20);
-            label1.TabIndex = 82;
-            label1.Text = "Input";
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -216,9 +213,9 @@
             label2.ForeColor = Color.DimGray;
             label2.Location = new Point(0, 0);
             label2.Name = "label2";
-            label2.Size = new Size(50, 20);
+            label2.Size = new Size(123, 20);
             label2.TabIndex = 82;
-            label2.Text = "Result";
+            label2.Text = "Expected Output";
             // 
             // label3
             // 
@@ -228,9 +225,9 @@
             label3.ForeColor = Color.DimGray;
             label3.Location = new Point(0, 0);
             label3.Name = "label3";
-            label3.Size = new Size(59, 20);
+            label3.Size = new Size(104, 20);
             label3.TabIndex = 82;
-            label3.Text = "Correct";
+            label3.Text = "Actual Output";
             // 
             // TestCaseResult2
             // 
