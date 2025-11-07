@@ -94,7 +94,6 @@
             // 
             // flowLayoutPanel_Exercises
             // 
-            flowLayoutPanel_Exercises.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             flowLayoutPanel_Exercises.AutoScroll = true;
             flowLayoutPanel_Exercises.Location = new Point(305, 202);
             flowLayoutPanel_Exercises.Margin = new Padding(3, 2, 3, 2);
