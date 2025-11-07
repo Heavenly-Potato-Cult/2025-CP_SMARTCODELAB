@@ -145,20 +145,47 @@ namespace SmartCodeLab.CustomComponents
             get { return headerPanel.Height; }
             set
             {
-                // Guard clause, no change
+                
                 if (headerPanel.Height == value)
                 {
                     return;
                 }
 
-                // Set the header panel's new height
+                // 1. Set the header panel's new height
                 headerPanel.Height = value;
 
-                // CRITICAL: Update the cached collapsed height
+                // 2. Resize the icon to match the new header height
+                lblIcon.Height = value;
+
+                // 3. Calculate new vertical margin to re-center the titles
+                int labelHeight = lblTitle1.Height; // Get the label's height
+                int newMargin = (value - labelHeight) / 2; // (NewHeight - 20) / 2
+
+                // Ensure margin isn't negative if header is tiny
+                if (newMargin < 0)
+                {
+                    newMargin = 0;
+                }
+
+                // Apply new margin to both title labels ma bru
+                lblTitle1.Margin = new Padding(
+                    lblTitle1.Margin.Left,
+                    newMargin,
+                    lblTitle1.Margin.Right,
+                    lblTitle1.Margin.Bottom
+                );
+
+                lblTitle2.Margin = new Padding(
+                    lblTitle2.Margin.Left,
+                    newMargin,
+                    lblTitle2.Margin.Right,
+                    lblTitle2.Margin.Bottom
+                );
+
+                //  Update the cached collapsed height (this part is correct)
                 this.collapsedHeight = value;
 
-                // If the panel is already collapsed,
-                // update its total height immediately.
+                //  If the panel is currently collapsed, update its total height
                 if (!isExpanded)
                 {
                     this.Height = value;
@@ -202,22 +229,7 @@ namespace SmartCodeLab.CustomComponents
             set { headerPanel.BackColor = value; }
         }
 
-        
-        //private void FinalAccordion_ControlAdded(object? sender, ControlEventArgs e)
-        //{
-        //    if (e.Control == null)
-        //    {
-        //        return;
-        //    }
-
-        //    if (e.Control == this.headerPanel)
-        //    {
-        //        return;
-        //    }
-
-        //    this.headerPanel.BringToFront();
-        //}
-
+    
         [DefaultValue(186)]
         public new int Height
         {
