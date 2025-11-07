@@ -20,7 +20,7 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
         public TestCaseView(int num,string userInput, string expectedOutput)
         {
             InitializeComponent();
-            number.Text = num.ToString();
+            //number.Text = num.ToString();
             input.Text = userInput;
             output.Text = expectedOutput;
         }
