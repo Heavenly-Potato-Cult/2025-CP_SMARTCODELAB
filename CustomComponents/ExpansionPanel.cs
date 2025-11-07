@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -22,6 +21,12 @@ namespace SmartCodeLab.CustomComponents
         private bool isExpanded = true;
         private int defaultHeight = 186;
         private int collapsedHeight = 48;
+
+        // --- Event to notify hosts ---
+        /// <summary>
+        /// Raised after the expanded/collapsed state changes.
+        /// </summary>
+        public event EventHandler? ExpandedChanged;
 
         // --- Constructor ---
         public ExpansionPanel()
@@ -70,7 +75,18 @@ namespace SmartCodeLab.CustomComponents
 
                 isExpanded = value;
                 UpdateVisualState();
+
+                // Notify subscribers
+                OnExpandedChanged(EventArgs.Empty);
             }
+        }
+
+        /// <summary>
+        /// Raises the ExpandedChanged event.
+        /// </summary>
+        protected virtual void OnExpandedChanged(EventArgs e)
+        {
+            ExpandedChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -112,6 +128,12 @@ namespace SmartCodeLab.CustomComponents
                     c.Visible = true;
                 }
             }
+
+            // Ensure the control and parent get layout notifications immediately.
+            // Setting Height already triggers SizeChanged, but call OnSizeChanged explicitly
+            // and request parent layout so containers with AutoSize update right away.
+            OnSizeChanged(EventArgs.Empty);
+            Parent?.PerformLayout();
         }
 
         // --- Public Properties ---
