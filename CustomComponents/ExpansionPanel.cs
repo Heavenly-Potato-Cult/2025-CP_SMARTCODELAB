@@ -138,6 +138,35 @@ namespace SmartCodeLab.CustomComponents
 
         // --- Public Properties ---
         [Category("Appearance")]
+        [Description("Gets or sets the height of the header panel.")]
+        [DefaultValue(48)]
+        public int HeaderHeight
+        {
+            get { return headerPanel.Height; }
+            set
+            {
+                // Guard clause, no change
+                if (headerPanel.Height == value)
+                {
+                    return;
+                }
+
+                // Set the header panel's new height
+                headerPanel.Height = value;
+
+                // CRITICAL: Update the cached collapsed height
+                this.collapsedHeight = value;
+
+                // If the panel is already collapsed,
+                // update its total height immediately.
+                if (!isExpanded)
+                {
+                    this.Height = value;
+                }
+            }
+        }
+
+        [Category("Appearance")]
         [Description("The main title text for the panel.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Title1
