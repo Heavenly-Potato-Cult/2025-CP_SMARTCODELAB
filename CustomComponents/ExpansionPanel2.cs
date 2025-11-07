@@ -1,63 +1,108 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Windows.Forms.Design;
 
 namespace SmartCodeLab.CustomComponents
 {
+    [Designer(typeof(SmartCodeLab.CustomComponents.ExpansionPanelDesigner))]
     public partial class ExpansionPanel2 : UserControl
     {
-        private Size InitialSize;
-        private int InitialHeight, InitialWidth;
+        private int _expandedHeight;
+        private const int _collapsedHeight = 40;
+
         public ExpansionPanel2()
         {
             InitializeComponent();
-            ExpansionPanel.Panel1MinSize = 40;
-            ExpansionPanel.Panel2MinSize = 0;
-            ExpansionPanel.SplitterDistance = 40;
-            ExpansionPanel.SplitterDistance = 1;
-            ExpansionPanel.Panel2Collapsed = false;
-            InitialSize = ExpansionPanel.Size;
-            InitialHeight = InitialSize.Height;
-            InitialWidth = InitialSize.Width;
+
+            // --- Setup SplitContainer ---
+            ExpansionPanel.Panel1MinSize = _collapsedHeight;
+            ExpansionPanel.Panel2MinSize = 0; 
+            ExpansionPanel.SplitterDistance = _collapsedHeight;
+            ExpansionPanel.Panel2Collapsed = false; 
+            ExpansionPanel.IsSplitterFixed = true; 
+            ExpansionPanel.SplitterWidth = 1;
+
             
+            ExpansionPanel.Dock = DockStyle.Fill;
+
+            
+            _expandedHeight = this.Height;
+
+            
+            button3.Click += ToggleExpansion;
+        }
+
+        [Category("Content")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
+        public SplitterPanel ContentArea
+        {
+            get { return this.ExpansionPanel.Panel2; }
+        }
 
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
 
-            button3.Click += (s, e) =>
+            
+            if (!ExpansionPanel.Panel2Collapsed)
             {
-                if (!ExpansionPanel.Panel2Collapsed)
-                {
-                    this.AutoSize = true;
-                    this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-                    ExpansionPanel.Panel2Collapsed = true;
-                    ExpansionPanel.Size = new Size(InitialWidth, 40);
-                    ExpansionPanel.SplitterWidth = 1;
-                    label2.Text = InitialWidth.ToString();
-                    return;
-                }
+                _expandedHeight = this.Height;
+            }
 
-                if (ExpansionPanel.Panel2Collapsed)
-                {
-                    this.AutoSize = false;
-                    this.AutoSizeMode = AutoSizeMode.GrowOnly;
-                    ExpansionPanel.Panel2Collapsed = false;
-                    ExpansionPanel.Size = new Size(InitialWidth, InitialHeight);
+            foreach (Control c in ExpansionPanel.Panel2.Controls)
+            {
+                c.BringToFront();
+            }
+        }
 
-                    label2.Text = InitialWidth.ToString();
-                    return;
-                }
-
-
-
-            };
-
+        private void ToggleExpansion(object sender, EventArgs e)
+        {
             
+            if (!ExpansionPanel.Panel2Collapsed)
+            {
+                _expandedHeight = this.Height;
+
+                ExpansionPanel.Panel2Collapsed = true;
+
+                this.Height = _collapsedHeight;
+                return;
+            }
+
+            if (ExpansionPanel.Panel2Collapsed)
+            {
+                ExpansionPanel.Panel2Collapsed = false;
+
+                this.Height = _expandedHeight;
+
+                foreach (Control c in ExpansionPanel.Panel2.Controls)
+                {
+                    c.BringToFront();
+                }
+                return;
+            }
+        }
+    }
+
+    internal class ExpansionPanelDesigner : ParentControlDesigner
+    {
+        public override void Initialize(IComponent component)
+        {
+            base.Initialize(component);
+
+            // Get the UserControl itself
+            ExpansionPanel2 panel = this.Control as ExpansionPanel2;
+            if (panel == null)
+            {
+                return;
+            }
+
+            // This is the magic line:
+            // It tells the designer to "forward" all design-time
+            // capabilities (like drag-and-drop) to the ContentArea (Panel2).
+            this.EnableDesignMode(panel.ContentArea, "ContentArea");
         }
     }
 }
