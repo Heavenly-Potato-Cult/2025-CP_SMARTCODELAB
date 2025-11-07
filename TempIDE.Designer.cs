@@ -49,9 +49,7 @@
             description = new TextBox();
             tabControl_RightSide = new TabControl();
             ActivityTab = new TabPage();
-            panel3 = new Panel();
-            testcase_expansion_panel = new SmartCodeLab.CustomComponents.ExpansionPanel();
-            testCaseContainer = new FlowLayoutPanel();
+            ActivityPanel = new Panel();
             activity_expansion_panel = new SmartCodeLab.CustomComponents.ExpansionPanel();
             MessagesTab = new TabPage();
             richTextBox2 = new RichTextBox();
@@ -74,8 +72,7 @@
             panel1.SuspendLayout();
             tabControl_RightSide.SuspendLayout();
             ActivityTab.SuspendLayout();
-            panel3.SuspendLayout();
-            testcase_expansion_panel.SuspendLayout();
+            ActivityPanel.SuspendLayout();
             activity_expansion_panel.SuspendLayout();
             MessagesTab.SuspendLayout();
             Leaderboards.SuspendLayout();
@@ -354,7 +351,7 @@
             // 
             // ActivityTab
             // 
-            ActivityTab.Controls.Add(panel3);
+            ActivityTab.Controls.Add(ActivityPanel);
             ActivityTab.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             ActivityTab.Location = new Point(4, 44);
             ActivityTab.Margin = new Padding(3, 2, 3, 2);
@@ -364,42 +361,14 @@
             ActivityTab.Text = "Activity";
             ActivityTab.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // ActivityPanel
             // 
-            panel3.Controls.Add(testcase_expansion_panel);
-            panel3.Controls.Add(activity_expansion_panel);
-            panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(0, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(374, 648);
-            panel3.TabIndex = 0;
-            // 
-            // testcase_expansion_panel
-            // 
-            testcase_expansion_panel.BackColor = Color.DarkGray;
-            testcase_expansion_panel.Controls.Add(testCaseContainer);
-            testcase_expansion_panel.Dock = DockStyle.Top;
-            testcase_expansion_panel.HeaderColor = Color.White;
-            testcase_expansion_panel.IconText = "v";
-            testcase_expansion_panel.Location = new Point(0, 186);
-            testcase_expansion_panel.Name = "testcase_expansion_panel";
-            testcase_expansion_panel.Size = new Size(374, 186);
-            testcase_expansion_panel.TabIndex = 0;
-            testcase_expansion_panel.Title1 = "Test Case";
-            testcase_expansion_panel.Title2 = "1";
-            // 
-            // testCaseContainer
-            // 
-            testCaseContainer.AutoScroll = true;
-            testCaseContainer.BackColor = Color.White;
-            testCaseContainer.Dock = DockStyle.Bottom;
-            testCaseContainer.FlowDirection = FlowDirection.TopDown;
-            testCaseContainer.Location = new Point(0, 49);
-            testCaseContainer.Margin = new Padding(3, 2, 3, 2);
-            testCaseContainer.Name = "testCaseContainer";
-            testCaseContainer.Size = new Size(374, 137);
-            testCaseContainer.TabIndex = 78;
-            testCaseContainer.WrapContents = false;
+            ActivityPanel.Controls.Add(activity_expansion_panel);
+            ActivityPanel.Dock = DockStyle.Fill;
+            ActivityPanel.Location = new Point(0, 0);
+            ActivityPanel.Name = "ActivityPanel";
+            ActivityPanel.Size = new Size(374, 648);
+            ActivityPanel.TabIndex = 0;
             // 
             // activity_expansion_panel
             // 
@@ -411,8 +380,8 @@
             activity_expansion_panel.Name = "activity_expansion_panel";
             activity_expansion_panel.Size = new Size(374, 186);
             activity_expansion_panel.TabIndex = 18;
-            activity_expansion_panel.Title1 = "Test Case";
-            activity_expansion_panel.Title2 = "1";
+            activity_expansion_panel.Title1 = "ActivityName";
+            activity_expansion_panel.Title2 = "";
             // 
             // MessagesTab
             // 
@@ -636,8 +605,7 @@
             panel1.ResumeLayout(false);
             tabControl_RightSide.ResumeLayout(false);
             ActivityTab.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            testcase_expansion_panel.ResumeLayout(false);
+            ActivityPanel.ResumeLayout(false);
             activity_expansion_panel.ResumeLayout(false);
             activity_expansion_panel.PerformLayout();
             MessagesTab.ResumeLayout(false);
@@ -674,7 +642,6 @@
         private TabPage MessagesTab;
         private TabPage ActivityTab;
         private TextBox description;
-        private FlowLayoutPanel testCaseContainer;
         private CustomComponents.ServerPageComponents.StudentCodeRating studentCodeRating;
         private TableLayoutPanel tableLayoutPanel2;
         private Panel panel_LeftSide_Main;
@@ -685,14 +652,13 @@
         private Button button1;
         private RichTextBox richTextBox2;
         private RichTextBox msgBox;
-        private Panel panel3;
+        private Panel ActivityPanel;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel1;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel3;
         private MaterialSkin.Controls.MaterialExpansionPanel materialExpansionPanel2;
         private MaterialSkin.Controls.MaterialExpansionPanel expansion_expansion_panel;
         private Panel panel_leaderboards;
         private CustomComponents.ExpansionPanel activity_expansion_panel;
-        private CustomComponents.ExpansionPanel testcase_expansion_panel;
         private TabPage Score;
     }
 }

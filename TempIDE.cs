@@ -1,4 +1,5 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents;
 using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.CustomComponents.TaskPageComponents;
@@ -144,6 +145,7 @@ namespace SmartCodeLab
                 AddLeaderboardIcon(3, "Charles", 30);
                 // ...
                 AddLeaderboardIcon(6, "David", 79);
+                
             };
         }
 
@@ -156,14 +158,42 @@ namespace SmartCodeLab
                     //set task description display
                     activity_expansion_panel.Title1 = task._taskName;
                     description.Text = task._instructions;
-                    int i = 1;
-                    testCaseContainer.Controls.Clear();
+                    
+                    //testCaseContainer.Controls.Clear();
+
                     studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
+                    
                     if (task._testCases != null && task._testCases.Count > 0)
-                        foreach (var item in task._testCases)
+                    {
+                        // para ma maintain ang order sa test cases
+                        var testCaseList = task._testCases.ToList();
+                        for (int i = testCaseList.Count - 1; i >= 0; i--)
                         {
-                            testCaseContainer.Controls.Add(new TestCaseView(i++, item.Key, item.Value));
+                            var item = testCaseList[i];
+                            var testCaseNumber = i + 1;
+
+                            var testcase = new ExpansionPanel();
+                            var testcaseview = new TestCaseView(testCaseNumber, item.Key, item.Value);
+
+                            testcase.Title1 = "Test Case";
+                            testcase.Title2 = testCaseNumber.ToString();
+
+                            testcaseview.AutoSize = false;
+
+                            testcaseview.Padding = new Padding(0, 60, 0, 0);
+                            testcase.Controls.Add(testcaseview);
+                            testcaseview.Dock = DockStyle.Fill;
+
+                            testcase.Dock = DockStyle.Top;
+                            ActivityPanel.Controls.Add(testcase);
+
+                            
                         }
+
+                    }
+
+                    //para sataas ang activity panel after updating the task
+                    activity_expansion_panel.SendToBack();
                 }))
             );
         }
