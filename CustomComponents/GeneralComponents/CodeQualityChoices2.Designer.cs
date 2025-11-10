@@ -193,6 +193,7 @@
             // efficiencyCB
             // 
             efficiencyCB.AutoSize = true;
+            efficiencyCB.Enabled = false;
             efficiencyCB.Location = new Point(135, 153);
             efficiencyCB.Name = "efficiencyCB";
             efficiencyCB.Size = new Size(15, 14);
@@ -203,7 +204,8 @@
             // maintainabilityCB
             // 
             maintainabilityCB.AutoSize = true;
-            maintainabilityCB.Location = new Point(135, 297);
+            maintainabilityCB.Enabled = false;
+            maintainabilityCB.Location = new Point(135, 295);
             maintainabilityCB.Name = "maintainabilityCB";
             maintainabilityCB.Size = new Size(15, 14);
             maintainabilityCB.TabIndex = 52;

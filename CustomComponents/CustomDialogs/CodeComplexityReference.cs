@@ -117,14 +117,16 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             int totalOperators = 0;
             string mainPath = Path.Combine(ProgrammingConfiguration.COUNTER_FOLDER, $"Main.{file_extensions[language]}");
             File.WriteAllText(mainPath, referenceCode.Text);
-            using (var process = getProcess($"/c \"\"{counterLocation[language]}\" \"{mainPath}\"\""))
+            string forJava = language == "Java" ? "java -jar " : "\"" + ProgrammingConfiguration.pythonExe + "\" ";
+            using (var process = getProcess($"/c \"{forJava}{counterLocation[language]} \"{mainPath}\"\""))
             {
                 string allOutput = string.Empty;
                 process.OutputDataReceived += (s, e) => { if (e.Data != null) allOutput += e.Data + ""; };
-                process.ErrorDataReceived += null;
+                process.ErrorDataReceived += (s, e) => Debug.WriteLine("count err" + e.Data);
                 process.Exited += (s, e) =>
                 {
-                    totalOperators = int.Parse(allOutput);
+                    Debug.WriteLine(allOutput);
+;                   totalOperators = int.Parse(allOutput);
                 };
                 process.Start();
                 process.BeginOutputReadLine();
@@ -134,7 +136,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
                 return totalOperators;
             }
-
         }
 
         private static Process getProcess(string command)

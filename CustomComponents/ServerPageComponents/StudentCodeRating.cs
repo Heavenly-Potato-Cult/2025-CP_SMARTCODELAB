@@ -28,6 +28,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private readonly Dictionary<int, Panel> statsTotal;
         private readonly Dictionary<int, StatsBar> statsBar;
         private int standardCycComplexity;
+        private int standardOperatorsCount;
         private int testScore;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int maxTestScore { get; set; }
@@ -55,16 +56,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 {1, accuracyPanel },
                 {2, readabilityContainer },
-                {3, efficiencyContainer },
-                {4, panel1 },
+                {3, robustnessContainer },
+                {4, maintainabilityContainer },
             };
 
             statsBar = new Dictionary<int, StatsBar>()
             {
                 {1, accuracy},
-                {2, readability},
-                {3, efficiency},//robustness
-                {4, complexity},//maintainability
+                {2, efficiency},
+                {3, robustness},//robustness
+                {4, maintainability},//maintainability
             };
         }
 
@@ -83,11 +84,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         statsWeight.Add(item, stats[item][0]);
                 }
 
+                if(stats.ContainsKey(2))
+                    standardOperatorsCount = Convert.ToInt32(stats[2][1]);
+
                 if (stats.ContainsKey(4))
-                {
                     standardCycComplexity = Convert.ToInt32(stats[4][1]);
-                    //expectedCycComplexity.Text = standardCycComplexity.ToString();
-                }
 
                 recordedStats = stats.Keys.ToList();
             }
@@ -131,24 +132,22 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 if (i == 1)
                 {
                     testScore = value;
-                    int score = (value / maxTestScore) * 100;
-                    //this.Invoke(new Action(() => result.Text = $"{value.ToString()}/{maxTestScore}"));
-                    accuracy.ChangeValue(score);
+                    accuracy.ChangeValue((int)((value / (double)maxTestScore) * 100));
                 }
-                else if (i == 2)//readability
+                else if (i == 2)//efficiency
                 {
-                    int newValue = Math.Max(0, 100 - getTotalDeduction(i, value, language));
-                    readability.ChangeValue(newValue);
+                    Debug.WriteLine($"{value}/{standardOperatorsCount}");
+                    efficiency.ChangeValue(getEfficiencyGrade(value));
                 }
                 else if (i == 3)//robustness
                 {
                     int scoreRobustness = Math.Max(0, 100 - getTotalDeduction(i, value, language));
-                    efficiency.ChangeValue(scoreRobustness);
+                    robustness.ChangeValue(scoreRobustness);
                 }
                 else if (i == 4)//maintainability
                 {
                     int difference = Math.Max(0, 100 - getTotalDeduction(i, value, language));
-                    complexity.ChangeValue(difference);
+                    maintainability.ChangeValue(difference);
                 }
                 statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
                 this.Invoke(new Action(() => score.Text = GetScore().ToString()));
@@ -161,6 +160,30 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             decimal factorWeight = statsWeight[factor];
             int totalChecks = LintersServices.totalLanguageChecks[language][factor];
             return Convert.ToInt32(Math.Ceiling((factorWeight / totalChecks) * totalViolations));
+        }
+
+        /* qoutient = student_total_operators / standard_operators_count
+         * if qoutient <= 1.1 then 100
+         * if qoutient <= 1.4 then 85
+         * if qoutient <= 1.8 then 70
+         * if qoutient <= 2.5 then 50
+         * else 30
+         */
+
+        private int getEfficiencyGrade(int studTotalOperators) 
+        {
+            double percentageDiff = Convert.ToDouble(studTotalOperators) / standardOperatorsCount;
+
+            if (percentageDiff <= 1.1)
+                return 100;
+            else if (percentageDiff <= 1.4)
+                return 85;
+            else if (percentageDiff <= 1.8)
+                return 70;
+            else if (percentageDiff <= 2.5)
+                return 50;
+            else
+                return 30;
         }
 
         public float GetScore()
@@ -214,9 +237,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             return new Dictionary<int, int>()
             {
                 {1, accuracy.Value },
-                {2, readability.Value },
-                {3, efficiency.Value },
-                {4, complexity.Value }
+                {2, efficiency.Value },
+                {3, robustness.Value },
+                {4, maintainability.Value }
             };
         }
 

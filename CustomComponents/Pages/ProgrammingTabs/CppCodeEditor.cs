@@ -14,14 +14,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class CppCodeEditor : BaseCodeEditor
     {
-        private readonly List<string> toCheck = new List<string>() { "readability", "robustness", "maintainability" };
+        private readonly List<string> toCheck = new List<string>() {"robustness", "maintainability" };
         private readonly Dictionary<string, Action<int, string>> highlighter = new Dictionary<string, Action<int, string>>();
-        private readonly Dictionary<string, Action<int, string>> rateUpdater = new Dictionary<string, Action<int, string>>();
         public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
             highlighter = new Dictionary<string, Action<int, string>>()
             {
-                { "readability", HighlightReadabilityIssue},
                 { "maintainability", HighlightMaintainabilityIssue },
                 { "robustness", HighlightRobustnessIssue }
             };
@@ -65,11 +63,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         }
                     else 
                     {
-                        int i = 2;
+                        int i = 3;
                         foreach (var item in toCheck)
                         {
                             await checkStandards(item, highlighter[item], i++);
                         }
+                        await getOperatorsCount();
                     }
                 }
             );
@@ -104,6 +103,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                     updateStats?.Invoke(updateStatsNum, violationCounts, "cpp");
                 }
+            );
+        }
+
+        private async Task getOperatorsCount()
+        {
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{ProgrammingConfiguration.CPP_OPERATOR_COUNTER}\" \"{filePath}\"\"");
+            int count = 0;
+            await StartprocessAsyncExit(
+                process,
+                output => count = int.Parse(output),
+                err => Debug.WriteLine($"cpp err : {err}"),
+                () => updateStats?.Invoke(2, count, "cpp")
             );
         }
 

@@ -15,9 +15,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class PythonCodeEditor : BaseCodeEditor
     {
-        private Dictionary<string, string> linterCommands;
-        private string[] checksToRun = [string.Empty, string.Empty, ProgrammingConfiguration.ruffReadability, ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability];
-        private List<string> linters = new List<string>() {ProgrammingConfiguration.ruffReadability, ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability};
+        private string[] checksToRun = [string.Empty, string.Empty, string.Empty, ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability];
+        private List<string> linters = new List<string>() {ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability};
         public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
             foreach (var item in linters)
@@ -31,14 +30,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
                 LintersServices.initializeLinter(item, content);
             }
-
-            linterCommands = new Dictionary<string, string>()
-            {
-                {ProgrammingConfiguration.ruffReadability, $"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffReadability}\"\"" },
-                {ProgrammingConfiguration.ruffRobustness, $"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffRobustness}\"\"" },
-                {ProgrammingConfiguration.ruffMaintainability, $"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffMaintainability}\"\"" }
-
-            };
         }
 
         public override void RunCode()
@@ -79,10 +70,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     {
                         if(errorOutput == "")//means no syntax error
                         {
-                            for (int i = 2; i < 5; i++)
+                            for (int i = 3; i < 5; i++)
                             {
                                 await checkStandards(checksToRun[i], standardClearer(i), violationsHighLighter(i), i);
                             }
+                            await getOperatorsCount();
                         }
                         else
                         {
@@ -155,6 +147,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
+        private async Task getOperatorsCount()
+        {
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{ProgrammingConfiguration.PYTHON_OPERATOR_COUNTER}\" \"{filePath}\"\"");
+            int count = 0;
+            await StartprocessAsyncExit(
+                process,
+                output => count = int.Parse(output),
+                err => Debug.WriteLine($"operator counter err : {err}"),
+                () => updateStats?.Invoke(2, count, "python")
+             );
+        }
+
         private Action<int, string> violationsHighLighter(int i)
         {
             if (i == 2)
@@ -194,132 +198,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     maintainabilityWarning.Clear();
                 });
         }
-
-        private async Task checkReadability()
-        {
-            if (!File.Exists(ProgrammingConfiguration.ruffReadability))
-                LintersServices.initializeLinter(ProgrammingConfiguration.ruffReadability, LintersServices.pythonLinters[ProgrammingConfiguration.ruffReadability]);
-
-
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffReadability}\"\"");
-            string readabilityViolations = "";
-            await StartprocessAsyncExit(
-                process,
-                output =>
-                {
-                    int mainPyIndex = output.IndexOf("Main.py");
-                    if (mainPyIndex > 0)
-                        readabilityViolations += output.Substring(output.IndexOf("Main.py") + 8) + Environment.NewLine;
-                },
-                null,
-                () =>
-                {
-                    if(readabilityViolations != "")
-                    {
-                        int violationCounts = 0;
-                        foreach (var item in readabilityViolations.Split(Environment.NewLine))
-                        {
-                            try
-                            {
-                                string[] slicedViolation = item.Split(':');
-                                int errorLine = int.Parse(slicedViolation[0]);
-                                string errorMessage = ToolTipProgrammingMessages.pythonRuffRules[ruffCodeRetriever(slicedViolation[2])];
-
-                                HighlightReadabilityIssue(errorLine - 1, errorMessage);
-                                readabilityRules.Add(ruffCodeRetriever(errorMessage));
-                                violationCounts++;
-                            }
-                            catch (ArgumentOutOfRangeException) { }
-                            catch(FormatException) { }
-                            catch(KeyNotFoundException) { }
-                        }
-                        updateStats?.Invoke(2, violationCounts, "python");
-                    }
-                }
-            );
-        }
-        private async Task checkMaintainability()
-        {
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffMaintainability}\"\"");
-            string maintainabilityViolations = "";
-            await StartprocessAsyncExit(
-                process,
-                output =>
-                {
-                    int mainPyIndex = output.IndexOf("Main.py");
-                    if (mainPyIndex > 0)
-                        maintainabilityViolations += output.Substring(output.IndexOf("Main.py") + 8) + Environment.NewLine;
-                },
-                null,
-                () =>
-                {
-                    if (maintainabilityViolations != "")
-                    {
-                        int violationCounts = 0;
-                        foreach (var item in maintainabilityViolations.Split(Environment.NewLine))
-                        {
-                            try
-                            {
-                                string[] slicedViolation = item.Split(':');
-                                int errorLine = int.Parse(slicedViolation[0]);
-                                string errorMessage = ToolTipProgrammingMessages.pythonRuffRules[ruffCodeRetriever(slicedViolation[2])];
-
-                                HighlightMaintainabilityIssue(errorLine - 1, errorMessage);
-                                violationCounts++;
-                            }
-                            catch (ArgumentOutOfRangeException) { }
-                            catch (FormatException) { }
-                            catch (KeyNotFoundException) { }
-                        }
-                        updateStats?.Invoke(4, violationCounts, "python");
-                    }
-                }
-            );
-        }
-        private async Task checkRobustness()
-        {
-
-            if (!File.Exists(ProgrammingConfiguration.ruffRobustness))
-                LintersServices.initializeLinter(ProgrammingConfiguration.ruffRobustness, LintersServices.pythonLinters[ProgrammingConfiguration.ruffRobustness]);
-
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ProgrammingConfiguration.ruffRobustness}\"\"");
-            string robustnessViolations = "";
-            await StartprocessAsyncExit(
-                process,
-                output =>
-                {
-                    int mainPyIndex = output.IndexOf("Main.py");
-                    if (mainPyIndex > 0)
-                        robustnessViolations += output.Substring(output.IndexOf("Main.py") + 8) + Environment.NewLine;
-                },
-                null,
-                () =>
-                {
-                    if (robustnessViolations != "")
-                    {
-                        int violationCounts = 0;
-                        foreach (var item in robustnessViolations.Split(Environment.NewLine))
-                        {
-                            try
-                            {
-                                string[] slicedViolation = item.Split(':');
-                                int errorLine = int.Parse(slicedViolation[0]);
-                                string errorMessage = ToolTipProgrammingMessages.pythonRuffRules[ruffCodeRetriever(slicedViolation[2])];
-
-                                HighlightRobustnessIssue(errorLine - 1, errorMessage);
-                                robustnessRules.Add(ruffCodeRetriever(errorMessage));
-                                violationCounts++;
-                            }
-                            catch (ArgumentOutOfRangeException) { }
-                            catch (FormatException) { }
-                            catch (KeyNotFoundException) { }
-                        }
-                        updateStats?.Invoke(3, violationCounts, "python");
-                    }
-                }
-            );
-        }
-
         private string ruffCodeRetriever(string errorMsg)
         {
             string newMsg = errorMsg.Remove(0, 1);

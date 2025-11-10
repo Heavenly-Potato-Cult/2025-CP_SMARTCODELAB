@@ -66,12 +66,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             selectedTask.isTabLocked = tabNavigationLocked.Checked;
             Server server = new Server(serverName.Texts.Trim(), serverPW.Texts, selectedTask, language.SelectedItem.ToString(), userProfiles);
 
-
-
-            //SystemSingleton.Instance.page1.Controls.Clear();
-            //SystemSingleton.Instance.page1.AutoScroll = true;
-            //SystemSingleton.Instance.page1.Controls.Add(new MainServerPage2(server));
-
             //to fit the mainserverpage to the page1
             var page1 = SystemSingleton.Instance.page1;
             page1.Controls.Clear();
@@ -79,11 +73,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             MainServerPage2 serverPage = new MainServerPage2(server);
 
-
             serverPage.Dock = DockStyle.Fill;
 
             page1.Controls.Add(serverPage);
-
         }
 
         private void smartButton4_Click_1(object sender, EventArgs e)

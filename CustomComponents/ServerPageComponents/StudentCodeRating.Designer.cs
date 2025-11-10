@@ -33,22 +33,22 @@
             score = new Label();
             label9 = new Label();
             readabilityContainer = new Panel();
-            readability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
-            label2 = new Label();
-            efficiencyContainer = new Panel();
             efficiency = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            label2 = new Label();
+            robustnessContainer = new Panel();
+            robustness = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             label3 = new Label();
-            panel1 = new Panel();
+            maintainabilityContainer = new Panel();
             label1 = new Label();
-            complexity = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
+            maintainability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             accuracyPanel = new Panel();
             accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
             label15 = new Label();
             panel2 = new Panel();
             panel19.SuspendLayout();
             readabilityContainer.SuspendLayout();
-            efficiencyContainer.SuspendLayout();
-            panel1.SuspendLayout();
+            robustnessContainer.SuspendLayout();
+            maintainabilityContainer.SuspendLayout();
             accuracyPanel.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -107,7 +107,7 @@
             // readabilityContainer
             // 
             readabilityContainer.BackColor = Color.White;
-            readabilityContainer.Controls.Add(readability);
+            readabilityContainer.Controls.Add(efficiency);
             readabilityContainer.Controls.Add(label2);
             readabilityContainer.Dock = DockStyle.Top;
             readabilityContainer.Location = new Point(0, 30);
@@ -116,15 +116,15 @@
             readabilityContainer.Size = new Size(382, 30);
             readabilityContainer.TabIndex = 0;
             // 
-            // readability
+            // efficiency
             // 
-            readability.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            readability.Location = new Point(122, 12);
-            readability.Margin = new Padding(3, 2, 3, 2);
-            readability.Name = "readability";
-            readability.Size = new Size(248, 10);
-            readability.TabIndex = 83;
-            readability.Value = 100;
+            efficiency.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            efficiency.Location = new Point(122, 12);
+            efficiency.Margin = new Padding(3, 2, 3, 2);
+            efficiency.Name = "efficiency";
+            efficiency.Size = new Size(248, 10);
+            efficiency.TabIndex = 83;
+            efficiency.Value = 100;
             // 
             // label2
             // 
@@ -133,30 +133,30 @@
             label2.ForeColor = Color.DimGray;
             label2.Location = new Point(4, 2);
             label2.Name = "label2";
-            label2.Size = new Size(85, 20);
+            label2.Size = new Size(74, 20);
             label2.TabIndex = 82;
-            label2.Text = "Readability";
+            label2.Text = "Efficiency";
             // 
-            // efficiencyContainer
+            // robustnessContainer
             // 
-            efficiencyContainer.Controls.Add(efficiency);
-            efficiencyContainer.Controls.Add(label3);
-            efficiencyContainer.Dock = DockStyle.Top;
-            efficiencyContainer.Location = new Point(0, 60);
-            efficiencyContainer.Margin = new Padding(3, 2, 3, 2);
-            efficiencyContainer.Name = "efficiencyContainer";
-            efficiencyContainer.Size = new Size(382, 30);
-            efficiencyContainer.TabIndex = 85;
+            robustnessContainer.Controls.Add(robustness);
+            robustnessContainer.Controls.Add(label3);
+            robustnessContainer.Dock = DockStyle.Top;
+            robustnessContainer.Location = new Point(0, 60);
+            robustnessContainer.Margin = new Padding(3, 2, 3, 2);
+            robustnessContainer.Name = "robustnessContainer";
+            robustnessContainer.Size = new Size(382, 30);
+            robustnessContainer.TabIndex = 85;
             // 
-            // efficiency
+            // robustness
             // 
-            efficiency.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            efficiency.Location = new Point(122, 9);
-            efficiency.Margin = new Padding(3, 2, 3, 2);
-            efficiency.Name = "efficiency";
-            efficiency.Size = new Size(248, 10);
-            efficiency.TabIndex = 81;
-            efficiency.Value = 100;
+            robustness.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            robustness.Location = new Point(122, 9);
+            robustness.Margin = new Padding(3, 2, 3, 2);
+            robustness.Name = "robustness";
+            robustness.Size = new Size(248, 10);
+            robustness.TabIndex = 81;
+            robustness.Value = 100;
             // 
             // label3
             // 
@@ -169,15 +169,15 @@
             label3.TabIndex = 80;
             label3.Text = "Robustness";
             // 
-            // panel1
+            // maintainabilityContainer
             // 
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(complexity);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 90);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(382, 30);
-            panel1.TabIndex = 86;
+            maintainabilityContainer.Controls.Add(label1);
+            maintainabilityContainer.Controls.Add(maintainability);
+            maintainabilityContainer.Dock = DockStyle.Top;
+            maintainabilityContainer.Location = new Point(0, 90);
+            maintainabilityContainer.Name = "maintainabilityContainer";
+            maintainabilityContainer.Size = new Size(382, 30);
+            maintainabilityContainer.TabIndex = 86;
             // 
             // label1
             // 
@@ -190,15 +190,15 @@
             label1.TabIndex = 80;
             label1.Text = "Maintainability";
             // 
-            // complexity
+            // maintainability
             // 
-            complexity.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            complexity.Location = new Point(122, 10);
-            complexity.Margin = new Padding(3, 2, 3, 2);
-            complexity.Name = "complexity";
-            complexity.Size = new Size(248, 10);
-            complexity.TabIndex = 84;
-            complexity.Value = 100;
+            maintainability.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            maintainability.Location = new Point(122, 10);
+            maintainability.Margin = new Padding(3, 2, 3, 2);
+            maintainability.Name = "maintainability";
+            maintainability.Size = new Size(248, 10);
+            maintainability.TabIndex = 84;
+            maintainability.Value = 100;
             // 
             // accuracyPanel
             // 
@@ -233,8 +233,8 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(panel1);
-            panel2.Controls.Add(efficiencyContainer);
+            panel2.Controls.Add(maintainabilityContainer);
+            panel2.Controls.Add(robustnessContainer);
             panel2.Controls.Add(readabilityContainer);
             panel2.Controls.Add(accuracyPanel);
             panel2.Location = new Point(3, 47);
@@ -256,10 +256,10 @@
             panel19.PerformLayout();
             readabilityContainer.ResumeLayout(false);
             readabilityContainer.PerformLayout();
-            efficiencyContainer.ResumeLayout(false);
-            efficiencyContainer.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            robustnessContainer.ResumeLayout(false);
+            robustnessContainer.PerformLayout();
+            maintainabilityContainer.ResumeLayout(false);
+            maintainabilityContainer.PerformLayout();
             accuracyPanel.ResumeLayout(false);
             accuracyPanel.PerformLayout();
             panel2.ResumeLayout(false);
@@ -270,15 +270,15 @@
 
         private Panel panel19;
         private Label label9;
-        private GeneralComponents.StatsBar readability;
+        private GeneralComponents.StatsBar efficiency;
         private Label label2;
         private Label label1;
-        private GeneralComponents.StatsBar complexity;
-        private Panel efficiencyContainer;
-        private GeneralComponents.StatsBar efficiency;
+        private GeneralComponents.StatsBar maintainability;
+        private Panel robustnessContainer;
+        private GeneralComponents.StatsBar robustness;
         private Label label3;
         private Label score;
-        private Panel panel1;
+        private Panel maintainabilityContainer;
         private Panel readabilityContainer;
         private Panel accuracyPanel;
         private GeneralComponents.StatsBar accuracy;

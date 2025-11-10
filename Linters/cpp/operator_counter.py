@@ -190,37 +190,7 @@ def main():
         sys.exit(1)
 
     total_ops, operator_details, user_code = analyze_cpp_file(file_path)
-    
-    print(f"File: {file_path}")
-    print("=" * 60)
-    print("OPERATOR COUNT RESULTS:")
-    print(f"Total Operators: {total_ops}")
-    print()
-    print("Breakdown by operator:")
-    print("-" * 60)
-    
-    # Sort operators by count (descending)
-    sorted_ops = sorted(operator_details.items(), key=lambda x: x[1], reverse=True)
-    
-    for op, count in sorted_ops:
-        print(f"  {op:<15} : {count:>3} occurrences")
-    
-    print("=" * 60)
-    print()
-    print("Notes:")
-    print("  - '<<' operators used with 'cout' are EXCLUDED")
-    print("  - 'cin >>' chains count as ONE operator per chain")
-    print("  - '&&' counts as ONE logical AND operator")
-    print("  - '||' counts as ONE logical OR operator")
-    print("  - All other operators are counted normally")
-    print("=" * 60)
-    
-    if user_code and '--show-code' in sys.argv:
-        print()
-        print("Code analyzed:")
-        print("-" * 60)
-        print(user_code)
-        print("-" * 60)
+    print(total_ops)
 
 
 if __name__ == "__main__":

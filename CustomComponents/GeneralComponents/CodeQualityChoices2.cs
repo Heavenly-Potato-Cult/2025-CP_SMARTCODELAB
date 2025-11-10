@@ -78,6 +78,8 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         public void setLanguage(string language)
         {
+            efficiencyCB.Enabled = true;
+            maintainabilityCB.Enabled = true;
             this.language = language;
         }
         private void SetupTrackBar(TrackBar trackBar, int defaultValue = 0)

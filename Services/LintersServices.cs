@@ -201,38 +201,6 @@ namespace SmartCodeLab.Services
         };
         public readonly static Dictionary<string, string> pythonLinters = new Dictionary<string, string>()
         {
-            {ProgrammingConfiguration.ruffReadability,
-                """
-                # ruff_config.toml - standalone
-                output-format = "concise"
-                preview = true
-                lint.select = [	#naming convention
-                		"N801", "N802", "N803", "N804", "N805", "N806", "N807", 
-                    	"N811", "N812", "N813", "N814", "N815", "N816", "N817", 
-                    	"N818", "N999",
-                		#unnecessary whitespaces
-                		"E201", "E202", "E203", "E211", "E225", "E226", "E227",
-                		"E228", "E231", "E252", "E275", "W291", "W293", "E306", 
-                		"E301",	"E114", "E115", "E116", "E701", "E702",
-                		"RET504",	#unnecessary assignment
-                		"F823",		#undefined-local
-                		"PLR6104",	#non-augmented-assignment
-                		"PLW0642",	#self-or-cls-assignment
-                		"RUF018",	#assignment-in-assert
-                		"FURB187",	#list-reverse-copy -- optional for now
-                		"E301",		#blank-line-between-methods //TO ADD READABILITY
-                		"SIM102",	#collapsible-if //TO ADD
-                		"SIM202",
-                		"PLW3301",	#nested-min-max
-                		"F406",		#undefined-local-with-nested-import-star-usage
-                		"PLR2044",
-                ]
-                line-length = 100
-                target-version = "py310"
-
-                [format]
-                quote-style = "double"
-                """ },
             {ProgrammingConfiguration.ruffMaintainability,
                 """
                 # ruff_config.toml - standalone
@@ -245,8 +213,29 @@ namespace SmartCodeLab.Services
                 	"PLE0241",
                 	"PLR0913", "PLR0911", "PLR0915", "PLR2004",
                 	"ARG001", "ARG002", "ARG003", "ARG004", "ARG005",
-                    "C901"
+                    "C901",
+                    #NAMING CONVENTIONS
+                	"N801", "N802", "N803", "N804", "N805", "N806", "N807", 
+                    "N811", "N812", "N813", "N814", "N815", "N816", "N817", 
+                    "N818", "N999",
+                	#unnecessary whitespaces
+                	"E201", "E202", "E203", "E211", "E225", "E226", "E227",
+                	"E228", "E231", "E252", "E275", "W291", "W293", "E306", 
+                	"E301",	"E114", "E115", "E116", "E701", "E702",
+                	"RET504",	#unnecessary assignment
+                	"F823",		#undefined-local
+                	"PLR6104",	#non-augmented-assignment
+                	"PLW0642",	#self-or-cls-assignment
+                	"RUF018",	#assignment-in-assert
+                	"FURB187",	#list-reverse-copy -- optional for now
+                	"E301",		#blank-line-between-methods //TO ADD READABILITY
+                	"SIM102",	#collapsible-if //TO ADD
+                	"SIM202",
+                	"PLW3301",	#nested-min-max
+                	"F406",		#undefined-local-with-nested-import-star-usage
+                	"PLR2044",
                 ]
+                line-length = 100
                 target-version = "py310"
                 lint.mccabe.max-complexity = 999
                 [format]
@@ -274,10 +263,8 @@ namespace SmartCodeLab.Services
         };
         public readonly static Dictionary<string, string> cppLinterClangTidy = new Dictionary<string, string>()
         {
-            { "readability",
-                "--checks=\"-*,readability-avoid-nested-conditional-operator,readability-avoid-return-with-void-value,readability-braces-around-statements,readability-const-return-type,readability-container-contains,readability-duplicate-include,readability-else-after-return,readability-function-cognitive-complexity,readability-identifier-length,readability-identifier-naming,readability-implicit-bool-conversion,readability-magic-numbers,readability-math-missing-parentheses,readability-misleading-indentation,readability-named-parameter,readability-redundant-casting,readability-redundant-control-flow,readability-redundant-declaration,readability-redundant-function-ptr-dereference,readability-redundant-parentheses,readability-redundant-smartptr-get,readability-redundant-string-cstr,readability-redundant-string-init,readability-reference-to-constructed-temporary,readability-string-compare,readability-uppercase-literal-suffix\" -config=\"{CheckOptions: [{key: readability-identifier-naming.VariableCase, value: 'lower_case'}, {key: readability-identifier-naming.FunctionCase, value: 'CamelCase'}, {key: readability-identifier-naming.ClassCase, value: 'CamelCase'}, {key: readability-identifier-naming.NamespaceCase, value: 'lower_case'}, {key: readability-identifier-naming.ConstantCase, value: 'UPPER_CASE'}], WarningsAsErrors: '*', HeaderFilterRegex: '.*', FormatStyle: 'file'}\""},
             { "maintainability",
-                "--checks=\"-*,readability-simplify-boolean-expr,readability-simplify-subscript-expr,modernize-min-max-use-initializer-list,modernize-raw-string-literal,modernize-redundant-void-arg,modernize-use-bool-literals,misc-const-correctness,misc-misplaced-const,misc-redundant-expression,misc-unconventional-assign-operator,misc-unused-parameters\""},
+                "--checks=\"-*,readability-simplify-boolean-expr,readability-simplify-subscript-expr,modernize-min-max-use-initializer-list,modernize-raw-string-literal,modernize-redundant-void-arg,modernize-use-bool-literals,misc-const-correctness,misc-misplaced-const,misc-redundant-expression,misc-unconventional-assign-operator,misc-unused-parameters,readability-avoid-nested-conditional-operator,readability-avoid-return-with-void-value,readability-braces-around-statements,readability-const-return-type,readability-container-contains,readability-duplicate-include,readability-else-after-return,readability-function-cognitive-complexity,readability-identifier-length,readability-identifier-naming,readability-implicit-bool-conversion,readability-magic-numbers,readability-math-missing-parentheses,readability-misleading-indentation,readability-named-parameter,readability-redundant-casting,readability-redundant-control-flow,readability-redundant-declaration,readability-redundant-function-ptr-dereference,readability-redundant-parentheses,readability-redundant-smartptr-get,readability-redundant-string-cstr,readability-redundant-string-init,readability-reference-to-constructed-temporary,readability-string-compare,readability-uppercase-literal-suffix\" -config=\"{CheckOptions: [{key: readability-identifier-naming.VariableCase, value: 'lower_case'}, {key: readability-identifier-naming.FunctionCase, value: 'CamelCase'}, {key: readability-identifier-naming.ClassCase, value: 'CamelCase'}, {key: readability-identifier-naming.NamespaceCase, value: 'lower_case'}, {key: readability-identifier-naming.ConstantCase, value: 'UPPER_CASE'}], WarningsAsErrors: '*', HeaderFilterRegex: '.*', FormatStyle: 'file'}\""},
             { "robustness",
                 "--checks=\"-*,bugprone-assignment-in-if-condition,bugprone-bitwise-pointer-cast,bugprone-bool-pointer-implicit-conversion,bugprone-branch-clone,bugprone-chained-comparison,bugprone-compare-pointer-to-member-virtual-function,bugprone-empty-catch,bugprone-exception-escape,bugprone-float-loop-counter,bugprone-forwarding-reference-overload,bugprone-implicit-widening-of-multiplication-result,bugprone-inc-dec-in-conditions,bugprone-incorrect-roundings,bugprone-infinite-loop,bugprone-integer-division,bugprone-invalid-enum-default-initialization,bugprone-macro-parentheses,bugprone-macro-repeated-side-effects\""}
         };

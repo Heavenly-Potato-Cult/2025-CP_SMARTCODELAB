@@ -16,21 +16,23 @@ class OperationCounter(ast.NodeVisitor):
 
     # Unary operations
     def visit_UnaryOp(self, node):
-        if isinstance(node.op, (ast.UAdd, ast.USub)):
-            self.total += 1
-        elif isinstance(node.op, ast.Invert):
-            self.total += 1
-        elif isinstance(node.op, ast.Not):
+        if isinstance(node.op, (ast.UAdd, ast.USub, ast.Invert, ast.Not)):
             self.total += 1
         self.generic_visit(node)
 
-    # Boolean comparisons
+    # Comparisons (==, <, >, etc.)
     def visit_Compare(self, node):
-        self.total += len(node.ops)  # multiple comparisons count
+        self.total += len(node.ops)
         self.generic_visit(node)
 
     # Boolean operations (and/or)
     def visit_BoolOp(self, node):
+        self.total += 1
+        self.generic_visit(node)
+
+    # Assignment (=)
+    def visit_Assign(self, node):
+        # Treat assignment as a binary operator
         self.total += 1
         self.generic_visit(node)
 
@@ -59,7 +61,6 @@ def count_operations_in_file(file_path):
 def main():
     if len(sys.argv) != 2:
         print("Usage: python operation_counter.py <python_file>")
-        print("Example: python operation_counter.py my_script.py")
         sys.exit(1)
     
     file_path = sys.argv[1]
@@ -68,15 +69,9 @@ def main():
         print(f"Error: File '{file_path}' does not exist")
         sys.exit(1)
     
-    if not file_path.endswith('.py'):
-        print(f"Warning: '{file_path}' doesn't appear to be a Python file")
-    
     total_operations = count_operations_in_file(file_path)
     
-    if total_operations >= 0:
-        print(f"Total operations in {file_path}: {total_operations}")
-    else:
-        sys.exit(1)
+    print(total_operations)
 
 if __name__ == "__main__":
     main()

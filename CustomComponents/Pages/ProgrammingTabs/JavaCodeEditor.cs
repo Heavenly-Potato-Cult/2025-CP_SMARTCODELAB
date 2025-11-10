@@ -133,9 +133,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             else
             {
                 NoError();
-                //await checkMaintainability();
-                //await checkReadability();
-                //await checkRobustness();
+                await checkMaintainability();
+                await checkRobustness();
                 await checkOperatorsCount();
             }
         }
@@ -183,44 +182,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 });
         }
 
-        private async Task checkReadability()
-        {
-            readabilityWarning.Clear();
-            int readabilityCounts = 0;
-            string readabilityErrors = "";
-            readabilityRules.Clear();
-
-            if(!File.Exists(ProgrammingConfiguration.checkstyleReadability))
-                LintersServices.initializeLinter(ProgrammingConfiguration.checkstyleReadability, LintersServices.javaLinters[ProgrammingConfiguration.checkstyleReadability]);
-
-            process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.checkStylePath}\" -c \"{ProgrammingConfiguration.checkstyleReadability}\" \"{filePath}\"\"");
-            await StartprocessAsyncExit(
-                process,
-                outp => { readabilityErrors += (outp + Environment.NewLine); },
-                null,
-                () =>
-                {
-                    List<string> errorsList = new List<string>();
-                    string[] errors = (readabilityErrors.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
-                    foreach (string standardError in errors)
-                    {
-                        try
-                        {
-                            if (errors[errors.Length - 1] != standardError)
-                            {
-                                string[] e = standardError.Split(':');
-                                string errorMessage = ToolTipProgrammingMessages.javaExplanations[checkstyleErrorRetriever(e[e.Length - 1])];
-                                errorsList.Add(errorMessage);
-                                base.HighlightReadabilityIssue(int.Parse(e[2]) - 1, errorMessage);
-                                readabilityCounts++;
-                                readabilityRules.Add(checkstyleErrorRetriever(e[e.Length - 1]));
-                            }
-                        }catch(IndexOutOfRangeException) { }
-                    }
-                    updateStats?.Invoke(2, readabilityCounts, "java");
-                });
-        }
-
         private async Task checkRobustness()
         {
             robustnessRules.Clear();
@@ -260,13 +221,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private async Task checkOperatorsCount()
         {
-            process = CommandRunner($"/c java -jar \"{ProgrammingConfiguration.JAVA_OPERATOR_COUNTER}\" \"{filePath}\"");
-            string result = string.Empty;
+            process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_OPERATOR_COUNTER}\" \"{filePath}\"\"");
+            int count = 0;
             await StartprocessAsyncExit(
                 process,
-                res => Debug.WriteLine($"Output : {res}"),
-                res => Debug.WriteLine($"Output : {res}"),
-                null);
+                res => count = int.Parse(res),
+                res => Debug.WriteLine($"error java oper counter : {res}"),
+                () => updateStats?.Invoke(2, count, "java"));
         }
 
         private string checkstyleErrorRetriever(string errorMsg)
