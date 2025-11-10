@@ -1,0 +1,5 @@
+set traversal IgnoreUnlessSpelledInSource
+set output dump
+
+m binaryOperator() unless hasAncestor(isExpansionInSystemHeader())
+m unaryOperator() unless hasAncestor(isExpansionInSystemHeader())
