@@ -280,6 +280,7 @@
             language.Size = new Size(398, 30);
             language.TabIndex = 28;
             language.Texts = "";
+            language.OnSelectedIndexChanged += language_OnSelectedIndexChanged;
             // 
             // taskView
             // 

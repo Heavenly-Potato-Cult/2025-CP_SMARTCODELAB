@@ -2,7 +2,6 @@
 <!DOCTYPE module PUBLIC
     "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
     "https://checkstyle.org/dtds/configuration_1_3.dtd">
-
 <module name="Checker">
 	<module name="TreeWalker">
     		<module name="BooleanExpressionComplexity"/>
@@ -31,5 +30,55 @@
       			<property name="max" value="3"/>
     		</module>
 		<module name="DefaultComesLast"/>
+
+		<!--READABILITY-->
+				<module name="GenericWhitespace"/>
+		<module name="MethodParamPad"/>
+		<module name="NoWhitespaceAfter">
+			<property name="allowLineBreaks" value="false"/>
+			<property name="tokens" value="DOT"/>
+		</module>
+		<module name="NoLineWrap"/>
+		<module name="NoWhitespaceBefore"/>
+		<module name="NoWhitespaceBeforeCaseDefaultColon"/>
+		<module name="OperatorWrap"/>
+		<module name="ParenPad"/> <!--FOR REVIEWAL-->
+		<module name="SeparatorWrap"/>
+		<module name="SingleSpaceSeparator"/>
+		<module name="TypecastParenPad"/>
+
+		<!--NAMING CONVENTIONS-->
+		<module name="AbbreviationAsWordInName"/>
+		<module name="CatchParameterName"/>
+		<module name="ConstantName"/>
+		<module name="InterfaceTypeParameterName"/>
+		<module name="LambdaParameterName"/>
+		<module name="LocalFinalVariableName">
+       			<property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+    		</module>
+		<module name="LocalVariableName"/>
+		<module name="MemberName"/>
+		<module name="MethodName"/>
+		<module name="ParameterName"/>
+		<module name="PatternVariableName"/>
+		<module name="StaticVariableName"/>
+
+		<!--MISCELLANEOUS-->
+		<module name="Indentation"/>
+		<module name="CommentsIndentation"/>
+
+		<!--CODING-->
+		<module name="UnusedImports"/>
+		<module name="OneStatementPerLine"/>
+		<module name="EmptyStatement">
+			<message key="empty.statement" value="Either put some statements inside or remove this block"/>
+		</module>
+		<module name="OneStatementPerLine"/>
+		<module name="UnnecessaryParentheses"/>
+		<module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
+    		<module name="UnnecessarySemicolonInTryWithResources"/>
+    		<module name="UnusedCatchParameterShouldBeUnnamed"/>
+		<module name="SimplifyBooleanExpression"/>
+		<module name="SimplifyBooleanReturn"/>
   	</module>
 </module>

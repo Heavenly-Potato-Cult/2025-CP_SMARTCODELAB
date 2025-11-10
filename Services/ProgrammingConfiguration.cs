@@ -18,7 +18,7 @@ namespace SmartCodeLab.Services
         public static string pylintExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "pylint_portable.exe");
         public static string readabilityConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "readabilityConfig.pylintrc");
         public static string errorConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "errorConfig.pylintrc");
-
+        public static string PYTHON_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "operator_counter.py");
 
         public static string ruffExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff.exe");
         public static string ruffConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff_config.toml");
@@ -32,6 +32,7 @@ namespace SmartCodeLab.Services
         public static string CLANG_TIDY_EXE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "LLVM", "bin", "clang-tidy.exe");
         public static string CPPLINT_EXE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "cpplint_wrapper.exe");
         public static string CPPLINT_CONFIG = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "syntax_checker.cpplintrc");
+        public static string CPP_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "operator_counter.py");
 
         //Java
         public static Dictionary<NamingConvention, string> namingConventionProperties = new Dictionary<NamingConvention, string>()
@@ -51,66 +52,12 @@ namespace SmartCodeLab.Services
         public static string checkstyleReadability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java","checkstyle_rules", "readability_rules.xml");
         public static string checkstyleMaintainability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "checkstyle_rules", "maintainability_rules.xml");
         public static string pmdRobustness = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "pmd_rules", "robustness_rules.xml");
+        public static string JAVA_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "JavaEfficiencyAnalyzer-1.0.jar");
 
         //activity file locations
         public static string javaFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "java");
         public static string pythonFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "python");
         public static string cppFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "cpp");
-
-        //readability comments
-        public static readonly Dictionary<string, ReadabilityIssues> readabilityIssues = new Dictionary<string, ReadabilityIssues>()
-        {
-            {
-                "Improper or Inconsistent Indentation",
-                new ReadabilityIssues(
-                    "Inconsistent indentation makes code difficult to follow and understand. Proper indentation visually represents the structure of your code, showing which statements belong together.",
-                    "if (x > 0)\n{\n    cout << \"Positive\";\n    if (x > 10)\n    {\n        cout << \"Large\";\n    }\n}",
-                    "if (x > 0) {\ncout << \"Positive\";\n    if (x > 10) {\n    cout << \"Large\";\n}\n}"
-                )
-            },
-            {
-                "Using Different Naming Conventions",
-                new ReadabilityIssues(
-                    "Mixing naming styles (like camelCase, snake_case, and PascalCase) causes confusion and inconsistency across your codebase. Consistent naming improves readability and professionalism.",
-                    "int studentName;\nint studentAge;\nint studentGrade;",
-                    "int StudentName;\nint student_age;\nint STUDENTgrade;"
-                )
-            },
-            {
-                "Multiple Assignments per Line",
-                new ReadabilityIssues(
-                    "Placing multiple assignments on the same line makes the code harder to debug and understand, especially when side effects are involved. Each line should express a single idea.",
-                    "a = 0;\nb = 0;\nc = 0;\n\nx = 5;\ny = 10;\nz = 15;",
-                    "a = b = c = 0;\nx = 5; y = 10; z = 15;"
-                )
-            },
-            {
-                "Multiple Variable Declarations per Line",
-                new ReadabilityIssues(
-                    "Declaring multiple variables on one line can hide initialization issues and reduce clarity. Declaring one per line makes the purpose of each variable clear.",
-                    "int x = 0;\nint y = 1;\nint z = 2;",
-                    "int x = 0, y = 1, z = 2;"
-                )
-            },
-            {
-                "Nested Loops and Conditional Statements",
-                new ReadabilityIssues(
-                    "Deep nesting (e.g., loops inside conditionals inside loops) quickly becomes hard to read and debug. Try breaking logic into smaller functions or using early returns.",
-                    "for (int i = 0; i < n; i++)\n{\n    if (arr[i] > 0)\n    {\n        handleMatch(arr[i], data, m);\n    }\n}\n\nvoid handleMatch(int value, int data[], int m)\n{\n    for (int j = 0; j < m; j++)\n    {\n        if (data[j] == value)\n        {\n            process(value, j);\n        }\n    }\n}",
-                    "for (int i = 0; i < n; i++) {\n    if (arr[i] > 0) {\n        for (int j = 0; j < m; j++) {\n            if (data[j] == arr[i]) {\n                process(i, j);\n            }\n        }\n    }\n}"
-                )
-            },
-            {
-                "Multiple Conditional Expressions",
-                new ReadabilityIssues(
-                    "Long conditions with several logical operators (&&, ||) are hard to read and reason about. Breaking them into smaller, named checks makes logic clearer.",
-                    "bool isEligibleByAge = (age > 18 && score >= 75);\nbool isEligibleByMembership = (isMember && credits > 10 && !banned);\n\nif (isEligibleByAge || isEligibleByMembership)\n{\n    approve();\n}",
-                    "if ((age > 18 && score >= 75) || (isMember && credits > 10 && !banned)) {\n    approve();\n}"
-                )
-            }
-        };
-
-        
-
+        public static string COUNTER_FOLDER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "counter");
     }
 }

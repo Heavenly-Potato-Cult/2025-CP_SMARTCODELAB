@@ -36,17 +36,17 @@
             label11 = new Label();
             maintainabilityT = new TrackBar();
             label2 = new Label();
-            readabilityT = new TrackBar();
+            efficiencyT = new TrackBar();
             label8 = new Label();
             accuracyT = new TrackBar();
             label13 = new Label();
             readabilityLabel = new Label();
-            readabilityBox = new CheckBox();
             robustnessBox = new CheckBox();
-            maintainabilityBox = new CheckBox();
+            efficiencyCB = new CheckBox();
+            maintainabilityCB = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)robustnessT).BeginInit();
             ((System.ComponentModel.ISupportInitialize)maintainabilityT).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)readabilityT).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)efficiencyT).BeginInit();
             ((System.ComponentModel.ISupportInitialize)accuracyT).BeginInit();
             SuspendLayout();
             // 
@@ -128,17 +128,17 @@
             label2.ForeColor = Color.DimGray;
             label2.Location = new Point(26, 149);
             label2.Name = "label2";
-            label2.Size = new Size(80, 20);
+            label2.Size = new Size(72, 20);
             label2.TabIndex = 39;
-            label2.Text = "Readabilty";
+            label2.Text = "Efficiency";
             // 
-            // readabilityT
+            // efficiencyT
             // 
-            readabilityT.Enabled = false;
-            readabilityT.Location = new Point(26, 172);
-            readabilityT.Name = "readabilityT";
-            readabilityT.Size = new Size(342, 45);
-            readabilityT.TabIndex = 38;
+            efficiencyT.Enabled = false;
+            efficiencyT.Location = new Point(26, 172);
+            efficiencyT.Name = "efficiencyT";
+            efficiencyT.Size = new Size(342, 45);
+            efficiencyT.TabIndex = 38;
             // 
             // label8
             // 
@@ -180,35 +180,35 @@
             readabilityLabel.TabIndex = 47;
             readabilityLabel.Text = "0%";
             // 
-            // readabilityBox
-            // 
-            readabilityBox.AutoSize = true;
-            readabilityBox.Location = new Point(112, 155);
-            readabilityBox.Name = "readabilityBox";
-            readabilityBox.Size = new Size(15, 14);
-            readabilityBox.TabIndex = 49;
-            readabilityBox.UseVisualStyleBackColor = true;
-            readabilityBox.CheckedChanged += checkBox2_CheckedChanged;
-            // 
             // robustnessBox
             // 
             robustnessBox.AutoSize = true;
-            robustnessBox.Location = new Point(109, 226);
+            robustnessBox.Location = new Point(135, 224);
             robustnessBox.Name = "robustnessBox";
             robustnessBox.Size = new Size(15, 14);
             robustnessBox.TabIndex = 50;
             robustnessBox.UseVisualStyleBackColor = true;
             robustnessBox.CheckedChanged += robustnessBox_CheckedChanged_1;
             // 
-            // maintainabilityBox
+            // efficiencyCB
             // 
-            maintainabilityBox.AutoSize = true;
-            maintainabilityBox.Location = new Point(135, 297);
-            maintainabilityBox.Name = "maintainabilityBox";
-            maintainabilityBox.Size = new Size(15, 14);
-            maintainabilityBox.TabIndex = 51;
-            maintainabilityBox.UseVisualStyleBackColor = true;
-            maintainabilityBox.CheckedChanged += checkBox4_CheckedChanged;
+            efficiencyCB.AutoSize = true;
+            efficiencyCB.Location = new Point(135, 153);
+            efficiencyCB.Name = "efficiencyCB";
+            efficiencyCB.Size = new Size(15, 14);
+            efficiencyCB.TabIndex = 51;
+            efficiencyCB.UseVisualStyleBackColor = true;
+            efficiencyCB.CheckedChanged += efficiencyCB_CheckedChanged;
+            // 
+            // maintainabilityCB
+            // 
+            maintainabilityCB.AutoSize = true;
+            maintainabilityCB.Location = new Point(135, 297);
+            maintainabilityCB.Name = "maintainabilityCB";
+            maintainabilityCB.Size = new Size(15, 14);
+            maintainabilityCB.TabIndex = 52;
+            maintainabilityCB.UseVisualStyleBackColor = true;
+            maintainabilityCB.CheckedChanged += maintainabilityCB_CheckedChanged;
             // 
             // CodeQualityChoices2
             // 
@@ -216,9 +216,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             BorderRadius = 10;
-            Controls.Add(maintainabilityBox);
+            Controls.Add(maintainabilityCB);
+            Controls.Add(efficiencyCB);
             Controls.Add(robustnessBox);
-            Controls.Add(readabilityBox);
             Controls.Add(readabilityLabel);
             Controls.Add(logicalComplexityLabel);
             Controls.Add(efficiencyLabel);
@@ -228,7 +228,7 @@
             Controls.Add(label11);
             Controls.Add(maintainabilityT);
             Controls.Add(label2);
-            Controls.Add(readabilityT);
+            Controls.Add(efficiencyT);
             Controls.Add(label8);
             Controls.Add(accuracyT);
             Controls.Add(label13);
@@ -236,7 +236,7 @@
             Size = new Size(395, 383);
             ((System.ComponentModel.ISupportInitialize)robustnessT).EndInit();
             ((System.ComponentModel.ISupportInitialize)maintainabilityT).EndInit();
-            ((System.ComponentModel.ISupportInitialize)readabilityT).EndInit();
+            ((System.ComponentModel.ISupportInitialize)efficiencyT).EndInit();
             ((System.ComponentModel.ISupportInitialize)accuracyT).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -252,13 +252,13 @@
         private Label label11;
         private TrackBar maintainabilityT;
         private Label label2;
-        private TrackBar readabilityT;
+        private TrackBar efficiencyT;
         private Label label8;
         private TrackBar accuracyT;
         private Label label13;
         private Label readabilityLabel;
-        private CheckBox readabilityBox;
         private CheckBox robustnessBox;
-        private CheckBox maintainabilityBox;
+        private CheckBox efficiencyCB;
+        private CheckBox maintainabilityCB;
     }
 }

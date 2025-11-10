@@ -28,16 +28,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
     {
         public ToDelete()
         {
-            InitializeComponent();
-            panel1.Controls.Add(new ReadabilityReasons("Improper or Inconsistent Indentation", ProgrammingConfiguration.readabilityIssues["Improper or Inconsistent Indentation"]));
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            using(var existingExercises = new SelectExercise())
-            {
-                existingExercises.ShowDialog();
-            }
+            InitializeComponent();;
         }
     }
 }

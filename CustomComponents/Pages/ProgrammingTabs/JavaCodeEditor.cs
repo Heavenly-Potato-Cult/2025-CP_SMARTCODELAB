@@ -133,9 +133,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             else
             {
                 NoError();
-                await checkMaintainability();
-                await checkReadability();
-                await checkRobustness();
+                //await checkMaintainability();
+                //await checkReadability();
+                //await checkRobustness();
+                await checkOperatorsCount();
             }
         }
 
@@ -255,6 +256,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                     updateStats?.Invoke(3, robustnessCounts, "java");
                 });
+        }
+
+        private async Task checkOperatorsCount()
+        {
+            process = CommandRunner($"/c java -jar \"{ProgrammingConfiguration.JAVA_OPERATOR_COUNTER}\" \"{filePath}\"");
+            string result = string.Empty;
+            await StartprocessAsyncExit(
+                process,
+                res => Debug.WriteLine($"Output : {res}"),
+                res => Debug.WriteLine($"Output : {res}"),
+                null);
         }
 
         private string checkstyleErrorRetriever(string errorMsg)

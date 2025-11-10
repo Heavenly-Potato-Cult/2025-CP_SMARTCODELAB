@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
@@ -16,12 +17,34 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 {
     public partial class CodeComplexityReference : Form
     {
-
+        public int total_operator_count;
         public int total_cyclomatic_complexity;
+        private string language;
+
+        private readonly Dictionary<string, string> file_extensions = new Dictionary<string, string>()
+        {
+            { "Java", "java"},
+            { "C++", "cpp"},
+            { "Python", "py"}
+        };
+        private readonly Dictionary<string, string> counterLocation = new Dictionary<string, string>()
+        {
+            { "Java", $"\"{ProgrammingConfiguration.JAVA_OPERATOR_COUNTER}\""},
+            { "C++", $"\"{ProgrammingConfiguration.CPP_OPERATOR_COUNTER}\""},
+            { "Python", $"\"{ProgrammingConfiguration.PYTHON_OPERATOR_COUNTER}\""}
+        };
+
         public CodeComplexityReference()
         {
             InitializeComponent();
             total_cyclomatic_complexity = 0;
+        }
+
+        public CodeComplexityReference(string language)
+        {
+            InitializeComponent();
+            total_cyclomatic_complexity = 0;
+            this.language = language;
         }
 
         private void smartButton2_Click(object sender, EventArgs e)
@@ -29,23 +52,14 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             this.DialogResult = DialogResult.OK;
             File.WriteAllText(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"), referenceCode.Text);
             total_cyclomatic_complexity = CodeComplexityCounter(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"),true);
+            total_operator_count = CountOperators();
             Close();
         }
 
         public static int CodeComplexityCounter(string filePath, bool willDeleteAfter = false)
         {
             int totalComplexity = 0;
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = ProgrammingConfiguration.lizardExe,
-                Arguments = $"\"{filePath}\"",
-                UseShellExecute = false,               // required for redirection
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            };
-
-            using (var process = new Process { StartInfo = startInfo })
+            using (var process = getProcess($"/c \"\"{ProgrammingConfiguration.lizardExe}\" \"{filePath}\"\"") )
             {
                 string allOutput = string.Empty;
                 process.OutputDataReceived += (s, e) => { if (e.Data != null) allOutput += e.Data + "\n"; };
@@ -65,7 +79,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 process.Start();
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
-
                 process.WaitForExit();
                 int exitCode = process.ExitCode;
                 return totalComplexity;
@@ -76,7 +89,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             string[] outputs = outputLine.Split('\n');
             List<string> complexitiesCounted = new List<string>();
-            //will determine which index the 'file analyzed is'
             int lastIndex = 0;
             for (int i = 3; i < outputs.Length; i++)
             {
@@ -99,6 +111,45 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             return totalCycComplexity;
         }
 
+        public int CountOperators()
+        {
+            string counterPath = counterLocation[language];
+            int totalOperators = 0;
+            string mainPath = Path.Combine(ProgrammingConfiguration.COUNTER_FOLDER, $"Main.{file_extensions[language]}");
+            File.WriteAllText(mainPath, referenceCode.Text);
+            using (var process = getProcess($"/c \"\"{counterLocation[language]}\" \"{mainPath}\"\""))
+            {
+                string allOutput = string.Empty;
+                process.OutputDataReceived += (s, e) => { if (e.Data != null) allOutput += e.Data + ""; };
+                process.ErrorDataReceived += null;
+                process.Exited += (s, e) =>
+                {
+                    totalOperators = int.Parse(allOutput);
+                };
+                process.Start();
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+                process.WaitForExit();
+                int exitCode = process.ExitCode;
+
+                return totalOperators;
+            }
+
+        }
+
+        private static Process getProcess(string command)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo 
+            {
+                FileName = "cmd.exe",
+                Arguments = command,
+                UseShellExecute = false,               // required for redirection
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
+            return new Process { StartInfo = processStartInfo };
+        }
         private void smartButton1_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;

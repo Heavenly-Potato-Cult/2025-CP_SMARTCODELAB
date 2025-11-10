@@ -17,23 +17,28 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
     {
 
         private int complexity_standard;
+        private int total_standard_operators;
         private int unallocated;
+
+        private string language { get; set; }
+
         private Dictionary<TrackBar, int> recentValue;
         public CodeQualityChoices2()
         {
             InitializeComponent();
             complexity_standard = 0;
+            total_standard_operators = 0;
             recentValue = new Dictionary<TrackBar, int>()
             {
                 {accuracyT, 100 },
-                {readabilityT, 0 },
+                {efficiencyT, 0 },
                 {robustnessT, 0 },
                 {maintainabilityT, 0 }
             };
 
             unallocated = 0;
             SetupTrackBar(accuracyT, 100);
-            SetupTrackBar(readabilityT, 0);
+            SetupTrackBar(efficiencyT, 0);
             SetupTrackBar(robustnessT, 0);
             SetupTrackBar(maintainabilityT, 0);
 
@@ -49,7 +54,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
             foreach (var item in new List<TrackBar>(){
                 accuracyT,
-                readabilityT,
+                efficiencyT,
                 robustnessT,
                 maintainabilityT
             })
@@ -69,6 +74,11 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                 };
             }
 
+        }
+
+        public void setLanguage(string language)
+        {
+            this.language = language;
         }
         private void SetupTrackBar(TrackBar trackBar, int defaultValue = 0)
         {
@@ -103,7 +113,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         private void InitializeGradingControls()
         {
             LinkTrackBarToLabel(accuracyT, accuracyLabel);
-            LinkTrackBarToLabel(readabilityT, readabilityLabel);
+            LinkTrackBarToLabel(efficiencyT, readabilityLabel);
             LinkTrackBarToLabel(robustnessT, efficiencyLabel);
             LinkTrackBarToLabel(maintainabilityT, logicalComplexityLabel);
         }
@@ -122,30 +132,35 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         }
 
-        private void checkBox4_CheckedChanged(object sender, EventArgs e)
-        {
-            var complexitySetter = new CodeComplexityReference();
-            maintainabilityBox.Checked = complexitySetter.ShowDialog() == DialogResult.OK;
-            complexity_standard = complexitySetter.total_cyclomatic_complexity;
-            Debug.WriteLine(complexity_standard);
-
-            maintainabilityT.Enabled = maintainabilityBox.Checked;
-            if (!maintainabilityBox.Checked)
-                IlostMyValueT_T(maintainabilityT);
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            readabilityT.Enabled = readabilityBox.Checked;
-            if (!readabilityBox.Checked)
-                IlostMyValueT_T(readabilityT);
-        }
-
         private void robustnessBox_CheckedChanged_1(object sender, EventArgs e)
         {
             robustnessT.Enabled = robustnessBox.Checked;
             if (!robustnessBox.Checked)
                 IlostMyValueT_T(robustnessT);
+        }
+
+        private void efficiencyCB_CheckedChanged(object sender, EventArgs e)
+        {
+            efficiencyT.Enabled = efficiencyCB.Checked;
+            if (efficiencyCB.Checked && total_standard_operators == 0)
+                openComplexityDialog(efficiencyCB);
+
+            if (!efficiencyCB.Checked)
+            {
+                IlostMyValueT_T(efficiencyT);
+            }
+        }
+
+        private void maintainabilityCB_CheckedChanged(object sender, EventArgs e)
+        {
+            maintainabilityT.Enabled = maintainabilityCB.Checked;
+            if (maintainabilityCB.Checked && complexity_standard == 0)
+                openComplexityDialog(maintainabilityCB);
+
+            if (!maintainabilityCB.Checked)
+            {
+                IlostMyValueT_T(maintainabilityT);
+            }
         }
 
         public Dictionary<int, decimal[]> GetRatingFactors()
@@ -154,12 +169,11 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             {
                 {1, [accuracyT.Value] },
             };
-
-            if (readabilityBox.Checked)
-                ratingFactors.Add(2, [readabilityT.Value]);
+            if (efficiencyCB.Checked)
+                ratingFactors.Add(2, [efficiencyT.Value, total_standard_operators]);
             if (robustnessBox.Checked)
                 ratingFactors.Add(3, [robustnessT.Value]);
-            if (maintainabilityBox.Checked)
+            if (maintainabilityCB.Checked)
                 ratingFactors.Add(4, [maintainabilityT.Value, complexity_standard]);
 
             return ratingFactors;
@@ -174,6 +188,21 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         {
             return Controls.OfType<CheckBox>().Union<Control>(Controls.OfType<TrackBar>())
                         .Any(control => control.Focused);
+        }
+
+        private void openComplexityDialog(CheckBox sender)
+        {
+            var counterDialog = new CodeComplexityReference(language);
+            if (counterDialog.ShowDialog() == DialogResult.OK)
+            {
+                total_standard_operators = counterDialog.total_operator_count;
+                complexity_standard = counterDialog.total_cyclomatic_complexity;
+                counterDialog.Close();
+            }
+            else
+            {
+                sender.Checked = false;
+            }
         }
     }
 }

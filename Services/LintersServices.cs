@@ -105,26 +105,75 @@ namespace SmartCodeLab.Services
                     	<module name="NestedIfDepth"/>
                     	<module name="NestedTryDepth"/>
                     	<module name="BooleanExpressionComplexity"/>
-                	<module name="UnusedLocalVariable"/>
-                	<module name="ParameterNumber">
-                		<property name="max" value="4"/>
-                	</module>
-                	<module name="NestedForDepth">
-                		<property name="max" value="2"/>
-                		<message key="nested.for.depth"
-                				value="Your code contains deeply nested loops. Try breaking down the logic into smaller functions, or avoid multiple levels of nested loops to improve readability and performance."/>
-                	</module>
-                	<module name="NestedIfDepth">
-                		<property name="max" value="3"/>
-                		<message key="nested.if.depth"
-                				value="Consider simplifying your conditions, using 'else if', or moving inner logic into helper methods for better readability."/>
-                	</module>
-                	<module name="NestedTryDepth"/>
-                	<module name="SimplifyBooleanExpression"/>
-                	<module name="SimplifyBooleanReturn"/>
-                    <module name="CyclomaticComplexity">
-                        <property name="max" value="999"/>
-                    </module>
+                	    <module name="UnusedLocalVariable"/>
+                	    <module name="ParameterNumber">
+                		    <property name="max" value="4"/>
+                	    </module>
+                	    <module name="NestedForDepth">
+                		    <property name="max" value="2"/>
+                		    <message key="nested.for.depth"
+                			value="Your code contains deeply nested loops. Try breaking down the logic into smaller functions, or avoid multiple levels of nested loops to improve readability and performance."/>
+                	    </module>
+                	    <module name="NestedIfDepth">
+                		    <property name="max" value="3"/>
+                		    <message key="nested.if.depth"
+                			value="Consider simplifying your conditions, using 'else if', or moving inner logic into helper methods for better readability."/>
+                	    </module>
+                	    <module name="NestedTryDepth"/>
+                	    <module name="SimplifyBooleanExpression"/>
+                	    <module name="SimplifyBooleanReturn"/>
+                        <module name="CyclomaticComplexity">
+                            <property name="max" value="999"/>
+                        </module>
+                        <!--READABILITY-->
+                		<module name="GenericWhitespace"/>
+                		<module name="MethodParamPad"/>
+                		<module name="NoWhitespaceAfter">
+                			<property name="allowLineBreaks" value="false"/>
+                			<property name="tokens" value="DOT"/>
+                		</module>
+                		<module name="NoLineWrap"/>
+                		<module name="NoWhitespaceBefore"/>
+                		<module name="NoWhitespaceBeforeCaseDefaultColon"/>
+                		<module name="OperatorWrap"/>
+                		<module name="ParenPad"/> <!--FOR REVIEWAL-->
+                		<module name="SeparatorWrap"/>
+                		<module name="SingleSpaceSeparator"/>
+                		<module name="TypecastParenPad"/>
+
+                		<!--NAMING CONVENTIONS-->
+                		<module name="AbbreviationAsWordInName"/>
+                		<module name="CatchParameterName"/>
+                		<module name="ConstantName"/>
+                		<module name="InterfaceTypeParameterName"/>
+                		<module name="LambdaParameterName"/>
+                		<module name="LocalFinalVariableName">
+                       		<property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
+                    	</module>
+                		<module name="LocalVariableName"/>
+                		<module name="MemberName"/>
+                		<module name="MethodName"/>
+                		<module name="ParameterName"/>
+                		<module name="PatternVariableName"/>
+                		<module name="StaticVariableName"/>
+
+                		<!--MISCELLANEOUS-->
+                		<module name="Indentation"/>
+                		<module name="CommentsIndentation"/>
+
+                		<!--CODING-->
+                		<module name="UnusedImports"/>
+                		<module name="OneStatementPerLine"/>
+                		<module name="EmptyStatement">
+                			<message key="empty.statement" value="Either put some statements inside or remove this block"/>
+                		</module>
+                		<module name="OneStatementPerLine"/>
+                		<module name="UnnecessaryParentheses"/>
+                		<module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
+                    	<module name="UnnecessarySemicolonInTryWithResources"/>
+                    	<module name="UnusedCatchParameterShouldBeUnnamed"/>
+                		<module name="SimplifyBooleanExpression"/>
+                		<module name="SimplifyBooleanReturn"/>
                   	</module>
                 </module>
                 """},

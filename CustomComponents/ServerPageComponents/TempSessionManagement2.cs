@@ -107,6 +107,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             studentsCount.Text = userProfiles.Count.ToString();
         }
 
+        private void language_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            codeQualityChoices21.setLanguage(language.SelectedItem.ToString());
+        }
+
         private Action<TaskModel> exerciseSelectedCallback => (task) =>
         {
             selectedTask = task;
