@@ -63,6 +63,46 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public BaseCodeEditor()
         {
             InitializeComponent();
+
+            srcCode.MouseWheel += (s, e) =>
+            {
+                if ((Control.ModifierKeys & Keys.Control) == 0)
+                {
+                    return;
+                }
+
+                const int MAX_ZOOM = 300;
+                const int MIN_ZOOM = 30;
+                const int ZOOM_STEP = 10;
+
+                int currentZoom = srcCode.Zoom;
+                int newZoom = currentZoom;
+
+
+                if (e.Delta > 0)
+                {
+                    newZoom += ZOOM_STEP;
+                }
+
+                if (e.Delta < 0)
+                {
+                    newZoom -= ZOOM_STEP;
+                }
+                newZoom = Math.Clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
+
+                if (newZoom == currentZoom)
+                {
+                    return;
+                }
+
+                srcCode.Zoom = newZoom;
+
+                if (e is HandledMouseEventArgs handleMouseEventArgs)
+                {
+                    handleMouseEventArgs.Handled = true;
+                }
+
+            };
         }
 
         protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress)
