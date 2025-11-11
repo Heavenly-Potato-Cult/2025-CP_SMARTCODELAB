@@ -60,7 +60,7 @@
     '\'',
     '\''
     };
-            srcCode.AutoScrollMinSize = new Size(27, 14);
+            srcCode.AutoScrollMinSize = new Size(27, 44);
             srcCode.AutoSize = true;
             srcCode.BackBrush = null;
             srcCode.CharHeight = 14;
@@ -69,10 +69,11 @@
             srcCode.Dock = DockStyle.Fill;
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IsReplaceMode = false;
+            srcCode.LineNumberColor = Color.Black;
             srcCode.Location = new Point(0, 0);
             srcCode.Margin = new Padding(3, 2, 3, 2);
             srcCode.Name = "srcCode";
-            srcCode.Paddings = new Padding(0, 20, 0, 10);
+            srcCode.Paddings = new Padding(0, 0, 0, 10);
             srcCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             srcCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("srcCode.ServiceColors");
             srcCode.Size = new Size(722, 357);
