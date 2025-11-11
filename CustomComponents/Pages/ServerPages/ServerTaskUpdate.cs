@@ -26,6 +26,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             InitializeComponent();
             this.task = task;
             this.action = action;
+            this.reference.Text = task._referenceFile;
             this.Load += (s,e) => SetUpTask();
         }
 

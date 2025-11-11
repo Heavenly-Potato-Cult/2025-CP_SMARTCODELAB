@@ -20,6 +20,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         public int total_operator_count;
         public int total_cyclomatic_complexity;
         private string language;
+        public string sourceCode { get; private set; }
 
         private readonly Dictionary<string, string> file_extensions = new Dictionary<string, string>()
         {
@@ -53,6 +54,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             File.WriteAllText(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"), referenceCode.Text);
             total_cyclomatic_complexity = CodeComplexityCounter(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"),true);
             total_operator_count = CountOperators();
+            sourceCode = referenceCode.Text;
             Close();
         }
 

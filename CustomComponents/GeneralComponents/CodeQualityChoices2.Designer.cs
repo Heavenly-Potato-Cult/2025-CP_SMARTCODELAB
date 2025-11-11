@@ -44,6 +44,7 @@
             robustnessBox = new CheckBox();
             efficiencyCB = new CheckBox();
             maintainabilityCB = new CheckBox();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)robustnessT).BeginInit();
             ((System.ComponentModel.ISupportInitialize)maintainabilityT).BeginInit();
             ((System.ComponentModel.ISupportInitialize)efficiencyT).BeginInit();
@@ -212,12 +213,23 @@
             maintainabilityCB.UseVisualStyleBackColor = true;
             maintainabilityCB.CheckedChanged += maintainabilityCB_CheckedChanged;
             // 
+            // button1
+            // 
+            button1.Location = new Point(246, 20);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 53;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // CodeQualityChoices2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             BorderRadius = 10;
+            Controls.Add(button1);
             Controls.Add(maintainabilityCB);
             Controls.Add(efficiencyCB);
             Controls.Add(robustnessBox);
@@ -262,5 +274,6 @@
         private CheckBox robustnessBox;
         private CheckBox efficiencyCB;
         private CheckBox maintainabilityCB;
+        private Button button1;
     }
 }

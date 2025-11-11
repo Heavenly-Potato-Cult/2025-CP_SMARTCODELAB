@@ -169,7 +169,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
          * if qoutient <= 2.5 then 50
          * else 30
          */
-
         private int getEfficiencyGrade(int studTotalOperators) 
         {
             double percentageDiff = Convert.ToDouble(studTotalOperators) / standardOperatorsCount;
@@ -245,7 +244,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         public void SetViolationsRetriever(Func<List<HashSet<string>>> violations)
         {
-            Debug.WriteLine(violations);
             this.violations = violations;
         }
     }

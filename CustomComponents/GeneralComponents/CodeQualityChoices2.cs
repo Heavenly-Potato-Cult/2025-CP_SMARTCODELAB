@@ -19,6 +19,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         private int complexity_standard;
         private int total_standard_operators;
         private int unallocated;
+        public string bestSourceCode { get; private set; }
 
         private string language { get; set; }
 
@@ -199,12 +200,18 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             {
                 total_standard_operators = counterDialog.total_operator_count;
                 complexity_standard = counterDialog.total_cyclomatic_complexity;
+                bestSourceCode = counterDialog.sourceCode;
                 counterDialog.Close();
             }
             else
             {
                 sender.Checked = false;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            System.Windows.MessageBox.Show($"Complexity : {complexity_standard}\n Number of Operators : {total_standard_operators}");
         }
     }
 }

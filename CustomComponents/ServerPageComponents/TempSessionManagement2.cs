@@ -64,6 +64,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
             selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
             selectedTask.isTabLocked = tabNavigationLocked.Checked;
+            selectedTask._referenceFile = codeQualityChoices21.bestSourceCode;
             Server server = new Server(serverName.Texts.Trim(), serverPW.Texts, selectedTask, language.SelectedItem.ToString(), userProfiles);
 
             //to fit the mainserverpage to the page1
