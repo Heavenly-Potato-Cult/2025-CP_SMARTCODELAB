@@ -108,6 +108,9 @@ namespace SmartCodeLab
             //create the activity directory then return the file path of the main file
             string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName, progress.sourceCode ?? "");
 
+            //initialize the best code operator count(if efficiency is included
+            if(task.ratingFactors.ContainsKey(2))
+                SourceCodeInitializer.InitializeEfficiencyCode(task._language, task._referenceFile, Path.GetDirectoryName(mainFile));
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
             mainEditor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);

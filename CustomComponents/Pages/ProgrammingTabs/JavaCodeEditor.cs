@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
@@ -6,17 +7,19 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.IO;
+using System.Windows.Navigation;
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class JavaCodeEditor : BaseCodeEditor
     {
+        int operatorsCount;
         private int errorCounts = 0;
         TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
         TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
@@ -52,12 +55,94 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
         }
 
-        public override void RunCode()
+        public override async void RunCode()
         {
-            string classname = Path.GetFileNameWithoutExtension(filePath);
-            string directory = Path.GetDirectoryName(filePath);
-            commandLine = $"/c \"javac -cp \"{directory}\" \"{filePath}\" && java -cp \"{directory}\" \"{classname}\"\"";
-            base.RunCode();
+            CompileCode();
+            ProcessStartInfo psi = new ProcessStartInfo()
+            {
+                FileName = "java",                   // Run directly, not via cmd.exe
+                Arguments = "\"" + filePath + "\"",                // e.g. "C:\\Users\\You\\test.py"
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            process?.Dispose();
+            using (process = new Process())
+            {
+                process.StartInfo = psi;
+
+                // Event handler for reading output line by line
+                process.OutputDataReceived += (sender, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        output.WriteLine(e.Data + Environment.NewLine);
+                    }
+                };
+
+                // Event handler for reading error output
+                process.ErrorDataReceived += (sender, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        Debug.WriteLine($"[ERR] {e.Data}");
+                    }
+                };
+
+                //process.Exited += (s, e) =>
+                //{
+                //    toInput?.Close();
+                //    Debug.WriteLine("Closed");
+                //};
+
+                // Start process
+                process.Start();
+                Invoker(() =>
+                {
+                    output.Clear();
+                    output.WriteLine("Started" + Environment.NewLine);
+                    output.IsReadLineMode = true;
+                });
+                // Begin reading output asynchronously
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+
+                // --- Example: sending multiple inputs ---
+                // You can replace these with whatever the user types in your IDE input box
+                await Task.Delay(500); // small delay ensures process starts reading
+                int i = 0;
+                while (!process.HasExited)
+                {
+                    var toInput = new TextInputDialog();
+                    toInput.ShowDialog();
+                    string input = toInput.InputtedText();
+
+                    try
+                    {
+                        if (!process.HasExited)
+                        {
+                            await process.StandardInput.WriteLineAsync(input);
+                            await process.StandardInput.FlushAsync();
+                        }
+                    }
+                    catch (IOException)
+                    {
+                        break; // happens if process exited mid-input
+                    }
+
+                    // Optional: short delay to allow the process to react
+                    await Task.Delay(50);
+                }
+                // Close the input stream only after sending all data
+                try
+                {
+                    process.StandardInput.Close();
+                }
+                catch (IOException) { }
+                await process.WaitForExitAsync();
+            }
         }
 
         private void JavaSyntaxHighlight(TextChangedEventArgs e)
@@ -135,16 +220,37 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 NoError();
                 await checkMaintainability();
                 await checkRobustness();
-                await checkOperatorsCount();
+                //await checkOperatorsCount();
             }
         }
 
-        public override void RunTest()
+        public override async void RunTest()
         {
+            SaveCode();
+            SourceCodeInitializer.InitializeEfficiencyCode2(LanguageSupported.Java, filePath, false);
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.java");
             commandLine = $"/c \"cd \"{directory}\" && javac Tester.java && java Tester\"";
             base.RunTest();
+            //check efficiency
+            if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
+            {
+                await checkOperatorsCount();
+                await checkEfficiencyComparison();
+            }
+        }
+
+        private Task checkEfficiencyComparison()
+        {
+            int luckyNumber = new Random().Next(0, mgaGinawangTama.Count - 1);
+            string testIntput = mgaGinawangTama[luckyNumber].Key;
+            string directory = Path.GetDirectoryName(filePath);
+            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"cd \"{directory}\" && javac OperatorsCounter.java && java OperatorsCounter\"", testIntput));
+            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"cd \"{directory}\" && javac BestOperatorsCounter.java && java BestOperatorsCounter\"", testIntput));
+            MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
+            updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "java");
+
+            return Task.CompletedTask;
         }
 
         private async Task checkMaintainability()
@@ -222,12 +328,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private async Task checkOperatorsCount()
         {
             process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_OPERATOR_COUNTER}\" \"{filePath}\"\"");
-            int count = 0;
+            operatorsCount = 0;
             await StartprocessAsyncExit(
                 process,
-                res => count = int.Parse(res),
+                res => operatorsCount = int.Parse(res),
                 res => Debug.WriteLine($"error java oper counter : {res}"),
-                () => updateStats?.Invoke(2, count, "java"));
+                null);
         }
 
         private string checkstyleErrorRetriever(string errorMsg)

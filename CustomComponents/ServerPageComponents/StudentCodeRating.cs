@@ -136,8 +136,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }
                 else if (i == 2)//efficiency
                 {
-                    Debug.WriteLine($"{value}/{standardOperatorsCount}");
-                    efficiency.ChangeValue(getEfficiencyGrade(value));
+                    efficiency.ChangeValue(value);
                 }
                 else if (i == 3)//robustness
                 {

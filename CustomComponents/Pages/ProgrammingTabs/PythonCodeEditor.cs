@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System;
@@ -32,18 +33,114 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
         }
 
-        public override void RunCode()
+        public override async void RunCode()
         {
-            commandLine = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{filePath}\"\"";
-            base.RunCode();
+            //commandLine = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{filePath}\"\"";
+            //base.RunCode();
+
+            ProcessStartInfo psi = new ProcessStartInfo()
+            {
+                FileName = "\""+ProgrammingConfiguration.pythonExe+"\"",                   // Run directly, not via cmd.exe
+                Arguments = "\""+filePath+"\"",                // e.g. "C:\\Users\\You\\test.py"
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            process?.Dispose();
+            using (process = new Process())
+            {
+                process.StartInfo = psi;
+
+                // Event handler for reading output line by line
+                process.OutputDataReceived += (sender, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        output.WriteLine(e.Data + Environment.NewLine);
+                    }
+                };
+
+                // Event handler for reading error output
+                process.ErrorDataReceived += (sender, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                    {
+                        Debug.WriteLine($"[ERR] {e.Data}");
+                    }
+                };
+
+                // Start process
+                process.Start();
+                Invoker(() =>
+                {
+                    output.Clear();
+                    output.WriteLine("Started" + Environment.NewLine);
+                    output.IsReadLineMode = true;
+                });
+                // Begin reading output asynchronously
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+
+                // --- Example: sending multiple inputs ---
+                // You can replace these with whatever the user types in your IDE input box
+                await Task.Delay(500); // small delay ensures process starts reading
+                int i = 0;
+                while (!process.HasExited)
+                {
+                    var toInput = new TextInputDialog();
+                    toInput.ShowDialog();
+                    string input = toInput.InputtedText();
+
+                    try
+                    {
+                        if (!process.HasExited)
+                        {
+                            await process.StandardInput.WriteLineAsync(input);
+                            await process.StandardInput.FlushAsync();
+                        }
+                    }
+                    catch (IOException)
+                    {
+                        break; // happens if process exited mid-input
+                    }
+
+                    // Optional: short delay to allow the process to react
+                    await Task.Delay(50);
+                }
+                // Close the input stream only after sending all data
+                try
+                {
+                    process.StandardInput.Close();
+                }
+                catch (IOException) { }
+                await process.WaitForExitAsync();
+            }
         }
 
-        public override void RunTest()
+        public override async void RunTest()
         {
+            SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Python, filePath, false);
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.py");
             commandLine = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{testerFile}\"\"";
             base.RunTest();
+            if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
+                await checkEfficiencyComparison();
+        }
+
+        private Task checkEfficiencyComparison()
+        {
+            int luckyNumber = new Random().Next(0, mgaGinawangTama.Count - 1);
+            string testIntput = mgaGinawangTama[luckyNumber].Key;
+            string directory = Path.GetDirectoryName(filePath);
+            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{Path.Combine(directory,"OperatorsCounter.py")}\"\"", testIntput));
+            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{Path.Combine(directory, "BestOperatorsCounter.py")}\"\"", testIntput));
+            MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
+            updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "java");
+
+            return Task.CompletedTask;
         }
 
         public override async Task RunLinting()
@@ -74,7 +171,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             {
                                 await checkStandards(checksToRun[i], standardClearer(i), violationsHighLighter(i), i);
                             }
-                            await getOperatorsCount();
                         }
                         else
                         {

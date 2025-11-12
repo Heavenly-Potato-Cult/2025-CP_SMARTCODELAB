@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace SmartCodeLab.CustomComponents.CustomDialogs
 {
@@ -24,10 +26,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             customTextBox1.PlaceholderText = placeholderText;
 
             var handle = this.Handle;
-            BeginInvoke(new Action(() =>
-            {
-                Location = Cursor.Position;
-            }));
         }
 
         public string InputtedText()

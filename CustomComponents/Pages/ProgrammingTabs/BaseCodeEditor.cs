@@ -39,6 +39,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected string maintainabilityCheck = string.Empty;
 
+        protected List<KeyValuePair<string, string>> mgaGinawangTama;
+
         private Func<Task> sendProgress;
         private string acceptedCode;
         private string errorMsg = "";
@@ -334,18 +336,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     Invoker(() => output.WriteLine(Environment.NewLine + "Program Finished"));
                     output.IsReadLineMode = false;
                     inputTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-
                     if(exeptionThrown != "")
                         ExtractThrownExceptions(exeptionThrown);
-
-                    bool isFilePython = filePath.EndsWith(".py");
-                    if (!isFilePython)
-                    {
-                        string extension = filePath.EndsWith("cpp") ? "exe" : "class";
-                        string delCommand = $"/c del {Path.Combine(Path.GetDirectoryName(filePath),"Main."+extension)}";
-                        process = CommandRunner(delCommand);
-                        await StartprocessAsyncExit(process, null, null, null);
-                    }
+                    process.StandardInput.Close();
+                    //bool isFilePython = filePath.EndsWith(".py");
+                    //if (!isFilePython)
+                    //{
+                    //    string extension = filePath.EndsWith("cpp") ? "exe" : "class";
+                    //    string delCommand = $"/c del {Path.Combine(Path.GetDirectoryName(filePath),"Main."+extension)}";
+                    //    process = CommandRunner(delCommand);
+                    //    await StartprocessAsyncExit(process, null, null, null);
+                    //}
                 }
             );
         }
@@ -409,6 +410,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 TestCodeForm testCodeForm = new TestCodeForm(commandLine, testerFile, task);
                 testCodeForm.ShowDialog();
+                mgaGinawangTama = testCodeForm.corrects;
                 updateStats?.Invoke(1, testCodeForm.score, null);
                 if (task._testCases.Count == testCodeForm.score)
                 {
@@ -417,6 +419,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 await RunLinting();
                 await sendProgress.Invoke();
             }
+        }
+
+        protected int computeEfficiency(int studentGrowth, int bestGrowth)
+        {
+            if (studentGrowth < Math.Pow(bestGrowth, 2))
+                return 100;
+            else if (studentGrowth < Math.Pow(bestGrowth, 3))
+                return 67;
+            else
+                return 33;
         }
 
         protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
@@ -462,6 +474,62 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return Task.CompletedTask;
         }
 
+        public static string ExecuteCommandCaptureOutput(string command, string input)
+        {
+            if (string.IsNullOrWhiteSpace(command))
+                return string.Empty;
+
+            // Build ProcessStartInfo
+            var psi = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                // Use /C to run the command then exit. If the command contains special characters or is complex,
+                // consider wrapping in quotes: Arguments = "/C \"" + command + "\"";
+                Arguments = command,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                StandardOutputEncoding = Encoding.UTF8,
+                StandardErrorEncoding = Encoding.UTF8
+            };
+
+            try
+            {
+                using var proc = new Process { StartInfo = psi };
+
+                proc.Start();
+
+                // Write input (if any) and close stdin so the process knows there's no more data.
+                if (!string.IsNullOrEmpty(input))
+                {
+                    proc.StandardInput.Write(input);
+                }
+                proc.StandardInput.Close();
+
+                // Read both streams. ReadToEnd is fine here because we've closed stdin and will call WaitForExit().
+                string stdout = proc.StandardOutput.ReadToEnd();
+                string stderr = proc.StandardError.ReadToEnd();
+
+                proc.WaitForExit();
+
+                // Combine outputs (stdout first, then stderr). Adjust formatting as you prefer.
+                if (string.IsNullOrEmpty(stderr))
+                    return stdout.Substring(stdout.LastIndexOf(':')+1);
+                if (string.IsNullOrEmpty(stdout))
+                    return stderr;
+
+                return stdout + Environment.NewLine + "=== STDERR ===" + Environment.NewLine + stderr;
+            }
+            catch (Exception ex)
+            {
+                // Decide how you want to handle exceptions. Here we return the exception message as output.
+                // In a production system you'd likely log the error or rethrow.
+                return $"[CmdRunner Exception] {ex.GetType().Name}: {ex.Message}";
+            }
+        }
+
         protected async Task StartprocessAsyncExit(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
             process.OutputDataReceived += (sender, e) =>
@@ -491,15 +559,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected virtual void SendInput(string input)
         {
-            try
-            {
-                if (process != null && !process.HasExited)
-                {
-                    process.StandardInput.WriteLine(input);
-                    process.StandardInput.Flush();
-                }
-            }
-            catch (InvalidOperationException) { }
+            //Debug.WriteLine("sending " + input);
+            //try
+            //{
+            //    if (process != null && !process.HasExited)
+            //    {
+            //        process.StandardInput.WriteLineAsync(input);
+            //        process.StandardInput.FlushAsync();
+            //    }
+            //}
+            //catch (InvalidOperationException) { }
         }
 
         public virtual async Task RunLinting() { }
@@ -571,11 +640,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             lineErrorAndMessage?.Clear();
         }
 
-        private Task CountComplexity1()
-        {
-            return Task.CompletedTask;
-        }
-
         public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress)
         {
             if (filePath.EndsWith(".java"))
@@ -600,7 +664,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return srcCode.Text == acceptedCode;
         }
 
-        private void Invoker(Action action) 
+        protected void Invoker(Action action) 
         {
             this.Invoke(action);
         }

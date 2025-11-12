@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     public partial class TestCodeForm : Form
     {
         public int score;
+        public List<KeyValuePair<string, string>> corrects;
         private string command;
         private string testFile;
         private TaskModel task;
@@ -29,6 +31,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public TestCodeForm(string command, string testFile, TaskModel task)
         {
             InitializeComponent();
+            corrects = new List<KeyValuePair<string, string>>();
             score = 0;
             this.command = command;
             this.testFile = testFile;
@@ -43,7 +46,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int sequence = 1;
             foreach (var item in task._testCases)
             {
-                Debug.WriteLine(testFile);
                 string input = item.Key;
                 //to check if the language is cpp or python, then will modify how the input will look like to satisfy how 
                 //it is need to be formatted in each language, java won't have any changes
@@ -78,13 +80,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 process = CommandRunner(command);
                 await StartprocessAsyncExit(
                     process,
-                    output => testOutput += (output),
+                    output => testOutput += (output + '\n'),
                     error => testOutput += (error),
                     null
                 );
-                bool isCorrect = testOutput == item.Value;
+                bool isCorrect = testOutput == item.Value + '\n';
                 if (isCorrect)
+                {
                     score++;
+                    corrects.Add(new KeyValuePair<string, string>(item.Key, item.Value));
+                }
 
                 currentScore.Text = score.ToString();
                 //flowLayoutPanel1.Controls.Add(new TestCaseResult(sequence++, isCorrect, item.Key, item.Value, testOutput));
@@ -95,7 +100,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
                 if (isCorrect)
                 {
-       
                     testcase.HeaderColor = Color.LightGreen;
                     testcase.Title2 = "Correct";
                 }

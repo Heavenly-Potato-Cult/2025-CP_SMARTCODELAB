@@ -19,6 +19,7 @@ namespace SmartCodeLab.Services
         public static string readabilityConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "readabilityConfig.pylintrc");
         public static string errorConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "errorConfig.pylintrc");
         public static string PYTHON_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "operator_counter.py");
+        public static string PYTHON_COUNTER_INITIALIZER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "PythonOperatorCounterInitializer.py");
 
         public static string ruffExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff.exe");
         public static string ruffConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "ruff_config.toml");
@@ -33,6 +34,7 @@ namespace SmartCodeLab.Services
         public static string CPPLINT_EXE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "cpplint_wrapper.exe");
         public static string CPPLINT_CONFIG = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "syntax_checker.cpplintrc");
         public static string CPP_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "operator_counter.py");
+        public static string CPP_COUNTER_INITIALIZER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "CppOperatorCounterInitializer.py");
 
         //Java
         public static Dictionary<NamingConvention, string> namingConventionProperties = new Dictionary<NamingConvention, string>()
@@ -53,6 +55,7 @@ namespace SmartCodeLab.Services
         public static string checkstyleMaintainability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "checkstyle_rules", "maintainability_rules.xml");
         public static string pmdRobustness = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "pmd_rules", "robustness_rules.xml");
         public static string JAVA_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "JavaEfficiencyAnalyzer-1.0.jar");
+        public static string JAVA_COUNTER_INITIALIZER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "JavaOperatorCounterInitializer.jar");
 
         //activity file locations
         public static string javaFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "java");

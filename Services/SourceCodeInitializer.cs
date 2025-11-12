@@ -34,6 +34,59 @@ namespace SmartCodeLab.Services
             return fileName;
         }
 
+        public static void InitializeEfficiencyCode(LanguageSupported language, string sourceCode, string directory)
+        {
+            string filePath = Path.Combine(directory,"BestOperatorsCounter" + extension[language]);
+            File.WriteAllText(filePath, sourceCode);
+            InitializeEfficiencyCode2(language, filePath, true);
+        }
+
+        public static void InitializeEfficiencyCode2(LanguageSupported language, string filePath, bool isBestCode)
+        {
+            string fromWho = isBestCode ? "Teacher" : "Student";
+            string runnerFile = language == LanguageSupported.Python ? ProgrammingConfiguration.PYTHON_COUNTER_INITIALIZER : ProgrammingConfiguration.CPP_COUNTER_INITIALIZER;
+            if (language == LanguageSupported.Java)
+            {
+                ExecuteCommand($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_COUNTER_INITIALIZER}\" \"{filePath}\" \"{fromWho}\"\"");
+            }
+            else
+            {
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
+            }
+        }
+
+        public static void ExecuteCommand(string command)
+        {
+            if (string.IsNullOrWhiteSpace(command))
+                return;
+
+            var psi = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                // /C runs the command then exits. Wrap the command in quotes if it contains special chars.
+                Arguments =command,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = false,
+                RedirectStandardError = false,
+                RedirectStandardInput = false,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+
+            try
+            {
+                using var proc = new Process { StartInfo = psi };
+                proc.Start();
+                // Do not wait for exit per your requirement (fire-and-forget).
+                // If you later want to wait, call proc.WaitForExit();
+            }
+            catch (Exception)
+            {
+                // Swallowing exceptions per "expects nothing else".
+                // Consider logging in real apps.
+            }
+        }
+
         public static string InitializeActivityDirectory(LanguageSupported language, string userName, string taskName, string sourceCode = "")
         {
             string activityDirectory = Path.Combine(activityLocation[language], userName+'_'+taskName);

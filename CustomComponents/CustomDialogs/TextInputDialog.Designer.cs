@@ -38,12 +38,13 @@
             customTextBox1.BackColor = SystemColors.Window;
             customTextBox1.ForeColor = Color.DimGray;
             customTextBox1.Location = new Point(0, 1);
+            customTextBox1.Margin = new Padding(3, 2, 3, 2);
             customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(10, 7, 10, 7);
+            customTextBox1.Padding = new Padding(9, 5, 9, 5);
             customTextBox1.PlaceHolderColor = Color.DarkGray;
             customTextBox1.PlaceholderText = "";
             customTextBox1.ScrollBars = ScrollBars.None;
-            customTextBox1.Size = new Size(323, 41);
+            customTextBox1.Size = new Size(283, 32);
             customTextBox1.TabIndex = 0;
             // 
             // smartButton1
@@ -54,9 +55,10 @@
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(25, 48);
+            smartButton1.Location = new Point(22, 36);
+            smartButton1.Margin = new Padding(3, 2, 3, 2);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(115, 38);
+            smartButton1.Size = new Size(101, 28);
             smartButton1.TabIndex = 1;
             smartButton1.Text = "Cancel";
             smartButton1.UseVisualStyleBackColor = false;
@@ -69,9 +71,10 @@
             smartButton2.FlatAppearance.BorderSize = 0;
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(179, 48);
+            smartButton2.Location = new Point(157, 36);
+            smartButton2.Margin = new Padding(3, 2, 3, 2);
             smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(115, 38);
+            smartButton2.Size = new Size(101, 28);
             smartButton2.TabIndex = 2;
             smartButton2.Text = "OK";
             smartButton2.UseVisualStyleBackColor = false;
@@ -79,13 +82,15 @@
             // 
             // TextInputDialog
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(324, 89);
+            ClientSize = new Size(284, 67);
             Controls.Add(smartButton2);
             Controls.Add(smartButton1);
             Controls.Add(customTextBox1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TextInputDialog";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TextInputDialog";
             ResumeLayout(false);
         }

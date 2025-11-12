@@ -32,11 +32,30 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             base.RunCode();
         }
 
-        public override void RunTest()
+        public async override void RunTest()
         {
             commandLine = $"/c \"cd \"{ProgrammingConfiguration.gccBin}\" && g++ \"{Path.GetDirectoryName(filePath)+"\\Tester.cpp"}\" -o test.exe && test.exe\"";
             testerFile = Path.GetDirectoryName(filePath) + "\\\\" + "Tester.cpp";
+            SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Cpp, filePath, false);
             base.RunTest();
+            if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
+            {
+                //await checkOperatorsCount();
+                await checkEfficiencyComparison();
+            }
+        }
+
+        private Task checkEfficiencyComparison()
+        {
+            int luckyNumber = new Random().Next(0, mgaGinawangTama.Count - 1);
+            string testIntput = mgaGinawangTama[luckyNumber].Key;
+            string directory = Path.GetDirectoryName(filePath);
+            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{Path.Combine(directory, "OperatorsCounter.cpp")}\" -o \"{Path.Combine(directory, "OperatorsCounter.exe")}\" && \"{Path.Combine(directory, "OperatorsCounter.exe")}\"\"", testIntput));
+            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{Path.Combine(directory, "BestOperatorsCounter.cpp")}\" -o \"{Path.Combine(directory, "BestOperatorsCounter.exe")}\" && \"{Path.Combine(directory, "BestOperatorsCounter.exe")}\"\"", testIntput));
+            MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
+            updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "cpp");
+
+            return Task.CompletedTask;
         }
 
         public override async Task RunLinting()
@@ -68,7 +87,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         {
                             await checkStandards(item, highlighter[item], i++);
                         }
-                        await getOperatorsCount();
                     }
                 }
             );

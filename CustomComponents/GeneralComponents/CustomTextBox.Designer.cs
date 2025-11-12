@@ -59,6 +59,6 @@
 
         #endregion
 
-        private TextBox textBox1;
+        public TextBox textBox1;
     }
 }
