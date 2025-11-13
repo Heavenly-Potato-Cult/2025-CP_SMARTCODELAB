@@ -33,12 +33,11 @@
             srcCode = new CodeEditor();
             tabControl2 = new TabControl();
             tabPage1 = new TabPage();
-            output = new ConsoleTextBox();
+            output = new CmdPanel();
             splitContainer1 = new SplitContainer();
             ((System.ComponentModel.ISupportInitialize)srcCode).BeginInit();
             tabControl2.SuspendLayout();
             tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)output).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -60,7 +59,7 @@
     '\'',
     '\''
     };
-            srcCode.AutoScrollMinSize = new Size(27, 44);
+            srcCode.AutoScrollMinSize = new Size(27, 24);
             srcCode.AutoSize = true;
             srcCode.BackBrush = null;
             srcCode.CharHeight = 14;
@@ -105,37 +104,11 @@
             // 
             // output
             // 
-            output.AutoCompleteBracketsList = new char[]
-    {
-    '(',
-    ')',
-    '{',
-    '}',
-    '[',
-    ']',
-    '"',
-    '"',
-    '\'',
-    '\''
-    };
-            output.AutoScrollMinSize = new Size(27, 14);
-            output.BackBrush = null;
-            output.CharHeight = 14;
-            output.CharWidth = 8;
-            output.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            output.Dock = DockStyle.Fill;
-            output.Font = new Font("Courier New", 9.75F);
-            output.Hotkeys = resources.GetString("output.Hotkeys");
-            output.IsReplaceMode = false;
-            output.Location = new Point(3, 2);
-            output.Margin = new Padding(3, 2, 3, 2);
+            output.BackColor = SystemColors.ActiveCaption;
+            output.Location = new Point(6, 5);
             output.Name = "output";
-            output.Paddings = new Padding(0);
-            output.SelectionColor = Color.FromArgb(60, 0, 0, 255);
-            output.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("output.ServiceColors");
-            output.Size = new Size(708, 121);
+            output.Size = new Size(702, 120);
             output.TabIndex = 0;
-            output.Zoom = 100;
             // 
             // splitContainer1
             // 
@@ -167,7 +140,6 @@
             ((System.ComponentModel.ISupportInitialize)srcCode).EndInit();
             tabControl2.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)output).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel1.PerformLayout();
             splitContainer1.Panel2.ResumeLayout(false);
@@ -180,7 +152,7 @@
         public CodeEditor srcCode;
         private TabControl tabControl2;
         private TabPage tabPage1;
-        protected ConsoleTextBox output;
         private SplitContainer splitContainer1;
+        protected CmdPanel output;
     }
 }

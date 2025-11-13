@@ -169,11 +169,13 @@ namespace SmartCodeLab
                     if (task._testCases != null && task._testCases.Count > 0)
                     {
                         // para ma maintain ang order sa test cases
+                        int count = 0;
                         var testCaseList = task._testCases.ToList();
                         for (int i = testCaseList.Count - 1; i >= 0; i--)
                         {
+                            count++;
                             var item = testCaseList[i];
-                            var testCaseNumber = i + 1;
+                            var testCaseNumber = count;
 
                             var testcase = new ExpansionPanel();
                             var testcaseview = new TestCaseView(testCaseNumber, item.Key, item.Value);
@@ -189,7 +191,8 @@ namespace SmartCodeLab
 
                             testcase.Dock = DockStyle.Top;
                             ActivityPanel.Controls.Add(testcase);
-
+                            if(count > 4)
+                                break;
                             
                         }
 

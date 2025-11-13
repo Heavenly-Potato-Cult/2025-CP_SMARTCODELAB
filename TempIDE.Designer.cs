@@ -327,13 +327,13 @@
             // 
             description.Dock = DockStyle.Bottom;
             description.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            description.Location = new Point(0, 48);
+            description.Location = new Point(0, -39);
             description.Margin = new Padding(3, 2, 3, 2);
             description.Multiline = true;
             description.Name = "description";
             description.ReadOnly = true;
             description.ScrollBars = ScrollBars.Vertical;
-            description.Size = new Size(380, 138);
+            description.Size = new Size(380, 225);
             description.TabIndex = 76;
             // 
             // tabControl_RightSide

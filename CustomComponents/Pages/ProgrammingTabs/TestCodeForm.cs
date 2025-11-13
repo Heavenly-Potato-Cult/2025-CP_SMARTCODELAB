@@ -85,11 +85,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     null
                 );
                 bool isCorrect = testOutput == item.Value + '\n';
-                if (isCorrect)
-                {
-                    score++;
-                    corrects.Add(new KeyValuePair<string, string>(item.Key, item.Value));
-                }
 
                 currentScore.Text = score.ToString();
                 //flowLayoutPanel1.Controls.Add(new TestCaseResult(sequence++, isCorrect, item.Key, item.Value, testOutput));
@@ -107,7 +102,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     testcase.HeaderColor = Color.Red;
                     testcase.Title2 = "Incorrect";
-
                 }
 
                 testcase.BackColor = Color.White;
@@ -124,6 +118,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 sequence++;
                 //return the tester file content to its original content
                 File.WriteAllText(testFile, testSrcCode.Replace(input, "userInput"));
+                if (isCorrect)
+                {
+                    score++;
+                    corrects.Add(new KeyValuePair<string, string>(item.Key, item.Value));
+                }
+                else
+                {
+                    break;
+                }
             }
         }
 

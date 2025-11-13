@@ -136,17 +136,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }
                 else if (i == 2)//efficiency
                 {
-                    efficiency.ChangeValue(value);
+                    efficiency.ChangeValue(Math.Min(value, accuracy.Value));
                 }
                 else if (i == 3)//robustness
                 {
                     int scoreRobustness = Math.Max(0, 100 - getTotalDeduction(i, value, language));
-                    robustness.ChangeValue(scoreRobustness);
+                    robustness.ChangeValue(Math.Min(scoreRobustness, accuracy.Value));
                 }
                 else if (i == 4)//maintainability
                 {
                     int difference = Math.Max(0, 100 - getTotalDeduction(i, value, language));
-                    maintainability.ChangeValue(difference);
+                    maintainability.ChangeValue(Math.Min(difference, accuracy.Value));
                 }
                 statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
                 this.Invoke(new Action(() => score.Text = GetScore().ToString()));

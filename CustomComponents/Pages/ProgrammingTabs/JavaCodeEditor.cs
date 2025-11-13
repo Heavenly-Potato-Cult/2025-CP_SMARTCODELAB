@@ -21,6 +21,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         int operatorsCount;
         private int errorCounts = 0;
+        TextInputDialog2 toInput;
         TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
         TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
         TextStyle GrayStyle = new TextStyle(Brushes.Gray, null, FontStyle.Regular);
@@ -58,91 +59,21 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public override async void RunCode()
         {
             CompileCode();
-            ProcessStartInfo psi = new ProcessStartInfo()
-            {
-                FileName = "java",                   // Run directly, not via cmd.exe
-                Arguments = "\"" + filePath + "\"",                // e.g. "C:\\Users\\You\\test.py"
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
             process?.Dispose();
-            using (process = new Process())
+            process = new Process
             {
-                process.StartInfo = psi;
-
-                // Event handler for reading output line by line
-                process.OutputDataReceived += (sender, e) =>
+                StartInfo = new ProcessStartInfo
                 {
-                    if (!string.IsNullOrEmpty(e.Data))
-                    {
-                        output.WriteLine(e.Data + Environment.NewLine);
-                    }
-                };
-
-                // Event handler for reading error output
-                process.ErrorDataReceived += (sender, e) =>
-                {
-                    if (!string.IsNullOrEmpty(e.Data))
-                    {
-                        Debug.WriteLine($"[ERR] {e.Data}");
-                    }
-                };
-
-                //process.Exited += (s, e) =>
-                //{
-                //    toInput?.Close();
-                //    Debug.WriteLine("Closed");
-                //};
-
-                // Start process
-                process.Start();
-                Invoker(() =>
-                {
-                    output.Clear();
-                    output.WriteLine("Started" + Environment.NewLine);
-                    output.IsReadLineMode = true;
-                });
-                // Begin reading output asynchronously
-                process.BeginOutputReadLine();
-                process.BeginErrorReadLine();
-
-                // --- Example: sending multiple inputs ---
-                // You can replace these with whatever the user types in your IDE input box
-                await Task.Delay(500); // small delay ensures process starts reading
-                int i = 0;
-                while (!process.HasExited)
-                {
-                    var toInput = new TextInputDialog();
-                    toInput.ShowDialog();
-                    string input = toInput.InputtedText();
-
-                    try
-                    {
-                        if (!process.HasExited)
-                        {
-                            await process.StandardInput.WriteLineAsync(input);
-                            await process.StandardInput.FlushAsync();
-                        }
-                    }
-                    catch (IOException)
-                    {
-                        break; // happens if process exited mid-input
-                    }
-
-                    // Optional: short delay to allow the process to react
-                    await Task.Delay(50);
+                    FileName = "java",
+                    Arguments = $"\"{filePath}\"",
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
                 }
-                // Close the input stream only after sending all data
-                try
-                {
-                    process.StandardInput.Close();
-                }
-                catch (IOException) { }
-                await process.WaitForExitAsync();
-            }
+            };
+            base.RunCode();
         }
 
         private void JavaSyntaxHighlight(TextChangedEventArgs e)
@@ -192,11 +123,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             await StartprocessAsync(
                 process,
                 null,
-                withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
+                null,//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
                 null);
         }
         public override async Task RunLinting()
         {
+            Debug.WriteLine("Run linter");
             SaveCode();
             string fileName = Path.GetFileName(filePath);
             string directory = Path.GetDirectoryName(filePath);
@@ -237,7 +169,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 await checkOperatorsCount();
                 await checkEfficiencyComparison();
-            }
+            } else
+                updateStats?.Invoke(2, 0, "java");
         }
 
         private Task checkEfficiencyComparison()
@@ -346,6 +279,5 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             return errorMsg.Substring(startIndex + 1, endIndex - startIndex - 1);
         }
-
     }
 }

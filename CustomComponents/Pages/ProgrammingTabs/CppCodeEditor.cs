@@ -25,10 +25,28 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
         }
 
-        public override void RunCode()
+        public override async void RunCode()
         {
             string fileExe = filePath.Replace(".cpp", ".exe");
-            commandLine = $"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{filePath}\" -o \"{fileExe}\" && \"{fileExe}\"\"";
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{filePath}\" -o \"{fileExe}\"\"");
+            await StartprocessAsyncExit(
+                process,
+                null,
+                null,
+                null);
+            process?.Dispose();
+            process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = $"\"{fileExe}\"",
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    RedirectStandardError = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                }
+            };
             base.RunCode();
         }
 

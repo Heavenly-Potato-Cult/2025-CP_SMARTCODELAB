@@ -38,16 +38,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             return expectedUsers.ContainsKey(studentId);
         }
 
-        public UserProfile GetUserProfile(string userId)
-        {
-            return expectedUsers[userId];
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void smartButton2_Click(object sender, EventArgs e)
         {
             StudentForm frm = new StudentForm();
@@ -74,12 +64,21 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         {
             if (!File.Exists(filepath))
                 return null;
-
-            string[] stringLines = await File.ReadAllLinesAsync(filepath);
+            string[] stringLines = null;
+            try
+            {
+                stringLines = await File.ReadAllLinesAsync(filepath);
+            }catch(IOException io) { 
+                MessageBox.Show(io.Message);
+                return new Dictionary<string, UserProfile>();
+            }
 
             var (nameIndex, studentIdIndex) = GetColumnIndices(stringLines[0]);
             if (nameIndex == -1 || studentIdIndex == -1)
+            {
+                MessageBox.Show("Appropriate column names(\"Name\" and \"Student Id\") are not found in the file.");
                 return null;
+            }
 
             return await Task.Run(() =>
             {
@@ -107,9 +106,9 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             string[] lineTokens = firstRow.Split(",");
             for (int i = 0; i < lineTokens.Length; i++)
             {
-                if (lineTokens[i].Trim().Contains("Name", StringComparison.OrdinalIgnoreCase))
+                if (lineTokens[i].Trim().Equals("Name", StringComparison.OrdinalIgnoreCase))
                     nameColumnIndex = i;
-                else if (lineTokens[i].Trim().Contains("Student Id", StringComparison.OrdinalIgnoreCase))
+                else if (lineTokens[i].Trim().Equals("Student Id", StringComparison.OrdinalIgnoreCase))
                     studentColumnIndex = i;
             }
 

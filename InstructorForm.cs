@@ -165,7 +165,6 @@ namespace SmartCodeLab
 
         private void tabPage8_Enter(object sender, EventArgs e)
         {
-            //new ToDelete().ShowDialog();
             if (!SystemSingleton.Instance._loggedIn)
             {
                 TcpClient client = new TcpClient();

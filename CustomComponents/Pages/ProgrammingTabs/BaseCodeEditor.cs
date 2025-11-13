@@ -173,15 +173,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                 }
             };
-
-            output.KeyUp += (s, e) =>
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    Invoker(() => SendInput(output.ReadLine()));
-                    inputTimerStarter();
-                }
-            };
         }
 
         private void GetPastedCode(string codeSnippet, string wholeCode, string[] history)
@@ -303,52 +294,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public async virtual void RunCode()
         {
-            if(errorMsg != "")
+            if (errorMsg != "")
             {
                 MessageBox.Show("Code contains syntax errors");
                 return;
             }
-
-            Invoker(() =>
-            {
-                output.Clear();
-                output.WriteLine("Started" + Environment.NewLine);
-                output.IsReadLineMode = true;
-            });
-            string exeptionThrown = string.Empty;
-            SaveCode(5, 100);
-            process = CommandRunner(commandLine);
-            await StartprocessAsync(
-                process,
-                outp => {
-                    Invoker(() => output.WriteLine(outp));
-                    inputTimerStarter();
-                },
-                err => { 
-                    
-                    exeptionThrown += (err + "\n");
-                },
-                async () =>
-                {
-                    if(exeptionThrown != string.Empty)
-                        Invoker(() => output.WriteLine(exeptionThrown));
-
-                    Invoker(() => output.WriteLine(Environment.NewLine + "Program Finished"));
-                    output.IsReadLineMode = false;
-                    inputTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-                    if(exeptionThrown != "")
-                        ExtractThrownExceptions(exeptionThrown);
-                    process.StandardInput.Close();
-                    //bool isFilePython = filePath.EndsWith(".py");
-                    //if (!isFilePython)
-                    //{
-                    //    string extension = filePath.EndsWith("cpp") ? "exe" : "class";
-                    //    string delCommand = $"/c del {Path.Combine(Path.GetDirectoryName(filePath),"Main."+extension)}";
-                    //    process = CommandRunner(delCommand);
-                    //    await StartprocessAsyncExit(process, null, null, null);
-                    //}
-                }
-            );
+            process.Start();
+            output.AttachProcess(process);
         }
 
         private void ExtractThrownExceptions(string allExceptions)
@@ -451,7 +403,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             process.EnableRaisingEvents = true;
             process.Start();
-            inputTimerStarter();
             try
             {
                 Task.Run(async () =>
@@ -556,21 +507,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             process.BeginErrorReadLine();
             await process.WaitForExitAsync();
         }
-
-        protected virtual void SendInput(string input)
-        {
-            //Debug.WriteLine("sending " + input);
-            //try
-            //{
-            //    if (process != null && !process.HasExited)
-            //    {
-            //        process.StandardInput.WriteLineAsync(input);
-            //        process.StandardInput.FlushAsync();
-            //    }
-            //}
-            //catch (InvalidOperationException) { }
-        }
-
         public virtual async Task RunLinting() { }
 
         protected void HighlightError(int errorLine, string errorMsg)
@@ -586,27 +522,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             catch (ArgumentOutOfRangeException) { }
         }
 
-        protected virtual void HighLightStandardError(int errorLine, string msg)
-        {
-            try
-            {
-                var lineRange = srcCode.GetLine(errorLine);
-                lineRange.SetStyle(readabilityHighlight);
-                lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, msg));
-            }
-            catch (ArgumentException) { }
-        }
-
-        protected virtual void HighlightReadabilityIssue(int errorLine, string msg)
-        {
-            try
-            {
-                var lineRange = srcCode.GetLine(errorLine);
-                lineRange.SetStyle(readabilityHighlight);
-                lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, msg));
-            }
-            catch (ArgumentException) { }
-        }
+        //protected virtual void HighLightStandardError(int errorLine, string msg)
+        //{
+        //    try
+        //    {
+        //        var lineRange = srcCode.GetLine(errorLine);
+        //        lineRange.SetStyle(readabilityHighlight);
+        //        lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, msg));
+        //    }
+        //    catch (ArgumentException) { }
+        //}
 
         protected virtual void HighlightMaintainabilityIssue(int errorLine, string msg)
         {
@@ -667,19 +592,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected void Invoker(Action action) 
         {
             this.Invoke(action);
-        }
-
-        private void inputTimerStarter()
-        {
-            inputTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-
-            // Start a new timer
-            inputTimer = new System.Threading.Timer(_ =>
-            {
-                output.IsReadLineMode = true;
-                Invoker(() => SendInput(output.ReadLine()));
-                output.IsReadLineMode = true;
-            }, null, 700, Timeout.Infinite);
         }
 
         public List<HashSet<string>> GetViolatedRules()
