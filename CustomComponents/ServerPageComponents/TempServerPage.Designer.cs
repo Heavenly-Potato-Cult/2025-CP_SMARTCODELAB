@@ -70,12 +70,12 @@
             customCard8.BorderSize = 1;
             customCard8.Controls.Add(studentCode);
             customCard8.Controls.Add(label15);
-            customCard8.Location = new Point(3, 174);
-            customCard8.Margin = new Padding(3, 2, 3, 2);
-            customCard8.MinimumSize = new Size(514, 281);
+            customCard8.Location = new Point(3, 204);
+            customCard8.MaximumSize = new Size(1031, 700);
+            customCard8.MinimumSize = new Size(1031, 500);
             customCard8.Name = "customCard8";
-            customCard8.Padding = new Padding(0, 0, 0, 15);
-            customCard8.Size = new Size(902, 525);
+            customCard8.Padding = new Padding(0, 0, 0, 20);
+            customCard8.Size = new Size(1031, 581);
             customCard8.TabIndex = 14;
             // 
             // studentCode
@@ -94,22 +94,21 @@
     '\'',
     '\''
     };
-            studentCode.AutoScrollMinSize = new Size(2, 14);
+            studentCode.AutoScrollMinSize = new Size(2, 18);
             studentCode.BackBrush = null;
-            studentCode.CharHeight = 14;
-            studentCode.CharWidth = 8;
+            studentCode.CharHeight = 18;
+            studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
-            studentCode.Location = new Point(14, 40);
-            studentCode.Margin = new Padding(3, 2, 3, 2);
+            studentCode.Location = new Point(16, 53);
             studentCode.Name = "studentCode";
             studentCode.Paddings = new Padding(0);
             studentCode.ReadOnly = true;
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
-            studentCode.Size = new Size(874, 468);
+            studentCode.Size = new Size(999, 512);
             studentCode.TabIndex = 15;
             studentCode.Zoom = 100;
             // 
@@ -118,9 +117,9 @@
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.FromArgb(13, 13, 13);
-            label15.Location = new Point(14, 17);
+            label15.Location = new Point(16, 23);
             label15.Name = "label15";
-            label15.Size = new Size(157, 21);
+            label15.Size = new Size(193, 28);
             label15.TabIndex = 14;
             label15.Text = "Live Coding Viewer";
             // 
@@ -134,10 +133,11 @@
             customCard6.Controls.Add(smartButton3);
             customCard6.Controls.Add(ipaddress);
             customCard6.Controls.Add(studentName);
-            customCard6.Location = new Point(3, 2);
-            customCard6.Margin = new Padding(3, 2, 3, 2);
+            customCard6.Location = new Point(3, 3);
+            customCard6.MaximumSize = new Size(1034, 93);
+            customCard6.MinimumSize = new Size(1034, 93);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(905, 70);
+            customCard6.Size = new Size(1034, 93);
             customCard6.TabIndex = 13;
             // 
             // smartButton3
@@ -150,10 +150,9 @@
             smartButton3.FlatStyle = FlatStyle.Flat;
             smartButton3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton3.ForeColor = Color.White;
-            smartButton3.Location = new Point(699, 18);
-            smartButton3.Margin = new Padding(3, 2, 3, 2);
+            smartButton3.Location = new Point(799, 24);
             smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(193, 35);
+            smartButton3.Size = new Size(221, 47);
             smartButton3.TabIndex = 13;
             smartButton3.Text = "Send Message";
             smartButton3.UseVisualStyleBackColor = false;
@@ -164,9 +163,9 @@
             ipaddress.AutoSize = true;
             ipaddress.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ipaddress.ForeColor = Color.Gray;
-            ipaddress.Location = new Point(18, 37);
+            ipaddress.Location = new Point(21, 49);
             ipaddress.Name = "ipaddress";
-            ipaddress.Size = new Size(257, 20);
+            ipaddress.Size = new Size(317, 25);
             ipaddress.TabIndex = 8;
             ipaddress.Text = "IT2024001 | LAB-PC-1 | 192.168.1.101 ";
             // 
@@ -175,9 +174,9 @@
             studentName.AutoSize = true;
             studentName.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             studentName.ForeColor = Color.FromArgb(13, 13, 13);
-            studentName.Location = new Point(18, 16);
+            studentName.Location = new Point(21, 21);
             studentName.Name = "studentName";
-            studentName.Size = new Size(165, 21);
+            studentName.Size = new Size(201, 28);
             studentName.TabIndex = 11;
             studentName.Text = "Jimmuel Sanggayan";
             // 
@@ -192,11 +191,12 @@
             customCard1.Controls.Add(panel4);
             customCard1.Controls.Add(panel1);
             customCard1.Controls.Add(label34);
-            customCard1.Location = new Point(1231, 47);
-            customCard1.Margin = new Padding(3, 2, 3, 2);
+            customCard1.Location = new Point(1475, 60);
+            customCard1.MaximumSize = new Size(376, 484);
+            customCard1.MinimumSize = new Size(376, 484);
             customCard1.Name = "customCard1";
-            customCard1.Padding = new Padding(4, 6, 4, 6);
-            customCard1.Size = new Size(329, 363);
+            customCard1.Padding = new Padding(5, 8, 5, 8);
+            customCard1.Size = new Size(376, 484);
             customCard1.TabIndex = 13;
             // 
             // copypastedCodes
@@ -204,10 +204,9 @@
             copypastedCodes.AutoScroll = true;
             copypastedCodes.Dock = DockStyle.Top;
             copypastedCodes.FlowDirection = FlowDirection.TopDown;
-            copypastedCodes.Location = new Point(4, 36);
-            copypastedCodes.Margin = new Padding(3, 2, 3, 2);
+            copypastedCodes.Location = new Point(5, 48);
             copypastedCodes.Name = "copypastedCodes";
-            copypastedCodes.Size = new Size(321, 319);
+            copypastedCodes.Size = new Size(366, 425);
             copypastedCodes.TabIndex = 13;
             copypastedCodes.WrapContents = false;
             // 
@@ -215,20 +214,20 @@
             // 
             panel4.BackColor = Color.DarkGray;
             panel4.Dock = DockStyle.Top;
-            panel4.Location = new Point(4, 35);
-            panel4.Margin = new Padding(3, 11, 3, 2);
+            panel4.Location = new Point(5, 47);
+            panel4.Margin = new Padding(3, 15, 3, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(321, 1);
+            panel4.Size = new Size(366, 1);
             panel4.TabIndex = 31;
             // 
             // panel1
             // 
             panel1.BackColor = Color.White;
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(4, 27);
-            panel1.Margin = new Padding(3, 11, 3, 2);
+            panel1.Location = new Point(5, 36);
+            panel1.Margin = new Padding(3, 15, 3, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(321, 8);
+            panel1.Size = new Size(366, 11);
             panel1.TabIndex = 30;
             // 
             // label34
@@ -237,21 +236,22 @@
             label34.Dock = DockStyle.Top;
             label34.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label34.ForeColor = Color.FromArgb(13, 13, 13);
-            label34.Location = new Point(4, 6);
+            label34.Location = new Point(5, 8);
             label34.Name = "label34";
-            label34.Padding = new Padding(8, 0, 0, 0);
-            label34.Size = new Size(167, 21);
+            label34.Padding = new Padding(9, 0, 0, 0);
+            label34.Size = new Size(207, 28);
             label34.TabIndex = 29;
             label34.Text = "Copy-Paste Activity";
             // 
             // codeTrack
             // 
             codeTrack.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            codeTrack.Location = new Point(3, 125);
-            codeTrack.Margin = new Padding(3, 2, 3, 2);
+            codeTrack.Location = new Point(3, 142);
             codeTrack.Maximum = 0;
+            codeTrack.MaximumSize = new Size(1031, 56);
+            codeTrack.MinimumSize = new Size(1031, 56);
             codeTrack.Name = "codeTrack";
-            codeTrack.Size = new Size(902, 45);
+            codeTrack.Size = new Size(1031, 56);
             codeTrack.TabIndex = 100;
             codeTrack.Scroll += codeTrack_Scroll;
             // 
@@ -266,10 +266,13 @@
             customCard2.Controls.Add(smartButton1);
             customCard2.Controls.Add(panel2);
             customCard2.Controls.Add(iconsContainer);
-            customCard2.Location = new Point(28, 47);
+            customCard2.Location = new Point(32, 63);
+            customCard2.Margin = new Padding(3, 4, 3, 4);
+            customCard2.MaximumSize = new Size(293, 800);
+            customCard2.MinimumSize = new Size(293, 800);
             customCard2.Name = "customCard2";
-            customCard2.Padding = new Padding(18, 0, 18, 22);
-            customCard2.Size = new Size(256, 699);
+            customCard2.Padding = new Padding(21, 0, 21, 29);
+            customCard2.Size = new Size(293, 800);
             customCard2.TabIndex = 103;
             // 
             // searchStudent
@@ -279,13 +282,14 @@
             searchStudent.BorderColor = Color.Silver;
             searchStudent.BorderFocusColor = Color.Black;
             searchStudent.ForeColor = Color.DimGray;
-            searchStudent.Location = new Point(21, 91);
+            searchStudent.Location = new Point(21, 110);
+            searchStudent.Margin = new Padding(3, 4, 3, 4);
             searchStudent.Name = "searchStudent";
-            searchStudent.Padding = new Padding(10, 7, 10, 7);
+            searchStudent.Padding = new Padding(11, 9, 11, 9);
             searchStudent.PlaceHolderColor = Color.DarkGray;
             searchStudent.PlaceholderText = "Search Student";
             searchStudent.ScrollBars = ScrollBars.None;
-            searchStudent.Size = new Size(217, 36);
+            searchStudent.Size = new Size(251, 45);
             searchStudent.TabIndex = 16;
             searchStudent._TextChanged += customTextBox1__TextChanged;
             // 
@@ -299,10 +303,9 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(21, 18);
-            smartButton1.Margin = new Padding(3, 2, 3, 2);
+            smartButton1.Location = new Point(21, 21);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(217, 49);
+            smartButton1.Size = new Size(248, 65);
             smartButton1.TabIndex = 14;
             smartButton1.Text = "Broadcast Message";
             smartButton1.UseVisualStyleBackColor = false;
@@ -311,10 +314,9 @@
             // 
             panel2.BackColor = Color.Gainsboro;
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(18, 132);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(21, 162);
             panel2.Name = "panel2";
-            panel2.Size = new Size(220, 1);
+            panel2.Size = new Size(251, 1);
             panel2.TabIndex = 15;
             // 
             // iconsContainer
@@ -322,9 +324,10 @@
             iconsContainer.AutoScroll = true;
             iconsContainer.Dock = DockStyle.Bottom;
             iconsContainer.FlowDirection = FlowDirection.TopDown;
-            iconsContainer.Location = new Point(18, 133);
+            iconsContainer.Location = new Point(21, 163);
+            iconsContainer.Margin = new Padding(3, 4, 3, 4);
             iconsContainer.Name = "iconsContainer";
-            iconsContainer.Size = new Size(220, 544);
+            iconsContainer.Size = new Size(251, 608);
             iconsContainer.TabIndex = 12;
             iconsContainer.TabStop = true;
             iconsContainer.WrapContents = false;
@@ -336,19 +339,21 @@
             panel3.Controls.Add(customCard6);
             panel3.Controls.Add(customCard8);
             panel3.Controls.Add(codeTrack);
-            panel3.Location = new Point(309, 45);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(377, 60);
+            panel3.MaximumSize = new Size(1041, 800);
+            panel3.MinimumSize = new Size(1041, 800);
             panel3.Name = "panel3";
-            panel3.Size = new Size(911, 701);
+            panel3.Size = new Size(1041, 800);
             panel3.TabIndex = 101;
             // 
             // studentCodeRating1
             // 
             studentCodeRating1.BackColor = Color.White;
-            studentCodeRating1.Location = new Point(1231, 447);
-            studentCodeRating1.Margin = new Padding(3, 2, 3, 2);
+            studentCodeRating1.Location = new Point(1475, 590);
+            studentCodeRating1.MaximumSize = new Size(376, 237);
+            studentCodeRating1.MinimumSize = new Size(376, 237);
             studentCodeRating1.Name = "studentCodeRating1";
-            studentCodeRating1.Size = new Size(329, 178);
+            studentCodeRating1.Size = new Size(376, 237);
             studentCodeRating1.TabIndex = 104;
             // 
             // panel5
@@ -360,19 +365,21 @@
             panel5.Controls.Add(customCard1);
             panel5.Dock = DockStyle.Fill;
             panel5.Location = new Point(0, 0);
+            panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1576, 787);
+            panel5.Size = new Size(1916, 964);
             panel5.TabIndex = 105;
             // 
             // TempServerPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.WhiteSmoke;
             Controls.Add(panel5);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "TempServerPage";
-            Size = new Size(1576, 787);
+            Size = new Size(1916, 964);
             customCard8.ResumeLayout(false);
             customCard8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();

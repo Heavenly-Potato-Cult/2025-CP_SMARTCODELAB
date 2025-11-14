@@ -81,39 +81,43 @@ namespace SmartCodeLab
             };
         }
 
+        private const int BaseNavPanelHeight = 40;
+
         private void NavigationMenu()
         {
+            
             if (panelNavHost == null) return;
 
+           
             float dpiScale;
             using (Graphics g = this.CreateGraphics())
             {
                 dpiScale = g.DpiX / 96f;
             }
-            panelNavHost.Height = (int)(panelNavHost.Height * dpiScale);
 
+            
+            panelNavHost.Height = (int)(BaseNavPanelHeight * dpiScale);
 
-            var navMenu = new Navbar();
-            navMenu.OnNavigationClicked = (tabIndex) =>
+           
+            if (!panelNavHost.Controls.OfType<ElementHost>().Any())
             {
-                if (tabcontrol_MainNav != null)
+                var navMenu = new Navbar();
+                navMenu.OnNavigationClicked = (tabIndex) =>
                 {
-                    tabcontrol_MainNav.SelectedIndex = tabIndex;
-                }
-            };
+                    if (tabcontrol_MainNav != null)
+                    {
+                        tabcontrol_MainNav.SelectedIndex = tabIndex;
+                    }
+                };
 
-            var host = new ElementHost
-            {
-                Dock = DockStyle.Fill,
-                Child = navMenu
-            };
+                var host = new ElementHost
+                {
+                    Dock = DockStyle.Fill,
+                    Child = navMenu
+                };
 
-
-            if (panelNavHost != null)
-            {
                 panelNavHost.Controls.Add(host);
             }
-
         }
 
         private void SessionNavigationMenu()

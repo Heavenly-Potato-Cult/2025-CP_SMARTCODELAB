@@ -33,22 +33,25 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(3, 3);
+            richTextBox1.Dock = DockStyle.Fill;
+            richTextBox1.Location = new Point(0, 0);
+            richTextBox1.Margin = new Padding(3, 4, 3, 4);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ScrollBars = RichTextBoxScrollBars.Horizontal;
-            richTextBox1.Size = new Size(521, 118);
+            richTextBox1.Size = new Size(602, 200);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             richTextBox1.WordWrap = false;
             // 
             // CmdPanel
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             Controls.Add(richTextBox1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "CmdPanel";
-            Size = new Size(527, 150);
+            Size = new Size(602, 200);
             ResumeLayout(false);
         }
 
