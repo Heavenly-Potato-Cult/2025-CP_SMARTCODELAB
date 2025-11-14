@@ -52,14 +52,18 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         private void LookForServers()
         {
             {
-                udpClient.EnableBroadcast = true;
-                if(NetworkServices.GetWiFiBroadcast() == null)
+                string ipV4 = NetworkServices.GetLocalIPv4();
+                if(ipV4 == "No IPv4 address found")
                 {
-                    MessageBox.Show("Not Connected to a Wifi Network");
+                    MessageBox.Show("No IPv4 address found");
                     Close();
                     return;
                 }
-                IPEndPoint broadcastEP = new IPEndPoint(NetworkServices.GetWiFiBroadcast(), 1902);
+                string subNetMask = NetworkServices.GetSubnetMaskForIP(IPAddress.Parse(ipV4)).ToString();
+                string broadCastAddress = NetworkServices.GetBroadcastAddress(ipV4, subNetMask);
+                MessageBox.Show(broadCastAddress);
+                udpClient.EnableBroadcast = true;
+                IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Parse(broadCastAddress), 1902);
 
                 //sender
                 Task.Run(async () =>

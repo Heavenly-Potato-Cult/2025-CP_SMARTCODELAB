@@ -23,58 +23,6 @@ namespace SmartCodeLab.Services
             .Select(a => a.Address.ToString())
             .FirstOrDefault();
         }
-
-        /// <summary>
-        /// Gets the broadcast address based on a given IP and subnet mask.
-        /// </summary>
-
-        /// <summary>
-        /// Gets the local IPv4 broadcast address of the first active network interface.
-        /// </summary>
-        public static IPAddress? GetLocalBroadcastAddress()
-        {
-            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (ni.OperationalStatus == OperationalStatus.Up &&
-                    ni.NetworkInterfaceType != NetworkInterfaceType.Loopback)
-                {
-                    var ipProps = ni.GetIPProperties();
-
-                    foreach (var addrInfo in ipProps.UnicastAddresses)
-                    {
-                        if (addrInfo.Address.AddressFamily == AddressFamily.InterNetwork)
-                        {
-                            return GetBroadcastAddress(addrInfo.Address, addrInfo.IPv4Mask);
-                        }
-                    }
-                }
-            }
-
-            return null; // No active IPv4 interface found
-        }
-
-        public static IPAddress? GetWiFiIPv4()
-        {
-            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                // Ensure interface is active, not loopback, and is Wi-Fi
-                if (ni.OperationalStatus == OperationalStatus.Up &&
-                    ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
-                {
-                    var ipProps = ni.GetIPProperties();
-
-                    var ipv4 = ipProps.UnicastAddresses
-                        .FirstOrDefault(a => a.Address.AddressFamily == AddressFamily.InterNetwork)?.Address;
-
-                    if (ipv4 != null)
-                        return ipv4;
-                }
-            }
-
-            return null; // No Wi-Fi IPv4 found
-        }
-
-
         public static IPAddress? GetWiFiBroadcast()
         {
             foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
@@ -105,6 +53,70 @@ namespace SmartCodeLab.Services
                 broadcast[i] = (byte)(ipBytes[i] | ~maskBytes[i]);
 
             return new IPAddress(broadcast);
+        }
+
+        public static string GetLocalIPv4()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+
+            return "No IPv4 address found";
+        }
+
+        public static IPAddress GetSubnetMaskForIP(IPAddress ipAddress)
+        {
+            foreach (NetworkInterface networkInterface in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (networkInterface.OperationalStatus != OperationalStatus.Up)
+                    continue;
+
+                IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
+
+                foreach (UnicastIPAddressInformation unicastAddress in ipProperties.UnicastAddresses)
+                {
+                    if (unicastAddress.Address.AddressFamily == AddressFamily.InterNetwork &&
+                        unicastAddress.Address.Equals(ipAddress))
+                    {
+                        return unicastAddress.IPv4Mask;
+                    }
+                }
+            }
+
+            return null; // IP address not found
+        }
+
+        public static string GetBroadcastAddress(string ipAddressString, string subnetMaskString)
+        {
+            try
+            {
+                // Parse IP address and subnet mask
+                IPAddress ipAddress = IPAddress.Parse(ipAddressString);
+                IPAddress subnetMask = IPAddress.Parse(subnetMaskString);
+
+                // Convert to byte arrays
+                byte[] ipBytes = ipAddress.GetAddressBytes();
+                byte[] maskBytes = subnetMask.GetAddressBytes();
+
+                // Calculate broadcast address: IP OR (NOT Mask)
+                byte[] broadcastBytes = new byte[4];
+                for (int i = 0; i < 4; i++)
+                {
+                    broadcastBytes[i] = (byte)(ipBytes[i] | ~maskBytes[i]);
+                }
+
+                return new IPAddress(broadcastBytes).ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException($"Invalid input: {ex.Message}");
+            }
         }
     }
 }

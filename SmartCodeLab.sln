@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCodeLab", "SmartCodeLab.csproj", "{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Installer", "..\Installer\Installer.vdproj", "{B3724FF1-63B2-8EB6-790C-41E05982363C}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SmartCodeLabInstaller", "..\SmartCodeLabInstaller\SmartCodeLabInstaller.vdproj", "{C4612322-7BEC-2584-102E-20E3079D776C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,12 +13,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3724FF1-63B2-8EB6-790C-41E05982363C}.Debug|Any CPU.ActiveCfg = Debug
-		{B3724FF1-63B2-8EB6-790C-41E05982363C}.Release|Any CPU.ActiveCfg = Release
+		{C4612322-7BEC-2584-102E-20E3079D776C}.Debug|Any CPU.ActiveCfg = Release
+		{C4612322-7BEC-2584-102E-20E3079D776C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

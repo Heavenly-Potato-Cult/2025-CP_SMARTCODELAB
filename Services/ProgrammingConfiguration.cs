@@ -1,11 +1,13 @@
-﻿using SmartCodeLab.Models.Enums;
+﻿using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using SmartCodeLab.Models;
 
 namespace SmartCodeLab.Services
 {
@@ -62,5 +64,6 @@ namespace SmartCodeLab.Services
         public static string pythonFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "python");
         public static string cppFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "cpp");
         public static string COUNTER_FOLDER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "counter");
+
     }
 }

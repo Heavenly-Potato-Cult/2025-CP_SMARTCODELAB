@@ -28,7 +28,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
     {
         public ToDelete()
         {
-            InitializeComponent();;
+            InitializeComponent(); ;
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            //await ProgrammingConfiguration.isAvailable(textBox1.Text);
         }
     }
 }

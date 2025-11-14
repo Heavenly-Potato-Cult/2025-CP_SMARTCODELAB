@@ -30,7 +30,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
         //TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
         //MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
-        private readonly List<string> linters = new List<string>() {ProgrammingConfiguration.checkstyleReadability, ProgrammingConfiguration.pmdRobustness, ProgrammingConfiguration.checkstyleMaintainability};
+        private readonly List<string> linters = new List<string>() {ProgrammingConfiguration.checkstyleMaintainability};
         public JavaCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
         {
             foreach (var item in linters)

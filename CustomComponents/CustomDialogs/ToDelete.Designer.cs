@@ -28,59 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ToDelete));
-            codeEditor1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).BeginInit();
+            textBox1 = new TextBox();
+            button1 = new Button();
             SuspendLayout();
             // 
-            // codeEditor1
+            // textBox1
             // 
-            codeEditor1.AutoCompleteBracketsList = new char[]
-    {
-    '(',
-    ')',
-    '{',
-    '}',
-    '[',
-    ']',
-    '"',
-    '"',
-    '\'',
-    '\''
-    };
-            codeEditor1.AutoScrollMinSize = new Size(27, 14);
-            codeEditor1.BackBrush = null;
-            codeEditor1.CharHeight = 14;
-            codeEditor1.CharWidth = 8;
-            codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            codeEditor1.Font = new Font("Courier New", 9.75F);
-            codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
-            codeEditor1.IsReplaceMode = false;
-            codeEditor1.Location = new Point(1, 12);
-            codeEditor1.Name = "codeEditor1";
-            codeEditor1.Paddings = new Padding(0);
-            codeEditor1.SelectionColor = Color.FromArgb(60, 0, 0, 255);
-            codeEditor1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor1.ServiceColors");
-            codeEditor1.Size = new Size(918, 499);
-            codeEditor1.TabIndex = 0;
-            codeEditor1.Zoom = 100;
+            textBox1.Location = new Point(12, 12);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(280, 23);
+            textBox1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(298, 12);
+            button1.Name = "button1";
+            button1.Size = new Size(93, 23);
+            button1.TabIndex = 1;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // ToDelete
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(920, 512);
-            Controls.Add(codeEditor1);
+            ClientSize = new Size(397, 42);
+            Controls.Add(button1);
+            Controls.Add(textBox1);
             Margin = new Padding(3, 2, 3, 2);
             Name = "ToDelete";
             Text = "ToDelete";
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Pages.ProgrammingTabs.CodeEditor codeEditor1;
+        private TextBox textBox1;
+        private Button button1;
     }
 }

@@ -40,7 +40,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = ProgrammingConfiguration.pythonExe,
+                    FileName = "py",
                     Arguments = $"\"{filePath}\"",
                     RedirectStandardInput = true,
                     RedirectStandardOutput = true,
@@ -57,7 +57,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Python, filePath, false);
             string directory = Path.GetDirectoryName(filePath);
             testerFile = Path.Combine(directory, "Tester.py");
-            commandLine = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{testerFile}\"\"";
+            commandLine = $"/c \"py \"{testerFile}\"\"";
             base.RunTest();
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
                 await checkEfficiencyComparison();
@@ -68,8 +68,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int luckyNumber = new Random().Next(0, mgaGinawangTama.Count - 1);
             string testIntput = mgaGinawangTama[luckyNumber].Key;
             string directory = Path.GetDirectoryName(filePath);
-            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{Path.Combine(directory,"OperatorsCounter.py")}\"\"", testIntput));
-            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{Path.Combine(directory, "BestOperatorsCounter.py")}\"\"", testIntput));
+            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"py \"{Path.Combine(directory,"OperatorsCounter.py")}\"\"", testIntput));
+            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"py \"{Path.Combine(directory, "BestOperatorsCounter.py")}\"\"", testIntput));
             MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
             updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "java");
 
