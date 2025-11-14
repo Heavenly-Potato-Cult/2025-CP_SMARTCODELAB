@@ -91,7 +91,8 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(974, 885);
+            smartButton1.Location = new Point(974, 861);
+            smartButton1.MaximumSize = new Size(451, 56);
             smartButton1.MinimumSize = new Size(451, 56);
             smartButton1.Name = "smartButton1";
             smartButton1.Size = new Size(451, 56);
@@ -112,6 +113,7 @@
             customCard5.Controls.Add(label9);
             customCard5.Controls.Add(label12);
             customCard5.Location = new Point(355, 680);
+            customCard5.MaximumSize = new Size(538, 165);
             customCard5.MinimumSize = new Size(538, 165);
             customCard5.Name = "customCard5";
             customCard5.Padding = new Padding(10, 20, 10, 11);
@@ -183,6 +185,7 @@
             customCard2.Controls.Add(serverPW);
             customCard2.Controls.Add(label6);
             customCard2.Location = new Point(349, 136);
+            customCard2.MaximumSize = new Size(545, 511);
             customCard2.MinimumSize = new Size(545, 511);
             customCard2.Name = "customCard2";
             customCard2.Padding = new Padding(10, 20, 10, 11);
@@ -389,6 +392,7 @@
             customCard7.Controls.Add(label19);
             customCard7.Controls.Add(customCard1);
             customCard7.Location = new Point(974, 680);
+            customCard7.MaximumSize = new Size(451, 165);
             customCard7.MinimumSize = new Size(451, 165);
             customCard7.Name = "customCard7";
             customCard7.Padding = new Padding(10, 20, 10, 11);
@@ -414,6 +418,7 @@
             codeQualityChoices21.BorderSize = 0;
             codeQualityChoices21.Location = new Point(974, 136);
             codeQualityChoices21.Margin = new Padding(3, 5, 3, 5);
+            codeQualityChoices21.MaximumSize = new Size(451, 511);
             codeQualityChoices21.MinimumSize = new Size(451, 511);
             codeQualityChoices21.Name = "codeQualityChoices21";
             codeQualityChoices21.Size = new Size(451, 511);
