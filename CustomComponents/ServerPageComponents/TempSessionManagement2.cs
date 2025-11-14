@@ -2,8 +2,10 @@
 using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages;
+using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
@@ -62,11 +64,20 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 selectedTask = new TaskModel();
             }
+
             selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
             selectedTask.isTabLocked = tabNavigationLocked.Checked;
             selectedTask._referenceFile = codeQualityChoices21.bestSourceCode;
             Server server = new Server(serverName.Texts.Trim(), serverPW.Texts, selectedTask, language.SelectedItem.ToString(), userProfiles);
-
+            
+            if(codeQualityChoices21.GetRatingFactors().ContainsKey(2) && selectedTask._testCases.Count > 0)
+            {
+                if(!ValidateCode(codeQualityChoices21.bestSourceCode, server.ProgrammingLanguage, selectedTask))
+                {
+                    MessageBox.Show("The code you provided as a reference for efficiency is not accurate.");
+                    return;
+                }
+            }
             //to fit the mainserverpage to the page1
             var page1 = SystemSingleton.Instance.page1;
             page1.Controls.Clear();
@@ -121,7 +132,48 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             selectedExercise = null;
         };
 
+        //validate the accuracy of the reference code, which will be used for the efficiency
+        private bool ValidateCode(string code, LanguageSupported language, TaskModel task)
+        {
+            string tempFilePath = string.Empty;
+            string command = string.Empty;
+            string rootDirectory = SystemConfigurations.TASK_FOLDER;
+            if (language == LanguageSupported.Cpp) 
+            {
+                tempFilePath = Path.Combine(rootDirectory, "bestCode.cpp");
+                string exeFile = Path.Combine(rootDirectory, "bestCode.exe");
+                command = $"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{tempFilePath}\" -o \"{exeFile}\" && \"{exeFile}\"\"";
+            }
+            else if(language == LanguageSupported.Python)
+            {
+                tempFilePath = Path.Combine(rootDirectory, "bestCode.py");
+                command = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{tempFilePath}\"\"";
+            }
+            else
+            {
+                tempFilePath = Path.Combine(rootDirectory, "Main.java");
+                command = $"/c \"cd \"{rootDirectory}\" && \"{ProgrammingConfiguration.javaExe}\" Main\"";
+                File.WriteAllText(tempFilePath, code);
+                compileJavaCode();
+            }
+            File.WriteAllText(tempFilePath, code);
+            var validateCode = new TestCodeForm(command, task);
+            validateCode.ShowDialog();
+            return validateCode.score == task._testCases.Count;
+        }
 
+        public void compileJavaCode()
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = "cmd.exe";
+            process.StartInfo.Arguments = $"/c \"\"{ProgrammingConfiguration.javac}\" \"{Path.Combine(SystemConfigurations.TASK_FOLDER,"Main.java")}\"\"";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
 
+            process.Start();
+            process.WaitForExit();
+        }
     }
 }

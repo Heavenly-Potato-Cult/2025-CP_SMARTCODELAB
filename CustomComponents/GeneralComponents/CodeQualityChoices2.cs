@@ -209,16 +209,13 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             }
             else
             {
-                sender.Checked = false;
+                sender?.Checked = false;
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //System.Windows.MessageBox.Show($"Complexity : {complexity_standard}\n Number of Operators : {total_standard_operators}");
-            string ipAddress = IPAddress.Parse(GetLocalIPv4()).ToString();
-            string subnetMask = GetSubnetMaskForIP(IPAddress.Parse(GetLocalIPv4())).ToString();
-            System.Windows.MessageBox.Show(GetBroadcastAddress(ipAddress, subnetMask));
+            openComplexityDialog(null);
         }
 
         public string GetLocalIPv4()

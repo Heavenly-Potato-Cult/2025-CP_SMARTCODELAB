@@ -16,6 +16,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         private readonly List<string> toCheck = new List<string>() {"robustness", "maintainability" };
         private readonly Dictionary<string, Action<int, string>> highlighter = new Dictionary<string, Action<int, string>>();
+        private string fileExe;
         public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
             highlighter = new Dictionary<string, Action<int, string>>()
@@ -23,17 +24,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 { "maintainability", HighlightMaintainabilityIssue },
                 { "robustness", HighlightRobustnessIssue }
             };
+            fileExe = filePath.Replace(".cpp", ".exe");
         }
 
-        public override async void RunCode()
+        public override async Task RunCode()
         {
-            string fileExe = filePath.Replace(".cpp", ".exe");
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{filePath}\" -o \"{fileExe}\"\"");
-            await StartprocessAsyncExit(
-                process,
-                null,
-                null,
-                null);
+            await CompileCode();
             process?.Dispose();
             process = new Process
             {
@@ -47,13 +43,24 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     CreateNoWindow = true
                 }
             };
-            base.RunCode();
+            await base.RunCode();
+        }
+
+        private async Task CompileCode()
+        {
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{filePath}\" -o \"{fileExe}\"\"");
+            await StartprocessAsyncExit(
+                process,
+                null,
+                null,
+                null);
         }
 
         public async override void RunTest()
         {
-            commandLine = $"/c \"cd \"{ProgrammingConfiguration.gccBin}\" && g++ \"{Path.GetDirectoryName(filePath)+"\\Tester.cpp"}\" -o test.exe && test.exe\"";
-            testerFile = Path.GetDirectoryName(filePath) + "\\\\" + "Tester.cpp";
+
+            CompileCode();
+            commandLine = $"/c \"{fileExe}\"";
             SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Cpp, filePath, false);
             base.RunTest();
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)

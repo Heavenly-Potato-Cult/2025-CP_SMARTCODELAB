@@ -292,7 +292,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public virtual void CompileCode() { }
 
-        public async virtual void RunCode()
+        public async virtual Task RunCode()
         {
             if (errorMsg != "")
             {
@@ -360,7 +360,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
             else
             {
-                TestCodeForm testCodeForm = new TestCodeForm(commandLine, testerFile, task);
+                TestCodeForm testCodeForm = new TestCodeForm(commandLine, task);
                 testCodeForm.ShowDialog();
                 mgaGinawangTama = testCodeForm.corrects;
                 updateStats?.Invoke(1, testCodeForm.score, null);

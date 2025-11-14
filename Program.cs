@@ -15,6 +15,19 @@ namespace SmartCodeLab
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+
+            // Configure exception handlers FIRST
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            Application.ThreadException += (sender, e) => {
+                MessageBox.Show($"Global UI exception: {e.Exception.Message}");
+                // Log the exception
+            };
+
+            AppDomain.CurrentDomain.UnhandledException += (sender, e) => {
+                MessageBox.Show($"Global non-UI exception: {(e.ExceptionObject as Exception)?.Message}");
+                // Log the exception
+            };
+
             ConfigureFirewallRules();
             //var startup = new StudentStartUp();
             Application.Run(new InstructorForm());

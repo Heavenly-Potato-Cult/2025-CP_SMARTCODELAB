@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,6 +46,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             InitializeComponent();
             total_cyclomatic_complexity = 0;
+            if (language == "Java")
+                MessageBox.Show("Ensure that the class name is changed to \"Main\" to avoid any potential conflicts.");
             this.language = language;
         }
 

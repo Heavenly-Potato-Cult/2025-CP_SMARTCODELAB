@@ -33,7 +33,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
         }
 
-        public override void RunCode()
+        public override async Task RunCode()
         {
             process?.Dispose();
             process = new Process
@@ -49,15 +49,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     CreateNoWindow = true
                 }
             };
-            base.RunCode();
+            await base.RunCode();
         }
 
         public override async void RunTest()
         {
             SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Python, filePath, false);
-            string directory = Path.GetDirectoryName(filePath);
-            testerFile = Path.Combine(directory, "Tester.py");
-            commandLine = $"/c \"py \"{testerFile}\"\"";
+            commandLine = $"/c \"py \"{filePath}\"\"";
             base.RunTest();
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
                 await checkEfficiencyComparison();

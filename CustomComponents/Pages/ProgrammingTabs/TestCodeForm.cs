@@ -20,7 +20,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public int score;
         public List<KeyValuePair<string, string>> corrects;
         private string command;
-        private string testFile;
         private TaskModel task;
         private Process process;
         public TestCodeForm()
@@ -28,13 +27,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             InitializeComponent();
         }
 
-        public TestCodeForm(string command, string testFile, TaskModel task)
+        public TestCodeForm(string command, TaskModel task)
         {
             InitializeComponent();
             corrects = new List<KeyValuePair<string, string>>();
             score = 0;
             this.command = command;
-            this.testFile = testFile;
             this.task = task;
             total.Text = task._testCases.Count.ToString();
             this.Load += (s, e) => RunTest();
@@ -44,54 +42,52 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             score = 0;
             int sequence = 1;
+
             foreach (var item in task._testCases)
             {
-                string input = item.Key;
-                //to check if the language is cpp or python, then will modify how the input will look like to satisfy how 
-                //it is need to be formatted in each language, java won't have any changes
                 if (task._language == Models.Enums.LanguageSupported.Cpp)
                 {
-                    string[] lines = input.Split(Environment.NewLine);
-                    string newInput = "echo ";
-                    for (int num = 0; num < lines.Length; num++)
-                    {
-                        newInput += lines[num];
-                        newInput += num != lines.Length - 1 ? " & echo " : "";
-                    }
-                    input = newInput;
+                    // Give Windows time to release the file lock
+                    await Task.Delay(100); // 100ms delay for C++
                 }
-                else if (task._language == Models.Enums.LanguageSupported.Python)
-                {
-                    string[] lines = input.Split(Environment.NewLine);
-                    string newInput = "";
-                    foreach (var item1 in lines)
-                    {
-                        newInput += item1 + "\\n";
-                    }
-                    input = newInput.Remove(newInput.Length - 2);
-                }
-
-                //modify the tester file content first before running it
-                string testSrcCode = File.ReadAllText(testFile);
-                File.WriteAllText(testFile, testSrcCode.Replace("userInput", input));
-
+                string input = item.Key;
                 string testOutput = "";
 
-                process = CommandRunner(command);
-                await StartprocessAsyncExit(
-                    process,
-                    output => testOutput += (output + '\n'),
-                    error => testOutput += (error),
-                    null
-                );
+                // CRITICAL FIX: Add delay between test cases to allow file release
+                if (sequence > 1)
+                {
+                    await Task.Delay(200); // Wait 200ms between test cases
+                }
+
+                // IMPORTANT: Create new process for each test case
+                using (var process = CommandRunner(command))
+                {
+                    try
+                    {
+                        await StartprocessAsyncExit(
+                            process,
+                            output => testOutput += (output + '\n'),
+                            error => testOutput += (error),
+                            input,
+                            null
+                        );
+                    }
+                    catch (TimeoutException)
+                    {
+                        testOutput = "Error: Test case timed out";
+                    }
+                    catch (Exception ex)
+                    {
+                        testOutput = $"Error: {ex.Message}";
+                    }
+                } // Process is disposed here
+
                 bool isCorrect = testOutput == item.Value + '\n';
 
-                currentScore.Text = score.ToString();
-                //flowLayoutPanel1.Controls.Add(new TestCaseResult(sequence++, isCorrect, item.Key, item.Value, testOutput));
+                // Create test case UI
                 var testcase = new ExpansionPanel();
                 var testcaseview = new TestCaseResult2(sequence, isCorrect, item.Key, item.Value, testOutput);
                 testcase.Title1 = "Test Case " + sequence.ToString();
-                
 
                 if (isCorrect)
                 {
@@ -106,18 +102,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
                 testcase.BackColor = Color.White;
                 testcaseview.AutoSize = false;
-
                 testcaseview.Padding = new Padding(0, 60, 0, 0);
                 testcase.Controls.Add(testcaseview);
                 testcaseview.Dock = DockStyle.Fill;
-
                 testcase.Dock = DockStyle.Top;
-
-                testcase.Controls.Add(testcaseview);
                 panel_results.Controls.Add(testcase);
+
                 sequence++;
-                //return the tester file content to its original content
-                File.WriteAllText(testFile, testSrcCode.Replace(input, "userInput"));
+
                 if (isCorrect)
                 {
                     score++;
@@ -127,12 +119,21 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     break;
                 }
+
+                currentScore.Text = score.ToString();
             }
         }
 
-        //a process runner
-        protected async Task StartprocessAsyncExit(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
+        // Improved process runner with better cleanup
+        protected async Task<bool> StartprocessAsyncExit(
+            Process process,
+            Action<string> onOutput,
+            Action<string> onError,
+            string input,
+            Action onExit = null)
         {
+            var tcs = new TaskCompletionSource<bool>();
+
             process.OutputDataReceived += (sender, e) =>
             {
                 if (!string.IsNullOrEmpty(e.Data))
@@ -148,29 +149,72 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             process.Exited += (s, e) =>
             {
                 onExit?.Invoke();
+                tcs.TrySetResult(true);
             };
 
             process.EnableRaisingEvents = true;
-            process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
-            await process.WaitForExitAsync();
+
+            try
+            {
+                process.Start();
+                process.BeginOutputReadLine();
+                process.BeginErrorReadLine();
+
+                if (!string.IsNullOrEmpty(input))
+                {
+                    await process.StandardInput.WriteLineAsync(input);
+                    await process.StandardInput.FlushAsync(); // Ensure input is sent
+                    process.StandardInput.Close();
+                }
+
+                // Wait for exit with timeout
+                var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
+                var completedTask = await Task.WhenAny(tcs.Task, timeoutTask);
+
+                if (completedTask == timeoutTask)
+                {
+                    // Timeout occurred
+                    try
+                    {
+                        process.Kill();
+                        process.WaitForExit(1000); // Wait for kill to complete
+                    }
+                    catch { }
+                    throw new TimeoutException("Process execution timed out");
+                }
+
+                await tcs.Task;
+
+                // IMPORTANT: Wait for process to fully exit
+                process.WaitForExit();
+
+                // Additional wait to ensure all handles are released
+                await Task.Delay(50);
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Ensure process is killed on any error
+                if (!process.HasExited)
+                {
+                    try
+                    {
+                        process.Kill();
+                        process.WaitForExit(1000);
+                    }
+                    catch { }
+                }
+                throw;
+            }
         }
 
         protected Process CommandRunner(string command, bool didRunCode = false)
         {
-            if (process != null)
-            {
-                try
-                {
-                    process.Kill();
-                    process.Dispose();
-                }
-                catch (InvalidOperationException) { }
-            }
+            // Don't dispose here - let using block handle it
             Process newProcess = new Process();
             newProcess.StartInfo.FileName = "cmd.exe";
-            newProcess.StartInfo.Arguments = command + (didRunCode ? " & pause" : "");
+            newProcess.StartInfo.Arguments = command;
             newProcess.StartInfo.UseShellExecute = didRunCode;
             newProcess.StartInfo.RedirectStandardInput = !didRunCode;
             newProcess.StartInfo.RedirectStandardOutput = !didRunCode;

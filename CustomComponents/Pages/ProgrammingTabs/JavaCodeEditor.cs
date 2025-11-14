@@ -56,9 +56,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
         }
 
-        public override async void RunCode()
+        public override async Task RunCode()
         {
-            CompileCode();
+            await CompileCode2();
             process?.Dispose();
             process = new Process
             {
@@ -73,7 +73,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     CreateNoWindow = true
                 }
             };
-            base.RunCode();
+            await base.RunCode();
         }
 
         private void JavaSyntaxHighlight(TextChangedEventArgs e)
@@ -113,7 +113,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             e.ChangedRange.SetFoldingMarkers(@"/\*", @"\*/");//allow to collapse comment block
         }
 
-        public async override void CompileCode()
+        public async Task CompileCode2()
         {
             SaveCode();
             string classname = Path.GetFileNameWithoutExtension(filePath);
@@ -128,7 +128,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         }
         public override async Task RunLinting()
         {
-            Debug.WriteLine("Run linter");
             SaveCode();
             string fileName = Path.GetFileName(filePath);
             string directory = Path.GetDirectoryName(filePath);
@@ -161,8 +160,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             SaveCode();
             SourceCodeInitializer.InitializeEfficiencyCode2(LanguageSupported.Java, filePath, false);
             string directory = Path.GetDirectoryName(filePath);
-            testerFile = Path.Combine(directory, "Tester.java");
-            commandLine = $"/c \"cd \"{directory}\" && javac Tester.java && java Tester\"";
+            CompileCode();
+            string fileName = Path.GetFileNameWithoutExtension(filePath);
+            commandLine = $"/c \"cd \"{directory}\" && java {fileName}\"";
             base.RunTest();
             //check efficiency
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)

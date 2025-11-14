@@ -90,6 +90,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private void InputTimer_Tick(object sender, EventArgs e)
         {
+            try
+            {
                 if (waitingForInput && process != null && !process.HasExited)
                 {
                     if (!richTextBox1.Text.EndsWith("_"))
@@ -97,6 +99,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     else
                         RemoveLastChar(); // blink effect
                 }
+            }
+            catch (InvalidOperationException) { }
         }
         private void StopBlinkingCursor()
         {

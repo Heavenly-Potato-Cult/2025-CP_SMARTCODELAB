@@ -202,7 +202,7 @@ class CppLoopTransformer:
         indent = self._get_indent_string(self._get_indent_level(last_line))
         
         # Create output statement
-        output_stmt = f'{indent}cout << "Operation Count:" << {self.operation_count_var} << endl;\n'
+        output_stmt = f'{indent}std::cout << "Operation Count:" << {self.operation_count_var} << std::endl;\n'
         
         # Check if there's a return statement
         return_match = re.search(r'return\s+\d+\s*;', main_body)
