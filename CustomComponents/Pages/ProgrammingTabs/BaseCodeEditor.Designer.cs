@@ -59,23 +59,23 @@
     '\'',
     '\''
     };
-            srcCode.AutoScrollMinSize = new Size(27, 24);
+            srcCode.AutoScrollMinSize = new Size(31, 28);
             srcCode.AutoSize = true;
             srcCode.BackBrush = null;
-            srcCode.CharHeight = 14;
-            srcCode.CharWidth = 8;
+            srcCode.CharHeight = 18;
+            srcCode.CharWidth = 10;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             srcCode.Dock = DockStyle.Fill;
+            srcCode.Font = new Font("Courier New", 9.75F);
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IsReplaceMode = false;
             srcCode.LineNumberColor = Color.Black;
             srcCode.Location = new Point(0, 0);
-            srcCode.Margin = new Padding(3, 2, 3, 2);
             srcCode.Name = "srcCode";
             srcCode.Paddings = new Padding(0, 0, 0, 10);
             srcCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             srcCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("srcCode.ServiceColors");
-            srcCode.Size = new Size(722, 357);
+            srcCode.Size = new Size(825, 475);
             srcCode.TabIndex = 0;
             srcCode.Zoom = 100;
             // 
@@ -84,36 +84,37 @@
             tabControl2.Controls.Add(tabPage1);
             tabControl2.Dock = DockStyle.Fill;
             tabControl2.Location = new Point(0, 0);
-            tabControl2.Margin = new Padding(3, 2, 3, 2);
             tabControl2.Name = "tabControl2";
             tabControl2.SelectedIndex = 0;
-            tabControl2.Size = new Size(722, 153);
+            tabControl2.Size = new Size(825, 205);
             tabControl2.TabIndex = 16;
             // 
             // tabPage1
             // 
             tabPage1.Controls.Add(output);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Margin = new Padding(3, 2, 3, 2);
+            tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(714, 125);
+            tabPage1.Padding = new Padding(3, 3, 3, 3);
+            tabPage1.Size = new Size(817, 172);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Output";
             tabPage1.UseVisualStyleBackColor = true;
             // 
             // output
             // 
+            output.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             output.BackColor = SystemColors.ActiveCaption;
-            output.Location = new Point(6, 5);
+            output.Location = new Point(7, 7);
+            output.Margin = new Padding(3, 5, 3, 5);
             output.Name = "output";
-            output.Size = new Size(702, 120);
+            output.Size = new Size(802, 160);
             output.TabIndex = 0;
             // 
             // splitContainer1
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Margin = new Padding(3, 4, 3, 4);
             splitContainer1.Name = "splitContainer1";
             splitContainer1.Orientation = Orientation.Horizontal;
             // 
@@ -124,19 +125,19 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(tabControl2);
-            splitContainer1.Size = new Size(722, 514);
-            splitContainer1.SplitterDistance = 357;
+            splitContainer1.Size = new Size(825, 685);
+            splitContainer1.SplitterDistance = 475;
+            splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 17;
             // 
             // BaseCodeEditor
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
             Controls.Add(splitContainer1);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "BaseCodeEditor";
-            Size = new Size(722, 514);
+            Size = new Size(825, 685);
             ((System.ComponentModel.ISupportInitialize)srcCode).EndInit();
             tabControl2.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
