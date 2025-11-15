@@ -361,7 +361,25 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             else
             {
                 TestCodeForm testCodeForm = new TestCodeForm(commandLine, task);
-                testCodeForm.ShowDialog();
+                Form parent = this.FindForm();
+
+                if (parent != null)
+                {
+                    // Set properties BEFORE ShowDialog
+                    parent.TopMost = false;
+                    testCodeForm.Owner = parent;
+                    testCodeForm.StartPosition = FormStartPosition.CenterParent;
+                    testCodeForm.TopMost = true;
+
+                    // Show dialog and then restore parent TopMost
+                    testCodeForm.ShowDialog();
+                    parent.TopMost = true;
+                }
+                else
+                {
+                    testCodeForm.TopMost = true;
+                    testCodeForm.ShowDialog();
+                }
                 mgaGinawangTama = testCodeForm.corrects;
                 updateStats?.Invoke(1, testCodeForm.score, null);
                 if (task._testCases.Count == testCodeForm.score)

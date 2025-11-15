@@ -164,6 +164,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string fileName = Path.GetFileNameWithoutExtension(filePath);
             commandLine = $"/c \"cd \"{directory}\" && java {fileName}\"";
             base.RunTest();
+            await RunLinting();
             //check efficiency
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
             {

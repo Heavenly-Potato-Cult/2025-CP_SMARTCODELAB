@@ -77,8 +77,6 @@ namespace SmartCodeLab.Services
             {
                 using var proc = new Process { StartInfo = psi };
                 proc.Start();
-                // Do not wait for exit per your requirement (fire-and-forget).
-                // If you later want to wait, call proc.WaitForExit();
             }
             catch (Exception)
             {
@@ -130,69 +128,7 @@ namespace SmartCodeLab.Services
                 }
             }
             File.WriteAllText(mainFile, srcCode);
-            InitializeTesterSourceCode(language, activityDirectory);
             return mainFile;
-        }
-        public static void InitializeTesterSourceCode(LanguageSupported language,string filePath) 
-        {
-            string srcCode = string.Empty;
-            string exeDirectory = Path.Combine(filePath,"Main.exe").Replace("\\", "\\\\");
-            switch (language) 
-            {
-                case LanguageSupported.Java:
-                    srcCode = """
-                        import java.io.ByteArrayInputStream;
-                        import java.io.ByteArrayOutputStream;
-                        import java.io.PrintStream;
-                        public class Tester {
-                            public static void main(String[] args) {
-                                PrintStream originalOut = System.out;
-                                var baos = new ByteArrayOutputStream();
-                                System.setOut(new PrintStream(baos));
-                                System.setIn(new ByteArrayInputStream(
-                                \"\"\"
-                                userInput
-                                \"\"\".getBytes())); //change theInput
-                                Main.main(null);
-
-                                System.setOut(originalOut);
-                                System.out.println(baos.toString());
-                            }
-                        }
-                        """.Replace("\\","");
-                    break;
-                case LanguageSupported.Python:
-                    srcCode = $$"""
-                        import subprocess,os
-
-                        base = os.path.dirname(__file__)  # folder where Tester.py is located
-                        script = os.path.join(base, "Main.py")
-
-                        subprocess.run(["python", script], input="userInput", text=True)
-                        """;
-                    break;
-                default:
-                    srcCode = $$"""
-                                #include <cstdlib>
-                                #include <iostream>
-
-                                int main() {
-                                    int result = system(
-                                        "cd /d \"gccBin\" && "
-                                        "g++ \"filePath\" "
-                                        "-o \"exeDirectory\" && "
-                                        "(userInput) | \"exeDirectory\""
-                                        );
-                                    return result;
-                                }
-                                """
-                                .Replace("gccBin", ProgrammingConfiguration.gccBin.Replace("\\","\\\\"))
-                                .Replace("filePath", Path.Combine(filePath,"Main.cpp").Replace("\\", "\\\\"))
-                                .Replace("exeDirectory",exeDirectory);
-                    break;
-            }
-            string fileAbsolutePath = filePath + "\\Tester"+extension[language];
-            File.WriteAllText(fileAbsolutePath, srcCode);
         }
     }
 }

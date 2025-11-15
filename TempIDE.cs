@@ -15,6 +15,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -35,6 +36,40 @@ namespace SmartCodeLab
 {
     public partial class TempIDE : Form
     {
+        //for the WINDOWS + TAB
+        private const int WH_KEYBOARD_LL = 13;
+        private IntPtr _hookPtr = IntPtr.Zero;
+        private HookProc _hookProc;
+        private int KeyboardHookProc(int code, IntPtr wParam, IntPtr lParam)
+        {
+            if (code >= 0)
+            {
+                int vkCode = Marshal.ReadInt32(lParam);
+
+                // Block Windows keys
+                if (vkCode == 91 || vkCode == 92) // LWin or RWin
+                {
+                    return 1; // Block
+                }
+            }
+
+            return CallNextHookEx(_hookPtr, code, wParam, lParam);
+        }
+
+        private delegate int HookProc(int code, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetWindowsHookEx(int idHook, HookProc lpfn,
+            IntPtr hMod, uint dwThreadId);
+
+        [DllImport("user32.dll")]
+        private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
+        [DllImport("user32.dll")]
+        private static extern int CallNextHookEx(IntPtr hhk, int nCode,
+            IntPtr wParam, IntPtr lParam);
+        //=================================================================================================
+
 
         private NetworkStream stream;
         private CancellationTokenSource _cancellationTokenSource;
@@ -95,13 +130,28 @@ namespace SmartCodeLab
                 TopMost = true;
                 WindowState = FormWindowState.Maximized;
                 this.Controls.Remove(button1);
+
+                _hookProc = new HookProc(KeyboardHookProc);
+                _hookPtr = SetWindowsHookEx(WH_KEYBOARD_LL, _hookProc,
+                    Marshal.GetHINSTANCE(GetType().Module), 0);
+
+                if (_hookPtr == IntPtr.Zero)
+                {
+                    MessageBox.Show("Failed to install keyboard hook!");
+                }
+
+                this.FormClosed += (s, e) =>
+                {
+                    if (_hookPtr != IntPtr.Zero)
+                        UnhookWindowsHookEx(_hookPtr);
+                };
             }
 
             stream = client;
             this.userName = userName;
             new Thread(() =>
             {
-                System.Threading.Thread.Sleep(1000);
+                Thread.Sleep(1000);
                 SystemSingleton.Instance._loggedIn = true;
             }).Start();
 

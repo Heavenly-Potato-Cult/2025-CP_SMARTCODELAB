@@ -61,7 +61,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 }
                 string subNetMask = NetworkServices.GetSubnetMaskForIP(IPAddress.Parse(ipV4)).ToString();
                 string broadCastAddress = NetworkServices.GetBroadcastAddress(ipV4, subNetMask);
-                MessageBox.Show(broadCastAddress);
                 udpClient.EnableBroadcast = true;
                 IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Parse(broadCastAddress), 1902);
 
