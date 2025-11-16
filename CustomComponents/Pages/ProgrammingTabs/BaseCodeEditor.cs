@@ -155,7 +155,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     await RunLinting();
                     //await CountComplexity1();
                     await this.sendProgress.Invoke();
-                }, null, 700, Timeout.Infinite);
+                }, null, 1000, Timeout.Infinite);
 
                 //add the new source code to the code history
                 codeHistory[i++ % 20] = srcCode.Text;

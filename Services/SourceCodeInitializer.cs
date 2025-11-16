@@ -47,7 +47,11 @@ namespace SmartCodeLab.Services
             string runnerFile = language == LanguageSupported.Python ? ProgrammingConfiguration.PYTHON_COUNTER_INITIALIZER : ProgrammingConfiguration.CPP_COUNTER_INITIALIZER;
             if (language == LanguageSupported.Java)
             {
-                ExecuteCommand($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_COUNTER_INITIALIZER}\" \"{filePath}\" \"{fromWho}\"\"");
+                string directory = Path.GetDirectoryName(filePath);
+                string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.java";
+                string operatorFile = Path.Combine(directory, fileName);
+                string compDelCommand = $" && cd \"{directory}\" && javac {fileName} && del {fileName}";
+                ExecuteCommand($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_COUNTER_INITIALIZER}\" \"{filePath}\" \"{fromWho}\" {compDelCommand}\"");
             }
             else
             {

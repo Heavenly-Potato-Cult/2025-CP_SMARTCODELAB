@@ -186,19 +186,6 @@ namespace SmartCodeLab
                 AddLeaderboardIcon(1, "Alice", 100);
                 AddLeaderboardIcon(2, "Bob", 50);
                 AddLeaderboardIcon(3, "Charles", 30);
-                // ...
-                AddLeaderboardIcon(6, "David", 79);
-                AddLeaderboardIcon(1, "Alice", 100);
-                AddLeaderboardIcon(2, "Bob", 50);
-                AddLeaderboardIcon(3, "Charles", 30);
-                // ...
-                AddLeaderboardIcon(6, "David", 79);
-                AddLeaderboardIcon(1, "Alice", 100);
-                AddLeaderboardIcon(2, "Bob", 50);
-                AddLeaderboardIcon(3, "Charles", 30);
-                // ...
-                AddLeaderboardIcon(6, "David", 79);
-                
             };
         }
 
@@ -496,26 +483,19 @@ namespace SmartCodeLab
 
         private void smartButton2_Click(object sender, EventArgs e)
         {
-            if (mainEditor.isCurrentCodeAccepted())
+            Task.Run(async () =>
             {
-                Task.Run(async () =>
+                try
                 {
-                    try
-                    {
-                        Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
-                            new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
-                                SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetCodeRating()))).Build(),
-                            PrefixStyle.Base128);
-                        await stream.FlushAsync();
-                        this.Invoke(new Action(() => MessageBox.Show("Code submitted successfully")));
-                    }
-                    catch (FormatException e) { Debug.WriteLine(e.Message); }
-                });
-            }
-            else
-            {
-                MessageBox.Show("Please test the current code and ensure that all test cases are passed before submitting.");
-            }
+                    Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
+                        new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
+                            SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetCodeRating()))).Build(),
+                        PrefixStyle.Base128);
+                    await stream.FlushAsync();
+                    this.Invoke(new Action(() => MessageBox.Show("Code submitted successfully")));
+                }
+                catch (FormatException e) { Debug.WriteLine(e.Message); }
+            });
         }
 
         private void smartButton3_Click(object sender, EventArgs e)

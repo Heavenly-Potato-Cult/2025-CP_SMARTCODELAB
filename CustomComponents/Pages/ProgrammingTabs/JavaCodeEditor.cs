@@ -179,9 +179,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int luckyNumber = new Random().Next(0, mgaGinawangTama.Count - 1);
             string testIntput = mgaGinawangTama[luckyNumber].Key;
             string directory = Path.GetDirectoryName(filePath);
-            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"cd \"{directory}\" && javac OperatorsCounter.java && java OperatorsCounter\"", testIntput));
-            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"cd \"{directory}\" && javac BestOperatorsCounter.java && java BestOperatorsCounter\"", testIntput));
-            MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
+            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"cd \"{directory}\" && java OperatorsCounter\"", testIntput));
+            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"cd \"{directory}\" && java BestOperatorsCounter\"", testIntput));
+            MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}\nScore:{computeEfficiency(studentsGrowth, bestGrowth)}");
             updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "java");
 
             return Task.CompletedTask;
