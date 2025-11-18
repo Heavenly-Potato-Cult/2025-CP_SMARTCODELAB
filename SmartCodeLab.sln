@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCodeLab", "SmartCodeLab.csproj", "{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SmartCodeLab", "..\SmartCodeLab\SmartCodeLab.vdproj", "{277A1D08-293B-E6FC-3480-0A4FDC24E46F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5FB9FDA-247A-4039-8CDF-F529E36D0DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{277A1D08-293B-E6FC-3480-0A4FDC24E46F}.Debug|Any CPU.ActiveCfg = Debug
+		{277A1D08-293B-E6FC-3480-0A4FDC24E46F}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

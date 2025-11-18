@@ -48,7 +48,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private async Task CompileCode()
         {
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{filePath}\" -o \"{fileExe}\"\"");
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{filePath}\" -o \"{fileExe}\"\"");
             await StartprocessAsyncExit(
                 process,
                 null,

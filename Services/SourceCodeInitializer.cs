@@ -45,9 +45,10 @@ namespace SmartCodeLab.Services
         {
             string fromWho = isBestCode ? "Teacher" : "Student";
             string runnerFile = language == LanguageSupported.Python ? ProgrammingConfiguration.PYTHON_COUNTER_INITIALIZER : ProgrammingConfiguration.CPP_COUNTER_INITIALIZER;
+            
+                string directory = Path.GetDirectoryName(filePath);
             if (language == LanguageSupported.Java)
             {
-                string directory = Path.GetDirectoryName(filePath);
                 string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.java";
                 string operatorFile = Path.Combine(directory, fileName);
                 string compDelCommand = $" && cd \"{directory}\" && javac {fileName} && del {fileName}";
@@ -56,6 +57,10 @@ namespace SmartCodeLab.Services
             else
             {
                 ExecuteCommand($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
+                string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.cpp";
+                string exeFile = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.exe";
+                string operatorFile = Path.Combine(directory, fileName);
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{fileName}\"\"");
             }
         }
 
