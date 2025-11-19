@@ -65,13 +65,12 @@
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
             tabControl1.Controls.Add(tabPage1);
-            tabControl1.Location = new Point(305, 108);
-            tabControl1.Margin = new Padding(3, 2, 3, 2);
-            tabControl1.MaximumSize = new Size(1019, 452);
+            tabControl1.Location = new Point(349, 144);
+            tabControl1.MaximumSize = new Size(1165, 603);
             tabControl1.Name = "tabControl1";
             tabControl1.Padding = new Point(6, 10);
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1019, 452);
+            tabControl1.Size = new Size(1165, 603);
             tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 53;
             // 
@@ -85,11 +84,10 @@
             tabPage3.Controls.Add(exerciseName);
             tabPage3.Controls.Add(label9);
             tabPage3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tabPage3.Location = new Point(4, 38);
-            tabPage3.Margin = new Padding(3, 2, 3, 2);
+            tabPage3.Location = new Point(4, 43);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(9, 8, 9, 8);
-            tabPage3.Size = new Size(1011, 410);
+            tabPage3.Padding = new Padding(10, 11, 10, 11);
+            tabPage3.Size = new Size(1157, 556);
             tabPage3.TabIndex = 0;
             tabPage3.Text = "Details";
             // 
@@ -103,15 +101,14 @@
             instruction.BorderRadius = 10;
             instruction.BorderSize = 1;
             instruction.ForeColor = SystemColors.ControlText;
-            instruction.Location = new Point(23, 133);
-            instruction.Margin = new Padding(3, 2, 3, 2);
+            instruction.Location = new Point(26, 177);
             instruction.Multiline = true;
             instruction.Name = "instruction";
-            instruction.Padding = new Padding(9, 5, 9, 5);
+            instruction.Padding = new Padding(10, 7, 10, 7);
             instruction.PlaceHolderColor = Color.DarkGray;
             instruction.PlaceholderText = "";
             instruction.ScrollBars = ScrollBars.Vertical;
-            instruction.Size = new Size(967, 265);
+            instruction.Size = new Size(1105, 353);
             instruction.TabIndex = 34;
             // 
             // label25
@@ -119,9 +116,9 @@
             label25.AutoSize = true;
             label25.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label25.ForeColor = Color.DimGray;
-            label25.Location = new Point(23, 112);
+            label25.Location = new Point(26, 149);
             label25.Name = "label25";
-            label25.Size = new Size(78, 20);
+            label25.Size = new Size(96, 25);
             label25.TabIndex = 33;
             label25.Text = "Instruction";
             // 
@@ -133,14 +130,13 @@
             subject.BorderRadius = 10;
             subject.BorderSize = 1;
             subject.ForeColor = SystemColors.ControlText;
-            subject.Location = new Point(388, 54);
-            subject.Margin = new Padding(3, 2, 3, 2);
+            subject.Location = new Point(443, 72);
             subject.Name = "subject";
-            subject.Padding = new Padding(9, 5, 9, 5);
+            subject.Padding = new Padding(10, 7, 10, 7);
             subject.PlaceHolderColor = Color.DarkGray;
             subject.PlaceholderText = "";
             subject.ScrollBars = ScrollBars.None;
-            subject.Size = new Size(304, 36);
+            subject.Size = new Size(347, 46);
             subject.TabIndex = 30;
             // 
             // label8
@@ -148,9 +144,9 @@
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.DimGray;
-            label8.Location = new Point(388, 33);
+            label8.Location = new Point(443, 44);
             label8.Name = "label8";
-            label8.Size = new Size(58, 20);
+            label8.Size = new Size(70, 25);
             label8.TabIndex = 29;
             label8.Text = "Subject";
             // 
@@ -163,14 +159,13 @@
             exerciseName.BorderSize = 1;
             exerciseName.Enabled = false;
             exerciseName.ForeColor = SystemColors.ControlText;
-            exerciseName.Location = new Point(23, 54);
-            exerciseName.Margin = new Padding(3, 2, 3, 2);
+            exerciseName.Location = new Point(26, 72);
             exerciseName.Name = "exerciseName";
-            exerciseName.Padding = new Padding(9, 5, 9, 5);
+            exerciseName.Padding = new Padding(10, 7, 10, 7);
             exerciseName.PlaceHolderColor = Color.DarkGray;
             exerciseName.PlaceholderText = "";
             exerciseName.ScrollBars = ScrollBars.None;
-            exerciseName.Size = new Size(304, 36);
+            exerciseName.Size = new Size(347, 46);
             exerciseName.TabIndex = 28;
             // 
             // label9
@@ -178,9 +173,9 @@
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.DimGray;
-            label9.Location = new Point(23, 33);
+            label9.Location = new Point(26, 44);
             label9.Name = "label9";
-            label9.Size = new Size(106, 20);
+            label9.Size = new Size(125, 25);
             label9.TabIndex = 27;
             label9.Text = "Exercise Name";
             // 
@@ -191,11 +186,10 @@
             tabPage4.Controls.Add(smartButton2);
             tabPage4.Controls.Add(smartButton1);
             tabPage4.Controls.Add(label11);
-            tabPage4.Location = new Point(4, 38);
-            tabPage4.Margin = new Padding(3, 2, 3, 2);
+            tabPage4.Location = new Point(4, 43);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3, 2, 3, 2);
-            tabPage4.Size = new Size(1011, 410);
+            tabPage4.Padding = new Padding(3, 3, 3, 3);
+            tabPage4.Size = new Size(1157, 556);
             tabPage4.TabIndex = 1;
             tabPage4.Text = "Reference Code";
             // 
@@ -214,22 +208,19 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(2, 14);
+            reference.AutoScrollMinSize = new Size(31, 18);
             reference.BackBrush = null;
-            reference.CharHeight = 14;
-            reference.CharWidth = 8;
+            reference.CharHeight = 18;
+            reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            reference.Font = new Font("Courier New", 9.75F);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IsReplaceMode = false;
-            reference.Location = new Point(25, 65);
-            reference.Margin = new Padding(3, 2, 3, 2);
+            reference.Location = new Point(29, 87);
             reference.Name = "reference";
             reference.Paddings = new Padding(0);
-            reference.ReadOnly = true;
             reference.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             reference.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("reference.ServiceColors");
-            reference.Size = new Size(948, 260);
+            reference.Size = new Size(1122, 463);
             reference.TabIndex = 57;
             reference.Zoom = 100;
             // 
@@ -242,10 +233,9 @@
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(857, 24);
-            smartButton2.Margin = new Padding(3, 2, 3, 2);
+            smartButton2.Location = new Point(979, 32);
             smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(116, 26);
+            smartButton2.Size = new Size(133, 35);
             smartButton2.TabIndex = 56;
             smartButton2.Text = "Copy";
             smartButton2.UseVisualStyleBackColor = false;
@@ -259,10 +249,9 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(718, 24);
-            smartButton1.Margin = new Padding(3, 2, 3, 2);
+            smartButton1.Location = new Point(821, 32);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(116, 26);
+            smartButton1.Size = new Size(133, 35);
             smartButton1.TabIndex = 55;
             smartButton1.Text = "Upload Code";
             smartButton1.UseVisualStyleBackColor = false;
@@ -272,9 +261,9 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.FromArgb(13, 13, 13);
-            label11.Location = new Point(28, 22);
+            label11.Location = new Point(32, 29);
             label11.Name = "label11";
-            label11.Size = new Size(232, 25);
+            label11.Size = new Size(277, 31);
             label11.TabIndex = 23;
             label11.Text = "Reference Solution Code";
             // 
@@ -286,10 +275,9 @@
             tabPage1.Controls.Add(btn_AddTestCase);
             tabPage1.Controls.Add(label13);
             tabPage1.ForeColor = SystemColors.ControlText;
-            tabPage1.Location = new Point(4, 38);
-            tabPage1.Margin = new Padding(3, 2, 3, 2);
+            tabPage1.Location = new Point(4, 43);
             tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(1011, 410);
+            tabPage1.Size = new Size(1157, 556);
             tabPage1.TabIndex = 2;
             tabPage1.Text = "TestCases";
             // 
@@ -297,10 +285,9 @@
             // 
             testContainer.AutoScroll = true;
             testContainer.FlowDirection = FlowDirection.TopDown;
-            testContainer.Location = new Point(179, 73);
-            testContainer.Margin = new Padding(3, 2, 3, 2);
+            testContainer.Location = new Point(205, 97);
             testContainer.Name = "testContainer";
-            testContainer.Size = new Size(650, 324);
+            testContainer.Size = new Size(743, 432);
             testContainer.TabIndex = 58;
             testContainer.WrapContents = false;
             // 
@@ -312,10 +299,9 @@
             customCard7.BorderSize = 0;
             customCard7.Controls.Add(label15);
             customCard7.Controls.Add(label14);
-            customCard7.Location = new Point(179, 48);
-            customCard7.Margin = new Padding(3, 2, 3, 2);
+            customCard7.Location = new Point(205, 64);
             customCard7.Name = "customCard7";
-            customCard7.Size = new Size(650, 26);
+            customCard7.Size = new Size(743, 35);
             customCard7.TabIndex = 57;
             // 
             // label15
@@ -323,9 +309,9 @@
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label15.ForeColor = Color.Gray;
-            label15.Location = new Point(316, 4);
+            label15.Location = new Point(361, 5);
             label15.Name = "label15";
-            label15.Size = new Size(55, 20);
+            label15.Size = new Size(69, 25);
             label15.TabIndex = 19;
             label15.Text = "Output";
             // 
@@ -334,9 +320,9 @@
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label14.ForeColor = Color.Gray;
-            label14.Location = new Point(14, 4);
+            label14.Location = new Point(16, 5);
             label14.Name = "label14";
-            label14.Size = new Size(43, 20);
+            label14.Size = new Size(54, 25);
             label14.TabIndex = 18;
             label14.Text = "Input";
             // 
@@ -349,10 +335,9 @@
             btn_AddTestCase.FlatStyle = FlatStyle.Flat;
             btn_AddTestCase.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_AddTestCase.ForeColor = Color.White;
-            btn_AddTestCase.Location = new Point(713, 10);
-            btn_AddTestCase.Margin = new Padding(3, 2, 3, 2);
+            btn_AddTestCase.Location = new Point(815, 13);
             btn_AddTestCase.Name = "btn_AddTestCase";
-            btn_AddTestCase.Size = new Size(116, 26);
+            btn_AddTestCase.Size = new Size(133, 35);
             btn_AddTestCase.TabIndex = 54;
             btn_AddTestCase.Text = "Add Test Case";
             btn_AddTestCase.UseVisualStyleBackColor = false;
@@ -363,9 +348,9 @@
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label13.ForeColor = Color.FromArgb(13, 13, 13);
-            label13.Location = new Point(179, 13);
+            label13.Location = new Point(205, 17);
             label13.Name = "label13";
-            label13.Size = new Size(99, 25);
+            label13.Size = new Size(120, 31);
             label13.TabIndex = 53;
             label13.Text = "Test Cases";
             // 
@@ -378,10 +363,9 @@
             btn_EditExerciseDetails.FlatStyle = FlatStyle.Flat;
             btn_EditExerciseDetails.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_EditExerciseDetails.ForeColor = Color.White;
-            btn_EditExerciseDetails.Location = new Point(309, 586);
-            btn_EditExerciseDetails.Margin = new Padding(3, 2, 3, 2);
+            btn_EditExerciseDetails.Location = new Point(353, 781);
             btn_EditExerciseDetails.Name = "btn_EditExerciseDetails";
-            btn_EditExerciseDetails.Size = new Size(327, 38);
+            btn_EditExerciseDetails.Size = new Size(374, 51);
             btn_EditExerciseDetails.TabIndex = 35;
             btn_EditExerciseDetails.Text = "Update Task";
             btn_EditExerciseDetails.UseVisualStyleBackColor = false;
@@ -392,22 +376,21 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(305, 32);
+            label3.Location = new Point(349, 43);
             label3.Name = "label3";
-            label3.Size = new Size(127, 30);
+            label3.Size = new Size(161, 38);
             label3.TabIndex = 54;
             label3.Text = "Task Editor";
             // 
             // ServerTaskUpdate
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(btn_EditExerciseDetails);
             Controls.Add(tabControl1);
             Controls.Add(label3);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "ServerTaskUpdate";
-            Size = new Size(1576, 787);
+            Size = new Size(1801, 1049);
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();

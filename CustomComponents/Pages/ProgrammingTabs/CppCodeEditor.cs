@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.Models;
+﻿using FastColoredTextBoxNS;
+using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public async override void RunTest()
         {
+            if (new SingleStatementBodyChecker().CheckForSingleStatementBodies(srcCode.Text).HasSingleStatementBodies)
+            {
+                MessageBox.Show(this, "Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.");
+                return;
+            }
 
             CompileCode();
             commandLine = $"/c \"{fileExe}\"";
@@ -75,11 +81,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int luckyNumber = new Random().Next(0, mgaGinawangTama.Count - 1);
             string testIntput = mgaGinawangTama[luckyNumber].Key;
             string directory = Path.GetDirectoryName(filePath);
-            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{Path.Combine(directory, "OperatorsCounter.cpp")}\" -o \"{Path.Combine(directory, "OperatorsCounter.exe")}\" && \"{Path.Combine(directory, "OperatorsCounter.exe")}\"\"", testIntput));
-            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{Path.Combine(directory, "BestOperatorsCounter.cpp")}\" -o \"{Path.Combine(directory, "BestOperatorsCounter.exe")}\" && \"{Path.Combine(directory, "BestOperatorsCounter.exe")}\"\"", testIntput));
+            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{Path.Combine(directory, "OperatorsCounter.exe")}\"\"", testIntput));
+            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{Path.Combine(directory, "BestOperatorsCounter.exe")}\"\"", testIntput));
             MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
             updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "cpp");
-
             return Task.CompletedTask;
         }
 

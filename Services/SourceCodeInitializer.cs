@@ -58,9 +58,9 @@ namespace SmartCodeLab.Services
             {
                 ExecuteCommand($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
                 string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.cpp";
-                string exeFile = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.exe";
+                string exeFile = Path.Combine(directory, $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.exe");
                 string operatorFile = Path.Combine(directory, fileName);
-                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{fileName}\"\"");
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{operatorFile}\"\"");
             }
         }
 

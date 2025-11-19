@@ -29,7 +29,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             {
                 if (e.KeyCode == Keys.Enter && sendMessage != null)
                 {
-                    string msg = richTextBox2.Text + "\n";
+                    string msg = richTextBox2.Text;
                     if(sendMessage(studentId, msg))
                         richTextBox1.AppendText($"Me : {msg}");
                     richTextBox2.Clear();

@@ -42,10 +42,11 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             total_cyclomatic_complexity = 0;
         }
 
-        public CodeComplexityReference(string language)
+        public CodeComplexityReference(string language, string currentCode)
         {
             InitializeComponent();
             total_cyclomatic_complexity = 0;
+            referenceCode.Text = currentCode;
             if (language == "Java")
                 MessageBox.Show("Ensure that the class name is changed to \"Main\" to avoid any potential conflicts.");
             this.language = language;
@@ -53,9 +54,15 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         private void smartButton2_Click(object sender, EventArgs e)
         {
+
+            if ((language != "Python") && new SingleStatementBodyChecker().CheckForSingleStatementBodies(referenceCode.Text).HasSingleStatementBodies)
+            {
+                MessageBox.Show(this, "Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
             File.WriteAllText(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"), referenceCode.Text);
-            total_cyclomatic_complexity = CodeComplexityCounter(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"),true);
+            total_cyclomatic_complexity = CodeComplexityCounter(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"), true);
             total_operator_count = CountOperators();
             sourceCode = referenceCode.Text;
             Close();
@@ -64,7 +71,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         public static int CodeComplexityCounter(string filePath, bool willDeleteAfter = false)
         {
             int totalComplexity = 0;
-            using (var process = getProcess($"/c \"\"{ProgrammingConfiguration.lizardExe}\" \"{filePath}\"\"") )
+            using (var process = getProcess($"/c \"\"{ProgrammingConfiguration.lizardExe}\" \"{filePath}\"\""))
             {
                 string allOutput = string.Empty;
                 process.OutputDataReceived += (s, e) => { if (e.Data != null) allOutput += e.Data + "\n"; };
@@ -131,7 +138,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 process.Exited += (s, e) =>
                 {
                     Debug.WriteLine(allOutput);
-;                   totalOperators = int.Parse(allOutput);
+                    ; totalOperators = int.Parse(allOutput);
                 };
                 process.Start();
                 process.BeginOutputReadLine();
@@ -145,7 +152,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         private static Process getProcess(string command)
         {
-            ProcessStartInfo processStartInfo = new ProcessStartInfo 
+            ProcessStartInfo processStartInfo = new ProcessStartInfo
             {
                 FileName = "cmd.exe",
                 Arguments = command,

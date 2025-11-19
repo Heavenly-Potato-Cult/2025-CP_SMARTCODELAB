@@ -157,6 +157,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public override async void RunTest()
         {
+            if (new SingleStatementBodyChecker().CheckForSingleStatementBodies(srcCode.Text).HasSingleStatementBodies)
+            {
+                MessageBox.Show(this, "Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.");
+                return;
+            }
+
             SaveCode();
             SourceCodeInitializer.InitializeEfficiencyCode2(LanguageSupported.Java, filePath, false);
             string directory = Path.GetDirectoryName(filePath);

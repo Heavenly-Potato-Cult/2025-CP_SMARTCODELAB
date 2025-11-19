@@ -138,11 +138,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             string tempFilePath = string.Empty;
             string command = string.Empty;
             string rootDirectory = SystemConfigurations.TASK_FOLDER;
+            string compilationError = string.Empty;
             if (language == LanguageSupported.Cpp) 
             {
                 tempFilePath = Path.Combine(rootDirectory, "bestCode.cpp");
+                File.WriteAllText(tempFilePath, code);
                 string exeFile = Path.Combine(rootDirectory, "bestCode.exe");
-                command = $"/c \"\"{ProgrammingConfiguration.gccExe}\" \"{tempFilePath}\" -o \"{exeFile}\" && \"{exeFile}\"\"";
+                compilationError = compileCode($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{tempFilePath}\" -o \"{exeFile}\" && del \"{tempFilePath}\"\"");
+                command = $"/c \"\"{exeFile}\"\"";
             }
             else if(language == LanguageSupported.Python)
             {
@@ -154,7 +157,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 tempFilePath = Path.Combine(rootDirectory, "Main.java");
                 command = $"/c \"cd \"{rootDirectory}\" && \"{ProgrammingConfiguration.javaExe}\" Main\"";
                 File.WriteAllText(tempFilePath, code);
-                compileJavaCode();
+                compilationError = compileCode($"/c \"\"{ProgrammingConfiguration.javac}\" \"{Path.Combine(SystemConfigurations.TASK_FOLDER, "Main.java")}\"\"");
+            }
+
+            if (compilationError != string.Empty) 
+            {
+                MessageBox.Show(compilationError);
+                return false;
             }
             File.WriteAllText(tempFilePath, code);
             var validateCode = new TestCodeForm(command, task);
@@ -162,18 +171,21 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             return validateCode.score == task._testCases.Count;
         }
 
-        public void compileJavaCode()
+        public static string compileCode(string command)
         {
             Process process = new Process();
             process.StartInfo.FileName = "cmd.exe";
-            process.StartInfo.Arguments = $"/c \"\"{ProgrammingConfiguration.javac}\" \"{Path.Combine(SystemConfigurations.TASK_FOLDER,"Main.java")}\"\"";
+            process.StartInfo.Arguments = command;
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardError = true;
 
+
             process.Start();
+            string errorOutput = process.StandardError.ReadToEnd();
             process.WaitForExit();
+            return errorOutput;
         }
     }
 }

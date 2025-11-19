@@ -42,7 +42,6 @@
             panel_MiddlePart_Main = new Panel();
             customTabControl1 = new SmartCodeLab.CustomComponents.WPFComponents.CustomTabControl();
             panel1 = new Panel();
-            smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -220,7 +219,6 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(smartButton5);
             panel1.Controls.Add(smartButton3);
             panel1.Controls.Add(smartButton1);
             panel1.Controls.Add(smartButton2);
@@ -229,26 +227,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(917, 61);
             panel1.TabIndex = 9;
-            // 
-            // smartButton5
-            // 
-            smartButton5.BackColor = Color.Brown;
-            smartButton5.BackgroundColor = Color.Brown;
-            smartButton5.BorderRadius = 10;
-            smartButton5.FlatAppearance.BorderSize = 0;
-            smartButton5.FlatStyle = FlatStyle.Flat;
-            smartButton5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            smartButton5.ForeColor = Color.White;
-            smartButton5.Image = (Image)resources.GetObject("smartButton5.Image");
-            smartButton5.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton5.Location = new Point(403, 11);
-            smartButton5.Name = "smartButton5";
-            smartButton5.Padding = new Padding(10, 0, 0, 0);
-            smartButton5.Size = new Size(146, 39);
-            smartButton5.TabIndex = 7;
-            smartButton5.Text = "Clear Console";
-            smartButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
-            smartButton5.UseVisualStyleBackColor = false;
             // 
             // smartButton3
             // 

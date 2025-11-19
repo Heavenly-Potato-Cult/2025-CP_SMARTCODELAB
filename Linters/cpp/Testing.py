@@ -484,19 +484,17 @@ class CppOperatorCounter:
         return '    ' * level
 
     def _add_output_statement(self, code: str) -> str:
-        """Add cout statement at end of main function"""
-        # Find main function
+        """Insert cout before EVERY return inside main()"""
         main_pattern = r'int\s+main\s*\([^)]*\)\s*\{'
         match = re.search(main_pattern, code)
-        
         if not match:
             return code
-        
-        # Find the closing brace of main
+
+        # Identify main block boundaries
         main_start = match.end()
         brace_count = 1
         main_end = -1
-        
+
         for i in range(main_start, len(code)):
             if code[i] == '{':
                 brace_count += 1
@@ -505,31 +503,36 @@ class CppOperatorCounter:
                 if brace_count == 0:
                     main_end = i
                     break
-        
+
         if main_end == -1:
             return code
-        
-        # Find the last return statement or insert before closing brace
+
+        # Extract the main function body
         main_body = code[main_start:main_end]
-        
-        # Get indentation from the line before closing brace
+
+        # Find all return statements inside main
+        return_positions = [
+            m.start() for m in re.finditer(r'return\s+[^;]*;', main_body)
+        ]
+
+        # Determine indentation
         lines_before = code[:main_end].split('\n')
         last_line = lines_before[-1] if lines_before else ''
         indent = self._get_indent_string(self._get_indent_level(last_line))
-        
-        # Create output statement
+
         output_stmt = f'{indent}std::cout << "Operation Count:" << {self.counter_var} << std::endl;\n'
-        
-        # Check if there's a return statement
-        return_match = re.search(r'return\s+\d+\s*;', main_body)
-        
-        if return_match:
-            # Insert before return
-            return_pos = main_start + return_match.start()
-            return code[:return_pos] + output_stmt + indent + code[return_pos:]
-        else:
-            # Insert before closing brace
-            return code[:main_end] + output_stmt + code[main_end:]
+
+        # Insert output before each return, processing in reverse order
+        new_body = main_body
+        for pos in reversed(return_positions):
+            new_body = new_body[:pos] + output_stmt + indent + new_body[pos:]
+
+        # If no return statements found → add before closing brace
+        if not return_positions:
+            new_body = new_body + output_stmt
+
+        # Rebuild full code
+        return code[:main_start] + new_body + code[main_end:]
 
 def main():
     if len(sys.argv) != 3:

@@ -198,11 +198,11 @@ namespace SmartCodeLab
                     //set task description display
                     activity_expansion_panel.Title1 = task._taskName;
                     description.Text = task._instructions;
-                    
+                    var returnLater = activity_expansion_panel;
+                    ActivityPanel.Controls.Clear();
+                    ActivityPanel.Controls.Add(returnLater);
                     //testCaseContainer.Controls.Clear();
-
                     studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
-                    
                     if (task._testCases != null && task._testCases.Count > 0)
                     {
                         // para ma maintain ang order sa test cases
@@ -214,7 +214,7 @@ namespace SmartCodeLab
                             var item = testCaseList[i];
                             var testCaseNumber = count;
 
-                            var testcase = new ExpansionPanel();
+                            ExpansionPanel testcase = new ExpansionPanel();
                             var testcaseview = new TestCaseView(testCaseNumber, item.Key, item.Value);
 
                             testcase.Title1 = "Test Case";
@@ -234,7 +234,6 @@ namespace SmartCodeLab
                         }
 
                     }
-
                     //para sataas ang activity panel after updating the task
                     activity_expansion_panel.SendToBack();
                 }))
@@ -283,10 +282,11 @@ namespace SmartCodeLab
                     {
                         case MessageType.TASK_UPDATE:
                             UpdateTaskDisplay(serverMsg._task);
-                            MessageBox.Show("Task updated boiiii");
+                            MessageBox.Show(this,"Task Updated");
                             break;
                         case MessageType.USER_MESSAGE:
-                            this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}\n") ));
+                            this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}") ));
+                            tabControl_RightSide.SelectedTab = MessagesTab;
                             break;
                         default:
                             break;
@@ -537,7 +537,6 @@ namespace SmartCodeLab
                             .Build();
                         Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
                         await stream.FlushAsync();
-                        Debug.WriteLine($"Sent message: {msg}");
                         this.Invoke((Action)(() => msgBox.AppendText($"Me : {msg}")));
                     }
                     catch (ProtoException) { }

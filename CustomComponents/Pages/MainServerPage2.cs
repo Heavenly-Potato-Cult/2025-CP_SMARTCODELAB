@@ -341,6 +341,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                     Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), PrefixStyle.Base128);
                     await item.Value.FlushAsync();
                 }
+                MessageBox.Show("Server Task Updated Successfully");
             });
         }
 

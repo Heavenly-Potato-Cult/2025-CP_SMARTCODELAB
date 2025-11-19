@@ -51,20 +51,19 @@
     '\'',
     '\''
     };
-            referenceCode.AutoScrollMinSize = new Size(27, 14);
+            referenceCode.AutoScrollMinSize = new Size(31, 18);
             referenceCode.BackBrush = null;
-            referenceCode.CharHeight = 14;
-            referenceCode.CharWidth = 8;
+            referenceCode.CharHeight = 18;
+            referenceCode.CharWidth = 10;
             referenceCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             referenceCode.Hotkeys = resources.GetString("referenceCode.Hotkeys");
             referenceCode.IsReplaceMode = false;
             referenceCode.Location = new Point(0, 1);
-            referenceCode.Margin = new Padding(3, 2, 3, 2);
             referenceCode.Name = "referenceCode";
             referenceCode.Paddings = new Padding(0);
             referenceCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             referenceCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("referenceCode.ServiceColors");
-            referenceCode.Size = new Size(859, 578);
+            referenceCode.Size = new Size(982, 771);
             referenceCode.TabIndex = 0;
             referenceCode.Zoom = 100;
             // 
@@ -75,10 +74,9 @@
             smartButton1.FlatAppearance.BorderSize = 0;
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(248, 602);
-            smartButton1.Margin = new Padding(3, 2, 3, 2);
+            smartButton1.Location = new Point(283, 803);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(164, 38);
+            smartButton1.Size = new Size(187, 51);
             smartButton1.TabIndex = 1;
             smartButton1.Text = "Cancel";
             smartButton1.UseVisualStyleBackColor = false;
@@ -91,10 +89,9 @@
             smartButton2.FlatAppearance.BorderSize = 0;
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(429, 602);
-            smartButton2.Margin = new Padding(3, 2, 3, 2);
+            smartButton2.Location = new Point(490, 803);
             smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(164, 38);
+            smartButton2.Size = new Size(187, 51);
             smartButton2.TabIndex = 2;
             smartButton2.Text = "OK";
             smartButton2.UseVisualStyleBackColor = false;
@@ -102,14 +99,13 @@
             // 
             // CodeComplexityReference
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(859, 651);
+            ClientSize = new Size(982, 868);
             Controls.Add(smartButton2);
             Controls.Add(smartButton1);
             Controls.Add(referenceCode);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "CodeComplexityReference";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CodeComplexityReference";
@@ -122,5 +118,6 @@
         private Pages.ProgrammingTabs.CodeEditor referenceCode;
         private GeneralComponents.SmartButton smartButton1;
         private GeneralComponents.SmartButton smartButton2;
+        private Button button1;
     }
 }

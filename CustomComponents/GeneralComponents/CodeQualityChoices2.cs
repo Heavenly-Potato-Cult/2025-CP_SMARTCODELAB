@@ -32,6 +32,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         {
             InitializeComponent();
             complexity_standard = 0;
+            bestSourceCode = "";
             total_standard_operators = 0;
             recentValue = new Dictionary<TrackBar, int>()
             {
@@ -199,7 +200,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         private void openComplexityDialog(CheckBox sender)
         {
-            var counterDialog = new CodeComplexityReference(language);
+            var counterDialog = new CodeComplexityReference(language, bestSourceCode);
             if (counterDialog.ShowDialog() == DialogResult.OK)
             {
                 total_standard_operators = counterDialog.total_operator_count;
