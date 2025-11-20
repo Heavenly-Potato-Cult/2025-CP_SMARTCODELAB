@@ -67,6 +67,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             homePage = new ServerHomePage(server.Users.Count, server.ServerName, server.Password, displayStudentTable, saveSession);
             homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
+            progressSubmissionPage.leaderboardsUpdate = UpdateServerTask;
             var taskUpdatePage = new ServerTaskUpdate(currentTask, UpdateServerTask);
 
             homePage.Dock = DockStyle.Fill;
@@ -331,17 +332,27 @@ namespace SmartCodeLab.CustomComponents.Pages
             catch (ArgumentNullException) { }
         }
 
-        private void UpdateServerTask(TaskModel task)
+        //broadcasting service
+        private void UpdateServerTask(TaskModel task, List<SubmittedCode> leaderboards, string msg)
         {
             serverPage.UpdateTask(task);
             Task.Run(async () =>
             {
                 foreach (var item in connectedUsers)
                 {
-                    Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), PrefixStyle.Base128);
+                    if(task != null)
+                        Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), PrefixStyle.Base128);
+                    else if(leaderboards != null)
+                        Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.LEADERBOARDS_UPDATE).Leaderboards(leaderboards).Build(), PrefixStyle.Base128);
+                    else
+                        Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(new UserMessage(msg)).Build(), PrefixStyle.Base128);
+                    
                     await item.Value.FlushAsync();
                 }
-                MessageBox.Show("Server Task Updated Successfully");
+
+                string notif = task != null ? "Server Task Updated Successfully" : msg != null ? "Broadcast Message Successfully Sent to Everyone" : string.Empty;
+                if (notif != string.Empty)
+                    this.Invoke((Action)(() => MessageBox.Show(this, notif)));
             });
         }
 
@@ -362,7 +373,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                         new ProgrammingSession(server, homePage.notifications, homePage.copyPasteDetectedCount, userProgress, progressSubmissionPage.codeSubmissions),
                         PrefixStyle.Base128);
                     await fileStream.FlushAsync();
-                    MessageBox.Show("Session file saved successfully");
+                    MessageBox.Show(this, "Session file saved successfully");
                 }
             }
             catch (Exception ex)

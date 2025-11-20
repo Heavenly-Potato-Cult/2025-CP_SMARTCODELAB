@@ -15,6 +15,7 @@ namespace SmartCodeLab.Models.Enums
         TASK_UPDATE,
         NOTIFICATION,
         CODE_SUBMISSION,
-        USER_MESSAGE
+        USER_MESSAGE,
+        LEADERBOARDS_UPDATE,
     }
 }

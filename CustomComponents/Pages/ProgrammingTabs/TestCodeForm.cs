@@ -18,6 +18,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     public partial class TestCodeForm : Form
     {
         public int score;
+        private int totalCases;
         public List<KeyValuePair<string, string>> corrects;
         private string command;
         private TaskModel task;
@@ -34,7 +35,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             score = 0;
             this.command = command;
             this.task = task;
-            total.Text = task._testCases.Count.ToString();
+            totalCases = task?._testCases?.Count ?? 0;
             this.Load += (s, e) => RunTest();
         }
 
@@ -120,7 +121,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     break;
                 }
 
-                currentScore.Text = score.ToString();
+                currentScore.Text = $"{score}/{totalCases}";
             }
         }
 

@@ -80,7 +80,8 @@ namespace SmartCodeLab
         //private StudentCodingProgress progress;
 
         private bool isResizingTabs = false;
-        private System.Windows.Controls.TreeView wpfTree;
+        private System.Windows.Controls.TreeView wpfTree; 
+        private int leaderboardUpdateVersion = 0;
         public TempIDE()
         {
             InitializeComponent();
@@ -183,9 +184,6 @@ namespace SmartCodeLab
                 UpdateTaskDisplay(task);
                 studentCodeRating.SetStats(task.ratingFactors);
                 studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
-                AddLeaderboardIcon(1, "Alice", 100);
-                AddLeaderboardIcon(2, "Bob", 50);
-                AddLeaderboardIcon(3, "Charles", 30);
             };
         }
 
@@ -284,9 +282,36 @@ namespace SmartCodeLab
                             UpdateTaskDisplay(serverMsg._task);
                             MessageBox.Show(this,"Task Updated");
                             break;
+
                         case MessageType.USER_MESSAGE:
                             this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}") ));
                             tabControl_RightSide.SelectedTab = MessagesTab;
+                            break;
+
+                        case MessageType.LEADERBOARDS_UPDATE:
+
+                            int myVersion = ++leaderboardUpdateVersion;  // New update becomes the latest
+
+                            // Run asynchronously so UI thread isn't blocked
+                            Task.Run(() =>
+                            {
+                                // If another update came in, cancel this one
+                                if (myVersion != leaderboardUpdateVersion)
+                                    return;
+
+                                // Now invoke on UI thread — but also check version again
+                                this.BeginInvoke(new Action(() =>
+                                {
+                                    if (myVersion != leaderboardUpdateVersion)
+                                        return;  // A newer update arrived while queued
+
+                                    panel_leaderboards.Controls.Clear();
+                                    List<SubmittedCode> leaderBoards = serverMsg.leaderboards;
+
+                                    leaderBoards.ForEach(sub =>
+                                        AddLeaderboardIcon(sub.placement, sub.username, sub.score));
+                                }));
+                            });
                             break;
                         default:
                             break;

@@ -18,6 +18,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private bool waitingForInput = false;
         private DateTime lastOutputTime;
 
+        public Action<string> thrownException;
+
         public CmdPanel()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             richTextBox1.Clear();
             richTextBox1.ReadOnly = false;
             process = externalProcess ?? throw new ArgumentNullException(nameof(externalProcess));
-
+            string totalErrors = string.Empty;
             process.OutputDataReceived += (s, e) =>
             {
                 if (!string.IsNullOrEmpty(e.Data))
@@ -58,6 +60,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     AppendText("[ERR] " + e.Data + Environment.NewLine);
                     lastOutputTime = DateTime.Now;
                     waitingForInput = false;
+                    totalErrors += e.Data + Environment.NewLine;
                 }
             };
 
@@ -66,6 +69,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 AppendText(Environment.NewLine + "[Process exited]");
                 waitingForInput = false;
                 richTextBox1.ReadOnly = true;
+                if(totalErrors != string.Empty)
+                    thrownException(totalErrors);
             };
 
             lastOutputTime = DateTime.Now;

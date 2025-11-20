@@ -138,6 +138,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
+        private void SentBroadCaseMessage(string message) 
+        {
+            Task.Run(() => 
+            {
+                foreach (var item in displayedUsers)
+                {
+                    SendMessageToStudent(item._studentId, message);
+                }
+            });
+        }
+
         private bool SendMessageToStudent(string studentId, string message)
         {
             if (isStudentActive(studentId))

@@ -19,7 +19,7 @@ namespace SmartCodeLab.Services
         public static string lizardExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "lizard_portable.exe");
         public static string pylintExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "pylint_portable.exe");
         public static string readabilityConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "readabilityConfig.pylintrc");
-        public static string errorConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "errorConfig.pylintrc");
+        public static string SYNTAX_CHECKER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "SyntaxChecker.py");
         public static string PYTHON_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "operator_counter.py");
         public static string PYTHON_COUNTER_INITIALIZER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "PythonOperatorCounterInitializer.py");
 

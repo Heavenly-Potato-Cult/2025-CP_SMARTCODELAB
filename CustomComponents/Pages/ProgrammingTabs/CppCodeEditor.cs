@@ -18,6 +18,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private readonly List<string> toCheck = new List<string>() {"robustness", "maintainability" };
         private readonly Dictionary<string, Action<int, string>> highlighter = new Dictionary<string, Action<int, string>>();
         private string fileExe;
+        private string testerExe;
         public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
             highlighter = new Dictionary<string, Action<int, string>>()
@@ -26,11 +27,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 { "robustness", HighlightRobustnessIssue }
             };
             fileExe = filePath.Replace(".cpp", ".exe");
+            testerExe = Path.Combine(Path.GetDirectoryName(filePath), "Tester.exe");
         }
 
         public override async Task RunCode()
         {
-            await CompileCode();
+            await CompileCode(fileExe);
             process?.Dispose();
             process = new Process
             {
@@ -47,9 +49,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             await base.RunCode();
         }
 
-        private async Task CompileCode()
+        private async Task CompileCode(string output)
         {
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{filePath}\" -o \"{fileExe}\"\"");
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{filePath}\" -o \"{output}\"\"");
             await StartprocessAsyncExit(
                 process,
                 null,
@@ -65,8 +67,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 return;
             }
 
-            CompileCode();
-            commandLine = $"/c \"{fileExe}\"";
+            await CompileCode(testerExe);
+            commandLine = $"/c \"{testerExe}\"";
             SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Cpp, filePath, false);
             base.RunTest();
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)

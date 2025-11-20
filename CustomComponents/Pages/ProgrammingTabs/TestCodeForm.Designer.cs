@@ -31,8 +31,6 @@
             label17 = new Label();
             label1 = new Label();
             currentScore = new Label();
-            label3 = new Label();
-            total = new Label();
             panel_results = new Panel();
             SuspendLayout();
             // 
@@ -69,28 +67,6 @@
             currentScore.TabIndex = 81;
             currentScore.Text = "0";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.Black;
-            label3.Location = new Point(931, 25);
-            label3.Name = "label3";
-            label3.Size = new Size(24, 31);
-            label3.TabIndex = 82;
-            label3.Text = "/";
-            // 
-            // total
-            // 
-            total.AutoSize = true;
-            total.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            total.ForeColor = Color.Black;
-            total.Location = new Point(955, 25);
-            total.Name = "total";
-            total.Size = new Size(73, 31);
-            total.TabIndex = 81;
-            total.Text = "Score";
-            // 
             // panel_results
             // 
             panel_results.AutoScroll = true;
@@ -106,8 +82,6 @@
             BackColor = Color.LightGray;
             ClientSize = new Size(1082, 645);
             Controls.Add(panel_results);
-            Controls.Add(total);
-            Controls.Add(label3);
             Controls.Add(currentScore);
             Controls.Add(label1);
             Controls.Add(label17);
@@ -121,8 +95,6 @@
         private Label label17;
         private Label label1;
         private Label currentScore;
-        private Label label3;
-        private Label total;
         private Panel panel_results;
     }
 }

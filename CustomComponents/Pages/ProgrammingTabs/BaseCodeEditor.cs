@@ -110,6 +110,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress)
         {
             InitializeComponent();
+            output.thrownException = ExtractThrownExceptions;
             this.updateStats = updateStats;
             standardError = new Dictionary<int, string>();
             readabilityWarning = new Dictionary<int, string>();
@@ -303,7 +304,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             output.AttachProcess(process);
         }
 
-        private void ExtractThrownExceptions(string allExceptions)
+        protected void ExtractThrownExceptions(string allExceptions)
         {
             //for java
             Task.Run(() =>
@@ -335,7 +336,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                     else if(filePath.EndsWith(".py"))
                     {
-
                         //most likely the exception type is in the last line
                         //as last line contains two messages separated by colon {Exception}: {exceptionMessage}
                         string[] exceptions = allExceptions.Split("\n");
@@ -539,17 +539,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
             catch (ArgumentOutOfRangeException) { }
         }
-
-        //protected virtual void HighLightStandardError(int errorLine, string msg)
-        //{
-        //    try
-        //    {
-        //        var lineRange = srcCode.GetLine(errorLine);
-        //        lineRange.SetStyle(readabilityHighlight);
-        //        lineErrorAndMessage.Add(new KeyValuePair<int, string>(errorLine, msg));
-        //    }
-        //    catch (ArgumentException) { }
-        //}
 
         protected virtual void HighlightMaintainabilityIssue(int errorLine, string msg)
         {

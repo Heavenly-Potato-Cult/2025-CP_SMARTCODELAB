@@ -35,6 +35,9 @@ namespace SmartCodeLab.Models
 
         [ProtoMember(8)]
         public UserMessage userMessage { get; private set; }
+
+        [ProtoMember(9)]
+        public List<SubmittedCode> leaderboards { get; set; }
         public ServerMessage()
         {
         }
@@ -92,6 +95,13 @@ namespace SmartCodeLab.Models
                 msg.submittedCode = submittedCode;
                 return this;
             }
+
+            public Builder Leaderboards(List<SubmittedCode> leaderboards)
+            {
+                msg.leaderboards = leaderboards;
+                return this;
+            }
+
             public Builder UserMessage(UserMessage userMessage)
             {
                 msg.userMessage = userMessage;

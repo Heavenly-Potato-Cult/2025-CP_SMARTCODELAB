@@ -79,24 +79,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             SaveCode();
             NoError();
             //for error checking
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.pylintExe}\" --rcfile=\"{ProgrammingConfiguration.errorConfig}\" \"{filePath}\"\"");
+            process = CommandRunner($"/c \"py \"{ProgrammingConfiguration.SYNTAX_CHECKER}\" \"{filePath}\"\"");
             string errorOutput = "";
             await StartprocessAsyncExit(
                 process,
-                err => {
-                    if (err.Contains("Main.py"))
-                    {
-                        int mainPyIndex = err.IndexOf("Main.py");
-                        if (mainPyIndex > 0)
-                            errorOutput += err.Substring(err.IndexOf("Main.py") + 8) + Environment.NewLine;
-                    }
+                err =>
+                {
+                    errorOutput += err + Environment.NewLine;
                 },
                 null,
-                async () => 
+                async () =>
                 {
                     try
                     {
-                        if(errorOutput == "")//means no syntax error
+                        if (errorOutput == "")//means no syntax error
                         {
                             for (int i = 3; i < 5; i++)
                             {
@@ -105,21 +101,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         }
                         else
                         {
-                            errorOutput = errorOutput.Remove(errorOutput.LastIndexOf(Environment.NewLine));
                             string[] errors = errorOutput.Split(Environment.NewLine);
-                            foreach (var error in errors)
-                            {
-                                string[] splicedErrorLine = error.Split(':');
-                                string errorMessage = splicedErrorLine[2];
-                                int line = int.Parse(splicedErrorLine[0]) - 1;
-                                errorMessage = error.Substring(error.IndexOf(errorMessage) + errorMessage.Length + 2);
-                                HighlightError(line, errorMessage);
-                            }
+                            int line = int.Parse(errors[0]);
+                            string errorMsg = errors[1];
+                            HighlightError(line, errorMsg);
                         }
-
                     }
                     catch (ArgumentOutOfRangeException)//will be thrown if no syntax error detected 
-                    {}
+                    { }
                 }
             );
         }

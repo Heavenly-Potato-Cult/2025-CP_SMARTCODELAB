@@ -25,9 +25,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         }
 
         private TaskModel task;
-        private Action<TaskModel> action;
+        private Action<TaskModel, List<SubmittedCode>, string> action;
         private string recentReferenceCode;
-        public ServerTaskUpdate(TaskModel task, Action<TaskModel> action)
+        public ServerTaskUpdate(TaskModel task, Action<TaskModel, List<SubmittedCode>, string> action)
         {
             InitializeComponent();
             this.task = task;
@@ -123,7 +123,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 }
             }
             recentReferenceCode = task._referenceFile;
-            action?.Invoke(task);
+            action?.Invoke(task, null, null);
         }
     }
 }
