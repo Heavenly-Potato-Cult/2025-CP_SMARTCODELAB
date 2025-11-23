@@ -117,9 +117,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 int currentVersion = ++leaderboardsVersion;
                 bool isSortByPoints = customComboBox2.SelectedItem?.ToString() == "Points";
-            //do the sorting thing
-            filteredSubmitted = isSortByPoints ? filteredSubmitted.OrderByDescending(sub => sub.progress.codeRating.totalRating).ToList() :
-                                                    filteredSubmitted.OrderBy(sub => sub.placement).ToList();
+                //do the sorting thing
+                filteredSubmitted = isSortByPoints ? filteredSubmitted.OrderByDescending(sub => sub.progress.codeRating.totalRating).ToList() :
+                                                        filteredSubmitted.OrderBy(sub => sub.placement).ToList();
 
                 submittedContainer.Controls.Clear();
                 foreach (var studentSubmission in filteredSubmitted)
@@ -167,6 +167,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 DisplayIcons();
             }, null, 500, Timeout.Infinite);
+        }
+
+        private void ProgressSubmissionPage_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
