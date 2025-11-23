@@ -61,6 +61,11 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         // --- CONSTRUCTOR ---
         public SteamLabel()
         {
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                  ControlStyles.UserPaint |
+                  ControlStyles.OptimizedDoubleBuffer, true);
+
+            this.DoubleBuffered = true;
             this.AutoSize = true;
             this.BackColor = Color.Transparent;
 
