@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestCase2));
             splitContainer1 = new SplitContainer();
-            codeEditor1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             label1 = new Label();
-            codeEditor2 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             label2 = new Label();
             button1 = new Button();
             panel1 = new Panel();
@@ -41,8 +37,6 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)codeEditor2).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,12 +49,10 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(codeEditor1);
             splitContainer1.Panel1.Controls.Add(label1);
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(codeEditor2);
             splitContainer1.Panel2.Controls.Add(label2);
             splitContainer1.Size = new Size(649, 190);
             splitContainer1.SplitterDistance = 315;
@@ -199,8 +191,6 @@
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)codeEditor2).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
