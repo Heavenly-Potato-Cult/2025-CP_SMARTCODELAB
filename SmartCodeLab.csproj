@@ -39,4 +39,46 @@
 	</None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Fonts\Geist-Black.ttf" />
+    <None Remove="Fonts\Geist-Bold.ttf" />
+    <None Remove="Fonts\Geist-ExtraBold.ttf" />
+    <None Remove="Fonts\Geist-ExtraLight.ttf" />
+    <None Remove="Fonts\Geist-Light.ttf" />
+    <None Remove="Fonts\Geist-Medium.ttf" />
+    <None Remove="Fonts\Geist-Regular.ttf" />
+    <None Remove="Fonts\Geist-SemiBold.ttf" />
+    <None Remove="Fonts\Geist-Thin.ttf" />
+    <None Remove="Fonts\GeistMono-Black.ttf" />
+    <None Remove="Fonts\GeistMono-Bold.ttf" />
+    <None Remove="Fonts\GeistMono-ExtraBold.ttf" />
+    <None Remove="Fonts\GeistMono-ExtraLight.ttf" />
+    <None Remove="Fonts\GeistMono-Light.ttf" />
+    <None Remove="Fonts\GeistMono-Medium.ttf" />
+    <None Remove="Fonts\GeistMono-Regular.ttf" />
+    <None Remove="Fonts\GeistMono-SemiBold.ttf" />
+    <None Remove="Fonts\GeistMono-Thin.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Fonts\Geist-Black.ttf" />
+    <Resource Include="Fonts\Geist-Bold.ttf" />
+    <Resource Include="Fonts\Geist-ExtraBold.ttf" />
+    <Resource Include="Fonts\Geist-ExtraLight.ttf" />
+    <Resource Include="Fonts\Geist-Light.ttf" />
+    <Resource Include="Fonts\Geist-Medium.ttf" />
+    <Resource Include="Fonts\Geist-Regular.ttf" />
+    <Resource Include="Fonts\Geist-SemiBold.ttf" />
+    <Resource Include="Fonts\Geist-Thin.ttf" />
+    <Resource Include="Fonts\GeistMono-Black.ttf" />
+    <Resource Include="Fonts\GeistMono-Bold.ttf" />
+    <Resource Include="Fonts\GeistMono-ExtraBold.ttf" />
+    <Resource Include="Fonts\GeistMono-ExtraLight.ttf" />
+    <Resource Include="Fonts\GeistMono-Light.ttf" />
+    <Resource Include="Fonts\GeistMono-Medium.ttf" />
+    <Resource Include="Fonts\GeistMono-Regular.ttf" />
+    <Resource Include="Fonts\GeistMono-SemiBold.ttf" />
+    <Resource Include="Fonts\GeistMono-Thin.ttf" />
+  </ItemGroup>
+
 </Project>

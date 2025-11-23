@@ -3,73 +3,127 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SmartCodeLab.CustomComponents.WPFComponents"
              mc:Ignorable="d" 
-             d:DesignHeight="45.904" d:DesignWidth="800" Height="46">
+             d:DesignHeight="60" d:DesignWidth="1000">
+
     <UserControl.Resources>
-        <SolidColorBrush x:Key="SteamDarkGray" Color="#2a2e35"/>
-        <SolidColorBrush x:Key="SteamLightGray" Color="#c7d5e0"/>
-        <SolidColorBrush x:Key="SteamBlue" Color="#1a9fff"/>
-        <Style x:Key="SteamTopLevelItemStyle" TargetType="MenuItem">
-            <Setter Property="Foreground" Value="{StaticResource SteamLightGray}"/>
-            <Setter Property="FontFamily" Value="Segoe UI"/>
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Padding" Value="12,5"/>
+        <SolidColorBrush x:Key="SteamBg" Color="#1B2838"/>
+        <SolidColorBrush x:Key="SteamTextIdle" Color="#c5d5e0"/>
+        <SolidColorBrush x:Key="SteamAccent" Color="#1ABF20"/>
+        <SolidColorBrush x:Key="SteamHover" Color="#FFFFFF"/>
+        <Style x:Key="SteamTabStyle" TargetType="RadioButton">
             <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource SteamTextIdle}"/>
+            <Setter Property="FontFamily" Value="/Fonts/#Geist SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="15,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="MenuItem">
-                        <Grid>
-                            <Border x:Name="MainBorder" 
-                                    Background="{TemplateBinding Background}"
-                                    Padding="{TemplateBinding Padding}">
-                                <ContentPresenter ContentSource="Header" 
-                                                  x:Name="HeaderHost"
-                                                  TextBlock.Foreground="{TemplateBinding Foreground}"/>
-                            </Border>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid Background="Transparent" Height="{TemplateBinding Height}">
 
-                            <Border x:Name="Underline"
-                                    Height="2" 
-                                    Background="{StaticResource SteamBlue}"
+                            <ContentPresenter x:Name="ContentText"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,0,4"/>
+
+                            <Border x:Name="ActiveBar"
+                                    Height="3"
+                                    Background="{StaticResource SteamAccent}"
                                     VerticalAlignment="Bottom"
-                                    Margin="10,0,10,0"
-                                    Visibility="Collapsed"/>
+                                    Visibility="Hidden"
+                                    CornerRadius="1"/>
 
+                            <Border x:Name="HoverGlow"
+                                    Background="White"
+                                    Opacity="0"
+                                    IsHitTestVisible="False"/>
                         </Grid>
 
                         <ControlTemplate.Triggers>
 
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="Role" Value="TopLevelItem"/>
-                                    <Condition Property="IsMouseOver" Value="True"/>
-                                </MultiTrigger.Conditions>
-                                <Setter TargetName="HeaderHost" Property="TextBlock.Foreground" Value="{StaticResource SteamBlue}"/>
-                                <Setter TargetName="Underline" Property="Visibility" Value="Visible"/>
-                            </MultiTrigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource SteamHover}"/>
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource SteamAccent}"/>
+                                <Setter TargetName="ActiveBar" Property="Visibility" Value="Visible"/>
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#A4D007" BlurRadius="10" ShadowDepth="0" Opacity="0.4"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
 
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
         </Style>
-
-        <Style TargetType="Menu">
-            <Setter Property="Background" Value="{StaticResource SteamDarkGray}"/>
-            <Setter Property="ItemContainerStyle" Value="{StaticResource SteamTopLevelItemStyle}"/>
-        </Style>
-
     </UserControl.Resources>
 
-    <Grid Height="46">
-        <Menu VerticalAlignment="Top" Height="46">
+    <Grid Background="{StaticResource SteamBg}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
 
-            <MenuItem x:Name="nav_session" Header="SESSION" Click="nav_session_Click"/>
-            <MenuItem x:Name="nav_explorer" Header="EXERCISE EXPLORER" Click="nav_explorer_Click"/>
-            <MenuItem x:Name="nav_sessionlogs" Header="SESSION LOGS" Click="nav_sessionlogs_Click"/>
+        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+            <Rectangle Width="12" Height="12" Fill="{StaticResource SteamAccent}" Margin="0,0,10,0"/>
+            <TextBlock Text="SMARTCODELAB" 
+                       FontWeight="Bold" 
+                       Foreground="{StaticResource SteamAccent}" 
+                       FontSize="16" 
+                       VerticalAlignment="Center"
+                       />
+        </StackPanel>
 
-        </Menu>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <RadioButton Content="SESSION" 
+                         Style="{StaticResource SteamTabStyle}"
+                         GroupName="MainNav"
+                         IsChecked="True"
+                         Click="nav_session_Click"/>
+
+            <RadioButton Content="EXERCISE EXPLORER" 
+                         Style="{StaticResource SteamTabStyle}"
+                         GroupName="MainNav"
+                         Click="nav_explorer_Click"/>
+
+            <RadioButton Content="SESSION LOGS" 
+                         Style="{StaticResource SteamTabStyle}"
+                         GroupName="MainNav"
+                         Click="nav_sessionlogs_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" 
+                    Orientation="Horizontal" 
+                    Margin="20,0" 
+                    VerticalAlignment="Center">
+            <TextBlock Text="⚙" 
+                       Foreground="{StaticResource SteamTextIdle}" 
+                       FontSize="18" 
+                       Margin="0,0,15,0" 
+                       Cursor="Hand"
+                       VerticalAlignment="Center"/>
+            <Border Width="32" Height="32" CornerRadius="16" Background="#2a475e"
+                    VerticalAlignment="Center">
+                <TextBlock Text="JS" 
+                           Foreground="White" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" 
+                           FontSize="12" 
+                           FontWeight="Bold"/>
+            </Border>
+
+        </StackPanel>
+
+        <Border Grid.ColumnSpan="3" VerticalAlignment="Bottom" Height="1" Background="#000000" Opacity="0.3"/>
     </Grid>
 </UserControl>
