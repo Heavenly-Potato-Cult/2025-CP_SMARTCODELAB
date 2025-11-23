@@ -51,19 +51,19 @@
             label13 = new Label();
             studentName = new Label();
             submitCount = new Label();
-            flowLayoutPanel2 = new FlowLayoutPanel();
             expansionPanel1 = new ExpansionPanel();
             studentCode = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             expansionPanel2 = new ExpansionPanel();
             materialListView1 = new MaterialSkin.Controls.MaterialListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
+            panel1 = new Panel();
             customCard7.SuspendLayout();
             customCard2.SuspendLayout();
-            flowLayoutPanel2.SuspendLayout();
             expansionPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             expansionPanel2.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label11
@@ -71,7 +71,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Gray;
-            label11.Location = new Point(294, 76);
+            label11.Location = new Point(208, 77);
             label11.Name = "label11";
             label11.Size = new Size(161, 25);
             label11.TabIndex = 67;
@@ -89,7 +89,7 @@
             customComboBox2.Items.AddRange(new object[] { "Earliest Pass", "Points" });
             customComboBox2.ListBackColor = Color.FromArgb(230, 228, 245);
             customComboBox2.ListTextColor = Color.DimGray;
-            customComboBox2.Location = new Point(624, 122);
+            customComboBox2.Location = new Point(535, 122);
             customComboBox2.MinimumSize = new Size(200, 29);
             customComboBox2.Name = "customComboBox2";
             customComboBox2.Padding = new Padding(1);
@@ -106,7 +106,7 @@
             searchBox.BorderRadius = 2;
             searchBox.BorderSize = 1;
             searchBox.ForeColor = SystemColors.ControlText;
-            searchBox.Location = new Point(291, 122);
+            searchBox.Location = new Point(202, 122);
             searchBox.Name = "searchBox";
             searchBox.Padding = new Padding(10, 7, 10, 7);
             searchBox.PlaceHolderColor = Color.DarkGray;
@@ -125,7 +125,7 @@
             customCard7.Controls.Add(label1);
             customCard7.Controls.Add(label6);
             customCard7.Controls.Add(label14);
-            customCard7.Location = new Point(291, 186);
+            customCard7.Location = new Point(202, 191);
             customCard7.Name = "customCard7";
             customCard7.Size = new Size(533, 35);
             customCard7.TabIndex = 64;
@@ -168,7 +168,7 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.FromArgb(13, 13, 13);
-            label12.Location = new Point(291, 45);
+            label12.Location = new Point(205, 46);
             label12.Name = "label12";
             label12.Size = new Size(238, 31);
             label12.TabIndex = 63;
@@ -178,7 +178,7 @@
             // 
             submittedContainer.AutoScroll = true;
             submittedContainer.FlowDirection = FlowDirection.TopDown;
-            submittedContainer.Location = new Point(291, 222);
+            submittedContainer.Location = new Point(202, 227);
             submittedContainer.Name = "submittedContainer";
             submittedContainer.Size = new Size(533, 769);
             submittedContainer.TabIndex = 68;
@@ -186,6 +186,7 @@
             // 
             // customCard2
             // 
+            customCard2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             customCard2.BackColor = Color.White;
             customCard2.BorderColor = Color.Gray;
             customCard2.BorderRadius = 2;
@@ -195,9 +196,9 @@
             customCard2.Controls.Add(label18);
             customCard2.Controls.Add(label13);
             customCard2.Controls.Add(studentName);
-            customCard2.Location = new Point(924, 122);
+            customCard2.Location = new Point(809, 59);
             customCard2.Name = "customCard2";
-            customCard2.Size = new Size(694, 104);
+            customCard2.Size = new Size(836, 104);
             customCard2.TabIndex = 69;
             // 
             // score
@@ -213,10 +214,11 @@
             // 
             // label20
             // 
+            label20.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label20.AutoSize = true;
             label20.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label20.ForeColor = Color.Gray;
-            label20.Location = new Point(464, 52);
+            label20.Location = new Point(606, 52);
             label20.Name = "label20";
             label20.Size = new Size(203, 25);
             label20.TabIndex = 64;
@@ -260,34 +262,22 @@
             submitCount.AutoSize = true;
             submitCount.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             submitCount.ForeColor = Color.Black;
-            submitCount.Location = new Point(461, 76);
+            submitCount.Location = new Point(375, 77);
             submitCount.Name = "submitCount";
             submitCount.Size = new Size(22, 25);
             submitCount.TabIndex = 71;
             submitCount.Text = "0";
             // 
-            // flowLayoutPanel2
-            // 
-            flowLayoutPanel2.AutoScroll = true;
-            flowLayoutPanel2.Controls.Add(expansionPanel1);
-            flowLayoutPanel2.Controls.Add(expansionPanel2);
-            flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(924, 242);
-            flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(709, 608);
-            flowLayoutPanel2.TabIndex = 92;
-            flowLayoutPanel2.WrapContents = false;
-            // 
             // expansionPanel1
             // 
-            expansionPanel1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             expansionPanel1.BackColor = Color.Gainsboro;
             expansionPanel1.Controls.Add(studentCode);
+            expansionPanel1.Dock = DockStyle.Top;
             expansionPanel1.HeaderColor = Color.White;
             expansionPanel1.IconText = "v";
-            expansionPanel1.Location = new Point(3, 3);
+            expansionPanel1.Location = new Point(0, 270);
             expansionPanel1.Name = "expansionPanel1";
-            expansionPanel1.Size = new Size(682, 647);
+            expansionPanel1.Size = new Size(836, 508);
             expansionPanel1.TabIndex = 93;
             expansionPanel1.Title1 = "Student Code";
             expansionPanel1.Title2 = "";
@@ -308,7 +298,7 @@
     '\'',
     '\''
     };
-            studentCode.AutoScrollMinSize = new Size(141, 18);
+            studentCode.AutoScrollMinSize = new Size(161, 88);
             studentCode.BackBrush = null;
             studentCode.BorderStyle = BorderStyle.FixedSingle;
             studentCode.CharHeight = 18;
@@ -316,14 +306,14 @@
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
-            studentCode.Location = new Point(15, 63);
-            studentCode.Margin = new Padding(3, 4, 3, 4);
+            studentCode.Location = new Point(0, 0);
+            studentCode.Margin = new Padding(3, 48, 3, 4);
             studentCode.Name = "studentCode";
-            studentCode.Paddings = new Padding(0);
+            studentCode.Paddings = new Padding(10, 70, 10, 0);
             studentCode.ReadOnly = true;
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
-            studentCode.Size = new Size(655, 580);
+            studentCode.Size = new Size(836, 508);
             studentCode.TabIndex = 2;
             studentCode.Text = "codeEditor1";
             studentCode.Zoom = 100;
@@ -332,18 +322,18 @@
             // 
             expansionPanel2.BackColor = Color.Gainsboro;
             expansionPanel2.Controls.Add(materialListView1);
+            expansionPanel2.Dock = DockStyle.Top;
             expansionPanel2.HeaderColor = Color.White;
             expansionPanel2.IconText = "v";
-            expansionPanel2.Location = new Point(3, 656);
+            expansionPanel2.Location = new Point(0, 0);
             expansionPanel2.Name = "expansionPanel2";
-            expansionPanel2.Size = new Size(682, 284);
+            expansionPanel2.Size = new Size(836, 270);
             expansionPanel2.TabIndex = 93;
             expansionPanel2.Title1 = "Scores";
             expansionPanel2.Title2 = "";
             // 
             // materialListView1
             // 
-            materialListView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             materialListView1.AutoSizeTable = true;
             materialListView1.BackColor = Color.FromArgb(255, 255, 255);
             materialListView1.BorderStyle = BorderStyle.None;
@@ -352,9 +342,9 @@
             materialListView1.Font = new Font("Microsoft Sans Serif", 14.25F);
             materialListView1.FullRowSelect = true;
             materialListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5 });
-            materialListView1.Location = new Point(104, 64);
+            materialListView1.Location = new Point(191, 63);
             materialListView1.Margin = new Padding(3, 4, 3, 4);
-            materialListView1.MinimumSize = new Size(229, 133);
+            materialListView1.MinimumSize = new Size(200, 100);
             materialListView1.MouseLocation = new Point(-1, -1);
             materialListView1.MouseState = MaterialSkin.MouseState.OUT;
             materialListView1.Name = "materialListView1";
@@ -375,11 +365,22 @@
             columnHeader2.Text = "Scores";
             columnHeader2.Width = 100;
             // 
+            // panel1
+            // 
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.AutoScroll = true;
+            panel1.Controls.Add(expansionPanel1);
+            panel1.Controls.Add(expansionPanel2);
+            panel1.Location = new Point(809, 191);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(836, 805);
+            panel1.TabIndex = 94;
+            // 
             // ProgressSubmissionPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(flowLayoutPanel2);
+            Controls.Add(panel1);
             Controls.Add(submitCount);
             Controls.Add(customCard2);
             Controls.Add(submittedContainer);
@@ -390,14 +391,15 @@
             Controls.Add(label12);
             Name = "ProgressSubmissionPage";
             Size = new Size(1801, 1049);
+            Load += ProgressSubmissionPage_Load;
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
-            flowLayoutPanel2.ResumeLayout(false);
             expansionPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();
             expansionPanel2.ResumeLayout(false);
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -420,12 +422,12 @@
         private Label submitCount;
         private Label label1;
         private Label score;
-        private FlowLayoutPanel flowLayoutPanel2;
         private ProgrammingTabs.CodeEditor studentCode;
         private MaterialSkin.Controls.MaterialListView materialListView1;
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private ExpansionPanel expansionPanel1;
         private ExpansionPanel expansionPanel2;
+        private Panel panel1;
     }
 }

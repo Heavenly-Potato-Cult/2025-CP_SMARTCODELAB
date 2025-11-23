@@ -437,5 +437,6 @@
         private Panel panel5;
         private CustomTextBox searchStudent;
         private Panel copypastedCodes;
+        private System.Windows.Forms.ComboBox status;
     }
 }
