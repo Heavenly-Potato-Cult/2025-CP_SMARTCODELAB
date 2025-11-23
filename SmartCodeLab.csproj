@@ -7,7 +7,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
-	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
 	
 	  <UseWPF>true</UseWPF>
 	
