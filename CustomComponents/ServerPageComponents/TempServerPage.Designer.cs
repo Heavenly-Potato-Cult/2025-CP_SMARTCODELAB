@@ -44,6 +44,7 @@
             label34 = new Label();
             codeTrack = new TrackBar();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            status = new ComboBox();
             searchStudent = new CustomTextBox();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
@@ -99,6 +100,7 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
             studentCode.Location = new Point(16, 53);
@@ -261,6 +263,7 @@
             customCard2.BorderColor = Color.Silver;
             customCard2.BorderRadius = 10;
             customCard2.BorderSize = 1;
+            customCard2.Controls.Add(status);
             customCard2.Controls.Add(searchStudent);
             customCard2.Controls.Add(smartButton1);
             customCard2.Controls.Add(panel2);
@@ -273,6 +276,16 @@
             customCard2.Padding = new Padding(21, 0, 21, 29);
             customCard2.Size = new Size(293, 800);
             customCard2.TabIndex = 103;
+            // 
+            // status
+            // 
+            status.FormattingEnabled = true;
+            status.Items.AddRange(new object[] { "All", "Active", "Inactive" });
+            status.Location = new Point(188, 127);
+            status.Name = "status";
+            status.Size = new Size(84, 28);
+            status.TabIndex = 17;
+            status.SelectedIndexChanged += status_SelectedIndexChanged;
             // 
             // searchStudent
             // 
@@ -288,7 +301,7 @@
             searchStudent.PlaceHolderColor = Color.DarkGray;
             searchStudent.PlaceholderText = "Search Student";
             searchStudent.ScrollBars = ScrollBars.None;
-            searchStudent.Size = new Size(251, 45);
+            searchStudent.Size = new Size(162, 45);
             searchStudent.TabIndex = 16;
             searchStudent._TextChanged += customTextBox1__TextChanged;
             // 
@@ -308,6 +321,7 @@
             smartButton1.TabIndex = 14;
             smartButton1.Text = "Broadcast Message";
             smartButton1.UseVisualStyleBackColor = false;
+            smartButton1.Click += smartButton1_Click;
             // 
             // panel2
             // 

@@ -46,6 +46,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Func<string, bool> isStudentActive;
         private ChatBox chatBox;
         private List<UserProfile> displayedUsers = new List<UserProfile>();
+
+        private long searchVersion;
         public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string,
             StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
         {
@@ -56,20 +58,29 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             this.progressRetriever = progressRetriever;
             this.sendMessage = sendMessage;
             this.isStudentActive = isStudentActive;
-            displayedUsers = new List<UserProfile>(users.Values);
+            displayedUsers = new List<UserProfile>();
+            searchVersion = 0;
 
             //will ensure that the handle is created before accessing the UI thread
             var obj = this.Handle;
-            Task.Run(() =>
-            {
-                foreach (var user in users.Values)
-                {
-                    userMessages.Add(user._studentId, new List<UserMessage>());
-                    userIcons.Add(user._studentId, new UserIcons(user, NewUserSelected));
-                }
-                displayStudents();
-            });
+            new Action((Action)(async () => await displayUsers(users.Values.ToList()))).Invoke();
+
             studentCodeRating1.SetStats(task.ratingFactors);
+        }
+        public async Task displayUsers(List<UserProfile> users)
+        {
+            await Task.Run(() =>
+            {
+                foreach (var user in users)
+                {
+                    userMessages[user._studentId] = new List<UserMessage>();
+                    userIcons[user._studentId] = new UserIcons(user, NewUserSelected);
+                    displayedUsers.Add(user);
+                }
+            });
+
+            // Back to UI thread
+            displayStudents();
         }
 
         //for the display of session logs
@@ -81,6 +92,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             progressRetriever = (student_id) => userProgress[student_id];
             studentCodeRating1.SetStats(ratingFactors);
             smartButton3.Visible = false;
+            smartButton1.Visible = false;
+            status.Enabled = false;
+            searchVersion = 0;
             Load += (s, e) =>
             {
                 Task.Run(() =>
@@ -97,33 +111,76 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void displayStudents()
         {
+            long currentSearchVersion = ++searchVersion;
             string search = searchStudent.Texts.ToLower();
-            var searchedUserIds = displayedUsers.Where(user => user._studentName.ToLower().Contains(search)).Select(user => user._studentId).ToList();
+            var searchedUserIds = displayedUsers.
+                Where(user => user._studentName.ToLower().Contains(search)).
+                Select(user => user._studentId).ToList();
             var searchedIcons = userIcons.Keys.Where(id => searchedUserIds.Contains(id)).ToList();
             this.Invoke((Action)(() =>
             {
+                string activeStatus = status.SelectedItem?.ToString() ?? "All";
+                bool isActiveFilter = activeStatus.Equals("Active", StringComparison.OrdinalIgnoreCase);
                 iconsContainer.Controls.Clear();
                 foreach (var ids in searchedIcons)
                 {
-                    iconsContainer.Controls.Add(userIcons[ids]);
-                }
-            }));
-        }
+                    if (currentSearchVersion != searchVersion)
+                        break;
 
-        public void AddStudent(UserProfile profile)
-        {
-            this.Invoke((Action)(() =>
-            {
-                //this will be used to view who are the students who are yet to log in or inactive(left the lobby), already logged in, and submitted
-                profile._computerAddress = "";
-                userIcons.Add(profile._studentId, new UserIcons(profile, NewUserSelected));
-                iconsContainer.Controls.Add(userIcons[profile._studentId]);
+                    UserIcons icon = userIcons[ids];
+                    if (activeStatus.Equals("All") || isActiveFilter == icon.isActive)
+                        iconsContainer.Controls.Add(userIcons[ids]);
+                }
             }));
         }
 
         public void StudentLoggedIn(UserProfile profile)
         {
-            userIcons[profile._studentId].profile._computerAddress = profile._computerAddress;
+            this.Invoke((Action)(() =>
+            {
+                userIcons[profile._studentId].profile._computerAddress = profile._computerAddress;
+                userIcons[profile._studentId].setStatus(true);
+
+                string activeStatus = status.SelectedItem?.ToString() ?? "All";
+                bool isActiveFilter = activeStatus.Equals("Active", StringComparison.OrdinalIgnoreCase);
+                if (!activeStatus.Equals("All") && isActiveFilter)
+                {
+                    shouldAddIcon(profile, true);
+                }
+                else if(!activeStatus.Equals("All"))
+                    shouldAddIcon(profile, false);
+            }));
+        }
+
+        public void StudentLoggedOut(UserProfile profile)
+        {
+            this.Invoke((Action)(() =>
+            {
+                userIcons[profile._studentId].setStatus(false);
+                string activeStatus = status.SelectedItem?.ToString() ?? "All";
+                bool isInactiveFilter = activeStatus.Equals("Inactive", StringComparison.OrdinalIgnoreCase);
+                if (!activeStatus.Equals("All") && isInactiveFilter)
+                {
+                    shouldAddIcon(profile, true);
+                }
+                else if (!activeStatus.Equals("All"))
+                    shouldAddIcon(profile, false);
+            }));
+        }
+
+        private void shouldAddIcon(UserProfile profile, bool willAdd) //true will add, else remove
+        {
+            this.Invoke((Action)(() =>
+            {
+                if(willAdd)
+                {
+                    iconsContainer.Controls.Add(userIcons[profile._studentId]);
+                }
+                else
+                {
+                    iconsContainer.Controls.Remove(userIcons[profile._studentId]);
+                }
+            }));
         }
 
         public void ReceivedStudentMessage(UserMessage message, string studentId)
@@ -141,9 +198,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
-        private void SentBroadCaseMessage(string message) 
+        private void SentBroadCaseMessage(string message)
         {
-            Task.Run(() => 
+            Task.Run(() =>
             {
                 foreach (var item in displayedUsers)
                 {
@@ -234,7 +291,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 UpdateStudentProgressDisplay(profile, progressRetriever?.Invoke(profile._studentId));
             }
-            catch (KeyNotFoundException) 
+            catch (KeyNotFoundException)
             {
                 this.Invoke((Delegate)(() =>
                 {
@@ -269,7 +326,21 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void customTextBox1__TextChanged(object sender, EventArgs e)
         {
             updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
+            updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
+        }
 
+        private void smartButton1_Click(object sender, EventArgs e)
+        {
+            var messageForm = new TextForm();
+            if (messageForm.ShowDialog() == DialogResult.OK)
+            {
+                SentBroadCaseMessage(messageForm.Message + '\n');
+            }
+        }
+
+        private void status_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
             updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
         }
     }

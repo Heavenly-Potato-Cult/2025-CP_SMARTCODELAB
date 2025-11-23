@@ -17,4 +17,20 @@ namespace SmartCodeLab.Models.Enums
         LoggedOut,
         ExceptionThrown
     }
+
+    static class NotificationTypeExtensions
+    {
+        public static string ToFriendlyString(this NotificationType type)
+        {
+            return type switch
+            {
+                NotificationType.CopyPasted => "Copy Paste",
+                NotificationType.Submitted => "Submission",
+                NotificationType.LoggedIn => "Logged In",
+                NotificationType.LoggedOut => "Logged Out",
+                NotificationType.ExceptionThrown => "Exceptions Encounter",
+                _ => string.Empty
+            };
+        }
+    }
 }

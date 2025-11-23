@@ -33,7 +33,7 @@
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             panel8 = new Panel();
             notifContainer = new FlowLayoutPanel();
-            comboBox1 = new ComboBox();
+            notifFilter = new ComboBox();
             studentName = new CustomTextBox();
             panel_line2 = new Panel();
             panel_line = new Panel();
@@ -97,7 +97,7 @@
             // 
             panel8.BackColor = Color.White;
             panel8.Controls.Add(notifContainer);
-            panel8.Controls.Add(comboBox1);
+            panel8.Controls.Add(notifFilter);
             panel8.Controls.Add(studentName);
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(5, 53);
@@ -117,14 +117,15 @@
             notifContainer.TabIndex = 3;
             notifContainer.WrapContents = false;
             // 
-            // comboBox1
+            // notifFilter
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
-            comboBox1.Location = new Point(331, 20);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 2;
+            notifFilter.FormattingEnabled = true;
+            notifFilter.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
+            notifFilter.Location = new Point(331, 20);
+            notifFilter.Name = "notifFilter";
+            notifFilter.Size = new Size(151, 28);
+            notifFilter.TabIndex = 2;
+            notifFilter.SelectedIndexChanged += notifFilter_SelectedIndexChanged;
             // 
             // studentName
             // 
@@ -384,7 +385,7 @@
         private Label label1;
         private GeneralComponents.CustomCard customCard7;
         private Panel panel8;
-        private ComboBox comboBox1;
+        private ComboBox notifFilter;
         private CustomTextBox studentName;
         private Panel panel_line2;
         private Panel panel_line;

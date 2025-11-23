@@ -44,6 +44,7 @@
             efficiencyLabel = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             readabilityLabel = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             accuracyLabel = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            button1 = new Button();
             SuspendLayout();
             // 
             // robustnessBox
@@ -263,11 +264,22 @@
             accuracyLabel.TabIndex = 63;
             accuracyLabel.Text = "0%";
             // 
+            // button1
+            // 
+            button1.Location = new Point(261, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(177, 29);
+            button1.TabIndex = 67;
+            button1.Text = "Change Reference Code";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // CodeQualityChoices2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
+            Controls.Add(button1);
             Controls.Add(logicalComplexityLabel);
             Controls.Add(efficiencyLabel);
             Controls.Add(readabilityLabel);
@@ -309,5 +321,6 @@
         private SteamThings.SteamLabel efficiencyLabel;
         private SteamThings.SteamLabel readabilityLabel;
         private SteamThings.SteamLabel accuracyLabel;
+        private Button button1;
     }
 }

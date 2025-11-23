@@ -21,12 +21,17 @@ namespace SmartCodeLab.CustomComponents
     {
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public UserProfile profile {  get; set; }
+
+        public bool isActive { get; private set; }
         public UserIcons(UserProfile profile, Action<UserProfile, UserIcons> setSelectedUserId)
         {
             InitializeComponent();
             this.profile = profile;
             username.Text = profile._studentName;
             customCard3.BackColor = Color.White;
+            status.Text = "Inactive";
+            status.ForeColor = Color.Gray;
+            isActive = false;
             customCard3.Click += (s, e) => {
                 if (customCard3.BackColor == Color.White)
                 {
@@ -40,6 +45,24 @@ namespace SmartCodeLab.CustomComponents
         public void LostFocusDisplay()
         {
             this.Invoke((Action)(() => customCard3.BackColor = Color.White));
+        }
+
+        public void setStatus(bool isActive)
+        {
+            this.isActive = isActive;
+            this.Invoke((Action)(() =>
+            {
+                if (isActive)
+                {
+                    status.ForeColor = Color.LimeGreen;
+                    status.Text = "Active";
+                }
+                else
+                {
+                    status.ForeColor = Color.Gray;
+                    status.Text = "Inactive";
+                }
+            }));
         }
     }
 }

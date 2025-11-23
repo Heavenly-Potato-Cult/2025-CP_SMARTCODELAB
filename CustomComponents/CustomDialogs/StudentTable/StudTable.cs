@@ -21,10 +21,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             InitializeComponent();
         }
 
+        public List<UserProfile> newlyAdded { get; private set; }
         public Dictionary<string, UserProfile> expectedUsers;
         public StudTable(Dictionary<string, UserProfile> users)
         {
             InitializeComponent();
+            newlyAdded = new List<UserProfile>();
             expectedUsers = users;
             count.Text = users.Count.ToString();
             foreach (var user in users.Values)
@@ -53,6 +55,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                     }
                     expectedUsers.Add(newUser.Key, new UserProfile(newUser.Value, newUser.Key, "N/A"));
                     studtab.Controls.Add(new StudentRow(newUser.Key, newUser.Value));
+                    newlyAdded.Add(new UserProfile(newUser.Value, newUser.Key, "N/A"));
                     count.Text = int.Parse(count.Text) + 1 + "";
                 }));
             }
@@ -86,12 +89,16 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
                 for (int i = 1; i < stringLines.Length; i++)
                 {
-                    string[] line = stringLines[i].Split(',');
-                    string studentId = line[studentIdIndex];
-                    string studentName = line[nameIndex];
+                    try
+                    {
+                        string[] line = stringLines[i].Split(',');
+                        string studentId = line[studentIdIndex];
+                        string studentName = line[nameIndex];
 
-                    if (!studentId.IsWhiteSpace())
-                        users.Add(studentId, new UserProfile(studentId, studentName, true));
+                        if (!studentId.IsWhiteSpace())
+                            users.Add(studentId, new UserProfile(studentId, studentName, true));
+                    }
+                    catch (IndexOutOfRangeException) { }
                 }
 
                 return users;
@@ -117,6 +124,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
         private async void smartButton1_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Please select the CSV file containing student records with 'Name' and 'Student Id' columns.");
             using (var fileDialog = new OpenFileDialog()) 
             {
                 fileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
@@ -142,9 +150,10 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                         {
                             foreach (var item in studentRecords)
                             {
-                                if (!expectedUsers.ContainsKey(item.Key))
+                                if (!expectedUsers.ContainsKey(item.Key) && !item.Key.IsWhiteSpace())
                                 {
                                     expectedUsers.Add(item.Key, item.Value);
+                                    newlyAdded.Add(new UserProfile(item.Value._studentName, item.Value._studentId, "N/A"));
                                     this.Invoke(new Action(() =>
                                     {
                                         studtab.Controls.Add(new StudentRow(item.Key, item.Value._studentName));

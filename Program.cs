@@ -30,7 +30,7 @@ namespace SmartCodeLab
 
             ConfigureFirewallRules();
             //var startup = new StudentStartUp();
-            Application.Run(new Testing());
+            Application.Run(new InstructorForm());
             //startup.Dispose();
         }
 

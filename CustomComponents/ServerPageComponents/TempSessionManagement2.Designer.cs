@@ -198,6 +198,20 @@
             smartButton3.TextColor = Color.FromArgb(199, 213, 224);
             smartButton3.UseVisualStyleBackColor = false;
             smartButton3.Click += smartButton3_Click;
+            smartButton2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            smartButton2.BackColor = Color.MediumSlateBlue;
+            smartButton2.BorderRadius = 12;
+            smartButton2.FlatAppearance.BorderSize = 0;
+            smartButton2.FlatStyle = FlatStyle.Flat;
+            smartButton2.ForeColor = Color.White;
+            smartButton2.Location = new Point(439, 8);
+            smartButton2.Margin = new Padding(2, 4, 2, 4);
+            smartButton2.Name = "smartButton2";
+            smartButton2.Size = new Size(104, 48);
+            smartButton2.TabIndex = 33;
+            smartButton2.Text = "View";
+            smartButton2.UseVisualStyleBackColor = false;
+            smartButton2.Click += smartButton2_Click;
             // 
             // studentsCount
             // 
