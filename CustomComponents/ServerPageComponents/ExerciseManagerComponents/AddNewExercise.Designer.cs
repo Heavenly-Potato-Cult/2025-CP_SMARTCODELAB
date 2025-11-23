@@ -46,20 +46,20 @@
             // 
             // txtbox_ExerciseTitle
             // 
+            txtbox_ExerciseTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtbox_ExerciseTitle.BackColor = Color.White;
             txtbox_ExerciseTitle.BorderColor = Color.DarkGray;
             txtbox_ExerciseTitle.BorderFocusColor = Color.FromArgb(64, 64, 64);
             txtbox_ExerciseTitle.BorderRadius = 10;
             txtbox_ExerciseTitle.BorderSize = 1;
             txtbox_ExerciseTitle.ForeColor = SystemColors.ControlText;
-            txtbox_ExerciseTitle.Location = new Point(20, 28);
-            txtbox_ExerciseTitle.Margin = new Padding(3, 2, 3, 2);
+            txtbox_ExerciseTitle.Location = new Point(23, 37);
             txtbox_ExerciseTitle.Name = "txtbox_ExerciseTitle";
-            txtbox_ExerciseTitle.Padding = new Padding(9, 5, 9, 5);
+            txtbox_ExerciseTitle.Padding = new Padding(10, 7, 10, 7);
             txtbox_ExerciseTitle.PlaceHolderColor = Color.DarkGray;
             txtbox_ExerciseTitle.PlaceholderText = "";
             txtbox_ExerciseTitle.ScrollBars = ScrollBars.None;
-            txtbox_ExerciseTitle.Size = new Size(342, 32);
+            txtbox_ExerciseTitle.Size = new Size(391, 41);
             txtbox_ExerciseTitle.TabIndex = 40;
             // 
             // label4
@@ -67,9 +67,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(20, 9);
+            label4.Location = new Point(23, 12);
             label4.Name = "label4";
-            label4.Size = new Size(100, 19);
+            label4.Size = new Size(122, 23);
             label4.TabIndex = 39;
             label4.Text = "Exercise Name";
             // 
@@ -78,29 +78,29 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(516, 8);
+            label1.Location = new Point(590, 11);
             label1.Name = "label1";
-            label1.Size = new Size(56, 19);
+            label1.Size = new Size(66, 23);
             label1.TabIndex = 41;
             label1.Text = "Subject";
             // 
             // txtbox_ExerciseInstruction
             // 
+            txtbox_ExerciseInstruction.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtbox_ExerciseInstruction.BackColor = Color.White;
             txtbox_ExerciseInstruction.BorderColor = Color.DarkGray;
             txtbox_ExerciseInstruction.BorderFocusColor = Color.FromArgb(64, 64, 64);
             txtbox_ExerciseInstruction.BorderRadius = 10;
             txtbox_ExerciseInstruction.BorderSize = 1;
             txtbox_ExerciseInstruction.ForeColor = SystemColors.ControlText;
-            txtbox_ExerciseInstruction.Location = new Point(20, 95);
-            txtbox_ExerciseInstruction.Margin = new Padding(3, 2, 3, 2);
+            txtbox_ExerciseInstruction.Location = new Point(23, 127);
             txtbox_ExerciseInstruction.Multiline = true;
             txtbox_ExerciseInstruction.Name = "txtbox_ExerciseInstruction";
-            txtbox_ExerciseInstruction.Padding = new Padding(9, 5, 9, 5);
+            txtbox_ExerciseInstruction.Padding = new Padding(10, 7, 10, 7);
             txtbox_ExerciseInstruction.PlaceHolderColor = Color.DarkGray;
             txtbox_ExerciseInstruction.PlaceholderText = "";
             txtbox_ExerciseInstruction.ScrollBars = ScrollBars.None;
-            txtbox_ExerciseInstruction.Size = new Size(870, 156);
+            txtbox_ExerciseInstruction.Size = new Size(994, 208);
             txtbox_ExerciseInstruction.TabIndex = 47;
             // 
             // label5
@@ -108,9 +108,9 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(20, 74);
+            label5.Location = new Point(23, 99);
             label5.Name = "label5";
-            label5.Size = new Size(77, 19);
+            label5.Size = new Size(92, 23);
             label5.TabIndex = 46;
             label5.Text = "Instruction";
             // 
@@ -125,10 +125,9 @@
             btn_CancelExercise.FlatStyle = FlatStyle.Flat;
             btn_CancelExercise.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_CancelExercise.ForeColor = Color.Black;
-            btn_CancelExercise.Location = new Point(250, 545);
-            btn_CancelExercise.Margin = new Padding(3, 2, 3, 2);
+            btn_CancelExercise.Location = new Point(286, 727);
             btn_CancelExercise.Name = "btn_CancelExercise";
-            btn_CancelExercise.Size = new Size(199, 38);
+            btn_CancelExercise.Size = new Size(227, 51);
             btn_CancelExercise.TabIndex = 49;
             btn_CancelExercise.Text = "Cancel";
             btn_CancelExercise.TextColor = Color.Black;
@@ -144,10 +143,9 @@
             btn_CreateExercise.FlatStyle = FlatStyle.Flat;
             btn_CreateExercise.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_CreateExercise.ForeColor = Color.White;
-            btn_CreateExercise.Location = new Point(472, 545);
-            btn_CreateExercise.Margin = new Padding(3, 2, 3, 2);
+            btn_CreateExercise.Location = new Point(539, 727);
             btn_CreateExercise.Name = "btn_CreateExercise";
-            btn_CreateExercise.Size = new Size(192, 38);
+            btn_CreateExercise.Size = new Size(219, 51);
             btn_CreateExercise.TabIndex = 48;
             btn_CreateExercise.Text = "Create Exercise";
             btn_CreateExercise.UseVisualStyleBackColor = false;
@@ -155,16 +153,16 @@
             // 
             // btn_AddTestCase
             // 
+            btn_AddTestCase.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btn_AddTestCase.BackColor = Color.MediumSlateBlue;
             btn_AddTestCase.BorderRadius = 10;
             btn_AddTestCase.FlatAppearance.BorderSize = 0;
             btn_AddTestCase.FlatStyle = FlatStyle.Flat;
             btn_AddTestCase.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btn_AddTestCase.ForeColor = Color.White;
-            btn_AddTestCase.Location = new Point(796, 269);
-            btn_AddTestCase.Margin = new Padding(3, 2, 3, 2);
+            btn_AddTestCase.Location = new Point(910, 359);
             btn_AddTestCase.Name = "btn_AddTestCase";
-            btn_AddTestCase.Size = new Size(94, 30);
+            btn_AddTestCase.Size = new Size(107, 40);
             btn_AddTestCase.TabIndex = 57;
             btn_AddTestCase.Text = "Add";
             btn_AddTestCase.UseVisualStyleBackColor = false;
@@ -175,9 +173,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(24, 276);
+            label6.Location = new Point(27, 368);
             label6.Name = "label6";
-            label6.Size = new Size(73, 19);
+            label6.Size = new Size(87, 23);
             label6.TabIndex = 59;
             label6.Text = "Test Cases";
             // 
@@ -199,59 +197,58 @@
             panel7.Controls.Add(btn_CreateExercise);
             panel7.Dock = DockStyle.Fill;
             panel7.Location = new Point(0, 0);
-            panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(909, 614);
+            panel7.Size = new Size(1039, 819);
             panel7.TabIndex = 60;
             // 
             // testCasesContainer
             // 
+            testCasesContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             testCasesContainer.AutoScroll = true;
             testCasesContainer.AutoScrollMinSize = new Size(2, 0);
-            testCasesContainer.Location = new Point(24, 310);
+            testCasesContainer.Location = new Point(27, 413);
+            testCasesContainer.Margin = new Padding(3, 4, 3, 4);
             testCasesContainer.Name = "testCasesContainer";
-            testCasesContainer.Size = new Size(866, 221);
+            testCasesContainer.Size = new Size(990, 295);
             testCasesContainer.TabIndex = 64;
             // 
             // subject
             // 
+            subject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             subject.BackColor = Color.White;
             subject.BorderColor = Color.DarkGray;
             subject.BorderFocusColor = Color.FromArgb(64, 64, 64);
             subject.BorderRadius = 10;
             subject.BorderSize = 1;
             subject.ForeColor = SystemColors.ControlText;
-            subject.Location = new Point(516, 28);
-            subject.Margin = new Padding(3, 2, 3, 2);
+            subject.Location = new Point(590, 37);
             subject.Name = "subject";
-            subject.Padding = new Padding(9, 5, 9, 5);
+            subject.Padding = new Padding(10, 7, 10, 7);
             subject.PlaceHolderColor = Color.DarkGray;
             subject.PlaceholderText = "";
             subject.ScrollBars = ScrollBars.None;
-            subject.Size = new Size(374, 32);
+            subject.Size = new Size(427, 41);
             subject.TabIndex = 62;
             // 
             // panel_temp_spacer
             // 
             panel_temp_spacer.BackColor = Color.Black;
-            panel_temp_spacer.Location = new Point(351, 587);
-            panel_temp_spacer.Margin = new Padding(3, 2, 3, 2);
+            panel_temp_spacer.Location = new Point(401, 783);
             panel_temp_spacer.Name = "panel_temp_spacer";
-            panel_temp_spacer.Size = new Size(219, 16);
+            panel_temp_spacer.Size = new Size(250, 21);
             panel_temp_spacer.TabIndex = 61;
             // 
             // AddNewExercise
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.White;
-            ClientSize = new Size(909, 614);
+            ClientSize = new Size(1039, 819);
             Controls.Add(panel7);
             DoubleBuffered = true;
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "AddNewExercise";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "New Exercise";
