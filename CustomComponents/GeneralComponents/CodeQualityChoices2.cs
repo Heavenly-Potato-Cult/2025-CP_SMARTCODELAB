@@ -1,4 +1,5 @@
 ﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.SteamThings;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ using System.Windows.Forms;
 
 namespace SmartCodeLab.CustomComponents.GeneralComponents
 {
-    public partial class CodeQualityChoices2 : RoundedUserControl
+    public partial class CodeQualityChoices2 : UserControl
     {
 
         private int complexity_standard;
@@ -27,14 +28,18 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         private string language { get; set; }
 
-        private Dictionary<TrackBar, int> recentValue;
+        private Dictionary<SteamTrackBar, int> recentValue;
         public CodeQualityChoices2()
         {
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
+                  ControlStyles.UserPaint |
+                  ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
             InitializeComponent();
             complexity_standard = 0;
             bestSourceCode = "";
             total_standard_operators = 0;
-            recentValue = new Dictionary<TrackBar, int>()
+            recentValue = new Dictionary<SteamTrackBar, int>()
             {
                 {accuracyT, 100 },
                 {efficiencyT, 0 },
@@ -49,7 +54,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             SetupTrackBar(maintainabilityT, 0);
 
             InitializeGradingControls();
-            foreach (var item in Controls.OfType<CheckBox>().Union<Control>(Controls.OfType<TrackBar>()))
+            foreach (var item in Controls.OfType<CheckBox>().Union<Control>(Controls.OfType<SteamTrackBar>()))
             {
                 item.LostFocus += (s, e) =>
                 {
@@ -58,7 +63,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                 };
             }
 
-            foreach (var item in new List<TrackBar>(){
+            foreach (var item in new List<SteamTrackBar>(){
                 accuracyT,
                 efficiencyT,
                 robustnessT,
@@ -80,6 +85,40 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                 };
             }
 
+            foreach (var trackBar in new List<SteamTrackBar> { accuracyT, efficiencyT, robustnessT, maintainabilityT })
+            {
+                // Subscribe to the new "ValueChanging" event
+                trackBar.ValueChanging += OnTrackBarValueChanging;
+
+                // Subscribe to the standard ValueChanged just for updating labels
+                trackBar.ValueChanged += AnyTrackBar_ValueChanged;
+            }
+
+            // Initial Updates
+            UpdateLabels();
+
+        }
+
+        private void OnTrackBarValueChanging(object sender, ValueChangingEventArgs e)
+        {
+            if (sender is not SteamTrackBar currentBar) return;
+
+            // 1. Calculate the sum of ALL OTHER bars (excluding the one we are dragging)
+            int otherSum = 0;
+
+            if (accuracyT != currentBar) otherSum += accuracyT.Value;
+            if (efficiencyT != currentBar && efficiencyCB.Checked) otherSum += efficiencyT.Value;
+            if (robustnessT != currentBar && robustnessBox.Checked) otherSum += robustnessT.Value;
+            if (maintainabilityT != currentBar && maintainabilityCB.Checked) otherSum += maintainabilityT.Value;
+
+            // 2. Calculate how much budget is left for THIS bar
+            int maxAllowed = 100 - otherSum;
+
+            // 3. If the mouse tries to go higher than allowed, CLAMP IT.
+            if (e.NewValue > maxAllowed)
+            {
+                e.NewValue = maxAllowed; // Force the value to stop at the limit
+            }
         }
 
         public void setLanguage(string language)
@@ -88,7 +127,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             maintainabilityCB.Enabled = true;
             this.language = language;
         }
-        private void SetupTrackBar(TrackBar trackBar, int defaultValue = 0)
+        private void SetupTrackBar(SteamTrackBar trackBar, int defaultValue = 0)
         {
 
             if (trackBar == null)
@@ -96,7 +135,6 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                 return;
             }
 
-            trackBar.Minimum = 0;
             trackBar.Maximum = 100;
             trackBar.Value = defaultValue;
         }
@@ -104,19 +142,20 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         private void AnyTrackBar_ValueChanged(object sender, EventArgs e)
         {
 
-            if (sender is not TrackBar trackBar)
-            {
-                return;
-            }
+            if (sender is not SteamTrackBar trackBar) return;
+            if (trackBar.Tag is not Label targetLabel) return;
 
+            string newText = $"{trackBar.Value}%";
+            if (targetLabel.Text != newText) targetLabel.Text = newText;
+        }
 
-            if (trackBar.Tag is not Label targetLabel)
-            {
-                return;
-            }
-
-            // 3. Update the label's text with the new value.
-            targetLabel.Text = $"{trackBar.Value}%";
+        private void UpdateLabels()
+        {
+            // Helper to refresh all labels at start
+            accuracyLabel.Text = $"{accuracyT.Value}%";
+            readabilityLabel.Text = $"{efficiencyT.Value}%";
+            efficiencyLabel.Text = $"{robustnessT.Value}%";
+            logicalComplexityLabel.Text = $"{maintainabilityT.Value}%";
         }
         private void InitializeGradingControls()
         {
@@ -126,7 +165,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             LinkTrackBarToLabel(maintainabilityT, logicalComplexityLabel);
         }
 
-        private void LinkTrackBarToLabel(TrackBar trackBar, Label label)
+        private void LinkTrackBarToLabel(SteamTrackBar trackBar, Label label)
         {
 
             if (trackBar == null || label == null)
@@ -187,14 +226,14 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             return ratingFactors;
         }
 
-        private void IlostMyValueT_T(TrackBar bar)
+        private void IlostMyValueT_T(SteamTrackBar bar)
         {
             bar.Value = 0;
         }
 
         private bool IsFocusWithUs()
         {
-            return Controls.OfType<CheckBox>().Union<Control>(Controls.OfType<TrackBar>())
+            return Controls.OfType<CheckBox>().Union<Control>(Controls.OfType<SteamTrackBar>())
                         .Any(control => control.Focused);
         }
 
@@ -282,5 +321,16 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                 throw new ArgumentException($"Invalid input: {ex.Message}");
             }
         }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                // WS_EX_COMPOSITED: Forces double-buffering on the entire hierarchy
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
+
     }
 }

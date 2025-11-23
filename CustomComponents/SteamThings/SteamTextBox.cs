@@ -36,8 +36,8 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             innerTextBox = new TextBox();
             innerTextBox.BorderStyle = BorderStyle.None;
             innerTextBox.BackColor = SteamColors.InputBg;
-            innerTextBox.ForeColor = SteamColors.TextMain;
-            innerTextBox.Font = new Font("Segoe UI", 10F);
+            innerTextBox.ForeColor = SteamColors.TextMuted;
+            innerTextBox.Font = SteamFont.GetFont(12F, FontStyle.Regular);
             innerTextBox.Dock = DockStyle.Fill;
 
             // Event Wiring for Focus Effects

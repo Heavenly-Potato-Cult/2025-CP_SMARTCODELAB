@@ -12,13 +12,14 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(200, 50);
             this.Cursor = Cursors.Hand;
-            this.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            this.Font = SteamFont.GetFont(12F, FontStyle.Bold);
             this.Text = "▶ START SESSION";
         }
 
         protected override void OnPaint(PaintEventArgs pevent)
         {
             Graphics g = pevent.Graphics;
+            g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             // Colors
