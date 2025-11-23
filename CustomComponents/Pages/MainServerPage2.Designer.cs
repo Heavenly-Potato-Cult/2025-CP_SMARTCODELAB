@@ -53,22 +53,20 @@
             container.Controls.Add(tabPage5);
             container.Depth = 0;
             container.Dock = DockStyle.Fill;
-            container.Location = new Point(0, 36);
-            container.Margin = new Padding(3, 2, 3, 2);
+            container.Location = new Point(0, 48);
             container.MouseState = MaterialSkin.MouseState.HOVER;
             container.Multiline = true;
             container.Name = "container";
             container.SelectedIndex = 0;
-            container.Size = new Size(1484, 690);
+            container.Size = new Size(1696, 920);
             container.TabIndex = 1;
             // 
             // tabPage1
             // 
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Margin = new Padding(3, 2, 3, 2);
+            tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3, 2, 3, 2);
-            tabPage1.Size = new Size(1476, 662);
+            tabPage1.Padding = new Padding(3, 3, 3, 3);
+            tabPage1.Size = new Size(1688, 887);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
@@ -76,21 +74,19 @@
             // tabPage2
             // 
             tabPage2.BackColor = Color.White;
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Margin = new Padding(3, 2, 3, 2);
+            tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 2, 3, 2);
-            tabPage2.Size = new Size(1476, 662);
+            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Size = new Size(1688, 887);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             // 
             // tabPage3
             // 
-            tabPage3.Location = new Point(4, 24);
-            tabPage3.Margin = new Padding(3, 2, 3, 2);
+            tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3, 2, 3, 2);
-            tabPage3.Size = new Size(1476, 662);
+            tabPage3.Padding = new Padding(3, 3, 3, 3);
+            tabPage3.Size = new Size(1688, 887);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             tabPage3.UseVisualStyleBackColor = true;
@@ -98,11 +94,10 @@
             // tabPage4
             // 
             tabPage4.AutoScroll = true;
-            tabPage4.Location = new Point(4, 24);
-            tabPage4.Margin = new Padding(3, 2, 3, 2);
+            tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3, 2, 3, 2);
-            tabPage4.Size = new Size(1476, 662);
+            tabPage4.Padding = new Padding(3, 3, 3, 3);
+            tabPage4.Size = new Size(1688, 887);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
@@ -112,9 +107,10 @@
             tabPage5.Controls.Add(label3);
             tabPage5.Controls.Add(flowLayoutPanel1);
             tabPage5.Controls.Add(panel1);
-            tabPage5.Location = new Point(4, 24);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Margin = new Padding(3, 4, 3, 4);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1476, 662);
+            tabPage5.Size = new Size(1688, 887);
             tabPage5.TabIndex = 5;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
@@ -124,18 +120,19 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(500, 55);
+            label3.Location = new Point(571, 73);
             label3.Name = "label3";
-            label3.Size = new Size(143, 30);
+            label3.Size = new Size(182, 38);
             label3.TabIndex = 14;
             label3.Text = "Session Logs";
             // 
             // flowLayoutPanel1
             // 
             flowLayoutPanel1.Controls.Add(sessionLogsDisplay1);
-            flowLayoutPanel1.Location = new Point(480, 126);
+            flowLayoutPanel1.Location = new Point(549, 168);
+            flowLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(676, 350);
+            flowLayoutPanel1.Size = new Size(773, 467);
             flowLayoutPanel1.TabIndex = 0;
             // 
             // sessionLogsDisplay1
@@ -144,17 +141,17 @@
             sessionLogsDisplay1.BorderColor = Color.Gray;
             sessionLogsDisplay1.BorderRadius = 20;
             sessionLogsDisplay1.BorderSize = 0;
-            sessionLogsDisplay1.Location = new Point(3, 2);
-            sessionLogsDisplay1.Margin = new Padding(3, 2, 3, 2);
+            sessionLogsDisplay1.Location = new Point(3, 3);
             sessionLogsDisplay1.Name = "sessionLogsDisplay1";
-            sessionLogsDisplay1.Size = new Size(660, 64);
+            sessionLogsDisplay1.Size = new Size(754, 85);
             sessionLogsDisplay1.TabIndex = 0;
             // 
             // panel1
             // 
-            panel1.Location = new Point(462, 116);
+            panel1.Location = new Point(528, 155);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(708, 376);
+            panel1.Size = new Size(809, 501);
             panel1.TabIndex = 15;
             // 
             // panelNavHost2
@@ -164,19 +161,18 @@
             panelNavHost2.Location = new Point(0, 0);
             panelNavHost2.Margin = new Padding(0);
             panelNavHost2.Name = "panelNavHost2";
-            panelNavHost2.Size = new Size(1484, 36);
+            panelNavHost2.Size = new Size(1696, 48);
             panelNavHost2.TabIndex = 2;
             // 
             // MainServerPage2
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.AppWorkspace;
             Controls.Add(container);
             Controls.Add(panelNavHost2);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "MainServerPage2";
-            Size = new Size(1484, 726);
+            Size = new Size(1696, 968);
             container.ResumeLayout(false);
             tabPage5.ResumeLayout(false);
             tabPage5.PerformLayout();

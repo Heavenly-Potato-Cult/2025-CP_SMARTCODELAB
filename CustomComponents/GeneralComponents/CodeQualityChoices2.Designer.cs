@@ -53,6 +53,7 @@
             // 
             // logicalComplexityLabel
             // 
+            logicalComplexityLabel.Anchor = AnchorStyles.Right;
             logicalComplexityLabel.AutoSize = true;
             logicalComplexityLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             logicalComplexityLabel.ForeColor = Color.DimGray;
@@ -64,6 +65,7 @@
             // 
             // efficiencyLabel
             // 
+            efficiencyLabel.Anchor = AnchorStyles.Right;
             efficiencyLabel.AutoSize = true;
             efficiencyLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             efficiencyLabel.ForeColor = Color.DimGray;
@@ -75,6 +77,7 @@
             // 
             // accuracyLabel
             // 
+            accuracyLabel.Anchor = AnchorStyles.Right;
             accuracyLabel.AutoSize = true;
             accuracyLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             accuracyLabel.ForeColor = Color.DimGray;
@@ -97,6 +100,7 @@
             // 
             // robustnessT
             // 
+            robustnessT.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             robustnessT.Enabled = false;
             robustnessT.Location = new Point(30, 324);
             robustnessT.Margin = new Padding(3, 4, 3, 4);
@@ -117,6 +121,7 @@
             // 
             // maintainabilityT
             // 
+            maintainabilityT.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             maintainabilityT.Enabled = false;
             maintainabilityT.Location = new Point(30, 419);
             maintainabilityT.Margin = new Padding(3, 4, 3, 4);
@@ -137,6 +142,7 @@
             // 
             // efficiencyT
             // 
+            efficiencyT.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             efficiencyT.Enabled = false;
             efficiencyT.Location = new Point(30, 229);
             efficiencyT.Margin = new Padding(3, 4, 3, 4);
@@ -157,6 +163,7 @@
             // 
             // accuracyT
             // 
+            accuracyT.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             accuracyT.Location = new Point(30, 135);
             accuracyT.Margin = new Padding(3, 4, 3, 4);
             accuracyT.Name = "accuracyT";
@@ -176,6 +183,7 @@
             // 
             // readabilityLabel
             // 
+            readabilityLabel.Anchor = AnchorStyles.Right;
             readabilityLabel.AutoSize = true;
             readabilityLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             readabilityLabel.ForeColor = Color.DimGray;
@@ -222,10 +230,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(30, 476);
+            button1.Location = new Point(281, 27);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(177, 31);
+            button1.Size = new Size(86, 31);
             button1.TabIndex = 53;
             button1.Text = "Change Reference Code";
             button1.UseVisualStyleBackColor = true;
