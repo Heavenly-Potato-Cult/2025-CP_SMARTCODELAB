@@ -39,13 +39,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
             {
-                if (Path.GetFileNameWithoutExtension(file).Trim() == serverName.Texts.Trim())
+                if (Path.GetFileNameWithoutExtension(file).Trim() == serverName.Text.Trim())
                 {
                     MessageBox.Show("Session Name is Already Used");
                     return;
                 }
             }
-            if (serverName.Texts.IsWhiteSpace())
+            if (serverName.Text.IsWhiteSpace())
             {
                 MessageBox.Show("Invalid Server Name");
                 return;
@@ -55,7 +55,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 MessageBox.Show("No language Selected");
                 return;
             }
-            else if (serverPW.Texts.IsWhiteSpace())
+            else if (serverPW.Text.IsWhiteSpace())
             {
                 MessageBox.Show("Server Password is Required");
                 return;
@@ -68,11 +68,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
             selectedTask.isTabLocked = tabNavigationLocked.Checked;
             selectedTask._referenceFile = codeQualityChoices21.bestSourceCode;
-            Server server = new Server(serverName.Texts.Trim(), serverPW.Texts, selectedTask, language.SelectedItem.ToString(), userProfiles);
-            
-            if(codeQualityChoices21.GetRatingFactors().ContainsKey(2) && selectedTask._testCases.Count > 0)
+            Server server = new Server(serverName.Text.Trim(), serverPW.Text, selectedTask, language.SelectedItem.ToString(), userProfiles);
+
+            if (codeQualityChoices21.GetRatingFactors().ContainsKey(2) && selectedTask._testCases.Count > 0)
             {
-                if(!ValidateCode(codeQualityChoices21.bestSourceCode, server.ProgrammingLanguage, selectedTask))
+                if (!ValidateCode(codeQualityChoices21.bestSourceCode, server.ProgrammingLanguage, selectedTask))
                 {
                     MessageBox.Show("The code you provided as a reference for efficiency is not accurate.");
                     return;
@@ -92,7 +92,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton4_Click_1(object sender, EventArgs e)
         {
-            serverPW.Texts = new Random().Next(10000, 100000).ToString();
+            serverPW.Text = new Random().Next(10000, 100000).ToString();
         }
 
         private void smartButton3_Click_1(object sender, EventArgs e)
@@ -139,7 +139,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             string command = string.Empty;
             string rootDirectory = SystemConfigurations.TASK_FOLDER;
             string compilationError = string.Empty;
-            if (language == LanguageSupported.Cpp) 
+            if (language == LanguageSupported.Cpp)
             {
                 tempFilePath = Path.Combine(rootDirectory, "bestCode.cpp");
                 File.WriteAllText(tempFilePath, code);
@@ -147,7 +147,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 compilationError = compileCode($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{tempFilePath}\" -o \"{exeFile}\" && del \"{tempFilePath}\"\"");
                 command = $"/c \"\"{exeFile}\"\"";
             }
-            else if(language == LanguageSupported.Python)
+            else if (language == LanguageSupported.Python)
             {
                 tempFilePath = Path.Combine(rootDirectory, "bestCode.py");
                 command = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{tempFilePath}\"\"";
@@ -160,7 +160,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 compilationError = compileCode($"/c \"\"{ProgrammingConfiguration.javac}\" \"{Path.Combine(SystemConfigurations.TASK_FOLDER, "Main.java")}\"\"");
             }
 
-            if (compilationError != string.Empty) 
+            if (compilationError != string.Empty)
             {
                 MessageBox.Show(compilationError);
                 return false;
@@ -187,5 +187,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             process.WaitForExit();
             return errorOutput;
         }
+
+        private void smartButton5_Click(object sender, EventArgs e)
+        {
+            serverPW.Text = new Random().Next(10000, 100000).ToString();
+        }
+
+        
     }
 }
