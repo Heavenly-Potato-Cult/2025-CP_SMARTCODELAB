@@ -108,7 +108,15 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
         //Constructor
         public CustomToggleButton()
         {
-            MinimumSize = new Size(45, 22);
+            this.MinimumSize = new Size(45, 22);
+
+            // THE FIX: Enable 'SupportsTransparentBackColor'
+            this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
+            // Set BackColor to Transparent (and don't touch it in OnPaint!)
+            this.BackColor = Color.Transparent;
         }
 
         //Methods
@@ -129,30 +137,54 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         protected override void OnPaint(PaintEventArgs pevent)
         {
-            int toggleSize = Height - 5;
-            pevent.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-            pevent.Graphics.Clear(Parent.BackColor);
+            Graphics g = pevent.Graphics;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-            if (Checked) //ON
+            // REMOVED: pevent.Graphics.Clear(Parent.BackColor); 
+            // ^ This line was causing the black box. Do not clear. 
+            // The "Transparent" property handles the background automatically.
+
+            int toggleSize = this.Height - 5;
+            Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
+            GraphicsPath path = GetFigurePath(rect, this.Height - 1);
+
+            if (this.Checked) // ON State
             {
-                //Draw the control surface
-                if (solidStyle)
-                    pevent.Graphics.FillPath(new SolidBrush(onBackColor), GetFigurePath());
-                else pevent.Graphics.DrawPath(new Pen(onBackColor, 2), GetFigurePath());
-                //Draw the toggle
-                pevent.Graphics.FillEllipse(new SolidBrush(onToggleColor),
-                    new Rectangle(Width - Height + 1, 2, toggleSize, toggleSize));
+                // Draw Track
+                if (SolidStyle)
+                    g.FillPath(new SolidBrush(OnBackColor), path);
+                else
+                    g.DrawPath(new Pen(OnBackColor, 2), path);
+
+                // Draw Knob (Right Side)
+                g.FillEllipse(new SolidBrush(OnToggleColor),
+                    new Rectangle(this.Width - this.Height + 1, 2, toggleSize, toggleSize));
             }
-            else //OFF
+            else // OFF State
             {
-                //Draw the control surface
-                if (solidStyle)
-                    pevent.Graphics.FillPath(new SolidBrush(offBackColor), GetFigurePath());
-                else pevent.Graphics.DrawPath(new Pen(offBackColor, 2), GetFigurePath());
-                //Draw the toggle
-                pevent.Graphics.FillEllipse(new SolidBrush(offToggleColor),
+                // Draw Track
+                if (SolidStyle)
+                    g.FillPath(new SolidBrush(OffBackColor), path);
+                else
+                    g.DrawPath(new Pen(OffBackColor, 2), path);
+
+                // Draw Knob (Left Side)
+                g.FillEllipse(new SolidBrush(OffToggleColor),
                     new Rectangle(2, 2, toggleSize, toggleSize));
             }
+
+
+        }
+
+        private GraphicsPath GetFigurePath(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
+            path.AddArc(rect.X, rect.Y, radius, radius, 90, 180);
+            path.AddArc(rect.Right - radius, rect.Y, radius, radius, 270, 180);
+            path.CloseFigure();
+            return path;
         }
     }
 }
