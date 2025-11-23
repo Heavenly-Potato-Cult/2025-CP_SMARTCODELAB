@@ -1,4 +1,6 @@
 ﻿using ProtoBuf;
+using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
@@ -59,10 +61,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         }
 
-        public ServerHomePage(int totalStudents, string sessionName, string sessionPass, Action displayStudentTable, Action saveSession)
+        public ServerHomePage(Server session, Action displayStudentTable, Action saveSession, Action closing)
         {
             InitializeComponent();
-            this.totalStudents = totalStudents;
+            this.totalStudents = session.Users.Count;
             submittedCount = 0;
             copyPasteDetectedCount = 0;
             studentsSubmitted = new List<string>();
@@ -78,19 +80,35 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}";
             submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}";
 
+            lbl_sessionname.Text = session.ServerName;
+            lbl_sessionpassword.Text = session.Password;
 
-            lbl_sessionname.Text = sessionName;
-            lbl_sessionpassword.Text = sessionPass;
-
-            btn_viewstudents.Click += (sender, e) => 
+            viewStud.Click += (sender, e) =>
             {
                 displayStudentTable?.Invoke();
             };
 
-            label5.Click += (sender, e) =>
+            saveSes.Click += (sender, e) =>
             {
                 saveSession?.Invoke();
             };
+
+            exit.Click += (sender, e) =>
+            {
+                saveSession?.Invoke();
+                SystemSingleton.Instance.page1.Controls.Clear();
+                SystemSingleton.Instance.page1.Controls.Add(new TempSessionManagement2());
+                SystemSingleton.Instance.saveSession = null;
+                closing?.Invoke();
+            };
+            _stopwatch = new Stopwatch();
+            InitializeTimer();
+        }
+
+        private void InitializeTimer()
+        {
+            _stopwatch.Start();
+            _ = StartTimerAsync();
         }
 
         public ServerHomePage(List<Notification> existingNotifications)
@@ -139,7 +157,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     else if (notification.Type == NotificationType.CopyPasted)
                     {
                         copyPasteDetectedCount++;
-                        this.Invoke((Action)(() => pastedCount.Text = copyPasteDetectedCount.ToString() ));
+                        this.Invoke((Action)(() => pastedCount.Text = copyPasteDetectedCount.ToString()));
                     }
                     else if (notification.Type == NotificationType.LoggedIn || notification.Type == NotificationType.LoggedOut)
                     {
@@ -196,5 +214,59 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
             return Task.CompletedTask;
         }
+
+
+        //for the timer
+        private Stopwatch _stopwatch;
+        private CancellationTokenSource _cancellationTokenSource;
+
+        private async Task StartTimerAsync()
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+            _stopwatch.Start();
+
+            try
+            {
+                while (!_cancellationTokenSource.Token.IsCancellationRequested)
+                {
+                    if (this.IsHandleCreated && !this.IsDisposed)
+                    {
+                        if (this.InvokeRequired)
+                        {
+                            this.Invoke((Action)(() =>
+                            {
+                                currentTime.Text = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss");
+                            }));
+                        }
+                        else
+                        {
+                            currentTime.Text = _stopwatch.Elapsed.ToString(@"hh\:mm\:ss");
+                        }
+                    }
+
+                    await Task.Delay(1000, _cancellationTokenSource.Token);
+                }
+            }
+            catch (TaskCanceledException)
+            {
+                // Expected when cancellation is requested
+            }
+        }
+
+        //public void StopTimer()
+        //{
+        //    _cancellationTokenSource?.Cancel();
+        //    _stopwatch?.Stop();
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        _cancellationTokenSource?.Cancel();
+        //        _cancellationTokenSource?.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SmartCodeLab.CustomComponents.GeneralComponents;
+using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             sessionName.Text = session.server.ServerName;
             smartButton1.Click += (sender, e) =>
             {
-                new PastSessionDisplay(session).ShowDialog();
+                SystemSingleton.Instance.sessionLogsPage.Controls.Clear();
+                SystemSingleton.Instance.sessionLogsPage.Controls.Add(new SessionsLogsView(session));
             };
         }
     }

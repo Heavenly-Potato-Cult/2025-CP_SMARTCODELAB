@@ -24,5 +24,8 @@ namespace SmartCodeLab.Models
         public TabPage page1 {  get; set; }
         public TabPage page2 { get; set; }
         public TabPage page3 { get; set; }
+        public TabPage sessionLogsPage { get; set; }
+
+        public Action saveSession { get; set; }
     }
 }

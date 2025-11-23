@@ -30,9 +30,10 @@ namespace SmartCodeLab
             NavigationMenu();
             SessionNavigationMenu();
             SystemSingleton.Instance.page1 = tabPage10;
+            SystemSingleton.Instance.sessionLogsPage = tabPage8;
             this.Load += (sender, e) =>
             {
-                Task.Run(() => 
+                Task.Run(() =>
                 {
                     this.Invoke(new Action(() =>
                     {
@@ -64,7 +65,6 @@ namespace SmartCodeLab
                                 var corruptPath = item + ".corrupt";
                                 if (File.Exists(corruptPath)) File.Delete(corruptPath);
                                 File.Move(item, corruptPath);
-                                Debug.WriteLine($"Moved corrupted session to '{corruptPath}'.");
                             }
                             catch (Exception mex)
                             {
@@ -85,20 +85,20 @@ namespace SmartCodeLab
 
         private void NavigationMenu()
         {
-            
+
             if (panelNavHost == null) return;
 
-           
+
             float dpiScale;
             using (Graphics g = this.CreateGraphics())
             {
                 dpiScale = g.DpiX / 96f;
             }
 
-            
+
             panelNavHost.Height = (int)(BaseNavPanelHeight * dpiScale);
 
-           
+
             if (!panelNavHost.Controls.OfType<ElementHost>().Any())
             {
                 var navMenu = new Navbar();
@@ -162,10 +162,6 @@ namespace SmartCodeLab
             }
 
         }
-        private void tabPage8_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void tabPage8_Enter(object sender, EventArgs e)
         {
@@ -197,7 +193,10 @@ namespace SmartCodeLab
             }
         }
 
-       
+        private void InstructorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SystemSingleton.Instance.saveSession?.Invoke();
+        }
     }
 
 
