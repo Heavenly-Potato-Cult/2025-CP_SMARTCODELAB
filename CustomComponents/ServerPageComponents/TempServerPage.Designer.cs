@@ -38,7 +38,7 @@
             ipaddress = new Label();
             studentName = new Label();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            copypastedCodes = new FlowLayoutPanel();
+            copypastedCodes = new Panel();
             panel4 = new Panel();
             panel1 = new Panel();
             label34 = new Label();
@@ -94,7 +94,7 @@
     '\'',
     '\''
     };
-            studentCode.AutoScrollMinSize = new Size(2, 18);
+            studentCode.AutoScrollMinSize = new Size(31, 18);
             studentCode.BackBrush = null;
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
@@ -200,14 +200,14 @@
             // 
             // copypastedCodes
             // 
+            copypastedCodes.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             copypastedCodes.AutoScroll = true;
-            copypastedCodes.Dock = DockStyle.Top;
-            copypastedCodes.FlowDirection = FlowDirection.TopDown;
+            copypastedCodes.BackColor = Color.White;
             copypastedCodes.Location = new Point(5, 48);
             copypastedCodes.Name = "copypastedCodes";
-            copypastedCodes.Size = new Size(366, 425);
-            copypastedCodes.TabIndex = 13;
-            copypastedCodes.WrapContents = false;
+            copypastedCodes.Padding = new Padding(5, 0, 5, 0);
+            copypastedCodes.Size = new Size(366, 428);
+            copypastedCodes.TabIndex = 105;
             // 
             // panel4
             // 
@@ -405,7 +405,6 @@
         private GeneralComponents.CustomCard customCard1;
         private Pages.ProgrammingTabs.CodeEditor studentCode;
         private TrackBar codeTrack;
-        private FlowLayoutPanel copypastedCodes;
         private GeneralComponents.CustomCard customCard2;
         private FlowLayoutPanel iconsContainer;
         private GeneralComponents.StatsBar accuracy;
@@ -423,5 +422,6 @@
         private StudentCodeRating studentCodeRating1;
         private Panel panel5;
         private CustomTextBox searchStudent;
+        private Panel copypastedCodes;
     }
 }
