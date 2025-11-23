@@ -125,12 +125,12 @@ namespace SmartCodeLab
         {
             InitializeComponent();
             InitializeWPFTree();
+            studentIdentity.Text = userName;
             if (task.isTabLocked)
             {
                 FormBorderStyle = FormBorderStyle.None;
                 TopMost = true;
                 WindowState = FormWindowState.Maximized;
-                this.Controls.Remove(button1);
 
                 _hookProc = new HookProc(KeyboardHookProc);
                 _hookPtr = SetWindowsHookEx(WH_KEYBOARD_LL, _hookProc,
@@ -147,6 +147,8 @@ namespace SmartCodeLab
                         UnhookWindowsHookEx(_hookPtr);
                 };
             }
+            else
+                button1.Visible = false;
 
             stream = client;
             this.userName = userName;

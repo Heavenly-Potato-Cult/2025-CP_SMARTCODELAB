@@ -29,17 +29,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public TempSessionManagement2()
         {
             InitializeComponent();
-            userProfiles = new Dictionary<string, UserProfile>()
-            {
-                {"2", new UserProfile("Jimmuel", "2", "Belloq") },
-                {"3", new UserProfile("Angelo", "3", "Jimmuel")  }
-            };
+            userProfiles = new Dictionary<string, UserProfile>();
         }
         private void smartButton1_Click_1(object sender, EventArgs e)
         {
             foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
             {
-                MessageBox.Show(Path.GetFileNameWithoutExtension(file));
                 if (Path.GetFileNameWithoutExtension(file).Trim() == serverName.Texts.Trim())
                 {
                     MessageBox.Show("Session Name is Already Used");

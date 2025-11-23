@@ -230,10 +230,10 @@
             // 
             // button1
             // 
-            button1.Location = new Point(281, 27);
+            button1.Location = new Point(30, 476);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(86, 31);
+            button1.Size = new Size(176, 31);
             button1.TabIndex = 53;
             button1.Text = "Change Reference Code";
             button1.UseVisualStyleBackColor = true;

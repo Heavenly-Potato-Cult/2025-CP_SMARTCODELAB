@@ -1,5 +1,6 @@
 ﻿using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,11 +18,13 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
 
         private System.Threading.Timer searchTimer;
         private List<Notification> notifications;
-        public SessionDisplayHome(Server server,List<Notification> notifications, DateTime endTime, int copyPasteCount)
+        private long searchVersion = 0;
+        public SessionDisplayHome(Server server, List<Notification> notifications, DateTime endTime, int copyPasteCount)
         {
             InitializeComponent();
+            searchVersion = 0;
             this.notifications = notifications;
-            
+
             submissionCount.Text = $"{server.submittedCount}/{server.Users.Count}";
             duration.Text = $"{server.createdAt.ToString("g")} - {endTime.ToString("h:mm tt")}";
             pastedCount.Text = copyPasteCount.ToString();
@@ -42,17 +45,25 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
 
         private Task SearchStudent()
         {
+            long currentSearchVersion = ++searchVersion;
             string searchedName = studentName.Texts.Trim();
             this.Invoke((Action)(() =>
             {
+                Task.Delay(200);
                 notifContainer.Controls.Clear();
+                string notifFilterString = notifFilter.SelectedItem?.ToString() ?? "All";
+                bool isForAll = notifFilterString.Equals("All", StringComparison.OrdinalIgnoreCase);
+                List<Notification> filtered = notifications.
+                    Where(notif => notif.UserName.Contains(searchedName, StringComparison.OrdinalIgnoreCase) && (isForAll || NotificationTypeExtensions.ToFriendlyString(notif.Type).Equals(notifFilterString, StringComparison.OrdinalIgnoreCase))).
+                    ToList();
 
-                notifications.
-                    Where(notif => notif.UserName.Contains(searchedName, StringComparison.OrdinalIgnoreCase)).
-                    ToList().
-                    ForEach(studNotif => notifContainer.Controls.Add(new NotificationIcon(studNotif)));
+                foreach (var item in filtered)
+                {
+                    //if (currentSearchVersion != searchVersion)
+                    //    break;
+                    notifContainer.Controls.Add(new NotificationIcon(item));
+                }
             }));
-
 
             return Task.CompletedTask;
         }
@@ -60,8 +71,13 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
         private void studentName__TextChanged(object sender, EventArgs e)
         {
             searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-
             searchTimer = new System.Threading.Timer(async _ => await SearchStudent(), null, 500, Timeout.Infinite);
+        }
+
+        private void notifFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+            searchTimer = new System.Threading.Timer(async _ => SearchStudent(), null, 500, Timeout.Infinite);
         }
     }
 }

@@ -411,10 +411,10 @@
             smartButton2.FlatAppearance.BorderSize = 0;
             smartButton2.FlatStyle = FlatStyle.Flat;
             smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(331, 79);
+            smartButton2.Location = new Point(331, 72);
             smartButton2.Margin = new Padding(2, 4, 2, 4);
             smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(104, 35);
+            smartButton2.Size = new Size(104, 48);
             smartButton2.TabIndex = 33;
             smartButton2.Text = "View";
             smartButton2.UseVisualStyleBackColor = false;

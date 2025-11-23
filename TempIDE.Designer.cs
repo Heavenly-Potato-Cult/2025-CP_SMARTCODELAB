@@ -31,11 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempIDE));
             headerPanel = new Panel();
             button1 = new Button();
-            pictureBox8 = new PictureBox();
-            label14 = new Label();
-            label13 = new Label();
+            studentIdentity = new Label();
             pictureBox1 = new PictureBox();
-            label5 = new Label();
             lblTitle = new Label();
             panel2 = new Panel();
             panel4 = new Panel();
@@ -66,7 +63,6 @@
             tableLayoutPanel2 = new TableLayoutPanel();
             splitContainer1 = new SplitContainer();
             headerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel_MiddlePart_Main.SuspendLayout();
             panel1.SuspendLayout();
@@ -91,11 +87,8 @@
             // 
             headerPanel.BackColor = Color.White;
             headerPanel.Controls.Add(button1);
-            headerPanel.Controls.Add(pictureBox8);
-            headerPanel.Controls.Add(label14);
-            headerPanel.Controls.Add(label13);
+            headerPanel.Controls.Add(studentIdentity);
             headerPanel.Controls.Add(pictureBox1);
-            headerPanel.Controls.Add(label5);
             headerPanel.Controls.Add(lblTitle);
             headerPanel.Dock = DockStyle.Top;
             headerPanel.Location = new Point(0, 0);
@@ -107,7 +100,7 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.Location = new Point(1459, 0);
+            button1.Location = new Point(1516, 0);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(86, 31);
@@ -116,38 +109,17 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // pictureBox8
+            // studentIdentity
             // 
-            pictureBox8.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(1568, 27);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(26, 27);
-            pictureBox8.TabIndex = 16;
-            pictureBox8.TabStop = false;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.ForeColor = Color.Green;
-            label14.Location = new Point(357, 27);
-            label14.Name = "label14";
-            label14.Size = new Size(102, 25);
-            label14.TabIndex = 14;
-            label14.Text = "Connected ";
-            // 
-            // label13
-            // 
-            label13.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label13.ForeColor = Color.Gray;
-            label13.Location = new Point(1270, 28);
-            label13.Name = "label13";
-            label13.Size = new Size(281, 25);
-            label13.TabIndex = 13;
-            label13.Text = "Jimmuel Sanggayan | 2022-00842";
+            studentIdentity.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            studentIdentity.AutoSize = true;
+            studentIdentity.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            studentIdentity.ForeColor = Color.Gray;
+            studentIdentity.Location = new Point(87, 41);
+            studentIdentity.Name = "studentIdentity";
+            studentIdentity.Size = new Size(281, 25);
+            studentIdentity.TabIndex = 13;
+            studentIdentity.Text = "Jimmuel Sanggayan | 2022-00842";
             // 
             // pictureBox1
             // 
@@ -157,17 +129,6 @@
             pictureBox1.Size = new Size(78, 80);
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Gray;
-            label5.Location = new Point(89, 39);
-            label5.Name = "label5";
-            label5.Size = new Size(210, 25);
-            label5.TabIndex = 11;
-            label5.Text = "Student IDE Environment";
             // 
             // lblTitle
             // 
@@ -578,7 +539,6 @@
             Shown += TempIDE_Shown;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel_MiddlePart_Main.ResumeLayout(false);
             panel1.ResumeLayout(false);
@@ -606,13 +566,10 @@
 
         private Panel headerPanel;
         private PictureBox pictureBox1;
-        private Label label5;
         private Label lblTitle;
         private Panel panel2;
         private Panel panel4;
-        private Label label13;
-        private Label label14;
-        private PictureBox pictureBox8;
+        private Label studentIdentity;
         private Panel panel_MiddlePart_Main;
         private CustomComponents.WPFComponents.CustomTabControl customTabControl1;
         private Panel panel1;

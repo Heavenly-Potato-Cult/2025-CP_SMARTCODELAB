@@ -85,12 +85,14 @@ namespace SmartCodeLab.CustomComponents.Pages
             tabPage4.Controls.Add(progressSubmissionPage);
         }
 
-        private void displayStudentTable()
+        private async void displayStudentTable()
         {
             userTable = new StudTable(users);
-            userTable.Show();
+            userTable.ShowDialog();
             users = userTable.expectedUsers;
             server.Users = users;
+            //we will then get the new users and update the server's user list
+            new Action((Action)(async () => await serverPage.displayUsers(users.Values.ToList()))).Invoke();
         }
 
         public bool sendStudentMessage(string studentId, UserMessage message)
@@ -329,6 +331,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                     currentStudents.Remove(profile._studentName);
                     if (didLoggedIn)
                     {
+                        serverPage.StudentLoggedOut(profile);
                         homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
                     }
                 }
