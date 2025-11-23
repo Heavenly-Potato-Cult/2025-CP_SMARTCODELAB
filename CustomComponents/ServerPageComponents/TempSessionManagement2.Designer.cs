@@ -412,6 +412,7 @@
             // 
             // codeQualityChoices21
             // 
+            codeQualityChoices21.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             codeQualityChoices21.BackColor = Color.White;
             codeQualityChoices21.BorderColor = Color.Gray;
             codeQualityChoices21.BorderRadius = 10;
@@ -426,8 +427,8 @@
             // 
             // TempSessionManagement2
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             Controls.Add(smartButton1);
             Controls.Add(codeQualityChoices21);
             Controls.Add(customCard7);
