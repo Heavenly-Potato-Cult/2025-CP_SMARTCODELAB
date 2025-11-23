@@ -52,6 +52,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
         {
             InitializeComponent();
+            
             userMessages = new Dictionary<string, List<UserMessage>>();
             chatBox = null;
             currentTask = task;
@@ -67,6 +68,18 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             studentCodeRating1.SetStats(task.ratingFactors);
         }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                return cp;
+            }
+        }
+
+
         public async Task displayUsers(List<UserProfile> users)
         {
             await Task.Run(() =>

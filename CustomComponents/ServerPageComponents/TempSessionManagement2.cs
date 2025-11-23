@@ -30,12 +30,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
             userProfiles = new Dictionary<string, UserProfile>();
-            this.DoubleBuffered = true;
-
-            this.SetStyle(ControlStyles.UserPaint |
-                          ControlStyles.AllPaintingInWmPaint |
-                          ControlStyles.OptimizedDoubleBuffer, true);
-            this.UpdateStyles();
+            
         }
         protected override CreateParams CreateParams
         {
