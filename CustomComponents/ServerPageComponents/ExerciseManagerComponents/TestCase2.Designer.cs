@@ -88,6 +88,7 @@
             codeEditor1.CharWidth = 10;
             codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             codeEditor1.Dock = DockStyle.Fill;
+            codeEditor1.Font = new Font("Courier New", 9.75F);
             codeEditor1.ForeColor = Color.Black;
             codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
             codeEditor1.IsReplaceMode = false;
@@ -133,7 +134,6 @@
             codeEditor2.CharWidth = 10;
             codeEditor2.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             codeEditor2.Dock = DockStyle.Fill;
-            codeEditor2.Font = new Font("Courier New", 9.75F);
             codeEditor2.ForeColor = Color.Black;
             codeEditor2.Hotkeys = resources.GetString("codeEditor2.Hotkeys");
             codeEditor2.IsReplaceMode = false;
