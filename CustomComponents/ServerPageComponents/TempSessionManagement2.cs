@@ -39,6 +39,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
             {
+                MessageBox.Show(Path.GetFileNameWithoutExtension(file));
                 if (Path.GetFileNameWithoutExtension(file).Trim() == serverName.Texts.Trim())
                 {
                     MessageBox.Show("Session Name is Already Used");

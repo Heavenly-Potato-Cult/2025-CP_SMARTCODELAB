@@ -43,7 +43,6 @@
             label6 = new Label();
             label14 = new Label();
             label12 = new Label();
-            label3 = new Label();
             submittedContainer = new FlowLayoutPanel();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             score = new Label();
@@ -72,7 +71,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label11.ForeColor = Color.Gray;
-            label11.Location = new Point(294, 187);
+            label11.Location = new Point(294, 76);
             label11.Name = "label11";
             label11.Size = new Size(161, 25);
             label11.TabIndex = 67;
@@ -90,7 +89,7 @@
             customComboBox2.Items.AddRange(new object[] { "Earliest Pass", "Points" });
             customComboBox2.ListBackColor = Color.FromArgb(230, 228, 245);
             customComboBox2.ListTextColor = Color.DimGray;
-            customComboBox2.Location = new Point(624, 303);
+            customComboBox2.Location = new Point(624, 122);
             customComboBox2.MinimumSize = new Size(200, 29);
             customComboBox2.Name = "customComboBox2";
             customComboBox2.Padding = new Padding(1);
@@ -107,7 +106,7 @@
             searchBox.BorderRadius = 2;
             searchBox.BorderSize = 1;
             searchBox.ForeColor = SystemColors.ControlText;
-            searchBox.Location = new Point(291, 303);
+            searchBox.Location = new Point(291, 122);
             searchBox.Name = "searchBox";
             searchBox.Padding = new Padding(10, 7, 10, 7);
             searchBox.PlaceHolderColor = Color.DarkGray;
@@ -126,7 +125,7 @@
             customCard7.Controls.Add(label1);
             customCard7.Controls.Add(label6);
             customCard7.Controls.Add(label14);
-            customCard7.Location = new Point(291, 367);
+            customCard7.Location = new Point(291, 186);
             customCard7.Name = "customCard7";
             customCard7.Size = new Size(533, 35);
             customCard7.TabIndex = 64;
@@ -169,30 +168,19 @@
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label12.ForeColor = Color.FromArgb(13, 13, 13);
-            label12.Location = new Point(293, 153);
+            label12.Location = new Point(291, 45);
             label12.Name = "label12";
             label12.Size = new Size(238, 31);
             label12.TabIndex = 63;
             label12.Text = "Student Submissions";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(291, 43);
-            label3.Name = "label3";
-            label3.Size = new Size(229, 38);
-            label3.TabIndex = 61;
-            label3.Text = "Code Evaluation";
-            // 
             // submittedContainer
             // 
             submittedContainer.AutoScroll = true;
             submittedContainer.FlowDirection = FlowDirection.TopDown;
-            submittedContainer.Location = new Point(291, 401);
+            submittedContainer.Location = new Point(291, 222);
             submittedContainer.Name = "submittedContainer";
-            submittedContainer.Size = new Size(533, 547);
+            submittedContainer.Size = new Size(533, 769);
             submittedContainer.TabIndex = 68;
             submittedContainer.WrapContents = false;
             // 
@@ -207,7 +195,7 @@
             customCard2.Controls.Add(label18);
             customCard2.Controls.Add(label13);
             customCard2.Controls.Add(studentName);
-            customCard2.Location = new Point(933, 141);
+            customCard2.Location = new Point(924, 122);
             customCard2.Name = "customCard2";
             customCard2.Size = new Size(694, 104);
             customCard2.TabIndex = 69;
@@ -272,7 +260,7 @@
             submitCount.AutoSize = true;
             submitCount.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             submitCount.ForeColor = Color.Black;
-            submitCount.Location = new Point(451, 187);
+            submitCount.Location = new Point(461, 76);
             submitCount.Name = "submitCount";
             submitCount.Size = new Size(22, 25);
             submitCount.TabIndex = 71;
@@ -284,9 +272,9 @@
             flowLayoutPanel2.Controls.Add(expansionPanel1);
             flowLayoutPanel2.Controls.Add(expansionPanel2);
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(933, 280);
+            flowLayoutPanel2.Location = new Point(924, 242);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(694, 732);
+            flowLayoutPanel2.Size = new Size(709, 608);
             flowLayoutPanel2.TabIndex = 92;
             flowLayoutPanel2.WrapContents = false;
             // 
@@ -299,7 +287,7 @@
             expansionPanel1.IconText = "v";
             expansionPanel1.Location = new Point(3, 3);
             expansionPanel1.Name = "expansionPanel1";
-            expansionPanel1.Size = new Size(682, 261);
+            expansionPanel1.Size = new Size(682, 647);
             expansionPanel1.TabIndex = 93;
             expansionPanel1.Title1 = "Student Code";
             expansionPanel1.Title2 = "";
@@ -335,7 +323,7 @@
             studentCode.ReadOnly = true;
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
-            studentCode.Size = new Size(655, 182);
+            studentCode.Size = new Size(655, 580);
             studentCode.TabIndex = 2;
             studentCode.Text = "codeEditor1";
             studentCode.Zoom = 100;
@@ -346,7 +334,7 @@
             expansionPanel2.Controls.Add(materialListView1);
             expansionPanel2.HeaderColor = Color.White;
             expansionPanel2.IconText = "v";
-            expansionPanel2.Location = new Point(3, 270);
+            expansionPanel2.Location = new Point(3, 656);
             expansionPanel2.Name = "expansionPanel2";
             expansionPanel2.Size = new Size(682, 284);
             expansionPanel2.TabIndex = 93;
@@ -400,7 +388,6 @@
             Controls.Add(searchBox);
             Controls.Add(customCard7);
             Controls.Add(label12);
-            Controls.Add(label3);
             Name = "ProgressSubmissionPage";
             Size = new Size(1801, 1049);
             customCard7.ResumeLayout(false);
@@ -424,7 +411,6 @@
         private Label label6;
         private Label label14;
         private Label label12;
-        private Label label3;
         private FlowLayoutPanel submittedContainer;
         private GeneralComponents.CustomCard customCard2;
         private Label label20;

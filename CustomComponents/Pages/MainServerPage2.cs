@@ -50,11 +50,12 @@ namespace SmartCodeLab.CustomComponents.Pages
         private Dictionary<string, StudentCodingProgress> userProgress;
 
         private Dictionary<string, UserProfile> users;
-
+        private bool isStillActive;
         public MainServerPage2(Server server)
         {
             InitializeComponent();
             SessionNavigationMenu();
+            isStillActive = true;
             this.server = server;
             serverListener = new TcpListener(IPAddress.Any, 1901);
             currentTask = server.ServerTask;
@@ -64,7 +65,10 @@ namespace SmartCodeLab.CustomComponents.Pages
             users = server.Users;
             serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress, isConnected, sendStudentMessage);
 
-            homePage = new ServerHomePage(server.Users.Count, server.ServerName, server.Password, displayStudentTable, saveSession);
+
+            SystemSingleton.Instance.saveSession = saveSession;
+            Action closingRemarks = new Action(() => isStillActive = false);
+            homePage = new ServerHomePage(server, displayStudentTable, saveSession, closingRemarks);
             homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
             progressSubmissionPage.leaderboardsUpdate = UpdateServerTask;
@@ -157,7 +161,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             UdpClient udpServer = new UdpClient(new IPEndPoint(IPAddress.Any, 1902));
 
-            while (true)
+            while (isStillActive)
             {
                 var result = await udpServer.ReceiveAsync();
                 byte[] taskData = Encoding.UTF8.GetBytes(JsonFileService.GetObjectJsonText(server));
@@ -171,7 +175,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 serverListener.Start(); // Only start once!
                 _ = UdpServerInfoSender();
-                while (true)
+                while (isStillActive)
                 {
                     TcpClient client = await AcceptTcpClientAsync(serverListener);
                     NetworkStream stream = client.GetStream();
@@ -201,7 +205,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             //send the task to the new client
             Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream, new ServerMessage.Builder(MessageType.SERVER_TASK).Task(currentTask).Build(), PrefixStyle.Base128);
             await networkStream.FlushAsync();
-            while (true)
+            while (isStillActive)
             {
                 try
                 {

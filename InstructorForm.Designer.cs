@@ -87,7 +87,7 @@
             panelNavHost2.Location = new Point(2, 2);
             panelNavHost2.Margin = new Padding(0, 0, 0, 6);
             panelNavHost2.Name = "panelNavHost2";
-            panelNavHost2.Size = new Size(1968, 58);
+            panelNavHost2.Size = new Size(188, 58);
             panelNavHost2.TabIndex = 1;
             // 
             // tabcontrol_session
@@ -106,18 +106,18 @@
             tabcontrol_session.Multiline = true;
             tabcontrol_session.Name = "tabcontrol_session";
             tabcontrol_session.SelectedIndex = 0;
-            tabcontrol_session.Size = new Size(1968, 924);
+            tabcontrol_session.Size = new Size(188, 0);
             tabcontrol_session.TabIndex = 2;
             // 
             // tabPage1
             // 
             tabPage1.BackColor = SystemColors.Control;
             tabPage1.Controls.Add(serverHomePage1);
-            tabPage1.Location = new Point(4, 29);
+            tabPage1.Location = new Point(4, 154);
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(1960, 891);
+            tabPage1.Size = new Size(180, 0);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             // 
@@ -128,18 +128,18 @@
             serverHomePage1.Margin = new Padding(4, 2, 62, 2);
             serverHomePage1.Name = "serverHomePage1";
             serverHomePage1.Padding = new Padding(0, 0, 0, 38);
-            serverHomePage1.Size = new Size(1956, 887);
+            serverHomePage1.Size = new Size(176, 0);
             serverHomePage1.TabIndex = 0;
             // 
             // tabPage2
             // 
             tabPage2.BackColor = SystemColors.Control;
             tabPage2.Controls.Add(tempServerPage1);
-            tabPage2.Location = new Point(4, 29);
+            tabPage2.Location = new Point(4, 154);
             tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(2);
-            tabPage2.Size = new Size(227, 0);
+            tabPage2.Size = new Size(180, 0);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             // 
@@ -151,24 +151,24 @@
             tempServerPage1.Location = new Point(2, 2);
             tempServerPage1.Margin = new Padding(2, 4, 2, 4);
             tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(223, 0);
+            tempServerPage1.Size = new Size(176, 0);
             tempServerPage1.TabIndex = 0;
             // 
             // tabPage3
             // 
             tabPage3.BackColor = SystemColors.Control;
             tabPage3.Controls.Add(serverTaskUpdate1);
-            tabPage3.Location = new Point(4, 29);
+            tabPage3.Location = new Point(4, 154);
             tabPage3.Margin = new Padding(2);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(227, 0);
+            tabPage3.Size = new Size(180, 0);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             // 
             // serverTaskUpdate1
             // 
             serverTaskUpdate1.Anchor = AnchorStyles.Top;
-            serverTaskUpdate1.Location = new Point(206, 62);
+            serverTaskUpdate1.Location = new Point(183, 62);
             serverTaskUpdate1.Margin = new Padding(4, 2, 4, 2);
             serverTaskUpdate1.Name = "serverTaskUpdate1";
             serverTaskUpdate1.Size = new Size(1482, 786);
@@ -178,10 +178,10 @@
             // 
             tabPage5.AutoScroll = true;
             tabPage5.Controls.Add(progressSubmissionPage1);
-            tabPage5.Location = new Point(4, 29);
+            tabPage5.Location = new Point(4, 154);
             tabPage5.Margin = new Padding(2);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(227, 0);
+            tabPage5.Size = new Size(180, 0);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
@@ -198,10 +198,10 @@
             // tabPage4
             // 
             tabPage4.Controls.Add(studentTable21);
-            tabPage4.Location = new Point(4, 29);
+            tabPage4.Location = new Point(4, 154);
             tabPage4.Margin = new Padding(2);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(227, 0);
+            tabPage4.Size = new Size(180, 0);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
@@ -212,16 +212,16 @@
             studentTable21.Location = new Point(305, 44);
             studentTable21.Margin = new Padding(4, 5, 4, 5);
             studentTable21.Name = "studentTable21";
-            studentTable21.Size = new Size(1730, 1092);
+            studentTable21.Size = new Size(1683, 1092);
             studentTable21.TabIndex = 0;
             // 
             // tabPage9
             // 
             tabPage9.Controls.Add(label5);
-            tabPage9.Location = new Point(4, 29);
+            tabPage9.Location = new Point(4, 154);
             tabPage9.Margin = new Padding(2);
             tabPage9.Name = "tabPage9";
-            tabPage9.Size = new Size(227, 0);
+            tabPage9.Size = new Size(180, 0);
             tabPage9.TabIndex = 5;
             tabPage9.Text = "tabPage9";
             tabPage9.UseVisualStyleBackColor = true;
@@ -258,7 +258,7 @@
             tabPage10.BackColor = Color.WhiteSmoke;
             tabPage10.Controls.Add(tempSessionManagement21);
             tabPage10.Location = new Point(4, 29);
-            tabPage10.Margin = new Padding(4, 4, 4, 4);
+            tabPage10.Margin = new Padding(4);
             tabPage10.Name = "tabPage10";
             tabPage10.Size = new Size(1916, 964);
             tabPage10.TabIndex = 3;
@@ -277,11 +277,11 @@
             // 
             tabPage7.BackColor = SystemColors.Control;
             tabPage7.Controls.Add(tempExerciseManage1);
-            tabPage7.Location = new Point(4, 29);
+            tabPage7.Location = new Point(4, 54);
             tabPage7.Margin = new Padding(2);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new Padding(2);
-            tabPage7.Size = new Size(1972, 986);
+            tabPage7.Size = new Size(192, 42);
             tabPage7.TabIndex = 1;
             tabPage7.Text = "tabPage7";
             // 
@@ -292,7 +292,7 @@
             tempExerciseManage1.Location = new Point(2, 2);
             tempExerciseManage1.Margin = new Padding(2);
             tempExerciseManage1.Name = "tempExerciseManage1";
-            tempExerciseManage1.Size = new Size(1968, 982);
+            tempExerciseManage1.Size = new Size(188, 38);
             tempExerciseManage1.TabIndex = 0;
             // 
             // tabPage8
@@ -304,7 +304,7 @@
             tabPage8.Location = new Point(4, 29);
             tabPage8.Margin = new Padding(2);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1972, 986);
+            tabPage8.Size = new Size(1916, 964);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "tabPage8";
             tabPage8.Enter += tabPage8_Enter;
@@ -327,9 +327,9 @@
             sessionsContainer.Controls.Add(sessionLogsDisplay1);
             sessionsContainer.FlowDirection = FlowDirection.TopDown;
             sessionsContainer.Location = new Point(511, 140);
-            sessionsContainer.Margin = new Padding(4, 4, 4, 4);
+            sessionsContainer.Margin = new Padding(4);
             sessionsContainer.Name = "sessionsContainer";
-            sessionsContainer.Size = new Size(845, 438);
+            sessionsContainer.Size = new Size(845, 766);
             sessionsContainer.TabIndex = 16;
             sessionsContainer.WrapContents = false;
             // 
@@ -348,9 +348,9 @@
             // panel1
             // 
             panel1.Location = new Point(489, 128);
-            panel1.Margin = new Padding(4, 4, 4, 4);
+            panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(885, 470);
+            panel1.Size = new Size(885, 799);
             panel1.TabIndex = 18;
             // 
             // tabPage6
@@ -358,11 +358,11 @@
             tabPage6.BackColor = SystemColors.Control;
             tabPage6.Controls.Add(tabcontrol_session);
             tabPage6.Controls.Add(panelNavHost2);
-            tabPage6.Location = new Point(4, 29);
+            tabPage6.Location = new Point(4, 54);
             tabPage6.Margin = new Padding(2);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(2);
-            tabPage6.Size = new Size(1972, 986);
+            tabPage6.Size = new Size(192, 42);
             tabPage6.TabIndex = 0;
             tabPage6.Text = "tabPage6";
             // 
@@ -379,6 +379,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SmartCodeLab";
             WindowState = FormWindowState.Maximized;
+            FormClosing += InstructorForm_FormClosing;
             tabcontrol_session.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             tabPage2.ResumeLayout(false);

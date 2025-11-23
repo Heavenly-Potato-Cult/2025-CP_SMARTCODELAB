@@ -2,6 +2,7 @@
 using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
+using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
@@ -71,6 +72,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             studentCodeRating1.SetStats(task.ratingFactors);
         }
 
+        //for the display of session logs
         public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users, Dictionary<int, decimal[]> ratingFactors)
         {
             InitializeComponent();
@@ -78,6 +80,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             userMessages = new Dictionary<string, List<UserMessage>>();
             progressRetriever = (student_id) => userProgress[student_id];
             studentCodeRating1.SetStats(ratingFactors);
+            smartButton3.Visible = false;
             Load += (s, e) =>
             {
                 Task.Run(() =>
