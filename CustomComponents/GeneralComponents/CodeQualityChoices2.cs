@@ -252,12 +252,6 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                 sender?.Checked = false;
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            openComplexityDialog(null);
-        }
-
         public string GetLocalIPv4()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
@@ -321,6 +315,12 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                 throw new ArgumentException($"Invalid input: {ex.Message}");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            openComplexityDialog(null);
+        }
+
         protected override CreateParams CreateParams
         {
             get
