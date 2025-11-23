@@ -30,7 +30,26 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
             userProfiles = new Dictionary<string, UserProfile>();
+            this.DoubleBuffered = true;
+
+            // If standard DoubleBuffered doesn't work, try these styles:
+            this.SetStyle(ControlStyles.UserPaint |
+                          ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
         }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                // WS_EX_COMPOSITED: Paints all descendants of a window in bottom-to-top 
+                // painting order using double-buffering.
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
+
         private void smartButton1_Click_1(object sender, EventArgs e)
         {
             foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))

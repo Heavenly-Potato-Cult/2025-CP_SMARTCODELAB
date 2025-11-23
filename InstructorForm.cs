@@ -106,7 +106,17 @@ namespace SmartCodeLab
                 {
                     if (tabcontrol_MainNav != null)
                     {
-                        tabcontrol_MainNav.SelectedIndex = tabIndex;
+                        tabcontrol_MainNav.SuspendLayout();
+
+                        try
+                        {
+                            tabcontrol_MainNav.SelectedIndex = tabIndex;
+                        }
+                        finally
+                        {
+                            
+                            tabcontrol_MainNav.ResumeLayout(true);
+                        }
                     }
                 };
 
