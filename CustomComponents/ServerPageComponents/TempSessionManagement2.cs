@@ -95,13 +95,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             serverPW.Text = new Random().Next(10000, 100000).ToString();
         }
 
-        private void smartButton3_Click_1(object sender, EventArgs e)
-        {
-            using (var selectExercise = new SelectExercise(exerciseSelectedCallback))
-            {
-                selectExercise.ShowDialog();
-            }
-        }
+
 
         private void smartButton2_Click(object sender, EventArgs e)
         {
@@ -193,6 +187,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             serverPW.Text = new Random().Next(10000, 100000).ToString();
         }
 
-        
+        private void smartButton4_Click(object sender, EventArgs e)
+        {
+            using (var selectExercise = new SelectExercise(exerciseSelectedCallback))
+            {
+                selectExercise.ShowDialog();
+            }
+        }
     }
 }
