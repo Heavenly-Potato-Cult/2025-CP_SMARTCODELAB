@@ -144,11 +144,11 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             testcaseholder.Title2 = "";
             testcaseholder.HeaderColor = Color.FromArgb(230, 240, 255);
             //testcaseholder.BackColor = Color.Gray;
-            testcaseholder.HeaderHeight = 20;
+            testcaseholder.HeaderHeight = 40;
             testcasecontent.AutoSize = false;
 
             testcasecontent.Dock = DockStyle.Fill;
-            testcasecontent.Padding = new Padding(20, 25, 20, 0);
+            testcasecontent.Padding = new Padding(20, 45, 20, 0);
             testcaseholder.Controls.Add(testcasecontent);
 
             testcaseholder.Dock = DockStyle.Top;

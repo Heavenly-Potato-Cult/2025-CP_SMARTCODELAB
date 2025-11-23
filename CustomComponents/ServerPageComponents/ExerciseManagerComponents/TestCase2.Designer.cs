@@ -28,12 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TestCase2));
             splitContainer1 = new SplitContainer();
-            codeEditor1 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             label1 = new Label();
-            codeEditor2 = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             label2 = new Label();
             button1 = new Button();
             panel1 = new Panel();
@@ -41,8 +37,6 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)codeEditor2).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,51 +49,15 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(codeEditor1);
             splitContainer1.Panel1.Controls.Add(label1);
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(codeEditor2);
             splitContainer1.Panel2.Controls.Add(label2);
             splitContainer1.Size = new Size(649, 190);
             splitContainer1.SplitterDistance = 315;
             splitContainer1.SplitterWidth = 11;
             splitContainer1.TabIndex = 85;
-            // 
-            // codeEditor1
-            // 
-            codeEditor1.AutoCompleteBracketsList = new char[]
-    {
-    '(',
-    ')',
-    '{',
-    '}',
-    '[',
-    ']',
-    '"',
-    '"',
-    '\'',
-    '\''
-    };
-            codeEditor1.AutoScrollMinSize = new Size(31, 18);
-            codeEditor1.BackBrush = null;
-            codeEditor1.CharHeight = 18;
-            codeEditor1.CharWidth = 10;
-            codeEditor1.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            codeEditor1.Dock = DockStyle.Fill;
-            codeEditor1.Font = new Font("Courier New", 9.75F);
-            codeEditor1.ForeColor = Color.Black;
-            codeEditor1.Hotkeys = resources.GetString("codeEditor1.Hotkeys");
-            codeEditor1.IsReplaceMode = false;
-            codeEditor1.Location = new Point(0, 25);
-            codeEditor1.Name = "codeEditor1";
-            codeEditor1.Paddings = new Padding(0);
-            codeEditor1.SelectionColor = Color.FromArgb(60, 0, 0, 255);
-            codeEditor1.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor1.ServiceColors");
-            codeEditor1.Size = new Size(315, 165);
-            codeEditor1.TabIndex = 82;
-            codeEditor1.Zoom = 100;
             // 
             // label1
             // 
@@ -112,39 +70,6 @@
             label1.Size = new Size(57, 25);
             label1.TabIndex = 81;
             label1.Text = "Input";
-            // 
-            // codeEditor2
-            // 
-            codeEditor2.AutoCompleteBracketsList = new char[]
-    {
-    '(',
-    ')',
-    '{',
-    '}',
-    '[',
-    ']',
-    '"',
-    '"',
-    '\'',
-    '\''
-    };
-            codeEditor2.AutoScrollMinSize = new Size(31, 18);
-            codeEditor2.BackBrush = null;
-            codeEditor2.CharHeight = 18;
-            codeEditor2.CharWidth = 10;
-            codeEditor2.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            codeEditor2.Dock = DockStyle.Fill;
-            codeEditor2.ForeColor = Color.Black;
-            codeEditor2.Hotkeys = resources.GetString("codeEditor2.Hotkeys");
-            codeEditor2.IsReplaceMode = false;
-            codeEditor2.Location = new Point(0, 25);
-            codeEditor2.Name = "codeEditor2";
-            codeEditor2.Paddings = new Padding(0);
-            codeEditor2.SelectionColor = Color.FromArgb(60, 0, 0, 255);
-            codeEditor2.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("codeEditor2.ServiceColors");
-            codeEditor2.Size = new Size(323, 165);
-            codeEditor2.TabIndex = 84;
-            codeEditor2.Zoom = 100;
             // 
             // label2
             // 
@@ -199,8 +124,6 @@
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)codeEditor1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)codeEditor2).EndInit();
             panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
