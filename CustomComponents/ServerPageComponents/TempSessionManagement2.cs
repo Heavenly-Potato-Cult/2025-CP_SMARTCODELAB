@@ -32,7 +32,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             userProfiles = new Dictionary<string, UserProfile>();
             this.DoubleBuffered = true;
 
-            // If standard DoubleBuffered doesn't work, try these styles:
             this.SetStyle(ControlStyles.UserPaint |
                           ControlStyles.AllPaintingInWmPaint |
                           ControlStyles.OptimizedDoubleBuffer, true);

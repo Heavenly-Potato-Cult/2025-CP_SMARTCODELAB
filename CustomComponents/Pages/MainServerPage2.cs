@@ -141,7 +141,16 @@ namespace SmartCodeLab.CustomComponents.Pages
             {
                 if (container != null) // Guard clause
                 {
-                    container.SelectedIndex = tabIndex;
+                    container.SuspendLayout();
+
+                    try 
+                    {
+                        container.SelectedIndex = tabIndex;
+                    
+                    } finally { 
+
+                        container.ResumeLayout(true);
+                    }
                 }
             };
 

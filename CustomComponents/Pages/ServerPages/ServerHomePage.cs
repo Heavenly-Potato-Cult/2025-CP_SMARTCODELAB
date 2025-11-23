@@ -53,7 +53,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             Object h = this.Handle;
             activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}";
             submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}";
+            this.DoubleBuffered = true;
 
+            this.SetStyle(ControlStyles.UserPaint |
+                          ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
         }
 
         public ServerHomePage(Server session, Action displayStudentTable, Action saveSession, Action closing)
@@ -65,6 +70,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             copyPasteDetectedCount = 0;
             studentsSubmitted = new List<string>();
             notifications = new List<Notification>();
+
+            this.DoubleBuffered = true;
+
+            this.SetStyle(ControlStyles.UserPaint |
+                          ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
 
             Object h = this.Handle;
             activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}";
@@ -104,6 +116,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public ServerHomePage(List<Notification> existingNotifications)
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+
+            this.SetStyle(ControlStyles.UserPaint |
+                          ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
             notifications = new List<Notification>();
             Load += (sender, e) =>
             {
@@ -130,6 +148,24 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             submissionCount.Text = "0/0";
 
             searchVersion = 0;
+            this.DoubleBuffered = true;
+
+            this.SetStyle(ControlStyles.UserPaint |
+                          ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                // WS_EX_COMPOSITED: Paints all descendants of a window in bottom-to-top 
+                // painting order using double-buffering.
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
         }
 
         public async void NewNotification(Notification notification, UserProfile notifFrom = null)
