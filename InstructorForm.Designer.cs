@@ -31,6 +31,7 @@ namespace SmartCodeLab
         /// </summary>
         private void InitializeComponent()
         {
+
             panelNavHost = new Panel();
             panelNavHost2 = new Panel();
             tabcontrol_session = new SmartCodeLab.CustomComponents.GeneralComponents.SmoothTabControl();
