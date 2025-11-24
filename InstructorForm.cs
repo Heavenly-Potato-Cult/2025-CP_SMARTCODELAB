@@ -204,48 +204,48 @@ namespace SmartCodeLab
             }
         }
 
-        private void SessionNavigationMenu()
-        {
+        //private void SessionNavigationMenu()
+        //{
 
-            if (panelNavHost2 == null)
-            {
-                return;
-            }
+        //    if (panelNavHost2 == null)
+        //    {
+        //        return;
+        //    }
 
-            // 2. Calculate and set the panel's new, scaled height
-            float dpiScale;
-            using (Graphics g = this.CreateGraphics())
-            {
-                // Gets the system scale (e.g., 1.25 for 125%)
-                dpiScale = g.DpiX / 96f;
-            }
+        //    // 2. Calculate and set the panel's new, scaled height
+        //    float dpiScale;
+        //    using (Graphics g = this.CreateGraphics())
+        //    {
+        //        // Gets the system scale (e.g., 1.25 for 125%)
+        //        dpiScale = g.DpiX / 96f;
+        //    }
 
-            // Gets your designer height (e.g., 46) and sets the new runtime height (e.g., 58)
-            panelNavHost2.Height = (int)(panelNavHost2.Height * dpiScale);
+        //    // Gets your designer height (e.g., 46) and sets the new runtime height (e.g., 58)
+        //    panelNavHost2.Height = (int)(panelNavHost2.Height * dpiScale);
 
-            var navMenu = new SessionNavbar();
+        //    var navMenu = new SessionNavbar();
 
-            navMenu.OnNavigationClicked = (tabIndex) =>
-            {
-                if (tabcontrol_session != null)
-                {
-                    tabcontrol_session.SelectedIndex = tabIndex;
-                }
-            };
+        //    navMenu.OnNavigationClicked = (tabIndex) =>
+        //    {
+        //        if (tabcontrol_session != null)
+        //        {
+        //            tabcontrol_session.SelectedIndex = tabIndex;
+        //        }
+        //    };
 
-            var host = new ElementHost
-            {
-                Dock = DockStyle.Fill,
-                Child = navMenu
-            };
+        //    var host = new ElementHost
+        //    {
+        //        Dock = DockStyle.Fill,
+        //        Child = navMenu
+        //    };
 
 
-            if (panelNavHost2 != null)
-            {
-                panelNavHost2.Controls.Add(host);
-            }
+        //    if (panelNavHost2 != null)
+        //    {
+        //        panelNavHost2.Controls.Add(host);
+        //    }
 
-        }
+        //}
 
         private void tabPage8_Enter(object sender, EventArgs e)
         {
