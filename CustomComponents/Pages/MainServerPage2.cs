@@ -31,6 +31,16 @@ namespace SmartCodeLab.CustomComponents.Pages
             InitializeComponent();
             SessionNavigationMenu();
         }
+
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+        //        return cp;
+        //    }
+        //}
         private Server server;
         //controls handling and pages
         private TempServerPage serverPage;  
