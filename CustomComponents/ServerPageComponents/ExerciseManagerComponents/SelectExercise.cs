@@ -107,7 +107,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                                 exercise.filePath = file;
 
                                 
-                                controlsToAdd.Add(new ExerciseSelection(exercise, exerciseSelected));
+                                controlsToAdd.Add(new ExerciseSelection(exercise, exerciseSelected) { Dock = DockStyle.Top});
                             }
                         }
                         catch {  }
@@ -118,10 +118,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                     {
                         this.Invoke(new Action(() =>
                         {
-                            flowLayoutPanel1.SuspendLayout(); // Freeze List
-                            flowLayoutPanel1.Controls.Clear();
-                            flowLayoutPanel1.Controls.AddRange(controlsToAdd.ToArray()); // Add All
-                            flowLayoutPanel1.ResumeLayout(true); // Unfreeze List
+                            holder.SuspendLayout(); // Freeze List
+                            holder.Controls.Clear();
+                            holder.Controls.AddRange(controlsToAdd.ToArray()); // Add All
+                            holder.ResumeLayout(true); // Unfreeze List
                         }));
                     }
                     catch (InvalidOperationException) { }
