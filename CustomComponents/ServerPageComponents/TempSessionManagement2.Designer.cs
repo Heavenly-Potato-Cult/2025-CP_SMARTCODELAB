@@ -31,7 +31,7 @@
             panel3 = new Panel();
             steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             panel2 = new Panel();
-            tabNavigationLocked = new SmartCodeLab.CustomComponents.SteamThings.SteamCheckBox();
+            tabNavigationLocked = new CheckBox();
             steamLabel8 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamLabel7 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             taskView = new Panel();
@@ -113,17 +113,13 @@
             // 
             // tabNavigationLocked
             // 
-            tabNavigationLocked.Anchor = AnchorStyles.Right;
             tabNavigationLocked.AutoSize = true;
-            tabNavigationLocked.BackColor = Color.Transparent;
-            tabNavigationLocked.Font = new Font("Segoe UI", 10F);
-            tabNavigationLocked.Location = new Point(342, 35);
+            tabNavigationLocked.Location = new Point(480, 42);
+            tabNavigationLocked.Margin = new Padding(3, 4, 3, 4);
             tabNavigationLocked.Name = "tabNavigationLocked";
-            tabNavigationLocked.Padding = new Padding(3);
-            tabNavigationLocked.Size = new Size(167, 33);
-            tabNavigationLocked.TabIndex = 60;
-            tabNavigationLocked.Text = "steamCheckBox1";
-            tabNavigationLocked.UseVisualStyleBackColor = false;
+            tabNavigationLocked.Size = new Size(18, 17);
+            tabNavigationLocked.TabIndex = 61;
+            tabNavigationLocked.UseVisualStyleBackColor = true;
             // 
             // steamLabel8
             // 
@@ -433,11 +429,11 @@
             steamLabel5.Location = new Point(56, 374);
             steamLabel5.Margin = new Padding(0, 0, 0, 5);
             steamLabel5.Name = "steamLabel5";
-            steamLabel5.Size = new Size(109, 23);
+            steamLabel5.Size = new Size(85, 23);
             steamLabel5.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel5.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel5.TabIndex = 43;
-            steamLabel5.Text = "EXERCISE";
+            steamLabel5.Text = "Exercise";
             // 
             // steamLabel4
             // 
@@ -448,11 +444,11 @@
             steamLabel4.Location = new Point(56, 266);
             steamLabel4.Margin = new Padding(0, 0, 0, 5);
             steamLabel4.Name = "steamLabel4";
-            steamLabel4.Size = new Size(279, 23);
+            steamLabel4.Size = new Size(219, 23);
             steamLabel4.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel4.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel4.TabIndex = 42;
-            steamLabel4.Text = "PROGRAMMING LANGUAGE";
+            steamLabel4.Text = "Programming Language";
             // 
             // steamLabel2
             // 
@@ -463,11 +459,11 @@
             steamLabel2.Location = new Point(56, 152);
             steamLabel2.Margin = new Padding(0, 0, 0, 5);
             steamLabel2.Name = "steamLabel2";
-            steamLabel2.Size = new Size(160, 23);
+            steamLabel2.Size = new Size(132, 23);
             steamLabel2.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel2.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel2.TabIndex = 40;
-            steamLabel2.Text = "SESSION CODE";
+            steamLabel2.Text = "Session Code";
             // 
             // panel4
             // 
@@ -520,11 +516,11 @@
             steamLabel1.Location = new Point(56, 40);
             steamLabel1.Margin = new Padding(0, 0, 0, 5);
             steamLabel1.Name = "steamLabel1";
-            steamLabel1.Size = new Size(159, 23);
+            steamLabel1.Size = new Size(136, 23);
             steamLabel1.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel1.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel1.TabIndex = 2;
-            steamLabel1.Text = "SESSION NAME";
+            steamLabel1.Text = "Session Name";
             // 
             // steamGradientPanel1
             // 
@@ -607,7 +603,7 @@
         private SteamThings.SteamLabel steamLabel10;
         private GeneralComponents.SmartButton smartButton3;
         private SteamThings.SteamPrimaryButton steamPrimaryButton1;
-        private SteamThings.SteamCheckBox tabNavigationLocked;
         private Panel panel5;
+        private CheckBox tabNavigationLocked;
     }
 }

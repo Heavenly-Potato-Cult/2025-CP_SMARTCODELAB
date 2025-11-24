@@ -29,22 +29,68 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
         }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                // WS_EX_COMPOSITED: Paints all descendants of a window in bottom-to-top 
+                // painting order using double-buffering.
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
         private async void TempExerciseManage_Load(object sender, EventArgs e)
         {
             await Task.Run(() =>
             {
+                
+                var loadedExercises = new List<TaskModel>();
+
                 var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task");
+
                 foreach (var file in exerciseFiles)
                 {
-                    using (var fileOpened = File.OpenRead(file))
+                    try
                     {
-                        var exercise = Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, PrefixStyle.Base128);
-                        exercise.filePath = file;
-                        this.Invoke(new Action(() =>
+                        using (var fileOpened = File.OpenRead(file))
                         {
-                            flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise));
-                        }));
+                            var exercise = Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, PrefixStyle.Base128);
+                            if (exercise != null)
+                            {
+                                exercise.filePath = file;
+                                loadedExercises.Add(exercise);
+                            }
+                        }
                     }
+                    catch { /* Handle individual file errors here */ }
+                }
+
+                if (this.IsHandleCreated)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        // --- SUSPEND LAYOUT ---
+                        // This stops the FlowLayoutPanel from calculating positions for every single item added.
+                        flowLayoutPanel_Exercises.SuspendLayout();
+
+                        try
+                        {
+                           
+                            var cards = loadedExercises
+                                .Select(ex => new ExerciseCard(ex))
+                                .ToArray();
+
+                            flowLayoutPanel_Exercises.Controls.AddRange(cards);
+                        }
+                        finally
+                        {
+                            // --- RESUME LAYOUT ---
+                            // 'true' forces an immediate layout calculation of the final result
+                            flowLayoutPanel_Exercises.ResumeLayout(true);
+                        }
+                    }));
                 }
             });
         }
