@@ -23,7 +23,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         * 3 - Efficiency
         * 4 - Complexity
         */
-        
+
         private List<int> recordedStats = new List<int>();
         private readonly Dictionary<int, Panel> statsTotal;
         private readonly Dictionary<int, StatsBar> statsBar;
@@ -84,7 +84,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         statsWeight.Add(item, stats[item][0]);
                 }
 
-                if(stats.ContainsKey(2))
+                if (stats.ContainsKey(2))
                     standardOperatorsCount = Convert.ToInt32(stats[2][1]);
 
                 if (stats.ContainsKey(4))
@@ -168,7 +168,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
          * if qoutient <= 2.5 then 50
          * else 30
          */
-        private int getEfficiencyGrade(int studTotalOperators) 
+        private int getEfficiencyGrade(int studTotalOperators)
         {
             double percentageDiff = Convert.ToDouble(studTotalOperators) / standardOperatorsCount;
 
@@ -224,7 +224,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
-            if(violations != null)
+            if (violations != null)
             {
                 new ViewCodeViolations(violations.Invoke()).ShowDialog();
             }
@@ -244,6 +244,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public void SetViolationsRetriever(Func<List<HashSet<string>>> violations)
         {
             this.violations = violations;
+        }
+
+        private void accuracy_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
