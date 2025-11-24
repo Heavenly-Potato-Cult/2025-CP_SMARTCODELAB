@@ -45,7 +45,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             await Task.Run(() =>
             {
-                
+
                 var loadedExercises = new List<TaskModel>();
 
                 var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task");
@@ -77,7 +77,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                         try
                         {
-                           
+
                             var cards = loadedExercises
                                 .Select(ex => new ExerciseCard(ex))
                                 .ToArray();
@@ -113,7 +113,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
             searchTimer = new System.Threading.Timer(_ =>
             {
-                string search = customTextBox1.Texts.ToLower();
+                string search = customTextBox1.Text.ToLower();
                 var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task").
                     Where(file => Path.GetFileName(file).ToLower().Contains(search)).ToList();
                 this.Invoke(new Action(() => flowLayoutPanel_Exercises.Controls.Clear()));
@@ -130,6 +130,19 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     }
                 }
             }, null, 400, Timeout.Infinite);
+        }
+
+        private void btn_AddNewExercise_Click_1(object sender, EventArgs e)
+        {
+            using (var exerciseForm = new AddNewExercise())
+            {
+                var dialogResult = exerciseForm.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise));
+                }
+            }
         }
     }
 }

@@ -28,146 +28,131 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempExerciseManage));
             panel3 = new Panel();
+            steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             btn_AddNewExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            label2 = new Label();
-            panel1 = new Panel();
             flowLayoutPanel_Exercises = new FlowLayoutPanel();
-            customTextBox1 = new CustomTextBox();
-            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
+            steamComboBox1 = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
+            customTextBox1 = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             panel3.SuspendLayout();
+            steamGradientPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel3
             // 
+            panel3.BackColor = Color.Transparent;
+            panel3.Controls.Add(steamLabel3);
             panel3.Controls.Add(btn_AddNewExercise);
-            panel3.Controls.Add(label2);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
-            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1576, 95);
+            panel3.Size = new Size(1801, 82);
             panel3.TabIndex = 55;
+            // 
+            // steamLabel3
+            // 
+            steamLabel3.AutoSize = true;
+            steamLabel3.BackColor = Color.Transparent;
+            steamLabel3.Font = new Font("Geist", 16F, FontStyle.Bold);
+            steamLabel3.ForeColor = Color.FromArgb(199, 213, 224);
+            steamLabel3.Location = new Point(349, 25);
+            steamLabel3.Name = "steamLabel3";
+            steamLabel3.Size = new Size(310, 32);
+            steamLabel3.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
+            steamLabel3.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            steamLabel3.TabIndex = 66;
+            steamLabel3.Text = "EXERCISE EXPLORER";
             // 
             // btn_AddNewExercise
             // 
-            btn_AddNewExercise.Anchor = AnchorStyles.None;
-            btn_AddNewExercise.BackColor = SystemColors.Highlight;
-            btn_AddNewExercise.BackgroundColor = SystemColors.Highlight;
-            btn_AddNewExercise.BorderRadius = 10;
+            btn_AddNewExercise.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_AddNewExercise.BackColor = Color.FromArgb(42, 71, 94);
+            btn_AddNewExercise.BackgroundColor = Color.FromArgb(42, 71, 94);
+            btn_AddNewExercise.BorderRadius = 1;
             btn_AddNewExercise.FlatAppearance.BorderSize = 0;
             btn_AddNewExercise.FlatStyle = FlatStyle.Flat;
-            btn_AddNewExercise.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_AddNewExercise.ForeColor = Color.White;
-            btn_AddNewExercise.Image = (Image)resources.GetObject("btn_AddNewExercise.Image");
-            btn_AddNewExercise.Location = new Point(1054, 28);
+            btn_AddNewExercise.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_AddNewExercise.ForeColor = Color.FromArgb(199, 213, 224);
+            btn_AddNewExercise.Location = new Point(1390, 15);
+            btn_AddNewExercise.Margin = new Padding(2, 4, 2, 4);
             btn_AddNewExercise.Name = "btn_AddNewExercise";
-            btn_AddNewExercise.Size = new Size(186, 39);
-            btn_AddNewExercise.TabIndex = 57;
-            btn_AddNewExercise.Text = "Add New Exercise";
-            btn_AddNewExercise.TextAlign = ContentAlignment.MiddleRight;
-            btn_AddNewExercise.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_AddNewExercise.Size = new Size(213, 52);
+            btn_AddNewExercise.TabIndex = 66;
+            btn_AddNewExercise.Text = "ADD NEW EXERCISE";
+            btn_AddNewExercise.TextColor = Color.FromArgb(199, 213, 224);
             btn_AddNewExercise.UseVisualStyleBackColor = false;
-            btn_AddNewExercise.Click += btn_AddNewExercise_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            label2.ForeColor = Color.FromArgb(13, 13, 13);
-            label2.Location = new Point(305, 32);
-            label2.Name = "label2";
-            label2.Size = new Size(190, 30);
-            label2.TabIndex = 13;
-            label2.Text = "Exercise Explorer";
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.DimGray;
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 95);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1576, 1);
-            panel1.TabIndex = 56;
+            btn_AddNewExercise.Click += btn_AddNewExercise_Click_1;
             // 
             // flowLayoutPanel_Exercises
             // 
+            flowLayoutPanel_Exercises.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             flowLayoutPanel_Exercises.AutoScroll = true;
-            flowLayoutPanel_Exercises.Location = new Point(305, 202);
-            flowLayoutPanel_Exercises.Margin = new Padding(3, 2, 3, 2);
+            flowLayoutPanel_Exercises.BackColor = Color.Transparent;
+            flowLayoutPanel_Exercises.Location = new Point(349, 221);
             flowLayoutPanel_Exercises.Name = "flowLayoutPanel_Exercises";
-            flowLayoutPanel_Exercises.Padding = new Padding(0, 0, 0, 75);
-            flowLayoutPanel_Exercises.Size = new Size(935, 436);
+            flowLayoutPanel_Exercises.Padding = new Padding(0, 0, 0, 100);
+            flowLayoutPanel_Exercises.Size = new Size(1217, 629);
             flowLayoutPanel_Exercises.TabIndex = 59;
+            // 
+            // steamGradientPanel1
+            // 
+            steamGradientPanel1.Controls.Add(steamComboBox1);
+            steamGradientPanel1.Controls.Add(customTextBox1);
+            steamGradientPanel1.Controls.Add(flowLayoutPanel_Exercises);
+            steamGradientPanel1.Controls.Add(panel3);
+            steamGradientPanel1.Dock = DockStyle.Fill;
+            steamGradientPanel1.GradientAngle = 90F;
+            steamGradientPanel1.GradientBottomColor = Color.FromArgb(26, 30, 36);
+            steamGradientPanel1.GradientTopColor = Color.FromArgb(11, 14, 17);
+            steamGradientPanel1.Location = new Point(0, 0);
+            steamGradientPanel1.Name = "steamGradientPanel1";
+            steamGradientPanel1.Size = new Size(1801, 1049);
+            steamGradientPanel1.TabIndex = 66;
+            // 
+            // steamComboBox1
+            // 
+            steamComboBox1.BackColor = Color.FromArgb(26, 30, 36);
+            steamComboBox1.Items.AddRange(new object[] { "C++", "Java", "Python" });
+            steamComboBox1.Location = new Point(1138, 145);
+            steamComboBox1.Name = "steamComboBox1";
+            steamComboBox1.Padding = new Padding(1);
+            steamComboBox1.Size = new Size(174, 44);
+            steamComboBox1.TabIndex = 67;
             // 
             // customTextBox1
             // 
-            customTextBox1.BackColor = SystemColors.Window;
-            customTextBox1.BorderColor = Color.Gray;
-            customTextBox1.ForeColor = Color.DimGray;
-            customTextBox1.Location = new Point(305, 154);
-            customTextBox1.Margin = new Padding(3, 2, 3, 2);
+            customTextBox1.BackColor = Color.FromArgb(26, 30, 36);
+            customTextBox1.Location = new Point(349, 145);
             customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(9, 5, 9, 5);
-            customTextBox1.PlaceHolderColor = Color.DarkGray;
+            customTextBox1.Padding = new Padding(10, 8, 10, 8);
             customTextBox1.PlaceholderText = "";
-            customTextBox1.ScrollBars = ScrollBars.None;
-            customTextBox1.Size = new Size(692, 32);
-            customTextBox1.TabIndex = 64;
-            customTextBox1._TextChanged += customTextBox1__TextChanged;
-            // 
-            // materialComboBox1
-            // 
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 118;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 29;
-            materialComboBox1.Location = new Point(1018, 154);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(121, 35);
-            materialComboBox1.StartIndex = 0;
-            materialComboBox1.TabIndex = 65;
-            materialComboBox1.UseTallSize = false;
+            customTextBox1.Size = new Size(765, 44);
+            customTextBox1.TabIndex = 66;
             // 
             // TempExerciseManage
             // 
             AllowDrop = true;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(materialComboBox1);
-            Controls.Add(customTextBox1);
-            Controls.Add(flowLayoutPanel_Exercises);
-            Controls.Add(panel1);
-            Controls.Add(panel3);
+            Controls.Add(steamGradientPanel1);
             DoubleBuffered = true;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TempExerciseManage";
-            Size = new Size(1576, 787);
+            Size = new Size(1801, 1049);
             Load += TempExerciseManage_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            steamGradientPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
         private Panel panel3;
-        private Label label2;
         private GeneralComponents.SmartButton btn_AddNewExercise;
-        private Panel panel1;
         private FlowLayoutPanel flowLayoutPanel_Exercises;
-        private CustomTextBox customTextBox1;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
+        private SteamThings.SteamGradientPanel steamGradientPanel1;
+        private SteamThings.SteamLabel steamLabel3;
+        private SteamThings.SteamTextBox customTextBox1;
+        private SteamThings.SteamComboBox steamComboBox1;
     }
 }
