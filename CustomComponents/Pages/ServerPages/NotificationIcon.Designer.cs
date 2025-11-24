@@ -38,23 +38,24 @@
             // 
             // time
             // 
+            time.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             time.AutoSize = true;
             time.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             time.ForeColor = Color.Gray;
-            time.Location = new Point(487, 13);
+            time.Location = new Point(603, 30);
             time.Name = "time";
-            time.Size = new Size(103, 20);
+            time.Size = new Size(78, 25);
             time.TabIndex = 23;
-            time.Text = "2 minutes ago";
+            time.Text = "2:00 pm";
             // 
             // userName
             // 
             userName.AutoSize = true;
             userName.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             userName.ForeColor = Color.FromArgb(13, 13, 13);
-            userName.Location = new Point(75, 13);
+            userName.Location = new Point(86, 17);
             userName.Name = "userName";
-            userName.Size = new Size(134, 19);
+            userName.Size = new Size(164, 23);
             userName.TabIndex = 20;
             userName.Text = "Jimmuel Sanggayan";
             userName.Click += userName_Click;
@@ -64,25 +65,24 @@
             message.AutoSize = true;
             message.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             message.ForeColor = Color.Gray;
-            message.Location = new Point(75, 32);
+            message.Location = new Point(86, 43);
             message.Name = "message";
-            message.Size = new Size(223, 20);
+            message.Size = new Size(270, 25);
             message.TabIndex = 21;
             message.Text = "submitted solution for activity 1 ";
             // 
             // pictureBox5
             // 
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(3, 2);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
+            pictureBox5.Location = new Point(12, 10);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(66, 60);
+            pictureBox5.Size = new Size(67, 65);
             pictureBox5.TabIndex = 22;
             pictureBox5.TabStop = false;
             // 
             // NotificationIcon
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             BorderColor = Color.Black;
@@ -90,9 +90,8 @@
             Controls.Add(userName);
             Controls.Add(message);
             Controls.Add(pictureBox5);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "NotificationIcon";
-            Size = new Size(617, 64);
+            Size = new Size(705, 85);
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
