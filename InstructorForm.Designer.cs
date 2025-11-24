@@ -276,11 +276,11 @@ namespace SmartCodeLab
             // 
             tabPage7.BackColor = SystemColors.Control;
             tabPage7.Controls.Add(tempExerciseManage1);
-            tabPage7.Location = new Point(4, 54);
+            tabPage7.Location = new Point(4, 29);
             tabPage7.Margin = new Padding(2);
             tabPage7.Name = "tabPage7";
             tabPage7.Padding = new Padding(2);
-            tabPage7.Size = new Size(192, 42);
+            tabPage7.Size = new Size(1916, 964);
             tabPage7.TabIndex = 1;
             tabPage7.Text = "tabPage7";
             // 
@@ -291,7 +291,7 @@ namespace SmartCodeLab
             tempExerciseManage1.Location = new Point(2, 2);
             tempExerciseManage1.Margin = new Padding(2);
             tempExerciseManage1.Name = "tempExerciseManage1";
-            tempExerciseManage1.Size = new Size(188, 38);
+            tempExerciseManage1.Size = new Size(1912, 960);
             tempExerciseManage1.TabIndex = 0;
             // 
             // tabPage8

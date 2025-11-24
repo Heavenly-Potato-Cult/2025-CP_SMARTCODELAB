@@ -153,5 +153,18 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 _ = displayTasks();
             }, null, 400, Timeout.Infinite);
         }
+
+        private void btn_AddNewExercise_Click_1(object sender, EventArgs e)
+        {
+            using (var exerciseForm = new AddNewExercise())
+            {
+                var dialogResult = exerciseForm.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise));
+                }
+            }
+        }
     }
 }
