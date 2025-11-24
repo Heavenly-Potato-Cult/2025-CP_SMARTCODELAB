@@ -35,6 +35,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             //get the subjects
             taskSubjects = new HashSet<string>();
             searchVersion = 0;
+
+            customTextBox1.innerTextBox.TextChanged += (s, e) =>
+            {
+                searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+                searchTimer = new System.Threading.Timer(_ =>
+                {
+                    _ = displayTasks();
+                }, null, 400, Timeout.Infinite);
+            };
         }
 
         protected override CreateParams CreateParams
@@ -76,7 +85,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 //ilagay ang mga subjects sa lists, i uppercase pra sure no duplicate
                 if (this.IsHandleCreated)
                 {
-                    this.Invoke((Action) (() =>
+                    this.Invoke((Action)(() =>
                     {
                         foreach (var item in loadedExercises)
                         {
@@ -113,7 +122,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             this.Invoke((Action)(() =>
             {
                 long currentVersion = ++searchVersion;
-                string search = customTextBox1.Texts;
+                string search = customTextBox1.innerTextBox.Text;
                 string subjectFilter = subjects.SelectedItem?.ToString() ?? "All";
                 bool searchForAll = subjectFilter == "All";
                 var filteredSearch = loadedExercises.Where(ex =>
@@ -136,13 +145,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             loadedExercises.Remove(task);
         }
 
-        private void customTextBox1__TextChanged(object sender, EventArgs e)
+        private void btn_AddNewExercise_Click_1(object sender, EventArgs e)
         {
-            searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-            searchTimer = new System.Threading.Timer(_ =>
+            using (var exerciseForm = new AddNewExercise(getSubjects()))
             {
-                _ = displayTasks();
-            }, null, 400, Timeout.Infinite);
+                var dialogResult = exerciseForm.ShowDialog();
+
+                if (dialogResult == DialogResult.OK)
+                {
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise, removeExervice, getSubjects));
+                }
+            }
         }
 
         private void subjects_SelectedIndexChanged(object sender, EventArgs e)
@@ -152,19 +165,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 _ = displayTasks();
             }, null, 400, Timeout.Infinite);
-        }
-
-        private void btn_AddNewExercise_Click_1(object sender, EventArgs e)
-        {
-            using (var exerciseForm = new AddNewExercise())
-            {
-                var dialogResult = exerciseForm.ShowDialog();
-
-                if (dialogResult == DialogResult.OK)
-                {
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise));
-                }
-            }
         }
     }
 }
