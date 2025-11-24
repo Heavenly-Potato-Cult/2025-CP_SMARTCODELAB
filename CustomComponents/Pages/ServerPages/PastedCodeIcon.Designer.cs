@@ -30,40 +30,59 @@
         {
             time = new Label();
             codeLine = new Label();
+            panelIcon = new SmartCodeLab.CustomComponents.GeneralComponents.RoundedUserControl();
             SuspendLayout();
             // 
             // time
             // 
+            time.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             time.AutoSize = true;
-            time.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            time.BackColor = Color.LightGray;
+            time.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             time.ForeColor = Color.Black;
-            time.Location = new Point(227, 10);
+            time.Location = new Point(285, 3);
             time.Name = "time";
-            time.Size = new Size(89, 25);
+            time.Size = new Size(87, 25);
             time.TabIndex = 18;
             time.Text = "12:43 PM";
             // 
             // codeLine
             // 
             codeLine.AutoSize = true;
-            codeLine.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            codeLine.BackColor = Color.LightGray;
+            codeLine.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             codeLine.ForeColor = Color.Black;
-            codeLine.Location = new Point(16, 10);
+            codeLine.Location = new Point(5, 3);
             codeLine.Name = "codeLine";
             codeLine.Size = new Size(32, 25);
             codeLine.TabIndex = 17;
             codeLine.Text = "12";
             // 
+            // panelIcon
+            // 
+            panelIcon.BackColor = Color.LightGray;
+            panelIcon.BorderColor = Color.Gray;
+            panelIcon.BorderRadius = 2;
+            panelIcon.BorderSize = 0;
+            panelIcon.Dock = DockStyle.Fill;
+            panelIcon.Location = new Point(0, 0);
+            panelIcon.Name = "panelIcon";
+            panelIcon.Size = new Size(376, 36);
+            panelIcon.TabIndex = 19;
+            // 
             // PastedCodeIcon
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGray;
+            BackColor = Color.Transparent;
+            BorderRadius = 2;
             Controls.Add(time);
             Controls.Add(codeLine);
-            Margin = new Padding(3, 2, 3, 2);
+            Controls.Add(panelIcon);
+            Margin = new Padding(3, 3, 3, 10);
             Name = "PastedCodeIcon";
-            Size = new Size(343, 46);
+            Padding = new Padding(0, 0, 0, 5);
+            Size = new Size(376, 41);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -72,5 +91,6 @@
 
         private Label time;
         private Label codeLine;
+        private GeneralComponents.RoundedUserControl panelIcon;
     }
 }

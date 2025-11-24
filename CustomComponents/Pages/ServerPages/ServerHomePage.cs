@@ -66,6 +66,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             studentsSubmitted = new List<string>();
             notifications = new List<Notification>();
 
+
+
             Object h = this.Handle;
             activeCount.Text = totalActiveStudents.ToString() + $"/{totalStudents}";
             submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}";
@@ -87,7 +89,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 saveSession?.Invoke();
                 SystemSingleton.Instance.page1.Controls.Clear();
-                SystemSingleton.Instance.page1.Controls.Add(new TempSessionManagement2());
+                SystemSingleton.Instance.page1.Controls.Add(new TempSessionManagement2() { Dock = DockStyle.Fill});
                 SystemSingleton.Instance.saveSession = null;
                 closing?.Invoke();
             };
@@ -104,6 +106,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public ServerHomePage(List<Notification> existingNotifications)
         {
             InitializeComponent();
+
             notifications = new List<Notification>();
             Load += (sender, e) =>
             {
@@ -130,6 +133,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             submissionCount.Text = "0/0";
 
             searchVersion = 0;
+
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                // WS_EX_COMPOSITED: Paints all descendants of a window in bottom-to-top 
+                // painting order using double-buffering.
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
         }
 
         public async void NewNotification(Notification notification, UserProfile notifFrom = null)
@@ -268,6 +284,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         {
             searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
             searchTimer = new System.Threading.Timer(async _ => SearchStudent(), null, 500, Timeout.Infinite);
+        }
+
+        private void exit_Click(object sender, EventArgs e)
+        {
+
         }
 
         //public void StopTimer()

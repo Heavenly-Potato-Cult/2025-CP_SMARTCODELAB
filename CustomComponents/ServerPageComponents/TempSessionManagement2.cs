@@ -30,7 +30,21 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
             userProfiles = new Dictionary<string, UserProfile>();
+            SetupDynamicLayout();
+
         }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                // WS_EX_COMPOSITED: Paints all descendants of a window in bottom-to-top 
+                // painting order using double-buffering.
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
+
         private void smartButton1_Click_1(object sender, EventArgs e)
         {
             foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
@@ -109,11 +123,51 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Action<TaskModel> exerciseSelectedCallback => (task) =>
         {
             selectedTask = task;
+
             if (selectedExercise != null)
+            {
                 taskView.Controls.Remove(selectedExercise);
-            selectedExercise = new SelectedExercise(task, removeSelectedTask);
+                selectedExercise.Dispose(); 
+            }
+
+            selectedExercise = new SelectedExercise(task, removeSelectedTask)
+            {
+                
+                Dock = DockStyle.None,
+                Location = new Point(0, 0),
+
+               
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+
             taskView.Controls.Add(selectedExercise);
+
+            
+            taskView.PerformLayout();
+            panel5.PerformLayout();
         };
+
+        private void SetupDynamicLayout()
+        {
+            
+            panel5.AutoSize = true;
+            panel5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+           
+
+           
+            taskView.AutoSize = true;
+            taskView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            taskView.Dock = DockStyle.Left;
+            taskView.Padding = new Padding(0, 0, 10, 0);
+
+            
+            smartButton4.Dock = DockStyle.Left;
+
+         
+            taskView.SendToBack();
+            smartButton4.BringToFront();
+        }
 
         private Action removeSelectedTask => () =>
         {
@@ -187,8 +241,95 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             using (var selectExercise = new SelectExercise(exerciseSelectedCallback))
             {
-                selectExercise.ShowDialog();
+                this.SuspendLayout();
+                try
+                {
+                    selectExercise.ShowDialog();
+
+                }
+                finally
+                {
+                    this.ResumeLayout();
+                }
             }
+        }
+
+        private void steamGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void smartButton3_Click(object sender, EventArgs e)
+        {
+            var studentTable = new StudTable(userProfiles);
+            studentTable.ShowDialog();
+            userProfiles = studentTable.expectedUsers;
+            studentsCount.Text = userProfiles.Count.ToString();
+        }
+
+        private void tabNavigationLocked_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void steamPrimaryButton1_Click(object sender, EventArgs e)
+        {
+            foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
+            {
+                if (Path.GetFileNameWithoutExtension(file).Trim() == serverName.Text.Trim())
+                {
+                    MessageBox.Show("Session Name is Already Used");
+                    return;
+                }
+            }
+            if (serverName.Text.IsWhiteSpace())
+            {
+                MessageBox.Show("Invalid Server Name");
+                return;
+            }
+            else if (language.SelectedItem == null || language.SelectedItem.ToString() == "")
+            {
+                MessageBox.Show("No language Selected");
+                return;
+            }
+            else if (serverPW.Text.IsWhiteSpace())
+            {
+                MessageBox.Show("Server Password is Required");
+                return;
+            }
+            else if (selectedTask == null)
+            {
+                selectedTask = new TaskModel();
+            }
+
+            selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
+            selectedTask.isTabLocked = tabNavigationLocked.Checked;
+            selectedTask._referenceFile = codeQualityChoices21.bestSourceCode;
+            Server server = new Server(serverName.Text.Trim(), serverPW.Text, selectedTask, language.SelectedItem.ToString(), userProfiles);
+
+            if (codeQualityChoices21.GetRatingFactors().ContainsKey(2) && selectedTask._testCases.Count > 0)
+            {
+                if (!ValidateCode(codeQualityChoices21.bestSourceCode, server.ProgrammingLanguage, selectedTask))
+                {
+                    MessageBox.Show("The code you provided as a reference for efficiency is not accurate.");
+                    return;
+                }
+            }
+            //to fit the mainserverpage to the page1
+            var page1 = SystemSingleton.Instance.page1;
+            page1.Controls.Clear();
+            page1.AutoScroll = true;
+
+            MainServerPage2 serverPage = new MainServerPage2(server);
+
+            serverPage.Dock = DockStyle.Fill;
+
+            page1.Controls.Add(serverPage);
         }
     }
 }

@@ -34,32 +34,39 @@
             // 
             // taskName
             // 
+            taskName.Anchor = AnchorStyles.Left;
             taskName.AutoSize = true;
-            taskName.Location = new Point(3, 11);
+            taskName.BackColor = Color.Transparent;
+            taskName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            taskName.ForeColor = Color.FromArgb(224, 224, 224);
+            taskName.Location = new Point(30, 11);
             taskName.Name = "taskName";
-            taskName.Size = new Size(49, 20);
+            taskName.Size = new Size(50, 20);
             taskName.TabIndex = 0;
             taskName.Text = "Name";
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button1.BackColor = Color.Transparent;
             button1.ForeColor = Color.Red;
-            button1.Location = new Point(176, 9);
+            button1.Location = new Point(164, 7);
             button1.Name = "button1";
             button1.Size = new Size(26, 29);
             button1.TabIndex = 1;
             button1.Text = "X";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // SelectedExercise
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(button1);
             Controls.Add(taskName);
             Name = "SelectedExercise";
-            Size = new Size(205, 41);
+            Size = new Size(201, 44);
             ResumeLayout(false);
             PerformLayout();
         }

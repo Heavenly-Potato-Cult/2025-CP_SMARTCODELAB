@@ -27,38 +27,87 @@ namespace SmartCodeLab
         public InstructorForm()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             NavigationMenu();
-            SessionNavigationMenu();
+            //SessionNavigationMenu();
             SystemSingleton.Instance.page1 = tabPage10;
             SystemSingleton.Instance.sessionLogsPage = tabPage8;
+            //this.Load += (sender, e) =>
+            //{
+            //    Task.Run(() =>
+            //    {
+            //        this.Invoke(new Action(() =>    
+            //        {
+            //            sessionsContainer.Controls.Clear();
+            //        }));
+            //        foreach (var item in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
+            //        {
+            //            try
+            //            {
+            //                using (FileStream sessionFile = File.OpenRead(item))
+            //                {
+            //                    ProgrammingSession session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
+            //                    if (session != null)
+            //                    {
+            //                        this.Invoke(new Action(() =>
+            //                        {
+            //                            sessionsContainer.Controls.Add(new SessionLogsDisplay(session));
+            //                        }));
+            //                    }
+            //                }
+
+            //            }
+            //            catch (ProtoBuf.ProtoException ex)
+            //            {
+            //                // Corrupted protobuf data (likely from non-truncating write). Move the file aside and continue.
+            //                Debug.WriteLine($"ProtoException while deserializing session file '{item}': {ex.Message}");
+            //                try
+            //                {
+            //                    var corruptPath = item + ".corrupt";
+            //                    if (File.Exists(corruptPath)) File.Delete(corruptPath);
+            //                    File.Move(item, corruptPath);
+            //                }
+            //                catch (Exception mex)
+            //                {
+            //                    Debug.WriteLine($"Failed to move corrupted session file '{item}': {mex.Message}");
+            //                }
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                Debug.WriteLine($"Error reading session file '{item}': {ex.Message}");
+            //            }
+            //        }
+
+            //    });
+            //};
+
+
             this.Load += (sender, e) =>
             {
+                // Start the heavy work on a background thread
                 Task.Run(() =>
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        sessionsContainer.Controls.Clear();
-                    }));
+                    // 1. Create a list to hold the DATA (not the controls yet)
+                    var sessionsData = new List<ProgrammingSession>();
+
+                    // 2. Read and Deserialize files (Heavy I/O work)
                     foreach (var item in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
                     {
                         try
                         {
                             using (FileStream sessionFile = File.OpenRead(item))
                             {
-                                ProgrammingSession session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
+                                var session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
+
                                 if (session != null)
                                 {
-                                    this.Invoke(new Action(() =>
-                                    {
-                                        sessionsContainer.Controls.Add(new SessionLogsDisplay(session));
-                                    }));
+                                    sessionsData.Add(session);
                                 }
                             }
-
                         }
                         catch (ProtoBuf.ProtoException ex)
                         {
-                            // Corrupted protobuf data (likely from non-truncating write). Move the file aside and continue.
+                            // Handle Corrupted Data
                             Debug.WriteLine($"ProtoException while deserializing session file '{item}': {ex.Message}");
                             try
                             {
@@ -77,6 +126,31 @@ namespace SmartCodeLab
                         }
                     }
 
+                    // 3. Update the UI exactly ONCE
+                    this.Invoke(new Action(() =>
+                    {
+                        // Freeze the layout engine to prevent flickering
+                        sessionsContainer.SuspendLayout();
+
+                        try
+                        {
+                            // Clear existing items
+                            sessionsContainer.Controls.Clear();
+
+                            // Convert the Data List into a Control List
+                            var controlsToAdd = sessionsData
+                                .Select(session => new SessionLogsDisplay(session))
+                                .ToArray();
+
+                            // Add all controls in one go
+                            sessionsContainer.Controls.AddRange(controlsToAdd);
+                        }
+                        finally
+                        {
+                            // Unfreeze and force an immediate repaint
+                            sessionsContainer.ResumeLayout(true);
+                        }
+                    }));
                 });
             };
         }
@@ -106,7 +180,17 @@ namespace SmartCodeLab
                 {
                     if (tabcontrol_MainNav != null)
                     {
-                        tabcontrol_MainNav.SelectedIndex = tabIndex;
+                        tabcontrol_MainNav.SuspendLayout();
+
+                        try
+                        {
+                            tabcontrol_MainNav.SelectedIndex = tabIndex;
+                        }
+                        finally
+                        {
+
+                            tabcontrol_MainNav.ResumeLayout(true);
+                        }
                     }
                 };
 
@@ -120,48 +204,48 @@ namespace SmartCodeLab
             }
         }
 
-        private void SessionNavigationMenu()
-        {
+        //private void SessionNavigationMenu()
+        //{
 
-            if (panelNavHost2 == null)
-            {
-                return;
-            }
+        //    if (panelNavHost2 == null)
+        //    {
+        //        return;
+        //    }
 
-            // 2. Calculate and set the panel's new, scaled height
-            float dpiScale;
-            using (Graphics g = this.CreateGraphics())
-            {
-                // Gets the system scale (e.g., 1.25 for 125%)
-                dpiScale = g.DpiX / 96f;
-            }
+        //    // 2. Calculate and set the panel's new, scaled height
+        //    float dpiScale;
+        //    using (Graphics g = this.CreateGraphics())
+        //    {
+        //        // Gets the system scale (e.g., 1.25 for 125%)
+        //        dpiScale = g.DpiX / 96f;
+        //    }
 
-            // Gets your designer height (e.g., 46) and sets the new runtime height (e.g., 58)
-            panelNavHost2.Height = (int)(panelNavHost2.Height * dpiScale);
+        //    // Gets your designer height (e.g., 46) and sets the new runtime height (e.g., 58)
+        //    panelNavHost2.Height = (int)(panelNavHost2.Height * dpiScale);
 
-            var navMenu = new SessionNavbar();
+        //    var navMenu = new SessionNavbar();
 
-            navMenu.OnNavigationClicked = (tabIndex) =>
-            {
-                if (tabcontrol_session != null)
-                {
-                    tabcontrol_session.SelectedIndex = tabIndex;
-                }
-            };
+        //    navMenu.OnNavigationClicked = (tabIndex) =>
+        //    {
+        //        if (tabcontrol_session != null)
+        //        {
+        //            tabcontrol_session.SelectedIndex = tabIndex;
+        //        }
+        //    };
 
-            var host = new ElementHost
-            {
-                Dock = DockStyle.Fill,
-                Child = navMenu
-            };
+        //    var host = new ElementHost
+        //    {
+        //        Dock = DockStyle.Fill,
+        //        Child = navMenu
+        //    };
 
 
-            if (panelNavHost2 != null)
-            {
-                panelNavHost2.Controls.Add(host);
-            }
+        //    if (panelNavHost2 != null)
+        //    {
+        //        panelNavHost2.Controls.Add(host);
+        //    }
 
-        }
+        //}
 
         private void tabPage8_Enter(object sender, EventArgs e)
         {
@@ -196,6 +280,11 @@ namespace SmartCodeLab
         private void InstructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SystemSingleton.Instance.saveSession?.Invoke();
+        }
+
+        private void tempSessionManagement21_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

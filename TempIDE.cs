@@ -85,12 +85,24 @@ namespace SmartCodeLab
         public TempIDE()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            SetDoubleBuffered(tabControl_RightSide);
             InitializeWPFTree();
             AddLeaderboardIcon(1, "Alice", 100);
             AddLeaderboardIcon(2, "Bob", 50);
             AddLeaderboardIcon(3, "Charles", 30);
             AddLeaderboardIcon(6, "David", 79);
 
+        }
+
+        public static void SetDoubleBuffered(System.Windows.Forms.Control control)
+        {
+            // set instance non-public property with name "DoubleBuffered" to true
+            typeof(System.Windows.Forms.Control).InvokeMember("DoubleBuffered",
+                System.Reflection.BindingFlags.SetProperty |
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.NonPublic,
+                null, control, new object[] { true });
         }
 
         private void AddLeaderboardIcon(int ranking, string studentName, int score)
@@ -124,6 +136,8 @@ namespace SmartCodeLab
         public TempIDE(string userName, TaskModel task, StudentCodingProgress progress, NetworkStream client)
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            SetDoubleBuffered(tabControl_RightSide);
             InitializeWPFTree();
             studentIdentity.Text = userName;
             if (task.isTabLocked)
@@ -290,31 +304,65 @@ namespace SmartCodeLab
                             tabControl_RightSide.SelectedTab = MessagesTab;
                             break;
 
+                        //case MessageType.LEADERBOARDS_UPDATE:
+
+                        //    int myVersion = ++leaderboardUpdateVersion;  // New update becomes the latest
+
+                        //    // Run asynchronously so UI thread isn't blocked
+                        //    Task.Run(() =>
+                        //    {
+                        //        // If another update came in, cancel this one
+                        //        if (myVersion != leaderboardUpdateVersion)
+                        //            return;
+
+                        //        // Now invoke on UI thread — but also check version again
+                        //        this.BeginInvoke(new Action(() =>
+                        //        {
+                        //            if (myVersion != leaderboardUpdateVersion)
+                        //                return;  // A newer update arrived while queued
+
+                        //            panel_leaderboards.Controls.Clear();
+                        //            List<SubmittedCode> leaderBoards = serverMsg.leaderboards;
+
+                        //            leaderBoards.ForEach(sub =>
+                        //                AddLeaderboardIcon(sub.placement, sub.username, sub.score));
+                        //        }));
+                        //    });
+                        //    break;
+
                         case MessageType.LEADERBOARDS_UPDATE:
+                            int myVersion = ++leaderboardUpdateVersion;
 
-                            int myVersion = ++leaderboardUpdateVersion;  // New update becomes the latest
-
-                            // Run asynchronously so UI thread isn't blocked
                             Task.Run(() =>
                             {
-                                // If another update came in, cancel this one
-                                if (myVersion != leaderboardUpdateVersion)
-                                    return;
+                                if (myVersion != leaderboardUpdateVersion) return;
 
-                                // Now invoke on UI thread — but also check version again
+                                // Use Invoke (Synchronous) or BeginInvoke to update UI
                                 this.BeginInvoke(new Action(() =>
                                 {
-                                    if (myVersion != leaderboardUpdateVersion)
-                                        return;  // A newer update arrived while queued
+                                    if (myVersion != leaderboardUpdateVersion) return;
 
-                                    panel_leaderboards.Controls.Clear();
-                                    List<SubmittedCode> leaderBoards = serverMsg.leaderboards;
+                                    // 1. FREEZE the panel specifically
+                                    panel_leaderboards.SuspendLayout();
 
-                                    leaderBoards.ForEach(sub =>
-                                        AddLeaderboardIcon(sub.placement, sub.username, sub.score));
+                                    try
+                                    {
+                                        panel_leaderboards.Controls.Clear();
+                                        List<SubmittedCode> leaderBoards = serverMsg.leaderboards;
+
+                                        // 2. Add all items
+                                        leaderBoards.ForEach(sub =>
+                                            AddLeaderboardIcon(sub.placement, sub.username, sub.score));
+                                    }
+                                    finally
+                                    {
+                                        // 3. UNFREEZE and paint once
+                                        panel_leaderboards.ResumeLayout(true);
+                                    }
                                 }));
                             });
                             break;
+
                         default:
                             break;
                     }
@@ -353,11 +401,14 @@ namespace SmartCodeLab
             if (isResizingTabs) { return; } // Prevent recursion
 
             if (tabControl_RightSide.TabPages.Count == 0) { return; }
+            if (tabControl_RightSide.ClientRectangle.Width <= 0) return;    
 
             int totalWidth = tabControl_RightSide.ClientSize.Width;
             if (totalWidth <= 0) { return; }
 
             isResizingTabs = true;
+
+            tabControl_RightSide.SuspendLayout();
 
             try
             {
@@ -370,6 +421,7 @@ namespace SmartCodeLab
             }
             finally
             {
+                tabControl_RightSide.ResumeLayout();
                 isResizingTabs = false;
             }
         }

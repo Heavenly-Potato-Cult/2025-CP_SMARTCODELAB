@@ -30,7 +30,6 @@
         {
             splitContainer1 = new SplitContainer();
             splitContainer2 = new SplitContainer();
-            codeEditorControl1 = new SmartCodeLab.CustomComponents.CodeEditorControl();
             flowLayoutPanel1 = new FlowLayoutPanel();
             ExpansionPanel = new SplitContainer();
             button3 = new Button();
@@ -47,7 +46,6 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
-            splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -84,7 +82,6 @@
             // splitContainer2.Panel1
             // 
             splitContainer2.Panel1.BackColor = SystemColors.ActiveCaption;
-            splitContainer2.Panel1.Controls.Add(codeEditorControl1);
             // 
             // splitContainer2.Panel2
             // 
@@ -100,14 +97,6 @@
             splitContainer2.SplitterDistance = 505;
             splitContainer2.SplitterWidth = 5;
             splitContainer2.TabIndex = 0;
-            // 
-            // codeEditorControl1
-            // 
-            codeEditorControl1.Dock = DockStyle.Fill;
-            codeEditorControl1.Location = new Point(0, 0);
-            codeEditorControl1.Name = "codeEditorControl1";
-            codeEditorControl1.Size = new Size(835, 505);
-            codeEditorControl1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
@@ -256,7 +245,6 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            splitContainer2.Panel1.ResumeLayout(false);
             splitContainer2.Panel2.ResumeLayout(false);
             splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();

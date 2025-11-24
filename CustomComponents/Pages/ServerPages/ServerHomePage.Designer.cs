@@ -397,6 +397,7 @@
             exit.TabIndex = 28;
             exit.Text = "Exit";
             exit.TextAlign = ContentAlignment.MiddleCenter;
+            exit.Click += exit_Click;
             // 
             // pictureBox13
             // 
