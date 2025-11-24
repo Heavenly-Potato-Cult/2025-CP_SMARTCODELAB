@@ -48,6 +48,7 @@
             steamLabel6 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamCard2 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
             steamCard1 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
+            panel5 = new Panel();
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             serverName = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             language = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
@@ -67,6 +68,7 @@
             steamCard3.SuspendLayout();
             steamCard2.SuspendLayout();
             steamCard1.SuspendLayout();
+            panel5.SuspendLayout();
             panel4.SuspendLayout();
             steamGradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -115,10 +117,10 @@
             tabNavigationLocked.AutoSize = true;
             tabNavigationLocked.BackColor = Color.Transparent;
             tabNavigationLocked.Font = new Font("Segoe UI", 10F);
-            tabNavigationLocked.Location = new Point(485, 35);
+            tabNavigationLocked.Location = new Point(342, 35);
             tabNavigationLocked.Name = "tabNavigationLocked";
             tabNavigationLocked.Padding = new Padding(3);
-            tabNavigationLocked.Size = new Size(24, 24);
+            tabNavigationLocked.Size = new Size(167, 33);
             tabNavigationLocked.TabIndex = 60;
             tabNavigationLocked.Text = "steamCheckBox1";
             tabNavigationLocked.UseVisualStyleBackColor = false;
@@ -155,12 +157,13 @@
             // 
             // taskView
             // 
-            taskView.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             taskView.BorderStyle = BorderStyle.FixedSingle;
-            taskView.Location = new Point(56, 404);
+            taskView.Dock = DockStyle.Left;
+            taskView.Location = new Point(0, 0);
             taskView.Margin = new Padding(2);
+            taskView.MinimumSize = new Size(100, 42);
             taskView.Name = "taskView";
-            taskView.Size = new Size(308, 42);
+            taskView.Size = new Size(100, 42);
             taskView.TabIndex = 37;
             // 
             // customCard1
@@ -198,20 +201,6 @@
             smartButton3.TextColor = Color.FromArgb(199, 213, 224);
             smartButton3.UseVisualStyleBackColor = false;
             smartButton3.Click += smartButton3_Click;
-            //smartButton2.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            //smartButton2.BackColor = Color.MediumSlateBlue;
-            //smartButton2.BorderRadius = 12;
-            //smartButton2.FlatAppearance.BorderSize = 0;
-            //smartButton2.FlatStyle = FlatStyle.Flat;
-            //smartButton2.ForeColor = Color.White;
-            //smartButton2.Location = new Point(439, 8);
-            //smartButton2.Margin = new Padding(2, 4, 2, 4);
-            //smartButton2.Name = "smartButton2";
-            //smartButton2.Size = new Size(104, 48);
-            //smartButton2.TabIndex = 33;
-            //smartButton2.Text = "View";
-            //smartButton2.UseVisualStyleBackColor = false;
-            //smartButton2.Click += smartButton2_Click;
             // 
             // studentsCount
             // 
@@ -363,7 +352,7 @@
             // 
             steamCard1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             steamCard1.BackColor = Color.Transparent;
-            steamCard1.Controls.Add(smartButton4);
+            steamCard1.Controls.Add(panel5);
             steamCard1.Controls.Add(serverName);
             steamCard1.Controls.Add(language);
             steamCard1.Controls.Add(steamLabel5);
@@ -371,7 +360,6 @@
             steamCard1.Controls.Add(steamLabel2);
             steamCard1.Controls.Add(panel4);
             steamCard1.Controls.Add(steamLabel1);
-            steamCard1.Controls.Add(taskView);
             steamCard1.Location = new Point(23, 3);
             steamCard1.Margin = new Padding(3, 3, 20, 3);
             steamCard1.MinimumSize = new Size(416, 511);
@@ -380,20 +368,31 @@
             steamCard1.Size = new Size(577, 511);
             steamCard1.TabIndex = 50;
             // 
+            // panel5
+            // 
+            panel5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel5.Controls.Add(smartButton4);
+            panel5.Controls.Add(taskView);
+            panel5.Location = new Point(56, 405);
+            panel5.MinimumSize = new Size(266, 42);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(266, 42);
+            panel5.TabIndex = 47;
+            // 
             // smartButton4
             // 
-            smartButton4.Anchor = AnchorStyles.Right;
             smartButton4.BackColor = Color.FromArgb(42, 71, 94);
             smartButton4.BackgroundColor = Color.FromArgb(42, 71, 94);
             smartButton4.BorderRadius = 1;
+            smartButton4.Dock = DockStyle.Right;
             smartButton4.FlatAppearance.BorderSize = 0;
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton4.ForeColor = Color.FromArgb(199, 213, 224);
-            smartButton4.Location = new Point(368, 402);
+            smartButton4.Location = new Point(177, 0);
             smartButton4.Margin = new Padding(2, 4, 2, 4);
             smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(89, 44);
+            smartButton4.Size = new Size(89, 42);
             smartButton4.TabIndex = 46;
             smartButton4.Text = "SELECT";
             smartButton4.TextColor = Color.FromArgb(199, 213, 224);
@@ -565,6 +564,7 @@
             steamCard2.ResumeLayout(false);
             steamCard1.ResumeLayout(false);
             steamCard1.PerformLayout();
+            panel5.ResumeLayout(false);
             panel4.ResumeLayout(false);
             steamGradientPanel1.ResumeLayout(false);
             ResumeLayout(false);
@@ -608,5 +608,6 @@
         private GeneralComponents.SmartButton smartButton3;
         private SteamThings.SteamPrimaryButton steamPrimaryButton1;
         private SteamThings.SteamCheckBox tabNavigationLocked;
+        private Panel panel5;
     }
 }

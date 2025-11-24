@@ -11,33 +11,34 @@ namespace SmartCodeLab.CustomComponents.SteamThings
     {
         [Category("Steam Appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Color CheckedColor { get; set; } = SteamColors.Accent; // Green
+        public Color CheckedColor { get; set; } = SteamColors.Accent;
+
         [Category("Steam Appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Color UncheckedColor { get; set; } = Color.FromArgb(100, 110, 120); // Grey Border
+        public Color UncheckedColor { get; set; } = Color.FromArgb(100, 110, 120);
+
         [Category("Steam Appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Color BgColor { get; set; } = SteamColors.InputBg; // Dark Background
+        public Color BgColor { get; set; } = SteamColors.InputBg;
 
         public SteamCheckBox()
         {
             this.Cursor = Cursors.Hand;
-            this.Text = ""; // Clear text so standard layout doesn't freak out
-
-            // 1. Fix Size: Make it a small, perfect square
+            this.Text = "";
             this.AutoSize = false;
             this.Size = new Size(24, 24);
 
-            // 2. Transparent Support
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
+            // FIX 1: Add ResizeRedraw to prevent "ghosting" artifacts when window resizes
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
+
             this.BackColor = Color.Transparent;
         }
 
-        // Force the layout engine to treat this as a small square
         public override Size GetPreferredSize(Size proposedSize)
         {
             return new Size(24, 24);
@@ -46,32 +47,41 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         protected override void OnPaint(PaintEventArgs e)
         {
             Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // 1. Calculate Box Position (Centered)
-            int boxSize = 16;
+            // 1. Calculate Box Position
+            int boxSize = 14; // Slightly smaller to ensure border fits
             int offset = (this.Height - boxSize) / 2;
-
-            // Ensure box creates a crisp pixel line
             Rectangle boxRect = new Rectangle(offset, offset, boxSize, boxSize);
 
-            // 2. Draw Box Background & Border
+            // FIX 2: Turn OFF AntiAlias for the square box
+            // This ensures the border is sharp (pixel-perfect) and corners don't look broken
+            g.SmoothingMode = SmoothingMode.None;
+
             using (SolidBrush bgBrush = new SolidBrush(BgColor))
-            using (Pen borderPen = new Pen(UncheckedColor, 1.5f))
+            using (Pen borderPen = new Pen(UncheckedColor, 1)) // Use integer width (1) for crisp lines
             {
                 g.FillRectangle(bgBrush, boxRect);
-                g.DrawRectangle(borderPen, boxRect);
+
+                // Adjust rect slightly for the border so it sits *inside* the pixels
+                // otherwise it spills out and looks clipped
+                Rectangle borderRect = new Rectangle(offset, offset, boxSize - 1, boxSize - 1);
+                g.DrawRectangle(borderPen, borderRect);
             }
 
-            // 3. Draw Tick (Only if checked)
+            // 3. Draw Tick
             if (this.Checked)
             {
-                // Vector coordinates for a nice checkmark
+                // FIX 3: Turn ON AntiAlias ONLY for the checkmark
+                // This makes the diagonal lines look smooth, not jagged
+                g.SmoothingMode = SmoothingMode.HighQuality;
+                g.PixelOffsetMode = PixelOffsetMode.HighQuality; // Fixes sub-pixel rendering
+
+                // Adjusted coordinates to center the checkmark perfectly
                 PointF[] points = new PointF[]
                 {
-                    new PointF(boxRect.X + 3, boxRect.Y + 8),  // Start (Left)
-                    new PointF(boxRect.X + 7, boxRect.Y + 12), // Middle (Bottom)
-                    new PointF(boxRect.X + 13, boxRect.Y + 3)  // End (Top Right)
+                    new PointF(offset + 3, offset + 7),   // Start
+                    new PointF(offset + 6, offset + 10),  // Middle
+                    new PointF(offset + 11, offset + 3)   // End
                 };
 
                 using (Pen checkPen = new Pen(CheckedColor, 2.0f))
@@ -79,8 +89,6 @@ namespace SmartCodeLab.CustomComponents.SteamThings
                     g.DrawLines(checkPen, points);
                 }
             }
-
-            // NOTE: We intentionally DO NOT draw text here.
         }
     }
 }

@@ -30,7 +30,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             InitializeComponent();
             userProfiles = new Dictionary<string, UserProfile>();
-            
+            SetupDynamicLayout();
+
         }
         protected override CreateParams CreateParams
         {
@@ -122,11 +123,51 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Action<TaskModel> exerciseSelectedCallback => (task) =>
         {
             selectedTask = task;
+
             if (selectedExercise != null)
+            {
                 taskView.Controls.Remove(selectedExercise);
-            selectedExercise = new SelectedExercise(task, removeSelectedTask);
+                selectedExercise.Dispose(); 
+            }
+
+            selectedExercise = new SelectedExercise(task, removeSelectedTask)
+            {
+                
+                Dock = DockStyle.None,
+                Location = new Point(0, 0),
+
+               
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+            };
+
             taskView.Controls.Add(selectedExercise);
+
+            
+            taskView.PerformLayout();
+            panel5.PerformLayout();
         };
+
+        private void SetupDynamicLayout()
+        {
+            
+            panel5.AutoSize = true;
+            panel5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+           
+
+           
+            taskView.AutoSize = true;
+            taskView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            taskView.Dock = DockStyle.Left;
+            taskView.Padding = new Padding(0, 0, 10, 0);
+
+            
+            smartButton4.Dock = DockStyle.Left;
+
+         
+            taskView.SendToBack();
+            smartButton4.BringToFront();
+        }
 
         private Action removeSelectedTask => () =>
         {
