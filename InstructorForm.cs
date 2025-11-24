@@ -27,38 +27,87 @@ namespace SmartCodeLab
         public InstructorForm()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             NavigationMenu();
-            SessionNavigationMenu();
+            //SessionNavigationMenu();
             SystemSingleton.Instance.page1 = tabPage10;
             SystemSingleton.Instance.sessionLogsPage = tabPage8;
+            //this.Load += (sender, e) =>
+            //{
+            //    Task.Run(() =>
+            //    {
+            //        this.Invoke(new Action(() =>    
+            //        {
+            //            sessionsContainer.Controls.Clear();
+            //        }));
+            //        foreach (var item in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
+            //        {
+            //            try
+            //            {
+            //                using (FileStream sessionFile = File.OpenRead(item))
+            //                {
+            //                    ProgrammingSession session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
+            //                    if (session != null)
+            //                    {
+            //                        this.Invoke(new Action(() =>
+            //                        {
+            //                            sessionsContainer.Controls.Add(new SessionLogsDisplay(session));
+            //                        }));
+            //                    }
+            //                }
+
+            //            }
+            //            catch (ProtoBuf.ProtoException ex)
+            //            {
+            //                // Corrupted protobuf data (likely from non-truncating write). Move the file aside and continue.
+            //                Debug.WriteLine($"ProtoException while deserializing session file '{item}': {ex.Message}");
+            //                try
+            //                {
+            //                    var corruptPath = item + ".corrupt";
+            //                    if (File.Exists(corruptPath)) File.Delete(corruptPath);
+            //                    File.Move(item, corruptPath);
+            //                }
+            //                catch (Exception mex)
+            //                {
+            //                    Debug.WriteLine($"Failed to move corrupted session file '{item}': {mex.Message}");
+            //                }
+            //            }
+            //            catch (Exception ex)
+            //            {
+            //                Debug.WriteLine($"Error reading session file '{item}': {ex.Message}");
+            //            }
+            //        }
+
+            //    });
+            //};
+
+
             this.Load += (sender, e) =>
             {
+                // Start the heavy work on a background thread
                 Task.Run(() =>
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        sessionsContainer.Controls.Clear();
-                    }));
+                    // 1. Create a list to hold the DATA (not the controls yet)
+                    var sessionsData = new List<ProgrammingSession>();
+
+                    // 2. Read and Deserialize files (Heavy I/O work)
                     foreach (var item in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
                     {
                         try
                         {
                             using (FileStream sessionFile = File.OpenRead(item))
                             {
-                                ProgrammingSession session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
+                                var session = Serializer.DeserializeWithLengthPrefix<ProgrammingSession>(sessionFile, PrefixStyle.Base128);
+
                                 if (session != null)
                                 {
-                                    this.Invoke(new Action(() =>
-                                    {
-                                        sessionsContainer.Controls.Add(new SessionLogsDisplay(session));
-                                    }));
+                                    sessionsData.Add(session);
                                 }
                             }
-
                         }
                         catch (ProtoBuf.ProtoException ex)
                         {
-                            // Corrupted protobuf data (likely from non-truncating write). Move the file aside and continue.
+                            // Handle Corrupted Data
                             Debug.WriteLine($"ProtoException while deserializing session file '{item}': {ex.Message}");
                             try
                             {
@@ -77,6 +126,31 @@ namespace SmartCodeLab
                         }
                     }
 
+                    // 3. Update the UI exactly ONCE
+                    this.Invoke(new Action(() =>
+                    {
+                        // Freeze the layout engine to prevent flickering
+                        sessionsContainer.SuspendLayout();
+
+                        try
+                        {
+                            // Clear existing items
+                            sessionsContainer.Controls.Clear();
+
+                            // Convert the Data List into a Control List
+                            var controlsToAdd = sessionsData
+                                .Select(session => new SessionLogsDisplay(session))
+                                .ToArray();
+
+                            // Add all controls in one go
+                            sessionsContainer.Controls.AddRange(controlsToAdd);
+                        }
+                        finally
+                        {
+                            // Unfreeze and force an immediate repaint
+                            sessionsContainer.ResumeLayout(true);
+                        }
+                    }));
                 });
             };
         }
@@ -114,7 +188,7 @@ namespace SmartCodeLab
                         }
                         finally
                         {
-                            
+
                             tabcontrol_MainNav.ResumeLayout(true);
                         }
                     }
@@ -206,6 +280,11 @@ namespace SmartCodeLab
         private void InstructorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SystemSingleton.Instance.saveSession?.Invoke();
+        }
+
+        private void tempSessionManagement21_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -25,40 +25,104 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             Load += (sender, e) => PopulateExerciseList();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED
+                return cp;
+            }
+        }
+
         public SelectExercise(Action<TaskModel> onExerciseSelected)
         {
             InitializeComponent();
             this.onExerciseSelected = onExerciseSelected;
+            Load += (sender, e) => PopulateExerciseList();
+
         }
 
         private void PopulateExerciseList()
         {
+            //refreshTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+
+            //refreshTimer = new System.Threading.Timer(_ =>
+            //{
+            //    Task.Run(() =>
+            //    {
+            //        string searched = searchBox.Texts.ToLower();
+            //        var exerciseFiles = Directory.GetFiles(exercisesFolder, "*.task").
+            //            Where(file => Path.GetFileName(file).ToLower().Contains(searched)).
+            //            ToList();
+            //        try
+            //        {
+            //            this.Invoke(new Action(() => flowLayoutPanel1.Controls.Clear()));
+
+            //            foreach (var file in exerciseFiles)
+            //            {
+            //                using (var fileOpened = File.OpenRead(file))
+            //                {
+            //                    var exercise = ProtoBuf.Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, ProtoBuf.PrefixStyle.Base128);
+            //                    exercise.filePath = file;
+            //                    this.Invoke(new Action(() =>
+            //                    {
+            //                        flowLayoutPanel1.Controls.Add(new ExerciseSelection(exercise, exerciseSelected));
+            //                    }));
+            //                }
+            //            }
+            //        }
+            //        catch (InvalidOperationException) { }
+            //    });
+            //}, null, 300, Timeout.Infinite);
+
             refreshTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
             refreshTimer = new System.Threading.Timer(_ =>
             {
                 Task.Run(() =>
                 {
-                    string searched = searchBox.Texts.ToLower();
-                    var exerciseFiles = Directory.GetFiles(exercisesFolder, "*.task").
-                        Where(file => Path.GetFileName(file).ToLower().Contains(searched)).
-                        ToList();
-                    try
-                    {
-                        this.Invoke(new Action(() => flowLayoutPanel1.Controls.Clear()));
+                    string searched = "";
 
-                        foreach (var file in exerciseFiles)
+                    // Safe access to UI control from background thread
+                    if (IsHandleCreated)
+                    {
+                        this.Invoke(new Action(() => searched = searchBox.Texts.ToLower()));
+                    }
+
+                    // 1. Gather Data (Background)
+                    var exerciseFiles = Directory.GetFiles(exercisesFolder, "*.task")
+                        .Where(file => Path.GetFileName(file).ToLower().Contains(searched))
+                        .ToList();
+
+                    var controlsToAdd = new List<Control>();
+
+                    foreach (var file in exerciseFiles)
+                    {
+                        try
                         {
                             using (var fileOpened = File.OpenRead(file))
                             {
                                 var exercise = ProtoBuf.Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, ProtoBuf.PrefixStyle.Base128);
                                 exercise.filePath = file;
-                                this.Invoke(new Action(() =>
-                                {
-                                    flowLayoutPanel1.Controls.Add(new ExerciseSelection(exercise, exerciseSelected));
-                                }));
+
+                                
+                                controlsToAdd.Add(new ExerciseSelection(exercise, exerciseSelected));
                             }
                         }
+                        catch {  }
+                    }
+
+                    //  Update UI (Main Thread - Batch Update)
+                    try
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            flowLayoutPanel1.SuspendLayout(); // Freeze List
+                            flowLayoutPanel1.Controls.Clear();
+                            flowLayoutPanel1.Controls.AddRange(controlsToAdd.ToArray()); // Add All
+                            flowLayoutPanel1.ResumeLayout(true); // Unfreeze List
+                        }));
                     }
                     catch (InvalidOperationException) { }
                 });
@@ -73,7 +137,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
         private Action<TaskModel> exerciseSelected => (task) =>
         {
             onExerciseSelected?.Invoke(task);
-            Dispose();
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         };
     }
 }

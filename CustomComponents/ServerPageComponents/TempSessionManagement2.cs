@@ -200,7 +200,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             using (var selectExercise = new SelectExercise(exerciseSelectedCallback))
             {
-                selectExercise.ShowDialog();
+                this.SuspendLayout();
+                try
+                {
+                    selectExercise.ShowDialog();
+
+                }
+                finally
+                {
+                    this.ResumeLayout();
+                }
             }
         }
 
