@@ -61,6 +61,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             }
             frm.Close();
             frm = null;
+            count.Text = expectedUsers.Count.ToString();
         }
 
         private async Task<Dictionary<string, UserProfile>?> GetStudentProfiles(string filepath) //let's assume that the file is csv
@@ -138,16 +139,11 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                     await Task.Run(() => 
                     {
 
-                        if (studentRecords == null) 
-                        {
+                        if (studentRecords == null)
                             MessageBox.Show("File is missing the required columns");
-                        }
-                        else if (studentRecords.Count == 0) 
-                        {
+                        else if (studentRecords.Count == 0)
                             MessageBox.Show("No student record found");
-                        }
                         else
-                        {
                             foreach (var item in studentRecords)
                             {
                                 if (!expectedUsers.ContainsKey(item.Key) && !item.Key.IsWhiteSpace())
@@ -160,9 +156,9 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                                     }));
                                 }
                             }
-                        }
                     } );
                 }
+                count.Text = expectedUsers.Count.ToString();
             }
         }
     }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.Models;
+using SmartCodeLab.Services;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents
 {
@@ -22,14 +23,27 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
         }
 
         private TaskModel _task;
-        public ExerciseCard(TaskModel task)
+        Func<List<string>> existingSubjects;
+        public ExerciseCard(TaskModel task, Action<TaskModel> taskRemover, Func<List<string>> existingSubjects)
         {
             InitializeComponent();
+            this.existingSubjects = existingSubjects;
             lbl_ExerciseTitle.Text = task._taskName;
             subject.Text = task.subject;
             dateModified.Text = task.lastModified.ToString("MMM dd, yyyy hh:mm tt");
             testCounts.Text = task._testCases?.Count.ToString() ?? "0";
             _task = task;
+
+            smartButton9.Click += (s, e) =>
+            {
+                if (UIServices.SelectYesNo("Are you sure you want to delete this Task?"))
+                {
+                    File.Delete(_task.filePath);
+                    UIServices.OKDialogSucess("Task deleted successfully", "Deleted");
+                    taskRemover(task);
+                    Dispose();
+                }
+            };
         }
 
         private string
@@ -40,7 +54,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
 
         private void smartButton7_Click(object sender, EventArgs e)
         {
-            using (var exerciseForm = new CustomDialogs.AddNewExercise(_task))
+            using (var exerciseForm = new CustomDialogs.AddNewExercise(_task, existingSubjects.Invoke()))
             {
                 var dialogResult = exerciseForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)
@@ -54,11 +68,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             }
         }
 
-        private void smartButton9_Click(object sender, EventArgs e)
-        {
-            File.Delete(_task.filePath);
-            Dispose();
-        }
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]

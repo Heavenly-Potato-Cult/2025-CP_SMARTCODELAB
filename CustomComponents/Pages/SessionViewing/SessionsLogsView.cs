@@ -31,5 +31,14 @@ namespace SmartCodeLab.CustomComponents.Pages
             tabPage2.Controls.Add(new TempServerPage(session.userProgress, withProgressStudents, session.server.ServerTask.ratingFactors));
             tabPage3.Controls.Add(new ProgressSubmissionPage(session.codeSubmission));
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 3)
+            {
+                SystemSingleton.Instance.sessionLogsPage.Controls.Clear();
+                SystemSingleton.Instance.sessionLogsPage.Controls.Add(new SessionLogsPage());
+            }
+        }
     }
 }

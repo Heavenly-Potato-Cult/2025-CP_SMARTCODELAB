@@ -31,7 +31,6 @@ namespace SmartCodeLab
         /// </summary>
         private void InitializeComponent()
         {
-
             panelNavHost = new Panel();
             panelNavHost2 = new Panel();
             tabcontrol_session = new SmartCodeLab.CustomComponents.GeneralComponents.SmoothTabControl();
@@ -53,10 +52,6 @@ namespace SmartCodeLab
             tabPage7 = new TabPage();
             tempExerciseManage1 = new TempExerciseManage();
             tabPage8 = new TabPage();
-            label3 = new Label();
-            sessionsContainer = new FlowLayoutPanel();
-            sessionLogsDisplay1 = new SessionLogsDisplay();
-            panel1 = new Panel();
             tabPage6 = new TabPage();
             tabcontrol_session.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -68,8 +63,6 @@ namespace SmartCodeLab
             tabcontrol_MainNav.SuspendLayout();
             tabPage10.SuspendLayout();
             tabPage7.SuspendLayout();
-            tabPage8.SuspendLayout();
-            sessionsContainer.SuspendLayout();
             tabPage6.SuspendLayout();
             SuspendLayout();
             // 
@@ -91,7 +84,7 @@ namespace SmartCodeLab
             panelNavHost2.Location = new Point(2, 2);
             panelNavHost2.Margin = new Padding(0);
             panelNavHost2.Name = "panelNavHost2";
-            panelNavHost2.Size = new Size(1912, 48);
+            panelNavHost2.Size = new Size(188, 48);
             panelNavHost2.TabIndex = 3;
             // 
             // tabcontrol_session
@@ -110,7 +103,7 @@ namespace SmartCodeLab
             tabcontrol_session.Multiline = true;
             tabcontrol_session.Name = "tabcontrol_session";
             tabcontrol_session.SelectedIndex = 0;
-            tabcontrol_session.Size = new Size(1912, 912);
+            tabcontrol_session.Size = new Size(188, 0);
             tabcontrol_session.TabIndex = 2;
             // 
             // tabPage1
@@ -121,7 +114,7 @@ namespace SmartCodeLab
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
-            tabPage1.Size = new Size(1904, 879);
+            tabPage1.Size = new Size(180, 0);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "tabPage1";
             // 
@@ -132,7 +125,7 @@ namespace SmartCodeLab
             serverHomePage1.Margin = new Padding(4, 2, 62, 2);
             serverHomePage1.Name = "serverHomePage1";
             serverHomePage1.Padding = new Padding(0, 0, 0, 38);
-            serverHomePage1.Size = new Size(1900, 875);
+            serverHomePage1.Size = new Size(176, 0);
             serverHomePage1.TabIndex = 0;
             // 
             // tabPage2
@@ -143,7 +136,7 @@ namespace SmartCodeLab
             tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(2);
-            tabPage2.Size = new Size(1904, 869);
+            tabPage2.Size = new Size(1904, 879);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             // 
@@ -155,7 +148,7 @@ namespace SmartCodeLab
             tempServerPage1.Location = new Point(2, 2);
             tempServerPage1.Margin = new Padding(2, 4, 2, 4);
             tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(1900, 865);
+            tempServerPage1.Size = new Size(1900, 875);
             tempServerPage1.TabIndex = 0;
             // 
             // tabPage3
@@ -165,7 +158,7 @@ namespace SmartCodeLab
             tabPage3.Location = new Point(4, 29);
             tabPage3.Margin = new Padding(2);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1904, 869);
+            tabPage3.Size = new Size(1904, 879);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             // 
@@ -185,7 +178,7 @@ namespace SmartCodeLab
             tabPage5.Location = new Point(4, 29);
             tabPage5.Margin = new Padding(2);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1904, 869);
+            tabPage5.Size = new Size(1904, 879);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
@@ -205,7 +198,7 @@ namespace SmartCodeLab
             tabPage4.Location = new Point(4, 29);
             tabPage4.Margin = new Padding(2);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1904, 869);
+            tabPage4.Size = new Size(1904, 879);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
@@ -225,7 +218,7 @@ namespace SmartCodeLab
             tabPage9.Location = new Point(4, 29);
             tabPage9.Margin = new Padding(2);
             tabPage9.Name = "tabPage9";
-            tabPage9.Size = new Size(1904, 869);
+            tabPage9.Size = new Size(1904, 879);
             tabPage9.TabIndex = 5;
             tabPage9.Text = "tabPage9";
             tabPage9.UseVisualStyleBackColor = true;
@@ -304,71 +297,24 @@ namespace SmartCodeLab
             // tabPage8
             // 
             tabPage8.BackColor = Color.White;
-            tabPage8.Controls.Add(label3);
-            tabPage8.Controls.Add(sessionsContainer);
-            tabPage8.Controls.Add(panel1);
-            tabPage8.Location = new Point(4, 54);
+            tabPage8.Location = new Point(4, 29);
             tabPage8.Margin = new Padding(2);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(192, 42);
+            tabPage8.Size = new Size(1916, 964);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "tabPage8";
             tabPage8.Enter += tabPage8_Enter;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(536, 51);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(182, 38);
-            label3.TabIndex = 17;
-            label3.Text = "Session Logs";
-            // 
-            // sessionsContainer
-            // 
-            sessionsContainer.AutoScroll = true;
-            sessionsContainer.Controls.Add(sessionLogsDisplay1);
-            sessionsContainer.FlowDirection = FlowDirection.TopDown;
-            sessionsContainer.Location = new Point(511, 140);
-            sessionsContainer.Margin = new Padding(4);
-            sessionsContainer.Name = "sessionsContainer";
-            sessionsContainer.Size = new Size(845, 766);
-            sessionsContainer.TabIndex = 16;
-            sessionsContainer.WrapContents = false;
-            // 
-            // sessionLogsDisplay1
-            // 
-            sessionLogsDisplay1.BackColor = Color.FromArgb(240, 247, 255);
-            sessionLogsDisplay1.BorderColor = Color.Gray;
-            sessionLogsDisplay1.BorderRadius = 20;
-            sessionLogsDisplay1.BorderSize = 0;
-            sessionLogsDisplay1.Location = new Point(4, 2);
-            sessionLogsDisplay1.Margin = new Padding(4, 2, 4, 2);
-            sessionLogsDisplay1.Name = "sessionLogsDisplay1";
-            sessionLogsDisplay1.Size = new Size(825, 80);
-            sessionLogsDisplay1.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            panel1.Location = new Point(489, 128);
-            panel1.Margin = new Padding(4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(885, 799);
-            panel1.TabIndex = 18;
             // 
             // tabPage6
             // 
             tabPage6.BackColor = SystemColors.Control;
             tabPage6.Controls.Add(tabcontrol_session);
             tabPage6.Controls.Add(panelNavHost2);
-            tabPage6.Location = new Point(4, 29);
+            tabPage6.Location = new Point(4, 54);
             tabPage6.Margin = new Padding(2);
             tabPage6.Name = "tabPage6";
             tabPage6.Padding = new Padding(2);
-            tabPage6.Size = new Size(1916, 964);
+            tabPage6.Size = new Size(192, 42);
             tabPage6.TabIndex = 0;
             tabPage6.Text = "tabPage6";
             // 
@@ -397,9 +343,6 @@ namespace SmartCodeLab
             tabcontrol_MainNav.ResumeLayout(false);
             tabPage10.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
-            tabPage8.ResumeLayout(false);
-            tabPage8.PerformLayout();
-            sessionsContainer.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -429,9 +372,5 @@ namespace SmartCodeLab
         private CustomComponents.Pages.ServerPages.ProgressSubmissionPage progressSubmissionPage1;
         private TabPage tabPage10;
         private CustomComponents.ServerPageComponents.TempSessionManagement2 tempSessionManagement21;
-        private Label label3;
-        private FlowLayoutPanel sessionsContainer;
-        private CustomComponents.ServerPageComponents.SessionLogsDisplay sessionLogsDisplay1;
-        private Panel panel1;
     }
 }

@@ -38,7 +38,7 @@ namespace SmartCodeLab
         {
             if (!FirewallRuleExists("Temp_Port") || !FirewallRuleExists("Temporary_Port_Allow"))
             {
-                OpenNetshAsAdmin($"/c {SystemConfigurations.OPEN_FIREWALL_PORTS_BAT}");
+                OpenNetshAsAdmin($"/c \"{SystemConfigurations.OPEN_FIREWALL_PORTS_BAT}\"");
             }
             // Clean up on application exit
             Application.ApplicationExit += (s, e) =>

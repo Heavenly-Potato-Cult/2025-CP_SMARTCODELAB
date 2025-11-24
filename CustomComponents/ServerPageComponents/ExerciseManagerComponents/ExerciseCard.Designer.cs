@@ -145,7 +145,6 @@
             smartButton9.TextColor = Color.DimGray;
             smartButton9.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton9.UseVisualStyleBackColor = false;
-            smartButton9.Click += smartButton9_Click;
             // 
             // smartButton7
             // 

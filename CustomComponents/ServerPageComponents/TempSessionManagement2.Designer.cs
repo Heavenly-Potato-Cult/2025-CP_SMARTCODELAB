@@ -419,6 +419,7 @@
             language.Padding = new Padding(10, 0, 10, 0);
             language.Size = new Size(467, 44);
             language.TabIndex = 44;
+            language.SelectedIndexChanged += language_SelectedIndexChanged;
             // 
             // steamLabel5
             // 

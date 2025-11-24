@@ -35,7 +35,7 @@
             panel1 = new Panel();
             flowLayoutPanel_Exercises = new FlowLayoutPanel();
             customTextBox1 = new CustomTextBox();
-            materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            subjects = new MaterialSkin.Controls.MaterialComboBox();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -45,9 +45,8 @@
             panel3.Controls.Add(label2);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
-            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1576, 95);
+            panel3.Size = new Size(1801, 127);
             panel3.TabIndex = 55;
             // 
             // btn_AddNewExercise
@@ -61,9 +60,10 @@
             btn_AddNewExercise.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_AddNewExercise.ForeColor = Color.White;
             btn_AddNewExercise.Image = (Image)resources.GetObject("btn_AddNewExercise.Image");
-            btn_AddNewExercise.Location = new Point(1054, 28);
+            btn_AddNewExercise.Location = new Point(1205, 37);
+            btn_AddNewExercise.Margin = new Padding(3, 4, 3, 4);
             btn_AddNewExercise.Name = "btn_AddNewExercise";
-            btn_AddNewExercise.Size = new Size(186, 39);
+            btn_AddNewExercise.Size = new Size(213, 52);
             btn_AddNewExercise.TabIndex = 57;
             btn_AddNewExercise.Text = "Add New Exercise";
             btn_AddNewExercise.TextAlign = ContentAlignment.MiddleRight;
@@ -76,9 +76,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
             label2.ForeColor = Color.FromArgb(13, 13, 13);
-            label2.Location = new Point(305, 32);
+            label2.Location = new Point(349, 43);
             label2.Name = "label2";
-            label2.Size = new Size(190, 30);
+            label2.Size = new Size(238, 38);
             label2.TabIndex = 13;
             label2.Text = "Exercise Explorer";
             // 
@@ -86,20 +86,18 @@
             // 
             panel1.BackColor = Color.DimGray;
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 95);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(0, 127);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1576, 1);
+            panel1.Size = new Size(1801, 1);
             panel1.TabIndex = 56;
             // 
             // flowLayoutPanel_Exercises
             // 
             flowLayoutPanel_Exercises.AutoScroll = true;
-            flowLayoutPanel_Exercises.Location = new Point(305, 202);
-            flowLayoutPanel_Exercises.Margin = new Padding(3, 2, 3, 2);
+            flowLayoutPanel_Exercises.Location = new Point(349, 269);
             flowLayoutPanel_Exercises.Name = "flowLayoutPanel_Exercises";
-            flowLayoutPanel_Exercises.Padding = new Padding(0, 0, 0, 75);
-            flowLayoutPanel_Exercises.Size = new Size(935, 436);
+            flowLayoutPanel_Exercises.Padding = new Padding(0, 0, 0, 100);
+            flowLayoutPanel_Exercises.Size = new Size(1069, 581);
             flowLayoutPanel_Exercises.TabIndex = 59;
             // 
             // customTextBox1
@@ -107,54 +105,55 @@
             customTextBox1.BackColor = SystemColors.Window;
             customTextBox1.BorderColor = Color.Gray;
             customTextBox1.ForeColor = Color.DimGray;
-            customTextBox1.Location = new Point(305, 154);
-            customTextBox1.Margin = new Padding(3, 2, 3, 2);
+            customTextBox1.Location = new Point(349, 205);
             customTextBox1.Name = "customTextBox1";
-            customTextBox1.Padding = new Padding(9, 5, 9, 5);
+            customTextBox1.Padding = new Padding(10, 7, 10, 7);
             customTextBox1.PlaceHolderColor = Color.DarkGray;
             customTextBox1.PlaceholderText = "";
             customTextBox1.ScrollBars = ScrollBars.None;
-            customTextBox1.Size = new Size(692, 32);
+            customTextBox1.Size = new Size(361, 41);
             customTextBox1.TabIndex = 64;
             customTextBox1._TextChanged += customTextBox1__TextChanged;
             // 
-            // materialComboBox1
+            // subjects
             // 
-            materialComboBox1.AutoResize = false;
-            materialComboBox1.BackColor = Color.FromArgb(255, 255, 255);
-            materialComboBox1.Depth = 0;
-            materialComboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            materialComboBox1.DropDownHeight = 118;
-            materialComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            materialComboBox1.DropDownWidth = 121;
-            materialComboBox1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
-            materialComboBox1.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            materialComboBox1.FormattingEnabled = true;
-            materialComboBox1.IntegralHeight = false;
-            materialComboBox1.ItemHeight = 29;
-            materialComboBox1.Location = new Point(1018, 154);
-            materialComboBox1.MaxDropDownItems = 4;
-            materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            materialComboBox1.Name = "materialComboBox1";
-            materialComboBox1.Size = new Size(121, 35);
-            materialComboBox1.StartIndex = 0;
-            materialComboBox1.TabIndex = 65;
-            materialComboBox1.UseTallSize = false;
+            subjects.AutoResize = false;
+            subjects.BackColor = Color.FromArgb(255, 255, 255);
+            subjects.Depth = 0;
+            subjects.DrawMode = DrawMode.OwnerDrawVariable;
+            subjects.DropDownHeight = 118;
+            subjects.DropDownStyle = ComboBoxStyle.DropDownList;
+            subjects.DropDownWidth = 121;
+            subjects.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Pixel);
+            subjects.ForeColor = Color.FromArgb(222, 0, 0, 0);
+            subjects.FormattingEnabled = true;
+            subjects.IntegralHeight = false;
+            subjects.ItemHeight = 29;
+            subjects.Items.AddRange(new object[] { "All" });
+            subjects.Location = new Point(716, 211);
+            subjects.Margin = new Padding(3, 4, 3, 4);
+            subjects.MaxDropDownItems = 4;
+            subjects.MouseState = MaterialSkin.MouseState.OUT;
+            subjects.Name = "subjects";
+            subjects.Size = new Size(138, 35);
+            subjects.StartIndex = 0;
+            subjects.TabIndex = 65;
+            subjects.UseTallSize = false;
+            subjects.SelectedIndexChanged += subjects_SelectedIndexChanged;
             // 
             // TempExerciseManage
             // 
             AllowDrop = true;
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(materialComboBox1);
+            Controls.Add(subjects);
             Controls.Add(customTextBox1);
             Controls.Add(flowLayoutPanel_Exercises);
             Controls.Add(panel1);
             Controls.Add(panel3);
             DoubleBuffered = true;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "TempExerciseManage";
-            Size = new Size(1576, 787);
+            Size = new Size(1801, 1049);
             Load += TempExerciseManage_Load;
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -168,6 +167,6 @@
         private Panel panel1;
         private FlowLayoutPanel flowLayoutPanel_Exercises;
         private CustomTextBox customTextBox1;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
+        private MaterialSkin.Controls.MaterialComboBox subjects;
     }
 }

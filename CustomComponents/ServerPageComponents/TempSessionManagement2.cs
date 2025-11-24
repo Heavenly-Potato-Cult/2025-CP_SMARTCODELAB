@@ -105,19 +105,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             serverPW.Text = new Random().Next(10000, 100000).ToString();
         }
 
-
-
         private void smartButton2_Click(object sender, EventArgs e)
         {
             var studentTable = new StudTable(userProfiles);
             studentTable.ShowDialog();
             userProfiles = studentTable.expectedUsers;
             studentsCount.Text = userProfiles.Count.ToString();
-        }
-
-        private void language_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            codeQualityChoices21.setLanguage(language.SelectedItem.ToString());
         }
 
         private Action<TaskModel> exerciseSelectedCallback => (task) =>
@@ -127,44 +120,44 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             if (selectedExercise != null)
             {
                 taskView.Controls.Remove(selectedExercise);
-                selectedExercise.Dispose(); 
+                selectedExercise.Dispose();
             }
 
             selectedExercise = new SelectedExercise(task, removeSelectedTask)
             {
-                
+
                 Dock = DockStyle.None,
                 Location = new Point(0, 0),
 
-               
+
                 AutoSize = true,
                 AutoSizeMode = AutoSizeMode.GrowAndShrink
             };
 
             taskView.Controls.Add(selectedExercise);
 
-            
+
             taskView.PerformLayout();
             panel5.PerformLayout();
         };
 
         private void SetupDynamicLayout()
         {
-            
+
             panel5.AutoSize = true;
             panel5.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-           
 
-           
+
+
             taskView.AutoSize = true;
             taskView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             taskView.Dock = DockStyle.Left;
             taskView.Padding = new Padding(0, 0, 10, 0);
 
-            
+
             smartButton4.Dock = DockStyle.Left;
 
-         
+
             taskView.SendToBack();
             smartButton4.BringToFront();
         }
@@ -330,6 +323,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             serverPage.Dock = DockStyle.Fill;
 
             page1.Controls.Add(serverPage);
+        }
+
+        private void language_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            codeQualityChoices21.setLanguage(language.SelectedItem.ToString());
         }
     }
 }
