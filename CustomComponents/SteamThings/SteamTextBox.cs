@@ -10,7 +10,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         public TextBox innerTextBox;
         private bool isFocused = false;
 
-        // Expose the Text property so you can get/set it easily
+       
         public override string Text
         {
             get => innerTextBox.Text;
@@ -40,10 +40,9 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             innerTextBox.Font = SteamFont.GetFont(12F, FontStyle.Regular);
             innerTextBox.Dock = DockStyle.Fill;
 
-            // Event Wiring for Focus Effects
             innerTextBox.Enter += (s, e) => { isFocused = true; this.Invalidate(); };
             innerTextBox.Leave += (s, e) => { isFocused = false; this.Invalidate(); };
-            innerTextBox.Click += (s, e) => { this.OnClick(e); }; // Bubble up click
+            innerTextBox.Click += (s, e) => { this.OnClick(e); }; 
 
             this.Controls.Add(innerTextBox);
         }
@@ -52,31 +51,29 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         {
             base.OnPaint(e);
 
-            // 1. Draw Background
+          
             using (SolidBrush bgBrush = new SolidBrush(SteamColors.InputBg))
             {
                 e.Graphics.FillRectangle(bgBrush, this.ClientRectangle);
             }
 
-            // 2. Draw Border (Green if focused, Grey if not)
             Color borderColor = isFocused ? SteamColors.Accent : SteamColors.Border;
 
             using (Pen borderPen = new Pen(borderColor, 1))
             {
-                // Draw a rectangle just inside the control edges
+                
                 Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
                 e.Graphics.DrawRectangle(borderPen, rect);
             }
 
-            // 3. Simple Placeholder Logic (Optional)
+            
             if (string.IsNullOrEmpty(innerTextBox.Text) && !isFocused && !string.IsNullOrEmpty(PlaceholderText))
             {
-                // This is a basic implementation; standard placeholder logic is complex in WinForms
-                // For now, rely on standard behavior or labels
+                
             }
         }
 
-        // Ensure clicking the padded area focuses the textbox
+       
         protected override void OnClick(EventArgs e)
         {
             innerTextBox.Focus();

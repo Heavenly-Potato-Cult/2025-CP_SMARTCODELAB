@@ -67,7 +67,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         {
 
 
-            // 2. ENABLE TRANSPARENCY SUPPORT (The Magic Part)
+            
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.SupportsTransparentBackColor, true);
             this.BackColor = Color.Transparent;
@@ -87,39 +87,37 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             int thumbSize = 14;
             int cy = this.Height / 2; // Vertical Center
 
-            // Calculate pixel width based on Value
-            // "Where should the thumb be?"
-            // Logic: (Value / Max) * (Width - ThumbSize)
+            
             float percentage = (float)_value / _maximum;
             if (_maximum == 0) percentage = 0;
 
             int availableWidth = this.Width - thumbSize;
             int thumbX = (int)(percentage * availableWidth);
 
-            // 1. Draw Empty Track (Background Line)
+          
             using (SolidBrush trackBrush = new SolidBrush(_trackColor))
             {
                 Rectangle trackRect = new Rectangle(thumbSize / 2, cy - (trackHeight / 2), this.Width - thumbSize, trackHeight);
                 g.FillRectangle(trackBrush, trackRect);
             }
 
-            // 2. Draw Filled Track (Active Color)
+           
             using (SolidBrush fillBrush = new SolidBrush(_fillColor))
             {
                 Rectangle fillRect = new Rectangle(thumbSize / 2, cy - (trackHeight / 2), thumbX, trackHeight);
                 g.FillRectangle(fillBrush, fillRect);
             }
 
-            // 3. Draw Thumb (The Handle)
+           
             Rectangle thumbRect = new Rectangle(thumbX, cy - (thumbSize / 2), thumbSize, thumbSize);
 
-            // Draw Thumb Shadow (Subtle depth)
+           
             using (SolidBrush shadowBrush = new SolidBrush(Color.FromArgb(50, 0, 0, 0)))
             {
                 g.FillEllipse(shadowBrush, thumbRect.X + 1, thumbRect.Y + 1, thumbSize, thumbSize);
             }
 
-            // Draw Thumb Circle
+            
             using (SolidBrush thumbBrush = new SolidBrush(_thumbColor))
             {
                 g.FillEllipse(thumbBrush, thumbRect);
@@ -153,7 +151,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             _isDragging = false;
         }
 
-        // Helper to convert Mouse X Position -> Value (0-100)
+      
         private void MoveThumbTo(int xMouse)
         {
             int thumbSize = 14;
@@ -161,7 +159,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             int relativeX = Clamp(xMouse - (thumbSize / 2), 0, availableWidth);
             float percentage = (float)relativeX / availableWidth;
 
-            // Calculate what the value WOULD be
+           
             int proposedValue = (int)(percentage * _maximum);
 
             // Update
@@ -172,19 +170,19 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         {
             proposedValue = Clamp(proposedValue, 0, _maximum);
 
-            // 1. ASK PERMISSION FIRST
+            //  ASK PERMISSION FIRST
             if (ValueChanging != null)
             {
                 var args = new ValueChangingEventArgs { NewValue = proposedValue };
                 ValueChanging(this, args);
 
-                // If the parent modified the value (e.g. capped it), use that instead!
+                
                 proposedValue = args.NewValue;
 
                 if (args.Cancel) return; // Parent said "Stop!"
             }
 
-            // 2. ONLY CHANGE IF IT'S ACCEPTED
+            //  ONLY CHANGE IF IT'S ACCEPTED
             if (_value != proposedValue)
             {
                 _value = proposedValue;
@@ -193,7 +191,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             }
         }
 
-        // Helper method to keep numbers in range
+      
         private int Clamp(int value, int min, int max)
         {
             if (value < min) return min;

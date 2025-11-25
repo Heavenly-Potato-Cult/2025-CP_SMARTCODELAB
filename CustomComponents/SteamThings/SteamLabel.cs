@@ -6,7 +6,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 {
     public class SteamLabel : Label
     {
-        // 1. Define the Sizes (Typography Scale)
+      
         public enum SizeOption
         {
             Huge = 0,       // 48px (Big Stats)
@@ -18,7 +18,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             Tiny = 6        // 8px  (Footers/Copyright)
         }
 
-        // 2. Define the Colors (Themes)
+       
         public enum ThemeOption
         {
             Standard,       // White/Blueish (#c7d5e0)
@@ -30,7 +30,6 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         private SizeOption _sizeOption = SizeOption.Regular;
         private ThemeOption _themeOption = ThemeOption.Standard;
 
-        // --- PROPERTIES (Visible in Visual Studio) ---
 
         [Category("Steam Appearance")]
         [Description("Controls the font size.")]
@@ -74,8 +73,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             UpdateColor();
         }
 
-        // --- LOGIC ---
-
+      
         private void UpdateFont()
         {
             if (LicenseManager.UsageMode == LicenseUsageMode.Designtime)

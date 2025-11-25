@@ -73,13 +73,13 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             // Anchor None allows us to move it freely inside our container
             innerCombo.Anchor = AnchorStyles.None;
 
-            // EVENTS
+            
             innerCombo.DrawItem += InnerCombo_DrawItem;
             innerCombo.Enter += (s, e) => { isFocused = true; this.Invalidate(); };
             innerCombo.Leave += (s, e) => { isFocused = false; this.Invalidate(); };
             innerCombo.SelectedIndexChanged += (s, e) => SelectedIndexChanged?.Invoke(this, e);
 
-            // CLICK LOGIC
+            
             innerCombo.Click += (s, e) => ToggleDropdown();
             innerCombo.MouseClick += (s, e) => ToggleDropdown();
 
@@ -108,8 +108,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
             innerCombo.SetBounds(0, y, width, innerCombo.Height);
 
-            // FIX FOR WHITE LINE: Increased cut from 20 to 25.
-            // This cuts deeper into the right side to ensure the button edge is gone.
+            
             Rectangle cropRect = new Rectangle(2, 2, width - 25, innerCombo.Height - 4);
 
             innerCombo.Region = new Region(cropRect);
@@ -121,25 +120,24 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             AdjustComboLayout();
         }
 
-        // --- PAINTING (Container) ---
+        
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            // 1. Draw Background
+            
             using (SolidBrush bgBrush = new SolidBrush(SteamColors.InputBg))
             {
                 e.Graphics.FillRectangle(bgBrush, this.ClientRectangle);
             }
 
-            // 2. Draw Frame
             Color borderColor = isFocused ? SteamColors.Accent : SteamColors.Border;
             using (Pen borderPen = new Pen(borderColor, 1))
             {
                 e.Graphics.DrawRectangle(borderPen, 0, 0, this.Width - 1, this.Height - 1);
             }
 
-            // 3. Draw Arrow
+            
             DrawCustomArrow(e.Graphics);
         }
 
@@ -166,7 +164,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         {
             if (e.Index < 0) return;
 
-            // FIX: Detect if we are drawing the "Box" (Closed) or the "List" (Open)
+            
             bool isEditBox = (e.State & DrawItemState.ComboBoxEdit) == DrawItemState.ComboBoxEdit;
             bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
 
@@ -175,24 +173,24 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
             if (isEditBox)
             {
-                // If it's the Closed Box, ALWAYS use Dark Background. Never Blue.
+                
                 bgColor = SteamColors.InputBg;
                 textColor = SteamColors.TextMain;
             }
             else
             {
-                // If it's the List, allow Blue Highlight on Hover
+              
                 bgColor = isSelected ? SteamColors.SecondaryBg : SteamColors.CardBg;
                 textColor = isSelected ? Color.White : SteamColors.TextMain;
             }
 
-            // Draw Background
+            
             using (SolidBrush bgBrush = new SolidBrush(bgColor))
             {
                 e.Graphics.FillRectangle(bgBrush, e.Bounds);
             }
 
-            // Draw Text
+            
             string text = innerCombo.Items[e.Index].ToString();
             Rectangle textRect = new Rectangle(e.Bounds.X + 5, e.Bounds.Y, e.Bounds.Width - 5, e.Bounds.Height);
 
@@ -211,8 +209,6 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             get
             {
                 CreateParams cp = base.CreateParams;
-                // WS_EX_COMPOSITED: Forces the Container and Child to paint simultaneously
-                // This stops the background from "erasing" the text before it's drawn
                 cp.ExStyle |= 0x02000000;
                 return cp;
             }
