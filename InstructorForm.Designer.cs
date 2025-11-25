@@ -52,10 +52,6 @@ namespace SmartCodeLab
             tabPage7 = new TabPage();
             tempExerciseManage1 = new TempExerciseManage();
             tabPage8 = new TabPage();
-            label3 = new Label();
-            sessionsContainer = new FlowLayoutPanel();
-            sessionLogsDisplay1 = new SessionLogsDisplay();
-            panel1 = new Panel();
             tabPage6 = new TabPage();
             tabcontrol_session.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -67,8 +63,6 @@ namespace SmartCodeLab
             tabcontrol_MainNav.SuspendLayout();
             tabPage10.SuspendLayout();
             tabPage7.SuspendLayout();
-            tabPage8.SuspendLayout();
-            sessionsContainer.SuspendLayout();
             tabPage6.SuspendLayout();
             SuspendLayout();
             // 
@@ -303,9 +297,6 @@ namespace SmartCodeLab
             // tabPage8
             // 
             tabPage8.BackColor = Color.White;
-            tabPage8.Controls.Add(label3);
-            tabPage8.Controls.Add(sessionsContainer);
-            tabPage8.Controls.Add(panel1);
             tabPage8.Location = new Point(4, 29);
             tabPage8.Margin = new Padding(2);
             tabPage8.Name = "tabPage8";
@@ -313,50 +304,6 @@ namespace SmartCodeLab
             tabPage8.TabIndex = 2;
             tabPage8.Text = "tabPage8";
             tabPage8.Enter += tabPage8_Enter;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(536, 51);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(182, 38);
-            label3.TabIndex = 17;
-            label3.Text = "Session Logs";
-            // 
-            // sessionsContainer
-            // 
-            sessionsContainer.AutoScroll = true;
-            sessionsContainer.Controls.Add(sessionLogsDisplay1);
-            sessionsContainer.FlowDirection = FlowDirection.TopDown;
-            sessionsContainer.Location = new Point(511, 140);
-            sessionsContainer.Margin = new Padding(4);
-            sessionsContainer.Name = "sessionsContainer";
-            sessionsContainer.Size = new Size(845, 766);
-            sessionsContainer.TabIndex = 16;
-            sessionsContainer.WrapContents = false;
-            // 
-            // sessionLogsDisplay1
-            // 
-            sessionLogsDisplay1.BackColor = Color.FromArgb(240, 247, 255);
-            sessionLogsDisplay1.BorderColor = Color.Gray;
-            sessionLogsDisplay1.BorderRadius = 20;
-            sessionLogsDisplay1.BorderSize = 0;
-            sessionLogsDisplay1.Location = new Point(4, 2);
-            sessionLogsDisplay1.Margin = new Padding(4, 2, 4, 2);
-            sessionLogsDisplay1.Name = "sessionLogsDisplay1";
-            sessionLogsDisplay1.Size = new Size(825, 80);
-            sessionLogsDisplay1.TabIndex = 0;
-            // 
-            // panel1
-            // 
-            panel1.Location = new Point(489, 128);
-            panel1.Margin = new Padding(4);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(885, 799);
-            panel1.TabIndex = 18;
             // 
             // tabPage6
             // 
@@ -396,9 +343,6 @@ namespace SmartCodeLab
             tabcontrol_MainNav.ResumeLayout(false);
             tabPage10.ResumeLayout(false);
             tabPage7.ResumeLayout(false);
-            tabPage8.ResumeLayout(false);
-            tabPage8.PerformLayout();
-            sessionsContainer.ResumeLayout(false);
             tabPage6.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -428,9 +372,5 @@ namespace SmartCodeLab
         private CustomComponents.Pages.ServerPages.ProgressSubmissionPage progressSubmissionPage1;
         private TabPage tabPage10;
         private CustomComponents.ServerPageComponents.TempSessionManagement2 tempSessionManagement21;
-        private Label label3;
-        private FlowLayoutPanel sessionsContainer;
-        private CustomComponents.ServerPageComponents.SessionLogsDisplay sessionLogsDisplay1;
-        private Panel panel1;
     }
 }

@@ -25,9 +25,25 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
     public partial class TempExerciseManage : UserControl
     {
         private System.Threading.Timer searchTimer;
+        private List<TaskModel> loadedExercises;
+        private ISet<string> taskSubjects;
+        private long searchVersion;
         public TempExerciseManage()
         {
             InitializeComponent();
+
+            //get the subjects
+            taskSubjects = new HashSet<string>();
+            searchVersion = 0;
+
+            customTextBox1.innerTextBox.TextChanged += (s, e) =>
+            {
+                searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+                searchTimer = new System.Threading.Timer(_ =>
+                {
+                    _ = displayTasks();
+                }, null, 400, Timeout.Infinite);
+            };
         }
 
         protected override CreateParams CreateParams
@@ -46,7 +62,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             await Task.Run(() =>
             {
 
-                var loadedExercises = new List<TaskModel>();
+                loadedExercises = new List<TaskModel>();
 
                 var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task");
 
@@ -66,83 +82,89 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     }
                     catch { /* Handle individual file errors here */ }
                 }
-
+                //ilagay ang mga subjects sa lists, i uppercase pra sure no duplicate
                 if (this.IsHandleCreated)
                 {
-                    this.Invoke(new Action(() =>
+                    this.Invoke((Action)(() =>
                     {
-                        // --- SUSPEND LAYOUT ---
-                        // This stops the FlowLayoutPanel from calculating positions for every single item added.
-                        flowLayoutPanel_Exercises.SuspendLayout();
-
-                        try
+                        foreach (var item in loadedExercises)
                         {
-
-                            var cards = loadedExercises
-                                .Select(ex => new ExerciseCard(ex))
-                                .ToArray();
-
-                            flowLayoutPanel_Exercises.Controls.AddRange(cards);
+                            taskSubjects.Add(item.subject.Trim().ToUpper());
                         }
-                        finally
-                        {
-                            // --- RESUME LAYOUT ---
-                            // 'true' forces an immediate layout calculation of the final result
-                            flowLayoutPanel_Exercises.ResumeLayout(true);
-                        }
+                        this.subjects.Items.AddRange(taskSubjects.ToArray());
                     }));
+                    _ = displayTasks();
                 }
             });
         }
 
+        private List<string> getSubjects()
+        {
+            return taskSubjects.ToList();
+        }
+
         private void btn_AddNewExercise_Click(object sender, EventArgs e)
         {
-            using (var exerciseForm = new AddNewExercise())
+            using (var exerciseForm = new AddNewExercise(taskSubjects.ToList()))
             {
                 var dialogResult = exerciseForm.ShowDialog();
 
                 if (dialogResult == DialogResult.OK)
                 {
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise));
+                    loadedExercises.Add(exerciseForm.NewExercise);
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise, removeExervice, getSubjects));
                 }
             }
         }
 
-        private void customTextBox1__TextChanged(object sender, EventArgs e)
+        private async Task displayTasks()
         {
-            searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-            searchTimer = new System.Threading.Timer(_ =>
+            this.Invoke((Action)(() =>
             {
-                string search = customTextBox1.Text.ToLower();
-                var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task").
-                    Where(file => Path.GetFileName(file).ToLower().Contains(search)).ToList();
-                this.Invoke(new Action(() => flowLayoutPanel_Exercises.Controls.Clear()));
-                foreach (var file in exerciseFiles)
+                long currentVersion = ++searchVersion;
+                string search = customTextBox1.innerTextBox.Text;
+                string subjectFilter = subjects.SelectedItem?.ToString() ?? "All";
+                bool searchForAll = subjectFilter == "All";
+                var filteredSearch = loadedExercises.Where(ex =>
+                    ex._taskName.Contains(search, StringComparison.OrdinalIgnoreCase) &&
+                    (searchForAll || ex.subject.Equals(subjectFilter, StringComparison.OrdinalIgnoreCase))
+                ).ToList();
+                Task.Delay(200);
+                flowLayoutPanel_Exercises.Controls.Clear();
+                foreach (var exercise in filteredSearch)
                 {
-                    using (var fileOpened = File.OpenRead(file))
-                    {
-                        var exercise = Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, PrefixStyle.Base128);
-                        exercise.filePath = file;
-                        this.Invoke(new Action(() =>
-                        {
-                            flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise));
-                        }));
-                    }
+                    if (currentVersion != searchVersion)
+                        break;
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise, removeExervice, getSubjects));
                 }
-            }, null, 400, Timeout.Infinite);
+            }));
+        }
+
+        private void removeExervice(TaskModel task)
+        {
+            loadedExercises.Remove(task);
         }
 
         private void btn_AddNewExercise_Click_1(object sender, EventArgs e)
         {
-            using (var exerciseForm = new AddNewExercise())
+            using (var exerciseForm = new AddNewExercise(getSubjects()))
             {
                 var dialogResult = exerciseForm.ShowDialog();
 
                 if (dialogResult == DialogResult.OK)
                 {
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise));
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise, removeExervice, getSubjects));
                 }
             }
+        }
+
+        private void subjects_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+            searchTimer = new System.Threading.Timer(_ =>
+            {
+                _ = displayTasks();
+            }, null, 400, Timeout.Infinite);
         }
     }
 }

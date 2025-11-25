@@ -7,7 +7,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 {
     public class SteamTextBox : UserControl
     {
-        private TextBox innerTextBox;
+        public TextBox innerTextBox;
         private bool isFocused = false;
 
         // Expose the Text property so you can get/set it easily

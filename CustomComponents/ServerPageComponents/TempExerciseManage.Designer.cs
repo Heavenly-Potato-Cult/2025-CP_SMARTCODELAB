@@ -33,7 +33,7 @@
             btn_AddNewExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             flowLayoutPanel_Exercises = new FlowLayoutPanel();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
-            steamComboBox1 = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
+            subjects = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             customTextBox1 = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             panel3.SuspendLayout();
             steamGradientPanel1.SuspendLayout();
@@ -97,7 +97,7 @@
             // 
             // steamGradientPanel1
             // 
-            steamGradientPanel1.Controls.Add(steamComboBox1);
+            steamGradientPanel1.Controls.Add(subjects);
             steamGradientPanel1.Controls.Add(customTextBox1);
             steamGradientPanel1.Controls.Add(flowLayoutPanel_Exercises);
             steamGradientPanel1.Controls.Add(panel3);
@@ -110,15 +110,16 @@
             steamGradientPanel1.Size = new Size(1801, 1049);
             steamGradientPanel1.TabIndex = 66;
             // 
-            // steamComboBox1
+            // subjects
             // 
-            steamComboBox1.BackColor = Color.FromArgb(26, 30, 36);
-            steamComboBox1.Items.AddRange(new object[] { "C++", "Java", "Python" });
-            steamComboBox1.Location = new Point(1138, 145);
-            steamComboBox1.Name = "steamComboBox1";
-            steamComboBox1.Padding = new Padding(1);
-            steamComboBox1.Size = new Size(174, 44);
-            steamComboBox1.TabIndex = 67;
+            subjects.BackColor = Color.FromArgb(26, 30, 36);
+            subjects.Items.AddRange(new object[] { "All" });
+            subjects.Location = new Point(715, 145);
+            subjects.Name = "subjects";
+            subjects.Padding = new Padding(1);
+            subjects.Size = new Size(174, 44);
+            subjects.TabIndex = 67;
+            subjects.SelectedIndexChanged += subjects_SelectedIndexChanged;
             // 
             // customTextBox1
             // 
@@ -127,7 +128,7 @@
             customTextBox1.Name = "customTextBox1";
             customTextBox1.Padding = new Padding(10, 8, 10, 8);
             customTextBox1.PlaceholderText = "";
-            customTextBox1.Size = new Size(765, 44);
+            customTextBox1.Size = new Size(331, 44);
             customTextBox1.TabIndex = 66;
             // 
             // TempExerciseManage
@@ -153,6 +154,6 @@
         private SteamThings.SteamGradientPanel steamGradientPanel1;
         private SteamThings.SteamLabel steamLabel3;
         private SteamThings.SteamTextBox customTextBox1;
-        private SteamThings.SteamComboBox steamComboBox1;
+        private SteamThings.SteamComboBox subjects;
     }
 }

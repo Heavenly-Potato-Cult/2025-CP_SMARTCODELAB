@@ -42,7 +42,6 @@
             panel4 = new Panel();
             panel1 = new Panel();
             label34 = new Label();
-            codeTrack = new TrackBar();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             status = new ComboBox();
             searchStudent = new CustomTextBox();
@@ -50,13 +49,13 @@
             panel2 = new Panel();
             iconsContainer = new FlowLayoutPanel();
             panel3 = new Panel();
+            codeTrack = new SmartCodeLab.CustomComponents.SteamThings.SteamTrackBar();
             studentCodeRating1 = new StudentCodeRating();
             panel5 = new Panel();
             customCard8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             customCard6.SuspendLayout();
             customCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)codeTrack).BeginInit();
             customCard2.SuspendLayout();
             panel3.SuspendLayout();
             panel5.SuspendLayout();
@@ -71,12 +70,12 @@
             customCard8.BorderSize = 1;
             customCard8.Controls.Add(studentCode);
             customCard8.Controls.Add(label15);
-            customCard8.Location = new Point(3, 204);
+            customCard8.Location = new Point(3, 148);
             customCard8.MaximumSize = new Size(1031, 700);
             customCard8.MinimumSize = new Size(1031, 500);
             customCard8.Name = "customCard8";
             customCard8.Padding = new Padding(0, 0, 0, 20);
-            customCard8.Size = new Size(1031, 581);
+            customCard8.Size = new Size(1031, 637);
             customCard8.TabIndex = 14;
             // 
             // studentCode
@@ -100,7 +99,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
             studentCode.Location = new Point(16, 53);
@@ -109,7 +107,7 @@
             studentCode.ReadOnly = true;
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
-            studentCode.Size = new Size(999, 512);
+            studentCode.Size = new Size(999, 573);
             studentCode.TabIndex = 15;
             studentCode.Zoom = 100;
             // 
@@ -244,18 +242,6 @@
             label34.TabIndex = 29;
             label34.Text = "Copy-Paste Activity";
             // 
-            // codeTrack
-            // 
-            codeTrack.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            codeTrack.Location = new Point(3, 142);
-            codeTrack.Maximum = 0;
-            codeTrack.MaximumSize = new Size(1031, 56);
-            codeTrack.MinimumSize = new Size(1031, 56);
-            codeTrack.Name = "codeTrack";
-            codeTrack.Size = new Size(1031, 56);
-            codeTrack.TabIndex = 100;
-            codeTrack.Scroll += codeTrack_Scroll;
-            // 
             // customCard2
             // 
             customCard2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -349,15 +335,27 @@
             // 
             panel3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel3.BackColor = SystemColors.Control;
+            panel3.Controls.Add(codeTrack);
             panel3.Controls.Add(customCard6);
             panel3.Controls.Add(customCard8);
-            panel3.Controls.Add(codeTrack);
             panel3.Location = new Point(377, 60);
             panel3.MaximumSize = new Size(1041, 800);
             panel3.MinimumSize = new Size(1041, 800);
             panel3.Name = "panel3";
             panel3.Size = new Size(1041, 800);
             panel3.TabIndex = 101;
+            // 
+            // codeTrack
+            // 
+            codeTrack.BackColor = Color.Transparent;
+            codeTrack.Location = new Point(3, 113);
+            codeTrack.Maximum = 100;
+            codeTrack.Name = "codeTrack";
+            codeTrack.Size = new Size(1020, 29);
+            codeTrack.TabIndex = 105;
+            codeTrack.Text = "steamTrackBar1";
+            codeTrack.Value = 0;
+            codeTrack.ValueChanged += codeTrack_ValueChanged;
             // 
             // studentCodeRating1
             // 
@@ -400,10 +398,8 @@
             customCard6.PerformLayout();
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)codeTrack).EndInit();
             customCard2.ResumeLayout(false);
             panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             panel5.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -418,7 +414,6 @@
         private Label studentName;
         private GeneralComponents.CustomCard customCard1;
         private Pages.ProgrammingTabs.CodeEditor studentCode;
-        private TrackBar codeTrack;
         private GeneralComponents.CustomCard customCard2;
         private FlowLayoutPanel iconsContainer;
         private GeneralComponents.StatsBar accuracy;
@@ -438,5 +433,6 @@
         private CustomTextBox searchStudent;
         private Panel copypastedCodes;
         private System.Windows.Forms.ComboBox status;
+        private SteamThings.SteamTrackBar codeTrack;
     }
 }

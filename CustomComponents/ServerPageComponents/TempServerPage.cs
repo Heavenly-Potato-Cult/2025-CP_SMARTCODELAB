@@ -52,7 +52,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
         {
             InitializeComponent();
-            
+
             userMessages = new Dictionary<string, List<UserMessage>>();
             chatBox = null;
             currentTask = task;
@@ -160,7 +160,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     shouldAddIcon(profile, true);
                 }
-                else if(!activeStatus.Equals("All"))
+                else if (!activeStatus.Equals("All"))
                     shouldAddIcon(profile, false);
             }));
         }
@@ -185,7 +185,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             this.Invoke((Action)(() =>
             {
-                if(willAdd)
+                if (willAdd)
                 {
                     iconsContainer.Controls.Add(userIcons[profile._studentId]);
                 }
@@ -240,7 +240,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             return false;
         }
 
-        public async void UpdateStudentProgressDisplay(UserProfile user, StudentCodingProgress progress)
+        public async void UpdateStudentProgressDisplay(UserProfile user, StudentCodingProgress progress, bool fromClick = false)
         {
             if (user._studentId == selectedStudentId)
             {
@@ -250,9 +250,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     {
                         studentProgress = progress;
                         int studentProgLength = studentProgress.CodeProgress.Count - 1;
-                        bool atMax = codeTrack.Maximum == codeTrack.Value;
                         codeTrack.Maximum = studentProgLength;
-                        codeTrack.Minimum = 0;
+                        if (fromClick)
+                            codeTrack.Value = studentProgLength;
+                        bool atMax = codeTrack.Maximum == codeTrack.Value;
                         if (atMax)
                         {
                             studentCode.Text = studentProgress.sourceCode;
@@ -260,7 +261,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         }
 
                         copypastedCodes.Controls.Clear();
-                        if (studentProgress.pastedCode != null) 
+                        if (studentProgress.pastedCode != null)
                         {
 
                             try
@@ -302,14 +303,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             selectedStudentId = profile._studentId;
             try
             {
-                UpdateStudentProgressDisplay(profile, progressRetriever?.Invoke(profile._studentId));
+                UpdateStudentProgressDisplay(profile, progressRetriever?.Invoke(profile._studentId) ?? new StudentCodingProgress(), true);
             }
             catch (KeyNotFoundException)
             {
                 this.Invoke((Delegate)(() =>
                 {
                     codeTrack.Maximum = 0;
-                    codeTrack.Minimum = 0;
                     studentCode.Text = "No Progress";
                     copypastedCodes.Controls.Clear();
                     //this.studentCodeRating1.UpdateStatsDisplay(progress.codeRating);
@@ -318,13 +318,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             studentName.Text = profile._studentName;
             ipaddress.Text = profile._computerAddress;
-        }
-        private void codeTrack_Scroll(object sender, EventArgs e)
-        {
-            if (studentProgress == null)
-                return;
-
-            studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
         }
 
         private void smartButton3_Click(object sender, EventArgs e)
@@ -355,6 +348,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
             updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
+        }
+
+        private void codeTrack_ValueChanged(object sender, EventArgs e)
+        {
+            if (studentProgress == null)
+                return;
+
+            studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
         }
     }
 }

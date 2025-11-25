@@ -48,6 +48,7 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(1913, 920);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
             // 
             // tabPage1
             // 
@@ -66,7 +67,7 @@
             tabPage2.Margin = new Padding(3, 4, 3, 4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3, 4, 3, 4);
-            tabPage2.Size = new Size(1836, 887);
+            tabPage2.Size = new Size(1905, 887);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Progress Monitoring";
             tabPage2.UseVisualStyleBackColor = true;
@@ -78,7 +79,7 @@
             tabPage3.Margin = new Padding(3, 4, 3, 4);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3, 4, 3, 4);
-            tabPage3.Size = new Size(1836, 887);
+            tabPage3.Size = new Size(1905, 887);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Submissions";
             // 
@@ -87,7 +88,7 @@
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1836, 887);
+            tabPage4.Size = new Size(1905, 887);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Exit";
             tabPage4.UseVisualStyleBackColor = true;

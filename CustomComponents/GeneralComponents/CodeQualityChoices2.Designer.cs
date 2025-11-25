@@ -61,7 +61,6 @@
             // efficiencyCB
             // 
             efficiencyCB.AutoSize = true;
-            efficiencyCB.Enabled = false;
             efficiencyCB.Location = new Point(31, 201);
             efficiencyCB.Margin = new Padding(3, 4, 3, 4);
             efficiencyCB.Name = "efficiencyCB";
@@ -73,7 +72,6 @@
             // maintainabilityCB
             // 
             maintainabilityCB.AutoSize = true;
-            maintainabilityCB.Enabled = false;
             maintainabilityCB.Location = new Point(31, 387);
             maintainabilityCB.Margin = new Padding(3, 4, 3, 4);
             maintainabilityCB.Name = "maintainabilityCB";

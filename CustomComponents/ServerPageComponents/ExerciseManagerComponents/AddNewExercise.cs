@@ -29,15 +29,18 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             @"[<>:""/\\|?*\x00-\x1F]",
             RegexOptions.Compiled
         );
-        public AddNewExercise()
+        private List<string> autoCompleteList;
+        public AddNewExercise(List<string> existingSubjects)
         {
             InitializeComponent();
             folderPath = SystemConfigurations.TASK_FOLDER;
             isEditMode = false;
             Dictionary<string, string> testCases = new Dictionary<string, string>();
+            autoCompleteList = existingSubjects;
+            setExistingSubjects();
         }
 
-        public AddNewExercise(TaskModel task)
+        public AddNewExercise(TaskModel task, List<string> existingSubjects)
         {
             InitializeComponent();
             isEditMode = true;
@@ -48,8 +51,21 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             subject.Texts = task.subject;
             btn_CancelExercise.Text = "Discard Changes";
             btn_CreateExercise.Text = "Save Changes";
-
+            autoCompleteList = existingSubjects;
+            setExistingSubjects();
             Load += (sender, e) => SetTestCases(task._testCases ?? new Dictionary<string, string>());
+        }
+
+        private void setExistingSubjects() 
+        {
+            // Set up TextBox autocomplete
+            subject.textBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            subject.textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            // Create AutoCompleteStringCollection and add your list
+            AutoCompleteStringCollection autoCompleteSource = new AutoCompleteStringCollection();
+            autoCompleteSource.AddRange(autoCompleteList.ToArray());
+            subject.textBox1.AutoCompleteCustomSource = autoCompleteSource;
         }
 
         private void AddNewExercise_Load(object sender, EventArgs e)
@@ -98,6 +114,20 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 NewExercise.filePath = filePath;
                 Serializer.SerializeWithLengthPrefix<TaskModel>(createdFile, NewExercise, PrefixStyle.Base128);
                 createdFile.Close();
+            }
+            //add the subject if it do not exist
+            bool doNotHave = true;
+            foreach (var item in autoCompleteList)
+            {
+                if(item.Equals(subject.Texts, StringComparison.OrdinalIgnoreCase))
+                {
+                    doNotHave = false;
+                    break;
+                }
+            }
+            if (doNotHave) 
+            {
+                File.AppendAllLines(SystemConfigurations.SUBJECTS_FILE, new[] { subject.Texts });
             }
             ConfirmAndCloseForm();
         }

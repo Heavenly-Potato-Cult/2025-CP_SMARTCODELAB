@@ -36,6 +36,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
                   ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
             InitializeComponent();
+            language = string.Empty;
             complexity_standard = 0;
             bestSourceCode = "";
             total_standard_operators = 0;
@@ -123,8 +124,6 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         public void setLanguage(string language)
         {
-            efficiencyCB.Enabled = true;
-            maintainabilityCB.Enabled = true;
             this.language = language;
         }
         private void SetupTrackBar(SteamTrackBar trackBar, int defaultValue = 0)
@@ -188,6 +187,13 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         private void efficiencyCB_CheckedChanged(object sender, EventArgs e)
         {
+            if(efficiencyCB.Checked && string.IsNullOrEmpty(language))
+            {
+                System.Windows.Forms.MessageBox.Show("Please set the programming language first before calculating efficiency.", "Language Not Set", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                efficiencyCB.Checked = false;
+                return;
+            }
+
             efficiencyT.Enabled = efficiencyCB.Checked;
             if (efficiencyCB.Checked && total_standard_operators == 0)
                 openComplexityDialog(efficiencyCB);
@@ -200,6 +206,14 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         private void maintainabilityCB_CheckedChanged(object sender, EventArgs e)
         {
+            if(maintainabilityCB.Checked && string.IsNullOrEmpty(language))
+            {
+                System.Windows.Forms.MessageBox.Show("Please set the programming language first before calculating maintainability.", "Language Not Set", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                maintainabilityCB.Checked = false;
+                return;
+            }
+
+
             maintainabilityT.Enabled = maintainabilityCB.Checked;
             if (maintainabilityCB.Checked && complexity_standard == 0)
                 openComplexityDialog(maintainabilityCB);
