@@ -45,8 +45,8 @@ namespace SmartCodeLab.Services
         {
             string fromWho = isBestCode ? "Teacher" : "Student";
             string runnerFile = language == LanguageSupported.Python ? ProgrammingConfiguration.PYTHON_COUNTER_INITIALIZER : ProgrammingConfiguration.CPP_COUNTER_INITIALIZER;
-            
-                string directory = Path.GetDirectoryName(filePath);
+            string directory = Path.GetDirectoryName(filePath);
+
             if (language == LanguageSupported.Java)
             {
                 string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.java";
@@ -54,12 +54,13 @@ namespace SmartCodeLab.Services
                 string compDelCommand = $" && cd \"{directory}\" && javac {fileName} && del {fileName}";
                 ExecuteCommand($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_COUNTER_INITIALIZER}\" \"{filePath}\" \"{fromWho}\" {compDelCommand}\"");
             }
-            else
+            else if (language == LanguageSupported.Cpp)
             {
                 ExecuteCommand($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
                 string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.cpp";
                 string exeFile = Path.Combine(directory, $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.exe");
                 string operatorFile = Path.Combine(directory, fileName);
+                Task.Delay(200);
                 ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{operatorFile}\"\"");
             }
         }
@@ -86,6 +87,7 @@ namespace SmartCodeLab.Services
             {
                 using var proc = new Process { StartInfo = psi };
                 proc.Start();
+                proc.WaitForExit();
             }
             catch (Exception)
             {

@@ -58,7 +58,6 @@
             userName.Size = new Size(164, 23);
             userName.TabIndex = 20;
             userName.Text = "Jimmuel Sanggayan";
-            userName.Click += userName_Click;
             // 
             // message
             // 

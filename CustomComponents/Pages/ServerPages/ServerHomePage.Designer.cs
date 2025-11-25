@@ -70,8 +70,8 @@
             label59 = new Label();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             panel8 = new Panel();
+            notifFilter = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             notifContainer = new TableLayoutPanel();
-            notifFilter = new ComboBox();
             studentName = new CustomTextBox();
             panel_line2 = new Panel();
             panel_line = new Panel();
@@ -397,7 +397,6 @@
             exit.TabIndex = 28;
             exit.Text = "Exit";
             exit.TextAlign = ContentAlignment.MiddleCenter;
-            exit.Click += exit_Click;
             // 
             // pictureBox13
             // 
@@ -602,8 +601,8 @@
             // panel8
             // 
             panel8.BackColor = Color.White;
-            panel8.Controls.Add(notifContainer);
             panel8.Controls.Add(notifFilter);
+            panel8.Controls.Add(notifContainer);
             panel8.Controls.Add(studentName);
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(5, 53);
@@ -611,6 +610,17 @@
             panel8.Name = "panel8";
             panel8.Size = new Size(683, 488);
             panel8.TabIndex = 24;
+            // 
+            // notifFilter
+            // 
+            notifFilter.BackColor = Color.FromArgb(26, 30, 36);
+            notifFilter.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
+            notifFilter.Location = new Point(448, 13);
+            notifFilter.Name = "notifFilter";
+            notifFilter.Padding = new Padding(1);
+            notifFilter.Size = new Size(210, 41);
+            notifFilter.TabIndex = 12;
+            notifFilter.SelectedIndexChanged += notifFilter_SelectedIndexChanged;
             // 
             // notifContainer
             // 
@@ -631,16 +641,6 @@
             notifContainer.Size = new Size(677, 404);
             notifContainer.TabIndex = 26;
             // 
-            // notifFilter
-            // 
-            notifFilter.FormattingEnabled = true;
-            notifFilter.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
-            notifFilter.Location = new Point(331, 20);
-            notifFilter.Name = "notifFilter";
-            notifFilter.Size = new Size(151, 28);
-            notifFilter.TabIndex = 2;
-            notifFilter.SelectedIndexChanged += notifFilter_SelectedIndexChanged;
-            // 
             // studentName
             // 
             studentName.BackColor = SystemColors.Window;
@@ -653,7 +653,7 @@
             studentName.PlaceHolderColor = Color.DarkGray;
             studentName.PlaceholderText = "Search Student";
             studentName.ScrollBars = ScrollBars.None;
-            studentName.Size = new Size(312, 41);
+            studentName.Size = new Size(390, 41);
             studentName.TabIndex = 1;
             studentName._TextChanged += studentName__TextChanged;
             // 
@@ -801,7 +801,6 @@
         private GeneralComponents.CustomCard customCard7;
         private TableLayoutPanel notifContainer;
         private Panel panel8;
-        private ComboBox notifFilter;
         private CustomTextBox studentName;
         private Panel panel_line2;
         private Panel panel_line;
@@ -828,5 +827,6 @@
         private Label label9;
         private Label currentTime;
         private Label saveSes;
+        private SteamThings.SteamComboBox notifFilter;
     }
 }

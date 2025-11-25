@@ -43,7 +43,7 @@
             panel1 = new Panel();
             label34 = new Label();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            status = new ComboBox();
+            status = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             searchStudent = new CustomTextBox();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
@@ -265,13 +265,14 @@
             // 
             // status
             // 
-            status.FormattingEnabled = true;
+            status.BackColor = Color.FromArgb(26, 30, 36);
             status.Items.AddRange(new object[] { "All", "Active", "Inactive" });
-            status.Location = new Point(188, 127);
+            status.Location = new Point(189, 110);
             status.Name = "status";
-            status.Size = new Size(84, 28);
-            status.TabIndex = 17;
-            status.SelectedIndexChanged += status_SelectedIndexChanged;
+            status.Padding = new Padding(1);
+            status.Size = new Size(83, 41);
+            status.TabIndex = 105;
+            status.SelectedIndexChanged += status_SelectedIndexChanged_1;
             // 
             // searchStudent
             // 
@@ -432,7 +433,7 @@
         private Panel panel5;
         private CustomTextBox searchStudent;
         private Panel copypastedCodes;
-        private System.Windows.Forms.ComboBox status;
         private SteamThings.SteamTrackBar codeTrack;
+        private SteamThings.SteamComboBox status;
     }
 }

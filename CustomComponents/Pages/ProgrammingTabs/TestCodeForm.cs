@@ -23,6 +23,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private string command;
         private TaskModel task;
         private Process process;
+        private CancellationTokenSource processCts;
         public TestCodeForm()
         {
             InitializeComponent();
@@ -37,6 +38,28 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             this.task = task;
             totalCases = task?._testCases?.Count ?? 0;
             this.Load += (s, e) => RunTest();
+            this.FormClosing += TestCodeForm_FormClosing;
+        }
+
+        private void TestCodeForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            processCts?.Cancel();
+            try
+            {
+                if (process != null && !process.HasExited)
+                {
+                    try
+                    {
+                        process.Kill();
+                        process.WaitForExit(1000);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"Error killing process: {ex.Message}");
+                    }
+                }
+            }
+            catch (InvalidOperationException) { }
         }
 
         private async void RunTest()
@@ -61,7 +84,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
 
                 // IMPORTANT: Create new process for each test case
-                using (var process = CommandRunner(command))
+
+                processCts = new CancellationTokenSource();
+                using (process = CommandRunner(command))
                 {
                     try
                     {
@@ -70,7 +95,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             output => testOutput += (output + '\n'),
                             error => testOutput += (error),
                             input,
-                            null
+                            null,
+                            processCts.Token
                         );
                     }
                     catch (TimeoutException)
@@ -131,7 +157,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             Action<string> onOutput,
             Action<string> onError,
             string input,
-            Action onExit = null)
+            Action onExit = null,
+            CancellationToken cancellationToken = default)
         {
             var tcs = new TaskCompletionSource<bool>();
 
@@ -169,7 +196,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
 
                 // Wait for exit with timeout
-                var timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
+                var timeoutTask = Task.Delay(TimeSpan.FromSeconds(10));
                 var completedTask = await Task.WhenAny(tcs.Task, timeoutTask);
 
                 if (completedTask == timeoutTask)
@@ -183,6 +210,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     catch { }
                     throw new TimeoutException("Process execution timed out");
                 }
+                if (cancellationToken.IsCancellationRequested)
+                    throw new OperationCanceledException();
 
                 await tcs.Task;
 

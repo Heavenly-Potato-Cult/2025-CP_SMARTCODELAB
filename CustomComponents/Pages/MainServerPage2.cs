@@ -95,14 +95,29 @@ namespace SmartCodeLab.CustomComponents.Pages
             tabPage4.Controls.Add(progressSubmissionPage);
         }
 
-        private async void displayStudentTable()
+        private void displayStudentTable()
         {
-            userTable = new StudTable(users);
+            userTable = new StudTable(users, serverPage.displayUsers, studentChangesDisplayUpdate);
             userTable.ShowDialog();
             users = userTable.expectedUsers;
             server.Users = users;
-            //we will then get the new users and update the server's user list
-            new Action((Action)(async () => await serverPage.displayUsers(users.Values.ToList()))).Invoke();
+            homePage.updateCountDisplay(users.Count);
+        }
+
+        private void studentChangesDisplayUpdate(UserProfile user, bool isUpdate)
+        {
+            if (user == null)
+                return;
+
+            if (isUpdate)
+            {
+                homePage?.updateNotifCardName(user);
+                serverPage.updateUserProfile(user);
+            }
+            else 
+            {
+                _ = serverPage.removeUserIcon(user._studentId);
+            }
         }
 
         public bool sendStudentMessage(string studentId, UserMessage message)
@@ -285,7 +300,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                                     didLoggedIn = true;
                                     serverPage.StudentLoggedIn(userProfile);
                                     HandleUserStream(networkStream, userProfile, true, didLoggedIn);
-                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, userProfile._studentName));
+                                    homePage.NewNotification(new Notification(NotificationType.LoggedIn, userProfile._studentName), userProfile);
                                 }
                             }
                             if (!didLoggedIn)
@@ -303,7 +318,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                             homePage.NewNotification(new Notification(NotificationType.Submitted, userProfile._studentName, ""), userProfile);
                             break;
                         case MessageType.NOTIFICATION:
-                            homePage.NewNotification(obj.notification);
+                            homePage.NewNotification(obj.notification, userProfile);
                             break;
                         case MessageType.USER_MESSAGE:
                             serverPage.ReceivedStudentMessage(obj.userMessage, userProfile._studentId);
@@ -330,7 +345,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             if (!userProgress.ContainsKey(studentId))
                 userProgress.Add(studentId, progress);
             userProgress[studentId] = progress;
-
         }
 
         public StudentCodingProgress IdStudentProgress(string studentId)
@@ -351,7 +365,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                     if (didLoggedIn)
                     {
                         serverPage.StudentLoggedOut(profile);
-                        homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName));
+                        homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName), profile);
                     }
                 }
             }

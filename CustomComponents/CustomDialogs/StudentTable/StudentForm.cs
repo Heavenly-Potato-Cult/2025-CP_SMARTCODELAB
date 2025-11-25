@@ -16,11 +16,14 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         {
             InitializeComponent();
         }
-
-        private void smartButton1_Click(object sender, EventArgs e)
+        public StudentForm(string studentId, string studentName)
         {
-            this.DialogResult = DialogResult.Cancel;
-            Close();
+            InitializeComponent();
+            studId.Texts = studentId;
+            studId.Enabled = false;
+
+            studName.Texts = studentName;
+            smartButton2.Text = "Update";
         }
 
         private void smartButton2_Click(object sender, EventArgs e)
@@ -39,19 +42,10 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             return new KeyValuePair<string, string>(studId.Texts, studName.Texts);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void smartButton1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void StudentForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            this.DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

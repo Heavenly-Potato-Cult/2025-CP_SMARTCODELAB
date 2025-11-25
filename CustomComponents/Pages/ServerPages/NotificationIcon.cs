@@ -49,9 +49,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }
         }
 
-        private void userName_Click(object sender, EventArgs e)
+        public void newName(string newName)
         {
-
+            userName.Text = newName;
         }
     }
 }

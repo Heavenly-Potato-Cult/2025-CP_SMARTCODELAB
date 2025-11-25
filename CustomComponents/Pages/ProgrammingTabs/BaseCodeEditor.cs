@@ -482,7 +482,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 string stderr = proc.StandardError.ReadToEnd();
 
                 proc.WaitForExit();
-
+                MessageBox.Show(stdout);
                 // Combine outputs (stdout first, then stderr). Adjust formatting as you prefer.
                 if (string.IsNullOrEmpty(stderr))
                     return stdout.Substring(stdout.LastIndexOf(':')+1);

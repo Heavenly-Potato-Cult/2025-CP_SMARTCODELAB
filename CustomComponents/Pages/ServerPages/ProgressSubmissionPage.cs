@@ -169,7 +169,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }, null, 500, Timeout.Infinite);
         }
 
-        private void customComboBox2_OnSelectedIndexChanged(object sender, EventArgs e)
+        private void customComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
 
@@ -177,11 +177,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 DisplayIcons();
             }, null, 500, Timeout.Infinite);
-        }
-
-        private void ProgressSubmissionPage_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

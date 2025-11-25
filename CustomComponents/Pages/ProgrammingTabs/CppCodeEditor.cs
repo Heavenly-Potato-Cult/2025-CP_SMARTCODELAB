@@ -67,7 +67,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 return;
             }
 
-            await CompileCode(testerExe);
+            CompileCode(testerExe);
             commandLine = $"/c \"{testerExe}\"";
             SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Cpp, filePath, false);
             base.RunTest();

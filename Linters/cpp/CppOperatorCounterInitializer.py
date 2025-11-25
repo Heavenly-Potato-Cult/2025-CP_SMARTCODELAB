@@ -8,6 +8,7 @@ class CodeLineMerger:
         self.preserve_indentation = True
     
     def merge_multiline_statements(self, code: str) -> str:
+        code = self.remove_comments(code)
         lines = code.split('\n')
         result = []
         i = 0
@@ -176,6 +177,71 @@ class CodeLineMerger:
         content = content.rstrip()
         
         return leading_ws + content
+
+    def remove_comments(self, code: str) -> str:
+        result = []
+        i = 0
+        n = len(code)
+
+        in_string = False
+        in_char = False
+        in_single_comment = False
+        in_multi_comment = False
+
+        while i < n:
+            c = code[i]
+            nxt = code[i + 1] if i + 1 < n else ''
+
+            # --- Inside single-line comment ---
+            if in_single_comment:
+                if c == '\n':  # comment ends at newline
+                    in_single_comment = False
+                    result.append(c)
+                i += 1
+                continue
+
+            # --- Inside multi-line comment ---
+            if in_multi_comment:
+                if c == '*' and nxt == '/':
+                    in_multi_comment = False
+                    i += 2  # skip */
+                else:
+                    i += 1
+                continue
+
+            # --- Not inside a string or char literal ---
+            if not in_string and not in_char:
+                # detect //
+                if c == '/' and nxt == '/':
+                    in_single_comment = True
+                    i += 2
+                    continue
+
+                # detect /*
+                if c == '/' and nxt == '*':
+                    in_multi_comment = True
+                    i += 2
+                    continue
+
+            # --- Detect entering or leaving a string literal ---
+            if c == '"' and not in_char:
+                result.append(c)
+                in_string = not in_string
+                i += 1
+                continue
+
+            # --- Detect entering or leaving a char literal ---
+            if c == "'" and not in_string:
+                result.append(c)
+                in_char = not in_char
+                i += 1
+                continue
+
+            # Normal character
+            result.append(c)
+            i += 1
+
+        return ''.join(result)
 
 class CppOperatorCounter:
     def __init__(self):
@@ -484,19 +550,17 @@ class CppOperatorCounter:
         return '    ' * level
 
     def _add_output_statement(self, code: str) -> str:
-        """Add cout statement at end of main function"""
-        # Find main function
+        """Insert cout before EVERY return inside main()"""
         main_pattern = r'int\s+main\s*\([^)]*\)\s*\{'
         match = re.search(main_pattern, code)
-        
         if not match:
             return code
-        
-        # Find the closing brace of main
+
+        # Identify main block boundaries
         main_start = match.end()
         brace_count = 1
         main_end = -1
-        
+
         for i in range(main_start, len(code)):
             if code[i] == '{':
                 brace_count += 1
@@ -505,31 +569,36 @@ class CppOperatorCounter:
                 if brace_count == 0:
                     main_end = i
                     break
-        
+
         if main_end == -1:
             return code
-        
-        # Find the last return statement or insert before closing brace
+
+        # Extract the main function body
         main_body = code[main_start:main_end]
-        
-        # Get indentation from the line before closing brace
+
+        # Find all return statements inside main
+        return_positions = [
+            m.start() for m in re.finditer(r'return\s+[^;]*;', main_body)
+        ]
+
+        # Determine indentation
         lines_before = code[:main_end].split('\n')
         last_line = lines_before[-1] if lines_before else ''
         indent = self._get_indent_string(self._get_indent_level(last_line))
-        
-        # Create output statement
+
         output_stmt = f'{indent}std::cout << "Operation Count:" << {self.counter_var} << std::endl;\n'
-        
-        # Check if there's a return statement
-        return_match = re.search(r'return\s+\d+\s*;', main_body)
-        
-        if return_match:
-            # Insert before return
-            return_pos = main_start + return_match.start()
-            return code[:return_pos] + output_stmt + indent + code[return_pos:]
-        else:
-            # Insert before closing brace
-            return code[:main_end] + output_stmt + code[main_end:]
+
+        # Insert output before each return, processing in reverse order
+        new_body = main_body
+        for pos in reversed(return_positions):
+            new_body = new_body[:pos] + output_stmt + indent + new_body[pos:]
+
+        # If no return statements found → add before closing brace
+        if not return_positions:
+            new_body = new_body + output_stmt
+
+        # Rebuild full code
+        return code[:main_start] + new_body + code[main_end:]
 
 def main():
     if len(sys.argv) != 3:

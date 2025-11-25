@@ -100,19 +100,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             page1.Controls.Add(serverPage);
         }
 
-        private void smartButton4_Click_1(object sender, EventArgs e)
-        {
-            serverPW.Text = new Random().Next(10000, 100000).ToString();
-        }
-
-        private void smartButton2_Click(object sender, EventArgs e)
-        {
-            var studentTable = new StudTable(userProfiles);
-            studentTable.ShowDialog();
-            userProfiles = studentTable.expectedUsers;
-            studentsCount.Text = userProfiles.Count.ToString();
-        }
-
         private Action<TaskModel> exerciseSelectedCallback => (task) =>
         {
             selectedTask = task;
@@ -199,7 +186,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             if (compilationError != string.Empty)
             {
-                MessageBox.Show(compilationError);
+                MessageBox.Show("Compilation error "+compilationError);
                 return false;
             }
             File.WriteAllText(tempFilePath, code);

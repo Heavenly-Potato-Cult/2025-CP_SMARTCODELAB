@@ -49,11 +49,10 @@
             smartButton2.ForeColor = Color.White;
             smartButton2.Image = (Image)resources.GetObject("smartButton2.Image");
             smartButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton2.Location = new Point(237, 173);
-            smartButton2.Margin = new Padding(3, 2, 3, 2);
+            smartButton2.Location = new Point(271, 231);
             smartButton2.Name = "smartButton2";
-            smartButton2.Padding = new Padding(9, 0, 0, 0);
-            smartButton2.Size = new Size(126, 38);
+            smartButton2.Padding = new Padding(10, 0, 0, 0);
+            smartButton2.Size = new Size(144, 51);
             smartButton2.TabIndex = 3;
             smartButton2.Text = " Add Student";
             smartButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -70,14 +69,14 @@
             smartButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
             smartButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton1.Location = new Point(144, 173);
-            smartButton1.Margin = new Padding(3, 2, 3, 2);
+            smartButton1.Location = new Point(165, 231);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(88, 38);
+            smartButton1.Size = new Size(101, 51);
             smartButton1.TabIndex = 22;
             smartButton1.Text = "Cancel";
             smartButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton1.UseVisualStyleBackColor = false;
+            smartButton1.Click += smartButton1_Click;
             // 
             // studName
             // 
@@ -87,14 +86,13 @@
             studName.BorderRadius = 10;
             studName.BorderSize = 1;
             studName.ForeColor = SystemColors.ControlText;
-            studName.Location = new Point(38, 116);
-            studName.Margin = new Padding(3, 2, 3, 2);
+            studName.Location = new Point(43, 155);
             studName.Name = "studName";
-            studName.Padding = new Padding(9, 5, 9, 5);
+            studName.Padding = new Padding(10, 7, 10, 7);
             studName.PlaceHolderColor = Color.DarkGray;
             studName.PlaceholderText = "";
             studName.ScrollBars = ScrollBars.None;
-            studName.Size = new Size(325, 32);
+            studName.Size = new Size(371, 41);
             studName.TabIndex = 60;
             // 
             // label2
@@ -102,9 +100,9 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(30, 97);
+            label2.Location = new Point(34, 129);
             label2.Name = "label2";
-            label2.Size = new Size(99, 19);
+            label2.Size = new Size(121, 23);
             label2.TabIndex = 59;
             label2.Text = "Student Name";
             // 
@@ -116,14 +114,13 @@
             studId.BorderRadius = 10;
             studId.BorderSize = 1;
             studId.ForeColor = SystemColors.ControlText;
-            studId.Location = new Point(38, 49);
-            studId.Margin = new Padding(3, 2, 3, 2);
+            studId.Location = new Point(43, 65);
             studId.Name = "studId";
-            studId.Padding = new Padding(9, 5, 9, 5);
+            studId.Padding = new Padding(10, 7, 10, 7);
             studId.PlaceHolderColor = Color.DarkGray;
             studId.PlaceholderText = "";
             studId.ScrollBars = ScrollBars.None;
-            studId.Size = new Size(325, 32);
+            studId.Size = new Size(371, 41);
             studId.TabIndex = 55;
             // 
             // label4
@@ -131,9 +128,9 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(30, 29);
+            label4.Location = new Point(34, 39);
             label4.Name = "label4";
-            label4.Size = new Size(76, 19);
+            label4.Size = new Size(92, 23);
             label4.TabIndex = 54;
             label4.Text = "Student ID";
             // 
@@ -142,17 +139,16 @@
             panel2.BackColor = Color.Gainsboro;
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
-            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(393, 2);
+            panel2.Size = new Size(449, 3);
             panel2.TabIndex = 61;
             // 
             // StudentForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(393, 241);
+            ClientSize = new Size(449, 321);
             Controls.Add(panel2);
             Controls.Add(studName);
             Controls.Add(label2);
@@ -162,11 +158,9 @@
             Controls.Add(smartButton2);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "StudentForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Add New Student";
-            Load += StudentForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }

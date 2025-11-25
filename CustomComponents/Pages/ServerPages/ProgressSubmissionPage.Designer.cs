@@ -36,7 +36,6 @@
             ListViewItem listViewItem4 = new ListViewItem(new string[] { "Complexity", "20" }, -1);
             ListViewItem listViewItem5 = new ListViewItem(new string[] { "Total", "100" }, -1);
             label11 = new Label();
-            customComboBox2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomComboBox();
             searchBox = new CustomTextBox();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label1 = new Label();
@@ -58,6 +57,7 @@
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             panel1 = new Panel();
+            customComboBox2 = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             customCard7.SuspendLayout();
             customCard2.SuspendLayout();
             expansionPanel1.SuspendLayout();
@@ -77,27 +77,6 @@
             label11.TabIndex = 67;
             label11.Text = "Total submissions :";
             // 
-            // customComboBox2
-            // 
-            customComboBox2.BackColor = Color.White;
-            customComboBox2.BorderColor = Color.LightGray;
-            customComboBox2.BorderSize = 1;
-            customComboBox2.DropDownStyle = ComboBoxStyle.DropDown;
-            customComboBox2.Font = new Font("Segoe UI", 10F);
-            customComboBox2.ForeColor = Color.DimGray;
-            customComboBox2.IconColor = Color.Gray;
-            customComboBox2.Items.AddRange(new object[] { "Earliest Pass", "Points" });
-            customComboBox2.ListBackColor = Color.FromArgb(230, 228, 245);
-            customComboBox2.ListTextColor = Color.DimGray;
-            customComboBox2.Location = new Point(535, 122);
-            customComboBox2.MinimumSize = new Size(200, 29);
-            customComboBox2.Name = "customComboBox2";
-            customComboBox2.Padding = new Padding(1);
-            customComboBox2.Size = new Size(200, 41);
-            customComboBox2.TabIndex = 66;
-            customComboBox2.Texts = "";
-            customComboBox2.OnSelectedIndexChanged += customComboBox2_OnSelectedIndexChanged;
-            // 
             // searchBox
             // 
             searchBox.BackColor = Color.White;
@@ -112,7 +91,7 @@
             searchBox.PlaceHolderColor = Color.DarkGray;
             searchBox.PlaceholderText = "Search Student";
             searchBox.ScrollBars = ScrollBars.None;
-            searchBox.Size = new Size(311, 41);
+            searchBox.Size = new Size(362, 41);
             searchBox.TabIndex = 65;
             searchBox._TextChanged += searchBox__TextChanged;
             // 
@@ -376,22 +355,32 @@
             panel1.Size = new Size(836, 805);
             panel1.TabIndex = 94;
             // 
+            // customComboBox2
+            // 
+            customComboBox2.BackColor = Color.FromArgb(26, 30, 36);
+            customComboBox2.Items.AddRange(new object[] { "Earliest Pass", "Points" });
+            customComboBox2.Location = new Point(570, 122);
+            customComboBox2.Name = "customComboBox2";
+            customComboBox2.Padding = new Padding(1);
+            customComboBox2.Size = new Size(165, 41);
+            customComboBox2.TabIndex = 95;
+            customComboBox2.SelectedIndexChanged += customComboBox2_SelectedIndexChanged;
+            // 
             // ProgressSubmissionPage
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(customComboBox2);
             Controls.Add(panel1);
             Controls.Add(submitCount);
             Controls.Add(customCard2);
             Controls.Add(submittedContainer);
             Controls.Add(label11);
-            Controls.Add(customComboBox2);
             Controls.Add(searchBox);
             Controls.Add(customCard7);
             Controls.Add(label12);
             Name = "ProgressSubmissionPage";
             Size = new Size(1801, 1049);
-            Load += ProgressSubmissionPage_Load;
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             customCard2.ResumeLayout(false);
@@ -407,7 +396,6 @@
         #endregion
 
         private Label label11;
-        private GeneralComponents.CustomComboBox customComboBox2;
         private CustomTextBox searchBox;
         private GeneralComponents.CustomCard customCard7;
         private Label label6;
@@ -429,5 +417,6 @@
         private ExpansionPanel expansionPanel1;
         private ExpansionPanel expansionPanel2;
         private Panel panel1;
+        private SteamThings.SteamComboBox customComboBox2;
     }
 }

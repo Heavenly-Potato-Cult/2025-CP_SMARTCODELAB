@@ -52,7 +52,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
         {
             InitializeComponent();
-
             userMessages = new Dictionary<string, List<UserMessage>>();
             chatBox = null;
             currentTask = task;
@@ -64,8 +63,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             //will ensure that the handle is created before accessing the UI thread
             var obj = this.Handle;
-            new Action((Action)(async () => await displayUsers(users.Values.ToList()))).Invoke();
-
+            displayUsers(users.Values.ToList());
             studentCodeRating1.SetStats(task.ratingFactors);
         }
 
@@ -79,8 +77,24 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
+        public async Task removeUserIcon(string userId)
+        {
+            this.Invoke((Action)(() => 
+            {
+                userIcons[userId].Dispose();
+                userIcons.Remove(userId);
+            }));
+        }
 
-        public async Task displayUsers(List<UserProfile> users)
+        public void updateUserProfile(UserProfile profile)
+        {
+            this.Invoke((Action)(() =>
+            {
+                userIcons[profile._studentId].setNameText(profile._studentName);
+            }));
+        }
+
+        public async void displayUsers(List<UserProfile> users)
         {
             await Task.Run(() =>
             {
@@ -90,10 +104,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     userIcons[user._studentId] = new UserIcons(user, NewUserSelected);
                     displayedUsers.Add(user);
                 }
+                displayStudents();
             });
-
-            // Back to UI thread
-            displayStudents();
         }
 
         //for the display of session logs
@@ -250,10 +262,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     {
                         studentProgress = progress;
                         int studentProgLength = studentProgress.CodeProgress.Count - 1;
-                        codeTrack.Maximum = studentProgLength;
                         if (fromClick)
                             codeTrack.Value = studentProgLength;
                         bool atMax = codeTrack.Maximum == codeTrack.Value;
+                        codeTrack.Maximum = studentProgLength;
                         if (atMax)
                         {
                             studentCode.Text = studentProgress.sourceCode;
@@ -344,18 +356,18 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
-        private void status_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
-            updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
-        }
-
         private void codeTrack_ValueChanged(object sender, EventArgs e)
         {
             if (studentProgress == null)
                 return;
 
             studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
+        }
+
+        private void status_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
+            updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
         }
     }
 }

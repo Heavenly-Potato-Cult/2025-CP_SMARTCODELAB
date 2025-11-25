@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             panel19 = new Panel();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             score = new Label();
             label9 = new Label();
             readabilityContainer = new Panel();
@@ -56,7 +55,6 @@
             // panel19
             // 
             panel19.BackColor = Color.White;
-            panel19.Controls.Add(smartButton1);
             panel19.Controls.Add(score);
             panel19.Controls.Add(label9);
             panel19.Dock = DockStyle.Top;
@@ -64,23 +62,6 @@
             panel19.Name = "panel19";
             panel19.Size = new Size(442, 56);
             panel19.TabIndex = 77;
-            // 
-            // smartButton1
-            // 
-            smartButton1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 5;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(339, 18);
-            smartButton1.Margin = new Padding(3, 4, 3, 4);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(86, 34);
-            smartButton1.TabIndex = 82;
-            smartButton1.Text = "View More";
-            smartButton1.UseVisualStyleBackColor = false;
-            smartButton1.Click += smartButton1_Click;
             // 
             // score
             // 
@@ -122,7 +103,6 @@
             efficiency.Name = "efficiency";
             efficiency.Size = new Size(283, 13);
             efficiency.TabIndex = 83;
-            efficiency.Value = 100;
             // 
             // label2
             // 
@@ -152,7 +132,6 @@
             robustness.Name = "robustness";
             robustness.Size = new Size(283, 13);
             robustness.TabIndex = 81;
-            robustness.Value = 100;
             // 
             // label3
             // 
@@ -194,7 +173,6 @@
             maintainability.Name = "maintainability";
             maintainability.Size = new Size(283, 13);
             maintainability.TabIndex = 84;
-            maintainability.Value = 100;
             // 
             // accuracyPanel
             // 
@@ -278,7 +256,6 @@
         private Panel accuracyPanel;
         private GeneralComponents.StatsBar accuracy;
         private Label label15;
-        private GeneralComponents.SmartButton smartButton1;
         private Panel panel2;
     }
 }

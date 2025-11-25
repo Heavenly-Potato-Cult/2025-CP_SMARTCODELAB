@@ -47,6 +47,10 @@ namespace SmartCodeLab.CustomComponents
             this.Invoke((Action)(() => customCard3.BackColor = Color.White));
         }
 
+        public void setNameText(string newName)
+        {
+            this.Invoke((Action)(() => username.Text = newName));
+        }
         public void setStatus(bool isActive)
         {
             this.isActive = isActive;

@@ -23,16 +23,41 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
         public List<UserProfile> newlyAdded { get; private set; }
         public Dictionary<string, UserProfile> expectedUsers;
-        public StudTable(Dictionary<string, UserProfile> users)
+        private Action<List<UserProfile>> updateIcons;
+        private Action<UserProfile, bool> updateDisplay;
+        private Dictionary<string, StudentRow> userIcons;
+
+        //right after adding the student, should add its icon to the temp server page
+        public StudTable(Dictionary<string, UserProfile> users, Action<List<UserProfile>> updateIcons = null, Action<UserProfile, bool> updateDisplay = null)
         {
             InitializeComponent();
+            this.updateDisplay = updateDisplay;
+            this.updateIcons = updateIcons;
             newlyAdded = new List<UserProfile>();
             expectedUsers = users;
             count.Text = users.Count.ToString();
+            userIcons = new Dictionary<string, StudentRow>();
             foreach (var user in users.Values)
             {
-                studtab.Controls.Add(new StudentRow(user._studentId, user._studentName));
+                var userRow = new StudentRow(user._studentId, user._studentName, removeUser, updateUserDisplay);
+                userIcons.Add(user._studentId, userRow);
+                studtab.Controls.Add(userRow);
             }
+        }
+
+        private void updateUserDisplay(UserProfile user)
+        {
+            expectedUsers[user._studentId] = user;
+            userIcons[user._studentId].setNameText(user._studentName);
+            updateDisplay?.Invoke(user, true);
+        }
+
+        private void removeUser(string userId)
+        {
+            MessageBox.Show(this, "Removing user with user id " + userId);
+            updateDisplay?.Invoke(expectedUsers[userId], false);
+            expectedUsers.Remove(userId);
+            count.Text = expectedUsers.Count.ToString();
         }
 
         public bool ContainsUser(string studentId)
@@ -53,9 +78,13 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                         MessageBox.Show("User Id Already Exists");
                         return;
                     }
-                    expectedUsers.Add(newUser.Key, new UserProfile(newUser.Value, newUser.Key, "N/A"));
-                    studtab.Controls.Add(new StudentRow(newUser.Key, newUser.Value));
-                    newlyAdded.Add(new UserProfile(newUser.Value, newUser.Key, "N/A"));
+                    var newAddedUser = new UserProfile(newUser.Value, newUser.Key, "N/A");
+                    var newUserIcon = new StudentRow(newUser.Key, newUser.Value, removeUser, updateUserDisplay);
+                    expectedUsers.Add(newUser.Key, newAddedUser);
+                    userIcons.Add(newAddedUser._studentId, newUserIcon);
+                    studtab.Controls.Add(newUserIcon);
+                    updateIcons?.Invoke(new List<UserProfile>() { newAddedUser });
+                    newlyAdded.Add(newAddedUser);
                     count.Text = int.Parse(count.Text) + 1 + "";
                 }));
             }
@@ -138,24 +167,31 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
                     await Task.Run(() => 
                     {
-
                         if (studentRecords == null)
                             MessageBox.Show("File is missing the required columns");
                         else if (studentRecords.Count == 0)
                             MessageBox.Show("No student record found");
                         else
+                        {
+                            var addedUsers = new List<UserProfile>();
                             foreach (var item in studentRecords)
                             {
                                 if (!expectedUsers.ContainsKey(item.Key) && !item.Key.IsWhiteSpace())
                                 {
+                                    var newlyAddedUser = new UserProfile(item.Value._studentName, item.Value._studentId, "N/A");
+                                    var newUserIcon = new StudentRow(item.Key, item.Value._studentName, removeUser, updateUserDisplay);
                                     expectedUsers.Add(item.Key, item.Value);
-                                    newlyAdded.Add(new UserProfile(item.Value._studentName, item.Value._studentId, "N/A"));
+                                    addedUsers.Add(newlyAddedUser);
+                                    newlyAdded.Add(newlyAddedUser);
+                                    userIcons.Add(newlyAddedUser._studentId, newUserIcon);
                                     this.Invoke(new Action(() =>
                                     {
-                                        studtab.Controls.Add(new StudentRow(item.Key, item.Value._studentName));
+                                        studtab.Controls.Add(newUserIcon);
                                     }));
                                 }
                             }
+                            updateIcons?.Invoke(addedUsers);
+                        }
                     } );
                 }
                 count.Text = expectedUsers.Count.ToString();
