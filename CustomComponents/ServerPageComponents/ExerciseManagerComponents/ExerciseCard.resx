@@ -120,11 +120,11 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="smartButton9.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwa
-        AAAAmElEQVQ4T6WTQQ6EIBRDvYQTuf9NdHa60oXHeZOOYhSqEu1G6G+LNKECvkAPfKpCSAsMQKeNFsJU
-        ErKapRV6ETUwrsQMhNQUYbTN2SALMZrFfCHYQszsaI4wwmA4b45IStJ3v74t+Y/k1LKT9zgJyIq1eHUF
-        V5jh/J8Y4XZnMzuGGEFWmNEsIWaQmSOMNoh8/Zi6h89ZnvYHN3XnxHvrmgQAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAACYSURBVDhPpZNB
+        DoQgFEO9hBO5/010drrShcd5k45iFKoS7Ubob4s0oQK+QA98qkJICwxAp40WwlQSspqlFXoRNTCuxAyE
+        1BRhtM3ZIAsxmsV8IdhCzOxojjDCYDhvjkhK0ne/vi35j+TUspP3OAnIirV4dQVXmOH8nxjhdmczO4YY
+        QVaY0SwhZpCZI4w2iHz9mLqHz1me9gc3defEe+uaBAAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>
