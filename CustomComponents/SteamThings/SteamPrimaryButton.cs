@@ -22,19 +22,18 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            // Colors
+          
             Color bgColor = this.IsMouseOver() ? Color.FromArgb(200, SteamColors.Accent) : SteamColors.Accent;
-            Color textColor = Color.Black; // accent-foreground is #0b0e11 (near black)
+            Color textColor = Color.Black;
 
-            // 1. Draw Button Background
+           
             Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
             using (SolidBrush brush = new SolidBrush(bgColor))
             {
                 g.FillRectangle(brush, rect);
             }
 
-            // 2. Draw Glow/Shadow Effect (Simulated)
-            // CSS: boxShadow: "0 0 20px rgba(26, 191, 32, 0.5)"
+            
             if (this.IsMouseOver())
             {
                 using (Pen glowPen = new Pen(Color.FromArgb(100, SteamColors.Accent), 4))
@@ -43,12 +42,12 @@ namespace SmartCodeLab.CustomComponents.SteamThings
                 }
             }
 
-            // 3. Draw Text
+         
             TextRenderer.DrawText(g, this.Text, this.Font, rect, textColor,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
 
-        // Helper to detect hover state without extra boolean flags
+        
         private bool IsMouseOver()
         {
             return this.ClientRectangle.Contains(this.PointToClient(Cursor.Position));
