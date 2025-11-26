@@ -1,21 +1,7 @@
-﻿using Microsoft.VisualBasic;
-using SmartCodeLab.CustomComponents.CustomDialogs;
-using SmartCodeLab.CustomComponents.GeneralComponents;
-using SmartCodeLab.CustomComponents.TaskPageComponents;
+﻿using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.IO;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using ProtoBuf;
@@ -25,9 +11,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
     public partial class TempExerciseManage : UserControl
     {
         private System.Threading.Timer searchTimer;
-        private List<TaskModel> loadedExercises;
+        private Dictionary<int, TaskModel> loadedExercises;
         private ISet<string> taskSubjects;
         private long searchVersion;
+        private int totalLoadedCount;
         public TempExerciseManage()
         {
             InitializeComponent();
@@ -35,7 +22,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             //get the subjects
             taskSubjects = new HashSet<string>();
             searchVersion = 0;
-
+            totalLoadedCount = 0;
             customTextBox1.innerTextBox.TextChanged += (s, e) =>
             {
                 searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -57,12 +44,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 return cp;
             }
         }
+
         private async void TempExerciseManage_Load(object sender, EventArgs e)
         {
             await Task.Run(() =>
             {
 
-                loadedExercises = new List<TaskModel>();
+                loadedExercises = new Dictionary<int, TaskModel>();
 
                 var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task");
 
@@ -76,7 +64,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             if (exercise != null)
                             {
                                 exercise.filePath = file;
-                                loadedExercises.Add(exercise);
+                                loadedExercises.Add(totalLoadedCount++, exercise);
                             }
                         }
                     }
@@ -87,7 +75,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     this.Invoke((Action)(() =>
                     {
-                        foreach (var item in loadedExercises)
+                        foreach (var item in loadedExercises.Values)
                         {
                             taskSubjects.Add(item.subject.Trim().ToUpper());
                         }
@@ -103,20 +91,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             return taskSubjects.ToList();
         }
 
-        private void btn_AddNewExercise_Click(object sender, EventArgs e)
-        {
-            using (var exerciseForm = new AddNewExercise(taskSubjects.ToList()))
-            {
-                var dialogResult = exerciseForm.ShowDialog();
-
-                if (dialogResult == DialogResult.OK)
-                {
-                    loadedExercises.Add(exerciseForm.NewExercise);
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise, removeExervice, getSubjects));
-                }
-            }
-        }
-
         private async Task displayTasks()
         {
             this.Invoke((Action)(() =>
@@ -126,8 +100,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 string subjectFilter = subjects.SelectedItem?.ToString() ?? "All";
                 bool searchForAll = subjectFilter == "All";
                 var filteredSearch = loadedExercises.Where(ex =>
-                    ex._taskName.Contains(search, StringComparison.OrdinalIgnoreCase) &&
-                    (searchForAll || ex.subject.Equals(subjectFilter, StringComparison.OrdinalIgnoreCase))
+                    ex.Value._taskName.Contains(search, StringComparison.OrdinalIgnoreCase) &&
+                    (searchForAll || ex.Value.subject.Equals(subjectFilter, StringComparison.OrdinalIgnoreCase))
                 ).ToList();
                 Task.Delay(200);
                 flowLayoutPanel_Exercises.Controls.Clear();
@@ -135,14 +109,26 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     if (currentVersion != searchVersion)
                         break;
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise, removeExervice, getSubjects));
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise.Key, exercise.Value, removeExervice, getSubjects, updateSubjectsLists));
                 }
             }));
         }
 
-        private void removeExervice(TaskModel task)
+        private void updateSubjectsLists(int index, TaskModel updatedTask)
         {
-            loadedExercises.Remove(task);
+            loadedExercises[index] = updatedTask;
+
+            string potentialNewSubject = updatedTask.subject.Trim().ToUpper();
+            if (!taskSubjects.Contains(potentialNewSubject))
+            {
+                taskSubjects.Add(potentialNewSubject);
+                subjects.Items.Add(potentialNewSubject);
+            }
+        }
+
+        private void removeExervice(int index)
+        {
+            loadedExercises.Remove(index);
         }
 
         private void btn_AddNewExercise_Click_1(object sender, EventArgs e)
@@ -153,7 +139,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                 if (dialogResult == DialogResult.OK)
                 {
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exerciseForm.NewExercise, removeExervice, getSubjects));
+                    var newExerciser = exerciseForm.NewExercise;
+                    loadedExercises.Add(totalLoadedCount++, newExerciser);
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(totalLoadedCount, newExerciser, removeExervice, getSubjects, updateSubjectsLists));
+                    updateSubjectsLists(totalLoadedCount, newExerciser);
                 }
             }
         }

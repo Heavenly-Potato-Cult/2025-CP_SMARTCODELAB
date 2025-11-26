@@ -1,19 +1,5 @@
-﻿using ProtoBuf;
-using SmartCodeLab.CustomComponents.ServerPageComponents;
-using SmartCodeLab.Models;
-using SmartCodeLab.Models.Enums;
-using System;
-using System.Collections.Generic;
+﻿using SmartCodeLab.Models;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 
 namespace SmartCodeLab.CustomComponents
 {
@@ -51,6 +37,7 @@ namespace SmartCodeLab.CustomComponents
         {
             this.Invoke((Action)(() => username.Text = newName));
         }
+
         public void setStatus(bool isActive)
         {
             this.isActive = isActive;

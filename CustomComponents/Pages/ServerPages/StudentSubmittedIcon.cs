@@ -39,19 +39,5 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             this.Click += (sender, e) => updateDisplayClick?.Invoke(submittedCode);
         }
 
-        public void UpdatePlacement(int newPlacement, string newSourceCode)
-        {
-            currentPlacement = newPlacement;
-            placing.Text = newPlacement.ToString();
-            submittedCode.sourceCode = newSourceCode;
-        }
-
-        public void IncreasePlacement() 
-        {
-            this.Invoke((Action)(() => { 
-                currentPlacement--;
-                placing.Text = currentPlacement.ToString();
-            } ));
-        }
     }
 }

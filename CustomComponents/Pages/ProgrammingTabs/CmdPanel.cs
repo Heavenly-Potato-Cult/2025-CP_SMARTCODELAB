@@ -107,11 +107,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
             catch (InvalidOperationException) { }
         }
+
         private void StopBlinkingCursor()
         {
             waitingForInput = false;
             RemoveLastChar(); // remove the '_' if visible
         }
+
         private void RemoveLastChar()
         {
             if (InvokeRequired)

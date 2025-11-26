@@ -19,9 +19,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class JavaCodeEditor : BaseCodeEditor
     {
-        int operatorsCount;
-        private int errorCounts = 0;
-        TextInputDialog2 toInput;
         TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
         TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
         TextStyle GrayStyle = new TextStyle(Brushes.Gray, null, FontStyle.Regular);
@@ -126,6 +123,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 null,//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
                 null);
         }
+
         public override async Task RunLinting()
         {
             SaveCode();
@@ -174,7 +172,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             //check efficiency
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
             {
-                await checkOperatorsCount();
                 await checkEfficiencyComparison();
             } else
                 updateStats?.Invoke(2, 0, "java");
@@ -263,17 +260,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                     updateStats?.Invoke(3, robustnessCounts, "java");
                 });
-        }
-
-        private async Task checkOperatorsCount()
-        {
-            process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_OPERATOR_COUNTER}\" \"{filePath}\"\"");
-            operatorsCount = 0;
-            await StartprocessAsyncExit(
-                process,
-                res => operatorsCount = int.Parse(res),
-                res => Debug.WriteLine($"error java oper counter : {res}"),
-                null);
         }
 
         private string checkstyleErrorRetriever(string errorMsg)

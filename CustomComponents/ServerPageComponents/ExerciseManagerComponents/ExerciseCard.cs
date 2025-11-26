@@ -17,16 +17,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
     public partial class ExerciseCard : UserControl
     {
 
-        public ExerciseCard()
-        {
-            InitializeComponent();
-        }
-
+        private int index;
         private TaskModel _task;
         Func<List<string>> existingSubjects;
-        public ExerciseCard(TaskModel task, Action<TaskModel> taskRemover, Func<List<string>> existingSubjects)
+        private Action<int, TaskModel> updateTask;
+        public ExerciseCard(int index, TaskModel task, Action<int> taskRemover, Func<List<string>> existingSubjects, Action<int, TaskModel> updateTask)
         {
             InitializeComponent();
+            this.index = index;
+            this.updateTask = updateTask;
             this.existingSubjects = existingSubjects;
             lbl_ExerciseTitle.Text = task._taskName;
             subject.Text = task.subject;
@@ -40,23 +39,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                 {
                     File.Delete(_task.filePath);
                     UIServices.OKDialogSucess("Task deleted successfully", "Deleted");
-                    taskRemover(task);
+                    taskRemover(this.index);
                     Dispose();
                 }
             };
         }
-
-
-
-
-
-
-
-
-
-
-
-       
 
         private string
             _title,
@@ -64,7 +51,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             _classCourse,
             _classYearAndSection;
 
-        private void smartButton7_Click(object sender, EventArgs e)
+        private void btn_editcard_Click(object sender, EventArgs e)
         {
             using (var exerciseForm = new CustomDialogs.AddNewExercise(_task, existingSubjects.Invoke()))
             {
@@ -76,75 +63,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                     subject.Text = _task.subject;
                     dateModified.Text = _task.lastModified.ToString("MMM dd, yyyy hh:mm tt");
                     testCounts.Text = _task._testCases?.Count.ToString() ?? "0";
+                    updateTask?.Invoke(index, _task);
                 }
-            }
-        }
-
-
-        // Plan (pseudocode):
-        // - Identify incorrect constructor call AddNewExercise(_task) causing CS1503.
-        // - Replace it with the correct overload AddNewExercise(TaskModel, List<string>).
-        // - Use existingSubjects?.Invoke() to obtain the subjects list, default to empty list if null.
-        // - Keep the rest of the method unchanged.
-
-        private void btn_editcard_Click(object sender, EventArgs e)
-        {
-            using (var exerciseForm = new CustomDialogs.AddNewExercise(_task, existingSubjects?.Invoke() ?? new List<string>()))
-            {
-                var dialogResult = exerciseForm.ShowDialog();
-                if (dialogResult == DialogResult.OK)
-                {
-                    _task = exerciseForm.NewExercise;
-                    lbl_ExerciseTitle.Text = _task._taskName;
-                    subject.Text = _task.subject;
-                    dateModified.Text = _task.lastModified.ToString("MMM dd, yyyy hh:mm tt");
-                    testCounts.Text = _task._testCases?.Count.ToString() ?? "0";
-                }
-            }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string Title
-        {
-            get { return _title; }
-            set
-            {
-                _title = value;
-                lbl_ExerciseTitle.Text = value;
-            }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ProgrammingLanguage
-        {
-            get { return _programmingLanguage; }
-            set
-            {
-                _programmingLanguage = value;
-            }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ClassCourse
-        {
-            get { return _classCourse; }
-            set
-            {
-                _classCourse = value;
-            }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ClassYearAndSection
-        {
-            get { return _classYearAndSection; }
-            set
-            {
-                _classYearAndSection = value;
             }
         }
 

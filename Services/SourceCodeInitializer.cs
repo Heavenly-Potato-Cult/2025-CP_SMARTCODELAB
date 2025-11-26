@@ -63,6 +63,11 @@ namespace SmartCodeLab.Services
                 Task.Delay(200);
                 ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{operatorFile}\"\"");
             }
+            else 
+            {
+                Task.Delay(100);
+                ExecuteCommand($"/c \"\"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
+            }
         }
 
         public static void ExecuteCommand(string command)

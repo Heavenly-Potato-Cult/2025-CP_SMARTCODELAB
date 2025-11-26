@@ -48,10 +48,5 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     break;
             }
         }
-
-        public void newName(string newName)
-        {
-            userName.Text = newName;
-        }
     }
 }

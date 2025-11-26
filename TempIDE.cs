@@ -6,23 +6,10 @@ using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Forms;
-using System.Windows.Forms.Integration;
-using System.Windows.Media;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using EH = System.Windows.Forms.Integration.ElementHost;
 using WpfBrushes = System.Windows.Media.Brushes;
 using WpfColor = System.Windows.Media.Color;
@@ -82,18 +69,6 @@ namespace SmartCodeLab
         private bool isResizingTabs = false;
         private System.Windows.Controls.TreeView wpfTree; 
         private int leaderboardUpdateVersion = 0;
-        public TempIDE()
-        {
-            InitializeComponent();
-            this.DoubleBuffered = true;
-            SetDoubleBuffered(tabControl_RightSide);
-            InitializeWPFTree();
-            AddLeaderboardIcon(1, "Alice", 100);
-            AddLeaderboardIcon(2, "Bob", 50);
-            AddLeaderboardIcon(3, "Charles", 30);
-            AddLeaderboardIcon(6, "David", 79);
-
-        }
 
         public static void SetDoubleBuffered(System.Windows.Forms.Control control)
         {

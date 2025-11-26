@@ -1,26 +1,7 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using ProtoBuf;
-using SmartCodeLab.CustomComponents.CustomDialogs;
-using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
-using SmartCodeLab.CustomComponents.GeneralComponents;
+﻿using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.Models;
-using SmartCodeLab.Models.Enums;
-using SmartCodeLab.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Windows.Navigation;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
@@ -67,6 +48,33 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             studentCodeRating1.SetStats(task.ratingFactors);
         }
 
+        //for the display of session logs
+        public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users, Dictionary<int, decimal[]> ratingFactors)
+        {
+            InitializeComponent();
+            displayedUsers = users.Select(users => users.Value).ToList();
+            userMessages = new Dictionary<string, List<UserMessage>>();
+            progressRetriever = (student_id) => userProgress[student_id];
+            studentCodeRating1.SetStats(ratingFactors);
+            smartButton3.Visible = false;
+            smartButton1.Visible = false;
+            status.Visible = false;
+
+            searchVersion = 0;
+            Load += (s, e) =>
+            {
+                Task.Run(() =>
+                {
+                    foreach (var user in users.Values)
+                    {
+                        userMessages.Add(user._studentId, new List<UserMessage>());
+                        userIcons.Add(user._studentId, new UserIcons(user, NewUserSelected));
+                    }
+                    displayStudents();
+                });
+            };
+        }
+
         protected override CreateParams CreateParams
         {
             get
@@ -106,32 +114,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }
                 displayStudents();
             });
-        }
-
-        //for the display of session logs
-        public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users, Dictionary<int, decimal[]> ratingFactors)
-        {
-            InitializeComponent();
-            displayedUsers = users.Select(users => users.Value).ToList();
-            userMessages = new Dictionary<string, List<UserMessage>>();
-            progressRetriever = (student_id) => userProgress[student_id];
-            studentCodeRating1.SetStats(ratingFactors);
-            smartButton3.Visible = false;
-            smartButton1.Visible = false;
-            status.Enabled = false;
-            searchVersion = 0;
-            Load += (s, e) =>
-            {
-                Task.Run(() =>
-                {
-                    foreach (var user in users.Values)
-                    {
-                        userMessages.Add(user._studentId, new List<UserMessage>());
-                        userIcons.Add(user._studentId, new UserIcons(user, NewUserSelected));
-                    }
-                    displayStudents();
-                });
-            };
         }
 
         private void displayStudents()

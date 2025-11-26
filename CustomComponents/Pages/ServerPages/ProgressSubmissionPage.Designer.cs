@@ -159,7 +159,7 @@
             submittedContainer.FlowDirection = FlowDirection.TopDown;
             submittedContainer.Location = new Point(202, 227);
             submittedContainer.Name = "submittedContainer";
-            submittedContainer.Size = new Size(533, 769);
+            submittedContainer.Size = new Size(533, 614);
             submittedContainer.TabIndex = 68;
             submittedContainer.WrapContents = false;
             // 
@@ -256,7 +256,7 @@
             expansionPanel1.IconText = "v";
             expansionPanel1.Location = new Point(0, 270);
             expansionPanel1.Name = "expansionPanel1";
-            expansionPanel1.Size = new Size(836, 508);
+            expansionPanel1.Size = new Size(815, 508);
             expansionPanel1.TabIndex = 93;
             expansionPanel1.Title1 = "Student Code";
             expansionPanel1.Title2 = "";
@@ -283,6 +283,7 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IsReplaceMode = false;
             studentCode.Location = new Point(0, 0);
@@ -292,7 +293,7 @@
             studentCode.ReadOnly = true;
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
-            studentCode.Size = new Size(836, 508);
+            studentCode.Size = new Size(815, 508);
             studentCode.TabIndex = 2;
             studentCode.Text = "codeEditor1";
             studentCode.Zoom = 100;
@@ -306,7 +307,7 @@
             expansionPanel2.IconText = "v";
             expansionPanel2.Location = new Point(0, 0);
             expansionPanel2.Name = "expansionPanel2";
-            expansionPanel2.Size = new Size(836, 270);
+            expansionPanel2.Size = new Size(815, 270);
             expansionPanel2.TabIndex = 93;
             expansionPanel2.Title1 = "Scores";
             expansionPanel2.Title2 = "";
@@ -352,7 +353,7 @@
             panel1.Controls.Add(expansionPanel2);
             panel1.Location = new Point(809, 191);
             panel1.Name = "panel1";
-            panel1.Size = new Size(836, 805);
+            panel1.Size = new Size(836, 650);
             panel1.TabIndex = 94;
             // 
             // customComboBox2

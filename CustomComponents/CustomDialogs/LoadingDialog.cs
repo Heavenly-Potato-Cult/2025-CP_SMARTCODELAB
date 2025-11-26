@@ -126,6 +126,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             CloseMe();
         }
+
         public void ConnectClient(IPEndPoint point)
         {
             try

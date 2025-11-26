@@ -163,18 +163,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
-        private async Task getOperatorsCount()
-        {
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{ProgrammingConfiguration.PYTHON_OPERATOR_COUNTER}\" \"{filePath}\"\"");
-            int count = 0;
-            await StartprocessAsyncExit(
-                process,
-                output => count = int.Parse(output),
-                err => Debug.WriteLine($"operator counter err : {err}"),
-                () => updateStats?.Invoke(2, count, "python")
-             );
-        }
-
         private Action<int, string> violationsHighLighter(int i)
         {
             if (i == 3)
@@ -188,6 +176,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     base.HighlightMaintainabilityIssue(num, msg);
                 });
         }
+
         private Action standardClearer(int lintercheck) //2 = readability , 3 = robustness, else = maintainability
         {
             if (lintercheck == 2)
@@ -209,6 +198,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     maintainabilityWarning.Clear();
                 });
         }
+
         private string ruffCodeRetriever(string errorMsg)
         {
             string newMsg = errorMsg.Remove(0, 1);

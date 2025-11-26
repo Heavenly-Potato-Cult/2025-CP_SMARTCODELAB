@@ -36,12 +36,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             { "Python", $"\"{ProgrammingConfiguration.PYTHON_OPERATOR_COUNTER}\""}
         };
 
-        public CodeComplexityReference()
-        {
-            InitializeComponent();
-            total_cyclomatic_complexity = 0;
-        }
-
         public CodeComplexityReference(string language, string currentCode)
         {
             InitializeComponent();

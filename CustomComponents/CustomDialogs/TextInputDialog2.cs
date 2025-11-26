@@ -21,9 +21,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             inputText = "";
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {

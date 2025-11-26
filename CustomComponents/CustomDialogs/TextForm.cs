@@ -32,10 +32,5 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             this.DialogResult = DialogResult.Cancel;
             Close();
         }
-
-        private void msg_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -536,7 +536,6 @@
             steamGradientPanel1.Name = "steamGradientPanel1";
             steamGradientPanel1.Size = new Size(1801, 1049);
             steamGradientPanel1.TabIndex = 50;
-            steamGradientPanel1.Paint += steamGradientPanel1_Paint;
             // 
             // TempSessionManagement2
             // 

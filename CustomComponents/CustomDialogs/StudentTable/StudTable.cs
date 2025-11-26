@@ -16,11 +16,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 {
     public partial class StudTable : Form
     {
-        public StudTable()
-        {
-            InitializeComponent();
-        }
-
         public List<UserProfile> newlyAdded { get; private set; }
         public Dictionary<string, UserProfile> expectedUsers;
         private Action<List<UserProfile>> updateIcons;

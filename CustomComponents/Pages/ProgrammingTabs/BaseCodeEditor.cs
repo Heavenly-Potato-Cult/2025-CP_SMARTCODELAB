@@ -386,6 +386,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     acceptedCode = srcCode.Text;
                 }
+                testCodeForm.Dispose();
                 await RunLinting();
                 await sendProgress.Invoke();
             }
@@ -525,6 +526,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             process.BeginErrorReadLine();
             await process.WaitForExitAsync();
         }
+
         public virtual async Task RunLinting() { }
 
         protected void HighlightError(int errorLine, string errorMsg)
@@ -586,14 +588,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 return new CppCodeEditor(filePath, task, progress, updateStats, sendProgress);
             }
-        }
-
-        public bool isCurrentCodeAccepted()
-        {
-            if (acceptedCode == "")
-                return false;
-
-            return srcCode.Text == acceptedCode;
         }
 
         protected void Invoker(Action action) 
