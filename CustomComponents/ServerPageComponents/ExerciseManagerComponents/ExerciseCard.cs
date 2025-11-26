@@ -81,9 +81,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
         }
 
 
+        // Plan (pseudocode):
+        // - Identify incorrect constructor call AddNewExercise(_task) causing CS1503.
+        // - Replace it with the correct overload AddNewExercise(TaskModel, List<string>).
+        // - Use existingSubjects?.Invoke() to obtain the subjects list, default to empty list if null.
+        // - Keep the rest of the method unchanged.
+
         private void btn_editcard_Click(object sender, EventArgs e)
         {
-            using (var exerciseForm = new CustomDialogs.AddNewExercise(_task))
+            using (var exerciseForm = new CustomDialogs.AddNewExercise(_task, existingSubjects?.Invoke() ?? new List<string>()))
             {
                 var dialogResult = exerciseForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)
