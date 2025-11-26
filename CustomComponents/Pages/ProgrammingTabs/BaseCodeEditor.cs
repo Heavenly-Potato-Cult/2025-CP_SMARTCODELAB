@@ -386,6 +386,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     acceptedCode = srcCode.Text;
                 }
+                testCodeForm.Dispose();
                 await RunLinting();
                 await sendProgress.Invoke();
             }

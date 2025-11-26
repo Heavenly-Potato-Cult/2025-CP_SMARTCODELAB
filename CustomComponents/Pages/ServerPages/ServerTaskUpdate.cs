@@ -127,6 +127,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 validateCode.ShowDialog();
                 if(validateCode.score != task._testCases.Count)
                 {
+                    validateCode.Dispose();
                     MessageBox.Show("The reference code failed to satisfy all designated test cases. Please evaluate the failing scenarios and update your implementation as needed.");
                     return;
                 }

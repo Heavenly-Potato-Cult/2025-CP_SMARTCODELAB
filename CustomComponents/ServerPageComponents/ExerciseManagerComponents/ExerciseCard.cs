@@ -22,11 +22,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             InitializeComponent();
         }
 
+        private int index;
         private TaskModel _task;
         Func<List<string>> existingSubjects;
-        public ExerciseCard(TaskModel task, Action<TaskModel> taskRemover, Func<List<string>> existingSubjects)
+        private Action<int, TaskModel> updateTask;
+        public ExerciseCard(int index, TaskModel task, Action<int> taskRemover, Func<List<string>> existingSubjects, Action<int, TaskModel> updateTask)
         {
             InitializeComponent();
+            this.index = index;
+            this.updateTask = updateTask;
             this.existingSubjects = existingSubjects;
             lbl_ExerciseTitle.Text = task._taskName;
             subject.Text = task.subject;
@@ -40,23 +44,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                 {
                     File.Delete(_task.filePath);
                     UIServices.OKDialogSucess("Task deleted successfully", "Deleted");
-                    taskRemover(task);
+                    taskRemover(this.index);
                     Dispose();
                 }
             };
         }
-
-
-
-
-
-
-
-
-
-
-
-       
 
         private string
             _title,
@@ -64,7 +56,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             _classCourse,
             _classYearAndSection;
 
-        private void smartButton7_Click(object sender, EventArgs e)
+        private void btn_editcard_Click(object sender, EventArgs e)
         {
             using (var exerciseForm = new CustomDialogs.AddNewExercise(_task, existingSubjects.Invoke()))
             {
@@ -76,23 +68,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                     subject.Text = _task.subject;
                     dateModified.Text = _task.lastModified.ToString("MMM dd, yyyy hh:mm tt");
                     testCounts.Text = _task._testCases?.Count.ToString() ?? "0";
-                }
-            }
-        }
-
-
-        private void btn_editcard_Click(object sender, EventArgs e)
-        {
-            using (var exerciseForm = new CustomDialogs.AddNewExercise(_task))
-            {
-                var dialogResult = exerciseForm.ShowDialog();
-                if (dialogResult == DialogResult.OK)
-                {
-                    _task = exerciseForm.NewExercise;
-                    lbl_ExerciseTitle.Text = _task._taskName;
-                    subject.Text = _task.subject;
-                    dateModified.Text = _task.lastModified.ToString("MMM dd, yyyy hh:mm tt");
-                    testCounts.Text = _task._testCases?.Count.ToString() ?? "0";
+                    updateTask?.Invoke(index, _task);
                 }
             }
         }

@@ -90,7 +90,7 @@
             customCard7.Margin = new Padding(3, 3, 50, 3);
             customCard7.Name = "customCard7";
             customCard7.Padding = new Padding(5, 11, 5, 20);
-            customCard7.Size = new Size(742, 787);
+            customCard7.Size = new Size(742, 675);
             customCard7.TabIndex = 19;
             // 
             // panel8
@@ -103,7 +103,7 @@
             panel8.Location = new Point(5, 53);
             panel8.Margin = new Padding(3, 20, 3, 3);
             panel8.Name = "panel8";
-            panel8.Size = new Size(732, 713);
+            panel8.Size = new Size(732, 602);
             panel8.TabIndex = 24;
             // 
             // notifContainer
@@ -113,7 +113,7 @@
             notifContainer.Location = new Point(3, 88);
             notifContainer.Margin = new Padding(3, 4, 3, 4);
             notifContainer.Name = "notifContainer";
-            notifContainer.Size = new Size(726, 621);
+            notifContainer.Size = new Size(726, 508);
             notifContainer.TabIndex = 3;
             notifContainer.WrapContents = false;
             // 

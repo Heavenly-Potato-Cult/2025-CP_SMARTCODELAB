@@ -32,6 +32,7 @@
             label1 = new Label();
             currentScore = new Label();
             panel_results = new Panel();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label17
@@ -75,17 +76,31 @@
             panel_results.Size = new Size(1081, 571);
             panel_results.TabIndex = 83;
             // 
+            // button1
+            // 
+            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Location = new Point(988, 0);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 25);
+            button1.TabIndex = 84;
+            button1.Text = "Close";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // TestCodeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
             ClientSize = new Size(1082, 645);
+            Controls.Add(button1);
             Controls.Add(panel_results);
             Controls.Add(currentScore);
             Controls.Add(label1);
             Controls.Add(label17);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "TestCodeForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TestCodeForm";
             ResumeLayout(false);
             PerformLayout();
@@ -96,5 +111,6 @@
         private Label label1;
         private Label currentScore;
         private Panel panel_results;
+        private Button button1;
     }
 }

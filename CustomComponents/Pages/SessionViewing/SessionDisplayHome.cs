@@ -24,7 +24,7 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
             InitializeComponent();
             searchVersion = 0;
             this.notifications = notifications;
-
+            serverName.Text = server.ServerName;
             submissionCount.Text = $"{server.submittedCount}/{server.Users.Count}";
             duration.Text = $"{server.createdAt.ToString("g")} - {endTime.ToString("h:mm tt")}";
             pastedCount.Text = copyPasteCount.ToString();

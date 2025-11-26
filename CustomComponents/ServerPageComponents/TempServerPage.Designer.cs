@@ -94,7 +94,7 @@
     '\'',
     '\''
     };
-            studentCode.AutoScrollMinSize = new Size(2, 18);
+            studentCode.AutoScrollMinSize = new Size(31, 18);
             studentCode.BackBrush = null;
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;

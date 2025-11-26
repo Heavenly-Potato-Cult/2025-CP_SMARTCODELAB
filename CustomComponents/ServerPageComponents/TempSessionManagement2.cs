@@ -192,7 +192,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             File.WriteAllText(tempFilePath, code);
             var validateCode = new TestCodeForm(command, task);
             validateCode.ShowDialog();
-            return validateCode.score == task._testCases.Count;
+            bool isPerfect = validateCode.score == task._testCases.Count;
+            validateCode.Dispose();
+            return isPerfect;
         }
 
         public static string compileCode(string command)

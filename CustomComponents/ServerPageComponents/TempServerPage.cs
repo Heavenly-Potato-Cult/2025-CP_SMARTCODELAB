@@ -67,6 +67,33 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             studentCodeRating1.SetStats(task.ratingFactors);
         }
 
+        //for the display of session logs
+        public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users, Dictionary<int, decimal[]> ratingFactors)
+        {
+            InitializeComponent();
+            displayedUsers = users.Select(users => users.Value).ToList();
+            userMessages = new Dictionary<string, List<UserMessage>>();
+            progressRetriever = (student_id) => userProgress[student_id];
+            studentCodeRating1.SetStats(ratingFactors);
+            smartButton3.Visible = false;
+            smartButton1.Visible = false;
+            status.Visible = false;
+
+            searchVersion = 0;
+            Load += (s, e) =>
+            {
+                Task.Run(() =>
+                {
+                    foreach (var user in users.Values)
+                    {
+                        userMessages.Add(user._studentId, new List<UserMessage>());
+                        userIcons.Add(user._studentId, new UserIcons(user, NewUserSelected));
+                    }
+                    displayStudents();
+                });
+            };
+        }
+
         protected override CreateParams CreateParams
         {
             get
@@ -108,31 +135,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             });
         }
 
-        //for the display of session logs
-        public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users, Dictionary<int, decimal[]> ratingFactors)
-        {
-            InitializeComponent();
-            displayedUsers = users.Select(users => users.Value).ToList();
-            userMessages = new Dictionary<string, List<UserMessage>>();
-            progressRetriever = (student_id) => userProgress[student_id];
-            studentCodeRating1.SetStats(ratingFactors);
-            smartButton3.Visible = false;
-            smartButton1.Visible = false;
-            status.Enabled = false;
-            searchVersion = 0;
-            Load += (s, e) =>
-            {
-                Task.Run(() =>
-                {
-                    foreach (var user in users.Values)
-                    {
-                        userMessages.Add(user._studentId, new List<UserMessage>());
-                        userIcons.Add(user._studentId, new UserIcons(user, NewUserSelected));
-                    }
-                    displayStudents();
-                });
-            };
-        }
 
         private void displayStudents()
         {

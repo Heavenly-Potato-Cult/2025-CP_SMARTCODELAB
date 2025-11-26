@@ -50,8 +50,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     try
                     {
-                        process.Kill();
-                        process.WaitForExit(1000);
+                        KillProcessTree(process.Id);
+                        process.WaitForExit(3000);
                     }
                     catch (Exception ex)
                     {
@@ -60,6 +60,28 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
             }
             catch (InvalidOperationException) { }
+        }
+
+        private void KillProcessTree(int processId)
+        {
+            try
+            {
+                using var pKiller = new Process();
+                pKiller.StartInfo.FileName = "taskkill";
+                pKiller.StartInfo.Arguments = $"/pid {processId} /t /f";
+                pKiller.StartInfo.UseShellExecute = false;
+                pKiller.StartInfo.CreateNoWindow = true;
+                pKiller.Start();
+                pKiller.WaitForExit(5000);
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    Process.GetProcessById(processId)?.Kill();
+                }
+                catch { }
+            }
         }
 
         private async void RunTest()
@@ -101,7 +123,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                     catch (TimeoutException)
                     {
-                        testOutput = "Error: Test case timed out";
+                        testOutput = """
+                            Error: Test case timed out
+                            Common causes:
+                            - Excessive input operations
+                            - Input statements inside loops
+                            - Delays or pauses in code execution
+                            """;
                     }
                     catch (Exception ex)
                     {
@@ -189,7 +217,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 process.BeginErrorReadLine();
 
                 if (!string.IsNullOrEmpty(input))
-                {
+                {                                                     //to ensure that all input stream will be filled
                     await process.StandardInput.WriteLineAsync(input);
                     await process.StandardInput.FlushAsync(); // Ensure input is sent
                     process.StandardInput.Close();
@@ -204,6 +232,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     // Timeout occurred
                     try
                     {
+                        KillProcessTree(process.Id);
                         process.Kill();
                         process.WaitForExit(1000); // Wait for kill to complete
                     }
@@ -252,6 +281,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             newProcess.StartInfo.CreateNoWindow = !didRunCode;
 
             return newProcess;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
