@@ -110,7 +110,7 @@ namespace SmartCodeLab
             // 
             tabPage1.BackColor = SystemColors.Control;
             tabPage1.Controls.Add(serverHomePage1);
-            tabPage1.Location = new Point(4, 29);
+            tabPage1.Location = new Point(4, 154);
             tabPage1.Margin = new Padding(2);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(2);
@@ -132,11 +132,11 @@ namespace SmartCodeLab
             // 
             tabPage2.BackColor = SystemColors.Control;
             tabPage2.Controls.Add(tempServerPage1);
-            tabPage2.Location = new Point(4, 29);
+            tabPage2.Location = new Point(4, 154);
             tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(2);
-            tabPage2.Size = new Size(1904, 879);
+            tabPage2.Size = new Size(180, 0);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
             // 
@@ -148,24 +148,24 @@ namespace SmartCodeLab
             tempServerPage1.Location = new Point(2, 2);
             tempServerPage1.Margin = new Padding(2, 4, 2, 4);
             tempServerPage1.Name = "tempServerPage1";
-            tempServerPage1.Size = new Size(1900, 875);
+            tempServerPage1.Size = new Size(176, 0);
             tempServerPage1.TabIndex = 0;
             // 
             // tabPage3
             // 
             tabPage3.BackColor = SystemColors.Control;
             tabPage3.Controls.Add(serverTaskUpdate1);
-            tabPage3.Location = new Point(4, 29);
+            tabPage3.Location = new Point(4, 154);
             tabPage3.Margin = new Padding(2);
             tabPage3.Name = "tabPage3";
-            tabPage3.Size = new Size(1904, 879);
+            tabPage3.Size = new Size(180, 0);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";
             // 
             // serverTaskUpdate1
             // 
             serverTaskUpdate1.Anchor = AnchorStyles.Top;
-            serverTaskUpdate1.Location = new Point(1035, 62);
+            serverTaskUpdate1.Location = new Point(173, 62);
             serverTaskUpdate1.Margin = new Padding(4, 2, 4, 2);
             serverTaskUpdate1.Name = "serverTaskUpdate1";
             serverTaskUpdate1.Size = new Size(1482, 786);
@@ -175,10 +175,10 @@ namespace SmartCodeLab
             // 
             tabPage5.AutoScroll = true;
             tabPage5.Controls.Add(progressSubmissionPage1);
-            tabPage5.Location = new Point(4, 29);
+            tabPage5.Location = new Point(4, 154);
             tabPage5.Margin = new Padding(2);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new Size(1904, 879);
+            tabPage5.Size = new Size(180, 0);
             tabPage5.TabIndex = 4;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
@@ -195,10 +195,10 @@ namespace SmartCodeLab
             // tabPage4
             // 
             tabPage4.Controls.Add(studentTable21);
-            tabPage4.Location = new Point(4, 29);
+            tabPage4.Location = new Point(4, 154);
             tabPage4.Margin = new Padding(2);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new Size(1904, 879);
+            tabPage4.Size = new Size(180, 0);
             tabPage4.TabIndex = 3;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
@@ -209,16 +209,16 @@ namespace SmartCodeLab
             studentTable21.Location = new Point(305, 44);
             studentTable21.Margin = new Padding(4, 5, 4, 5);
             studentTable21.Name = "studentTable21";
-            studentTable21.Size = new Size(3387, 1092);
+            studentTable21.Size = new Size(1663, 1092);
             studentTable21.TabIndex = 0;
             // 
             // tabPage9
             // 
             tabPage9.Controls.Add(label5);
-            tabPage9.Location = new Point(4, 29);
+            tabPage9.Location = new Point(4, 154);
             tabPage9.Margin = new Padding(2);
             tabPage9.Name = "tabPage9";
-            tabPage9.Size = new Size(1904, 879);
+            tabPage9.Size = new Size(180, 0);
             tabPage9.TabIndex = 5;
             tabPage9.Text = "tabPage9";
             tabPage9.UseVisualStyleBackColor = true;
@@ -279,7 +279,6 @@ namespace SmartCodeLab
             tabPage7.Location = new Point(4, 29);
             tabPage7.Margin = new Padding(2);
             tabPage7.Name = "tabPage7";
-            tabPage7.Padding = new Padding(2);
             tabPage7.Size = new Size(1916, 964);
             tabPage7.TabIndex = 1;
             tabPage7.Text = "tabPage7";
@@ -288,19 +287,19 @@ namespace SmartCodeLab
             // 
             tempExerciseManage1.AllowDrop = true;
             tempExerciseManage1.Dock = DockStyle.Fill;
-            tempExerciseManage1.Location = new Point(2, 2);
+            tempExerciseManage1.Location = new Point(0, 0);
             tempExerciseManage1.Margin = new Padding(2);
             tempExerciseManage1.Name = "tempExerciseManage1";
-            tempExerciseManage1.Size = new Size(1912, 960);
+            tempExerciseManage1.Size = new Size(1916, 964);
             tempExerciseManage1.TabIndex = 0;
             // 
             // tabPage8
             // 
             tabPage8.BackColor = Color.White;
-            tabPage8.Location = new Point(4, 29);
+            tabPage8.Location = new Point(4, 54);
             tabPage8.Margin = new Padding(2);
             tabPage8.Name = "tabPage8";
-            tabPage8.Size = new Size(1916, 964);
+            tabPage8.Size = new Size(192, 42);
             tabPage8.TabIndex = 2;
             tabPage8.Text = "tabPage8";
             tabPage8.Enter += tabPage8_Enter;
