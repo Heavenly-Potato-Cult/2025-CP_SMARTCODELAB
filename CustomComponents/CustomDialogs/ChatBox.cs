@@ -14,10 +14,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
     public partial class ChatBox : Form
     {
         public string studentId { get; private set; }
-        public ChatBox()
-        {
-            InitializeComponent();
-        }
         public ChatBox(Func<string, string, bool> sendMessage,List<UserMessage>? messages, bool isActive, string studentName, string studentId)
         {
             InitializeComponent();

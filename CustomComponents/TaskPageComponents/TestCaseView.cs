@@ -12,10 +12,6 @@ namespace SmartCodeLab.CustomComponents.TaskPageComponents
 {
     public partial class TestCaseView : UserControl
     {
-        public TestCaseView()
-        {
-            InitializeComponent();
-        }
 
         public TestCaseView(int num,string userInput, string expectedOutput)
         {

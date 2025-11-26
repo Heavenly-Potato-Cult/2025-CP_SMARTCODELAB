@@ -17,11 +17,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
     public partial class ExerciseCard : UserControl
     {
 
-        public ExerciseCard()
-        {
-            InitializeComponent();
-        }
-
         private int index;
         private TaskModel _task;
         Func<List<string>> existingSubjects;
@@ -70,51 +65,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                     testCounts.Text = _task._testCases?.Count.ToString() ?? "0";
                     updateTask?.Invoke(index, _task);
                 }
-            }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string Title
-        {
-            get { return _title; }
-            set
-            {
-                _title = value;
-                lbl_ExerciseTitle.Text = value;
-            }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ProgrammingLanguage
-        {
-            get { return _programmingLanguage; }
-            set
-            {
-                _programmingLanguage = value;
-            }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ClassCourse
-        {
-            get { return _classCourse; }
-            set
-            {
-                _classCourse = value;
-            }
-        }
-
-        [Browsable(false)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public string ClassYearAndSection
-        {
-            get { return _classYearAndSection; }
-            set
-            {
-                _classYearAndSection = value;
             }
         }
 

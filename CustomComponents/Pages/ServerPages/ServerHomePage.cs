@@ -100,6 +100,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             searchVersion = 0;
 
         }
+
         public void updateCountDisplay(int studentCounts)
         {
             this.Invoke((Action)(() =>

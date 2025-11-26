@@ -44,6 +44,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 return cp;
             }
         }
+
         public ProgressSubmissionPage(Dictionary<string, SubmittedCode> codeSubmissions)
         {
             InitializeComponent();
@@ -140,6 +141,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 }
             }));
         }
+
         private void UpdateDisplaySync(SubmittedCode submittedCode)
         {
             studentName.Text = submittedCode.user._studentName;
@@ -151,12 +153,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 materialListView1.Items.Add(new ListViewItem(new string[] { ratingFactors[kv.Key], kv.Value.ToString("0.00") }));
             });
-        }
-
-        private void btn_viewmore_Click(object sender, EventArgs e)
-        {
-            var ViewMoreForm = new ViewMoreSubmissionsForm();
-            ViewMoreForm.ShowDialog();
         }
 
         private void searchBox__TextChanged(object sender, EventArgs e)

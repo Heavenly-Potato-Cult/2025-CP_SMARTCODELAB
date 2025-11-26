@@ -94,18 +94,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
-        public void SetStudentStats(Dictionary<int, float> stats)
-        {
-            if (stats != null)
-            {
-                foreach (var item in stats.Where(item => item.Key != 5))
-                {
-                    int k = item.Key;
-                    int percentageScore = Convert.ToInt32((Convert.ToDecimal(item.Value) / statsWeight[k]) * 100);
-                    statsBar[item.Key]?.ChangeValue(percentageScore);
-                }
-            }
-        }
         public Dictionary<int, float> GetStats()
         {
             var currentCodeStats = new Dictionary<int, float>();
@@ -161,29 +149,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             return Convert.ToInt32(Math.Ceiling((factorWeight / totalChecks) * totalViolations));
         }
 
-        /* qoutient = student_total_operators / standard_operators_count
-         * if qoutient <= 1.1 then 100
-         * if qoutient <= 1.4 then 85
-         * if qoutient <= 1.8 then 70
-         * if qoutient <= 2.5 then 50
-         * else 30
-         */
-        private int getEfficiencyGrade(int studTotalOperators)
-        {
-            double percentageDiff = Convert.ToDouble(studTotalOperators) / standardOperatorsCount;
-
-            if (percentageDiff <= 1.1)
-                return 100;
-            else if (percentageDiff <= 1.4)
-                return 85;
-            else if (percentageDiff <= 1.8)
-                return 70;
-            else if (percentageDiff <= 2.5)
-                return 50;
-            else
-                return 30;
-        }
-
         public float GetScore()
         {
             float totalScore = 0;
@@ -198,9 +163,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             this.Invoke(new Action(() =>
             {
-                Debug.WriteLine("Total rating" + codeRating.totalRating.ToString());
                 score.Text = codeRating.totalRating.ToString();
-
                 foreach (var item in codeRating.trackbarValues)
                 {
                     statsBar[item.Key].ChangeValue(item.Value);
@@ -222,14 +185,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 .Build();
         }
 
-        private void smartButton1_Click(object sender, EventArgs e)
-        {
-            if (violations != null)
-            {
-                new ViewCodeViolations(violations.Invoke()).ShowDialog();
-            }
-        }
-
         private Dictionary<int, int> getTrackBarValues()
         {
             return new Dictionary<int, int>()
@@ -244,11 +199,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public void SetViolationsRetriever(Func<List<HashSet<string>>> violations)
         {
             this.violations = violations;
-        }
-
-        private void accuracy_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

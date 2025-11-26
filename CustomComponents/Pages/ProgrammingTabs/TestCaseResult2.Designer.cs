@@ -66,23 +66,21 @@
     '\'',
     '\''
     };
-            actualOutput.AutoScrollMinSize = new Size(90, 14);
+            actualOutput.AutoScrollMinSize = new Size(141, 18);
             actualOutput.BackBrush = null;
-            actualOutput.CharHeight = 14;
-            actualOutput.CharWidth = 8;
+            actualOutput.CharHeight = 18;
+            actualOutput.CharWidth = 10;
             actualOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             actualOutput.Dock = DockStyle.Fill;
-            actualOutput.Font = new Font("Courier New", 9.75F);
             actualOutput.Hotkeys = resources.GetString("actualOutput.Hotkeys");
             actualOutput.IsReplaceMode = false;
-            actualOutput.Location = new Point(0, 20);
-            actualOutput.Margin = new Padding(3, 2, 3, 2);
+            actualOutput.Location = new Point(0, 25);
             actualOutput.Name = "actualOutput";
             actualOutput.Paddings = new Padding(0);
             actualOutput.ReadOnly = true;
             actualOutput.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             actualOutput.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("actualOutput.ServiceColors");
-            actualOutput.Size = new Size(224, 141);
+            actualOutput.Size = new Size(256, 190);
             actualOutput.TabIndex = 88;
             actualOutput.Text = "codeEditor3";
             actualOutput.Zoom = 100;
@@ -102,23 +100,21 @@
     '\'',
     '\''
     };
-            expectedOutput.AutoScrollMinSize = new Size(90, 14);
+            expectedOutput.AutoScrollMinSize = new Size(141, 18);
             expectedOutput.BackBrush = null;
-            expectedOutput.CharHeight = 14;
-            expectedOutput.CharWidth = 8;
+            expectedOutput.CharHeight = 18;
+            expectedOutput.CharWidth = 10;
             expectedOutput.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             expectedOutput.Dock = DockStyle.Fill;
-            expectedOutput.Font = new Font("Courier New", 9.75F);
             expectedOutput.Hotkeys = resources.GetString("expectedOutput.Hotkeys");
             expectedOutput.IsReplaceMode = false;
-            expectedOutput.Location = new Point(0, 20);
-            expectedOutput.Margin = new Padding(3, 2, 3, 2);
+            expectedOutput.Location = new Point(0, 25);
             expectedOutput.Name = "expectedOutput";
             expectedOutput.Paddings = new Padding(0);
             expectedOutput.ReadOnly = true;
             expectedOutput.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             expectedOutput.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("expectedOutput.ServiceColors");
-            expectedOutput.Size = new Size(195, 141);
+            expectedOutput.Size = new Size(222, 190);
             expectedOutput.TabIndex = 87;
             expectedOutput.Text = "codeEditor2";
             expectedOutput.Zoom = 100;
@@ -138,23 +134,21 @@
     '\'',
     '\''
     };
-            inputs.AutoScrollMinSize = new Size(90, 14);
+            inputs.AutoScrollMinSize = new Size(141, 18);
             inputs.BackBrush = null;
-            inputs.CharHeight = 14;
-            inputs.CharWidth = 8;
+            inputs.CharHeight = 18;
+            inputs.CharWidth = 10;
             inputs.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             inputs.Dock = DockStyle.Fill;
-            inputs.Font = new Font("Courier New", 9.75F);
             inputs.Hotkeys = resources.GetString("inputs.Hotkeys");
             inputs.IsReplaceMode = false;
-            inputs.Location = new Point(0, 20);
-            inputs.Margin = new Padding(3, 2, 3, 2);
+            inputs.Location = new Point(0, 25);
             inputs.Name = "inputs";
             inputs.Paddings = new Padding(0);
             inputs.ReadOnly = true;
             inputs.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             inputs.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("inputs.ServiceColors");
-            inputs.Size = new Size(231, 141);
+            inputs.Size = new Size(264, 190);
             inputs.TabIndex = 86;
             inputs.Text = "codeEditor1";
             inputs.Zoom = 100;
@@ -163,6 +157,7 @@
             // 
             splitContainer1.Dock = DockStyle.Fill;
             splitContainer1.Location = new Point(0, 0);
+            splitContainer1.Margin = new Padding(3, 4, 3, 4);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -173,8 +168,9 @@
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer2);
-            splitContainer1.Size = new Size(658, 161);
-            splitContainer1.SplitterDistance = 231;
+            splitContainer1.Size = new Size(752, 215);
+            splitContainer1.SplitterDistance = 264;
+            splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 89;
             // 
             // label1
@@ -185,7 +181,7 @@
             label1.ForeColor = Color.DimGray;
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(45, 20);
+            label1.Size = new Size(57, 25);
             label1.TabIndex = 82;
             label1.Text = "Input";
             // 
@@ -193,6 +189,7 @@
             // 
             splitContainer2.Dock = DockStyle.Fill;
             splitContainer2.Location = new Point(0, 0);
+            splitContainer2.Margin = new Padding(3, 4, 3, 4);
             splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -204,8 +201,9 @@
             // 
             splitContainer2.Panel2.Controls.Add(actualOutput);
             splitContainer2.Panel2.Controls.Add(label3);
-            splitContainer2.Size = new Size(423, 161);
-            splitContainer2.SplitterDistance = 195;
+            splitContainer2.Size = new Size(483, 215);
+            splitContainer2.SplitterDistance = 222;
+            splitContainer2.SplitterWidth = 5;
             splitContainer2.TabIndex = 0;
             // 
             // label2
@@ -216,7 +214,7 @@
             label2.ForeColor = Color.DimGray;
             label2.Location = new Point(0, 0);
             label2.Name = "label2";
-            label2.Size = new Size(123, 20);
+            label2.Size = new Size(153, 25);
             label2.TabIndex = 82;
             label2.Text = "Expected Output";
             // 
@@ -228,17 +226,18 @@
             label3.ForeColor = Color.DimGray;
             label3.Location = new Point(0, 0);
             label3.Name = "label3";
-            label3.Size = new Size(104, 20);
+            label3.Size = new Size(130, 25);
             label3.TabIndex = 82;
             label3.Text = "Actual Output";
             // 
             // TestCaseResult2
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(splitContainer1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "TestCaseResult2";
-            Size = new Size(658, 161);
+            Size = new Size(752, 215);
             ((System.ComponentModel.ISupportInitialize)actualOutput).EndInit();
             ((System.ComponentModel.ISupportInitialize)expectedOutput).EndInit();
             ((System.ComponentModel.ISupportInitialize)inputs).EndInit();

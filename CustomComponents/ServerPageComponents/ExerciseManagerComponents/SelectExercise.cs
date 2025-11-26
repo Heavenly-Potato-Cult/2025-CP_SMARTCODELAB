@@ -18,12 +18,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
         private string exercisesFolder = SystemConfigurations.TASK_FOLDER;
         private System.Threading.Timer refreshTimer;
         private Action<TaskModel> onExerciseSelected;
-        public SelectExercise()
-        {
-            InitializeComponent();
-            var handle = this.Handle;
-            Load += (sender, e) => PopulateExerciseList();
-        }
 
         protected override CreateParams CreateParams
         {
@@ -45,37 +39,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
 
         private void PopulateExerciseList()
         {
-            //refreshTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-
-            //refreshTimer = new System.Threading.Timer(_ =>
-            //{
-            //    Task.Run(() =>
-            //    {
-            //        string searched = searchBox.Texts.ToLower();
-            //        var exerciseFiles = Directory.GetFiles(exercisesFolder, "*.task").
-            //            Where(file => Path.GetFileName(file).ToLower().Contains(searched)).
-            //            ToList();
-            //        try
-            //        {
-            //            this.Invoke(new Action(() => flowLayoutPanel1.Controls.Clear()));
-
-            //            foreach (var file in exerciseFiles)
-            //            {
-            //                using (var fileOpened = File.OpenRead(file))
-            //                {
-            //                    var exercise = ProtoBuf.Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, ProtoBuf.PrefixStyle.Base128);
-            //                    exercise.filePath = file;
-            //                    this.Invoke(new Action(() =>
-            //                    {
-            //                        flowLayoutPanel1.Controls.Add(new ExerciseSelection(exercise, exerciseSelected));
-            //                    }));
-            //                }
-            //            }
-            //        }
-            //        catch (InvalidOperationException) { }
-            //    });
-            //}, null, 300, Timeout.Infinite);
-
             refreshTimer?.Change(Timeout.Infinite, Timeout.Infinite);
 
             refreshTimer = new System.Threading.Timer(_ =>
@@ -105,7 +68,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                             {
                                 var exercise = ProtoBuf.Serializer.DeserializeWithLengthPrefix<TaskModel>(fileOpened, ProtoBuf.PrefixStyle.Base128);
                                 exercise.filePath = file;
-
                                 
                                 controlsToAdd.Add(new ExerciseSelection(exercise, exerciseSelected) { Dock = DockStyle.Top});
                             }

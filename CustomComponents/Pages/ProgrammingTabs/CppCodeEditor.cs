@@ -187,25 +187,5 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             errorMessage = errorMessage.Remove(0, errorMessage.IndexOf(':') + 1).Replace(" error:","");
             return (int.Parse(lineError), errorMessage);
         }
-
-        private (int, string) GetViolationLineMessage(string line)
-        {
-            string violationMessage = line.Replace($"{filePath}:", "");
-            string lineError = string.Empty;
-            int secondColon = 1;
-
-            foreach (var item in violationMessage.ToCharArray())
-            {
-                if (char.IsDigit(item))
-                    lineError += item;
-                else
-                    break;
-
-                secondColon++;
-            }
-            violationMessage = violationMessage.Remove(0, secondColon+2);
-
-            return (int.Parse(lineError), violationMessage);
-        }
     }
 }

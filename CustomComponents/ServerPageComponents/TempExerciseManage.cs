@@ -1,21 +1,7 @@
-﻿using Microsoft.VisualBasic;
-using SmartCodeLab.CustomComponents.CustomDialogs;
-using SmartCodeLab.CustomComponents.GeneralComponents;
-using SmartCodeLab.CustomComponents.TaskPageComponents;
+﻿using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using System.IO;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using ProtoBuf;
@@ -58,6 +44,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 return cp;
             }
         }
+
         private async void TempExerciseManage_Load(object sender, EventArgs e)
         {
             await Task.Run(() =>

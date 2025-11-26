@@ -12,49 +12,6 @@ namespace SmartCodeLab.Services
 {
     public class NetworkServices
     {
-        public static string? GetIpv4()
-        {
-            return NetworkInterface
-            .GetAllNetworkInterfaces()
-            .Where(n => n.OperationalStatus == OperationalStatus.Up &&
-                        n.NetworkInterfaceType != NetworkInterfaceType.Loopback)
-            .SelectMany(n => n.GetIPProperties().UnicastAddresses)
-            .Where(a => a.Address.AddressFamily == AddressFamily.InterNetwork)
-            .Select(a => a.Address.ToString())
-            .FirstOrDefault();
-        }
-        public static IPAddress? GetWiFiBroadcast()
-        {
-            foreach (NetworkInterface ni in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (ni.OperationalStatus == OperationalStatus.Up &&
-                    ni.NetworkInterfaceType == NetworkInterfaceType.Wireless80211)
-                {
-                    var unicast = ni.GetIPProperties().UnicastAddresses
-                        .FirstOrDefault(a => a.Address.AddressFamily == AddressFamily.InterNetwork);
-
-                    if (unicast == null)
-                        continue;
-
-                    return GetBroadcastAddress(unicast.Address, unicast.IPv4Mask);
-                }
-            }
-
-            return null; // No Wi-Fi broadcast found
-        }
-
-        private static IPAddress GetBroadcastAddress(IPAddress ip, IPAddress mask)
-        {
-            byte[] ipBytes = ip.GetAddressBytes();
-            byte[] maskBytes = mask.GetAddressBytes();
-            byte[] broadcast = new byte[ipBytes.Length];
-
-            for (int i = 0; i < ipBytes.Length; i++)
-                broadcast[i] = (byte)(ipBytes[i] | ~maskBytes[i]);
-
-            return new IPAddress(broadcast);
-        }
-
         public static string GetLocalIPv4()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());

@@ -33,14 +33,14 @@ namespace SmartCodeLab.Models
             _studentName = studentName;
             _studentId = studentId;
             _password = password;
-            _computerAddress = NetworkServices.GetIpv4();
+            _computerAddress = NetworkServices.GetLocalIPv4();
         }
 
         public UserProfile(string studentId, string password)
         {
             _studentId = studentId;
             _password = password;
-            _computerAddress = NetworkServices.GetIpv4();
+            _computerAddress = NetworkServices.GetLocalIPv4();
         }
 
         public UserProfile(string studentId, string studentName, bool isForTable)

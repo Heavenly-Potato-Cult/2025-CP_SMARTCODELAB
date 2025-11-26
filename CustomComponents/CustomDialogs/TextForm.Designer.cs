@@ -46,7 +46,6 @@
             msg.Size = new Size(347, 76);
             msg.TabIndex = 0;
             msg.Text = "";
-            msg.TextChanged += msg_TextChanged;
             // 
             // smartButton1
             // 
