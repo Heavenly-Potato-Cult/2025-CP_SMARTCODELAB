@@ -108,7 +108,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 foreach (var user in users)
                 {
                     userMessages[user._studentId] = new List<UserMessage>();
-                    userIcons[user._studentId] = new UserIcons(user, NewUserSelected);
+                    userIcons[user._studentId] = new UserIcons(user, NewUserSelected) { Dock = DockStyle.Top};
                     displayedUsers.Add(user);
                 }
                 displayStudents();
@@ -135,7 +135,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                     UserIcons icon = userIcons[ids];
                     if (activeStatus.Equals("All") || isActiveFilter == icon.isActive)
-                        iconsContainer.Controls.Add(userIcons[ids]);
+                    iconsContainer.Controls.Add(userIcons[ids]);
                 }
             }));
         }
@@ -328,22 +328,22 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
         }
 
-        private void smartButton1_Click(object sender, EventArgs e)
-        {
-            var messageForm = new TextForm();
-            if (messageForm.ShowDialog() == DialogResult.OK)
+            private void smartButton1_Click(object sender, EventArgs e)
             {
-                SentBroadCaseMessage(messageForm.Message + '\n');
+                var messageForm = new TextForm();
+                if (messageForm.ShowDialog() == DialogResult.OK)
+                {
+                    SentBroadCaseMessage(messageForm.Message + '\n');
+                }
             }
-        }
 
-        private void codeTrack_ValueChanged(object sender, EventArgs e)
-        {
-            if (studentProgress == null)
-                return;
+            private void codeTrack_ValueChanged(object sender, EventArgs e)
+            {
+                if (studentProgress == null)
+                    return;
 
-            studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
-        }
+                studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
+            }
 
         private void status_SelectedIndexChanged_1(object sender, EventArgs e)
         {

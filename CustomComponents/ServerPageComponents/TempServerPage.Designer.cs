@@ -31,14 +31,13 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TempServerPage));
             studentCode = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
-            iconsContainer = new FlowLayoutPanel();
             status = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             codeTrack = new SmartCodeLab.CustomComponents.SteamThings.SteamTrackBar();
             studentCodeRating1 = new StudentCodeRating();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            iconsContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard9 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             searchStudent = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             customCard8 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -55,7 +54,6 @@
             ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             steamGradientPanel1.SuspendLayout();
             customCard6.SuspendLayout();
-            customCard2.SuspendLayout();
             customCard9.SuspendLayout();
             customCard8.SuspendLayout();
             customCard1.SuspendLayout();
@@ -87,6 +85,7 @@
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             studentCode.Dock = DockStyle.Fill;
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -103,19 +102,6 @@
             studentCode.TabIndex = 15;
             studentCode.WordWrap = true;
             studentCode.Zoom = 100;
-            // 
-            // iconsContainer
-            // 
-            iconsContainer.AutoScroll = true;
-            iconsContainer.Dock = DockStyle.Fill;
-            iconsContainer.FlowDirection = FlowDirection.TopDown;
-            iconsContainer.Location = new Point(2, 0);
-            iconsContainer.Margin = new Padding(3, 4, 3, 4);
-            iconsContainer.Name = "iconsContainer";
-            iconsContainer.Size = new Size(366, 658);
-            iconsContainer.TabIndex = 12;
-            iconsContainer.TabStop = true;
-            iconsContainer.WrapContents = false;
             // 
             // status
             // 
@@ -191,7 +177,7 @@
             customCard6.BorderColor = Color.FromArgb(42, 71, 94);
             customCard6.BorderRadius = 2;
             customCard6.BorderSize = 1;
-            customCard6.Controls.Add(customCard2);
+            customCard6.Controls.Add(iconsContainer);
             customCard6.Controls.Add(customCard9);
             customCard6.Controls.Add(customCard8);
             customCard6.Location = new Point(35, 29);
@@ -200,20 +186,20 @@
             customCard6.Size = new Size(370, 816);
             customCard6.TabIndex = 109;
             // 
-            // customCard2
+            // iconsContainer
             // 
-            customCard2.BackColor = Color.FromArgb(21, 28, 38);
-            customCard2.BorderColor = Color.FromArgb(42, 71, 94);
-            customCard2.BorderRadius = 2;
-            customCard2.BorderSize = 1;
-            customCard2.Controls.Add(iconsContainer);
-            customCard2.Dock = DockStyle.Fill;
-            customCard2.Location = new Point(0, 156);
-            customCard2.Margin = new Padding(0);
-            customCard2.Name = "customCard2";
-            customCard2.Padding = new Padding(2, 0, 2, 2);
-            customCard2.Size = new Size(370, 660);
-            customCard2.TabIndex = 112;
+            iconsContainer.AutoScroll = true;
+            iconsContainer.BackColor = Color.FromArgb(21, 28, 38);
+            iconsContainer.BorderColor = Color.FromArgb(42, 71, 94);
+            iconsContainer.BorderRadius = 2;
+            iconsContainer.BorderSize = 1;
+            iconsContainer.Dock = DockStyle.Fill;
+            iconsContainer.Location = new Point(0, 156);
+            iconsContainer.Margin = new Padding(0);
+            iconsContainer.Name = "iconsContainer";
+            iconsContainer.Padding = new Padding(10, 10, 10, 2);
+            iconsContainer.Size = new Size(370, 660);
+            iconsContainer.TabIndex = 112;
             // 
             // customCard9
             // 
@@ -424,7 +410,6 @@
             ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();
             steamGradientPanel1.ResumeLayout(false);
             customCard6.ResumeLayout(false);
-            customCard2.ResumeLayout(false);
             customCard9.ResumeLayout(false);
             customCard8.ResumeLayout(false);
             customCard1.ResumeLayout(false);
@@ -439,7 +424,6 @@
 
         #endregion
         private Pages.ProgrammingTabs.CodeEditor studentCode;
-        private FlowLayoutPanel iconsContainer;
         private GeneralComponents.StatsBar accuracy;
         private GeneralComponents.StatsBar statsBar2;
         private Label label6;
@@ -464,6 +448,6 @@
         private GeneralComponents.CustomCard customCard8;
         private GeneralComponents.CustomCard customCard9;
         private SteamThings.SteamTextBox searchStudent;
-        private GeneralComponents.CustomCard customCard2;
+        private GeneralComponents.CustomCard iconsContainer;
     }
 }
