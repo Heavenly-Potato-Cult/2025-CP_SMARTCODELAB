@@ -18,8 +18,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         {
             InitializeComponent();
             int lines =  (code.end + 1) - code.start;
-            string line = lines > 1 ? " lines" : " line";
-            codeLine.Text = lines.ToString() + line;
+            string line = lines > 1 ? " lines" : " line";   
+            codeLine.Text = "Pasted " + lines.ToString() + line;
             time.Text = code.detectedAt.ToString("hh\\:mm tt");
             panelIcon.Click += (s, e) =>
             {

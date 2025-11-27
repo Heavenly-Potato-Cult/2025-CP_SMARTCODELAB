@@ -56,7 +56,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             userMessages = new Dictionary<string, List<UserMessage>>();
             progressRetriever = (student_id) => userProgress[student_id];
             studentCodeRating1.SetStats(ratingFactors);
-            smartButton3.Visible = false;
             smartButton1.Visible = false;
             status.Visible = false;
 
@@ -87,7 +86,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         public async Task removeUserIcon(string userId)
         {
-            this.Invoke((Action)(() => 
+            this.Invoke((Action)(() =>
             {
                 userIcons[userId].Dispose();
                 userIcons.Remove(userId);
@@ -119,7 +118,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void displayStudents()
         {
             long currentSearchVersion = ++searchVersion;
-            string search = searchStudent.Texts.ToLower();
+            string search = searchStudent.Text.ToLower();
             var searchedUserIds = displayedUsers.
                 Where(user => user._studentName.ToLower().Contains(search)).
                 Select(user => user._studentId).ToList();
@@ -310,8 +309,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }));
             }
 
-            studentName.Text = profile._studentName;
-            ipaddress.Text = profile._computerAddress;
+            studentName.Text = profile._studentName.ToUpper() + " | " + profile._computerAddress;
+            //ipaddress.Text = profile._computerAddress;
         }
 
         private void smartButton3_Click(object sender, EventArgs e)
@@ -350,6 +349,20 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
             updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
+        }
+
+        private void btn_sendmessage_Click(object sender, EventArgs e)
+        {
+           if (string.IsNullOrEmpty(selectedStudentId))
+                return;
+            chatBox = new ChatBox(SendMessageToStudent, userMessages[selectedStudentId] ?? null, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
+            chatBox.ShowDialog();
+            chatBox = null;
+        }
+
+        private void steamGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
