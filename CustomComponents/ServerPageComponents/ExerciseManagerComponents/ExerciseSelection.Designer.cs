@@ -70,12 +70,12 @@
             // 
             taskName.AutoSize = true;
             taskName.BackColor = Color.Transparent;
-            taskName.Font = new Font("Geist", 10F);
+            taskName.Font = new Font("Geist", 12F);
             taskName.ForeColor = Color.FromArgb(199, 213, 224);
             taskName.Location = new Point(12, 9);
             taskName.Name = "taskName";
-            taskName.Size = new Size(125, 19);
-            taskName.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
+            taskName.Size = new Size(157, 23);
+            taskName.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             taskName.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             taskName.TabIndex = 71;
             taskName.Text = "Total Test Cases";
