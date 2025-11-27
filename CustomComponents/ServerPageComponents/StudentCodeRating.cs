@@ -1,5 +1,6 @@
 ﻿using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.GeneralComponents;
+using SmartCodeLab.CustomComponents.SteamThings;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
@@ -25,8 +27,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         */
 
         private List<int> recordedStats = new List<int>();
-        private readonly Dictionary<int, Panel> statsTotal;
-        private readonly Dictionary<int, StatsBar> statsBar;
+        private Dictionary<int, SteamStatRow> statsRows;
         private int standardCycComplexity;
         private int standardOperatorsCount;
         private int testScore;
@@ -52,21 +53,15 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {3, 0 },
                 {4, 0 }
             };
-            statsTotal = new Dictionary<int, Panel>()
+            statsRows = new Dictionary<int, SteamStatRow>()
             {
-                {1, accuracyPanel },
-                {2, readabilityContainer },
-                {3, robustnessContainer },
-                {4, maintainabilityContainer },
+                {1, rowAccuracy },
+                {2, rowEfficiency },
+                {3, rowRobustness },
+                {4, rowMaintainability },
             };
 
-            statsBar = new Dictionary<int, StatsBar>()
-            {
-                {1, accuracy},
-                {2, efficiency},
-                {3, robustness},//robustness
-                {4, maintainability},//maintainability
-            };
+
         }
 
         public void SetStats(Dictionary<int, decimal[]> stats)
@@ -74,14 +69,19 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             statsWeight = new Dictionary<int, decimal>();
             if (stats != null)
             {
-                foreach (var item in statsTotal.Keys)
+                foreach (var key in statsRows.Keys)
                 {
-                    if (!stats.ContainsKey(item))
+                    if (stats.ContainsKey(key))
                     {
-                        statsTotal[item]?.Visible = false;
+                        // Show the row, save the weight
+                        statsRows[key].Visible = true;
+                        statsWeight.Add(key, stats[key][0]);
                     }
                     else
-                        statsWeight.Add(item, stats[item][0]);
+                    {
+                        // Hide if not tracked
+                        statsRows[key].Visible = false;
+                    }
                 }
 
                 if (stats.ContainsKey(2))
@@ -117,27 +117,46 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 if (!recordedStats.Contains(i))
                     return;
+
+                int finalValue = 0;
+
+
                 if (i == 1)
                 {
                     testScore = value;
-                    accuracy.ChangeValue((int)((value / (double)maxTestScore) * 100));
+                    //accuracy.ChangeValue((int)((value / (double)maxTestScore) * 100));
+                    finalValue = (int)((value / (double)maxTestScore) * 100);
                 }
                 else if (i == 2)//efficiency
                 {
-                    efficiency.ChangeValue(Math.Min(value, accuracy.Value));
+                    //efficiency.ChangeValue(Math.Min(value, accuracy.Value));
+                    finalValue = Math.Min(value, rowAccuracy.Value);
                 }
                 else if (i == 3)//robustness
                 {
                     int scoreRobustness = Math.Max(0, 100 - getTotalDeduction(i, value, language));
-                    robustness.ChangeValue(Math.Min(scoreRobustness, accuracy.Value));
+                    //robustness.ChangeValue(Math.Min(scoreRobustness, accuracy.Value));
+                    finalValue = Math.Min(scoreRobustness, rowAccuracy.Value);
                 }
                 else if (i == 4)//maintainability
                 {
                     int difference = Math.Max(0, 100 - getTotalDeduction(i, value, language));
-                    maintainability.ChangeValue(Math.Min(difference, accuracy.Value));
+                    //maintainability.ChangeValue(Math.Min(difference, accuracy.Value));
+                    finalValue = Math.Min(difference, rowAccuracy.Value);
                 }
-                statsGrade[i] = (statsBar[i].theValue / 100) * Convert.ToSingle(statsWeight[i]);
-                this.Invoke(new Action(() => score.Text = GetScore().ToString()));
+                //statsGrade[i] = (statsRows[i].theValue / 100f) * Convert.ToSingle(statsWeight[i]);
+                statsGrade[i] = (finalValue / 100f) * Convert.ToSingle(statsWeight[i]);
+                this.Invoke(new Action(() =>
+                {
+                    // 1. Update the Bar
+                    statsRows[i].Value = finalValue;
+
+                    // 2. Update Total Score Label (Find your 'score' label)
+                    if (this.Controls.Find("scoreLabel", true).FirstOrDefault() is SteamLabel lbl)
+                    {
+                        lbl.Text = GetScore().ToString("0"); // "85"
+                    }
+                }));
             });
         }
 
@@ -163,10 +182,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             this.Invoke(new Action(() =>
             {
-                score.Text = codeRating.totalRating.ToString();
+                // Update Total
+                if (this.Controls.Find("scoreLabel", true).FirstOrDefault() is Label lbl)
+                    lbl.Text = codeRating.totalRating.ToString();
+
+                // Update Bars
                 foreach (var item in codeRating.trackbarValues)
                 {
-                    statsBar[item.Key].ChangeValue(item.Value);
+                    if (statsRows.ContainsKey(item.Key))
+                    {
+                        statsRows[item.Key].Value = item.Value;
+                    }
                 }
             }));
         }
@@ -189,16 +215,21 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             return new Dictionary<int, int>()
             {
-                {1, accuracy.Value },
-                {2, efficiency.Value },
-                {3, robustness.Value },
-                {4, maintainability.Value }
+                {1, rowAccuracy.Value },
+                {2, rowEfficiency.Value },
+                {3, rowRobustness.Value },
+                {4, rowMaintainability.Value }
             };
         }
 
         public void SetViolationsRetriever(Func<List<HashSet<string>>> violations)
         {
             this.violations = violations;
+        }
+
+        private void scoreLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

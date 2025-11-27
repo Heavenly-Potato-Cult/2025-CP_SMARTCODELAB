@@ -28,234 +28,162 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel19 = new Panel();
-            score = new Label();
-            label9 = new Label();
-            readabilityContainer = new Panel();
-            efficiency = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
-            label2 = new Label();
-            robustnessContainer = new Panel();
-            robustness = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
-            label3 = new Label();
-            maintainabilityContainer = new Panel();
+            scoreLabel = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            rowAccuracy = new SmartCodeLab.CustomComponents.SteamThings.SteamStatRow();
+            rowEfficiency = new SmartCodeLab.CustomComponents.SteamThings.SteamStatRow();
+            rowRobustness = new SmartCodeLab.CustomComponents.SteamThings.SteamStatRow();
+            rowMaintainability = new SmartCodeLab.CustomComponents.SteamThings.SteamStatRow();
+            steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            panel1 = new Panel();
             label1 = new Label();
-            maintainability = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
-            accuracyPanel = new Panel();
-            accuracy = new SmartCodeLab.CustomComponents.GeneralComponents.StatsBar();
-            label15 = new Label();
-            panel2 = new Panel();
-            panel19.SuspendLayout();
-            readabilityContainer.SuspendLayout();
-            robustnessContainer.SuspendLayout();
-            maintainabilityContainer.SuspendLayout();
-            accuracyPanel.SuspendLayout();
-            panel2.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // panel19
+            // scoreLabel
             // 
-            panel19.BackColor = Color.White;
-            panel19.Controls.Add(score);
-            panel19.Controls.Add(label9);
-            panel19.Dock = DockStyle.Top;
-            panel19.Location = new Point(0, 0);
-            panel19.Name = "panel19";
-            panel19.Size = new Size(442, 56);
-            panel19.TabIndex = 77;
+            scoreLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            scoreLabel.AutoSize = true;
+            scoreLabel.BackColor = Color.Transparent;
+            scoreLabel.Font = new Font("Geist", 12F);
+            scoreLabel.ForeColor = Color.FromArgb(199, 213, 224);
+            scoreLabel.Location = new Point(400, 11);
+            scoreLabel.Name = "scoreLabel";
+            scoreLabel.Size = new Size(21, 23);
+            scoreLabel.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            scoreLabel.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            scoreLabel.TabIndex = 92;
+            scoreLabel.Text = "0";
+            scoreLabel.Visible = false;
+            scoreLabel.Click += scoreLabel_Click;
             // 
-            // score
+            // rowAccuracy
             // 
-            score.AutoSize = true;
-            score.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            score.ForeColor = Color.FromArgb(66, 110, 232);
-            score.Location = new Point(81, 16);
-            score.Name = "score";
-            score.Size = new Size(27, 31);
-            score.TabIndex = 81;
-            score.Text = "0";
+            rowAccuracy.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            rowAccuracy.BackColor = Color.Transparent;
+            rowAccuracy.GapSize = 2;
+            rowAccuracy.InactiveColor = Color.FromArgb(45, 50, 60);
+            rowAccuracy.LabelText = "ACCURACY";
+            rowAccuracy.Location = new Point(0, 0);
+            rowAccuracy.Margin = new Padding(3, 3, 3, 20);
+            rowAccuracy.Name = "rowAccuracy";
+            rowAccuracy.SegmentCount = 20;
+            rowAccuracy.Size = new Size(410, 36);
+            rowAccuracy.TabIndex = 90;
+            rowAccuracy.Text = "steamStatRow1";
+            rowAccuracy.ThemeColor = Color.FromArgb(26, 191, 32);
+            rowAccuracy.Value = 85;
             // 
-            // label9
+            // rowEfficiency
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.FromArgb(66, 110, 232);
-            label9.Location = new Point(8, 16);
-            label9.Name = "label9";
-            label9.Size = new Size(73, 31);
-            label9.TabIndex = 79;
-            label9.Text = "Score";
+            rowEfficiency.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            rowEfficiency.BackColor = Color.Transparent;
+            rowEfficiency.GapSize = 2;
+            rowEfficiency.InactiveColor = Color.FromArgb(45, 50, 60);
+            rowEfficiency.LabelText = "EFFCIENCY";
+            rowEfficiency.Location = new Point(0, 36);
+            rowEfficiency.Margin = new Padding(3, 3, 3, 20);
+            rowEfficiency.Name = "rowEfficiency";
+            rowEfficiency.SegmentCount = 20;
+            rowEfficiency.Size = new Size(410, 36);
+            rowEfficiency.TabIndex = 91;
+            rowEfficiency.Text = "steamStatRow2";
+            rowEfficiency.ThemeColor = Color.FromArgb(26, 191, 32);
+            rowEfficiency.Value = 85;
             // 
-            // readabilityContainer
+            // rowRobustness
             // 
-            readabilityContainer.BackColor = Color.White;
-            readabilityContainer.Controls.Add(efficiency);
-            readabilityContainer.Controls.Add(label2);
-            readabilityContainer.Dock = DockStyle.Top;
-            readabilityContainer.Location = new Point(0, 40);
-            readabilityContainer.Name = "readabilityContainer";
-            readabilityContainer.Size = new Size(437, 40);
-            readabilityContainer.TabIndex = 0;
+            rowRobustness.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            rowRobustness.BackColor = Color.Transparent;
+            rowRobustness.GapSize = 2;
+            rowRobustness.InactiveColor = Color.FromArgb(45, 50, 60);
+            rowRobustness.LabelText = "ROBUSTNESS";
+            rowRobustness.Location = new Point(0, 72);
+            rowRobustness.Name = "rowRobustness";
+            rowRobustness.SegmentCount = 20;
+            rowRobustness.Size = new Size(410, 36);
+            rowRobustness.TabIndex = 92;
+            rowRobustness.Text = "steamStatRow3";
+            rowRobustness.ThemeColor = Color.FromArgb(26, 191, 32);
+            rowRobustness.Value = 85;
             // 
-            // efficiency
+            // rowMaintainability
             // 
-            efficiency.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            efficiency.Location = new Point(139, 16);
-            efficiency.Name = "efficiency";
-            efficiency.Size = new Size(283, 13);
-            efficiency.TabIndex = 83;
+            rowMaintainability.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            rowMaintainability.BackColor = Color.Transparent;
+            rowMaintainability.GapSize = 2;
+            rowMaintainability.InactiveColor = Color.FromArgb(45, 50, 60);
+            rowMaintainability.LabelText = "MAINTAINABILITY";
+            rowMaintainability.Location = new Point(0, 108);
+            rowMaintainability.Name = "rowMaintainability";
+            rowMaintainability.SegmentCount = 20;
+            rowMaintainability.Size = new Size(410, 36);
+            rowMaintainability.TabIndex = 93;
+            rowMaintainability.Text = "steamStatRow4";
+            rowMaintainability.ThemeColor = Color.FromArgb(26, 191, 32);
+            rowMaintainability.Value = 85;
             // 
-            // label2
+            // steamLabel1
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.DimGray;
-            label2.Location = new Point(5, 3);
-            label2.Name = "label2";
-            label2.Size = new Size(89, 25);
-            label2.TabIndex = 82;
-            label2.Text = "Efficiency";
+            steamLabel1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            steamLabel1.AutoSize = true;
+            steamLabel1.BackColor = Color.Transparent;
+            steamLabel1.Font = new Font("Geist", 12F);
+            steamLabel1.ForeColor = Color.FromArgb(199, 213, 224);
+            steamLabel1.Location = new Point(314, 11);
+            steamLabel1.Name = "steamLabel1";
+            steamLabel1.Size = new Size(80, 23);
+            steamLabel1.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            steamLabel1.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            steamLabel1.TabIndex = 93;
+            steamLabel1.Text = "Score : ";
+            steamLabel1.Visible = false;
             // 
-            // robustnessContainer
+            // panel1
             // 
-            robustnessContainer.Controls.Add(robustness);
-            robustnessContainer.Controls.Add(label3);
-            robustnessContainer.Dock = DockStyle.Top;
-            robustnessContainer.Location = new Point(0, 80);
-            robustnessContainer.Name = "robustnessContainer";
-            robustnessContainer.Size = new Size(437, 40);
-            robustnessContainer.TabIndex = 85;
-            // 
-            // robustness
-            // 
-            robustness.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            robustness.Location = new Point(139, 12);
-            robustness.Name = "robustness";
-            robustness.Size = new Size(283, 13);
-            robustness.TabIndex = 81;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.DimGray;
-            label3.Location = new Point(5, 4);
-            label3.Name = "label3";
-            label3.Size = new Size(108, 25);
-            label3.TabIndex = 80;
-            label3.Text = "Robustness";
-            // 
-            // maintainabilityContainer
-            // 
-            maintainabilityContainer.Controls.Add(label1);
-            maintainabilityContainer.Controls.Add(maintainability);
-            maintainabilityContainer.Dock = DockStyle.Top;
-            maintainabilityContainer.Location = new Point(0, 120);
-            maintainabilityContainer.Margin = new Padding(3, 4, 3, 4);
-            maintainabilityContainer.Name = "maintainabilityContainer";
-            maintainabilityContainer.Size = new Size(437, 40);
-            maintainabilityContainer.TabIndex = 86;
+            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.Controls.Add(rowMaintainability);
+            panel1.Controls.Add(rowRobustness);
+            panel1.Controls.Add(rowEfficiency);
+            panel1.Controls.Add(rowAccuracy);
+            panel1.Location = new Point(11, 49);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(410, 179);
+            panel1.TabIndex = 94;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.DimGray;
-            label1.Location = new Point(5, 5);
+            label1.BackColor = Color.White;
+            label1.Location = new Point(167, 2);
             label1.Name = "label1";
-            label1.Size = new Size(137, 25);
-            label1.TabIndex = 80;
-            label1.Text = "Maintainability";
-            // 
-            // maintainability
-            // 
-            maintainability.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            maintainability.Location = new Point(139, 13);
-            maintainability.Name = "maintainability";
-            maintainability.Size = new Size(283, 13);
-            maintainability.TabIndex = 84;
-            // 
-            // accuracyPanel
-            // 
-            accuracyPanel.Controls.Add(accuracy);
-            accuracyPanel.Controls.Add(label15);
-            accuracyPanel.Dock = DockStyle.Top;
-            accuracyPanel.Location = new Point(0, 0);
-            accuracyPanel.Name = "accuracyPanel";
-            accuracyPanel.Size = new Size(437, 40);
-            accuracyPanel.TabIndex = 1;
-            // 
-            // accuracy
-            // 
-            accuracy.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            accuracy.Location = new Point(139, 13);
-            accuracy.Name = "accuracy";
-            accuracy.Size = new Size(283, 13);
-            accuracy.TabIndex = 81;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label15.ForeColor = Color.DimGray;
-            label15.Location = new Point(5, 4);
-            label15.Name = "label15";
-            label15.Size = new Size(84, 25);
-            label15.TabIndex = 80;
-            label15.Text = "Accuracy";
-            // 
-            // panel2
-            // 
-            panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.Controls.Add(maintainabilityContainer);
-            panel2.Controls.Add(robustnessContainer);
-            panel2.Controls.Add(readabilityContainer);
-            panel2.Controls.Add(accuracyPanel);
-            panel2.Location = new Point(3, 63);
-            panel2.Margin = new Padding(3, 4, 3, 4);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(437, 191);
-            panel2.TabIndex = 89;
+            label1.Size = new Size(141, 116);
+            label1.TabIndex = 95;
+            label1.Text = "Ill hide this score for now. set its visibility to true in property window if needed";
+            label1.Visible = false;
             // 
             // StudentCodeRating
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            Controls.Add(panel2);
-            Controls.Add(panel19);
+            BackColor = Color.Transparent;
+            Controls.Add(label1);
+            Controls.Add(panel1);
+            Controls.Add(steamLabel1);
+            Controls.Add(scoreLabel);
             Name = "StudentCodeRating";
-            Size = new Size(442, 256);
-            panel19.ResumeLayout(false);
-            panel19.PerformLayout();
-            readabilityContainer.ResumeLayout(false);
-            readabilityContainer.PerformLayout();
-            robustnessContainer.ResumeLayout(false);
-            robustnessContainer.PerformLayout();
-            maintainabilityContainer.ResumeLayout(false);
-            maintainabilityContainer.PerformLayout();
-            accuracyPanel.ResumeLayout(false);
-            accuracyPanel.PerformLayout();
-            panel2.ResumeLayout(false);
+            Size = new Size(432, 248);
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Panel panel19;
-        private Label label9;
-        private GeneralComponents.StatsBar efficiency;
-        private Label label2;
+        private SteamThings.SteamStatRow rowAccuracy;
+        private SteamThings.SteamStatRow rowEfficiency;
+        private SteamThings.SteamStatRow rowRobustness;
+        private SteamThings.SteamStatRow rowMaintainability;
+        private SteamThings.SteamLabel scoreLabel;
+        private SteamThings.SteamLabel steamLabel1;
+        private Panel panel1;
         private Label label1;
-        private GeneralComponents.StatsBar maintainability;
-        private Panel robustnessContainer;
-        private GeneralComponents.StatsBar robustness;
-        private Label label3;
-        private Label score;
-        private Panel maintainabilityContainer;
-        private Panel readabilityContainer;
-        private Panel accuracyPanel;
-        private GeneralComponents.StatsBar accuracy;
-        private Label label15;
-        private Panel panel2;
     }
 }
