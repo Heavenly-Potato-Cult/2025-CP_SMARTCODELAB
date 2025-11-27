@@ -29,63 +29,117 @@
         private void InitializeComponent()
         {
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            status = new Label();
-            username = new Label();
+            status = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            initialsPanel = new Panel();
+            initialsLetter = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            indicator = new Panel();
+            username = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard3.SuspendLayout();
+            initialsPanel.SuspendLayout();
             SuspendLayout();
             // 
             // customCard3
             // 
-            customCard3.BackColor = Color.White;
+            customCard3.BackColor = Color.FromArgb(11, 14, 17);
             customCard3.BorderColor = Color.Gray;
-            customCard3.BorderRadius = 10;
+            customCard3.BorderRadius = 2;
             customCard3.BorderSize = 1;
             customCard3.Controls.Add(status);
+            customCard3.Controls.Add(initialsPanel);
+            customCard3.Controls.Add(indicator);
             customCard3.Controls.Add(username);
-            customCard3.Location = new Point(3, 3);
+            customCard3.Dock = DockStyle.Fill;
+            customCard3.Location = new Point(0, 0);
+            customCard3.Margin = new Padding(0);
             customCard3.Name = "customCard3";
-            customCard3.Size = new Size(240, 61);
+            customCard3.Padding = new Padding(2, 2, 2, 0);
+            customCard3.Size = new Size(246, 66);
             customCard3.TabIndex = 9;
+            customCard3.Paint += customCard3_Paint;
             // 
             // status
             // 
             status.AutoSize = true;
-            status.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            status.ForeColor = Color.FromArgb(0, 192, 0);
-            status.Location = new Point(28, 33);
+            status.BackColor = Color.Transparent;
+            status.Font = new Font("Geist", 8F);
+            status.ForeColor = Color.FromArgb(26, 191, 32);
+            status.Location = new Point(71, 37);
             status.Name = "status";
-            status.Size = new Size(42, 17);
-            status.TabIndex = 10;
+            status.Size = new Size(45, 16);
+            status.SteamSize = SteamThings.SteamLabel.SizeOption.Tiny;
+            status.SteamTheme = SteamThings.SteamLabel.ThemeOption.Accent;
+            status.TabIndex = 14;
             status.Text = "Active";
+            status.Click += status_Click;
+            // 
+            // initialsPanel
+            // 
+            initialsPanel.Controls.Add(initialsLetter);
+            initialsPanel.Location = new Point(17, 9);
+            initialsPanel.Name = "initialsPanel";
+            initialsPanel.Size = new Size(46, 42);
+            initialsPanel.TabIndex = 13;
+            // 
+            // initialsLetter
+            // 
+            initialsLetter.AutoSize = true;
+            initialsLetter.BackColor = Color.Transparent;
+            initialsLetter.Font = new Font("Geist", 12F);
+            initialsLetter.ForeColor = Color.FromArgb(199, 213, 224);
+            initialsLetter.Location = new Point(13, 10);
+            initialsLetter.Name = "initialsLetter";
+            initialsLetter.Size = new Size(20, 23);
+            initialsLetter.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            initialsLetter.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            initialsLetter.TabIndex = 14;
+            initialsLetter.Text = "J";
+            // 
+            // indicator
+            // 
+            indicator.Dock = DockStyle.Left;
+            indicator.Location = new Point(2, 2);
+            indicator.Name = "indicator";
+            indicator.Size = new Size(4, 64);
+            indicator.TabIndex = 12;
             // 
             // username
             // 
             username.AutoSize = true;
-            username.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            username.ForeColor = Color.FromArgb(13, 13, 13);
-            username.Location = new Point(28, 9);
+            username.BackColor = Color.Transparent;
+            username.Font = new Font("Geist", 10F);
+            username.ForeColor = Color.FromArgb(199, 213, 224);
+            username.Location = new Point(71, 11);
             username.Name = "username";
-            username.Size = new Size(85, 23);
-            username.TabIndex = 9;
-            username.Text = "username";
+            username.Size = new Size(80, 19);
+            username.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
+            username.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            username.TabIndex = 11;
+            username.Text = "John Doe";
             // 
             // UserIcons
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             BackgroundImageLayout = ImageLayout.None;
             Controls.Add(customCard3);
+            Margin = new Padding(0);
             Name = "UserIcons";
             Size = new Size(246, 66);
             customCard3.ResumeLayout(false);
             customCard3.PerformLayout();
+            initialsPanel.ResumeLayout(false);
+            initialsPanel.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private GeneralComponents.CustomCard customCard3;
-        private Label status;
-        private Label username;
+        private SteamThings.SteamLabel username;
+        private Panel indicator;
+        private Panel initialsPanel;
+        private SteamThings.SteamLabel initialsLetter;
+        private SteamThings.SteamLabel status;
     }
 }
