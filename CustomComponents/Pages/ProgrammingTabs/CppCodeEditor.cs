@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System;
@@ -19,6 +20,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private readonly Dictionary<string, Action<int, string>> highlighter = new Dictionary<string, Action<int, string>>();
         private string fileExe;
         private string testerExe;
+        private int standardComplexity;
         public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
             highlighter = new Dictionary<string, Action<int, string>>()
@@ -28,6 +30,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
             fileExe = filePath.Replace(".cpp", ".exe");
             testerExe = Path.Combine(Path.GetDirectoryName(filePath), "Tester.exe");
+
+            if (task.ratingFactors.ContainsKey(4))
+                standardComplexity =Convert.ToInt16(task.ratingFactors[4][1]);
         }
 
         public override async Task RunCode()
@@ -151,6 +156,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             violationCounts++;
                         }
                     }
+
+                    int currentComplexity = 0;
+                    if(check == "maintainability")
+                    {
+                        currentComplexity = CodeComplexityReference.CodeComplexityCounter(filePath, false);
+                        if (standardComplexity < currentComplexity)
+                            violationCounts += 10;
+
+                        highlighter?.Invoke(0, "Code complexity exceeds recommended limits. Reduce the number of if-statements, switch cases, and loops in your code.");
+                    }
+
                     updateStats?.Invoke(updateStatsNum, violationCounts, "cpp");
                 }
             );

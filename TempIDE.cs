@@ -220,7 +220,6 @@ namespace SmartCodeLab
                             ActivityPanel.Controls.Add(testcase);
                             if(count > 4)
                                 break;
-                            
                         }
 
                     }
@@ -280,55 +279,29 @@ namespace SmartCodeLab
                             tabControl_RightSide.SelectedTab = MessagesTab;
                             break;
 
-                        //case MessageType.LEADERBOARDS_UPDATE:
-
-                        //    int myVersion = ++leaderboardUpdateVersion;  // New update becomes the latest
-
-                        //    // Run asynchronously so UI thread isn't blocked
-                        //    Task.Run(() =>
-                        //    {
-                        //        // If another update came in, cancel this one
-                        //        if (myVersion != leaderboardUpdateVersion)
-                        //            return;
-
-                        //        // Now invoke on UI thread — but also check version again
-                        //        this.BeginInvoke(new Action(() =>
-                        //        {
-                        //            if (myVersion != leaderboardUpdateVersion)
-                        //                return;  // A newer update arrived while queued
-
-                        //            panel_leaderboards.Controls.Clear();
-                        //            List<SubmittedCode> leaderBoards = serverMsg.leaderboards;
-
-                        //            leaderBoards.ForEach(sub =>
-                        //                AddLeaderboardIcon(sub.placement, sub.username, sub.score));
-                        //        }));
-                        //    });
-                        //    break;
-
                         case MessageType.LEADERBOARDS_UPDATE:
-                            int myVersion = ++leaderboardUpdateVersion;
-
-                            Task.Run(() =>
+                            _ = Task.Run(() =>
                             {
-                                if (myVersion != leaderboardUpdateVersion) return;
+                                int myVersion = ++leaderboardUpdateVersion;
 
                                 // Use Invoke (Synchronous) or BeginInvoke to update UI
                                 this.BeginInvoke(new Action(() =>
                                 {
-                                    if (myVersion != leaderboardUpdateVersion) return;
-
                                     // 1. FREEZE the panel specifically
                                     panel_leaderboards.SuspendLayout();
 
                                     try
                                     {
                                         panel_leaderboards.Controls.Clear();
-                                        List<SubmittedCode> leaderBoards = serverMsg.leaderboards;
-
+                                        List<SubmittedCode> leaderBoards = serverMsg.leaderboards.OrderBy(s => s.placement).ToList();
                                         // 2. Add all items
-                                        leaderBoards.ForEach(sub =>
-                                            AddLeaderboardIcon(sub.placement, sub.username, sub.score));
+                                        foreach (var sub in leaderBoards)
+                                        {
+                                            
+                                            if (myVersion != leaderboardUpdateVersion) break;
+
+                                            AddLeaderboardIcon(sub.placement, sub.username, sub.score);
+                                        }
                                     }
                                     finally
                                     {
@@ -353,7 +326,6 @@ namespace SmartCodeLab
                 // Log unexpected errors
                 Console.WriteLine(ex);
             }
-
         }
 
         private void NotifyHost(NotificationType type, string result)

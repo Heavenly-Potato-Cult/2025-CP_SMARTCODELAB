@@ -117,6 +117,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             maintainabilityWarning = new Dictionary<int, string>();
             robustnessWarning = new Dictionary<int, string>();
             lineErrorAndMessage = new List<KeyValuePair<int, string>>();
+            mgaGinawangTama = new List<KeyValuePair<string, string>>();
 
             readabilityRules = new HashSet<string>();
             maintainabilityRules = new HashSet<string>();
@@ -132,6 +133,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             StudentProgress = progress;
             this.sendProgress = sendProgress;
             new Action(async () => await RunLinting()).Invoke();
+
+            srcCode.ToolTip.InitialDelay = 100;
+            srcCode.ToolTip.ReshowDelay = 50;
+            srcCode.ToolTip.AutoPopDelay = 10000;
             srcCode.ToolTipNeeded += (s, e) =>
             {
                 string msg = "";
@@ -142,7 +147,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     msg += (item + Environment.NewLine);
                 }
-                e.ToolTipText = msg;
+                srcCode.ToolTip.Hide(srcCode);
+                e.ToolTipText = string.Join("\n",
+                                    lineErrorAndMessage
+                                    .Where(kv => kv.Key == e.Place.iLine)
+                                    .Select(kv => kv.Value)
+                                );
             };
             int i = 0;
             srcCode.TextChanged += (s, e) =>
@@ -228,7 +238,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                    (hr == 32 || hr == 33); // ERROR_SHARING_VIOLATION or ERROR_LOCK_VIOLATION
         }
 
-        public void UpdateTask(TaskModel task)
+        public virtual void UpdateTask(TaskModel task)
         {
             this.task = task;
         }

@@ -59,8 +59,7 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             {
                 item.LostFocus += (s, e) =>
                 {
-                    if (!IsFocusWithUs())
-                        accuracyT.Value = 100;
+                    putUnallocatedToAccuracy();
                 };
             }
 
@@ -100,6 +99,11 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         }
 
+        public void putUnallocatedToAccuracy()
+        {
+            if (!IsFocusWithUs())
+                accuracyT.Value = 100;
+        }
         private void OnTrackBarValueChanging(object sender, ValueChangingEventArgs e)
         {
             if (sender is not SteamTrackBar currentBar) return;
@@ -264,69 +268,6 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
             else
             {
                 sender?.Checked = false;
-            }
-        }
-        public string GetLocalIPv4()
-        {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-
-            return "No IPv4 address found";
-        }
-
-        public static IPAddress GetSubnetMaskForIP(IPAddress ipAddress)
-        {
-            foreach (NetworkInterface networkInterface in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (networkInterface.OperationalStatus != OperationalStatus.Up)
-                    continue;
-
-                IPInterfaceProperties ipProperties = networkInterface.GetIPProperties();
-
-                foreach (UnicastIPAddressInformation unicastAddress in ipProperties.UnicastAddresses)
-                {
-                    if (unicastAddress.Address.AddressFamily == AddressFamily.InterNetwork &&
-                        unicastAddress.Address.Equals(ipAddress))
-                    {
-                        return unicastAddress.IPv4Mask;
-                    }
-                }
-            }
-
-            return null; // IP address not found
-        }
-
-        public static string GetBroadcastAddress(string ipAddressString, string subnetMaskString)
-        {
-            try
-            {
-                // Parse IP address and subnet mask
-                IPAddress ipAddress = IPAddress.Parse(ipAddressString);
-                IPAddress subnetMask = IPAddress.Parse(subnetMaskString);
-
-                // Convert to byte arrays
-                byte[] ipBytes = ipAddress.GetAddressBytes();
-                byte[] maskBytes = subnetMask.GetAddressBytes();
-
-                // Calculate broadcast address: IP OR (NOT Mask)
-                byte[] broadcastBytes = new byte[4];
-                for (int i = 0; i < 4; i++)
-                {
-                    broadcastBytes[i] = (byte)(ipBytes[i] | ~maskBytes[i]);
-                }
-
-                return new IPAddress(broadcastBytes).ToString();
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException($"Invalid input: {ex.Message}");
             }
         }
 

@@ -187,6 +187,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void steamPrimaryButton1_Click(object sender, EventArgs e)
         {
+            codeQualityChoices21.putUnallocatedToAccuracy();
+
             foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
             {
                 if (Path.GetFileNameWithoutExtension(file).Trim() == serverName.Text.Trim())
@@ -195,6 +197,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     return;
                 }
             }
+            //check the coding stats to see if some rating have 0 weight
+            List<int> haveZeroRating = new List<int>();
+            foreach (var item in codeQualityChoices21.GetRatingFactors())
+                if (item.Value[0] == 0)
+                    haveZeroRating.Add(item.Key);
+
             if (serverName.Text.IsWhiteSpace())
             {
                 MessageBox.Show("Invalid Server Name");
@@ -210,10 +218,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 MessageBox.Show("Server Password is Required");
                 return;
             }
-            else if (selectedTask == null)
+            else if(haveZeroRating.Count > 0)
             {
-                selectedTask = new TaskModel();
+                string[] statsName = { "","", "Efficiency", "Robustness", "Maintainability" };
+                string withZero = string.Join('\n', 
+                    haveZeroRating.Select(num => statsName[num]).ToArray());
+                MessageBox.Show("The following have 0 stats weight, better remove or update weight: \n" + withZero);
+                return;
             }
+
+            if (selectedTask == null)
+                selectedTask = new TaskModel();
 
             selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
             selectedTask.isTabLocked = tabNavigationLocked.Checked;

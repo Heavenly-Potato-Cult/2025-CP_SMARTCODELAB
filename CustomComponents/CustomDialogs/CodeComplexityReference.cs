@@ -35,7 +35,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             { "C++", $"\"{ProgrammingConfiguration.CPP_OPERATOR_COUNTER}\""},
             { "Python", $"\"{ProgrammingConfiguration.PYTHON_OPERATOR_COUNTER}\""}
         };
-
+        private readonly Dictionary<string, string> extensions = new Dictionary<string, string>()
+        {
+            { "Java", "java"},
+            { "C++", "cpp"},
+            { "Python", "py"}
+        };
         public CodeComplexityReference(string language, string currentCode)
         {
             InitializeComponent();
@@ -55,8 +60,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 return;
             }
             this.DialogResult = DialogResult.OK;
-            File.WriteAllText(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"), referenceCode.Text);
-            total_cyclomatic_complexity = CodeComplexityCounter(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity.java"), true);
+            File.WriteAllText(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity." + extensions[language]), referenceCode.Text);
+            total_cyclomatic_complexity = CodeComplexityCounter(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity." + extensions[language]), true);
             total_operator_count = CountOperators();
             sourceCode = referenceCode.Text;
             Close();
@@ -112,7 +117,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             int totalCycComplexity = 0;
             foreach (var line in complexitiesCounted)
             {
-                totalCycComplexity += int.Parse(((line.Split("      ")[2]).ToCharArray()[0]).ToString());
+                string[] arr = (line.Split("      ")[1])
+                    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                    .Where(num => num.All(char.IsDigit))
+                    .ToArray();
+                MessageBox.Show(arr[1]);
+                totalCycComplexity += int.Parse(arr[1]);
             }
             return totalCycComplexity;
         }

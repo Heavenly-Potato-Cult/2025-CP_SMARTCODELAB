@@ -34,7 +34,7 @@ namespace SmartCodeLab.Services
             { "NoLineWrap", "Avoid breaking code lines in random places—it makes code flow easier to follow." },
             { "NoWhitespaceBefore", "Don’t add unnecessary spaces before punctuation (like commas or semicolons)." },
             { "NoWhitespaceBeforeCaseDefaultColon", "Keep spacing consistent in switch statements to make them clear." },
-            { "OperatorWrap", "Keep operators (like +, -, &&) on the same line for easier reading." },
+            { "OperatorWrap", "Keep operators on the same line for easier reading." },
             { "ParenPad", "Don’t add spaces just inside parentheses. It looks cleaner as 'if (x > y)' not 'if ( x > y )'." },
             { "SeparatorWrap", "Keep separators like commas or pipes in consistent positions for better readability." },
             { "SingleSpaceSeparator", "Use only one space between words or tokens for a clean look." },
