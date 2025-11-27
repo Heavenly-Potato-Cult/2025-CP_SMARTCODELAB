@@ -28,30 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panelIcon = new SmartCodeLab.CustomComponents.GeneralComponents.RoundedUserControl();
             codeLine = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             time = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            panelIcon = new Panel();
+            panelIcon.SuspendLayout();
             SuspendLayout();
-            // 
-            // panelIcon
-            // 
-            panelIcon.BackColor = Color.RosyBrown;
-            panelIcon.BorderColor = Color.Gray;
-            panelIcon.BorderRadius = 2;
-            panelIcon.BorderSize = 0;
-            panelIcon.Dock = DockStyle.Fill;
-            panelIcon.Location = new Point(0, 0);
-            panelIcon.Name = "panelIcon";
-            panelIcon.Size = new Size(165, 52);
-            panelIcon.TabIndex = 19;
             // 
             // codeLine
             // 
             codeLine.AutoSize = true;
-            codeLine.BackColor = Color.RosyBrown;
+            codeLine.BackColor = Color.Transparent;
             codeLine.Font = new Font("Geist", 10F);
             codeLine.ForeColor = Color.FromArgb(255, 77, 77);
-            codeLine.Location = new Point(12, 4);
+            codeLine.Location = new Point(3, 6);
             codeLine.Name = "codeLine";
             codeLine.Size = new Size(126, 19);
             codeLine.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
@@ -62,16 +51,27 @@
             // time
             // 
             time.AutoSize = true;
-            time.BackColor = Color.RosyBrown;
+            time.BackColor = Color.Transparent;
             time.Font = new Font("Geist", 8F);
-            time.ForeColor = Color.FromArgb(199, 213, 224);
-            time.Location = new Point(12, 27);
+            time.ForeColor = Color.FromArgb(139, 149, 166);
+            time.Location = new Point(3, 27);
             time.Name = "time";
             time.Size = new Size(43, 16);
             time.SteamSize = SteamThings.SteamLabel.SizeOption.Tiny;
-            time.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            time.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             time.TabIndex = 21;
             time.Text = "12:00";
+            // 
+            // panelIcon
+            // 
+            panelIcon.BackColor = Color.FromArgb(42, 32, 40);
+            panelIcon.Controls.Add(codeLine);
+            panelIcon.Controls.Add(time);
+            panelIcon.Dock = DockStyle.Fill;
+            panelIcon.Location = new Point(0, 0);
+            panelIcon.Name = "panelIcon";
+            panelIcon.Size = new Size(165, 52);
+            panelIcon.TabIndex = 22;
             // 
             // PastedCodeIcon
             // 
@@ -79,20 +79,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
             BorderRadius = 2;
-            Controls.Add(time);
-            Controls.Add(codeLine);
             Controls.Add(panelIcon);
             Margin = new Padding(3, 3, 3, 10);
             Name = "PastedCodeIcon";
             Padding = new Padding(0, 0, 0, 5);
             Size = new Size(165, 57);
+            panelIcon.ResumeLayout(false);
+            panelIcon.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private GeneralComponents.RoundedUserControl panelIcon;
         private SteamThings.SteamLabel codeLine;
         private SteamThings.SteamLabel time;
+        private Panel panelIcon;
     }
 }
