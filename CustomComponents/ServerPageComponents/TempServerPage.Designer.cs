@@ -34,8 +34,12 @@
             status = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             codeTrack = new SmartCodeLab.CustomComponents.SteamThings.SteamTrackBar();
-            studentCodeRating1 = new StudentCodeRating();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
+            customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            customCard11 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            studentCodeRating1 = new StudentCodeRating();
+            customCard10 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             iconsContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard9 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -48,11 +52,14 @@
             btn_sendmessage = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            copypastedCodes = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            copypastedCodes = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             ((System.ComponentModel.ISupportInitialize)studentCode).BeginInit();
             steamGradientPanel1.SuspendLayout();
+            customCard5.SuspendLayout();
+            customCard11.SuspendLayout();
+            customCard10.SuspendLayout();
             customCard6.SuspendLayout();
             customCard9.SuspendLayout();
             customCard8.SuspendLayout();
@@ -98,7 +105,7 @@
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
             studentCode.ServiceLinesColor = Color.DimGray;
-            studentCode.Size = new Size(1127, 680);
+            studentCode.Size = new Size(1111, 680);
             studentCode.TabIndex = 15;
             studentCode.WordWrap = true;
             studentCode.Zoom = 100;
@@ -140,27 +147,18 @@
             codeTrack.Location = new Point(20, 5);
             codeTrack.Maximum = 100;
             codeTrack.Name = "codeTrack";
-            codeTrack.Size = new Size(1115, 54);
+            codeTrack.Size = new Size(1099, 54);
             codeTrack.TabIndex = 105;
             codeTrack.Text = "steamTrackBar1";
             codeTrack.Value = 0;
             codeTrack.ValueChanged += codeTrack_ValueChanged;
             // 
-            // studentCodeRating1
-            // 
-            studentCodeRating1.BackColor = Color.White;
-            studentCodeRating1.Location = new Point(1585, 601);
-            studentCodeRating1.MaximumSize = new Size(376, 237);
-            studentCodeRating1.Name = "studentCodeRating1";
-            studentCodeRating1.Size = new Size(318, 237);
-            studentCodeRating1.TabIndex = 104;
-            // 
             // steamGradientPanel1
             // 
+            steamGradientPanel1.Controls.Add(customCard5);
             steamGradientPanel1.Controls.Add(customCard6);
             steamGradientPanel1.Controls.Add(customCard1);
             steamGradientPanel1.Controls.Add(customCard3);
-            steamGradientPanel1.Controls.Add(studentCodeRating1);
             steamGradientPanel1.Dock = DockStyle.Fill;
             steamGradientPanel1.GradientAngle = 90F;
             steamGradientPanel1.GradientBottomColor = Color.FromArgb(26, 30, 36);
@@ -170,6 +168,75 @@
             steamGradientPanel1.Size = new Size(1916, 964);
             steamGradientPanel1.TabIndex = 105;
             steamGradientPanel1.Paint += steamGradientPanel1_Paint;
+            // 
+            // customCard5
+            // 
+            customCard5.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            customCard5.BackColor = Color.FromArgb(21, 28, 38);
+            customCard5.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard5.BorderRadius = 2;
+            customCard5.BorderSize = 1;
+            customCard5.Controls.Add(customCard11);
+            customCard5.Controls.Add(customCard10);
+            customCard5.Location = new Point(1569, 517);
+            customCard5.Margin = new Padding(20, 3, 3, 3);
+            customCard5.Name = "customCard5";
+            customCard5.Size = new Size(334, 328);
+            customCard5.TabIndex = 113;
+            // 
+            // customCard11
+            // 
+            customCard11.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            customCard11.AutoScroll = true;
+            customCard11.BackColor = Color.FromArgb(18, 23, 29);
+            customCard11.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard11.BorderRadius = 2;
+            customCard11.BorderSize = 0;
+            customCard11.Controls.Add(studentCodeRating1);
+            customCard11.Location = new Point(5, 67);
+            customCard11.Margin = new Padding(0);
+            customCard11.Name = "customCard11";
+            customCard11.Padding = new Padding(10, 10, 10, 5);
+            customCard11.Size = new Size(324, 254);
+            customCard11.TabIndex = 106;
+            // 
+            // studentCodeRating1
+            // 
+            studentCodeRating1.BackColor = Color.Transparent;
+            studentCodeRating1.Dock = DockStyle.Fill;
+            studentCodeRating1.Location = new Point(10, 10);
+            studentCodeRating1.Name = "studentCodeRating1";
+            studentCodeRating1.Size = new Size(304, 239);
+            studentCodeRating1.TabIndex = 110;
+            // 
+            // customCard10
+            // 
+            customCard10.BackColor = Color.FromArgb(21, 28, 38);
+            customCard10.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard10.BorderRadius = 2;
+            customCard10.BorderSize = 1;
+            customCard10.Controls.Add(steamLabel3);
+            customCard10.Dock = DockStyle.Top;
+            customCard10.Location = new Point(0, 0);
+            customCard10.Margin = new Padding(20, 3, 3, 3);
+            customCard10.Name = "customCard10";
+            customCard10.Padding = new Padding(5);
+            customCard10.Size = new Size(334, 64);
+            customCard10.TabIndex = 109;
+            // 
+            // steamLabel3
+            // 
+            steamLabel3.AutoSize = true;
+            steamLabel3.BackColor = Color.Transparent;
+            steamLabel3.Font = new Font("Geist", 10F);
+            steamLabel3.ForeColor = Color.FromArgb(199, 213, 224);
+            steamLabel3.Location = new Point(25, 27);
+            steamLabel3.Name = "steamLabel3";
+            steamLabel3.Size = new Size(107, 19);
+            steamLabel3.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
+            steamLabel3.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            steamLabel3.TabIndex = 0;
+            steamLabel3.Text = "LIVE SCORE";
             // 
             // customCard6
             // 
@@ -254,7 +321,7 @@
             customCard1.Location = new Point(425, 29);
             customCard1.Margin = new Padding(0);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(1140, 814);
+            customCard1.Size = new Size(1124, 814);
             customCard1.TabIndex = 107;
             // 
             // customCard7
@@ -269,7 +336,7 @@
             customCard7.Margin = new Padding(20, 3, 20, 3);
             customCard7.Name = "customCard7";
             customCard7.Padding = new Padding(20, 5, 5, 5);
-            customCard7.Size = new Size(1140, 64);
+            customCard7.Size = new Size(1124, 64);
             customCard7.TabIndex = 109;
             // 
             // customCard4
@@ -286,7 +353,7 @@
             customCard4.Margin = new Padding(20, 3, 3, 3);
             customCard4.Name = "customCard4";
             customCard4.Padding = new Padding(5);
-            customCard4.Size = new Size(1140, 64);
+            customCard4.Size = new Size(1124, 64);
             customCard4.TabIndex = 108;
             // 
             // studentName
@@ -314,7 +381,7 @@
             btn_sendmessage.FlatStyle = FlatStyle.Flat;
             btn_sendmessage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_sendmessage.ForeColor = Color.FromArgb(34, 197, 94);
-            btn_sendmessage.Location = new Point(936, 13);
+            btn_sendmessage.Location = new Point(920, 13);
             btn_sendmessage.Margin = new Padding(2, 4, 2, 4);
             btn_sendmessage.Name = "btn_sendmessage";
             btn_sendmessage.Size = new Size(187, 37);
@@ -347,26 +414,26 @@
             customCard3.BorderSize = 1;
             customCard3.Controls.Add(customCard2);
             customCard3.Controls.Add(copypastedCodes);
-            customCard3.Location = new Point(1585, 29);
+            customCard3.Location = new Point(1569, 29);
             customCard3.Margin = new Padding(20, 3, 3, 3);
             customCard3.Name = "customCard3";
-            customCard3.Size = new Size(318, 553);
+            customCard3.Size = new Size(334, 465);
             customCard3.TabIndex = 105;
             // 
-            // copypastedCodes
+            // customCard2
             // 
-            copypastedCodes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            copypastedCodes.AutoScroll = true;
-            copypastedCodes.BackColor = Color.FromArgb(18, 23, 29);
-            copypastedCodes.BorderColor = Color.FromArgb(42, 71, 94);
-            copypastedCodes.BorderRadius = 2;
-            copypastedCodes.BorderSize = 0;
-            copypastedCodes.Location = new Point(5, 70);
-            copypastedCodes.Margin = new Padding(0);
-            copypastedCodes.Name = "copypastedCodes";
-            copypastedCodes.Padding = new Padding(10, 10, 10, 5);
-            copypastedCodes.Size = new Size(308, 472);
-            copypastedCodes.TabIndex = 106;
+            customCard2.BackColor = Color.FromArgb(21, 28, 38);
+            customCard2.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard2.BorderRadius = 2;
+            customCard2.BorderSize = 1;
+            customCard2.Controls.Add(steamLabel1);
+            customCard2.Dock = DockStyle.Top;
+            customCard2.Location = new Point(0, 0);
+            customCard2.Margin = new Padding(20, 3, 3, 3);
+            customCard2.Name = "customCard2";
+            customCard2.Padding = new Padding(5);
+            customCard2.Size = new Size(334, 64);
+            customCard2.TabIndex = 109;
             // 
             // steamLabel1
             // 
@@ -382,20 +449,20 @@
             steamLabel1.TabIndex = 0;
             steamLabel1.Text = "COPY-PASTE HISTORY";
             // 
-            // customCard2
+            // copypastedCodes
             // 
-            customCard2.BackColor = Color.FromArgb(21, 28, 38);
-            customCard2.BorderColor = Color.FromArgb(42, 71, 94);
-            customCard2.BorderRadius = 2;
-            customCard2.BorderSize = 1;
-            customCard2.Controls.Add(steamLabel1);
-            customCard2.Dock = DockStyle.Top;
-            customCard2.Location = new Point(0, 0);
-            customCard2.Margin = new Padding(20, 3, 3, 3);
-            customCard2.Name = "customCard2";
-            customCard2.Padding = new Padding(5);
-            customCard2.Size = new Size(318, 64);
-            customCard2.TabIndex = 109;
+            copypastedCodes.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            copypastedCodes.AutoScroll = true;
+            copypastedCodes.BackColor = Color.FromArgb(18, 23, 29);
+            copypastedCodes.BorderColor = Color.FromArgb(42, 71, 94);
+            copypastedCodes.BorderRadius = 2;
+            copypastedCodes.BorderSize = 0;
+            copypastedCodes.Location = new Point(5, 70);
+            copypastedCodes.Margin = new Padding(0);
+            copypastedCodes.Name = "copypastedCodes";
+            copypastedCodes.Padding = new Padding(10, 10, 10, 5);
+            copypastedCodes.Size = new Size(324, 384);
+            copypastedCodes.TabIndex = 106;
             // 
             // TempServerPage
             // 
@@ -409,6 +476,10 @@
             Size = new Size(1916, 964);
             ((System.ComponentModel.ISupportInitialize)studentCode).EndInit();
             steamGradientPanel1.ResumeLayout(false);
+            customCard5.ResumeLayout(false);
+            customCard11.ResumeLayout(false);
+            customCard10.ResumeLayout(false);
+            customCard10.PerformLayout();
             customCard6.ResumeLayout(false);
             customCard9.ResumeLayout(false);
             customCard8.ResumeLayout(false);
@@ -430,7 +501,6 @@
         private Label label2;
         private GeneralComponents.SmartButton smartButton1;
         private Label label7;
-        private StudentCodeRating studentCodeRating1;
         private SteamThings.SteamTrackBar codeTrack;
         private SteamThings.SteamComboBox status;
         private SteamThings.SteamGradientPanel steamGradientPanel1;
@@ -449,5 +519,10 @@
         private GeneralComponents.CustomCard iconsContainer;
         private SteamThings.SteamLabel steamLabel1;
         private GeneralComponents.CustomCard customCard2;
+        private StudentCodeRating studentCodeRating1;
+        private GeneralComponents.CustomCard customCard5;
+        private GeneralComponents.CustomCard customCard10;
+        private SteamThings.SteamLabel steamLabel3;
+        private GeneralComponents.CustomCard customCard11;
     }
 }
