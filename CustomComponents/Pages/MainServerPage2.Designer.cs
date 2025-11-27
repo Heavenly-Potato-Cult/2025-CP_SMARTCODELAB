@@ -57,6 +57,7 @@
             container.MouseState = MaterialSkin.MouseState.HOVER;
             container.Multiline = true;
             container.Name = "container";
+            container.Padding = new Point(0, 0);
             container.SelectedIndex = 0;
             container.Size = new Size(1696, 920);
             container.TabIndex = 1;
@@ -75,7 +76,6 @@
             tabPage2.BackColor = Color.White;
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(1688, 887);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
@@ -84,7 +84,6 @@
             // 
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(1688, 887);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "tabPage3";

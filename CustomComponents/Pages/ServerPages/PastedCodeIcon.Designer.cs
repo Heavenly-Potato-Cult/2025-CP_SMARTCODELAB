@@ -28,47 +28,50 @@
         /// </summary>
         private void InitializeComponent()
         {
-            time = new Label();
-            codeLine = new Label();
-            panelIcon = new SmartCodeLab.CustomComponents.GeneralComponents.RoundedUserControl();
+            codeLine = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            time = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            panelIcon = new Panel();
+            panelIcon.SuspendLayout();
             SuspendLayout();
-            // 
-            // time
-            // 
-            time.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            time.AutoSize = true;
-            time.BackColor = Color.LightGray;
-            time.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            time.ForeColor = Color.Black;
-            time.Location = new Point(285, 3);
-            time.Name = "time";
-            time.Size = new Size(87, 25);
-            time.TabIndex = 18;
-            time.Text = "12:43 PM";
             // 
             // codeLine
             // 
             codeLine.AutoSize = true;
-            codeLine.BackColor = Color.LightGray;
-            codeLine.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            codeLine.ForeColor = Color.Black;
-            codeLine.Location = new Point(5, 3);
+            codeLine.BackColor = Color.Transparent;
+            codeLine.Font = new Font("Geist", 10F);
+            codeLine.ForeColor = Color.FromArgb(255, 77, 77);
+            codeLine.Location = new Point(3, 6);
             codeLine.Name = "codeLine";
-            codeLine.Size = new Size(32, 25);
-            codeLine.TabIndex = 17;
-            codeLine.Text = "12";
+            codeLine.Size = new Size(126, 19);
+            codeLine.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
+            codeLine.SteamTheme = SteamThings.SteamLabel.ThemeOption.Error;
+            codeLine.TabIndex = 20;
+            codeLine.Text = "Pasted 72 Lines";
+            // 
+            // time
+            // 
+            time.AutoSize = true;
+            time.BackColor = Color.Transparent;
+            time.Font = new Font("Geist", 8F);
+            time.ForeColor = Color.FromArgb(139, 149, 166);
+            time.Location = new Point(3, 27);
+            time.Name = "time";
+            time.Size = new Size(43, 16);
+            time.SteamSize = SteamThings.SteamLabel.SizeOption.Tiny;
+            time.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            time.TabIndex = 21;
+            time.Text = "12:00";
             // 
             // panelIcon
             // 
-            panelIcon.BackColor = Color.LightGray;
-            panelIcon.BorderColor = Color.Gray;
-            panelIcon.BorderRadius = 2;
-            panelIcon.BorderSize = 0;
+            panelIcon.BackColor = Color.FromArgb(42, 32, 40);
+            panelIcon.Controls.Add(codeLine);
+            panelIcon.Controls.Add(time);
             panelIcon.Dock = DockStyle.Fill;
             panelIcon.Location = new Point(0, 0);
             panelIcon.Name = "panelIcon";
-            panelIcon.Size = new Size(376, 36);
-            panelIcon.TabIndex = 19;
+            panelIcon.Size = new Size(165, 52);
+            panelIcon.TabIndex = 22;
             // 
             // PastedCodeIcon
             // 
@@ -76,21 +79,19 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
             BorderRadius = 2;
-            Controls.Add(time);
-            Controls.Add(codeLine);
             Controls.Add(panelIcon);
             Margin = new Padding(3, 3, 3, 10);
             Name = "PastedCodeIcon";
             Padding = new Padding(0, 0, 0, 5);
-            Size = new Size(376, 41);
+            Size = new Size(165, 57);
+            panelIcon.ResumeLayout(false);
+            panelIcon.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label time;
-        private Label codeLine;
-        private GeneralComponents.RoundedUserControl panelIcon;
+        private SteamThings.SteamLabel codeLine;
+        private SteamThings.SteamLabel time;
+        private Panel panelIcon;
     }
 }
