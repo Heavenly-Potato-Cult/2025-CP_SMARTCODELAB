@@ -12,6 +12,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         {
            
             this.SetStyle(ControlStyles.ResizeRedraw, true);
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             this.BackColor = Color.FromArgb(23, 26, 33);
             this.ForeColor = Color.White;
@@ -20,15 +21,15 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
             this.DrawMode = DrawMode.OwnerDrawVariable;
         }
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;
-                return cp;
-            }
-        }
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;
+        //        return cp;
+        //    }
+        //}
 
       
         protected override void OnHandleCreated(EventArgs e)
