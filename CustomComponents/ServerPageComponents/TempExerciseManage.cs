@@ -117,7 +117,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void updateSubjectsLists(int index, TaskModel updatedTask)
         {
             loadedExercises[index] = updatedTask;
-
             string potentialNewSubject = updatedTask.subject.Trim().ToUpper();
             if (!taskSubjects.Contains(potentialNewSubject))
             {
@@ -136,13 +135,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             using (var exerciseForm = new AddNewExercise(getSubjects()))
             {
                 var dialogResult = exerciseForm.ShowDialog();
-
                 if (dialogResult == DialogResult.OK)
                 {
                     var newExerciser = exerciseForm.NewExercise;
-                    loadedExercises.Add(totalLoadedCount++, newExerciser);
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(totalLoadedCount, newExerciser, removeExervice, getSubjects, updateSubjectsLists));
-                    updateSubjectsLists(totalLoadedCount, newExerciser);
+                    int index = totalLoadedCount++;
+                    loadedExercises.Add(index, newExerciser);
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(index, newExerciser, removeExervice, getSubjects, updateSubjectsLists));
+                    updateSubjectsLists(index, newExerciser);
                 }
             }
         }

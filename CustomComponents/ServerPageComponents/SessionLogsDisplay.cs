@@ -29,6 +29,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 SystemSingleton.Instance.sessionLogsPage.Controls.Clear();
                 SystemSingleton.Instance.sessionLogsPage.Controls.Add(new SessionsLogsView(session));
             };
+
+            label11.Text = $"{session.server.createdAt.ToString("MMMM dd yyyy hh:mm tt")} - {session.lastModified.ToString("hh:mm tt")}";
         }
     }
 }

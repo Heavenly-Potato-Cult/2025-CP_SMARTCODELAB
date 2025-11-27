@@ -59,8 +59,8 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
 
                 foreach (var item in filtered)
                 {
-                    //if (currentSearchVersion != searchVersion)
-                    //    break;
+                    if (currentSearchVersion != searchVersion)
+                        break;
                     notifContainer.Controls.Add(new NotificationIcon(item));
                 }
             }));
@@ -71,13 +71,13 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
         private void studentName__TextChanged(object sender, EventArgs e)
         {
             searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-            searchTimer = new System.Threading.Timer(async _ => await SearchStudent(), null, 500, Timeout.Infinite);
+            searchTimer = new System.Threading.Timer( _ =>  SearchStudent(), null, 500, Timeout.Infinite);
         }
 
-        private void notifFilter_SelectedIndexChanged(object sender, EventArgs e)
+        private void notifFilter_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-            searchTimer = new System.Threading.Timer(async _ => SearchStudent(), null, 500, Timeout.Infinite);
+            searchTimer = new System.Threading.Timer( _ => SearchStudent(), null, 500, Timeout.Infinite);
         }
     }
 }

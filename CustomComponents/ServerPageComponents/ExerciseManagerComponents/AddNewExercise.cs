@@ -99,7 +99,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             }
 
             NewExercise = new TaskModel(txtbox_ExerciseTitle.Texts, subject.Texts, txtbox_ExerciseInstruction.Texts, GetTestCases());
-            if(NewExercise._testCases.Count < 10)
+            if (NewExercise._testCases.Count < 10)
             {
                 MessageBox.Show("Please put at least 10 test cases");
                 return;

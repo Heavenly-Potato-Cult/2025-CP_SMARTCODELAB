@@ -45,12 +45,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             };
         }
 
-        private string
-            _title,
-            _programmingLanguage,
-            _classCourse,
-            _classYearAndSection;
-
         private void btn_editcard_Click(object sender, EventArgs e)
         {
             using (var exerciseForm = new CustomDialogs.AddNewExercise(_task, existingSubjects.Invoke()))

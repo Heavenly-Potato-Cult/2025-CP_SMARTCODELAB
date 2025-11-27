@@ -79,6 +79,7 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
 
                         // Convert the Data List into a Control List
                         var controlsToAdd = sessionsData
+                            .OrderByDescending(session => session.lastModified)
                             .Select(session => new SessionLogsDisplay(session))
                             .ToArray();
 

@@ -73,6 +73,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 saveSession?.Invoke();
             };
 
+            studentName.innerTextBox.TextChanged += (s, e) =>
+            {
+                searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
+                searchTimer = new System.Threading.Timer(async _ => SearchStudent(), null, 500, Timeout.Infinite);
+            };
+
             exit.Click += (sender, e) =>
             {
                 saveSession?.Invoke();
@@ -323,6 +329,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
                 foreach (var item in filteredItems)
                 {
+                    if (currentSearchVersion != searchVersion)
+                        break;
                     logBox.Items.Insert(0, item);
                 }
 
@@ -365,12 +373,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 // Expected when cancellation is requested
             }
-        }
-
-        private void studentName__TextChanged(object sender, EventArgs e)
-        {
-            searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
-            searchTimer = new System.Threading.Timer(async _ => SearchStudent(), null, 500, Timeout.Infinite);
         }
 
         private void notifFilter_SelectedIndexChanged(object sender, EventArgs e)

@@ -30,8 +30,6 @@
         {
             sessionName = new Label();
             label11 = new Label();
-            timeStart = new Label();
-            timeEnd = new Label();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             SuspendLayout();
             // 
@@ -57,28 +55,6 @@
             label11.TabIndex = 19;
             label11.Text = "July 30, 2025 |";
             // 
-            // timeStart
-            // 
-            timeStart.AutoSize = true;
-            timeStart.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            timeStart.ForeColor = Color.Gray;
-            timeStart.Location = new Point(141, 44);
-            timeStart.Name = "timeStart";
-            timeStart.Size = new Size(77, 25);
-            timeStart.TabIndex = 20;
-            timeStart.Text = "1:00 PM";
-            // 
-            // timeEnd
-            // 
-            timeEnd.AutoSize = true;
-            timeEnd.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            timeEnd.ForeColor = Color.Gray;
-            timeEnd.Location = new Point(212, 44);
-            timeEnd.Name = "timeEnd";
-            timeEnd.Size = new Size(89, 25);
-            timeEnd.TabIndex = 21;
-            timeEnd.Text = "- 3:00 PM";
-            // 
             // smartButton1
             // 
             smartButton1.BackColor = Color.MediumSlateBlue;
@@ -99,8 +75,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(240, 247, 255);
             Controls.Add(smartButton1);
-            Controls.Add(timeEnd);
-            Controls.Add(timeStart);
             Controls.Add(label11);
             Controls.Add(sessionName);
             Name = "SessionLogsDisplay";
@@ -113,8 +87,6 @@
 
         private Label sessionName;
         private Label label11;
-        private Label timeStart;
-        private Label timeEnd;
         private GeneralComponents.SmartButton smartButton1;
     }
 }

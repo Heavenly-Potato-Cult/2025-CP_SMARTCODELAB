@@ -33,7 +33,6 @@
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             panel8 = new Panel();
             notifContainer = new FlowLayoutPanel();
-            notifFilter = new ComboBox();
             studentName = new CustomTextBox();
             panel_line2 = new Panel();
             panel_line = new Panel();
@@ -53,6 +52,7 @@
             label7 = new Label();
             pastedCount = new Label();
             duration = new Label();
+            notifFilter = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             customCard7.SuspendLayout();
             panel8.SuspendLayout();
             customCard2.SuspendLayout();
@@ -96,8 +96,8 @@
             // panel8
             // 
             panel8.BackColor = Color.White;
-            panel8.Controls.Add(notifContainer);
             panel8.Controls.Add(notifFilter);
+            panel8.Controls.Add(notifContainer);
             panel8.Controls.Add(studentName);
             panel8.Dock = DockStyle.Top;
             panel8.Location = new Point(5, 53);
@@ -116,16 +116,6 @@
             notifContainer.Size = new Size(726, 508);
             notifContainer.TabIndex = 3;
             notifContainer.WrapContents = false;
-            // 
-            // notifFilter
-            // 
-            notifFilter.FormattingEnabled = true;
-            notifFilter.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
-            notifFilter.Location = new Point(331, 20);
-            notifFilter.Name = "notifFilter";
-            notifFilter.Size = new Size(151, 28);
-            notifFilter.TabIndex = 2;
-            notifFilter.SelectedIndexChanged += notifFilter_SelectedIndexChanged;
             // 
             // studentName
             // 
@@ -350,6 +340,17 @@
             duration.TabIndex = 26;
             duration.Text = "Duration";
             // 
+            // notifFilter
+            // 
+            notifFilter.BackColor = Color.FromArgb(26, 30, 36);
+            notifFilter.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
+            notifFilter.Location = new Point(513, 13);
+            notifFilter.Name = "notifFilter";
+            notifFilter.Padding = new Padding(1);
+            notifFilter.Size = new Size(185, 41);
+            notifFilter.TabIndex = 4;
+            notifFilter.SelectedIndexChanged += notifFilter_SelectedIndexChanged_1;
+            // 
             // SessionDisplayHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -385,7 +386,6 @@
         private Label label1;
         private GeneralComponents.CustomCard customCard7;
         private Panel panel8;
-        private ComboBox notifFilter;
         private CustomTextBox studentName;
         private Panel panel_line2;
         private Panel panel_line;
@@ -406,5 +406,6 @@
         private Label pastedCount;
         private Label duration;
         private FlowLayoutPanel notifContainer;
+        private SteamThings.SteamComboBox notifFilter;
     }
 }
