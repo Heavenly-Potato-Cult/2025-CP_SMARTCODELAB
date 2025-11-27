@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerTaskUpdate));
             tabControl1 = new TabControl();
             tabPage3 = new TabPage();
+            panel1 = new Panel();
+            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             instruction = new CustomTextBox();
             label25 = new Label();
             subject = new CustomTextBox();
@@ -54,6 +56,7 @@
             label3 = new Label();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
+            panel1.SuspendLayout();
             tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)reference).BeginInit();
             tabPage1.SuspendLayout();
@@ -77,6 +80,7 @@
             // tabPage3
             // 
             tabPage3.BackColor = Color.White;
+            tabPage3.Controls.Add(panel1);
             tabPage3.Controls.Add(instruction);
             tabPage3.Controls.Add(label25);
             tabPage3.Controls.Add(subject);
@@ -90,6 +94,34 @@
             tabPage3.Size = new Size(1157, 556);
             tabPage3.TabIndex = 0;
             tabPage3.Text = "Details";
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(smartButton4);
+            panel1.Location = new Point(953, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(201, 49);
+            panel1.TabIndex = 35;
+            // 
+            // smartButton4
+            // 
+            smartButton4.BackColor = Color.FromArgb(42, 71, 94);
+            smartButton4.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton4.BorderRadius = 1;
+            smartButton4.Dock = DockStyle.Right;
+            smartButton4.FlatAppearance.BorderSize = 0;
+            smartButton4.FlatStyle = FlatStyle.Flat;
+            smartButton4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton4.ForeColor = Color.FromArgb(199, 213, 224);
+            smartButton4.Location = new Point(2, 0);
+            smartButton4.Margin = new Padding(2, 4, 2, 4);
+            smartButton4.Name = "smartButton4";
+            smartButton4.Size = new Size(199, 49);
+            smartButton4.TabIndex = 47;
+            smartButton4.Text = "SELECT NEW";
+            smartButton4.TextColor = Color.FromArgb(199, 213, 224);
+            smartButton4.UseVisualStyleBackColor = false;
+            smartButton4.Click += smartButton4_Click;
             // 
             // instruction
             // 
@@ -188,7 +220,7 @@
             tabPage4.Controls.Add(label11);
             tabPage4.Location = new Point(4, 43);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3, 3, 3, 3);
+            tabPage4.Padding = new Padding(3);
             tabPage4.Size = new Size(1157, 556);
             tabPage4.TabIndex = 1;
             tabPage4.Text = "Reference Code";
@@ -208,7 +240,7 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(31, 18);
+            reference.AutoScrollMinSize = new Size(2, 18);
             reference.BackBrush = null;
             reference.CharHeight = 18;
             reference.CharWidth = 10;
@@ -394,6 +426,7 @@
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            panel1.ResumeLayout(false);
             tabPage4.ResumeLayout(false);
             tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)reference).EndInit();
@@ -429,5 +462,7 @@
         private GeneralComponents.SmartButton btn_AddTestCase;
         private Label label13;
         private Label label3;
+        private Panel panel1;
+        private GeneralComponents.SmartButton smartButton4;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FastColoredTextBoxNS;
 using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -111,6 +113,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     { }
                 }
             );
+        }
+
+        public override void UpdateTask(TaskModel newTask)
+        {
+            if (task.ratingFactors.ContainsKey(4))
+            {
+                string item = ProgrammingConfiguration.ruffMaintainability;
+                if (task.ratingFactors.ContainsKey(4))
+                    maintainabilityCheck = LintersServices.pythonLinters[item].Replace("999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
+
+                LintersServices.initializeLinter(item, maintainabilityCheck);
+            }
+            if (task.ratingFactors.ContainsKey(2))
+            {
+                SourceCodeInitializer.InitializeEfficiencyCode(LanguageSupported.Python, task._referenceFile, Path.GetDirectoryName(filePath));
+            }
+            base.UpdateTask(newTask);
         }
 
         private async Task checkStandards(string ruffFilePath, Action warningClearer, Action<int, string> highlighter, int updateStatsNum)

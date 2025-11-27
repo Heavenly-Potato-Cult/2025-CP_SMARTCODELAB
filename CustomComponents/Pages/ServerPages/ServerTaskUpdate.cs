@@ -1,5 +1,6 @@
 ﻿using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.CustomComponents.ServerPageComponents;
+using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
@@ -25,7 +26,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             this.action = action;
             this.reference.Text = task._referenceFile;
             recentReferenceCode = task._referenceFile;
-            this.Load += (s,e) => SetUpTask();
+            this.Load += (s, e) => SetUpTask();
         }
         protected override CreateParams CreateParams
         {
@@ -74,14 +75,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 try
                 {
                     task._testCases.Add(item.Value().Key, item.Value().Value);
-                }catch(ArgumentException) { }
+                }
+                catch (ArgumentException) { }
             }
             string command;
             string tempFilePath;
             string exeFilePath = string.Empty;
             string rootDirectory = SystemConfigurations.TASK_FOLDER;
             //now validate the new reference code
-            if (task.ratingFactors.ContainsKey(2) && task._testCases.Count > 0 && recentReferenceCode != task._referenceFile)
+            if ((task.ratingFactors.ContainsKey(2) || task.ratingFactors.ContainsKey(4)) && task._testCases.Count > 0)
             {
                 //Java and Cpp needs to be compiled first
                 if (task.language != LanguageSupported.Python.ToString())
@@ -89,7 +91,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     if (task.language == LanguageSupported.Java.ToString())
                     {
                         tempFilePath = Path.Combine(rootDirectory, "Main.java");
-                        exeFilePath = Path.Combine(rootDirectory, "Main.class");
+                        exeFilePath = Path.Combine(rootDirectory, "Main");
                         command = $"/c \"\"{ProgrammingConfiguration.javac}\" \"{tempFilePath}\" && del \"{tempFilePath}\"\"";
                     }
                     else
@@ -111,12 +113,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 else
                     File.WriteAllText(Path.Combine(rootDirectory, "Main.py"), task._referenceFile);
 
-                command =   task.language == LanguageSupported.Python.ToString() ? $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{Path.Combine(rootDirectory, "Main.py")}\"\"" :
-                            task.language == LanguageSupported.Java.ToString() ? $"/c \"\"{ProgrammingConfiguration.javaExe}\" \"{exeFilePath}\"\"" : 
+                command = task.language == LanguageSupported.Python.ToString() ? $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{Path.Combine(rootDirectory, "Main.py")}\"\"" :
+                            task.language == LanguageSupported.Java.ToString() ? $"/c \"cd \"{rootDirectory}\" && \"{ProgrammingConfiguration.javaExe}\" Main\"" :
                                                                                 $"/c \"{exeFilePath}\"";
+                MessageBox.Show(command);
                 var validateCode = new TestCodeForm(command, task);
                 validateCode.ShowDialog();
-                if(validateCode.score != task._testCases.Count)
+                if (validateCode.score != task._testCases.Count)
                 {
                     validateCode.Dispose();
                     MessageBox.Show("The reference code failed to satisfy all designated test cases. Please evaluate the failing scenarios and update your implementation as needed.");
@@ -125,6 +128,32 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }
             recentReferenceCode = task._referenceFile;
             action?.Invoke(task, null, null);
+        }
+
+        private void UseNewTask(TaskModel newTask)
+        {
+            task._instructions = newTask._instructions;
+            task._taskName = newTask._taskName;
+            task._testCases = newTask._testCases;
+            task.subject = newTask.subject;
+            SetUpTask();
+        }
+
+        private void smartButton4_Click(object sender, EventArgs e)
+        {
+            using (var selectExercise = new SelectExercise(UseNewTask))
+            {
+                this.SuspendLayout();
+                try
+                {
+                    selectExercise.ShowDialog();
+
+                }
+                finally
+                {
+                    this.ResumeLayout();
+                }
+            }
         }
     }
 }

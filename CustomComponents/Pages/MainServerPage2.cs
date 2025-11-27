@@ -66,6 +66,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             homePage = new ServerHomePage(server, displayStudentTable, saveSession, closingRemarks);
             homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
+            progressSubmissionPage.ratingFactorsWeight = currentTask.ratingFactors;
             progressSubmissionPage.leaderboardsUpdate = UpdateServerTask;
             var taskUpdatePage = new ServerTaskUpdate(currentTask, UpdateServerTask);
 

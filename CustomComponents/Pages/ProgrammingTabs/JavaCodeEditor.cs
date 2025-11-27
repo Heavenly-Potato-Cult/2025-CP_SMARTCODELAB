@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -41,7 +42,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
                 LintersServices.initializeLinter(item, content);
             }
-
 
             srcCode.TextChanged += (s, e) =>
             {
@@ -110,43 +110,70 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             e.ChangedRange.SetFoldingMarkers(@"/\*", @"\*/");//allow to collapse comment block
         }
 
+        public override void UpdateTask(TaskModel task)
+        {
+
+            //await Task.Run(() =>
+            //{
+            if (task.ratingFactors.ContainsKey(4))
+            {
+                string item = ProgrammingConfiguration.checkstyleMaintainability;
+                maintainabilityCheck = LintersServices.javaLinters[item].Replace("999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
+                LintersServices.initializeLinter(item, maintainabilityCheck);
+            }
+            if (task.ratingFactors.ContainsKey(2))
+            {
+                SourceCodeInitializer.InitializeEfficiencyCode(LanguageSupported.Java, task._referenceFile, Path.GetDirectoryName(filePath));
+            }
+            //});
+
+            base.UpdateTask(task);
+        }
+
         public async Task CompileCode2()
         {
             SaveCode();
             string classname = Path.GetFileNameWithoutExtension(filePath);
             string directory = Path.GetDirectoryName(filePath);
-
-            process = CommandRunner($"/c \"javac -cp \"{directory}\" \"{filePath}\"\"");
-            await StartprocessAsync(
+            process = CommandRunner($"/c javac \"{filePath}\"");
+            await StartprocessAsyncExit(
                 process,
                 null,
-                null,//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
+                err => MessageBox.Show(err),//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
                 null);
         }
 
         public override async Task RunLinting()
         {
             SaveCode();
+            NoError();
             string fileName = Path.GetFileName(filePath);
             string directory = Path.GetDirectoryName(filePath);
             string errorLine = "";
-            process = CommandRunner($"/c cd \"{directory}\" && javac -Xlint \"{fileName}\"");
+            process = CommandRunner($"/c  \"java -jar \"{ProgrammingConfiguration.JAVA_SYNTAX_CHECKER}\" \"{filePath}\"\"");
 
             await StartprocessAsyncExit(
                 process,
+                error => errorLine += error + '\n',
                 null,
-                error => errorLine += error,
                 null);
 
             if (errorLine != "")
             {
-                string[] lines = errorLine.Split(":");
-                int lineIndex = int.Parse(lines[1]) - 1;
-                HighlightError(lineIndex, lines[3]);
+                string[] lines = errorLine.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+                try
+                {
+                    foreach (var line in lines)
+                    {
+                        string[] lineMsg = line.Split("|=====|");
+                        int lineIndex = int.Parse(lineMsg[0]) - 1;
+                        HighlightError(lineIndex, lineMsg[1]);
+                    }
+                }
+                catch (IndexOutOfRangeException) { }
             }
             else
             {
-                NoError();
                 await checkMaintainability();
                 await checkRobustness();
                 //await checkOperatorsCount();
@@ -161,20 +188,28 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 return;
             }
 
-            SaveCode();
-            SourceCodeInitializer.InitializeEfficiencyCode2(LanguageSupported.Java, filePath, false);
+            string classname = Path.GetFileNameWithoutExtension(filePath);
             string directory = Path.GetDirectoryName(filePath);
-            CompileCode();
+            process = CommandRunner($"/c javac \"{filePath}\"");
+            StartprocessAsyncExit(
+                process,
+                null,
+                err => MessageBox.Show(err),//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
+                null);
+
+
+            SourceCodeInitializer.InitializeEfficiencyCode2(LanguageSupported.Java, filePath, false);
+            //directory = Path.GetDirectoryName(filePath);
+
             string fileName = Path.GetFileNameWithoutExtension(filePath);
             commandLine = $"/c \"cd \"{directory}\" && java {fileName}\"";
             base.RunTest();
-            await RunLinting();
-            //check efficiency
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
-            {
                 await checkEfficiencyComparison();
-            } else
+            else
                 updateStats?.Invoke(2, 0, "java");
+
+            await RunLinting();
         }
 
         private Task checkEfficiencyComparison()
@@ -214,7 +249,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         if (errors[errors.Length - 1] != standardError)
                         {
                             string[] e = standardError.Split(':');
-                            string errorMessage = e[e.Length - 1];
+                            string errorMessage = ToolTipProgrammingMessages.javaExplanations[checkstyleErrorRetriever(e[e.Length - 1])];
                             errorsList.Add(errorMessage);
                             base.HighlightMaintainabilityIssue(int.Parse(e[2]) - 1, errorMessage);
                             maintainabilityCounts++;
