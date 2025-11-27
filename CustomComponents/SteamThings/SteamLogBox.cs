@@ -3,11 +3,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
+using System.ComponentModel;
 
 namespace SmartCodeLab.CustomComponents.SteamThings
 {
     public class SteamLogBox : ListBox
     {
+        private SteamScrollBar _externalScrollBar;
         public SteamLogBox()
         {
            
@@ -31,7 +33,91 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         //    }
         //}
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        
+        public SteamScrollBar ExternalScrollBar
+        {
+            get => _externalScrollBar;
+            set
+            {
+                _externalScrollBar = value;
+                if (_externalScrollBar != null)
+                {
+                    // Wiring: When ScrollBar moves, scroll the ListBox
+                    _externalScrollBar.Scroll += (s, e) =>
+                    {
+                        if (this.Items.Count > 0)
+                        {
+                            this.TopIndex = _externalScrollBar.Value;
+                        }
+                    };
+                    UpdateScrollbar();
+                }
+            }
+        }
+
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+
+        //        // 1. Keep the Flicker Fix (Safe for Designer)
+        //        // WS_EX_COMPOSITED (0x02000000) helps text rendering
+        //        cp.ExStyle |= 0x02000000;
+
+        //        // 2. HIDE SCROLLBAR (Runtime Only)
+        //        // We check LicenseManager because 'this.DesignMode' is often false in the constructor
+        //        if (LicenseManager.UsageMode != LicenseUsageMode.Designtime)
+        //        {
+        //            // Remove WS_VSCROLL (0x00200000)
+        //            // Only do this when the app is running!
+        //            cp.Style = cp.Style & ~0x00200000;
+        //        }
+                
+        //        return cp;
+        //    }
+        //}
+        protected override void OnResize(EventArgs e) { base.OnResize(e); UpdateScrollbar(); }
+        protected override void OnDataSourceChanged(EventArgs e) { base.OnDataSourceChanged(e); UpdateScrollbar(); }
+
       
+        public new void Invalidate()
+        {
+            base.Invalidate();
+            UpdateScrollbar(); 
+        }
+
+       
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            base.OnMouseWheel(e);
+           
+            int delta = -e.Delta / 120; // Direction
+            if (_externalScrollBar != null)
+            {
+                _externalScrollBar.Value += delta;
+            }
+        }
+
+        private void UpdateScrollbar()
+        {
+            if (_externalScrollBar == null) return;
+
+        
+
+            int visibleItems = this.ClientSize.Height / this.ItemHeight;
+            _externalScrollBar.Maximum = this.Items.Count;
+            _externalScrollBar.LargeChange = visibleItems;
+
+           
+            if (this.TopIndex >= 0)
+            {
+                _externalScrollBar.Value = this.TopIndex;
+            }
+        }
+
+
         protected override void OnHandleCreated(EventArgs e)
         {
             base.OnHandleCreated(e);
@@ -41,7 +127,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
         protected override void OnMeasureItem(MeasureItemEventArgs e)
         {
-            e.ItemHeight = 35;
+            e.ItemHeight = 40;
         }
 
         protected override void OnDrawItem(DrawItemEventArgs e)
@@ -55,64 +141,79 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
             Rectangle bounds = e.Bounds;
 
-            //  DRAW BACKGROUND (Zebra Striping)
-            Color rowColor = (e.Index % 2 == 0)
-                ? Color.FromArgb(23, 26, 33)
-                : Color.FromArgb(28, 32, 40);
+            // Background
+            Color rowColor = (e.Index % 2 == 0) ? Color.FromArgb(23, 26, 33) : Color.FromArgb(28, 32, 40);
+            using (SolidBrush bgBrush = new SolidBrush(rowColor)) g.FillRectangle(bgBrush, bounds);
 
-            using (SolidBrush bgBrush = new SolidBrush(rowColor))
-            {
-                g.FillRectangle(bgBrush, bounds);
-            }
-
-            //  DRAW ACCENT STRIP
+            // Strip
             Color accentColor = GetColorByType(notification.Type);
-            using (SolidBrush accentBrush = new SolidBrush(accentColor))
+            using (SolidBrush accentBrush = new SolidBrush(accentColor)) g.FillRectangle(accentBrush, bounds.X, bounds.Y, 4, bounds.Height);
+
+            // --- LAYOUT LOGIC ---
+
+            StringFormat centerFormat = new StringFormat
             {
-                g.FillRectangle(accentBrush, bounds.X, bounds.Y, 4, bounds.Height);
-            }
+                LineAlignment = StringAlignment.Center, // Vertical Center
+                Alignment = StringAlignment.Near,       // Left Align
+                FormatFlags = StringFormatFlags.NoWrap
+            };
 
-            // --- TEXT LAYOUT ---
-            int x = bounds.X + 12;
-            int y = bounds.Y + 8;
+            float currentX = bounds.X + 12;
 
-            //  TIMESTAMP 
+            //  TIMESTAMP
             string timeStr = $"[{notification.timeOccurred:hh:mm tt}]";
-
-            
-            using (Font timeFont = SteamFont.GetFont(9F, FontStyle.Regular))
+            using (Font timeFont = SteamFont.GetFont(9F, FontStyle.Regular, "Geist Mono"))
             using (SolidBrush timeBrush = new SolidBrush(Color.FromArgb(100, 110, 120)))
             {
-                g.DrawString(timeStr, timeFont, timeBrush, x, y);
-                x += (int)g.MeasureString(timeStr, timeFont).Width + 5;
+                
+                SizeF size = g.MeasureString(timeStr, timeFont);
+
+                RectangleF timeRect = new RectangleF(currentX, bounds.Y, size.Width + 10, bounds.Height);
+                g.DrawString(timeStr, timeFont, timeBrush, timeRect, centerFormat);
+
+                // Move X by the REAL drawn width
+                currentX += size.Width;
             }
 
-            // USERNAME 
+            //  USERNAME
             using (Font nameFont = SteamFont.GetFont(9F, FontStyle.Bold))
             using (SolidBrush nameBrush = new SolidBrush(Color.White))
             {
-                g.DrawString(notification.UserName, nameFont, nameBrush, x, y);
-                x += (int)g.MeasureString(notification.UserName, nameFont).Width;
+                
+                SizeF size = g.MeasureString(notification.UserName, nameFont);
+
+                RectangleF nameRect = new RectangleF(currentX, bounds.Y, size.Width + 10, bounds.Height);
+                g.DrawString(notification.UserName, nameFont, nameBrush, nameRect, centerFormat);
+
+                currentX += size.Width;
             }
 
-            // SEPARATOR
+            // SEPARATOR (" : ")
             using (Font sepFont = SteamFont.GetFont(9F, FontStyle.Regular))
             using (SolidBrush sepBrush = new SolidBrush(Color.Gray))
             {
                 string sep = " : ";
-                g.DrawString(sep, sepFont, sepBrush, x, y);
-                x += (int)g.MeasureString(sep, sepFont).Width;
+                SizeF size = g.MeasureString(sep, sepFont);
+
+                RectangleF sepRect = new RectangleF(currentX, bounds.Y, size.Width + 10, bounds.Height);
+                g.DrawString(sep, sepFont, sepBrush, sepRect, centerFormat);
+
+                currentX += size.Width;
             }
 
-            // MESSAGE
             using (Font msgFont = SteamFont.GetFont(9F, FontStyle.Regular))
             using (SolidBrush msgBrush = new SolidBrush(Color.FromArgb(200, 200, 200)))
             {
-                int maxMsgWidth = bounds.Width - x - 5;
-                RectangleF msgRect = new RectangleF(x, y, maxMsgWidth, bounds.Height);
-                StringFormat format = new StringFormat { Trimming = StringTrimming.EllipsisCharacter, FormatFlags = StringFormatFlags.NoWrap };
+                float remainingWidth = bounds.Width - currentX - 5;
+                if (remainingWidth > 0)
+                {
+                    RectangleF msgRect = new RectangleF(currentX, bounds.Y, remainingWidth, bounds.Height);
 
-                g.DrawString(notification.Message, msgFont, msgBrush, msgRect, format);
+                    
+                    centerFormat.Trimming = StringTrimming.EllipsisCharacter;
+
+                    g.DrawString(notification.Message, msgFont, msgBrush, msgRect, centerFormat);
+                }
             }
         }
 
