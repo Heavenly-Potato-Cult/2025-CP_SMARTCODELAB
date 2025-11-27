@@ -135,6 +135,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             task._instructions = newTask._instructions;
             task._taskName = newTask._taskName;
             task._testCases = newTask._testCases;
+            task.subject = newTask.subject;
             SetUpTask();
         }
 

@@ -35,6 +35,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             "Total Score"
         };
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Dictionary<int, decimal[]> ratingFactorsWeight { get; set; }
         protected override CreateParams CreateParams
         {
             get
@@ -45,9 +47,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }
         }
 
-        public ProgressSubmissionPage(Dictionary<string, SubmittedCode> codeSubmissions)
+        public ProgressSubmissionPage(Dictionary<string, SubmittedCode> codeSubmissions, Dictionary<int, decimal[]> ratingFactorsWeight)
         {
             InitializeComponent();
+            this.ratingFactorsWeight = ratingFactorsWeight;
             leaderboardsVersion = 0;
             submittedStudents = codeSubmissions.Select(cs => cs.Value.user).ToList();
             submitCount.Text = codeSubmissions.Count.ToString();
@@ -75,6 +78,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public ProgressSubmissionPage()
         {
             InitializeComponent();
+            this.ratingFactorsWeight = ratingFactorsWeight;
             leaderboardsVersion = 0;
             submittedStudents = new List<UserProfile>();
             submittedCount = 0;
@@ -151,7 +155,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             materialListView1.Items.Clear();
             submittedCode.progress.codeRating.statsGrade.ToList().ForEach(kv =>
             {
-                materialListView1.Items.Add(new ListViewItem(new string[] { ratingFactors[kv.Key], kv.Value.ToString("0.00") }));
+                string rate = kv.Key == 5 ? " (100%)" : $" ({Convert.ToInt16(ratingFactorsWeight[kv.Key][0])}%)";
+                var labelName = ratingFactors[kv.Key] + rate;
+                materialListView1.Items.Add(new ListViewItem(new string[] { labelName, kv.Value.ToString("0.00") }));
             });
         }
 
