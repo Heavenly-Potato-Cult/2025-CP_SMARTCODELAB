@@ -129,11 +129,50 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }
         }
 
+        //public async void NewNotification(Notification notification, UserProfile notifFrom = null)
+        //{
+        //    await Task.Run(() =>
+        //    {
+
+        //        this.Invoke(new Action(async () =>
+        //        {
+
+        //            if (notification.Type == NotificationType.Submitted && notifFrom != null && !studentsSubmitted.Contains(notifFrom._studentId))
+        //            {
+        //                studentsSubmitted.Add(notifFrom._studentId);
+        //                submittedCount++;
+        //                setStudentSubmittedDisplay();
+        //            }
+        //            else if (notification.Type == NotificationType.CopyPasted)
+        //            {
+        //                copyPasteDetectedCount++;
+        //                this.Invoke((Action)(() => pastedCount.Text = copyPasteDetectedCount.ToString()));
+        //            }
+        //            else if (notification.Type == NotificationType.LoggedIn || notification.Type == NotificationType.LoggedOut)
+        //            {
+        //                await UpdateActiveStudentsCount(notification.Type);
+        //            }
+        //            if(!personWithNotification.ContainsKey(notifFrom?._studentId ?? ""))
+        //                personWithNotification[notifFrom?._studentId ?? ""] = new List<int>();
+        //            personWithNotification[notifFrom?._studentId ?? ""].Add(notifications.Count);
+
+        //            notifications.Add(notification);
+
+        //            string senderName = notifFrom != null ? notifFrom._studentName : string.Empty;
+        //            string notifFilterString = notifFilter.SelectedItem?.ToString() ?? "All";
+        //            bool isForAll = notifFilterString.Equals("All", StringComparison.OrdinalIgnoreCase);
+        //            bool isTypeMatched = NotificationTypeExtensions.ToFriendlyString(notification.Type).Equals(notifFilterString, StringComparison.OrdinalIgnoreCase);
+
+        //            if (senderName.Contains(studentName.Texts, StringComparison.OrdinalIgnoreCase) && (isForAll || isTypeMatched))
+        //                notifContainer.Controls.Add(new NotificationIcon(notification));
+        //        }));
+        //    });
+        //}
+
         public async void NewNotification(Notification notification, UserProfile notifFrom = null)
         {
             await Task.Run(() =>
             {
-
                 this.Invoke(new Action(async () =>
                 {
 
@@ -146,40 +185,71 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     else if (notification.Type == NotificationType.CopyPasted)
                     {
                         copyPasteDetectedCount++;
-                        this.Invoke((Action)(() => pastedCount.Text = copyPasteDetectedCount.ToString()));
+                        pastedCount.Text = copyPasteDetectedCount.ToString();
                     }
                     else if (notification.Type == NotificationType.LoggedIn || notification.Type == NotificationType.LoggedOut)
                     {
                         await UpdateActiveStudentsCount(notification.Type);
                     }
-                    if(!personWithNotification.ContainsKey(notifFrom?._studentId ?? ""))
-                        personWithNotification[notifFrom?._studentId ?? ""] = new List<int>();
-                    personWithNotification[notifFrom?._studentId ?? ""].Add(notifications.Count);
 
+                    // --- DATA MANAGEMENT ---
+                    if (!personWithNotification.ContainsKey(notifFrom?._studentId ?? ""))
+                        personWithNotification[notifFrom?._studentId ?? ""] = new List<int>();
+
+                    // Track index and add to main list
+                    personWithNotification[notifFrom?._studentId ?? ""].Add(notifications.Count);
                     notifications.Add(notification);
 
+                    // --- UI UPDATE  ---
                     string senderName = notifFrom != null ? notifFrom._studentName : string.Empty;
-                    string notifFilterString = notifFilter.SelectedItem?.ToString() ?? "All";
-                    bool isForAll = notifFilterString.Equals("All", StringComparison.OrdinalIgnoreCase);
-                    bool isTypeMatched = NotificationTypeExtensions.ToFriendlyString(notification.Type).Equals(notifFilterString, StringComparison.OrdinalIgnoreCase);
+                    string filter = notifFilter.SelectedItem?.ToString() ?? "All";
+                    string search = studentName.Text;
 
-                    if (senderName.Contains(studentName.Texts, StringComparison.OrdinalIgnoreCase) && (isForAll || isTypeMatched))
-                        notifContainer.Controls.Add(new NotificationIcon(notification));
+                    // Check filters
+                    bool matchesSearch = senderName.Contains(search, StringComparison.OrdinalIgnoreCase);
+                    bool matchesType = filter == "All" ||
+                                       NotificationTypeExtensions.ToFriendlyString(notification.Type)
+                                       .Equals(filter, StringComparison.OrdinalIgnoreCase);
+
+                    if (matchesSearch && matchesType)
+                    {
+                        // Insert at 0 puts the NEWEST item at the TOP of the list
+                        logBox.Items.Insert(0, notification);
+                    }
                 }));
             });
         }
 
+        //public async Task updateNotifCardName(UserProfile user)
+        //{
+        //    this.Invoke((Action)(() => 
+        //    {
+        //        foreach (var item in personWithNotification[user._studentId])
+        //        {
+        //            notifications[item].UserName = user._studentName;
+        //        }
+        //    }));
+        //}
+
+
         public async Task updateNotifCardName(UserProfile user)
         {
-            this.Invoke((Action)(() => 
+            this.Invoke((Action)(() =>
             {
-                foreach (var item in personWithNotification[user._studentId])
+                if (personWithNotification.ContainsKey(user._studentId))
                 {
-                    notifications[item].UserName = user._studentName;
+                    foreach (var itemIndex in personWithNotification[user._studentId])
+                    {
+                        if (itemIndex < notifications.Count)
+                        {
+                            notifications[itemIndex].UserName = user._studentName;
+                        }
+                    }
                 }
+
+                logBox.Invalidate();
             }));
         }
-
         public async Task UpdateActiveStudentsCount(NotificationType notificationType)
         {
             await _semaphore.WaitAsync();
@@ -207,28 +277,59 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             this.Invoke((Action)(() => submissionCount.Text = submittedCount.ToString() + $"/{totalStudents}"));
         }
 
+        //private async Task SearchStudent()
+        //{
+        //    long currentSearchVersion = ++searchVersion;
+        //    string searchedName = studentName.Texts.Trim();
+        //    this.Invoke((Action)(() =>
+        //    {
+        //        Task.Delay(200);
+        //        notifContainer.Controls.Clear();
+        //        string notifFilterString = notifFilter.SelectedItem?.ToString() ?? "All";
+        //        bool isForAll = notifFilterString.Equals("All", StringComparison.OrdinalIgnoreCase);
+        //        List<Notification> filtered = notifications.
+        //            Where(notif => notif.UserName.Contains(searchedName, StringComparison.OrdinalIgnoreCase) && (isForAll || NotificationTypeExtensions.ToFriendlyString(notif.Type).Equals(notifFilterString, StringComparison.OrdinalIgnoreCase))).
+        //            ToList();
+        //        foreach (var item in filtered)
+        //        {
+        //            if (currentSearchVersion != searchVersion)
+        //                break;
+        //            notifContainer.Controls.Add(new NotificationIcon(item));
+        //        }
+        //    }));
+        //}
+
+
         private async Task SearchStudent()
         {
             long currentSearchVersion = ++searchVersion;
-            string searchedName = studentName.Texts.Trim();
+            string searchedName = studentName.Text.Trim();
+
             this.Invoke((Action)(() =>
             {
-                Task.Delay(200);
-                notifContainer.Controls.Clear();
-                string notifFilterString = notifFilter.SelectedItem?.ToString() ?? "All";
-                bool isForAll = notifFilterString.Equals("All", StringComparison.OrdinalIgnoreCase);
-                List<Notification> filtered = notifications.
-                    Where(notif => notif.UserName.Contains(searchedName, StringComparison.OrdinalIgnoreCase) && (isForAll || NotificationTypeExtensions.ToFriendlyString(notif.Type).Equals(notifFilterString, StringComparison.OrdinalIgnoreCase))).
-                    ToList();
-                foreach (var item in filtered)
+                // Stop painting to prevent flickering while we swap items
+                logBox.BeginUpdate();
+                logBox.Items.Clear();
+
+                string filter = notifFilter.SelectedItem?.ToString() ?? "All";
+                bool isForAll = filter.Equals("All", StringComparison.OrdinalIgnoreCase);
+
+                // Filter the master list
+                var filteredItems = notifications
+                    .Where(n => n.UserName.Contains(searchedName, StringComparison.OrdinalIgnoreCase) &&
+                               (isForAll || NotificationTypeExtensions.ToFriendlyString(n.Type).Equals(filter, StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+
+
+                foreach (var item in filteredItems)
                 {
-                    if (currentSearchVersion != searchVersion)
-                        break;
-                    notifContainer.Controls.Add(new NotificationIcon(item));
+                    logBox.Items.Insert(0, item);
                 }
+
+                // Resume painting
+                logBox.EndUpdate();
             }));
         }
-
         //for the timer
         private Stopwatch _stopwatch;
         private CancellationTokenSource _cancellationTokenSource;
@@ -276,6 +377,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         {
             searchTimer?.Change(Timeout.Infinite, Timeout.Infinite);
             searchTimer = new System.Threading.Timer(async _ => SearchStudent(), null, 500, Timeout.Infinite);
+        }
+
+        private void customCard1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void steamGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
