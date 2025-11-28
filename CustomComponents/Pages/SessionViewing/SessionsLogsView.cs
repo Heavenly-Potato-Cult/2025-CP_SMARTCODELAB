@@ -36,8 +36,28 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             if (tabControl1.SelectedIndex == 3)
             {
-                SystemSingleton.Instance.sessionLogsPage.Controls.Clear();
-                SystemSingleton.Instance.sessionLogsPage.Controls.Add(new SessionLogsPage());
+                var container = SystemSingleton.Instance.sessionLogsPage;
+
+                
+                container.SuspendLayout();
+
+                try
+                {
+                    
+                    container.Controls.Clear();
+
+                    var newPage = new SessionLogsPage()
+                    {
+                        Dock = DockStyle.Fill
+                    };
+
+                    container.Controls.Add(newPage);
+                }
+                finally
+                {
+                    
+                    container.ResumeLayout(true);
+                }
             }
         }
     }
