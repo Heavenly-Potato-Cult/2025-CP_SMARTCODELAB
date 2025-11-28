@@ -124,7 +124,7 @@
             // 
             // smartButton1
             // 
-            smartButton1.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            smartButton1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             smartButton1.BackColor = Color.DeepSkyBlue;
             smartButton1.BackgroundColor = Color.DeepSkyBlue;
             smartButton1.BorderRadius = 5;
@@ -289,11 +289,14 @@
             searchStudent.BackColor = Color.FromArgb(26, 30, 36);
             searchStudent.ForeColor = Color.White;
             searchStudent.Location = new Point(26, 12);
+            searchStudent.Multiline = false;
             searchStudent.Name = "searchStudent";
             searchStudent.Padding = new Padding(10, 8, 10, 8);
             searchStudent.PlaceholderText = "Search Student";
+            searchStudent.ScrollBars = ScrollBars.None;
             searchStudent.Size = new Size(224, 44);
             searchStudent.TabIndex = 110;
+            searchStudent.WordWrap = true;
             // 
             // customCard8
             // 
