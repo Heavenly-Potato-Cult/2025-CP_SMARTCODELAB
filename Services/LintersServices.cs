@@ -237,7 +237,7 @@ namespace SmartCodeLab.Services
                 ]
                 line-length = 100
                 target-version = "py310"
-                lint.mccabe.max-complexity = 999
+                lint.mccabe.max-complexity = 999999
                 [format]
                 quote-style = "double"
                 """},

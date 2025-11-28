@@ -131,8 +131,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             //will initialize first, incase it is new
             StudentProgress = progress;
-            this.sendProgress = sendProgress;
-            new Action(async () => await RunLinting()).Invoke();
 
             srcCode.ToolTip.InitialDelay = 100;
             srcCode.ToolTip.ReshowDelay = 50;
@@ -184,6 +182,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     }
                 }
             };
+
+            var handle = this.Handle;
+            this.sendProgress = sendProgress;
+            new Action(async () => await RunLinting()).Invoke();
         }
 
         private void GetPastedCode(string codeSnippet, string wholeCode, string[] history)
@@ -565,6 +567,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected virtual void HighlightRobustnessIssue(int errorLine, string msg)
         {
+            MessageBox.Show("Will update robustness");
             try
             {
                 var lineRange = srcCode.GetLine(errorLine);

@@ -96,6 +96,7 @@
             // 
             efficiencyT.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             efficiencyT.BackColor = Color.Transparent;
+            efficiencyT.Enabled = false;
             efficiencyT.Location = new Point(30, 226);
             efficiencyT.Maximum = 100;
             efficiencyT.Name = "efficiencyT";
@@ -108,6 +109,7 @@
             // 
             robustnessT.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             robustnessT.BackColor = Color.Transparent;
+            robustnessT.Enabled = false;
             robustnessT.Location = new Point(30, 320);
             robustnessT.Maximum = 100;
             robustnessT.Name = "robustnessT";
@@ -120,6 +122,7 @@
             // 
             maintainabilityT.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             maintainabilityT.BackColor = Color.Transparent;
+            maintainabilityT.Enabled = false;
             maintainabilityT.Location = new Point(30, 414);
             maintainabilityT.Maximum = 100;
             maintainabilityT.Name = "maintainabilityT";

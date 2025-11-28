@@ -27,12 +27,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Func<string, bool> isStudentActive;
         private ChatBox chatBox;
         private List<UserProfile> displayedUsers = new List<UserProfile>();
-
+        private bool isForLogs;
         private long searchVersion;
         public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string,
             StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
         {
             InitializeComponent();
+            isForLogs = false;
             userMessages = new Dictionary<string, List<UserMessage>>();
             chatBox = null;
             currentTask = task;
@@ -57,26 +58,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         public TempServerPage(Dictionary<string, StudentCodingProgress> userProgress, Dictionary<string, UserProfile> users, Dictionary<int, decimal[]> ratingFactors)
         {
             InitializeComponent();
-            displayedUsers = users.Select(users => users.Value).ToList();
+            isForLogs = true;
+            displayedUsers = new List<UserProfile>();
             userMessages = new Dictionary<string, List<UserMessage>>();
             progressRetriever = (student_id) => userProgress[student_id];
             studentCodeRating1.SetStats(ratingFactors);
             smartButton1.Visible = false;
             status.Visible = false;
 
+            var obj = this.Handle;
             searchVersion = 0;
-            Load += (s, e) =>
-            {
-                Task.Run(() =>
-                {
-                    foreach (var user in users.Values)
-                    {
-                        userMessages.Add(user._studentId, new List<UserMessage>());
-                        userIcons.Add(user._studentId, new UserIcons(user, NewUserSelected));
-                    }
-                    displayStudents();
-                });
-            };
+            displayUsers(users.Values.ToList());
             searchStudent.innerTextBox.TextChanged += (s, e) =>
             {
                 updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -127,25 +119,27 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void displayStudents()
         {
-            long currentSearchVersion = ++searchVersion;
-            string search = searchStudent.Text.ToLower();
-            var searchedUserIds = displayedUsers.
-                Where(user => user._studentName.ToLower().Contains(search)).
-                Select(user => user._studentId).ToList();
-            var searchedIcons = userIcons.Keys.Where(id => searchedUserIds.Contains(id)).ToList();
             this.Invoke((Action)(() =>
             {
+                long currentSearchVersion = ++searchVersion;
+                string search = searchStudent.innerTextBox.Text.ToLower();
+                var searchedUserIds = displayedUsers.
+                    Where(user => user._studentName.ToLower().Contains(search)).
+                    Select(user => user._studentId).ToList();
+                var searchedIcons = userIcons.Keys.Where(id => searchedUserIds.Contains(id)).ToList();
                 string activeStatus = status.SelectedItem?.ToString() ?? "All";
                 bool isActiveFilter = activeStatus.Equals("Active", StringComparison.OrdinalIgnoreCase);
                 iconsContainer.Controls.Clear();
+
                 foreach (var ids in searchedIcons)
                 {
-                    if (currentSearchVersion != searchVersion)
-                        break;
-
+                    //if (currentSearchVersion != searchVersion)
+                    //    break;
                     UserIcons icon = userIcons[ids];
-                    if (activeStatus.Equals("All") || isActiveFilter == icon.isActive)
-                    iconsContainer.Controls.Add(userIcons[ids]);
+                    if (isForLogs || activeStatus.Equals("All") || isActiveFilter == icon.isActive)
+                    {
+                        iconsContainer.Controls.Add(userIcons[ids]);
+                    }
                 }
             }));
         }

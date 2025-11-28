@@ -28,7 +28,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             DashboardPage.Controls.Add(new SessionDisplayHome(session.server, session.notifications, session.lastModified, session.copyPasteCount) { Dock = DockStyle.Fill });
             //DashboardPage.Controls.Add(new ServerHomePage() { Dock = DockStyle.Fill });
             
-
             List<string> withProgressStudentsIds = session.userProgress.Select(s => s.Key).ToList();
             Dictionary<string, UserProfile> withProgressStudents = session.server.Users.Where(user => withProgressStudentsIds.Contains(user.Key)).ToDictionary();
             MonitoringPage.Controls.Add(new TempServerPage(session.userProgress, withProgressStudents, session.server.ServerTask.ratingFactors) { Dock = DockStyle.Fill });

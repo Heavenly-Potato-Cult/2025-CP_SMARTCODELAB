@@ -55,17 +55,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 submitCount.Text = this.codeSubmissions.Count.ToString();
             Load += (sender, e) =>
             {
-                foreach (var submissionIcon in this.codeSubmissions.Values)
-                {
-                    StudentSubmitted(submissionIcon);
-                }
-
-                displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
-
-                displayIcons = new System.Threading.Timer((e) =>
-                {
-                    DisplayIcons();
-                }, null, 500, Timeout.Infinite);
+                DisplayIcons();
             };
 
             searchBox.innerTextBox.TextChanged += (sender, e) =>
@@ -109,15 +99,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     {
                         codeSubmissions[kvp.Key].placement--;
                     }
-                    codeSubmissions[submitted.user._studentId].placement = codeSubmissions.Count;
                     codeSubmissions[submitted.user._studentId] = submitted;
+                    codeSubmissions[submitted.user._studentId].placement = submittedCount;
                 }
                 else
                 {
-                    submittedCount++;
-                    submitted.placement = submittedCount;
+                    submitted.placement = ++submittedCount;
                     codeSubmissions.Add(submitted.user._studentId, submitted);
                     submittedStudents.Add(submitted.user);
+                    this.Invoke((Action)(() => submitCount.Text = submittedCount.ToString()));
                 }
 
                 displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -147,8 +137,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     int currentVersion = ++leaderboardsVersion;
                     bool isSortByPoints = customComboBox2.SelectedItem?.ToString() == "Points";
                     //do the sorting thing
-                    filteredSubmitted = isSortByPoints ? filteredSubmitted.OrderByDescending(sub => sub.score).ToList() :
-                                                            filteredSubmitted.OrderBy(sub => sub.placement).ToList();
+                    filteredSubmitted = isSortByPoints ? filteredSubmitted.OrderBy(sub => sub.score).ToList() :
+                                                            filteredSubmitted.OrderByDescending(sub => sub.placement).ToList();
 
                     submittedContainer.Controls.Clear();
                     foreach (var studentSubmission in filteredSubmitted)

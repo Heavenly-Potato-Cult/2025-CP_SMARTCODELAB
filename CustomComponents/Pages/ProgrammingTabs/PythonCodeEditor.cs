@@ -28,7 +28,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
                 if(item == ProgrammingConfiguration.ruffMaintainability && task.ratingFactors.ContainsKey(4))
                 {
-                    maintainabilityCheck = content.Replace("999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
+                    maintainabilityCheck = content.Replace("999999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
                     content = maintainabilityCheck;
                 }
                 LintersServices.initializeLinter(item, content);
@@ -83,7 +83,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             //for error checking
             process = CommandRunner($"/c \"py \"{ProgrammingConfiguration.SYNTAX_CHECKER}\" \"{filePath}\"\"");
             string errorOutput = "";
-            await StartprocessAsyncExit(
+            await StartprocessAsync(
                 process,
                 err =>
                 {
@@ -121,7 +121,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 string item = ProgrammingConfiguration.ruffMaintainability;
                 if (task.ratingFactors.ContainsKey(4))
-                    maintainabilityCheck = LintersServices.pythonLinters[item].Replace("999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
+                    maintainabilityCheck = LintersServices.pythonLinters[item].Replace("999999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
 
                 LintersServices.initializeLinter(item, maintainabilityCheck);
             }
@@ -143,6 +143,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             process = CommandRunner($"/c \"\"{ProgrammingConfiguration.ruffExe}\" check \"{filePath}\" --config \"{ruffFilePath}\"\"");
             string checksViolations = "";
+            string totalError = "";
             await StartprocessAsyncExit(
                 process,
                 output =>
@@ -151,12 +152,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     if (mainPyIndex > 0)
                         checksViolations += output.Substring(output.IndexOf("Main.py") + 8) + Environment.NewLine;
                 },
-                err => Debug.WriteLine("Err "+ err),
+                err => totalError+=err + '\n',
                 () =>
                 {
+                    int violationCounts = 0;
                     if (checksViolations != "")
                     {
-                        int violationCounts = 0;
                         foreach (var item in checksViolations.Split(Environment.NewLine))
                         {
                             try
@@ -176,8 +177,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                                 Debug.WriteLine(knfe.Message);
                             }
                         }
-                        updateStats?.Invoke(updateStatsNum, violationCounts, "python");
                     }
+                    updateStats?.Invoke(updateStatsNum, violationCounts, "python");
                 }
             );
         }

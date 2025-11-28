@@ -16,6 +16,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,6 +27,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private TaskModel selectedTask;
         private Dictionary<string, UserProfile> userProfiles;
         private SelectedExercise selectedExercise;
+        private readonly Regex InvalidCharsRegex = new Regex(
+            @"[<>:""/\\|?*\x00-\x1F]",
+            RegexOptions.Compiled
+        );
         public TempSessionManagement2()
         {
             InitializeComponent();
@@ -208,6 +213,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 MessageBox.Show("Invalid Server Name");
                 return;
             }
+            else if (InvalidCharsRegex.IsMatch(serverName.Text))
+            {
+                MessageBox.Show("The server name contains invalid characters. Please avoid using the following characters: < > : \" / \\ | ? *", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             else if (language.SelectedItem == null || language.SelectedItem.ToString() == "")
             {
                 MessageBox.Show("No language Selected");
@@ -218,10 +228,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 MessageBox.Show("Server Password is Required");
                 return;
             }
-            else if(haveZeroRating.Count > 0)
+            else if (haveZeroRating.Count > 0)
             {
-                string[] statsName = { "","", "Efficiency", "Robustness", "Maintainability" };
-                string withZero = string.Join('\n', 
+                string[] statsName = { "", "", "Efficiency", "Robustness", "Maintainability" };
+                string withZero = string.Join('\n',
                     haveZeroRating.Select(num => statsName[num]).ToArray());
                 MessageBox.Show("The following have 0 stats weight, better remove or update weight: \n" + withZero);
                 return;
