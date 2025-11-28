@@ -30,203 +30,81 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerTaskUpdate));
-            tabControl1 = new TabControl();
-            tabPage3 = new TabPage();
-            panel1 = new Panel();
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            instruction = new CustomTextBox();
-            label25 = new Label();
-            subject = new CustomTextBox();
-            label8 = new Label();
-            exerciseName = new CustomTextBox();
-            label9 = new Label();
-            tabPage4 = new TabPage();
             reference = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
-            smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            label11 = new Label();
-            tabPage1 = new TabPage();
-            testContainer = new FlowLayoutPanel();
-            customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            label15 = new Label();
-            label14 = new Label();
-            btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            label13 = new Label();
             btn_EditExerciseDetails = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            label3 = new Label();
-            tabControl1.SuspendLayout();
-            tabPage3.SuspendLayout();
-            panel1.SuspendLayout();
-            tabPage4.SuspendLayout();
+            panel2 = new Panel();
+            testcase_panel = new Panel();
+            smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            reference_panel = new Panel();
+            smartButton3 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            detail_panel = new Panel();
+            btn_details = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            panel6 = new Panel();
+            task_tabcontrol = new SmartCodeLab.CustomComponents.GeneralComponents.SmoothTabControl();
+            tabPage2 = new TabPage();
+            instruction = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
+            steamLabel4 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            subject = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
+            steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            exerciseName = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
+            steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            tabPage5 = new TabPage();
+            smartButton7 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            steamLabel5 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            tabPage6 = new TabPage();
+            testContainer = new Panel();
+            btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            steamLabel6 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            panel7 = new Panel();
+            panel1 = new Panel();
+            customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             ((System.ComponentModel.ISupportInitialize)reference).BeginInit();
-            tabPage1.SuspendLayout();
-            customCard7.SuspendLayout();
+            panel2.SuspendLayout();
+            testcase_panel.SuspendLayout();
+            reference_panel.SuspendLayout();
+            detail_panel.SuspendLayout();
+            task_tabcontrol.SuspendLayout();
+            tabPage2.SuspendLayout();
+            tabPage5.SuspendLayout();
+            tabPage6.SuspendLayout();
+            panel7.SuspendLayout();
+            panel1.SuspendLayout();
+            customCard1.SuspendLayout();
+            customCard2.SuspendLayout();
             SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            tabControl1.Controls.Add(tabPage3);
-            tabControl1.Controls.Add(tabPage4);
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Location = new Point(349, 144);
-            tabControl1.MaximumSize = new Size(1165, 603);
-            tabControl1.Name = "tabControl1";
-            tabControl1.Padding = new Point(6, 10);
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1165, 603);
-            tabControl1.SizeMode = TabSizeMode.Fixed;
-            tabControl1.TabIndex = 53;
-            // 
-            // tabPage3
-            // 
-            tabPage3.BackColor = Color.White;
-            tabPage3.Controls.Add(panel1);
-            tabPage3.Controls.Add(instruction);
-            tabPage3.Controls.Add(label25);
-            tabPage3.Controls.Add(subject);
-            tabPage3.Controls.Add(label8);
-            tabPage3.Controls.Add(exerciseName);
-            tabPage3.Controls.Add(label9);
-            tabPage3.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            tabPage3.Location = new Point(4, 43);
-            tabPage3.Name = "tabPage3";
-            tabPage3.Padding = new Padding(10, 11, 10, 11);
-            tabPage3.Size = new Size(1157, 556);
-            tabPage3.TabIndex = 0;
-            tabPage3.Text = "Details";
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(smartButton4);
-            panel1.Location = new Point(953, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(201, 49);
-            panel1.TabIndex = 35;
             // 
             // smartButton4
             // 
-            smartButton4.BackColor = Color.FromArgb(42, 71, 94);
-            smartButton4.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton4.BackColor = Color.FromArgb(23, 26, 33);
+            smartButton4.BackgroundColor = Color.FromArgb(23, 26, 33);
+            smartButton4.BorderColor = Color.FromArgb(42, 71, 94);
             smartButton4.BorderRadius = 1;
-            smartButton4.Dock = DockStyle.Right;
+            smartButton4.BorderSize = 1;
+            smartButton4.Dock = DockStyle.Bottom;
             smartButton4.FlatAppearance.BorderSize = 0;
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton4.ForeColor = Color.FromArgb(199, 213, 224);
-            smartButton4.Location = new Point(2, 0);
+            smartButton4.Location = new Point(0, 1000);
             smartButton4.Margin = new Padding(2, 4, 2, 4);
             smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(199, 49);
+            smartButton4.Size = new Size(250, 49);
             smartButton4.TabIndex = 47;
-            smartButton4.Text = "SELECT NEW";
+            smartButton4.Text = "CHANGE EXERCISE";
             smartButton4.TextColor = Color.FromArgb(199, 213, 224);
             smartButton4.UseVisualStyleBackColor = false;
             smartButton4.Click += smartButton4_Click;
             // 
-            // instruction
-            // 
-            instruction.AutoScroll = true;
-            instruction.AutoSize = true;
-            instruction.BackColor = Color.White;
-            instruction.BorderColor = Color.LightGray;
-            instruction.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            instruction.BorderRadius = 10;
-            instruction.BorderSize = 1;
-            instruction.ForeColor = SystemColors.ControlText;
-            instruction.Location = new Point(26, 177);
-            instruction.Multiline = true;
-            instruction.Name = "instruction";
-            instruction.Padding = new Padding(10, 7, 10, 7);
-            instruction.PlaceHolderColor = Color.DarkGray;
-            instruction.PlaceholderText = "";
-            instruction.ScrollBars = ScrollBars.Vertical;
-            instruction.Size = new Size(1105, 353);
-            instruction.TabIndex = 34;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label25.ForeColor = Color.DimGray;
-            label25.Location = new Point(26, 149);
-            label25.Name = "label25";
-            label25.Size = new Size(96, 25);
-            label25.TabIndex = 33;
-            label25.Text = "Instruction";
-            // 
-            // subject
-            // 
-            subject.BackColor = Color.White;
-            subject.BorderColor = Color.LightGray;
-            subject.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            subject.BorderRadius = 10;
-            subject.BorderSize = 1;
-            subject.ForeColor = SystemColors.ControlText;
-            subject.Location = new Point(443, 72);
-            subject.Name = "subject";
-            subject.Padding = new Padding(10, 7, 10, 7);
-            subject.PlaceHolderColor = Color.DarkGray;
-            subject.PlaceholderText = "";
-            subject.ScrollBars = ScrollBars.None;
-            subject.Size = new Size(347, 46);
-            subject.TabIndex = 30;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.DimGray;
-            label8.Location = new Point(443, 44);
-            label8.Name = "label8";
-            label8.Size = new Size(70, 25);
-            label8.TabIndex = 29;
-            label8.Text = "Subject";
-            // 
-            // exerciseName
-            // 
-            exerciseName.BackColor = Color.White;
-            exerciseName.BorderColor = Color.LightGray;
-            exerciseName.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            exerciseName.BorderRadius = 10;
-            exerciseName.BorderSize = 1;
-            exerciseName.Enabled = false;
-            exerciseName.ForeColor = SystemColors.ControlText;
-            exerciseName.Location = new Point(26, 72);
-            exerciseName.Name = "exerciseName";
-            exerciseName.Padding = new Padding(10, 7, 10, 7);
-            exerciseName.PlaceHolderColor = Color.DarkGray;
-            exerciseName.PlaceholderText = "";
-            exerciseName.ScrollBars = ScrollBars.None;
-            exerciseName.Size = new Size(347, 46);
-            exerciseName.TabIndex = 28;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.DimGray;
-            label9.Location = new Point(26, 44);
-            label9.Name = "label9";
-            label9.Size = new Size(125, 25);
-            label9.TabIndex = 27;
-            label9.Text = "Exercise Name";
-            // 
-            // tabPage4
-            // 
-            tabPage4.BackColor = Color.White;
-            tabPage4.Controls.Add(reference);
-            tabPage4.Controls.Add(smartButton2);
-            tabPage4.Controls.Add(smartButton1);
-            tabPage4.Controls.Add(label11);
-            tabPage4.Location = new Point(4, 43);
-            tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
-            tabPage4.Size = new Size(1157, 556);
-            tabPage4.TabIndex = 1;
-            tabPage4.Text = "Reference Code";
-            // 
             // reference
             // 
+            reference.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             reference.AutoCompleteBracketsList = new char[]
     {
     '(',
@@ -240,229 +118,577 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(2, 18);
+            reference.AutoScrollMinSize = new Size(31, 18);
             reference.BackBrush = null;
+            reference.BackColor = Color.Transparent;
+            reference.BorderStyle = BorderStyle.FixedSingle;
             reference.CharHeight = 18;
             reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            reference.ForeColor = Color.FromArgb(224, 224, 224);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
+            reference.IndentBackColor = Color.Transparent;
             reference.IsReplaceMode = false;
-            reference.Location = new Point(29, 87);
+            reference.Location = new Point(16, 57);
             reference.Name = "reference";
             reference.Paddings = new Padding(0);
             reference.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             reference.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("reference.ServiceColors");
-            reference.Size = new Size(1122, 463);
+            reference.Size = new Size(1372, 542);
             reference.TabIndex = 57;
             reference.Zoom = 100;
             // 
-            // smartButton2
-            // 
-            smartButton2.BackColor = Color.SlateGray;
-            smartButton2.BackgroundColor = Color.SlateGray;
-            smartButton2.BorderRadius = 10;
-            smartButton2.FlatAppearance.BorderSize = 0;
-            smartButton2.FlatStyle = FlatStyle.Flat;
-            smartButton2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(979, 32);
-            smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(133, 35);
-            smartButton2.TabIndex = 56;
-            smartButton2.Text = "Copy";
-            smartButton2.UseVisualStyleBackColor = false;
-            // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.SlateGray;
-            smartButton1.BackgroundColor = Color.SlateGray;
-            smartButton1.BorderRadius = 10;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(821, 32);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(133, 35);
-            smartButton1.TabIndex = 55;
-            smartButton1.Text = "Upload Code";
-            smartButton1.UseVisualStyleBackColor = false;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.FromArgb(13, 13, 13);
-            label11.Location = new Point(32, 29);
-            label11.Name = "label11";
-            label11.Size = new Size(277, 31);
-            label11.TabIndex = 23;
-            label11.Text = "Reference Solution Code";
-            // 
-            // tabPage1
-            // 
-            tabPage1.BackColor = Color.White;
-            tabPage1.Controls.Add(testContainer);
-            tabPage1.Controls.Add(customCard7);
-            tabPage1.Controls.Add(btn_AddTestCase);
-            tabPage1.Controls.Add(label13);
-            tabPage1.ForeColor = SystemColors.ControlText;
-            tabPage1.Location = new Point(4, 43);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(1157, 556);
-            tabPage1.TabIndex = 2;
-            tabPage1.Text = "TestCases";
-            // 
-            // testContainer
-            // 
-            testContainer.AutoScroll = true;
-            testContainer.FlowDirection = FlowDirection.TopDown;
-            testContainer.Location = new Point(205, 97);
-            testContainer.Name = "testContainer";
-            testContainer.Size = new Size(743, 432);
-            testContainer.TabIndex = 58;
-            testContainer.WrapContents = false;
-            // 
-            // customCard7
-            // 
-            customCard7.BackColor = Color.FromArgb(224, 224, 224);
-            customCard7.BorderColor = Color.Gray;
-            customCard7.BorderRadius = 2;
-            customCard7.BorderSize = 0;
-            customCard7.Controls.Add(label15);
-            customCard7.Controls.Add(label14);
-            customCard7.Location = new Point(205, 64);
-            customCard7.Name = "customCard7";
-            customCard7.Size = new Size(743, 35);
-            customCard7.TabIndex = 57;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label15.ForeColor = Color.Gray;
-            label15.Location = new Point(361, 5);
-            label15.Name = "label15";
-            label15.Size = new Size(69, 25);
-            label15.TabIndex = 19;
-            label15.Text = "Output";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label14.ForeColor = Color.Gray;
-            label14.Location = new Point(16, 5);
-            label14.Name = "label14";
-            label14.Size = new Size(54, 25);
-            label14.TabIndex = 18;
-            label14.Text = "Input";
-            // 
-            // btn_AddTestCase
-            // 
-            btn_AddTestCase.BackColor = Color.SlateGray;
-            btn_AddTestCase.BackgroundColor = Color.SlateGray;
-            btn_AddTestCase.BorderRadius = 10;
-            btn_AddTestCase.FlatAppearance.BorderSize = 0;
-            btn_AddTestCase.FlatStyle = FlatStyle.Flat;
-            btn_AddTestCase.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_AddTestCase.ForeColor = Color.White;
-            btn_AddTestCase.Location = new Point(815, 13);
-            btn_AddTestCase.Name = "btn_AddTestCase";
-            btn_AddTestCase.Size = new Size(133, 35);
-            btn_AddTestCase.TabIndex = 54;
-            btn_AddTestCase.Text = "Add Test Case";
-            btn_AddTestCase.UseVisualStyleBackColor = false;
-            btn_AddTestCase.Click += btn_AddTestCase_Click;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label13.ForeColor = Color.FromArgb(13, 13, 13);
-            label13.Location = new Point(205, 17);
-            label13.Name = "label13";
-            label13.Size = new Size(120, 31);
-            label13.TabIndex = 53;
-            label13.Text = "Test Cases";
-            // 
             // btn_EditExerciseDetails
             // 
-            btn_EditExerciseDetails.BackColor = Color.MediumTurquoise;
-            btn_EditExerciseDetails.BackgroundColor = Color.MediumTurquoise;
-            btn_EditExerciseDetails.BorderRadius = 10;
+            btn_EditExerciseDetails.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_EditExerciseDetails.BackColor = Color.FromArgb(42, 71, 94);
+            btn_EditExerciseDetails.BackgroundColor = Color.FromArgb(42, 71, 94);
+            btn_EditExerciseDetails.BorderRadius = 5;
             btn_EditExerciseDetails.FlatAppearance.BorderSize = 0;
             btn_EditExerciseDetails.FlatStyle = FlatStyle.Flat;
             btn_EditExerciseDetails.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_EditExerciseDetails.ForeColor = Color.White;
-            btn_EditExerciseDetails.Location = new Point(353, 781);
+            btn_EditExerciseDetails.Location = new Point(1127, 41);
             btn_EditExerciseDetails.Name = "btn_EditExerciseDetails";
             btn_EditExerciseDetails.Size = new Size(374, 51);
             btn_EditExerciseDetails.TabIndex = 35;
-            btn_EditExerciseDetails.Text = "Update Task";
+            btn_EditExerciseDetails.Text = "Save Changes";
             btn_EditExerciseDetails.UseVisualStyleBackColor = false;
             btn_EditExerciseDetails.Click += btn_EditExerciseDetails_Click;
             // 
-            // label3
+            // panel2
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(13, 13, 13);
-            label3.Location = new Point(349, 43);
-            label3.Name = "label3";
-            label3.Size = new Size(161, 38);
-            label3.TabIndex = 54;
-            label3.Text = "Task Editor";
+            panel2.BackColor = Color.FromArgb(23, 26, 33);
+            panel2.Controls.Add(testcase_panel);
+            panel2.Controls.Add(reference_panel);
+            panel2.Controls.Add(detail_panel);
+            panel2.Controls.Add(panel6);
+            panel2.Controls.Add(smartButton4);
+            panel2.Dock = DockStyle.Left;
+            panel2.Location = new Point(0, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(250, 1049);
+            panel2.TabIndex = 55;
+            // 
+            // testcase_panel
+            // 
+            testcase_panel.Controls.Add(smartButton5);
+            testcase_panel.Dock = DockStyle.Top;
+            testcase_panel.Location = new Point(0, 209);
+            testcase_panel.Name = "testcase_panel";
+            testcase_panel.Padding = new Padding(10, 0, 0, 0);
+            testcase_panel.Size = new Size(250, 42);
+            testcase_panel.TabIndex = 69;
+            // 
+            // smartButton5
+            // 
+            smartButton5.BackColor = Color.FromArgb(23, 26, 33);
+            smartButton5.BackgroundColor = Color.FromArgb(23, 26, 33);
+            smartButton5.BorderRadius = 1;
+            smartButton5.Dock = DockStyle.Fill;
+            smartButton5.FlatAppearance.BorderSize = 0;
+            smartButton5.FlatStyle = FlatStyle.Flat;
+            smartButton5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton5.ForeColor = Color.FromArgb(199, 213, 224);
+            smartButton5.Location = new Point(10, 0);
+            smartButton5.Margin = new Padding(2, 4, 2, 4);
+            smartButton5.Name = "smartButton5";
+            smartButton5.Size = new Size(240, 42);
+            smartButton5.TabIndex = 67;
+            smartButton5.Text = "Test Cases";
+            smartButton5.TextAlign = ContentAlignment.MiddleLeft;
+            smartButton5.TextColor = Color.FromArgb(199, 213, 224);
+            smartButton5.UseVisualStyleBackColor = false;
+            smartButton5.Click += smartButton5_Click_1;
+            // 
+            // reference_panel
+            // 
+            reference_panel.Controls.Add(smartButton3);
+            reference_panel.Dock = DockStyle.Top;
+            reference_panel.Location = new Point(0, 167);
+            reference_panel.Name = "reference_panel";
+            reference_panel.Padding = new Padding(10, 0, 0, 0);
+            reference_panel.Size = new Size(250, 42);
+            reference_panel.TabIndex = 69;
+            // 
+            // smartButton3
+            // 
+            smartButton3.BackColor = Color.FromArgb(23, 26, 33);
+            smartButton3.BackgroundColor = Color.FromArgb(23, 26, 33);
+            smartButton3.BorderRadius = 1;
+            smartButton3.Dock = DockStyle.Fill;
+            smartButton3.FlatAppearance.BorderSize = 0;
+            smartButton3.FlatStyle = FlatStyle.Flat;
+            smartButton3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton3.ForeColor = Color.FromArgb(199, 213, 224);
+            smartButton3.Location = new Point(10, 0);
+            smartButton3.Margin = new Padding(2, 4, 2, 4);
+            smartButton3.Name = "smartButton3";
+            smartButton3.Size = new Size(240, 42);
+            smartButton3.TabIndex = 67;
+            smartButton3.Text = "Reference Code";
+            smartButton3.TextAlign = ContentAlignment.MiddleLeft;
+            smartButton3.TextColor = Color.FromArgb(199, 213, 224);
+            smartButton3.UseVisualStyleBackColor = false;
+            smartButton3.Click += smartButton3_Click_1;
+            // 
+            // detail_panel
+            // 
+            detail_panel.BackColor = Color.FromArgb(23, 26, 33);
+            detail_panel.Controls.Add(btn_details);
+            detail_panel.Dock = DockStyle.Top;
+            detail_panel.Location = new Point(0, 125);
+            detail_panel.Name = "detail_panel";
+            detail_panel.Padding = new Padding(10, 0, 0, 0);
+            detail_panel.Size = new Size(250, 42);
+            detail_panel.TabIndex = 68;
+            // 
+            // btn_details
+            // 
+            btn_details.BackColor = Color.FromArgb(23, 26, 33);
+            btn_details.BackgroundColor = Color.FromArgb(23, 26, 33);
+            btn_details.BorderRadius = 1;
+            btn_details.Dock = DockStyle.Fill;
+            btn_details.FlatAppearance.BorderSize = 0;
+            btn_details.FlatStyle = FlatStyle.Flat;
+            btn_details.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_details.ForeColor = Color.FromArgb(199, 213, 224);
+            btn_details.Location = new Point(10, 0);
+            btn_details.Margin = new Padding(2, 4, 2, 4);
+            btn_details.Name = "btn_details";
+            btn_details.Size = new Size(240, 42);
+            btn_details.TabIndex = 67;
+            btn_details.Text = "General Details";
+            btn_details.TextAlign = ContentAlignment.MiddleLeft;
+            btn_details.TextColor = Color.FromArgb(199, 213, 224);
+            btn_details.UseVisualStyleBackColor = false;
+            btn_details.Click += btn_details_Click;
+            // 
+            // panel6
+            // 
+            panel6.Dock = DockStyle.Top;
+            panel6.Location = new Point(0, 0);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(250, 125);
+            panel6.TabIndex = 56;
+            // 
+            // task_tabcontrol
+            // 
+            task_tabcontrol.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            task_tabcontrol.Controls.Add(tabPage2);
+            task_tabcontrol.Controls.Add(tabPage5);
+            task_tabcontrol.Controls.Add(tabPage6);
+            task_tabcontrol.Depth = 0;
+            task_tabcontrol.Location = new Point(35, 22);
+            task_tabcontrol.MouseState = MaterialSkin.MouseState.HOVER;
+            task_tabcontrol.Multiline = true;
+            task_tabcontrol.Name = "task_tabcontrol";
+            task_tabcontrol.SelectedIndex = 0;
+            task_tabcontrol.Size = new Size(1450, 689);
+            task_tabcontrol.TabIndex = 56;
+            // 
+            // tabPage2
+            // 
+            tabPage2.BackColor = Color.FromArgb(19, 27, 36);
+            tabPage2.Controls.Add(instruction);
+            tabPage2.Controls.Add(steamLabel4);
+            tabPage2.Controls.Add(subject);
+            tabPage2.Controls.Add(steamLabel3);
+            tabPage2.Controls.Add(exerciseName);
+            tabPage2.Controls.Add(steamLabel2);
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Margin = new Padding(0);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Size = new Size(1442, 656);
+            tabPage2.TabIndex = 0;
+            tabPage2.Text = "tabPage2";
+            // 
+            // instruction
+            // 
+            instruction.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            instruction.AutoScroll = true;
+            instruction.BackColor = Color.FromArgb(11, 14, 17);
+            instruction.Location = new Point(22, 208);
+            instruction.Multiline = true;
+            instruction.Name = "instruction";
+            instruction.Padding = new Padding(10, 8, 10, 8);
+            instruction.PlaceholderText = "";
+            instruction.ScrollBars = ScrollBars.None;
+            instruction.Size = new Size(1113, 337);
+            instruction.TabIndex = 63;
+            instruction.WordWrap = true;
+            // 
+            // steamLabel4
+            // 
+            steamLabel4.AutoSize = true;
+            steamLabel4.BackColor = Color.Transparent;
+            steamLabel4.Font = new Font("Geist", 12F);
+            steamLabel4.ForeColor = Color.FromArgb(139, 149, 166);
+            steamLabel4.Location = new Point(22, 165);
+            steamLabel4.Name = "steamLabel4";
+            steamLabel4.Size = new Size(100, 23);
+            steamLabel4.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            steamLabel4.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            steamLabel4.TabIndex = 62;
+            steamLabel4.Text = "Instruction";
+            // 
+            // subject
+            // 
+            subject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            subject.BackColor = Color.FromArgb(11, 14, 17);
+            subject.Location = new Point(824, 74);
+            subject.Multiline = false;
+            subject.Name = "subject";
+            subject.Padding = new Padding(10, 8, 10, 8);
+            subject.PlaceholderText = "";
+            subject.ScrollBars = ScrollBars.None;
+            subject.Size = new Size(311, 44);
+            subject.TabIndex = 61;
+            subject.WordWrap = true;
+            // 
+            // steamLabel3
+            // 
+            steamLabel3.AutoSize = true;
+            steamLabel3.BackColor = Color.Transparent;
+            steamLabel3.Font = new Font("Geist", 12F);
+            steamLabel3.ForeColor = Color.FromArgb(139, 149, 166);
+            steamLabel3.Location = new Point(824, 32);
+            steamLabel3.Name = "steamLabel3";
+            steamLabel3.Size = new Size(75, 23);
+            steamLabel3.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            steamLabel3.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            steamLabel3.TabIndex = 60;
+            steamLabel3.Text = "Subject";
+            // 
+            // exerciseName
+            // 
+            exerciseName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            exerciseName.BackColor = Color.FromArgb(11, 14, 17);
+            exerciseName.Location = new Point(22, 74);
+            exerciseName.Multiline = false;
+            exerciseName.Name = "exerciseName";
+            exerciseName.Padding = new Padding(10, 8, 10, 8);
+            exerciseName.PlaceholderText = "";
+            exerciseName.ScrollBars = ScrollBars.None;
+            exerciseName.Size = new Size(311, 44);
+            exerciseName.TabIndex = 59;
+            exerciseName.WordWrap = true;
+            // 
+            // steamLabel2
+            // 
+            steamLabel2.AutoSize = true;
+            steamLabel2.BackColor = Color.Transparent;
+            steamLabel2.Font = new Font("Geist", 12F);
+            steamLabel2.ForeColor = Color.FromArgb(139, 149, 166);
+            steamLabel2.Location = new Point(22, 32);
+            steamLabel2.Name = "steamLabel2";
+            steamLabel2.Size = new Size(135, 23);
+            steamLabel2.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            steamLabel2.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            steamLabel2.TabIndex = 58;
+            steamLabel2.Text = "Execise Name";
+            // 
+            // tabPage5
+            // 
+            tabPage5.BackColor = Color.FromArgb(19, 27, 36);
+            tabPage5.Controls.Add(smartButton7);
+            tabPage5.Controls.Add(smartButton6);
+            tabPage5.Controls.Add(steamLabel5);
+            tabPage5.Controls.Add(reference);
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Padding = new Padding(3);
+            tabPage5.Size = new Size(1442, 656);
+            tabPage5.TabIndex = 1;
+            tabPage5.Text = "tabPage5";
+            // 
+            // smartButton7
+            // 
+            smartButton7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            smartButton7.BackColor = Color.FromArgb(42, 71, 94);
+            smartButton7.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton7.BorderRadius = 5;
+            smartButton7.FlatAppearance.BorderSize = 0;
+            smartButton7.FlatStyle = FlatStyle.Flat;
+            smartButton7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton7.ForeColor = Color.White;
+            smartButton7.Location = new Point(1215, 9);
+            smartButton7.Name = "smartButton7";
+            smartButton7.Size = new Size(162, 42);
+            smartButton7.TabIndex = 61;
+            smartButton7.Text = "Copy";
+            smartButton7.UseVisualStyleBackColor = false;
+            // 
+            // smartButton6
+            // 
+            smartButton6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            smartButton6.BackColor = Color.FromArgb(42, 71, 94);
+            smartButton6.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton6.BorderRadius = 5;
+            smartButton6.FlatAppearance.BorderSize = 0;
+            smartButton6.FlatStyle = FlatStyle.Flat;
+            smartButton6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton6.ForeColor = Color.White;
+            smartButton6.Location = new Point(1048, 9);
+            smartButton6.Name = "smartButton6";
+            smartButton6.Size = new Size(161, 42);
+            smartButton6.TabIndex = 60;
+            smartButton6.Text = "Upload Code";
+            smartButton6.UseVisualStyleBackColor = false;
+            // 
+            // steamLabel5
+            // 
+            steamLabel5.AutoSize = true;
+            steamLabel5.BackColor = Color.Transparent;
+            steamLabel5.Font = new Font("Geist", 16F, FontStyle.Bold);
+            steamLabel5.ForeColor = Color.FromArgb(139, 149, 166);
+            steamLabel5.Location = new Point(16, 14);
+            steamLabel5.Name = "steamLabel5";
+            steamLabel5.Size = new Size(265, 32);
+            steamLabel5.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
+            steamLabel5.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            steamLabel5.TabIndex = 59;
+            steamLabel5.Text = "Reference Solution";
+            // 
+            // tabPage6
+            // 
+            tabPage6.BackColor = Color.FromArgb(19, 27, 36);
+            tabPage6.Controls.Add(testContainer);
+            tabPage6.Controls.Add(btn_AddTestCase);
+            tabPage6.Controls.Add(steamLabel6);
+            tabPage6.Location = new Point(4, 29);
+            tabPage6.Margin = new Padding(0);
+            tabPage6.Name = "tabPage6";
+            tabPage6.Size = new Size(1442, 656);
+            tabPage6.TabIndex = 2;
+            tabPage6.Text = "tabPage6";
+            // 
+            // testContainer
+            // 
+            testContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            testContainer.AutoScroll = true;
+            testContainer.Location = new Point(16, 73);
+            testContainer.Name = "testContainer";
+            testContainer.Padding = new Padding(0, 0, 0, 30);
+            testContainer.Size = new Size(1390, 560);
+            testContainer.TabIndex = 62;
+            // 
+            // btn_AddTestCase
+            // 
+            btn_AddTestCase.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_AddTestCase.BackColor = Color.FromArgb(42, 71, 94);
+            btn_AddTestCase.BackgroundColor = Color.FromArgb(42, 71, 94);
+            btn_AddTestCase.BorderRadius = 5;
+            btn_AddTestCase.FlatAppearance.BorderSize = 0;
+            btn_AddTestCase.FlatStyle = FlatStyle.Flat;
+            btn_AddTestCase.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_AddTestCase.ForeColor = Color.White;
+            btn_AddTestCase.Location = new Point(1245, 9);
+            btn_AddTestCase.Name = "btn_AddTestCase";
+            btn_AddTestCase.Size = new Size(161, 42);
+            btn_AddTestCase.TabIndex = 61;
+            btn_AddTestCase.Text = "Add Test Case";
+            btn_AddTestCase.UseVisualStyleBackColor = false;
+            btn_AddTestCase.Click += btn_AddTestCase_Click_1;
+            // 
+            // steamLabel6
+            // 
+            steamLabel6.AutoSize = true;
+            steamLabel6.BackColor = Color.Transparent;
+            steamLabel6.Font = new Font("Geist", 16F, FontStyle.Bold);
+            steamLabel6.ForeColor = Color.FromArgb(139, 149, 166);
+            steamLabel6.Location = new Point(16, 14);
+            steamLabel6.Name = "steamLabel6";
+            steamLabel6.Size = new Size(157, 32);
+            steamLabel6.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
+            steamLabel6.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            steamLabel6.TabIndex = 60;
+            steamLabel6.Text = "Test Cases";
+            // 
+            // steamLabel1
+            // 
+            steamLabel1.AutoSize = true;
+            steamLabel1.BackColor = Color.Transparent;
+            steamLabel1.Font = new Font("Geist", 16F, FontStyle.Bold);
+            steamLabel1.ForeColor = Color.FromArgb(199, 213, 224);
+            steamLabel1.Location = new Point(55, 46);
+            steamLabel1.Name = "steamLabel1";
+            steamLabel1.Size = new Size(135, 32);
+            steamLabel1.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
+            steamLabel1.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            steamLabel1.TabIndex = 57;
+            steamLabel1.Text = "Edit Task\r\n";
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(27, 40, 56);
+            panel7.Controls.Add(steamLabel1);
+            panel7.Dock = DockStyle.Top;
+            panel7.Location = new Point(251, 0);
+            panel7.Margin = new Padding(0);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(1550, 125);
+            panel7.TabIndex = 58;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(27, 40, 56);
+            panel1.Controls.Add(btn_EditExerciseDetails);
+            panel1.Dock = DockStyle.Bottom;
+            panel1.Location = new Point(251, 906);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(1550, 143);
+            panel1.TabIndex = 59;
+            // 
+            // customCard1
+            // 
+            customCard1.BackColor = Color.FromArgb(11, 14, 17);
+            customCard1.BorderColor = Color.Transparent;
+            customCard1.BorderRadius = 2;
+            customCard1.BorderSize = 1;
+            customCard1.Controls.Add(customCard2);
+            customCard1.Dock = DockStyle.Fill;
+            customCard1.Location = new Point(251, 126);
+            customCard1.Margin = new Padding(0);
+            customCard1.Name = "customCard1";
+            customCard1.Padding = new Padding(20);
+            customCard1.Size = new Size(1550, 779);
+            customCard1.TabIndex = 108;
+            // 
+            // customCard2
+            // 
+            customCard2.BackColor = Color.FromArgb(19, 27, 36);
+            customCard2.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard2.BorderRadius = 2;
+            customCard2.BorderSize = 1;
+            customCard2.Controls.Add(task_tabcontrol);
+            customCard2.Dock = DockStyle.Fill;
+            customCard2.Location = new Point(20, 20);
+            customCard2.Margin = new Padding(20, 3, 20, 3);
+            customCard2.Name = "customCard2";
+            customCard2.Size = new Size(1510, 739);
+            customCard2.TabIndex = 109;
+            // 
+            // customCard3
+            // 
+            customCard3.BackColor = Color.FromArgb(23, 29, 37);
+            customCard3.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard3.BorderRadius = 2;
+            customCard3.BorderSize = 1;
+            customCard3.Dock = DockStyle.Left;
+            customCard3.Location = new Point(250, 0);
+            customCard3.Margin = new Padding(0);
+            customCard3.Name = "customCard3";
+            customCard3.Size = new Size(1, 1049);
+            customCard3.TabIndex = 110;
+            // 
+            // customCard4
+            // 
+            customCard4.BackColor = Color.FromArgb(23, 29, 37);
+            customCard4.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard4.BorderRadius = 2;
+            customCard4.BorderSize = 1;
+            customCard4.Dock = DockStyle.Top;
+            customCard4.Location = new Point(251, 125);
+            customCard4.Margin = new Padding(0);
+            customCard4.Name = "customCard4";
+            customCard4.Size = new Size(1550, 1);
+            customCard4.TabIndex = 111;
+            // 
+            // customCard5
+            // 
+            customCard5.BackColor = Color.FromArgb(23, 29, 37);
+            customCard5.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard5.BorderRadius = 2;
+            customCard5.BorderSize = 1;
+            customCard5.Dock = DockStyle.Bottom;
+            customCard5.Location = new Point(251, 905);
+            customCard5.Margin = new Padding(0);
+            customCard5.Name = "customCard5";
+            customCard5.Size = new Size(1550, 1);
+            customCard5.TabIndex = 112;
             // 
             // ServerTaskUpdate
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btn_EditExerciseDetails);
-            Controls.Add(tabControl1);
-            Controls.Add(label3);
+            BackColor = Color.FromArgb(23, 29, 37);
+            Controls.Add(customCard1);
+            Controls.Add(customCard5);
+            Controls.Add(panel1);
+            Controls.Add(customCard4);
+            Controls.Add(panel7);
+            Controls.Add(customCard3);
+            Controls.Add(panel2);
             Name = "ServerTaskUpdate";
             Size = new Size(1801, 1049);
-            tabControl1.ResumeLayout(false);
-            tabPage3.ResumeLayout(false);
-            tabPage3.PerformLayout();
-            panel1.ResumeLayout(false);
-            tabPage4.ResumeLayout(false);
-            tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)reference).EndInit();
-            tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
-            customCard7.ResumeLayout(false);
-            customCard7.PerformLayout();
+            panel2.ResumeLayout(false);
+            testcase_panel.ResumeLayout(false);
+            reference_panel.ResumeLayout(false);
+            detail_panel.ResumeLayout(false);
+            task_tabcontrol.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            tabPage5.ResumeLayout(false);
+            tabPage5.PerformLayout();
+            tabPage6.ResumeLayout(false);
+            tabPage6.PerformLayout();
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
+            panel1.ResumeLayout(false);
+            customCard1.ResumeLayout(false);
+            customCard2.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private TabControl tabControl1;
-        private TabPage tabPage3;
         private GeneralComponents.SmartButton btn_EditExerciseDetails;
-        private CustomTextBox instruction;
         private Label label25;
-        private CustomTextBox subject;
         private Label label8;
-        private CustomTextBox exerciseName;
-        private Label label9;
-        private TabPage tabPage4;
         private ProgrammingTabs.CodeEditor reference;
-        private GeneralComponents.SmartButton smartButton2;
-        private GeneralComponents.SmartButton smartButton1;
-        private Label label11;
-        private TabPage tabPage1;
-        private FlowLayoutPanel testContainer;
         private GeneralComponents.CustomCard customCard7;
         private Label label15;
         private Label label14;
         private GeneralComponents.SmartButton btn_AddTestCase;
         private Label label13;
-        private Label label3;
-        private Panel panel1;
         private GeneralComponents.SmartButton smartButton4;
+        private Panel panel2;
+        private GeneralComponents.SmartButton btn_AddNewExercise;
+        private Panel detail_panel;
+        private Panel testcase_panel;
+        private GeneralComponents.SmartButton smartButton5;
+        private Panel reference_panel;
+        private GeneralComponents.SmartButton smartButton3;
+        private Panel panel6;
+        private GeneralComponents.SmoothTabControl smoothTabControl1;
+        private TabPage tabPage2;
+        private TabPage tabPage5;
+        private TabPage tabPage6;
+        private SteamThings.SteamLabel steamLabel1;
+        private Panel panel7;
+        private Panel panel1;
+        private SteamThings.SteamLabel steamLabel2;
+        private SteamThings.SteamTextBox exerciseName;
+        private Label label9;
+        private SteamThings.SteamTextBox subject;
+        private SteamThings.SteamLabel steamLabel3;
+        private SteamThings.SteamTextBox instruction;
+        private SteamThings.SteamLabel steamLabel4;
+        private GeneralComponents.CustomCard customCard1;
+        private GeneralComponents.CustomCard customCard2;
+        private GeneralComponents.CustomCard customCard3;
+        private GeneralComponents.CustomCard customCard4;
+        private GeneralComponents.CustomCard customCard5;
+        private SteamThings.SteamLabel steamLabel5;
+        private GeneralComponents.SmartButton smartButton7;
+        private GeneralComponents.SmartButton smartButton6;
+        private GeneralComponents.SmartButton btn_details;
+        private GeneralComponents.SmoothTabControl task_tabcontrol;
+        private GeneralComponents.SmartButton smartButton1;
+        private SteamThings.SteamLabel steamLabel6;
+        private Panel testContainer;
+        private Panel panel3;
+        private SteamThings.SteamLabel steamLabel7;
     }
 }

@@ -6,6 +6,7 @@ using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System.IO;
+using System.Printing;
 
 namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
@@ -14,11 +15,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public ServerTaskUpdate()
         {
             InitializeComponent();
+            testContainer.AutoScrollMargin = new Size(0, 50);
         }
 
         private TaskModel task;
         private Action<TaskModel, List<SubmittedCode>, string> action;
         private string recentReferenceCode;
+        
         public ServerTaskUpdate(TaskModel task, Action<TaskModel, List<SubmittedCode>, string> action)
         {
             InitializeComponent();
@@ -27,6 +30,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             this.reference.Text = task._referenceFile;
             recentReferenceCode = task._referenceFile;
             this.Load += (s, e) => SetUpTask();
+            testContainer.AutoScrollMargin = new Size(0, 50);
+
+
+
         }
         protected override CreateParams CreateParams
         {
@@ -44,9 +51,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 this.Invoke(new Action(() =>
                 {
-                    exerciseName.Texts = task._taskName;
-                    subject.Texts = task.subject;
-                    instruction.Texts = task._instructions;
+                    exerciseName.Text = task._taskName;
+                    subject.Text = task.subject;
+                    instruction.Text = task._instructions;
 
                     testContainer.Controls.Clear();
                     if (task._testCases != null && task._testCases.Count > 0)
@@ -67,7 +74,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void btn_EditExerciseDetails_Click(object sender, EventArgs e)
         {
-            task._instructions = instruction.Texts;
+            task._instructions = instruction.Text;
             task._testCases.Clear();
             task._referenceFile = reference.Text;
             foreach (var item in testContainer.Controls.OfType<TestCase>())
@@ -154,6 +161,89 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     this.ResumeLayout();
                 }
             }
+        }
+
+        private void smartButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void smartButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private Color normalcolor = Color.FromArgb(23, 26, 33);
+        private Color highlightcolor = Color.FromArgb(23, 191, 32);
+
+
+        private void btn_details_Click(object sender, EventArgs e)
+        {
+            task_tabcontrol.SelectedIndex = 0;
+            detail_panel.BackColor = highlightcolor;
+            reference_panel.BackColor = normalcolor;
+            testcase_panel.BackColor = normalcolor;
+
+
+
+        }
+
+
+        private void smartButton3_Click_1(object sender, EventArgs e)
+        {
+            task_tabcontrol.SelectedIndex = 1;
+            reference_panel.BackColor = highlightcolor;
+            detail_panel.BackColor = normalcolor;
+            testcase_panel.BackColor = normalcolor;
+
+
+        }
+
+
+
+        private void smartButton5_Click_1(object sender, EventArgs e)
+        {
+            task_tabcontrol.SelectedIndex = 2;
+            testcase_panel.BackColor = highlightcolor;
+            detail_panel.BackColor = normalcolor;
+            reference_panel.BackColor = normalcolor;
+
+        }
+
+        private void btn_AddTestCase_Click_1(object sender, EventArgs e)
+        {
+
+
+            //var testcaseholder = new ExpansionPanel();
+            //var testcasecontent = new TestCase3();
+            //testcasecontent.RemoveRequested += (s, ev) =>
+            //{
+            //    testcaseholder.Dispose();
+            //};
+
+            //testcaseholder.Title1 = "test case";
+            //testcaseholder.Title2 = "";
+            //testcaseholder.HeaderColor = Color.FromArgb(230, 240, 255);
+            //testcaseholder.BackColor = Color.FromArgb(23, 29, 37);
+            //testcaseholder.HeaderHeight = 40;
+            //testcasecontent.AutoSize = false;
+
+            //testcasecontent.Dock = DockStyle.Fill;
+            //testcasecontent.Padding = new Padding(20, 45, 20, 0);
+            //testcaseholder.Controls.Add(testcasecontent);
+
+            //testcaseholder.Dock = DockStyle.Top;
+            //testContainer.Controls.Add(testcaseholder);
+
+            var testcasecontent = new TestCase3();
+            testcasecontent.RemoveRequested += (s, ev) =>
+            {
+                testcasecontent.Dispose();
+            };
+            testcasecontent.Dock = DockStyle.Top;
+            testContainer.Controls.Add(testcasecontent);
+
+            //spacerLabel.BringToFront();
         }
     }
 }
