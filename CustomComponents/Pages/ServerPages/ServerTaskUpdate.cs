@@ -60,7 +60,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     {
                         foreach (var item in task._testCases)
                         {
-                            testContainer.Controls.Add(new TestCase(item));
+                            testContainer.Controls.Add(new TestCase3(item) { Dock = DockStyle.Top});
                         }
                     }
                 }));
@@ -69,7 +69,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void btn_AddTestCase_Click(object sender, EventArgs e)
         {
-            testContainer.Controls.Add(new TestCase());
+            testContainer.Controls.Add(new TestCase3() { Dock = DockStyle.Top });
         }
 
         private void btn_EditExerciseDetails_Click(object sender, EventArgs e)
@@ -77,11 +77,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             task._instructions = instruction.Text;
             task._testCases.Clear();
             task._referenceFile = reference.Text;
-            foreach (var item in testContainer.Controls.OfType<TestCase>())
+            foreach (var item in testContainer.Controls.OfType<TestCase3>())
             {
                 try
                 {
-                    task._testCases.Add(item.Value().Key, item.Value().Value);
+                    task._testCases.Add(item.GetTestCase().Key, item.GetTestCase().Value);
                 }
                 catch (ArgumentException) { }
             }

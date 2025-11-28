@@ -33,7 +33,7 @@ namespace SmartCodeLab
             //SessionNavigationMenu();
             SystemSingleton.Instance.page1 = tabPage10;
             SystemSingleton.Instance.sessionLogsPage = tabPage8;
-            tabPage8.Controls.Add(new SessionLogsPage());
+            tabPage8.Controls.Add(new SessionLogsPage() { Dock = DockStyle.Fill });
         }
 
         private const int BaseNavPanelHeight = 40;

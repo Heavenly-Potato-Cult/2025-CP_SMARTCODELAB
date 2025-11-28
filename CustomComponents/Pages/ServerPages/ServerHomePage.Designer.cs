@@ -373,11 +373,14 @@
             studentName.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             studentName.BackColor = Color.FromArgb(26, 30, 36);
             studentName.Location = new Point(684, 17);
+            studentName.Multiline = false;
             studentName.Name = "studentName";
             studentName.Padding = new Padding(10, 8, 10, 8);
             studentName.PlaceholderText = "";
+            studentName.ScrollBars = ScrollBars.None;
             studentName.Size = new Size(280, 36);
             studentName.TabIndex = 33;
+            studentName.WordWrap = true;
             // 
             // steamLabel3
             // 
@@ -435,6 +438,7 @@
             exit.Text = "EXIT";
             exit.TextColor = Color.FromArgb(219, 61, 55);
             exit.UseVisualStyleBackColor = false;
+            exit.Click += exit_Click;
             // 
             // saveSes
             // 
