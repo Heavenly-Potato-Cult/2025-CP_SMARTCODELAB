@@ -46,7 +46,7 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
         private Task SearchStudent()
         {
             long currentSearchVersion = ++searchVersion;
-            string searchedName = studentName.Texts.Trim();
+            string searchedName = studentName.Text.Trim();
             this.Invoke((Action)(() =>
             {
                 Task.Delay(200);

@@ -38,12 +38,9 @@
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             panel2 = new Panel();
-            panel1 = new Panel();
-            steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             LogViewContainer.SuspendLayout();
             steamGradientPanel1.SuspendLayout();
             panel2.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // LogViewContainer
@@ -53,13 +50,14 @@
             LogViewContainer.Controls.Add(SubmissionPage);
             LogViewContainer.Depth = 0;
             LogViewContainer.Dock = DockStyle.Fill;
-            LogViewContainer.Location = new Point(0, 193);
+            LogViewContainer.Location = new Point(0, 78);
+            LogViewContainer.Margin = new Padding(0);
             LogViewContainer.MouseState = MaterialSkin.MouseState.HOVER;
             LogViewContainer.Multiline = true;
             LogViewContainer.Name = "LogViewContainer";
             LogViewContainer.Padding = new Point(0, 0);
             LogViewContainer.SelectedIndex = 0;
-            LogViewContainer.Size = new Size(1916, 771);
+            LogViewContainer.Size = new Size(1916, 886);
             LogViewContainer.TabIndex = 1;
             // 
             // DashboardPage
@@ -67,7 +65,7 @@
             DashboardPage.Location = new Point(4, 29);
             DashboardPage.Margin = new Padding(0);
             DashboardPage.Name = "DashboardPage";
-            DashboardPage.Size = new Size(1908, 738);
+            DashboardPage.Size = new Size(1908, 853);
             DashboardPage.TabIndex = 1;
             DashboardPage.Text = "Dashboard";
             DashboardPage.UseVisualStyleBackColor = true;
@@ -77,7 +75,7 @@
             MonitoringPage.Location = new Point(4, 29);
             MonitoringPage.Margin = new Padding(0);
             MonitoringPage.Name = "MonitoringPage";
-            MonitoringPage.Size = new Size(1908, 738);
+            MonitoringPage.Size = new Size(1908, 853);
             MonitoringPage.TabIndex = 0;
             MonitoringPage.Text = "Monitoring";
             MonitoringPage.UseVisualStyleBackColor = true;
@@ -87,7 +85,7 @@
             SubmissionPage.Location = new Point(4, 29);
             SubmissionPage.Margin = new Padding(0);
             SubmissionPage.Name = "SubmissionPage";
-            SubmissionPage.Size = new Size(1908, 738);
+            SubmissionPage.Size = new Size(1908, 853);
             SubmissionPage.TabIndex = 2;
             SubmissionPage.Text = "Submissions";
             SubmissionPage.UseVisualStyleBackColor = true;
@@ -176,7 +174,6 @@
             // 
             steamGradientPanel1.Controls.Add(LogViewContainer);
             steamGradientPanel1.Controls.Add(panel2);
-            steamGradientPanel1.Controls.Add(panel1);
             steamGradientPanel1.Dock = DockStyle.Fill;
             steamGradientPanel1.GradientAngle = 90F;
             steamGradientPanel1.GradientBottomColor = Color.FromArgb(26, 30, 36);
@@ -194,34 +191,10 @@
             panel2.Controls.Add(smartButton1);
             panel2.Controls.Add(btn_submissions);
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 115);
+            panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(1916, 78);
             panel2.TabIndex = 73;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.Transparent;
-            panel1.Controls.Add(steamLabel1);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1916, 115);
-            panel1.TabIndex = 72;
-            // 
-            // steamLabel1
-            // 
-            steamLabel1.AutoSize = true;
-            steamLabel1.BackColor = Color.Transparent;
-            steamLabel1.Font = new Font("Geist", 16F, FontStyle.Bold);
-            steamLabel1.ForeColor = Color.FromArgb(199, 213, 224);
-            steamLabel1.Location = new Point(152, 46);
-            steamLabel1.Name = "steamLabel1";
-            steamLabel1.Size = new Size(203, 32);
-            steamLabel1.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
-            steamLabel1.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
-            steamLabel1.TabIndex = 71;
-            steamLabel1.Text = "Session Name";
             // 
             // SessionsLogsView
             // 
@@ -234,17 +207,13 @@
             LogViewContainer.ResumeLayout(false);
             steamGradientPanel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-        private SteamThings.SteamTabControl steamTabControl1;
         private TabPage SubmissionPage;
         private TabPage tabPage7;
         private TabPage tabPage8;
-        private SteamThings.SteamLabel steamLabel1;
         private GeneralComponents.SmoothTabControl LogViewContainer;
         private TabPage MonitoringPage;
         private TabPage DashboardPage;
@@ -253,7 +222,6 @@
         private GeneralComponents.SmartButton btn_submissions;
         private GeneralComponents.SmartButton smartButton1;
         private SteamThings.SteamGradientPanel steamGradientPanel1;
-        private Panel panel1;
         private Panel panel2;
     }
 }
