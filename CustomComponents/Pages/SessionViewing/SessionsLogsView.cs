@@ -25,39 +25,58 @@ namespace SmartCodeLab.CustomComponents.Pages
         public SessionsLogsView(ProgrammingSession session)
         {
             InitializeComponent();
-            tabPage1.Controls.Add(new SessionDisplayHome(session.server, session.notifications, session.lastModified, session.copyPasteCount));
+            //tabPage1.Controls.Add(new SessionDisplayHome(session.server, session.notifications, session.lastModified, session.copyPasteCount));
+            DashboardPage.Controls.Add(new ServerHomePage() { Dock = DockStyle.Fill });
+            ///====MODIFIED HERE : ====
+
             List<string> withProgressStudentsIds = session.userProgress.Select(s => s.Key).ToList();
             Dictionary<string, UserProfile> withProgressStudents = session.server.Users.Where(user => withProgressStudentsIds.Contains(user.Key)).ToDictionary();
-            tabPage2.Controls.Add(new TempServerPage(session.userProgress, withProgressStudents, session.server.ServerTask.ratingFactors));
-            tabPage3.Controls.Add(new ProgressSubmissionPage(session.codeSubmission, session.server.ServerTask.ratingFactors));
+            MonitoringPage.Controls.Add(new TempServerPage(session.userProgress, withProgressStudents, session.server.ServerTask.ratingFactors) { Dock = DockStyle.Fill });
+            SubmissionPage.Controls.Add(new ProgressSubmissionPage(session.codeSubmission, session.server.ServerTask.ratingFactors) { Dock = DockStyle.Fill });
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+      
+
+        private void btn_dashboard_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 3)
+            LogViewContainer.SelectedIndex = 0;
+        }
+
+        private void btn_monitoring_Click(object sender, EventArgs e)
+        {
+            LogViewContainer.SelectedIndex = 1;
+
+        }
+
+        private void btn_submissions_Click(object sender, EventArgs e)
+        {
+            LogViewContainer.SelectedIndex = 2;
+
+        }
+
+        private void smartButton1_Click(object sender, EventArgs e)
+        {
+            var container = SystemSingleton.Instance.sessionLogsPage;
+
+
+            container.SuspendLayout();
+
+            try
             {
-                var container = SystemSingleton.Instance.sessionLogsPage;
 
-                
-                container.SuspendLayout();
+                container.Controls.Clear();
 
-                try
+                var newPage = new SessionLogsPage()
                 {
-                    
-                    container.Controls.Clear();
+                    Dock = DockStyle.Fill
+                };
 
-                    var newPage = new SessionLogsPage()
-                    {
-                        Dock = DockStyle.Fill
-                    };
+                container.Controls.Add(newPage);
+            }
+            finally
+            {
 
-                    container.Controls.Add(newPage);
-                }
-                finally
-                {
-                    
-                    container.ResumeLayout(true);
-                }
+                container.ResumeLayout(true);
             }
         }
     }
