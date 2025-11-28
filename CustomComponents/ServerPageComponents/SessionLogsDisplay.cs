@@ -30,7 +30,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 SystemSingleton.Instance.sessionLogsPage.Controls.Add(new SessionsLogsView(session));
             };
 
-            label11.Text = $"{session.server.createdAt.ToString("MMMM dd yyyy hh:mm tt")} - {session.lastModified.ToString("hh:mm tt")}";
+            label1.Text = $"{session.server.createdAt.ToString("MMMM dd yyyy hh:mm tt")} - {session.lastModified.ToString("hh:mm tt")}";
+        }
+
+        private void smartButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

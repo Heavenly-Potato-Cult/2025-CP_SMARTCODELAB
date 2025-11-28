@@ -28,55 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            sessionName = new Label();
-            label11 = new Label();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            sessionName = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            label1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             SuspendLayout();
+            // 
+            // smartButton1
+            // 
+            smartButton1.BackColor = Color.FromArgb(42, 71, 94);
+            smartButton1.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton1.BorderRadius = 1;
+            smartButton1.Dock = DockStyle.Right;
+            smartButton1.FlatAppearance.BorderSize = 0;
+            smartButton1.FlatStyle = FlatStyle.Flat;
+            smartButton1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton1.ForeColor = Color.FromArgb(199, 213, 224);
+            smartButton1.Location = new Point(665, 0);
+            smartButton1.Margin = new Padding(2, 4, 2, 4);
+            smartButton1.Name = "smartButton1";
+            smartButton1.Size = new Size(89, 85);
+            smartButton1.TabIndex = 34;
+            smartButton1.Text = "VIEW";
+            smartButton1.TextColor = Color.FromArgb(199, 213, 224);
+            smartButton1.UseVisualStyleBackColor = false;
             // 
             // sessionName
             // 
             sessionName.AutoSize = true;
-            sessionName.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            sessionName.ForeColor = Color.FromArgb(13, 13, 13);
-            sessionName.Location = new Point(24, 14);
+            sessionName.BackColor = Color.Transparent;
+            sessionName.Font = new Font("Geist", 12F);
+            sessionName.ForeColor = Color.FromArgb(199, 213, 224);
+            sessionName.Location = new Point(24, 12);
             sessionName.Name = "sessionName";
-            sessionName.Size = new Size(310, 25);
-            sessionName.TabIndex = 14;
+            sessionName.Size = new Size(319, 23);
+            sessionName.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            sessionName.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            sessionName.TabIndex = 35;
             sessionName.Text = "Object-Oriented Programming Lab ";
             // 
-            // label11
+            // label1
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.Gray;
-            label11.Location = new Point(24, 44);
-            label11.Name = "label11";
-            label11.Size = new Size(124, 25);
-            label11.TabIndex = 19;
-            label11.Text = "July 30, 2025 |";
-            // 
-            // smartButton1
-            // 
-            smartButton1.BackColor = Color.MediumSlateBlue;
-            smartButton1.BorderRadius = 20;
-            smartButton1.FlatAppearance.BorderSize = 0;
-            smartButton1.FlatStyle = FlatStyle.Flat;
-            smartButton1.ForeColor = Color.White;
-            smartButton1.Location = new Point(546, 19);
-            smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(188, 50);
-            smartButton1.TabIndex = 22;
-            smartButton1.Text = "View Session";
-            smartButton1.UseVisualStyleBackColor = false;
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Geist", 12F);
+            label1.ForeColor = Color.FromArgb(139, 149, 166);
+            label1.Location = new Point(24, 50);
+            label1.Name = "label1";
+            label1.Size = new Size(140, 23);
+            label1.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            label1.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            label1.TabIndex = 36;
+            label1.Text = "July 30, 2025 |";
             // 
             // SessionLogsDisplay
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(240, 247, 255);
-            Controls.Add(smartButton1);
-            Controls.Add(label11);
+            BackColor = Color.FromArgb(21, 28, 38);
+            BorderColor = Color.FromArgb(42, 71, 94);
+            BorderRadius = 2;
+            BorderSize = 1;
+            Controls.Add(label1);
             Controls.Add(sessionName);
+            Controls.Add(smartButton1);
             Name = "SessionLogsDisplay";
             Size = new Size(754, 85);
             ResumeLayout(false);
@@ -85,8 +99,9 @@
 
         #endregion
 
-        private Label sessionName;
-        private Label label11;
         private GeneralComponents.SmartButton smartButton1;
+        private GeneralComponents.SmartButton smartButton5;
+        private SteamThings.SteamLabel sessionName;
+        private SteamThings.SteamLabel label1;
     }
 }
