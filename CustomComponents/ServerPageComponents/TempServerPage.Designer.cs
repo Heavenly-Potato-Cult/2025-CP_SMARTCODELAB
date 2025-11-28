@@ -105,7 +105,7 @@
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
             studentCode.ServiceLinesColor = Color.DimGray;
-            studentCode.Size = new Size(1111, 680);
+            studentCode.Size = new Size(1111, 534);
             studentCode.TabIndex = 15;
             studentCode.WordWrap = true;
             studentCode.Zoom = 100;
@@ -178,7 +178,7 @@
             customCard5.BorderSize = 1;
             customCard5.Controls.Add(customCard11);
             customCard5.Controls.Add(customCard10);
-            customCard5.Location = new Point(1569, 517);
+            customCard5.Location = new Point(1569, 364);
             customCard5.Margin = new Padding(20, 3, 3, 3);
             customCard5.Name = "customCard5";
             customCard5.Size = new Size(334, 328);
@@ -202,8 +202,8 @@
             // 
             // studentCodeRating1
             // 
+            studentCodeRating1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             studentCodeRating1.BackColor = Color.Transparent;
-            studentCodeRating1.Dock = DockStyle.Fill;
             studentCodeRating1.Location = new Point(10, 10);
             studentCodeRating1.Name = "studentCodeRating1";
             studentCodeRating1.Size = new Size(304, 239);
@@ -240,6 +240,7 @@
             // 
             // customCard6
             // 
+            customCard6.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             customCard6.BackColor = Color.FromArgb(21, 28, 38);
             customCard6.BorderColor = Color.FromArgb(42, 71, 94);
             customCard6.BorderRadius = 2;
@@ -250,7 +251,7 @@
             customCard6.Location = new Point(35, 29);
             customCard6.Margin = new Padding(0);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(370, 816);
+            customCard6.Size = new Size(370, 668);
             customCard6.TabIndex = 109;
             // 
             // iconsContainer
@@ -265,7 +266,7 @@
             iconsContainer.Margin = new Padding(0);
             iconsContainer.Name = "iconsContainer";
             iconsContainer.Padding = new Padding(10, 10, 10, 2);
-            iconsContainer.Size = new Size(370, 660);
+            iconsContainer.Size = new Size(370, 512);
             iconsContainer.TabIndex = 112;
             // 
             // customCard9
@@ -314,6 +315,7 @@
             // 
             // customCard1
             // 
+            customCard1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             customCard1.BackColor = Color.FromArgb(23, 29, 37);
             customCard1.BorderColor = Color.FromArgb(42, 71, 94);
             customCard1.BorderRadius = 2;
@@ -324,7 +326,7 @@
             customCard1.Location = new Point(425, 29);
             customCard1.Margin = new Padding(0);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(1124, 814);
+            customCard1.Size = new Size(1124, 668);
             customCard1.TabIndex = 107;
             // 
             // customCard7
@@ -335,7 +337,7 @@
             customCard7.BorderSize = 1;
             customCard7.Controls.Add(codeTrack);
             customCard7.Dock = DockStyle.Bottom;
-            customCard7.Location = new Point(0, 750);
+            customCard7.Location = new Point(0, 604);
             customCard7.Margin = new Padding(20, 3, 20, 3);
             customCard7.Name = "customCard7";
             customCard7.Padding = new Padding(20, 5, 5, 5);
@@ -420,7 +422,7 @@
             customCard3.Location = new Point(1569, 29);
             customCard3.Margin = new Padding(20, 3, 3, 3);
             customCard3.Name = "customCard3";
-            customCard3.Size = new Size(334, 465);
+            customCard3.Size = new Size(334, 309);
             customCard3.TabIndex = 105;
             // 
             // customCard2
@@ -464,7 +466,7 @@
             copypastedCodes.Margin = new Padding(0);
             copypastedCodes.Name = "copypastedCodes";
             copypastedCodes.Padding = new Padding(10, 10, 10, 5);
-            copypastedCodes.Size = new Size(324, 384);
+            copypastedCodes.Size = new Size(324, 228);
             copypastedCodes.TabIndex = 106;
             // 
             // TempServerPage
