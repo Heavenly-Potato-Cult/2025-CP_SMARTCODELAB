@@ -32,10 +32,11 @@ namespace SmartCodeLab.Models
             this.score = Convert.ToInt16(score);
         }
 
-        public SubmittedCode(string sourceCode, StudentCodingProgress progress)
+        public SubmittedCode(string sourceCode, Dictionary<int, float> statsGrade, int score)
         {
             this.sourceCode = sourceCode;
-            this.progress = progress;
+            this.statsGrade = statsGrade;
+            this.score = score;
         }
 
         [ProtoMember(1)]
@@ -45,7 +46,7 @@ namespace SmartCodeLab.Models
         public UserProfile user {  get; set; }
 
         [ProtoMember(3)]
-        public StudentCodingProgress progress {  get; set; }
+        public Dictionary<int, float> statsGrade {  get; set; }
         
         //below will be used for leader boards in the student side
         [ProtoMember(4)]
@@ -59,7 +60,7 @@ namespace SmartCodeLab.Models
 
         public SubmittedCode getPlacement() 
         {
-            return new SubmittedCode(placement, user, progress.codeRating.totalRating);
+            return new SubmittedCode(placement, user, score);
         }
     }
 }

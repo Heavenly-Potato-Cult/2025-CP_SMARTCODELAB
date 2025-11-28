@@ -76,6 +76,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         // Show the row, save the weight
                         statsRows[key].Visible = true;
                         statsWeight.Add(key, stats[key][0]);
+                        statsRows[key].highestScore = (int)stats[key][0];
+                        statsRows[key].Value = 0;
                     }
                     else
                     {
@@ -94,6 +96,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
+        public void setSubmissionScores(Dictionary<int, float> studentCodeStats, string language)
+        {
+            foreach (var item in studentCodeStats)
+            {
+                int statNum = item.Key;
+                double maxScore = (double)statsWeight[statNum];
+                double percentage = (item.Value / maxScore) * 100.0;
+                statsRows[statNum].Value = (int)percentage;
+            }
+        }
+
         public Dictionary<int, float> GetStats()
         {
             var currentCodeStats = new Dictionary<int, float>();
@@ -106,8 +119,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 }
                 catch (KeyNotFoundException) { }
             }
-            //5 will be the total score
-            currentCodeStats.Add(5, Convert.ToInt32(GetScore()));
             return currentCodeStats;
         }
 

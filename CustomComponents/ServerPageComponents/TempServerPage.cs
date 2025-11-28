@@ -46,6 +46,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             var obj = this.Handle;
             displayUsers(users.Values.ToList());
             studentCodeRating1.SetStats(task.ratingFactors);
+            searchStudent.innerTextBox.TextChanged += (s, e) =>
+            {
+                updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
+                updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
+            };
         }
 
         //for the display of session logs
@@ -71,6 +76,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     }
                     displayStudents();
                 });
+            };
+            searchStudent.innerTextBox.TextChanged += (s, e) =>
+            {
+                updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
+                updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
             };
         }
 
@@ -328,22 +338,22 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
         }
 
-            private void smartButton1_Click(object sender, EventArgs e)
+        private void smartButton1_Click(object sender, EventArgs e)
+        {
+            var messageForm = new TextForm();
+            if (messageForm.ShowDialog() == DialogResult.OK)
             {
-                var messageForm = new TextForm();
-                if (messageForm.ShowDialog() == DialogResult.OK)
-                {
-                    SentBroadCaseMessage(messageForm.Message + '\n');
-                }
+                SentBroadCaseMessage(messageForm.Message + '\n');
             }
+        }
 
-            private void codeTrack_ValueChanged(object sender, EventArgs e)
-            {
-                if (studentProgress == null)
-                    return;
+        private void codeTrack_ValueChanged(object sender, EventArgs e)
+        {
+            if (studentProgress == null)
+                return;
 
-                studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
-            }
+            studentCode.Text = studentProgress.CodeProgress[codeTrack.Value];
+        }
 
         private void status_SelectedIndexChanged_1(object sender, EventArgs e)
         {

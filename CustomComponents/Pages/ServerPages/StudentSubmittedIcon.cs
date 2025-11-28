@@ -17,6 +17,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
     public partial class StudentSubmittedIcon : RoundedUserControl
     {
+        private Action<SubmittedCode> updateDisplayClick;
         public SubmittedCode submittedCode;
         private Color SelectedIndicator = Color.FromArgb(26, 191, 32);
 
@@ -33,13 +34,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public StudentSubmittedIcon(SubmittedCode submittedCode, Action<SubmittedCode> updateDisplayClick = null)
         {
             InitializeComponent();
+            this.updateDisplayClick = updateDisplayClick;
             this.submittedCode = submittedCode;
             currentPlacement = submittedCode.placement;
             placing.Text = submittedCode.placement.ToString();
             name.Text = submittedCode.user._studentName;
-            score.Text = submittedCode.progress.codeRating.totalRating.ToString(); //the codeStats[5] contains the student score
+            score.Text = submittedCode.score.ToString();
 
-            this.Click += (sender, e) => updateDisplayClick?.Invoke(submittedCode);
             customCard3.Click += SelectThisUser;
             name.Click += SelectThisUser;
             placing.Click += SelectThisUser;
@@ -51,18 +52,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void SelectThisUser(object sender, EventArgs e)
         {
-
-            //if (customCard3.BackColor == DefaultColor)
-            //{
-
-               
-                indicator.BackColor = SelectedIndicator;
-
-
-                //_onSelectCallback?.Invoke(this.profile, this);
-                //setSelectedUserId?.Invoke(this.profile, this);
-
-            //}
+            updateDisplayClick?.Invoke(this.submittedCode);
+            indicator.BackColor = SelectedIndicator;
         }
     }
 }

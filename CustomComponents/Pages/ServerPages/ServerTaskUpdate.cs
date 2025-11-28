@@ -21,7 +21,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         private TaskModel task;
         private Action<TaskModel, List<SubmittedCode>, string> action;
         private string recentReferenceCode;
-        
+
         public ServerTaskUpdate(TaskModel task, Action<TaskModel, List<SubmittedCode>, string> action)
         {
             InitializeComponent();
@@ -60,7 +60,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     {
                         foreach (var item in task._testCases)
                         {
-                            testContainer.Controls.Add(new TestCase3(item) { Dock = DockStyle.Top});
+                            testContainer.Controls.Add(new TestCase3(item) { Dock = DockStyle.Top });
                         }
                     }
                 }));
@@ -212,29 +212,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void btn_AddTestCase_Click_1(object sender, EventArgs e)
         {
-
-
-            //var testcaseholder = new ExpansionPanel();
-            //var testcasecontent = new TestCase3();
-            //testcasecontent.RemoveRequested += (s, ev) =>
-            //{
-            //    testcaseholder.Dispose();
-            //};
-
-            //testcaseholder.Title1 = "test case";
-            //testcaseholder.Title2 = "";
-            //testcaseholder.HeaderColor = Color.FromArgb(230, 240, 255);
-            //testcaseholder.BackColor = Color.FromArgb(23, 29, 37);
-            //testcaseholder.HeaderHeight = 40;
-            //testcasecontent.AutoSize = false;
-
-            //testcasecontent.Dock = DockStyle.Fill;
-            //testcasecontent.Padding = new Padding(20, 45, 20, 0);
-            //testcaseholder.Controls.Add(testcasecontent);
-
-            //testcaseholder.Dock = DockStyle.Top;
-            //testContainer.Controls.Add(testcaseholder);
-
             var testcasecontent = new TestCase3();
             testcasecontent.RemoveRequested += (s, ev) =>
             {
@@ -244,6 +221,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             testContainer.Controls.Add(testcasecontent);
 
             //spacerLabel.BringToFront();
+        }
+
+        private void smartButton2_Click_1(object sender, EventArgs e)
+        {
+            using (var selectExercise = new SelectExercise(UseNewTask))
+            {
+                this.SuspendLayout();
+                try
+                {
+                    selectExercise.ShowDialog();
+
+                }
+                finally
+                {
+                    this.ResumeLayout();
+                }
+            }
         }
     }
 }

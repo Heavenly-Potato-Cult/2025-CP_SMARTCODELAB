@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServerTaskUpdate));
-            smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             reference = new SmartCodeLab.CustomComponents.Pages.ProgrammingTabs.CodeEditor();
             btn_EditExerciseDetails = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel2 = new Panel();
@@ -65,6 +64,7 @@
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             ((System.ComponentModel.ISupportInitialize)reference).BeginInit();
             panel2.SuspendLayout();
             testcase_panel.SuspendLayout();
@@ -79,28 +79,6 @@
             customCard1.SuspendLayout();
             customCard2.SuspendLayout();
             SuspendLayout();
-            // 
-            // smartButton4
-            // 
-            smartButton4.BackColor = Color.FromArgb(23, 26, 33);
-            smartButton4.BackgroundColor = Color.FromArgb(23, 26, 33);
-            smartButton4.BorderColor = Color.FromArgb(42, 71, 94);
-            smartButton4.BorderRadius = 1;
-            smartButton4.BorderSize = 1;
-            smartButton4.Dock = DockStyle.Bottom;
-            smartButton4.FlatAppearance.BorderSize = 0;
-            smartButton4.FlatStyle = FlatStyle.Flat;
-            smartButton4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton4.ForeColor = Color.FromArgb(199, 213, 224);
-            smartButton4.Location = new Point(0, 1000);
-            smartButton4.Margin = new Padding(2, 4, 2, 4);
-            smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(250, 49);
-            smartButton4.TabIndex = 47;
-            smartButton4.Text = "CHANGE EXERCISE";
-            smartButton4.TextColor = Color.FromArgb(199, 213, 224);
-            smartButton4.UseVisualStyleBackColor = false;
-            smartButton4.Click += smartButton4_Click;
             // 
             // reference
             // 
@@ -118,7 +96,7 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(31, 18);
+            reference.AutoScrollMinSize = new Size(2, 18);
             reference.BackBrush = null;
             reference.BackColor = Color.Transparent;
             reference.BorderStyle = BorderStyle.FixedSingle;
@@ -163,7 +141,6 @@
             panel2.Controls.Add(reference_panel);
             panel2.Controls.Add(detail_panel);
             panel2.Controls.Add(panel6);
-            panel2.Controls.Add(smartButton4);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
@@ -533,6 +510,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(27, 40, 56);
+            panel1.Controls.Add(smartButton2);
             panel1.Controls.Add(btn_EditExerciseDetails);
             panel1.Dock = DockStyle.Bottom;
             panel1.Location = new Point(251, 906);
@@ -608,6 +586,24 @@
             customCard5.Size = new Size(1550, 1);
             customCard5.TabIndex = 112;
             // 
+            // smartButton2
+            // 
+            smartButton2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            smartButton2.BackColor = Color.FromArgb(42, 71, 94);
+            smartButton2.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton2.BorderRadius = 5;
+            smartButton2.FlatAppearance.BorderSize = 0;
+            smartButton2.FlatStyle = FlatStyle.Flat;
+            smartButton2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton2.ForeColor = Color.White;
+            smartButton2.Location = new Point(883, 41);
+            smartButton2.Name = "smartButton2";
+            smartButton2.Size = new Size(222, 51);
+            smartButton2.TabIndex = 36;
+            smartButton2.Text = "Change Exercise";
+            smartButton2.UseVisualStyleBackColor = false;
+            smartButton2.Click += smartButton2_Click_1;
+            // 
             // ServerTaskUpdate
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -652,7 +648,6 @@
         private Label label14;
         private GeneralComponents.SmartButton btn_AddTestCase;
         private Label label13;
-        private GeneralComponents.SmartButton smartButton4;
         private Panel panel2;
         private GeneralComponents.SmartButton btn_AddNewExercise;
         private Panel detail_panel;
@@ -690,5 +685,6 @@
         private Panel testContainer;
         private Panel panel3;
         private SteamThings.SteamLabel steamLabel7;
+        private GeneralComponents.SmartButton smartButton2;
     }
 }

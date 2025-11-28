@@ -107,7 +107,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                     break;
                 else
                     complexitiesCounted.Add(outputs[i]);
-
                 lastIndex++;
             }
 
@@ -121,7 +120,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                     .Split(" ", StringSplitOptions.RemoveEmptyEntries)
                     .Where(num => num.All(char.IsDigit))
                     .ToArray();
-                MessageBox.Show(arr[1]);
                 totalCycComplexity += int.Parse(arr[1]);
             }
             return totalCycComplexity;

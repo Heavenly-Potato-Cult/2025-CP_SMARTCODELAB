@@ -508,15 +508,15 @@ namespace SmartCodeLab
             mainEditor.RunCode();
         }
 
-        private void smartButton2_Click(object sender, EventArgs e)
+        private async void smartButton2_Click(object sender, EventArgs e)
         {
-            Task.Run(async () =>
+            await Task.Run(async () =>
             {
                 try
                 {
                     Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
                         new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
-                            SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, mainEditor.GetProgress(studentCodeRating.GetCodeRating()))).Build(),
+                            SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, studentCodeRating.GetStats(), (int) studentCodeRating.GetScore())).Build(),
                         PrefixStyle.Base128);
                     await stream.FlushAsync();
                     this.Invoke(new Action(() => MessageBox.Show("Code submitted successfully")));

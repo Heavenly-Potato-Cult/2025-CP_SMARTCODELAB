@@ -63,6 +63,7 @@
             rowRobustness.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             rowRobustness.BackColor = Color.Transparent;
             rowRobustness.GapSize = 2;
+            rowRobustness.highestScore = 0;
             rowRobustness.InactiveColor = Color.FromArgb(45, 50, 60);
             rowRobustness.LabelText = "ROBUSTNESS";
             rowRobustness.Location = new Point(3, 117);
@@ -79,6 +80,7 @@
             rowMaintainability.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             rowMaintainability.BackColor = Color.Transparent;
             rowMaintainability.GapSize = 2;
+            rowMaintainability.highestScore = 0;
             rowMaintainability.InactiveColor = Color.FromArgb(45, 50, 60);
             rowMaintainability.LabelText = "MAINTAINABILITY";
             rowMaintainability.Location = new Point(3, 171);
@@ -140,6 +142,7 @@
             rowEfficiency.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             rowEfficiency.BackColor = Color.Transparent;
             rowEfficiency.GapSize = 2;
+            rowEfficiency.highestScore = 0;
             rowEfficiency.InactiveColor = Color.FromArgb(45, 50, 60);
             rowEfficiency.LabelText = "EFFICIENCY";
             rowEfficiency.Location = new Point(3, 63);
@@ -156,6 +159,7 @@
             rowAccuracy.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             rowAccuracy.BackColor = Color.Transparent;
             rowAccuracy.GapSize = 2;
+            rowAccuracy.highestScore = 0;
             rowAccuracy.InactiveColor = Color.FromArgb(45, 50, 60);
             rowAccuracy.LabelText = "ACCURACY";
             rowAccuracy.Location = new Point(3, 9);

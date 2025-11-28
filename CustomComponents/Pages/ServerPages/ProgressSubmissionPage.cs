@@ -13,6 +13,7 @@ using SmartCodeLab.CustomComponents.CustomDialogs;
 using System.Diagnostics;
 using System.Windows.Navigation;
 using System.Windows.Documents;
+using SmartCodeLab.Models.Enums;
 
 namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 {
@@ -25,15 +26,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         private List<UserProfile> submittedStudents;
         public Dictionary<string, SubmittedCode> codeSubmissions { get; private set; }
         private System.Threading.Timer displayIcons;
-        private readonly List<string> ratingFactors = new List<string>()
-        {
-            "",
-            "Accuracy",
-            "Readability",
-            "Robustness",
-            "Maintainability",
-            "Total Score"
-        };
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Dictionary<int, decimal[]> ratingFactorsWeight { get; set; }
@@ -47,10 +39,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             }
         }
 
-        public ProgressSubmissionPage(Dictionary<string, SubmittedCode> codeSubmissions, Dictionary<int, decimal[]> ratingFactorsWeight)
+        string language;
+        public ProgressSubmissionPage(Dictionary<string, SubmittedCode> codeSubmissions, Dictionary<int, decimal[]> ratingFactorsWeight, LanguageSupported languageSupported)
         {
             InitializeComponent();
+            language = languageSupported.ToString().ToLower();
             this.ratingFactorsWeight = ratingFactorsWeight;
+            setTheStats();
             leaderboardsVersion = 0;
             submittedStudents = codeSubmissions.Select(cs => cs.Value.user).ToList();
             submitCount.Text = codeSubmissions.Count.ToString();
@@ -72,17 +67,35 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     DisplayIcons();
                 }, null, 500, Timeout.Infinite);
             };
+
+            searchBox.innerTextBox.TextChanged += (sender, e) =>
+            {
+                displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                displayIcons = new System.Threading.Timer((e) =>
+                {
+                    DisplayIcons();
+                }, null, 500, Timeout.Infinite);
+            };
         }
 
         public Action<TaskModel, List<SubmittedCode>, string> leaderboardsUpdate;
         public ProgressSubmissionPage()
         {
             InitializeComponent();
-            this.ratingFactorsWeight = ratingFactorsWeight;
             leaderboardsVersion = 0;
             submittedStudents = new List<UserProfile>();
             submittedCount = 0;
             codeSubmissions = new Dictionary<string, SubmittedCode>();
+            searchBox.innerTextBox.TextChanged += (sender, e) =>
+            {
+                displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
+
+                displayIcons = new System.Threading.Timer((e) =>
+                {
+                    DisplayIcons();
+                }, null, 500, Timeout.Infinite);
+            };
         }
 
         public async void StudentSubmitted(SubmittedCode submitted)
@@ -97,6 +110,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                         codeSubmissions[kvp.Key].placement--;
                     }
                     codeSubmissions[submitted.user._studentId].placement = codeSubmissions.Count;
+                    codeSubmissions[submitted.user._studentId] = submitted;
                 }
                 else
                 {
@@ -117,58 +131,47 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void DisplayIcons()
         {
-            string search = searchBox.Text.ToLower();
-
-            var studLists = submittedStudents.
-                Where(student => student._studentName.ToLower().Contains(search) ||
-                student._studentId.ToLower().Contains(search)).
-                ToList();
-            var filteredSubmitted = codeSubmissions.Keys.
-                Where(studentId => studLists.Any(stud => stud._studentId == studentId)).
-                Select(studentId => codeSubmissions[studentId]).
-                ToList();
-
-            this.Invoke((Action)(() =>
-            {
-                int currentVersion = ++leaderboardsVersion;
-                bool isSortByPoints = customComboBox2.SelectedItem?.ToString() == "Points";
-                //do the sorting thing
-                filteredSubmitted = isSortByPoints ? filteredSubmitted.OrderByDescending(sub => sub.progress.codeRating.totalRating).ToList() :
-                                                        filteredSubmitted.OrderBy(sub => sub.placement).ToList();
-
-                submittedContainer.Controls.Clear();
-                foreach (var studentSubmission in filteredSubmitted)
+            _ = Task.Run(() => {
+                this.Invoke((Action)(() =>
                 {
-                    if (currentVersion != leaderboardsVersion)
-                        break;
-                    submittedContainer.Controls.Add(new StudentSubmittedIcon(studentSubmission, UpdateDisplaySync) { Dock = DockStyle.Top});
-                }
-            }));
+                    string search = searchBox.Text.ToLower();
+
+                    var studLists = submittedStudents.
+                        Where(student => student._studentName.ToLower().Contains(search) ||
+                        student._studentId.ToLower().Contains(search)).
+                        ToList();
+                    var filteredSubmitted = codeSubmissions.Keys.
+                        Where(studentId => studLists.Any(stud => stud._studentId == studentId)).
+                        Select(studentId => codeSubmissions[studentId]).
+                        ToList();
+                    int currentVersion = ++leaderboardsVersion;
+                    bool isSortByPoints = customComboBox2.SelectedItem?.ToString() == "Points";
+                    //do the sorting thing
+                    filteredSubmitted = isSortByPoints ? filteredSubmitted.OrderByDescending(sub => sub.score).ToList() :
+                                                            filteredSubmitted.OrderBy(sub => sub.placement).ToList();
+
+                    submittedContainer.Controls.Clear();
+                    foreach (var studentSubmission in filteredSubmitted)
+                    {
+                        if (currentVersion != leaderboardsVersion)
+                            break;
+                        submittedContainer.Controls.Add(new StudentSubmittedIcon(studentSubmission, UpdateDisplaySync) { Dock = DockStyle.Top });
+                    }
+                }));
+            });
+        }
+
+        public void setTheStats()
+        {
+            studentCodeRating1.SetStats(ratingFactorsWeight);
         }
 
         private void UpdateDisplaySync(SubmittedCode submittedCode)
         {
-            studentName.Text = submittedCode.user._studentName;
-            studentName.Text = submittedCode.progress.codeRating.totalRating.ToString();
-            studentCode.Text = submittedCode.progress.sourceCode;
-
-            materialListView1.Items.Clear();
-            submittedCode.progress.codeRating.statsGrade.ToList().ForEach(kv =>
-            {
-                string rate = kv.Key == 5 ? " (100%)" : $" ({Convert.ToInt16(ratingFactorsWeight[kv.Key][0])}%)";
-                var labelName = ratingFactors[kv.Key] + rate;
-                materialListView1.Items.Add(new ListViewItem(new string[] { labelName, kv.Value.ToString("0.00") }));
-            });
-        }
-
-        private void searchBox__TextChanged(object sender, EventArgs e)
-        {
-            displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
-
-            displayIcons = new System.Threading.Timer((e) =>
-            {
-                DisplayIcons();
-            }, null, 500, Timeout.Infinite);
+            steamLabel2.Text = submittedCode.user._studentName;
+            score.Text = submittedCode.score.ToString();
+            studentCode.Text = submittedCode.sourceCode;
+            studentCodeRating1.setSubmissionScores(submittedCode.statsGrade, language);
         }
 
         private void customComboBox2_SelectedIndexChanged(object sender, EventArgs e)

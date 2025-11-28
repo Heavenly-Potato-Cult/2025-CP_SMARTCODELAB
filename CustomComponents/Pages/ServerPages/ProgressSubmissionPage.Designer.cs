@@ -29,17 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            ListViewItem listViewItem1 = new ListViewItem(new string[] { "Accurary", "50" }, -1);
-            ListViewItem listViewItem2 = new ListViewItem(new string[] { "Readbility", "20" }, -1);
-            ListViewItem listViewItem3 = new ListViewItem(new string[] { "Efficiency", "30" }, -1);
-            ListViewItem listViewItem4 = new ListViewItem(new string[] { "Complexity", "20" }, -1);
-            ListViewItem listViewItem5 = new ListViewItem(new string[] { "Total", "100" }, -1);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressSubmissionPage));
-            expansionPanel2 = new ExpansionPanel();
-            materialListView1 = new MaterialSkin.Controls.MaterialListView();
-            columnHeader1 = new ColumnHeader();
-            columnHeader2 = new ColumnHeader();
-            panel1 = new Panel();
             customComboBox2 = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             submittedContainer = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -59,12 +49,10 @@
             steamLabel6 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard10 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            steamLabel5 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            score = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamLabel4 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard11 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             studentCodeRating1 = new SmartCodeLab.CustomComponents.ServerPageComponents.StudentCodeRating();
-            expansionPanel2.SuspendLayout();
-            panel1.SuspendLayout();
             customCard6.SuspendLayout();
             customCard9.SuspendLayout();
             customCard8.SuspendLayout();
@@ -81,63 +69,6 @@
             customCard10.SuspendLayout();
             customCard11.SuspendLayout();
             SuspendLayout();
-            // 
-            // expansionPanel2
-            // 
-            expansionPanel2.BackColor = Color.Gainsboro;
-            expansionPanel2.Controls.Add(materialListView1);
-            expansionPanel2.Dock = DockStyle.Top;
-            expansionPanel2.HeaderColor = Color.White;
-            expansionPanel2.IconText = "v";
-            expansionPanel2.Location = new Point(0, 0);
-            expansionPanel2.Name = "expansionPanel2";
-            expansionPanel2.Size = new Size(584, 270);
-            expansionPanel2.TabIndex = 93;
-            expansionPanel2.Title1 = "Scores";
-            expansionPanel2.Title2 = "";
-            // 
-            // materialListView1
-            // 
-            materialListView1.AutoSizeTable = true;
-            materialListView1.BackColor = Color.FromArgb(255, 255, 255);
-            materialListView1.BorderStyle = BorderStyle.None;
-            materialListView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
-            materialListView1.Depth = 0;
-            materialListView1.Font = new Font("Microsoft Sans Serif", 14.25F);
-            materialListView1.FullRowSelect = true;
-            materialListView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3, listViewItem4, listViewItem5 });
-            materialListView1.Location = new Point(3, 55);
-            materialListView1.Margin = new Padding(3, 4, 3, 4);
-            materialListView1.MinimumSize = new Size(200, 100);
-            materialListView1.MouseLocation = new Point(-1, -1);
-            materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            materialListView1.Name = "materialListView1";
-            materialListView1.OwnerDraw = true;
-            materialListView1.Scrollable = false;
-            materialListView1.Size = new Size(500, 200);
-            materialListView1.TabIndex = 2;
-            materialListView1.UseCompatibleStateImageBehavior = false;
-            materialListView1.View = View.Details;
-            // 
-            // columnHeader1
-            // 
-            columnHeader1.Text = "Criteria";
-            columnHeader1.Width = 400;
-            // 
-            // columnHeader2
-            // 
-            columnHeader2.Text = "Scores";
-            columnHeader2.Width = 100;
-            // 
-            // panel1
-            // 
-            panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel1.AutoScroll = true;
-            panel1.Controls.Add(expansionPanel2);
-            panel1.Location = new Point(1135, 833);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(584, 271);
-            panel1.TabIndex = 94;
             // 
             // customComboBox2
             // 
@@ -164,7 +95,7 @@
             customCard6.Location = new Point(0, 0);
             customCard6.Margin = new Padding(0);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(486, 1049);
+            customCard6.Size = new Size(486, 848);
             customCard6.TabIndex = 110;
             // 
             // submittedContainer
@@ -179,7 +110,7 @@
             submittedContainer.Margin = new Padding(0);
             submittedContainer.Name = "submittedContainer";
             submittedContainer.Padding = new Padding(10, 10, 10, 2);
-            submittedContainer.Size = new Size(486, 893);
+            submittedContainer.Size = new Size(486, 692);
             submittedContainer.TabIndex = 112;
             // 
             // customCard9
@@ -258,7 +189,6 @@
             // steamGradientPanel1
             // 
             steamGradientPanel1.Controls.Add(customCard1);
-            steamGradientPanel1.Controls.Add(panel1);
             steamGradientPanel1.Controls.Add(customCard6);
             steamGradientPanel1.Controls.Add(splitContainer1);
             steamGradientPanel1.Dock = DockStyle.Fill;
@@ -267,7 +197,7 @@
             steamGradientPanel1.GradientTopColor = Color.FromArgb(11, 14, 17);
             steamGradientPanel1.Location = new Point(0, 0);
             steamGradientPanel1.Name = "steamGradientPanel1";
-            steamGradientPanel1.Size = new Size(1801, 1049);
+            steamGradientPanel1.Size = new Size(1801, 848);
             steamGradientPanel1.TabIndex = 111;
             // 
             // customCard1
@@ -438,7 +368,7 @@
             customCard10.BorderColor = Color.FromArgb(42, 71, 94);
             customCard10.BorderRadius = 2;
             customCard10.BorderSize = 1;
-            customCard10.Controls.Add(steamLabel5);
+            customCard10.Controls.Add(score);
             customCard10.Controls.Add(steamLabel4);
             customCard10.Dock = DockStyle.Top;
             customCard10.Location = new Point(0, 0);
@@ -448,19 +378,19 @@
             customCard10.Size = new Size(376, 64);
             customCard10.TabIndex = 109;
             // 
-            // steamLabel5
+            // score
             // 
-            steamLabel5.AutoSize = true;
-            steamLabel5.BackColor = Color.Transparent;
-            steamLabel5.Font = new Font("Geist", 12F);
-            steamLabel5.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel5.Location = new Point(96, 22);
-            steamLabel5.Name = "steamLabel5";
-            steamLabel5.Size = new Size(32, 23);
-            steamLabel5.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
-            steamLabel5.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
-            steamLabel5.TabIndex = 74;
-            steamLabel5.Text = "85";
+            score.AutoSize = true;
+            score.BackColor = Color.Transparent;
+            score.Font = new Font("Geist", 12F);
+            score.ForeColor = Color.FromArgb(139, 149, 166);
+            score.Location = new Point(96, 22);
+            score.Name = "score";
+            score.Size = new Size(32, 23);
+            score.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            score.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            score.TabIndex = 74;
+            score.Text = "85";
             // 
             // steamLabel4
             // 
@@ -506,9 +436,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(steamGradientPanel1);
             Name = "ProgressSubmissionPage";
-            Size = new Size(1801, 1049);
-            expansionPanel2.ResumeLayout(false);
-            panel1.ResumeLayout(false);
+            Size = new Size(1801, 848);
             customCard6.ResumeLayout(false);
             customCard9.ResumeLayout(false);
             customCard8.ResumeLayout(false);
@@ -537,11 +465,6 @@
         private Label label14;
         private Label label1;
         private Label studentName;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
-        private ColumnHeader columnHeader1;
-        private ColumnHeader columnHeader2;
-        private ExpansionPanel expansionPanel2;
-        private Panel panel1;
         private SteamThings.SteamComboBox customComboBox2;
         private GeneralComponents.CustomCard customCard6;
         private GeneralComponents.CustomCard submittedContainer;
@@ -555,7 +478,7 @@
         private SteamThings.SteamLabel steamLabel2;
         private SteamThings.SteamLabel steamLabel3;
         private SteamThings.SteamLabel steamLabel4;
-        private SteamThings.SteamLabel steamLabel5;
+        private SteamThings.SteamLabel score;
         private GeneralComponents.CustomCard customCard2;
         private ProgrammingTabs.CodeEditor studentCode;
         private GeneralComponents.CustomCard customCard4;

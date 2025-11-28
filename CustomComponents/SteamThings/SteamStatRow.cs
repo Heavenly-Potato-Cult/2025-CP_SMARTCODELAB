@@ -15,7 +15,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string LabelText { get; set; } = "ACCURACY";
 
-        private int _value = 85;
+        private int _value = 0;
         [Category("Steam Data")]
         [Description("The percentage value (0-100)")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -25,9 +25,24 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             set
             {
                 _value = Math.Max(0, Math.Min(value, 100));
+                currentScore = (int)Math.Round((realHighScore / 100.0) * _value);
                 Invalidate();
             }
         }
+
+        [Category("Steam Data")]
+        [Description("The highest possible score (0-100)")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public int highestScore { get; set 
+            {
+                realHighScore = value;
+                currentScore = 0;
+                Invalidate();
+            } }
+
+        private int realHighScore { get; set; } = 100;
+        private int currentScore { get; set; } = 0;
+
 
         [Category("Steam Appearance")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -79,7 +94,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             }
 
             // Draw Value (Right)
-            string valStr = $"{Value}%";
+            string valStr = $"{currentScore}/{realHighScore}";
             using (Font valFont = SteamFont.GetFont(9F, FontStyle.Bold))
             using (SolidBrush brush = new SolidBrush(ThemeColor))
             {
