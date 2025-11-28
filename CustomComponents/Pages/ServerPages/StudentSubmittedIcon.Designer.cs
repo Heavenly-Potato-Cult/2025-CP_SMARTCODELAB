@@ -28,59 +28,145 @@
         /// </summary>
         private void InitializeComponent()
         {
-            placing = new Label();
-            name = new Label();
-            score = new Label();
+            customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            placing = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            name = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            indicator = new Panel();
+            panel1 = new Panel();
+            score = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            customCard3.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
+            // 
+            // customCard3
+            // 
+            customCard3.BackColor = Color.FromArgb(11, 14, 17);
+            customCard3.BorderColor = Color.Gray;
+            customCard3.BorderRadius = 2;
+            customCard3.BorderSize = 0;
+            customCard3.Controls.Add(tableLayoutPanel1);
+            customCard3.Dock = DockStyle.Top;
+            customCard3.Location = new Point(0, 0);
+            customCard3.Margin = new Padding(0);
+            customCard3.Name = "customCard3";
+            customCard3.Padding = new Padding(2, 2, 2, 0);
+            customCard3.Size = new Size(520, 58);
+            customCard3.TabIndex = 10;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 4;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.0233841F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.97661F));
+            tableLayoutPanel1.Controls.Add(placing, 1, 0);
+            tableLayoutPanel1.Controls.Add(name, 2, 0);
+            tableLayoutPanel1.Controls.Add(indicator, 0, 0);
+            tableLayoutPanel1.Controls.Add(panel1, 3, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(2, 2);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(516, 56);
+            tableLayoutPanel1.TabIndex = 11;
             // 
             // placing
             // 
             placing.AutoSize = true;
-            placing.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            placing.Location = new Point(15, 10);
+            placing.BackColor = Color.Transparent;
+            placing.Dock = DockStyle.Fill;
+            placing.Font = new Font("Geist", 12F);
+            placing.ForeColor = Color.FromArgb(199, 213, 224);
+            placing.Location = new Point(5, 0);
+            placing.Margin = new Padding(0);
             placing.Name = "placing";
-            placing.Size = new Size(24, 28);
-            placing.TabIndex = 0;
-            placing.Text = "0";
+            placing.Size = new Size(50, 56);
+            placing.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            placing.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            placing.TabIndex = 14;
+            placing.Text = "30";
+            placing.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // name
             // 
             name.AutoSize = true;
-            name.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            name.Location = new Point(92, 11);
+            name.BackColor = Color.Transparent;
+            name.Dock = DockStyle.Fill;
+            name.Font = new Font("Geist", 12F);
+            name.ForeColor = Color.FromArgb(199, 213, 224);
+            name.Location = new Point(55, 0);
+            name.Margin = new Padding(0);
             name.Name = "name";
-            name.Size = new Size(68, 28);
-            name.TabIndex = 1;
-            name.Text = "Name";
+            name.Size = new Size(401, 56);
+            name.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            name.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            name.TabIndex = 11;
+            name.Text = "John Doe";
+            name.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // indicator
+            // 
+            indicator.Dock = DockStyle.Fill;
+            indicator.Location = new Point(3, 3);
+            indicator.Name = "indicator";
+            indicator.Size = new Size(1, 50);
+            indicator.TabIndex = 12;
+            // 
+            // panel1
+            // 
+            panel1.Controls.Add(score);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(459, 3);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(54, 50);
+            panel1.TabIndex = 15;
             // 
             // score
             // 
+            score.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             score.AutoSize = true;
-            score.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            score.Location = new Point(402, 11);
+            score.BackColor = Color.FromArgb(17, 42, 30);
+            score.Font = new Font("Geist", 12F);
+            score.ForeColor = Color.FromArgb(26, 191, 32);
+            score.Location = new Point(6, 14);
             score.Name = "score";
-            score.Size = new Size(62, 28);
-            score.TabIndex = 2;
-            score.Text = "score";
-            score.TextAlign = ContentAlignment.TopCenter;
+            score.Size = new Size(43, 23);
+            score.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            score.SteamTheme = SteamThings.SteamLabel.ThemeOption.Accent;
+            score.TabIndex = 14;
+            score.Text = "100";
+            score.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // StudentSubmittedIcon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(score);
-            Controls.Add(name);
-            Controls.Add(placing);
+            BackColor = Color.Transparent;
+            BorderRadius = 2;
+            Controls.Add(customCard3);
             Name = "StudentSubmittedIcon";
-            Size = new Size(520, 50);
+            Size = new Size(520, 63);
+            customCard3.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Label placing;
-        private Label name;
-        private Label score;
+        private SteamThings.SteamLabel score;
+        private GeneralComponents.CustomCard customCard3;
+        private SteamThings.SteamLabel placing;
+        private SteamThings.SteamLabel initialsLetter;
+        private Panel indicator;
+        private SteamThings.SteamLabel name;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel panel1;
     }
 }
