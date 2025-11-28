@@ -33,6 +33,7 @@
             tabPage2 = new TabPage();
             tabPage3 = new TabPage();
             tabPage4 = new TabPage();
+            tabPage5 = new TabPage();
             tabControl1.SuspendLayout();
             SuspendLayout();
             // 
@@ -42,6 +43,7 @@
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Controls.Add(tabPage4);
+            tabControl1.Controls.Add(tabPage5);
             tabControl1.Location = new Point(0, 41);
             tabControl1.Margin = new Padding(3, 4, 3, 4);
             tabControl1.Name = "tabControl1";
@@ -93,6 +95,16 @@
             tabPage4.Text = "Exit";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // tabPage5
+            // 
+            tabPage5.Location = new Point(4, 29);
+            tabPage5.Margin = new Padding(0);
+            tabPage5.Name = "tabPage5";
+            tabPage5.Size = new Size(1905, 887);
+            tabPage5.TabIndex = 4;
+            tabPage5.Text = "Session Log View";
+            tabPage5.UseVisualStyleBackColor = true;
+            // 
             // SessionsLogsView
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -112,5 +124,6 @@
         private TabPage tabPage2;
         private TabPage tabPage3;
         private TabPage tabPage4;
+        private TabPage tabPage5;
     }
 }

@@ -32,6 +32,7 @@
             label1 = new Label();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             panel8 = new Panel();
+            notifFilter = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             notifContainer = new FlowLayoutPanel();
             studentName = new CustomTextBox();
             panel_line2 = new Panel();
@@ -52,7 +53,6 @@
             label7 = new Label();
             pastedCount = new Label();
             duration = new Label();
-            notifFilter = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
             customCard7.SuspendLayout();
             panel8.SuspendLayout();
             customCard2.SuspendLayout();
@@ -105,6 +105,17 @@
             panel8.Name = "panel8";
             panel8.Size = new Size(732, 602);
             panel8.TabIndex = 24;
+            // 
+            // notifFilter
+            // 
+            notifFilter.BackColor = Color.FromArgb(26, 30, 36);
+            notifFilter.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
+            notifFilter.Location = new Point(513, 13);
+            notifFilter.Name = "notifFilter";
+            notifFilter.Padding = new Padding(1);
+            notifFilter.Size = new Size(185, 41);
+            notifFilter.TabIndex = 4;
+            notifFilter.SelectedIndexChanged += notifFilter_SelectedIndexChanged_1;
             // 
             // notifContainer
             // 
@@ -339,17 +350,6 @@
             duration.Size = new Size(81, 25);
             duration.TabIndex = 26;
             duration.Text = "Duration";
-            // 
-            // notifFilter
-            // 
-            notifFilter.BackColor = Color.FromArgb(26, 30, 36);
-            notifFilter.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
-            notifFilter.Location = new Point(513, 13);
-            notifFilter.Name = "notifFilter";
-            notifFilter.Padding = new Padding(1);
-            notifFilter.Size = new Size(185, 41);
-            notifFilter.TabIndex = 4;
-            notifFilter.SelectedIndexChanged += notifFilter_SelectedIndexChanged_1;
             // 
             // SessionDisplayHome
             // 
