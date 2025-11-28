@@ -93,8 +93,8 @@
             // 
             tabPage4.AutoScroll = true;
             tabPage4.Location = new Point(4, 29);
+            tabPage4.Margin = new Padding(0);
             tabPage4.Name = "tabPage4";
-            tabPage4.Padding = new Padding(3);
             tabPage4.Size = new Size(1688, 887);
             tabPage4.TabIndex = 4;
             tabPage4.Text = "tabPage4";

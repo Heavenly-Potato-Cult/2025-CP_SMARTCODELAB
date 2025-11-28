@@ -117,7 +117,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void DisplayIcons()
         {
-            string search = searchBox.Texts.ToLower();
+            string search = searchBox.Text.ToLower();
 
             var studLists = submittedStudents.
                 Where(student => student._studentName.ToLower().Contains(search) ||
@@ -141,7 +141,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 {
                     if (currentVersion != leaderboardsVersion)
                         break;
-                    submittedContainer.Controls.Add(new StudentSubmittedIcon(studentSubmission, UpdateDisplaySync));
+                    submittedContainer.Controls.Add(new StudentSubmittedIcon(studentSubmission, UpdateDisplaySync) { Dock = DockStyle.Top});
                 }
             }));
         }
@@ -149,7 +149,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         private void UpdateDisplaySync(SubmittedCode submittedCode)
         {
             studentName.Text = submittedCode.user._studentName;
-            score.Text = submittedCode.progress.codeRating.totalRating.ToString();
+            studentName.Text = submittedCode.progress.codeRating.totalRating.ToString();
             studentCode.Text = submittedCode.progress.sourceCode;
 
             materialListView1.Items.Clear();

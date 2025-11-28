@@ -438,7 +438,6 @@
             exit.Text = "EXIT";
             exit.TextColor = Color.FromArgb(219, 61, 55);
             exit.UseVisualStyleBackColor = false;
-            exit.Click += exit_Click;
             // 
             // saveSes
             // 
