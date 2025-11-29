@@ -113,7 +113,7 @@ namespace SmartCodeLab
             InitializeComponent();
             this.DoubleBuffered = true;
             SetDoubleBuffered(tabControl_RightSide);
-            InitializeWPFTree();
+            //InitializeWPFTree();
             studentIdentity.Text = userName;
             if (task.isTabLocked)
             {
@@ -386,29 +386,29 @@ namespace SmartCodeLab
             
         }
 
-        private void InitializeWPFTree()
-        {
-            if (panel_LeftSide_Directory == null) return;
+        //private void InitializeWPFTree()
+        //{
+        //    if (panel_LeftSide_Directory == null) return;
 
-            wpfTree = new WpfTreeView
-            {
-                Background = WpfBrushes.White,
-                Foreground = WpfBrushes.Black,
-                FontSize = 14
-            };
+        //    wpfTree = new WpfTreeView
+        //    {
+        //        Background = WpfBrushes.White,
+        //        Foreground = WpfBrushes.Black,
+        //        FontSize = 14
+        //    };
 
-            wpfTree.Resources[WpfSystemColors.HighlightBrushKey] = new WpfSolidColorBrush(WpfColor.FromRgb(200, 230, 255));
-            wpfTree.Resources[WpfSystemColors.ControlBrushKey] = new WpfSolidColorBrush(WpfColor.FromRgb(220, 240, 255));
+        //    wpfTree.Resources[WpfSystemColors.HighlightBrushKey] = new WpfSolidColorBrush(WpfColor.FromRgb(200, 230, 255));
+        //    wpfTree.Resources[WpfSystemColors.ControlBrushKey] = new WpfSolidColorBrush(WpfColor.FromRgb(220, 240, 255));
 
 
-            var host = new EH
-            {
-                Dock = DockStyle.Fill,
-                Child = wpfTree
-            };
+        //    var host = new EH
+        //    {
+        //        Dock = DockStyle.Fill,
+        //        Child = wpfTree
+        //    };
 
-            panel_LeftSide_Directory.Controls.Add(host);
-        }
+        //    panel_LeftSide_Directory.Controls.Add(host);
+        //}
 
         private void LoadFolder(string path, WpfTreeViewItem parent)
         {
