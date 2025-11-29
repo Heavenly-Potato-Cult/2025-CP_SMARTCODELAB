@@ -94,7 +94,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -107,7 +106,7 @@
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
             studentCode.ServiceLinesColor = Color.DimGray;
-            studentCode.Size = new Size(828, 596);
+            studentCode.Size = new Size(881, 596);
             studentCode.TabIndex = 15;
             studentCode.WordWrap = true;
             studentCode.Zoom = 100;
@@ -117,7 +116,7 @@
             status.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             status.BackColor = Color.FromArgb(26, 30, 36);
             status.Items.AddRange(new object[] { "All", "Active", "Inactive" });
-            status.Location = new Point(235, 12);
+            status.Location = new Point(258, 12);
             status.Name = "status";
             status.Padding = new Padding(1);
             status.Size = new Size(102, 44);
@@ -136,7 +135,7 @@
             smartButton1.ForeColor = Color.White;
             smartButton1.Location = new Point(19, 17);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(318, 44);
+            smartButton1.Size = new Size(341, 44);
             smartButton1.TabIndex = 14;
             smartButton1.Text = "Broadcast Message";
             smartButton1.UseVisualStyleBackColor = false;
@@ -149,7 +148,7 @@
             codeTrack.Location = new Point(20, 5);
             codeTrack.Maximum = 100;
             codeTrack.Name = "codeTrack";
-            codeTrack.Size = new Size(816, 54);
+            codeTrack.Size = new Size(869, 54);
             codeTrack.TabIndex = 105;
             codeTrack.Text = "steamTrackBar1";
             codeTrack.Value = 0;
@@ -180,12 +179,12 @@
             tableLayoutPanel1.Controls.Add(customCard3, 2, 0);
             tableLayoutPanel1.Controls.Add(customCard1, 1, 0);
             tableLayoutPanel1.Controls.Add(customCard6, 0, 0);
-            tableLayoutPanel1.Location = new Point(72, 49);
+            tableLayoutPanel1.Location = new Point(20, 49);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(1657, 750);
+            tableLayoutPanel1.Size = new Size(1761, 750);
             tableLayoutPanel1.TabIndex = 116;
             // 
             // customCard5
@@ -197,10 +196,10 @@
             customCard5.BorderSize = 1;
             customCard5.Controls.Add(customCard11);
             customCard5.Controls.Add(customCard10);
-            customCard5.Location = new Point(1230, 378);
+            customCard5.Location = new Point(1306, 378);
             customCard5.Margin = new Padding(20, 3, 3, 3);
             customCard5.Name = "customCard5";
-            customCard5.Size = new Size(424, 328);
+            customCard5.Size = new Size(452, 328);
             customCard5.TabIndex = 113;
             // 
             // customCard11
@@ -216,7 +215,7 @@
             customCard11.Margin = new Padding(0);
             customCard11.Name = "customCard11";
             customCard11.Padding = new Padding(10, 10, 10, 5);
-            customCard11.Size = new Size(414, 254);
+            customCard11.Size = new Size(442, 254);
             customCard11.TabIndex = 106;
             // 
             // studentCodeRating1
@@ -225,7 +224,7 @@
             studentCodeRating1.BackColor = Color.Transparent;
             studentCodeRating1.Location = new Point(10, 10);
             studentCodeRating1.Name = "studentCodeRating1";
-            studentCodeRating1.Size = new Size(394, 239);
+            studentCodeRating1.Size = new Size(422, 239);
             studentCodeRating1.TabIndex = 110;
             // 
             // customCard10
@@ -240,7 +239,7 @@
             customCard10.Margin = new Padding(20, 3, 3, 3);
             customCard10.Name = "customCard10";
             customCard10.Padding = new Padding(5);
-            customCard10.Size = new Size(424, 75);
+            customCard10.Size = new Size(452, 75);
             customCard10.TabIndex = 109;
             // 
             // steamLabel3
@@ -266,10 +265,10 @@
             customCard3.Controls.Add(customCard2);
             customCard3.Controls.Add(copypastedCodes);
             customCard3.Dock = DockStyle.Fill;
-            customCard3.Location = new Point(1230, 3);
+            customCard3.Location = new Point(1306, 3);
             customCard3.Margin = new Padding(20, 3, 3, 3);
             customCard3.Name = "customCard3";
-            customCard3.Size = new Size(424, 369);
+            customCard3.Size = new Size(452, 369);
             customCard3.TabIndex = 105;
             // 
             // customCard2
@@ -284,7 +283,7 @@
             customCard2.Margin = new Padding(20, 3, 3, 3);
             customCard2.Name = "customCard2";
             customCard2.Padding = new Padding(5);
-            customCard2.Size = new Size(424, 75);
+            customCard2.Size = new Size(452, 75);
             customCard2.TabIndex = 109;
             // 
             // steamLabel1
@@ -313,7 +312,7 @@
             copypastedCodes.Margin = new Padding(0);
             copypastedCodes.Name = "copypastedCodes";
             copypastedCodes.Padding = new Padding(10, 10, 10, 5);
-            copypastedCodes.Size = new Size(414, 271);
+            copypastedCodes.Size = new Size(442, 271);
             copypastedCodes.TabIndex = 106;
             // 
             // customCard1
@@ -326,11 +325,11 @@
             customCard1.Controls.Add(customCard7);
             customCard1.Controls.Add(customCard4);
             customCard1.Dock = DockStyle.Fill;
-            customCard1.Location = new Point(369, 0);
+            customCard1.Location = new Point(392, 0);
             customCard1.Margin = new Padding(0);
             customCard1.Name = "customCard1";
             tableLayoutPanel1.SetRowSpan(customCard1, 2);
-            customCard1.Size = new Size(841, 750);
+            customCard1.Size = new Size(894, 750);
             customCard1.TabIndex = 107;
             // 
             // customCard7
@@ -345,7 +344,7 @@
             customCard7.Margin = new Padding(20, 3, 20, 3);
             customCard7.Name = "customCard7";
             customCard7.Padding = new Padding(20, 5, 5, 5);
-            customCard7.Size = new Size(841, 64);
+            customCard7.Size = new Size(894, 64);
             customCard7.TabIndex = 109;
             // 
             // customCard4
@@ -362,7 +361,7 @@
             customCard4.Margin = new Padding(20, 3, 3, 3);
             customCard4.Name = "customCard4";
             customCard4.Padding = new Padding(5);
-            customCard4.Size = new Size(841, 78);
+            customCard4.Size = new Size(894, 78);
             customCard4.TabIndex = 108;
             // 
             // studentName
@@ -390,7 +389,7 @@
             btn_sendmessage.FlatStyle = FlatStyle.Flat;
             btn_sendmessage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_sendmessage.ForeColor = Color.FromArgb(34, 197, 94);
-            btn_sendmessage.Location = new Point(637, 13);
+            btn_sendmessage.Location = new Point(690, 13);
             btn_sendmessage.Margin = new Padding(2, 4, 2, 4);
             btn_sendmessage.Name = "btn_sendmessage";
             btn_sendmessage.Size = new Size(187, 37);
@@ -428,7 +427,7 @@
             customCard6.Margin = new Padding(0, 0, 20, 0);
             customCard6.Name = "customCard6";
             tableLayoutPanel1.SetRowSpan(customCard6, 2);
-            customCard6.Size = new Size(349, 750);
+            customCard6.Size = new Size(372, 750);
             customCard6.TabIndex = 109;
             // 
             // iconsContainer
@@ -443,7 +442,7 @@
             iconsContainer.Margin = new Padding(0);
             iconsContainer.Name = "iconsContainer";
             iconsContainer.Padding = new Padding(10, 10, 10, 2);
-            iconsContainer.Size = new Size(349, 594);
+            iconsContainer.Size = new Size(372, 594);
             iconsContainer.TabIndex = 112;
             // 
             // customCard9
@@ -458,7 +457,7 @@
             customCard9.Location = new Point(0, 78);
             customCard9.Margin = new Padding(0);
             customCard9.Name = "customCard9";
-            customCard9.Size = new Size(349, 78);
+            customCard9.Size = new Size(372, 78);
             customCard9.TabIndex = 111;
             // 
             // searchStudent
@@ -472,7 +471,7 @@
             searchStudent.Padding = new Padding(10, 8, 10, 8);
             searchStudent.PlaceholderText = "Search Student";
             searchStudent.ScrollBars = ScrollBars.None;
-            searchStudent.Size = new Size(203, 44);
+            searchStudent.Size = new Size(226, 44);
             searchStudent.TabIndex = 110;
             searchStudent.WordWrap = true;
             // 
@@ -487,7 +486,7 @@
             customCard8.Location = new Point(0, 0);
             customCard8.Margin = new Padding(0);
             customCard8.Name = "customCard8";
-            customCard8.Size = new Size(349, 78);
+            customCard8.Size = new Size(372, 78);
             customCard8.TabIndex = 110;
             // 
             // TempServerPage

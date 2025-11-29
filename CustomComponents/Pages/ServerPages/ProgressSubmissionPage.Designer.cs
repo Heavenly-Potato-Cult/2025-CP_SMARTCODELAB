@@ -72,7 +72,7 @@
             customComboBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             customComboBox2.BackColor = Color.FromArgb(26, 30, 36);
             customComboBox2.Items.AddRange(new object[] { "Earliest Pass", "Points" });
-            customComboBox2.Location = new Point(200, 23);
+            customComboBox2.Location = new Point(223, 23);
             customComboBox2.Name = "customComboBox2";
             customComboBox2.Padding = new Padding(1);
             customComboBox2.Size = new Size(139, 44);
@@ -93,7 +93,7 @@
             customCard6.Margin = new Padding(0, 0, 20, 0);
             customCard6.Name = "customCard6";
             tableLayoutPanel1.SetRowSpan(customCard6, 2);
-            customCard6.Size = new Size(349, 750);
+            customCard6.Size = new Size(372, 750);
             customCard6.TabIndex = 110;
             // 
             // submittedContainer
@@ -108,7 +108,7 @@
             submittedContainer.Margin = new Padding(0);
             submittedContainer.Name = "submittedContainer";
             submittedContainer.Padding = new Padding(10, 10, 10, 2);
-            submittedContainer.Size = new Size(349, 594);
+            submittedContainer.Size = new Size(372, 594);
             submittedContainer.TabIndex = 112;
             // 
             // customCard9
@@ -123,7 +123,7 @@
             customCard9.Location = new Point(0, 78);
             customCard9.Margin = new Padding(0);
             customCard9.Name = "customCard9";
-            customCard9.Size = new Size(349, 78);
+            customCard9.Size = new Size(372, 78);
             customCard9.TabIndex = 111;
             // 
             // searchBox
@@ -137,7 +137,7 @@
             searchBox.Padding = new Padding(10, 8, 10, 8);
             searchBox.PlaceholderText = "Search Student";
             searchBox.ScrollBars = ScrollBars.None;
-            searchBox.Size = new Size(167, 44);
+            searchBox.Size = new Size(190, 44);
             searchBox.TabIndex = 110;
             searchBox.WordWrap = true;
             // 
@@ -153,7 +153,7 @@
             customCard8.Location = new Point(0, 0);
             customCard8.Margin = new Padding(0);
             customCard8.Name = "customCard8";
-            customCard8.Size = new Size(349, 78);
+            customCard8.Size = new Size(372, 78);
             customCard8.TabIndex = 111;
             // 
             // submitCount
@@ -208,12 +208,12 @@
             tableLayoutPanel1.Controls.Add(customCard2, 1, 0);
             tableLayoutPanel1.Controls.Add(customCard5, 2, 1);
             tableLayoutPanel1.Controls.Add(customCard1, 2, 0);
-            tableLayoutPanel1.Location = new Point(72, 49);
+            tableLayoutPanel1.Location = new Point(20, 49);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 16.666666F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 83.3333359F));
-            tableLayoutPanel1.Size = new Size(1657, 750);
+            tableLayoutPanel1.Size = new Size(1761, 750);
             tableLayoutPanel1.TabIndex = 115;
             // 
             // customCard2
@@ -225,11 +225,11 @@
             customCard2.Controls.Add(studentCode);
             customCard2.Controls.Add(customCard4);
             customCard2.Dock = DockStyle.Fill;
-            customCard2.Location = new Point(369, 0);
+            customCard2.Location = new Point(392, 0);
             customCard2.Margin = new Padding(0);
             customCard2.Name = "customCard2";
             tableLayoutPanel1.SetRowSpan(customCard2, 2);
-            customCard2.Size = new Size(841, 750);
+            customCard2.Size = new Size(894, 750);
             customCard2.TabIndex = 109;
             // 
             // studentCode
@@ -254,6 +254,7 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -266,7 +267,7 @@
             studentCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             studentCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("studentCode.ServiceColors");
             studentCode.ServiceLinesColor = Color.DimGray;
-            studentCode.Size = new Size(820, 651);
+            studentCode.Size = new Size(873, 651);
             studentCode.TabIndex = 15;
             studentCode.WordWrap = true;
             studentCode.Zoom = 100;
@@ -283,7 +284,7 @@
             customCard4.Margin = new Padding(20, 3, 3, 3);
             customCard4.Name = "customCard4";
             customCard4.Padding = new Padding(5);
-            customCard4.Size = new Size(841, 78);
+            customCard4.Size = new Size(894, 78);
             customCard4.TabIndex = 108;
             // 
             // steamLabel6
@@ -309,10 +310,10 @@
             customCard5.BorderSize = 1;
             customCard5.Controls.Add(customCard10);
             customCard5.Controls.Add(customCard11);
-            customCard5.Location = new Point(1230, 125);
+            customCard5.Location = new Point(1306, 125);
             customCard5.Margin = new Padding(20, 0, 0, 0);
             customCard5.Name = "customCard5";
-            customCard5.Size = new Size(427, 336);
+            customCard5.Size = new Size(455, 336);
             customCard5.TabIndex = 114;
             // 
             // customCard10
@@ -328,7 +329,7 @@
             customCard10.Margin = new Padding(20, 3, 3, 3);
             customCard10.Name = "customCard10";
             customCard10.Padding = new Padding(5);
-            customCard10.Size = new Size(427, 64);
+            customCard10.Size = new Size(455, 64);
             customCard10.TabIndex = 109;
             // 
             // score
@@ -371,7 +372,7 @@
             customCard11.Margin = new Padding(0);
             customCard11.Name = "customCard11";
             customCard11.Padding = new Padding(10, 10, 10, 5);
-            customCard11.Size = new Size(417, 259);
+            customCard11.Size = new Size(445, 259);
             customCard11.TabIndex = 106;
             // 
             // studentCodeRating1
@@ -380,7 +381,7 @@
             studentCodeRating1.BackColor = Color.Transparent;
             studentCodeRating1.Location = new Point(10, 10);
             studentCodeRating1.Name = "studentCodeRating1";
-            studentCodeRating1.Size = new Size(394, 226);
+            studentCodeRating1.Size = new Size(422, 226);
             studentCodeRating1.TabIndex = 110;
             // 
             // customCard1
@@ -392,10 +393,10 @@
             customCard1.BorderSize = 1;
             customCard1.Controls.Add(steamLabel2);
             customCard1.Controls.Add(steamLabel3);
-            customCard1.Location = new Point(1230, 0);
+            customCard1.Location = new Point(1306, 0);
             customCard1.Margin = new Padding(20, 0, 0, 20);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(427, 78);
+            customCard1.Size = new Size(455, 78);
             customCard1.TabIndex = 112;
             // 
             // steamLabel2
