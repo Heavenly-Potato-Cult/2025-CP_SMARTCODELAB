@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="SmartCodeLab.CustomComponents.WPFComponents.SessionNavbar2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignWidth="800" Height="40">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="SubNavBg" Color="#2A475E"/>
+        <SolidColorBrush x:Key="SteamTextIdle" Color="#8B95A6"/>
+        <SolidColorBrush x:Key="SteamAccent" Color="#1ABF20"/>
+        <SolidColorBrush x:Key="SteamHover" Color="#FFFFFF"/>
+
+        <Style x:Key="SubNavButtonStyle" TargetType="RadioButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource SteamTextIdle}"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Margin" Value="0,0,25,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid Background="Transparent" Height="{TemplateBinding Height}">
+
+                            <ContentPresenter x:Name="ContentText"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Margin="0,0,0,10"/>
+
+                            <Border x:Name="ActiveBar"
+                                    Height="2" 
+                                    Background="{StaticResource SteamAccent}"
+                                    VerticalAlignment="Bottom"
+                                    Visibility="Hidden"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource SteamHover}"/>
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Foreground" Value="{StaticResource SteamAccent}"/>
+                                <Setter TargetName="ActiveBar" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource SubNavBg}">
+        <StackPanel Orientation="Horizontal" 
+                    VerticalAlignment="Center" 
+                    Margin="20,0,0,0">
+
+            <RadioButton Content="Dashboard" 
+                         Style="{StaticResource SubNavButtonStyle}"
+                         GroupName="SubNav"
+                         IsChecked="True"
+                         Click="nav_dashboard_Click" />
+
+            <RadioButton Content="Monitoring" 
+                         Style="{StaticResource SubNavButtonStyle}"
+                         GroupName="SubNav"
+                         Click="nav_monitoring_Click"/>
+
+            <RadioButton Content="Submission" 
+                         Style="{StaticResource SubNavButtonStyle}"
+                         GroupName="SubNav"
+                         Click="nav_submission_Click"/>
+
+        </StackPanel>
+
+        <Border VerticalAlignment="Bottom" Height="1" Background="#000000" Opacity="0.2"/>
+    </Grid>
+</UserControl>
