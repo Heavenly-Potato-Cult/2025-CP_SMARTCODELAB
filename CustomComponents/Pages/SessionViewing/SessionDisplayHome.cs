@@ -31,17 +31,24 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
             timeLength.Text = (endTime - server.createdAt).ToString(@"hh\:mm\:ss");
             this.Load += (sender, e) =>
             {
-                notifContainer.Controls.Clear();
-
-                Task.Run(() =>
-                {
-                    this.Invoke((Action)(() =>
-                    {
-                        notifications.ForEach(notif => notifContainer.Controls.Add(new NotificationIcon(notif)));
-                    }));
-                });
+                PopulateLogBox(this.notifications);
             };
         }
+        private void PopulateLogBox(List<Notification> itemsToShow)
+        {
+            logBox.BeginUpdate();
+            logBox.Items.Clear();
+            // We assume the list might be chronological, so we reverse it or OrderByDescending
+            var sorted = itemsToShow.OrderByDescending(n => n.timeOccurred).ToList();
+
+            foreach (var notif in sorted)
+            {
+                logBox.Items.Add(notif);
+            }
+
+            logBox.EndUpdate();
+        }
+
 
         private Task SearchStudent()
         {
@@ -49,20 +56,29 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
             string searchedName = studentName.Text.Trim();
             this.Invoke((Action)(() =>
             {
-                Task.Delay(200);
-                notifContainer.Controls.Clear();
+                logBox.BeginUpdate();
+                logBox.Items.Clear();
                 string notifFilterString = notifFilter.SelectedItem?.ToString() ?? "All";
                 bool isForAll = notifFilterString.Equals("All", StringComparison.OrdinalIgnoreCase);
-                List<Notification> filtered = notifications.
-                    Where(notif => notif.UserName.Contains(searchedName, StringComparison.OrdinalIgnoreCase) && (isForAll || NotificationTypeExtensions.ToFriendlyString(notif.Type).Equals(notifFilterString, StringComparison.OrdinalIgnoreCase))).
-                    ToList();
 
-                foreach (var item in filtered)
+               
+                var filtered = notifications
+                    .Where(notif =>
+                        notif.UserName.Contains(searchedName, StringComparison.OrdinalIgnoreCase) &&
+                        (isForAll || NotificationTypeExtensions.ToFriendlyString(notif.Type).Equals(notifFilterString, StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+
+                
+                for (int i = filtered.Count - 1; i >= 0; i--)
                 {
-                    if (currentSearchVersion != searchVersion)
-                        break;
-                    notifContainer.Controls.Add(new NotificationIcon(item));
+                    if (currentSearchVersion != searchVersion) break; 
+
+                    logBox.Items.Add(filtered[i]);
                 }
+
+                
+                logBox.EndUpdate();
+                logBox.Invalidate();
             }));
 
             return Task.CompletedTask;
