@@ -33,6 +33,8 @@
             // 
             // richTextBox1
             // 
+            richTextBox1.BackColor = Color.FromArgb(42, 71, 94);
+            richTextBox1.BorderStyle = BorderStyle.None;
             richTextBox1.Dock = DockStyle.Fill;
             richTextBox1.Location = new Point(0, 0);
             richTextBox1.Margin = new Padding(3, 4, 3, 4);
@@ -47,9 +49,9 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaption;
+            BackColor = Color.Transparent;
             Controls.Add(richTextBox1);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(0);
             Name = "CmdPanel";
             Size = new Size(602, 200);
             ResumeLayout(false);
