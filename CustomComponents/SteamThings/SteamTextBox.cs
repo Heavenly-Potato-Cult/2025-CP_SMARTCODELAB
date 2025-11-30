@@ -41,6 +41,34 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             set => innerTextBox.ScrollBars = value;
         }
 
+        [Category("Steam Behavior")]
+        [Description("Controls whether the text in the edit control can be changed.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public bool ReadOnly
+        {
+            get => innerTextBox.ReadOnly;
+            set
+            {
+                innerTextBox.ReadOnly = value;
+
+                // Optional: Visually dim the background if ReadOnly
+                if (value)
+                {
+                    innerTextBox.BackColor = Color.FromArgb(20, 22, 26); // Slightly darker
+                    this.BackColor = Color.FromArgb(20, 22, 26);
+                    innerTextBox.ForeColor = Color.Gray; // Dimmed Text
+                }
+                else
+                {
+                    innerTextBox.BackColor = SteamColors.InputBg;
+                    this.BackColor = SteamColors.InputBg;
+                    innerTextBox.ForeColor = SteamColors.TextMain;
+                }
+
+                this.Invalidate();
+            }
+        }
+
         // --- EXISTING PROPERTIES ---
 
         [Browsable(true)]
