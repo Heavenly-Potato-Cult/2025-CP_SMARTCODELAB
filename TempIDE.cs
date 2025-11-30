@@ -189,11 +189,9 @@ namespace SmartCodeLab
                 this.Invoke((Action)(() =>
                 {
                     //set task description display
-                    activity_expansion_panel.Title1 = task._taskName;
+                    session_name.Text = task._taskName;
                     description.Text = task._instructions;
-                    var returnLater = activity_expansion_panel;
-                    ActivityPanel.Controls.Clear();
-                    ActivityPanel.Controls.Add(returnLater);
+                    TestCasesPanel.Controls.Clear();
                     //testCaseContainer.Controls.Clear();
                     studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
                     if (task._testCases != null && task._testCases.Count > 0)
@@ -220,14 +218,13 @@ namespace SmartCodeLab
                             testcaseview.Dock = DockStyle.Fill;
 
                             testcase.Dock = DockStyle.Top;
-                            ActivityPanel.Controls.Add(testcase);
+                            TestCasesPanel.Controls.Add(testcase);
                             if (count > 4)
                                 break;
                         }
 
                     }
-                    //para sataas ang activity panel after updating the task
-                    activity_expansion_panel.SendToBack();
+
                 }))
             );
         }
@@ -616,14 +613,22 @@ namespace SmartCodeLab
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            MainTabControl.SelectedIndex = 2;
+            MainTabControl.SelectedIndex = 3;
 
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            MainTabControl.SelectedIndex = 3;
+            MainTabControl.SelectedIndex = 4;
 
         }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            MainTabControl.SelectedIndex = 2;
+
+        }
+
+        
     }
 }
