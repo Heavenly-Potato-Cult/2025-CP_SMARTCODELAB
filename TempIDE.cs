@@ -71,15 +71,15 @@ namespace SmartCodeLab
         private System.Windows.Controls.TreeView wpfTree;
         private int leaderboardUpdateVersion = 0;
 
-        public static void SetDoubleBuffered(System.Windows.Forms.Control control)
-        {
-            // set instance non-public property with name "DoubleBuffered" to true
-            typeof(System.Windows.Forms.Control).InvokeMember("DoubleBuffered",
-                System.Reflection.BindingFlags.SetProperty |
-                System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.NonPublic,
-                null, control, new object[] { true });
-        }
+        //public static void SetDoubleBuffered(System.Windows.Forms.Control control)
+        //{
+        //    // set instance non-public property with name "DoubleBuffered" to true
+        //    typeof(System.Windows.Forms.Control).InvokeMember("DoubleBuffered",
+        //        System.Reflection.BindingFlags.SetProperty |
+        //        System.Reflection.BindingFlags.Instance |
+        //        System.Reflection.BindingFlags.NonPublic,
+        //        null, control, new object[] { true });
+        //}
 
         private void AddLeaderboardIcon(int ranking, string studentName, int score)
         {
@@ -113,7 +113,7 @@ namespace SmartCodeLab
         {
             InitializeComponent();
             this.DoubleBuffered = true;
-            SetDoubleBuffered(tabControl_RightSide);
+            //SetDoubleBuffered(tabControl_RightSide);
             //InitializeWPFTree();
             studentIdentity.Text = userName;
             if (task.isTabLocked)
@@ -179,11 +179,9 @@ namespace SmartCodeLab
                 this.Invoke((Action)(() =>
                 {
                     //set task description display
-                    activity_expansion_panel.Title1 = task._taskName;
+                    session_name.Text = task._taskName;
                     description.Text = task._instructions;
-                    var returnLater = activity_expansion_panel;
-                    ActivityPanel.Controls.Clear();
-                    ActivityPanel.Controls.Add(returnLater);
+                    TestCasesPanel.Controls.Clear();
                     //testCaseContainer.Controls.Clear();
                     studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
                     if (task._testCases != null && task._testCases.Count > 0)
@@ -210,14 +208,13 @@ namespace SmartCodeLab
                             testcaseview.Dock = DockStyle.Fill;
 
                             testcase.Dock = DockStyle.Top;
-                            ActivityPanel.Controls.Add(testcase);
+                            TestCasesPanel.Controls.Add(testcase);
                             if (count > 4)
                                 break;
                         }
 
                     }
-                    //para sataas ang activity panel after updating the task
-                    activity_expansion_panel.SendToBack();
+
                 }))
             );
         }
@@ -338,47 +335,47 @@ namespace SmartCodeLab
             });
         }
 
-        private void ResizeTabs()
-        {
-            if (isResizingTabs) { return; } // Prevent recursion
+        //private void ResizeTabs()
+        //{
+        //    if (isResizingTabs) { return; } // Prevent recursion
 
-            if (tabControl_RightSide.TabPages.Count == 0) { return; }
-            if (tabControl_RightSide.ClientRectangle.Width <= 0) return;
+        //    if (tabControl_RightSide.TabPages.Count == 0) { return; }
+        //    if (tabControl_RightSide.ClientRectangle.Width <= 0) return;
 
-            int totalWidth = tabControl_RightSide.ClientSize.Width;
-            if (totalWidth <= 0) { return; }
+        //    int totalWidth = tabControl_RightSide.ClientSize.Width;
+        //    if (totalWidth <= 0) { return; }
 
-            isResizingTabs = true;
+        //    isResizingTabs = true;
 
-            tabControl_RightSide.SuspendLayout();
+        //    tabControl_RightSide.SuspendLayout();
 
-            try
-            {
-                int tabCount = tabControl_RightSide.TabPages.Count;
-                int tabWidth = (totalWidth / tabCount) - 2;
+        //    try
+        //    {
+        //        int tabCount = tabControl_RightSide.TabPages.Count;
+        //        int tabWidth = (totalWidth / tabCount) - 2;
 
-                tabControl_RightSide.Font = new Font("Segoe UI", 12F);
-                tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-                tabControl_RightSide.ItemSize = new Size(Math.Max(1, tabWidth), 50); // 50 = tab height. // butang Max 1 para dili mag negative
-            }
-            finally
-            {
-                tabControl_RightSide.ResumeLayout();
-                isResizingTabs = false;
-            }
-        }
+        //        tabControl_RightSide.Font = new Font("Segoe UI", 12F);
+        //        tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
+        //        tabControl_RightSide.ItemSize = new Size(Math.Max(1, tabWidth), 50); // 50 = tab height. // butang Max 1 para dili mag negative
+        //    }
+        //    finally
+        //    {
+        //        tabControl_RightSide.ResumeLayout();
+        //        isResizingTabs = false;
+        //    }
+        //}
 
-        private void tabControl_RightSide_Resize(object sender, EventArgs e)
-        {
-            ResizeTabs();
-        }
+        //private void tabControl_RightSide_Resize(object sender, EventArgs e)
+        //{
+        //    ResizeTabs();
+        //}
 
-        private void TempIDE_Shown(object sender, EventArgs e)
-        {
-            ResizeTabs();
-            tabControl_RightSide.Invalidate();
+        //private void TempIDE_Shown(object sender, EventArgs e)
+        //{
+        //    ResizeTabs();
+        //    tabControl_RightSide.Invalidate();
 
-        }
+        //}
 
         //private void InitializeWPFTree()
         //{
@@ -428,74 +425,74 @@ namespace SmartCodeLab
             }
         }
 
-        private WpfTreeViewItem CreateFolderNode(string path)
-        {
-            if (string.IsNullOrWhiteSpace(path)) return null;
-            if (!Directory.Exists(path)) return null;
+        //private WpfTreeViewItem CreateFolderNode(string path)
+        //{
+        //    if (string.IsNullOrWhiteSpace(path)) return null;
+        //    if (!Directory.Exists(path)) return null;
 
-            var folderNode = new WpfTreeViewItem { Header = Path.GetFileName(path), Tag = path };
-            folderNode.Expanded += FolderNode_Expanded;
+        //    var folderNode = new WpfTreeViewItem { Header = Path.GetFileName(path), Tag = path };
+        //    folderNode.Expanded += FolderNode_Expanded;
 
-            var hasChildren = Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0;
-            if (hasChildren)
-                folderNode.Items.Add(null);
+        //    var hasChildren = Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0;
+        //    if (hasChildren)
+        //        folderNode.Items.Add(null);
 
-            return folderNode;
-        }
+        //    return folderNode;
+        //}
 
-        private async void FolderNode_Expanded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            if (!(sender is WpfTreeViewItem node)) return;
-            if (node.Items.Count != 1) return;
-            if (node.Items[0] != null) return;
+        //private async void FolderNode_Expanded(object sender, System.Windows.RoutedEventArgs e)
+        //{
+        //    if (!(sender is WpfTreeViewItem node)) return;
+        //    if (node.Items.Count != 1) return;
+        //    if (node.Items[0] != null) return;
 
-            node.Items.Clear();
+        //    node.Items.Clear();
 
-            if (!(node.Tag is string path)) return;
-            if (!Directory.Exists(path)) return;
+        //    if (!(node.Tag is string path)) return;
+        //    if (!Directory.Exists(path)) return;
 
-            string[] dirs;
-            string[] files;
+        //    string[] dirs;
+        //    string[] files;
 
-            try
-            {
-                dirs = await Task.Run(() => Directory.GetDirectories(path));
-                files = await Task.Run(() => Directory.GetFiles(path));
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return;
-            }
+        //    try
+        //    {
+        //        dirs = await Task.Run(() => Directory.GetDirectories(path));
+        //        files = await Task.Run(() => Directory.GetFiles(path));
+        //    }
+        //    catch (UnauthorizedAccessException)
+        //    {
+        //        return;
+        //    }
 
-            foreach (var dir in dirs)
-            {
-                var dirNode = CreateFolderNode(dir);
-                if (dirNode != null)
-                    node.Items.Add(dirNode);
-            }
+        //    foreach (var dir in dirs)
+        //    {
+        //        var dirNode = CreateFolderNode(dir);
+        //        if (dirNode != null)
+        //            node.Items.Add(dirNode);
+        //    }
 
-            foreach (var file in files)
-            {
-                if (string.IsNullOrWhiteSpace(file)) continue;
-                var fileNode = new WpfTreeViewItem { Header = Path.GetFileName(file), Tag = file };
-                node.Items.Add(fileNode);
-            }
-        }
+        //    foreach (var file in files)
+        //    {
+        //        if (string.IsNullOrWhiteSpace(file)) continue;
+        //        var fileNode = new WpfTreeViewItem { Header = Path.GetFileName(file), Tag = file };
+        //        node.Items.Add(fileNode);
+        //    }
+        //}
 
-        private void btn_OpenFolder_Click(object sender, EventArgs e)
-        {
-            using var dialog = new FolderBrowserDialog();
-            if (dialog.ShowDialog() != DialogResult.OK) return;
+        //private void btn_OpenFolder_Click(object sender, EventArgs e)
+        //{
+        //    using var dialog = new FolderBrowserDialog();
+        //    if (dialog.ShowDialog() != DialogResult.OK) return;
 
-            if (wpfTree == null) return;
+        //    if (wpfTree == null) return;
 
-            wpfTree.Items.Clear();
+        //    wpfTree.Items.Clear();
 
-            var rootNode = CreateFolderNode(dialog.SelectedPath);
-            if (rootNode == null) return;
+        //    var rootNode = CreateFolderNode(dialog.SelectedPath);
+        //    if (rootNode == null) return;
 
-            wpfTree.Items.Add(rootNode);
-        }
+        //    wpfTree.Items.Add(rootNode);
+        //}
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
@@ -519,10 +516,7 @@ namespace SmartCodeLab
             });
         }
 
-        private void smartButton3_Click(object sender, EventArgs e)
-        {
-            mainEditor.RunTest();
-        }
+
 
         private void TempIDE_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -595,5 +589,36 @@ namespace SmartCodeLab
             mainEditor.RunTest();
 
         }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            MainTabControl.SelectedIndex = 0;
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+            MainTabControl.SelectedIndex = 1;
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            MainTabControl.SelectedIndex = 3;
+
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            MainTabControl.SelectedIndex = 4;
+
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            MainTabControl.SelectedIndex = 2;
+
+        }
+
+        
     }
 }
