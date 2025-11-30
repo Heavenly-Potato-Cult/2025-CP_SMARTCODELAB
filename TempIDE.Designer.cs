@@ -55,6 +55,7 @@
             studentCodeRating = new SmartCodeLab.CustomComponents.ServerPageComponents.StudentCodeRating();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             steamCard1 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
+            steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -167,6 +168,7 @@
             customCard2.BorderColor = Color.FromArgb(42, 71, 94);
             customCard2.BorderRadius = 2;
             customCard2.BorderSize = 0;
+            customCard2.Controls.Add(steamLabel2);
             customCard2.Controls.Add(btn_test);
             customCard2.Controls.Add(btn_submit);
             customCard2.Controls.Add(btn_run);
@@ -305,7 +307,7 @@
             MessagesTab.Location = new Point(4, 4);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3);
-            MessagesTab.Size = new Size(461, 928);
+            MessagesTab.Size = new Size(332, 928);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -316,7 +318,7 @@
             richTextBox2.Dock = DockStyle.Top;
             richTextBox2.Location = new Point(3, 528);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(455, 104);
+            richTextBox2.Size = new Size(326, 104);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
             richTextBox2.TextChanged += richTextBox2_TextChanged;
@@ -329,7 +331,7 @@
             msgBox.Location = new Point(3, 3);
             msgBox.Name = "msgBox";
             msgBox.ReadOnly = true;
-            msgBox.Size = new Size(455, 525);
+            msgBox.Size = new Size(326, 525);
             msgBox.TabIndex = 0;
             msgBox.Text = "";
             // 
@@ -424,6 +426,21 @@
             steamCard1.Size = new Size(1602, 80);
             steamCard1.TabIndex = 11;
             // 
+            // steamLabel2
+            // 
+            steamLabel2.AutoSize = true;
+            steamLabel2.BackColor = Color.FromArgb(29, 7, 18);
+            steamLabel2.Font = new Font("Geist", 8F);
+            steamLabel2.ForeColor = Color.FromArgb(255, 77, 77);
+            steamLabel2.Location = new Point(1101, 9);
+            steamLabel2.Name = "steamLabel2";
+            steamLabel2.Padding = new Padding(10);
+            steamLabel2.Size = new Size(122, 36);
+            steamLabel2.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Tiny;
+            steamLabel2.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Error;
+            steamLabel2.TabIndex = 20;
+            steamLabel2.Text = "Being Watched";
+            // 
             // TempIDE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -444,6 +461,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             customCard2.ResumeLayout(false);
+            customCard2.PerformLayout();
             tabControl_RightSide.ResumeLayout(false);
             ActivityTab.ResumeLayout(false);
             ActivityPanel.ResumeLayout(false);
@@ -491,5 +509,6 @@
         private CustomComponents.GeneralComponents.SmartButton btn_submit;
         private CustomComponents.GeneralComponents.SmartButton btn_run;
         private Panel panel1;
+        private CustomComponents.SteamThings.SteamLabel steamLabel2;
     }
 }
