@@ -27,7 +27,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             smartButton1.Click += (sender, e) =>
             {
                 SystemSingleton.Instance.sessionLogsPage.Controls.Clear();
-                SystemSingleton.Instance.sessionLogsPage.Controls.Add(new SessionsLogsView(session));
+                SystemSingleton.Instance.sessionLogsPage.Controls.Add(new SessionsLogsView(session) { Dock = DockStyle.Fill});
             };
 
             label1.Text = $"{session.server.createdAt.ToString("MMMM dd yyyy hh:mm tt")} - {session.lastModified.ToString("hh:mm tt")}";
@@ -37,5 +37,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
 
         }
+
+        
     }
 }

@@ -29,15 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SessionDisplayHome));
-            customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            panel8 = new Panel();
             studentName = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             notifFilter = new SmartCodeLab.CustomComponents.SteamThings.SteamComboBox();
-            notifContainer = new FlowLayoutPanel();
-            panel_line2 = new Panel();
-            panel_line = new Panel();
-            label45 = new Label();
-            label44 = new Label();
             label4 = new Label();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             duration = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
@@ -53,8 +46,10 @@
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             pictureBox1 = new PictureBox();
             submissionCount = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
-            customCard7.SuspendLayout();
-            panel8.SuspendLayout();
+            customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            logBox = new SmartCodeLab.CustomComponents.SteamThings.SteamLogBox();
+            panel1 = new Panel();
+            steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamGradientPanel1.SuspendLayout();
             customCard3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -62,51 +57,21 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             customCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            customCard4.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // customCard7
-            // 
-            customCard7.AutoSize = true;
-            customCard7.BackColor = Color.FromArgb(21, 28, 38);
-            customCard7.BorderColor = Color.Gray;
-            customCard7.BorderRadius = 10;
-            customCard7.BorderSize = 1;
-            customCard7.Controls.Add(panel8);
-            customCard7.Controls.Add(panel_line2);
-            customCard7.Controls.Add(panel_line);
-            customCard7.Controls.Add(label45);
-            customCard7.Controls.Add(label44);
-            customCard7.Location = new Point(309, 139);
-            customCard7.Margin = new Padding(3, 3, 50, 3);
-            customCard7.Name = "customCard7";
-            customCard7.Padding = new Padding(5, 11, 5, 20);
-            customCard7.Size = new Size(742, 675);
-            customCard7.TabIndex = 19;
-            // 
-            // panel8
-            // 
-            panel8.BackColor = Color.FromArgb(21, 28, 38);
-            panel8.Controls.Add(studentName);
-            panel8.Controls.Add(notifFilter);
-            panel8.Controls.Add(notifContainer);
-            panel8.Dock = DockStyle.Top;
-            panel8.Location = new Point(5, 53);
-            panel8.Margin = new Padding(3, 20, 3, 3);
-            panel8.Name = "panel8";
-            panel8.Size = new Size(732, 602);
-            panel8.TabIndex = 24;
             // 
             // studentName
             // 
             studentName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             studentName.BackColor = Color.FromArgb(26, 30, 36);
-            studentName.Location = new Point(26, 13);
+            studentName.Location = new Point(286, 12);
             studentName.Multiline = false;
             studentName.Name = "studentName";
             studentName.Padding = new Padding(10, 8, 10, 8);
             studentName.PlaceholderText = "";
             studentName.ScrollBars = ScrollBars.None;
-            studentName.Size = new Size(454, 44);
+            studentName.Size = new Size(203, 44);
             studentName.TabIndex = 32;
             studentName.WordWrap = true;
             // 
@@ -115,70 +80,12 @@
             notifFilter.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             notifFilter.BackColor = Color.FromArgb(26, 30, 36);
             notifFilter.Items.AddRange(new object[] { "All", "Copy Paste", "Logged In", "Logged Out", "Submission", "Exceptions Encounter" });
-            notifFilter.Location = new Point(513, 13);
+            notifFilter.Location = new Point(528, 12);
             notifFilter.Name = "notifFilter";
             notifFilter.Padding = new Padding(1);
-            notifFilter.Size = new Size(185, 41);
+            notifFilter.Size = new Size(185, 44);
             notifFilter.TabIndex = 4;
             notifFilter.SelectedIndexChanged += notifFilter_SelectedIndexChanged_1;
-            // 
-            // notifContainer
-            // 
-            notifContainer.AutoScroll = true;
-            notifContainer.FlowDirection = FlowDirection.TopDown;
-            notifContainer.Location = new Point(3, 88);
-            notifContainer.Margin = new Padding(3, 4, 3, 4);
-            notifContainer.Name = "notifContainer";
-            notifContainer.Size = new Size(726, 508);
-            notifContainer.TabIndex = 3;
-            notifContainer.WrapContents = false;
-            // 
-            // panel_line2
-            // 
-            panel_line2.BackColor = Color.DarkGray;
-            panel_line2.Dock = DockStyle.Top;
-            panel_line2.Location = new Point(5, 52);
-            panel_line2.Margin = new Padding(3, 20, 3, 3);
-            panel_line2.Name = "panel_line2";
-            panel_line2.Size = new Size(732, 1);
-            panel_line2.TabIndex = 24;
-            // 
-            // panel_line
-            // 
-            panel_line.BackColor = Color.FromArgb(21, 28, 38);
-            panel_line.Dock = DockStyle.Top;
-            panel_line.Location = new Point(5, 39);
-            panel_line.Margin = new Padding(3, 20, 3, 3);
-            panel_line.Name = "panel_line";
-            panel_line.Size = new Size(732, 13);
-            panel_line.TabIndex = 23;
-            // 
-            // label45
-            // 
-            label45.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            label45.AutoSize = true;
-            label45.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label45.ForeColor = Color.FromArgb(0, 192, 0);
-            label45.Location = new Point(1153, 17);
-            label45.Name = "label45";
-            label45.Size = new Size(42, 25);
-            label45.TabIndex = 22;
-            label45.Text = "Live";
-            label45.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // label44
-            // 
-            label44.AutoSize = true;
-            label44.Dock = DockStyle.Top;
-            label44.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label44.ForeColor = Color.FromArgb(139, 149, 166);
-            label44.Location = new Point(5, 11);
-            label44.Margin = new Padding(0);
-            label44.Name = "label44";
-            label44.Padding = new Padding(10, 0, 0, 0);
-            label44.Size = new Size(226, 28);
-            label44.TabIndex = 12;
-            label44.Text = "Activity Notifications";
             // 
             // label4
             // 
@@ -193,12 +100,12 @@
             // 
             // steamGradientPanel1
             // 
+            steamGradientPanel1.Controls.Add(customCard4);
             steamGradientPanel1.Controls.Add(duration);
             steamGradientPanel1.Controls.Add(serverName);
             steamGradientPanel1.Controls.Add(customCard3);
             steamGradientPanel1.Controls.Add(customCard2);
             steamGradientPanel1.Controls.Add(customCard1);
-            steamGradientPanel1.Controls.Add(customCard7);
             steamGradientPanel1.Dock = DockStyle.Fill;
             steamGradientPanel1.GradientAngle = 90F;
             steamGradientPanel1.GradientBottomColor = Color.FromArgb(26, 30, 36);
@@ -375,6 +282,63 @@
             submissionCount.TabIndex = 0;
             submissionCount.Text = "0";
             // 
+            // customCard4
+            // 
+            customCard4.BackColor = Color.FromArgb(21, 28, 38);
+            customCard4.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard4.BorderRadius = 5;
+            customCard4.BorderSize = 1;
+            customCard4.Controls.Add(panel1);
+            customCard4.Controls.Add(logBox);
+            customCard4.Location = new Point(309, 123);
+            customCard4.Margin = new Padding(3, 3, 10, 3);
+            customCard4.Name = "customCard4";
+            customCard4.Padding = new Padding(2, 5, 2, 2);
+            customCard4.Size = new Size(731, 597);
+            customCard4.TabIndex = 32;
+            // 
+            // logBox
+            // 
+            logBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            logBox.BackColor = Color.FromArgb(23, 26, 33);
+            logBox.BorderStyle = BorderStyle.None;
+            logBox.DrawMode = DrawMode.OwnerDrawVariable;
+            logBox.ExternalScrollBar = null;
+            logBox.ForeColor = Color.White;
+            logBox.FormattingEnabled = true;
+            logBox.IntegralHeight = false;
+            logBox.ItemHeight = 35;
+            logBox.Location = new Point(5, 85);
+            logBox.Name = "logBox";
+            logBox.Size = new Size(721, 507);
+            logBox.TabIndex = 34;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(21, 28, 38);
+            panel1.Controls.Add(notifFilter);
+            panel1.Controls.Add(studentName);
+            panel1.Controls.Add(steamLabel3);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(2, 5);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(727, 69);
+            panel1.TabIndex = 25;
+            // 
+            // steamLabel3
+            // 
+            steamLabel3.AutoSize = true;
+            steamLabel3.BackColor = Color.Transparent;
+            steamLabel3.Font = new Font("Geist", 12F);
+            steamLabel3.ForeColor = Color.FromArgb(199, 213, 224);
+            steamLabel3.Location = new Point(38, 23);
+            steamLabel3.Name = "steamLabel3";
+            steamLabel3.Size = new Size(217, 23);
+            steamLabel3.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            steamLabel3.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            steamLabel3.TabIndex = 2;
+            steamLabel3.Text = "EVENT LOG HISTORY";
+            // 
             // SessionDisplayHome
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -383,9 +347,6 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "SessionDisplayHome";
             Size = new Size(1784, 941);
-            customCard7.ResumeLayout(false);
-            customCard7.PerformLayout();
-            panel8.ResumeLayout(false);
             steamGradientPanel1.ResumeLayout(false);
             steamGradientPanel1.PerformLayout();
             customCard3.ResumeLayout(false);
@@ -397,24 +358,18 @@
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            customCard4.ResumeLayout(false);
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Label label1;
-        private GeneralComponents.CustomCard customCard7;
-        private Panel panel8;
-        private Panel panel_line2;
-        private Panel panel_line;
-        private Label label45;
-        private Label label44;
         private Label label4;
         private GeneralComponents.CustomCard customCard4;
         private PictureBox pictureBox4;
         private Label label9;
         private Label label7;
-        private FlowLayoutPanel notifContainer;
         private SteamThings.SteamComboBox notifFilter;
         private SteamThings.SteamGradientPanel steamGradientPanel1;
         private GeneralComponents.CustomCard customCard2;
@@ -431,5 +386,8 @@
         private SteamThings.SteamLabel serverName;
         private SteamThings.SteamLabel duration;
         private SteamThings.SteamTextBox studentName;
+        private SteamThings.SteamLogBox logBox;
+        private Panel panel1;
+        private SteamThings.SteamLabel steamLabel3;
     }
 }
