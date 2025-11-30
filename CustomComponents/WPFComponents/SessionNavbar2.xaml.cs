@@ -44,8 +44,10 @@ namespace SmartCodeLab.CustomComponents.WPFComponents
 
         }
 
-   
+        private void nav_exit_Click(object sender, RoutedEventArgs e)
+        {
+            OnNavigationClicked?.Invoke(3);
 
-        
+        }
     }
 }

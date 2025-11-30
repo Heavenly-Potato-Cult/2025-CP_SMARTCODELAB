@@ -49,17 +49,23 @@ namespace SmartCodeLab.CustomComponents.Pages
             float dpiScale;
             using (Graphics g = this.CreateGraphics())
             {
-                // Gets the system scale (e.g., 1.25 for 125%)
+                // Gets the system scale ( 1.25 for 125%)
                 dpiScale = g.DpiX / 96f;
             }
 
-            // Gets your designer height (e.g., 46) and sets the new runtime height (e.g., 58)
+            // Gets your designer height and sets the new runtime height (e.g., 58)
             panelNavHost2.Height = (int)(panelNavHost2.Height * dpiScale);
 
             var navMenu = new SessionNavbar2();
 
             navMenu.OnNavigationClicked = (tabIndex) =>
             {
+                if(tabIndex == 3)
+                {
+                    ExitLogView(this, EventArgs.Empty);
+                    return;
+                }
+
                 if (LogViewContainer != null) // Guard clause
                 {
                     LogViewContainer.SuspendLayout();
@@ -92,25 +98,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         }
 
 
-
-        private void btn_dashboard_Click(object sender, EventArgs e)
-        {
-            LogViewContainer.SelectedIndex = 0;
-        }
-
-        private void btn_monitoring_Click(object sender, EventArgs e)
-        {
-            LogViewContainer.SelectedIndex = 1;
-
-        }
-
-        private void btn_submissions_Click(object sender, EventArgs e)
-        {
-            LogViewContainer.SelectedIndex = 2;
-
-        }
-
-        private void smartButton1_Click(object sender, EventArgs e)
+        private void ExitLogView(object sender, EventArgs e)
         {
             var container = SystemSingleton.Instance.sessionLogsPage;
 

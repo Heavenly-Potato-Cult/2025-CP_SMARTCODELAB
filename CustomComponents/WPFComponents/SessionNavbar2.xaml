@@ -74,6 +74,11 @@
                          Style="{StaticResource SubNavButtonStyle}"
                          GroupName="SubNav"
                          Click="nav_submission_Click"/>
+            
+            <RadioButton Content="Exit" 
+                         Style="{StaticResource SubNavButtonStyle}"
+                         GroupName="SubNav"
+                         Click="nav_exit_Click"/>   
 
         </StackPanel>
 
