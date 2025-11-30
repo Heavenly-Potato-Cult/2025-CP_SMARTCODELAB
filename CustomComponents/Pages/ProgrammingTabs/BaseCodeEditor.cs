@@ -20,10 +20,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected TaskModel task;
 
         //different highlight styles
-        protected readonly WavyLineStyle syntaxErrorHighlight = new WavyLineStyle(255, Color.Red);
-        protected readonly WavyLineStyle readabilityHighlight = new WavyLineStyle(255, Color.Orange);
-        protected readonly WavyLineStyle robustnessHighlight = new WavyLineStyle(255, Color.Green);
-        protected readonly WavyLineStyle maintainabilityHighlight = new WavyLineStyle(255, Color.Blue);
+        protected readonly WavyLineStyle syntaxErrorHighlight = new WavyLineStyle(255, Color.FromArgb(255, 255, 100, 100)); // Bright Red
+        protected readonly WavyLineStyle readabilityHighlight = new WavyLineStyle(255, Color.FromArgb(255, 255, 165, 0));   // Bright Orange
+        protected readonly WavyLineStyle robustnessHighlight = new WavyLineStyle(255, Color.FromArgb(255, 50, 205, 50));    // Lime Green
+        protected readonly WavyLineStyle maintainabilityHighlight = new WavyLineStyle(255, Color.FromArgb(255, 30, 144, 255));
 
         //stores the different errors and warnings, the error line is the key, message is the value
         protected Dictionary<int, string> standardError;

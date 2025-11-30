@@ -73,7 +73,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     if (stats.ContainsKey(key))
                     {
-                        MessageBox.Show(key.ToString());
                         // Show the row, save the weight
                         statsRows[key].Visible = true;
                         statsWeight.Add(key, stats[key][0]);
