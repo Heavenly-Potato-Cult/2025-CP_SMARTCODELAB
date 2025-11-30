@@ -37,10 +37,11 @@
             panel1 = new Panel();
             panel_Main = new Panel();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             btn_test = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_submit = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_run = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            tabControl_RightSide = new TabControl();
+            MainTabControl = new SmartCodeLab.CustomComponents.GeneralComponents.SmoothTabControl();
             ActivityTab = new TabPage();
             ActivityPanel = new Panel();
             activity_expansion_panel = new SmartCodeLab.CustomComponents.ExpansionPanel();
@@ -53,16 +54,21 @@
             Score = new TabPage();
             expansion_expansion_panel = new MaterialSkin.Controls.MaterialExpansionPanel();
             studentCodeRating = new SmartCodeLab.CustomComponents.ServerPageComponents.StudentCodeRating();
+            customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            pictureBox5 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
+            steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             steamCard1 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
-            steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             customCard2.SuspendLayout();
-            tabControl_RightSide.SuspendLayout();
+            MainTabControl.SuspendLayout();
             ActivityTab.SuspendLayout();
             ActivityPanel.SuspendLayout();
             activity_expansion_panel.SuspendLayout();
@@ -70,6 +76,11 @@
             Leaderboards.SuspendLayout();
             Score.SuspendLayout();
             expansion_expansion_panel.SuspendLayout();
+            customCard1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             steamGradientPanel1.SuspendLayout();
             steamCard1.SuspendLayout();
             SuspendLayout();
@@ -139,9 +150,10 @@
             // 
             // splitContainer1.Panel2
             // 
-            splitContainer1.Panel2.Controls.Add(tabControl_RightSide);
+            splitContainer1.Panel2.Controls.Add(MainTabControl);
+            splitContainer1.Panel2.Controls.Add(customCard1);
             splitContainer1.Size = new Size(1602, 936);
-            splitContainer1.SplitterDistance = 1231;
+            splitContainer1.SplitterDistance = 1009;
             splitContainer1.SplitterWidth = 5;
             splitContainer1.TabIndex = 10;
             // 
@@ -151,7 +163,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1231, 1);
+            panel1.Size = new Size(1009, 1);
             panel1.TabIndex = 0;
             // 
             // panel_Main
@@ -159,7 +171,7 @@
             panel_Main.Dock = DockStyle.Fill;
             panel_Main.Location = new Point(0, 54);
             panel_Main.Name = "panel_Main";
-            panel_Main.Size = new Size(1231, 882);
+            panel_Main.Size = new Size(1009, 882);
             panel_Main.TabIndex = 20;
             // 
             // customCard2
@@ -175,8 +187,23 @@
             customCard2.Dock = DockStyle.Top;
             customCard2.Location = new Point(0, 0);
             customCard2.Name = "customCard2";
-            customCard2.Size = new Size(1231, 54);
+            customCard2.Size = new Size(1009, 54);
             customCard2.TabIndex = 22;
+            // 
+            // steamLabel2
+            // 
+            steamLabel2.AutoSize = true;
+            steamLabel2.BackColor = Color.FromArgb(29, 7, 18);
+            steamLabel2.Font = new Font("Geist", 8F);
+            steamLabel2.ForeColor = Color.FromArgb(255, 77, 77);
+            steamLabel2.Location = new Point(1101, 9);
+            steamLabel2.Name = "steamLabel2";
+            steamLabel2.Padding = new Padding(10);
+            steamLabel2.Size = new Size(122, 36);
+            steamLabel2.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Tiny;
+            steamLabel2.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Error;
+            steamLabel2.TabIndex = 20;
+            steamLabel2.Text = "Being Watched";
             // 
             // btn_test
             // 
@@ -235,31 +262,30 @@
             btn_run.UseVisualStyleBackColor = false;
             btn_run.Click += btn_run_Click;
             // 
-            // tabControl_RightSide
+            // MainTabControl
             // 
-            tabControl_RightSide.Alignment = TabAlignment.Right;
-            tabControl_RightSide.Controls.Add(ActivityTab);
-            tabControl_RightSide.Controls.Add(MessagesTab);
-            tabControl_RightSide.Controls.Add(Leaderboards);
-            tabControl_RightSide.Controls.Add(Score);
-            tabControl_RightSide.Dock = DockStyle.Fill;
-            tabControl_RightSide.Location = new Point(0, 0);
-            tabControl_RightSide.Multiline = true;
-            tabControl_RightSide.Name = "tabControl_RightSide";
-            tabControl_RightSide.SelectedIndex = 0;
-            tabControl_RightSide.Size = new Size(366, 936);
-            tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-            tabControl_RightSide.TabIndex = 9;
-            tabControl_RightSide.Resize += tabControl_RightSide_Resize;
+            MainTabControl.Controls.Add(ActivityTab);
+            MainTabControl.Controls.Add(MessagesTab);
+            MainTabControl.Controls.Add(Leaderboards);
+            MainTabControl.Controls.Add(Score);
+            MainTabControl.Depth = 0;
+            MainTabControl.Dock = DockStyle.Fill;
+            MainTabControl.Location = new Point(0, 0);
+            MainTabControl.MouseState = MaterialSkin.MouseState.HOVER;
+            MainTabControl.Multiline = true;
+            MainTabControl.Name = "MainTabControl";
+            MainTabControl.SelectedIndex = 0;
+            MainTabControl.Size = new Size(505, 936);
+            MainTabControl.TabIndex = 25;
             // 
             // ActivityTab
             // 
             ActivityTab.Controls.Add(ActivityPanel);
-            ActivityTab.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ActivityTab.Location = new Point(4, 4);
+            ActivityTab.Location = new Point(4, 29);
             ActivityTab.Name = "ActivityTab";
-            ActivityTab.Size = new Size(332, 928);
-            ActivityTab.TabIndex = 2;
+            ActivityTab.Padding = new Padding(3);
+            ActivityTab.Size = new Size(497, 903);
+            ActivityTab.TabIndex = 0;
             ActivityTab.Text = "Activity";
             ActivityTab.UseVisualStyleBackColor = true;
             // 
@@ -267,10 +293,10 @@
             // 
             ActivityPanel.Controls.Add(activity_expansion_panel);
             ActivityPanel.Dock = DockStyle.Fill;
-            ActivityPanel.Location = new Point(0, 0);
+            ActivityPanel.Location = new Point(3, 3);
             ActivityPanel.Margin = new Padding(3, 4, 3, 4);
             ActivityPanel.Name = "ActivityPanel";
-            ActivityPanel.Size = new Size(332, 928);
+            ActivityPanel.Size = new Size(491, 897);
             ActivityPanel.TabIndex = 0;
             // 
             // activity_expansion_panel
@@ -283,7 +309,7 @@
             activity_expansion_panel.Location = new Point(0, 0);
             activity_expansion_panel.Margin = new Padding(3, 4, 3, 4);
             activity_expansion_panel.Name = "activity_expansion_panel";
-            activity_expansion_panel.Size = new Size(332, 248);
+            activity_expansion_panel.Size = new Size(491, 248);
             activity_expansion_panel.TabIndex = 18;
             activity_expansion_panel.Title1 = "ActivityName";
             activity_expansion_panel.Title2 = "";
@@ -297,17 +323,17 @@
             description.Name = "description";
             description.ReadOnly = true;
             description.ScrollBars = ScrollBars.Vertical;
-            description.Size = new Size(332, 182);
+            description.Size = new Size(491, 182);
             description.TabIndex = 76;
             // 
             // MessagesTab
             // 
             MessagesTab.Controls.Add(richTextBox2);
             MessagesTab.Controls.Add(msgBox);
-            MessagesTab.Location = new Point(4, 4);
+            MessagesTab.Location = new Point(4, 29);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3);
-            MessagesTab.Size = new Size(332, 928);
+            MessagesTab.Size = new Size(868, 903);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -318,7 +344,7 @@
             richTextBox2.Dock = DockStyle.Top;
             richTextBox2.Location = new Point(3, 528);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(326, 104);
+            richTextBox2.Size = new Size(862, 104);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
             richTextBox2.TextChanged += richTextBox2_TextChanged;
@@ -331,18 +357,18 @@
             msgBox.Location = new Point(3, 3);
             msgBox.Name = "msgBox";
             msgBox.ReadOnly = true;
-            msgBox.Size = new Size(326, 525);
+            msgBox.Size = new Size(862, 525);
             msgBox.TabIndex = 0;
             msgBox.Text = "";
             // 
             // Leaderboards
             // 
             Leaderboards.Controls.Add(panel_leaderboards);
-            Leaderboards.Location = new Point(4, 4);
+            Leaderboards.Location = new Point(4, 29);
             Leaderboards.Name = "Leaderboards";
             Leaderboards.Padding = new Padding(3);
-            Leaderboards.Size = new Size(461, 928);
-            Leaderboards.TabIndex = 0;
+            Leaderboards.Size = new Size(868, 903);
+            Leaderboards.TabIndex = 2;
             Leaderboards.Text = "Leaderboards";
             Leaderboards.UseVisualStyleBackColor = true;
             // 
@@ -354,16 +380,16 @@
             panel_leaderboards.Margin = new Padding(3, 4, 3, 4);
             panel_leaderboards.Name = "panel_leaderboards";
             panel_leaderboards.Padding = new Padding(0, 27, 0, 0);
-            panel_leaderboards.Size = new Size(455, 922);
+            panel_leaderboards.Size = new Size(862, 897);
             panel_leaderboards.TabIndex = 18;
             // 
             // Score
             // 
             Score.Controls.Add(expansion_expansion_panel);
-            Score.Location = new Point(4, 4);
-            Score.Margin = new Padding(3, 4, 3, 4);
+            Score.Location = new Point(4, 29);
             Score.Name = "Score";
-            Score.Size = new Size(461, 928);
+            Score.Padding = new Padding(3);
+            Score.Size = new Size(868, 903);
             Score.TabIndex = 3;
             Score.Text = "Score";
             Score.UseVisualStyleBackColor = true;
@@ -380,12 +406,12 @@
             expansion_expansion_panel.ExpandHeight = 403;
             expansion_expansion_panel.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
             expansion_expansion_panel.ForeColor = Color.FromArgb(222, 0, 0, 0);
-            expansion_expansion_panel.Location = new Point(0, 0);
+            expansion_expansion_panel.Location = new Point(3, 3);
             expansion_expansion_panel.Margin = new Padding(3, 21, 3, 21);
             expansion_expansion_panel.MouseState = MaterialSkin.MouseState.HOVER;
             expansion_expansion_panel.Name = "expansion_expansion_panel";
             expansion_expansion_panel.Padding = new Padding(27, 85, 27, 21);
-            expansion_expansion_panel.Size = new Size(461, 403);
+            expansion_expansion_panel.Size = new Size(862, 403);
             expansion_expansion_panel.TabIndex = 81;
             expansion_expansion_panel.Title = "Scores";
             expansion_expansion_panel.ValidationButtonText = " ";
@@ -396,8 +422,84 @@
             studentCodeRating.Dock = DockStyle.Fill;
             studentCodeRating.Location = new Point(27, 85);
             studentCodeRating.Name = "studentCodeRating";
-            studentCodeRating.Size = new Size(405, 295);
+            studentCodeRating.Size = new Size(806, 295);
             studentCodeRating.TabIndex = 79;
+            // 
+            // customCard1
+            // 
+            customCard1.BackColor = Color.FromArgb(21, 28, 38);
+            customCard1.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard1.BorderRadius = 2;
+            customCard1.BorderSize = 0;
+            customCard1.Controls.Add(pictureBox5);
+            customCard1.Controls.Add(pictureBox4);
+            customCard1.Controls.Add(pictureBox3);
+            customCard1.Controls.Add(pictureBox2);
+            customCard1.Controls.Add(steamLabel3);
+            customCard1.Dock = DockStyle.Right;
+            customCard1.Location = new Point(505, 0);
+            customCard1.Name = "customCard1";
+            customCard1.Size = new Size(83, 936);
+            customCard1.TabIndex = 23;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(8, 239);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(66, 70);
+            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox5.TabIndex = 24;
+            pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(8, 163);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(66, 70);
+            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox4.TabIndex = 23;
+            pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(8, 87);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(66, 70);
+            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox3.TabIndex = 22;
+            pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(8, 11);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(66, 70);
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox2.TabIndex = 21;
+            pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
+            // 
+            // steamLabel3
+            // 
+            steamLabel3.AutoSize = true;
+            steamLabel3.BackColor = Color.FromArgb(29, 7, 18);
+            steamLabel3.Font = new Font("Geist", 8F);
+            steamLabel3.ForeColor = Color.FromArgb(255, 77, 77);
+            steamLabel3.Location = new Point(1101, 9);
+            steamLabel3.Name = "steamLabel3";
+            steamLabel3.Padding = new Padding(10);
+            steamLabel3.Size = new Size(122, 36);
+            steamLabel3.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Tiny;
+            steamLabel3.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Error;
+            steamLabel3.TabIndex = 20;
+            steamLabel3.Text = "Being Watched";
             // 
             // steamGradientPanel1
             // 
@@ -426,21 +528,6 @@
             steamCard1.Size = new Size(1602, 80);
             steamCard1.TabIndex = 11;
             // 
-            // steamLabel2
-            // 
-            steamLabel2.AutoSize = true;
-            steamLabel2.BackColor = Color.FromArgb(29, 7, 18);
-            steamLabel2.Font = new Font("Geist", 8F);
-            steamLabel2.ForeColor = Color.FromArgb(255, 77, 77);
-            steamLabel2.Location = new Point(1101, 9);
-            steamLabel2.Name = "steamLabel2";
-            steamLabel2.Padding = new Padding(10);
-            steamLabel2.Size = new Size(122, 36);
-            steamLabel2.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Tiny;
-            steamLabel2.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Error;
-            steamLabel2.TabIndex = 20;
-            steamLabel2.Text = "Being Watched";
-            // 
             // TempIDE
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -454,7 +541,6 @@
             Text = "TempIDE";
             WindowState = FormWindowState.Maximized;
             FormClosing += TempIDE_FormClosing;
-            Shown += TempIDE_Shown;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
@@ -462,7 +548,7 @@
             splitContainer1.ResumeLayout(false);
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
-            tabControl_RightSide.ResumeLayout(false);
+            MainTabControl.ResumeLayout(false);
             ActivityTab.ResumeLayout(false);
             ActivityPanel.ResumeLayout(false);
             activity_expansion_panel.ResumeLayout(false);
@@ -472,6 +558,12 @@
             Score.ResumeLayout(false);
             expansion_expansion_panel.ResumeLayout(false);
             expansion_expansion_panel.PerformLayout();
+            customCard1.ResumeLayout(false);
+            customCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             steamGradientPanel1.ResumeLayout(false);
             steamCard1.ResumeLayout(false);
             steamCard1.PerformLayout();
@@ -487,16 +579,12 @@
         private SplitContainer splitContainer1;
         private Panel panel_Main;
         private TabControl tabControl_RightSide;
-        private TabPage ActivityTab;
         private Panel ActivityPanel;
         private CustomComponents.ExpansionPanel activity_expansion_panel;
         private TextBox description;
-        private TabPage MessagesTab;
         private RichTextBox richTextBox2;
         private RichTextBox msgBox;
-        private TabPage Leaderboards;
         private Panel panel_leaderboards;
-        private TabPage Score;
         private MaterialSkin.Controls.MaterialExpansionPanel expansion_expansion_panel;
         private CustomComponents.ServerPageComponents.StudentCodeRating studentCodeRating;
         private CustomComponents.SteamThings.SteamGradientPanel steamGradientPanel1;
@@ -510,5 +598,15 @@
         private CustomComponents.GeneralComponents.SmartButton btn_run;
         private Panel panel1;
         private CustomComponents.SteamThings.SteamLabel steamLabel2;
+        private CustomComponents.SteamThings.SteamLabel steamLabel3;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox5;
+        private CustomComponents.GeneralComponents.SmoothTabControl MainTabControl;
+        private TabPage ActivityTab;
+        private TabPage MessagesTab;
+        private TabPage Leaderboards;
+        private TabPage Score;
     }
 }
