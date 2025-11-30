@@ -567,7 +567,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected virtual void HighlightRobustnessIssue(int errorLine, string msg)
         {
-            MessageBox.Show("Will update robustness");
             try
             {
                 var lineRange = srcCode.GetLine(errorLine);

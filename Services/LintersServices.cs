@@ -264,7 +264,53 @@ namespace SmartCodeLab.Services
         public readonly static Dictionary<string, string> cppLinterClangTidy = new Dictionary<string, string>()
         {
             { "maintainability",
-                "--checks=\"-*,readability-simplify-boolean-expr,readability-simplify-subscript-expr,modernize-min-max-use-initializer-list,modernize-raw-string-literal,modernize-redundant-void-arg,modernize-use-bool-literals,misc-const-correctness,misc-misplaced-const,misc-redundant-expression,misc-unconventional-assign-operator,misc-unused-parameters,readability-avoid-nested-conditional-operator,readability-avoid-return-with-void-value,readability-braces-around-statements,readability-const-return-type,readability-container-contains,readability-duplicate-include,readability-else-after-return,readability-function-cognitive-complexity,readability-identifier-length,readability-identifier-naming,readability-implicit-bool-conversion,readability-magic-numbers,readability-math-missing-parentheses,readability-misleading-indentation,readability-named-parameter,readability-redundant-casting,readability-redundant-control-flow,readability-redundant-declaration,readability-redundant-function-ptr-dereference,readability-redundant-parentheses,readability-redundant-smartptr-get,readability-redundant-string-cstr,readability-redundant-string-init,readability-reference-to-constructed-temporary,readability-string-compare,readability-uppercase-literal-suffix\" -config=\"{CheckOptions: [{key: readability-identifier-naming.VariableCase, value: 'lower_case'}, {key: readability-identifier-naming.FunctionCase, value: 'CamelCase'}, {key: readability-identifier-naming.ClassCase, value: 'CamelCase'}, {key: readability-identifier-naming.NamespaceCase, value: 'lower_case'}, {key: readability-identifier-naming.ConstantCase, value: 'UPPER_CASE'}], WarningsAsErrors: '*', HeaderFilterRegex: '.*', FormatStyle: 'file'}\""},
+                "--checks=\"-*" +
+                "readability-simplify-boolean-expr," +
+                "readability-simplify-subscript-expr," +
+                "modernize-min-max-use-initializer-list," +
+                "modernize-raw-string-literal," +
+                "modernize-redundant-void-arg," +
+                "modernize-use-bool-literals," +
+                "misc-const-correctness," +
+                "misc-misplaced-const," +
+                "misc-redundant-expression," +
+                "misc-unconventional-assign-operator," +
+                "misc-unused-parameters," +
+                "readability-avoid-nested-conditional-operator," +
+                "readability-avoid-return-with-void-value," +
+                "readability-braces-around-statements," +
+                "readability-const-return-type," +
+                "readability-container-contains," +
+                "readability-duplicate-include," +
+                "readability-else-after-return," +
+                "readability-function-cognitive-complexity," +
+                "readability-identifier-length," +
+                "readability-identifier-naming," +
+                "readability-implicit-bool-conversion," +
+                "readability-magic-numbers," +
+                "readability-math-missing-parentheses," +
+                "readability-misleading-indentation," +
+                "readability-named-parameter," +
+                "readability-redundant-casting," +
+                "readability-redundant-control-flow," +
+                "readability-redundant-declaration," +
+                "readability-redundant-function-ptr-dereference," +
+                "readability-redundant-parentheses," +
+                "readability-redundant-smartptr-get," +
+                "readability-redundant-string-cstr," +
+                "readability-redundant-string-init," +
+                "readability-reference-to-constructed-temporary," +
+                "readability-string-compare," +
+                "readability-uppercase-literal-suffix\" " +
+                "-config=\"{CheckOptions: " +
+                "[" +
+                "{key: readability-identifier-naming.VariableCase, value: 'lower_case'}, " +
+                "{key: readability-identifier-naming.FunctionCase, value: 'CamelCase'}, " +
+                "{key: readability-identifier-naming.ClassCase, value: 'CamelCase'}, " +
+                "{key: readability-identifier-naming.NamespaceCase, value: 'lower_case'}, " +
+                "{key: readability-identifier-naming.ConstantCase, value: 'UPPER_CASE'}" +
+                "], " +
+                "WarningsAsErrors: '*', HeaderFilterRegex: '.*', FormatStyle: 'file'}\""},
             { "robustness",
                 "--checks=\"-*,bugprone-assignment-in-if-condition,bugprone-bitwise-pointer-cast,bugprone-bool-pointer-implicit-conversion,bugprone-branch-clone,bugprone-chained-comparison,bugprone-compare-pointer-to-member-virtual-function,bugprone-empty-catch,bugprone-exception-escape,bugprone-float-loop-counter,bugprone-forwarding-reference-overload,bugprone-implicit-widening-of-multiplication-result,bugprone-inc-dec-in-conditions,bugprone-incorrect-roundings,bugprone-infinite-loop,bugprone-integer-division,bugprone-invalid-enum-default-initialization,bugprone-macro-parentheses,bugprone-macro-repeated-side-effects\""}
         };
