@@ -33,10 +33,10 @@
             srcCode = new CodeEditor();
             output = new CmdPanel();
             splitContainer1 = new SplitContainer();
+            panel2 = new Panel();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             panel1 = new Panel();
-            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)srcCode).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -68,7 +68,7 @@
             srcCode.CharWidth = 10;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             srcCode.Dock = DockStyle.Fill;
-            srcCode.Font = new Font("Courier New", 9.75F);
+            srcCode.ForeColor = SystemColors.ControlLightLight;
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IndentBackColor = Color.FromArgb(21, 28, 38);
             srcCode.IsReplaceMode = false;
@@ -118,6 +118,15 @@
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 17;
             // 
+            // panel2
+            // 
+            panel2.BackColor = Color.FromArgb(42, 71, 94);
+            panel2.Dock = DockStyle.Top;
+            panel2.Location = new Point(0, 44);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(825, 1);
+            panel2.TabIndex = 24;
+            // 
             // customCard1
             // 
             customCard1.BackColor = Color.FromArgb(21, 28, 38);
@@ -154,15 +163,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(825, 1);
             panel1.TabIndex = 23;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.FromArgb(42, 71, 94);
-            panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 44);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(825, 1);
-            panel2.TabIndex = 24;
             // 
             // BaseCodeEditor
             // 

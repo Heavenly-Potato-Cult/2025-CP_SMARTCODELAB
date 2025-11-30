@@ -606,15 +606,5 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             this.Invoke(action);
         }
-
-        public List<HashSet<string>> GetViolatedRules()
-        {
-            return new List<HashSet<string>>()
-            {
-                readabilityRules,
-                maintainabilityRules,
-                robustnessRules
-            };
-        }
     }
 }

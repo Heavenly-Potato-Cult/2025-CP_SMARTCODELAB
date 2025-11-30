@@ -73,6 +73,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     if (stats.ContainsKey(key))
                     {
+                        MessageBox.Show(key.ToString());
                         // Show the row, save the weight
                         statsRows[key].Visible = true;
                         statsWeight.Add(key, stats[key][0]);
@@ -231,11 +232,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {3, rowRobustness.Value },
                 {4, rowMaintainability.Value }
             };
-        }
-
-        public void SetViolationsRetriever(Func<List<HashSet<string>>> violations)
-        {
-            this.violations = violations;
         }
 
         private void scoreLabel_Click(object sender, EventArgs e)
