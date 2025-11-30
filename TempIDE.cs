@@ -3,6 +3,7 @@ using SmartCodeLab.CustomComponents;
 using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.CustomComponents.TaskPageComponents;
+using SmartCodeLab.CustomComponents.WPFComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
@@ -67,7 +68,7 @@ namespace SmartCodeLab
         //private StudentCodingProgress progress;
 
         private bool isResizingTabs = false;
-        private System.Windows.Controls.TreeView wpfTree; 
+        private System.Windows.Controls.TreeView wpfTree;
         private int leaderboardUpdateVersion = 0;
 
         public static void SetDoubleBuffered(System.Windows.Forms.Control control)
@@ -82,10 +83,10 @@ namespace SmartCodeLab
 
         private void AddLeaderboardIcon(int ranking, string studentName, int score)
         {
-            
+
             var newIcon = new leaderboardIcon();
 
-          
+
             newIcon.Dock = DockStyle.Top;
             newIcon.Margin = new Padding(0, 0, 0, 5);
 
@@ -93,7 +94,7 @@ namespace SmartCodeLab
             newIcon.Name = studentName;
             newIcon.Score = score;
 
-            
+
             if (ranking >= 1 && ranking <= 5)
             {
                 newIcon.BackColor = System.Drawing.Color.Gold;
@@ -104,7 +105,7 @@ namespace SmartCodeLab
             }
             panel_leaderboards.Controls.Add(newIcon);
 
-           
+
             newIcon.BringToFront();
         }
 
@@ -151,14 +152,16 @@ namespace SmartCodeLab
             string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName, progress.sourceCode ?? "");
 
             //initialize the best code operator count(if efficiency is included
-            if(task.ratingFactors.ContainsKey(2))
+            if (task.ratingFactors.ContainsKey(2))
                 SourceCodeInitializer.InitializeEfficiencyCode(task._language, task._referenceFile, Path.GetDirectoryName(mainFile));
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
             mainEditor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);
             mainEditor.notifAction = NotifyHost;
-            customTabControl1.AddTab(Path.GetFileName(mainFile), mainEditor);
+            mainEditor.Dock = DockStyle.Fill;
+            panel_Main.Controls.Add(mainEditor);
+            //CustomTabControl.AddTab(Path.GetFileName(mainFile), mainEditor);
             studentCodeRating.SetViolationsRetriever(mainEditor.GetViolatedRules);
             if (wpfTree == null) return;
 
@@ -218,7 +221,7 @@ namespace SmartCodeLab
 
                             testcase.Dock = DockStyle.Top;
                             ActivityPanel.Controls.Add(testcase);
-                            if(count > 4)
+                            if (count > 4)
                                 break;
                         }
 
@@ -238,8 +241,9 @@ namespace SmartCodeLab
                     .Build();
                 Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
                 await stream.FlushAsync();
-            }catch(ArgumentException) { }
-            catch(IOException) 
+            }
+            catch (ArgumentException) { }
+            catch (IOException)
             {
                 MessageBox.Show("Connection Closed");
             }
@@ -271,11 +275,11 @@ namespace SmartCodeLab
                     {
                         case MessageType.TASK_UPDATE:
                             UpdateTaskDisplay(serverMsg._task);
-                            MessageBox.Show(this,"Task Updated");
+                            MessageBox.Show(this, "Task Updated");
                             break;
 
                         case MessageType.USER_MESSAGE:
-                            this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}") ));
+                            this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}")));
                             tabControl_RightSide.SelectedTab = MessagesTab;
                             break;
 
@@ -297,7 +301,7 @@ namespace SmartCodeLab
                                         // 2. Add all items
                                         foreach (var sub in leaderBoards)
                                         {
-                                            
+
                                             if (myVersion != leaderboardUpdateVersion) break;
 
                                             AddLeaderboardIcon(sub.placement, sub.username, sub.score);
@@ -349,7 +353,7 @@ namespace SmartCodeLab
             if (isResizingTabs) { return; } // Prevent recursion
 
             if (tabControl_RightSide.TabPages.Count == 0) { return; }
-            if (tabControl_RightSide.ClientRectangle.Width <= 0) return;    
+            if (tabControl_RightSide.ClientRectangle.Width <= 0) return;
 
             int totalWidth = tabControl_RightSide.ClientSize.Width;
             if (totalWidth <= 0) { return; }
@@ -383,7 +387,7 @@ namespace SmartCodeLab
         {
             ResizeTabs();
             tabControl_RightSide.Invalidate();
-            
+
         }
 
         //private void InitializeWPFTree()
@@ -516,7 +520,7 @@ namespace SmartCodeLab
                 {
                     Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
                         new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
-                            SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, studentCodeRating.GetStats(), (int) studentCodeRating.GetScore())).Build(),
+                            SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, studentCodeRating.GetStats(), (int)studentCodeRating.GetScore())).Build(),
                         PrefixStyle.Base128);
                     await stream.FlushAsync();
                     this.Invoke(new Action(() => MessageBox.Show("Code submitted successfully")));
@@ -537,7 +541,7 @@ namespace SmartCodeLab
             SystemSingleton.Instance._loggedIn = false;
         }
 
-       
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -551,7 +555,7 @@ namespace SmartCodeLab
 
         private void richTextBox2_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 string msg = richTextBox2.Text.Trim() + Environment.NewLine;
 
@@ -570,6 +574,36 @@ namespace SmartCodeLab
                 });
                 richTextBox2.Clear();
             }
+        }
+
+
+        private void btn_run_Click(object sender, EventArgs e)
+        {
+            mainEditor.RunCode();
+
+        }
+
+        private async void btn_submit_Click(object sender, EventArgs e)
+        {
+            await Task.Run(async () =>
+            {
+                try
+                {
+                    Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
+                        new ServerMessage.Builder(MessageType.CODE_SUBMISSION).
+                            SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, studentCodeRating.GetStats(), (int)studentCodeRating.GetScore())).Build(),
+                        PrefixStyle.Base128);
+                    await stream.FlushAsync();
+                    this.Invoke(new Action(() => MessageBox.Show("Code submitted successfully")));
+                }
+                catch (FormatException e) { Debug.WriteLine(e.Message); }
+            });
+        }
+
+        private void btn_test_Click(object sender, EventArgs e)
+        {
+            mainEditor.RunTest();
+
         }
     }
 }
