@@ -40,7 +40,7 @@
             richTextBox1.Margin = new Padding(3, 4, 3, 4);
             richTextBox1.Name = "richTextBox1";
             richTextBox1.ScrollBars = RichTextBoxScrollBars.Horizontal;
-            richTextBox1.Size = new Size(602, 200);
+            richTextBox1.Size = new Size(388, 162);
             richTextBox1.TabIndex = 0;
             richTextBox1.Text = "";
             richTextBox1.WordWrap = false;
@@ -53,7 +53,7 @@
             Controls.Add(richTextBox1);
             Margin = new Padding(0);
             Name = "CmdPanel";
-            Size = new Size(602, 200);
+            Size = new Size(388, 162);
             ResumeLayout(false);
         }
 
