@@ -377,6 +377,7 @@
             studentName.Name = "studentName";
             studentName.Padding = new Padding(10, 8, 10, 8);
             studentName.PlaceholderText = "";
+            studentName.ReadOnly = false;
             studentName.ScrollBars = ScrollBars.None;
             studentName.Size = new Size(280, 36);
             studentName.TabIndex = 33;
@@ -438,6 +439,7 @@
             exit.Text = "EXIT";
             exit.TextColor = Color.FromArgb(219, 61, 55);
             exit.UseVisualStyleBackColor = false;
+            exit.Click += exit_Click;
             // 
             // saveSes
             // 

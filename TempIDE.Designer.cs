@@ -36,7 +36,8 @@
             panel1 = new Panel();
             panel_Main = new Panel();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            exitbtn = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            monitoredStatus = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             btn_test = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_submit = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_run = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -74,7 +75,6 @@
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             panel2 = new Panel();
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -188,7 +188,8 @@
             customCard2.BorderColor = Color.FromArgb(42, 71, 94);
             customCard2.BorderRadius = 2;
             customCard2.BorderSize = 0;
-            customCard2.Controls.Add(steamLabel2);
+            customCard2.Controls.Add(exitbtn);
+            customCard2.Controls.Add(monitoredStatus);
             customCard2.Controls.Add(btn_test);
             customCard2.Controls.Add(btn_submit);
             customCard2.Controls.Add(btn_run);
@@ -198,21 +199,40 @@
             customCard2.Size = new Size(1106, 54);
             customCard2.TabIndex = 22;
             // 
-            // steamLabel2
+            // exitbtn
             // 
-            steamLabel2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            steamLabel2.AutoSize = true;
-            steamLabel2.BackColor = Color.FromArgb(29, 7, 18);
-            steamLabel2.Font = new Font("Geist", 8F);
-            steamLabel2.ForeColor = Color.FromArgb(255, 77, 77);
-            steamLabel2.Location = new Point(970, 9);
-            steamLabel2.Name = "steamLabel2";
-            steamLabel2.Padding = new Padding(10);
-            steamLabel2.Size = new Size(122, 36);
-            steamLabel2.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Tiny;
-            steamLabel2.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Error;
-            steamLabel2.TabIndex = 20;
-            steamLabel2.Text = "Being Watched";
+            exitbtn.BackColor = Color.FromArgb(42, 71, 94);
+            exitbtn.BackgroundColor = Color.FromArgb(42, 71, 94);
+            exitbtn.BorderRadius = 1;
+            exitbtn.FlatAppearance.BorderSize = 0;
+            exitbtn.FlatStyle = FlatStyle.Flat;
+            exitbtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            exitbtn.ForeColor = Color.FromArgb(199, 213, 224);
+            exitbtn.Location = new Point(352, 11);
+            exitbtn.Margin = new Padding(2, 4, 2, 4);
+            exitbtn.Name = "exitbtn";
+            exitbtn.Size = new Size(89, 32);
+            exitbtn.TabIndex = 38;
+            exitbtn.Text = "Exit";
+            exitbtn.TextColor = Color.FromArgb(199, 213, 224);
+            exitbtn.UseVisualStyleBackColor = false;
+            exitbtn.Click += exitbtn_Click;
+            // 
+            // monitoredStatus
+            // 
+            monitoredStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            monitoredStatus.AutoSize = true;
+            monitoredStatus.BackColor = Color.FromArgb(29, 7, 18);
+            monitoredStatus.Font = new Font("Geist", 8F);
+            monitoredStatus.ForeColor = Color.FromArgb(255, 77, 77);
+            monitoredStatus.Location = new Point(970, 9);
+            monitoredStatus.Name = "monitoredStatus";
+            monitoredStatus.Padding = new Padding(10);
+            monitoredStatus.Size = new Size(122, 36);
+            monitoredStatus.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Tiny;
+            monitoredStatus.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Error;
+            monitoredStatus.TabIndex = 20;
+            monitoredStatus.Text = "Being Watched";
             // 
             // btn_test
             // 
@@ -397,7 +417,6 @@
             richTextBox2.Size = new Size(397, 104);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
-            richTextBox2.TextChanged += richTextBox2_TextChanged;
             richTextBox2.KeyUp += richTextBox2_KeyUp;
             // 
             // msgBox
@@ -693,7 +712,6 @@
             customCard3.BorderColor = Color.FromArgb(42, 71, 94);
             customCard3.BorderRadius = 2;
             customCard3.BorderSize = 0;
-            customCard3.Controls.Add(button1);
             customCard3.Controls.Add(pictureBox1);
             customCard3.Controls.Add(studentIdentity);
             customCard3.Controls.Add(steamLabel1);
@@ -702,15 +720,6 @@
             customCard3.Name = "customCard3";
             customCard3.Size = new Size(1602, 81);
             customCard3.TabIndex = 23;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(1219, 25);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 20;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
             // 
             // TempIDE
             // 
@@ -782,7 +791,7 @@
         private CustomComponents.GeneralComponents.SmartButton btn_submit;
         private CustomComponents.GeneralComponents.SmartButton btn_run;
         private Panel panel1;
-        private CustomComponents.SteamThings.SteamLabel steamLabel2;
+        private CustomComponents.SteamThings.SteamLabel monitoredStatus;
         private CustomComponents.SteamThings.SteamLabel steamLabel3;
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
@@ -812,5 +821,6 @@
         private CustomComponents.GeneralComponents.CustomCard customCard8;
         private CustomComponents.GeneralComponents.CustomCard customCard7;
         private CustomComponents.SteamThings.SteamLabel session_name;
+        private CustomComponents.GeneralComponents.SmartButton exitbtn;
     }
 }

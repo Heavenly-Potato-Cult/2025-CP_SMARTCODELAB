@@ -75,5 +75,52 @@ namespace SmartCodeLab.Services
                 throw new ArgumentException($"Invalid input: {ex.Message}");
             }
         }
+
+        public static string ExtractBroadCastAddress()
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                Arguments = $"/c \"cd \"{SystemConfigurations.CONFIGURATION_FOLDER}\" && \"{ProgrammingConfiguration.javaExe}\" NetworkAddressExtractor\"",
+                UseShellExecute = false,               // required for redirection
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                CreateNoWindow = true
+            };
+            using (Process proc = new Process { StartInfo = processStartInfo })
+            {
+                string stdout = "";
+                string stderr = "";
+
+                proc.OutputDataReceived += (s, e) =>
+                {
+                    if (e.Data != null)
+                        stdout += e.Data + "\n";
+                };
+
+                proc.ErrorDataReceived += (s, e) =>
+                {
+                    if (e.Data != null)
+                        stderr += e.Data + "\n";
+                };
+
+                proc.Start();
+
+                proc.BeginOutputReadLine();
+                proc.BeginErrorReadLine();
+
+                // Wait for full exit
+                proc.WaitForExit();
+
+                // Combine stdout + stderr (optional) or ignore stderr
+                if (!string.IsNullOrWhiteSpace(stderr))
+                {
+                    // Optional: log or handle
+                    MessageBox.Show("Java error: " + stderr);
+                }
+
+                return stdout.Trim();
+            }
+        }
     }
 }

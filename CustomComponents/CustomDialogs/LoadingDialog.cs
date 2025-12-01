@@ -59,8 +59,16 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                     Close();
                     return;
                 }
-                string subNetMask = NetworkServices.GetSubnetMaskForIP(IPAddress.Parse(ipV4)).ToString();
-                string broadCastAddress = NetworkServices.GetBroadcastAddress(ipV4, subNetMask);
+
+                string broadCastAddress = NetworkServices.ExtractBroadCastAddress();
+                if (broadCastAddress.Contains("Please connect to a network", StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show(broadCastAddress);
+                    Dispose();
+                    return;
+                }
+
+
                 udpClient.EnableBroadcast = true;
                 IPEndPoint broadcastEP = new IPEndPoint(IPAddress.Parse(broadCastAddress), 1902);
 

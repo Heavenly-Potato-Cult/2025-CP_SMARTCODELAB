@@ -58,7 +58,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             connectedUsers = new Dictionary<string, NetworkStream>();
             userProgress = new Dictionary<string, StudentCodingProgress>();
             users = server.Users;
-            serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress, isConnected, sendStudentMessage);
+            serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress, isConnected, sendStudentMessage, UpdateMonitorStatus);
 
             SystemSingleton.Instance.saveSession = saveSession;
             Action closingRemarks = new Action(() => isStillActive = false);
@@ -106,20 +106,34 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
         }
 
-        public bool sendStudentMessage(string studentId, UserMessage message)
+        public async Task<bool> sendStudentMessage(string studentId, UserMessage message)
         {
             if (connectedUsers.ContainsKey(studentId))
             {
                 NetworkStream stream = connectedUsers[studentId];
                 Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
                     new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(message).Build(), PrefixStyle.Base128);
-                stream.Flush();
+                await stream.FlushAsync();
                 return true;
             }
             else
+            {
                 MessageBox.Show("Student is not connected.");
+                return false;
+            }
+        }
 
-            return false;
+        public async Task UpdateMonitorStatus(string userId, bool isMonitored)
+        {
+            if (connectedUsers.ContainsKey(userId))
+            {
+                NetworkStream stream = connectedUsers[userId];
+                Serializer.SerializeWithLengthPrefix<ServerMessage>(
+                    stream,
+                    new ServerMessage.Builder(isMonitored ? MessageType.MONITORED : MessageType.LEFT_ALONE).Build(),
+                    PrefixStyle.Base128);
+                await stream.FlushAsync();
+            }
         }
 
         private bool isConnected(string studentId)
@@ -179,9 +193,10 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         }
         //network related stuffs
+        UdpClient udpServer;
         private async Task UdpServerInfoSender()
         {
-            UdpClient udpServer = new UdpClient(new IPEndPoint(IPAddress.Any, 1902));
+            udpServer = new UdpClient(new IPEndPoint(IPAddress.Any, 1902));
 
             while (isStillActive)
             {
@@ -213,6 +228,12 @@ namespace SmartCodeLab.CustomComponents.Pages
                     MessageBox.Show($"Server error: {ex.Message}");
                 });
             }
+        }
+
+        public void closer()
+        {
+            serverListener.Dispose();
+            udpServer.Dispose();
         }
 
         private Task<TcpClient> AcceptTcpClientAsync(TcpListener listener)
@@ -400,6 +421,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                         PrefixStyle.Base128);
                     await fileStream.FlushAsync();
                     MessageBox.Show(this, "Session file saved successfully");
+                    closer();
                 }
             }
             catch (Exception ex)

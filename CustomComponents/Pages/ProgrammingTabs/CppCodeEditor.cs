@@ -189,8 +189,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     if (check == "maintainability" && task.ratingFactors.ContainsKey(4))
                     {
                         currentComplexity = CodeComplexityReference.CodeComplexityCounter(filePath, false);
-                        Debug.WriteLine($"standard {standardComplexity}");
-                        Debug.WriteLine($"yours {currentComplexity}");
                         if (standardComplexity < currentComplexity)
                         {
                             violationCounts += 10;
