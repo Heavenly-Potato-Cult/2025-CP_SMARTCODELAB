@@ -212,65 +212,46 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void btn_AddTestCase_Click_1(object sender, EventArgs e)
         {
-            testContainer.SuspendLayout();
-
             var testcasecontent = new TestCase3();
             testcasecontent.RemoveRequested += (s, ev) =>
             {
                 testcasecontent.Dispose();
-                UpdateScrollMinSize(testContainer);
+                ReflowItems();
             };
-            testcasecontent.Dock = DockStyle.Top;
+
+            testcasecontent.Dock = DockStyle.None;
+            testcasecontent.Width = testContainer.ClientSize.Width;
+            testcasecontent.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+
             testContainer.Controls.Add(testcasecontent);
             testContainer.Controls.SetChildIndex(testcasecontent, 0);
 
-            testContainer.ResumeLayout(true);
-            //Point scrollPosition = new Point(
-            //    0, // X-position remains 0
-            //    testcasecontent.Location.Y + testcasecontent.Height + 5 // Scroll just past the bottom of the last item
-            //);
-
-            //testContainer.AutoScrollPosition = new Point(Math.Abs(scrollPosition.X), Math.Abs(scrollPosition.Y));
-            UpdateScrollMinSize(testContainer);
+            ReflowItems();
 
         }
-        private void UpdateScrollMinSize(Panel container)
+
+        private void ReflowItems()
         {
-            // A buffer value large enough to clear the bottom edge and potential scrollbar
-            const int BottomBuffer = 100;
+            int y = 0;
 
-            int requiredHeight = 0;
+            var ordered = testContainer.Controls
+                .Cast<Control>()
+                .OrderBy(c => testContainer.Controls.GetChildIndex(c));
 
-            // 1. Calculate the total required height
-            foreach (Control control in container.Controls)
+            foreach (Control c in ordered)
             {
-                // Only sum controls that are visible and docked Top/Bottom
-                if (control.Visible && (control.Dock == DockStyle.Top || control.Dock == DockStyle.Bottom))
-                {
-                    // Add the control's height PLUS its Margin (specifically Bottom margin)
-                    requiredHeight += control.Height + control.Margin.Bottom;
-                }
+                if (!c.Visible) continue;
+
+                c.Location = new Point(0, y);
+                c.Width = testContainer.ClientSize.Width;
+
+                y += c.Height + c.Margin.Bottom;
             }
 
-            // 2. Add the guaranteed buffer
-            int finalHeight = requiredHeight + BottomBuffer;
-
-            // 3. Guard Clause: Set the minimum size
-            // We only need to worry about the vertical scroll, so the width can be 0 (or container.Width)
-            if (finalHeight > container.Height)
-            {
-                container.AutoScrollMinSize = new Size(0, finalHeight);
-            }
-            else
-            {
-                // If the content is smaller than the viewable area, reset the scroll size
-                container.AutoScrollMinSize = new Size(0, 0);
-            }
-
-            // Force the updates
-            container.PerformLayout();
-            container.Invalidate();
+           
+            testContainer.AutoScrollMinSize = new Size(0, y + 100);
         }
+
 
         private void smartButton2_Click_1(object sender, EventArgs e)
         {
