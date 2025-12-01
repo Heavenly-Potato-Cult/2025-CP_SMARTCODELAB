@@ -233,11 +233,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             };
         }
 
-        public void SetViolationsRetriever(Func<List<HashSet<string>>> violations)
-        {
-            this.violations = violations;
-        }
-
         private void scoreLabel_Click(object sender, EventArgs e)
         {
 

@@ -161,20 +161,10 @@ namespace SmartCodeLab
             mainEditor.notifAction = NotifyHost;
             mainEditor.Dock = DockStyle.Fill;
             panel_Main.Controls.Add(mainEditor);
-            //CustomTabControl.AddTab(Path.GetFileName(mainFile), mainEditor);
-            studentCodeRating.SetViolationsRetriever(mainEditor.GetViolatedRules);
-            //if (wpfTree == null) return;
-
-            //wpfTree.Items.Clear();
-
-            //var rootNode = CreateFolderNode(Path.GetDirectoryName(mainFile));
-            //if (rootNode == null) return;
-
-            //wpfTree.Items.Add(rootNode);
 
             _ = StreamListener();
 
-            this.Load += (s, e) =>
+            this.Load += (s,e) =>
             {
                 UpdateTaskDisplay(task);
                 studentCodeRating.SetStats(task.ratingFactors);

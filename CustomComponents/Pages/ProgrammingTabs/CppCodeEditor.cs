@@ -16,12 +16,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class CppCodeEditor : BaseCodeEditor
     {
-        private readonly List<string> toCheck = new List<string>() {"robustness", "maintainability" };
+        private readonly List<string> toCheck = new List<string>() { "robustness", "maintainability" };
         private readonly Dictionary<string, Action<int, string>> highlighter = new Dictionary<string, Action<int, string>>();
+        private readonly Dictionary<string, string> clang_tidy_checks = new Dictionary<string, string>()
+        {
+            { "robustness", ProgrammingConfiguration.CPP_ROBUSTNESS_CHECKS },
+            { "maintainability", ProgrammingConfiguration.CPP_MAINTAINABILITY_CHECKS }
+        };
         private string fileExe;
         private string testerExe;
         private int standardComplexity;
-        public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
+        public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
         {
             highlighter = new Dictionary<string, Action<int, string>>()
             {
@@ -32,7 +37,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             testerExe = Path.Combine(Path.GetDirectoryName(filePath), "Tester.exe");
 
             if (task.ratingFactors.ContainsKey(4))
-                standardComplexity =Convert.ToInt16(task.ratingFactors[4][1]);
+                standardComplexity = Convert.ToInt16(task.ratingFactors[4][1]);
         }
 
         public override async Task RunCode()
@@ -110,14 +115,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     if (error.Split(':').Length >= 6)
                         errors += error;
                 },
-                async () => {
+                async () =>
+                {
                     if (errors != string.Empty)
                         foreach (var error in errors.Split(Environment.NewLine))
                         {
                             (int errorLine, string errorMsg) = GetErrorLineMessage(error);
                             HighlightError(errorLine - 1, errorMsg);
                         }
-                    else 
+                    else
                     {
                         int i = 3;
                         foreach (var item in toCheck)
@@ -129,16 +135,37 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
+        protected Process PowerShellCommandRunner(string command, bool didRunCode = false)
+        {
+            if (process != null)
+            {
+                try
+                {
+                    process.Dispose();
+                }
+                catch (InvalidOperationException) { }
+            }
+            Process newProcess = new Process();
+            newProcess.StartInfo.FileName = "powershell.exe";
+            newProcess.StartInfo.Arguments = command + (didRunCode ? " & pause" : "");
+            newProcess.StartInfo.UseShellExecute = didRunCode;
+            newProcess.StartInfo.RedirectStandardInput = !didRunCode;
+            newProcess.StartInfo.RedirectStandardOutput = !didRunCode;
+            newProcess.StartInfo.RedirectStandardError = !didRunCode;
+            newProcess.StartInfo.CreateNoWindow = !didRunCode;
+
+            return newProcess;
+        }
         private async Task checkStandards(string check, Action<int, string> highlighter, int updateStatsNum)
         {
             string errors = string.Empty;
-            commandLine = $"/c \"\"{ProgrammingConfiguration.CLANG_TIDY_EXE}\" \"{filePath}\" {LintersServices.cppLinterClangTidy[check]}\"";
-            process = CommandRunner(commandLine);
+            commandLine = $"-Command \"& \\\"{ProgrammingConfiguration.CLANG_TIDY_EXE}\\\" \\\"{filePath}\\\" -config (Get-Content \\\"{clang_tidy_checks[check]}\\\" -Raw)\"";
+            process = PowerShellCommandRunner(commandLine);
             await StartprocessAsyncExit(
                 process,
                 output =>
                 {
-                    if (output.StartsWith(filePath))
+                    if (output.StartsWith(filePath) && output.Contains(" warning:"))
                     {
                         errors += output.Replace(filePath + ":", "") + Environment.NewLine;
                     }
@@ -147,24 +174,29 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 () =>
                 {
                     int violationCounts = 0;
-                    foreach (var item in errors.Split(Environment.NewLine))
+                    foreach (var item in errors.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
                     {
-                        if (item != string.Empty)
+                        Debug.WriteLine(item);
+                        if (item != string.Empty && !item.Contains("clang-diagnostic-error"))
                         {
                             (int line, string msg) = GetErrorLineMessage(item);
-                            highlighter?.Invoke(line - 1, msg);
+                            highlighter?.Invoke(line - 1, GetErrorType(msg));
                             violationCounts++;
                         }
                     }
 
                     int currentComplexity = 0;
-                    if(check == "maintainability")
+                    if (check == "maintainability" && task.ratingFactors.ContainsKey(4))
                     {
                         currentComplexity = CodeComplexityReference.CodeComplexityCounter(filePath, false);
+                        Debug.WriteLine($"standard {standardComplexity}");
+                        Debug.WriteLine($"yours {currentComplexity}");
                         if (standardComplexity < currentComplexity)
+                        {
                             violationCounts += 10;
 
-                        highlighter?.Invoke(0, "Code complexity exceeds recommended limits. Reduce the number of if-statements, switch cases, and loops in your code.");
+                            highlighter?.Invoke(0, "Code complexity exceeds recommended limits. Reduce the number of if-statements, switch cases, and loops in your code.");
+                        }
                     }
 
                     updateStats?.Invoke(updateStatsNum, violationCounts, "cpp");
@@ -184,7 +216,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             );
         }
 
-        private (int,string) GetErrorLineMessage(string line)
+        private (int, string) GetErrorLineMessage(string line)
         {
             string errorMessage = line.Replace($"{filePath}:", "");
             string lineError = string.Empty;
@@ -200,8 +232,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 secondColon++;
             }
             errorMessage = errorMessage.Remove(0, secondColon);
-            errorMessage = errorMessage.Remove(0, errorMessage.IndexOf(':') + 1).Replace(" error:","");
+            errorMessage = errorMessage.Remove(0, errorMessage.IndexOf(':') + 1).Replace(" error:", "");
             return (int.Parse(lineError), errorMessage);
+        }
+
+        private string GetErrorType(string lineError)
+        {
+            try
+            {
+                Debug.WriteLine(lineError);
+                int startIndex = lineError.LastIndexOf("[");
+                return lineError.Substring(9, startIndex - 9);
+            }
+            catch (ArgumentOutOfRangeException) { return lineError; }
         }
     }
 }

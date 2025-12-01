@@ -37,6 +37,8 @@ namespace SmartCodeLab.Services
         public static string CPPLINT_CONFIG = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "syntax_checker.cpplintrc");
         public static string CPP_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "operator_counter.py");
         public static string CPP_COUNTER_INITIALIZER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "CppOperatorCounterInitializer.py");
+        public static string CPP_ROBUSTNESS_CHECKS = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "robustness.clang-tidy");
+        public static string CPP_MAINTAINABILITY_CHECKS = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "maintainability.clang-tidy");
 
         //Java
         public static Dictionary<NamingConvention, string> namingConventionProperties = new Dictionary<NamingConvention, string>()

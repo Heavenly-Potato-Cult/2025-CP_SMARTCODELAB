@@ -1,0 +1,24 @@
+Checks: >
+  -*,
+  bugprone-argument-comment,
+  bugprone-assignment-in-if-condition,
+  bugprone-bool-pointer-implicit-conversion,
+  bugprone-branch-clone,
+  bugprone-chained-comparison,
+  bugprone-empty-catch,
+  bugprone-inc-dec-in-conditions,
+  bugprone-incorrect-roundings,
+  bugprone-integer-division,
+  bugprone-misplaced-widening-cast,
+  bugprone-redundant-branch-condition,
+  bugprone-signed-char-misuse,
+  bugprone-switch-missing-default-case,
+  bugprone-terminating-continue,
+  bugprone-too-small-loop-variable,
+  bugprone-unhandled-exception-at-new,
+  hicpp-signed-bitwise,
+  
+  
+CheckOptions:
+    - key: bugprone-argument-comment.StrictMode
+      value: 1

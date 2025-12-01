@@ -1,0 +1,37 @@
+Checks: >
+  -*,
+  misc-unused-parameters,
+  misc-redundant-expression,
+  readability-avoid-nested-conditional-operator,
+  readability-avoid-return-with-void-value,
+  readability-duplicate-include,
+  readability-else-after-return,
+  readability-identifier-length,
+  readability-braces-around-statements,
+  readability-identifier-naming,
+  readability-math-missing-parentheses,
+  readability-misleading-indentation,
+  readability-redundant-casting,
+  readability-redundant-control-flow,
+  readability-redundant-declaration,
+  readability-reference-to-constructed-temporary,
+  readability-simplify-boolean-expr,
+  modernize-use-bool-literals,
+  hicpp-multiway-paths-covered,
+  misc-misleading-identifier,
+
+CheckOptions:
+    - key: hicpp-multiway-paths-covered.WarnOnMissingElse
+      value: 1
+    - key: misc-unused-parameters.StrictMode
+      value: 1
+    - key: readability-identifier-naming.LocalVariableCase
+      value: "lower_case"
+    - key: readability-identifier-naming.GlobalVariableCase
+      value: "lower_case"
+    - key: readability-identifier-naming.LocalConstantCase
+      value: "UPPER_CASE"
+    - key: readability-identifier-naming.GlobalConstantCase
+      value: "UPPER_CASE"
+    - key: readability-identifier-naming.GlobalConstantCase
+      value: "CamelCase"

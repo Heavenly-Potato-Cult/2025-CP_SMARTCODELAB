@@ -60,7 +60,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             users = server.Users;
             serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress, isConnected, sendStudentMessage);
 
-
             SystemSingleton.Instance.saveSession = saveSession;
             Action closingRemarks = new Action(() => isStillActive = false);
             homePage = new ServerHomePage(server, displayStudentTable, saveSession, closingRemarks);
