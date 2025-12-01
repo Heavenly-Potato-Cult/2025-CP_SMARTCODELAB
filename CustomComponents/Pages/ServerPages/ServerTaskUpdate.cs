@@ -216,12 +216,42 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             testcasecontent.RemoveRequested += (s, ev) =>
             {
                 testcasecontent.Dispose();
+                ReflowItems();
             };
-            testcasecontent.Dock = DockStyle.Top;
-            testContainer.Controls.Add(testcasecontent);
 
-            //spacerLabel.BringToFront();
+            testcasecontent.Dock = DockStyle.None;
+            testcasecontent.Width = testContainer.ClientSize.Width;
+            testcasecontent.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+
+            testContainer.Controls.Add(testcasecontent);
+            testContainer.Controls.SetChildIndex(testcasecontent, 0);
+
+            ReflowItems();
+
         }
+
+        private void ReflowItems()
+        {
+            int y = 0;
+
+            var ordered = testContainer.Controls
+                .Cast<Control>()
+                .OrderBy(c => testContainer.Controls.GetChildIndex(c));
+
+            foreach (Control c in ordered)
+            {
+                if (!c.Visible) continue;
+
+                c.Location = new Point(0, y);
+                c.Width = testContainer.ClientSize.Width;
+
+                y += c.Height + c.Margin.Bottom;
+            }
+
+           
+            testContainer.AutoScrollMinSize = new Size(0, y + 100);
+        }
+
 
         private void smartButton2_Click_1(object sender, EventArgs e)
         {
