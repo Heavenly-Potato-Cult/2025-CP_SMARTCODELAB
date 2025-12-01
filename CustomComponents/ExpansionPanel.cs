@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using SmartCodeLab.CustomComponents.SteamThings;
 
 namespace SmartCodeLab.CustomComponents
 {
@@ -13,8 +14,8 @@ namespace SmartCodeLab.CustomComponents
         // --- Internal Controls ---
         private Panel headerPanel;
         private Label lblIcon;
-        private Label lblTitle1;
-        private Label lblTitle2;
+        private SteamLabel lblTitle1;
+        private SteamLabel lblTitle2;
         private FlowLayoutPanel titleFlowPanel;
 
         // --- State ---
@@ -250,8 +251,8 @@ namespace SmartCodeLab.CustomComponents
         {
             headerPanel = new Panel();
             titleFlowPanel = new FlowLayoutPanel();
-            lblTitle1 = new Label();
-            lblTitle2 = new Label();
+            lblTitle1 = new SteamLabel();
+            lblTitle2 = new SteamLabel();
             lblIcon = new Label();
 
             headerPanel.SuspendLayout();
@@ -284,14 +285,13 @@ namespace SmartCodeLab.CustomComponents
             // lblTitle1
             // 
             lblTitle1.AutoSize = true;
-            lblTitle1.BackColor = Color.Transparent;
-            lblTitle1.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitle1.ForeColor = Color.Black;
+            lblTitle1.SteamTheme= SteamLabel.ThemeOption.Muted;
             lblTitle1.Location = new Point(3, 15);
             lblTitle1.Margin = new Padding(3, 15, 0, 0);
             lblTitle1.Name = "lblTitle1";
             lblTitle1.Padding = new Padding(10, 0, 0, 0);
-            lblTitle1.Size = new Size(80, 20);
+            //lblTitle1.Size = new Size(80, 20);
+            lblTitle1.SteamSize = SteamLabel.SizeOption.Small;
             lblTitle1.TabIndex = 63;
             lblTitle1.Text = "Test Case";
             lblTitle1.TextAlign = ContentAlignment.MiddleLeft;
@@ -299,14 +299,13 @@ namespace SmartCodeLab.CustomComponents
             // lblTitle2
             // 
             lblTitle2.AutoSize = true;
-            lblTitle2.BackColor = Color.Transparent;
-            lblTitle2.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitle2.ForeColor = Color.DimGray;
+            lblTitle2.SteamTheme = SteamLabel.ThemeOption.Muted;
             lblTitle2.Location = new Point(86, 15);
             lblTitle2.Margin = new Padding(3, 15, 0, 0);
             lblTitle2.Name = "lblTitle2";
             lblTitle2.Padding = new Padding(10, 0, 0, 0);
-            lblTitle2.Size = new Size(27, 20);
+            //lblTitle2.Size = new Size(27, 20);
+            lblTitle2.SteamSize = SteamLabel.SizeOption.Small;
             lblTitle2.TabIndex = 64;
             lblTitle2.Text = "1";
             lblTitle2.TextAlign = ContentAlignment.MiddleLeft;
