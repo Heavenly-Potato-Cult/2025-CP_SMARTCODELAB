@@ -14,7 +14,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
     public partial class ChatBox : Form
     {
         public string studentId { get; private set; }
-        public ChatBox(Func<string, string, bool> sendMessage,List<UserMessage>? messages, bool isActive, string studentName, string studentId)
+        public ChatBox(Func<string, string, Task<bool>> sendMessage,List<UserMessage>? messages, bool isActive, string studentName, string studentId)
         {
             InitializeComponent();
             richTextBox1.Enabled = isActive;
@@ -26,8 +26,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 if (e.KeyCode == Keys.Enter && sendMessage != null)
                 {
                     string msg = richTextBox2.Text;
-                    if(sendMessage(studentId, msg))
-                        richTextBox1.AppendText($"Me : {msg}");
+                    Task.Run(async () => 
+                    { 
+                         var result = await sendMessage(studentId, msg);
+                        if(result)
+                            this.Invoke((Action)(() => richTextBox1.AppendText($"Me : {msg}")));
+                    });
                     richTextBox2.Clear();
                     e.Handled = true;
                 }

@@ -116,6 +116,7 @@ namespace SmartCodeLab
             //SetDoubleBuffered(tabControl_RightSide);
             //InitializeWPFTree();
             studentIdentity.Text = userName;
+            monitoredStatus.Visible = false;
             if (task.isTabLocked)
             {
                 FormBorderStyle = FormBorderStyle.None;
@@ -138,7 +139,7 @@ namespace SmartCodeLab
                 };
             }
             else
-                button1.Visible = false;
+                exitbtn.Visible = false;
 
             stream = client;
             this.userName = userName;
@@ -164,12 +165,19 @@ namespace SmartCodeLab
 
             _ = StreamListener();
 
-            this.Load += (s,e) =>
+            this.Load += (s, e) =>
             {
                 UpdateTaskDisplay(task);
                 studentCodeRating.SetStats(task.ratingFactors);
                 studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
             };
+        }
+
+        private void ReleaseAnything()
+        {
+            stream.Close();
+            stream.Dispose();
+            SystemSingleton.Instance._loggedIn = false;
         }
 
         public void UpdateTaskDisplay(TaskModel task)
@@ -264,12 +272,10 @@ namespace SmartCodeLab
                             UpdateTaskDisplay(serverMsg._task);
                             MessageBox.Show(this, "Task Updated");
                             break;
-
                         case MessageType.USER_MESSAGE:
                             this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}")));
-                            tabControl_RightSide.SelectedTab = MessagesTab;
+                            MainTabControl.SelectedTab = MessagesTab;
                             break;
-
                         case MessageType.LEADERBOARDS_UPDATE:
                             _ = Task.Run(() =>
                             {
@@ -302,7 +308,13 @@ namespace SmartCodeLab
                                 }));
                             });
                             break;
-
+                        case MessageType.MONITORED:
+                            this.Invoke((Action)(() => monitoredStatus.Visible = true));
+                            break;
+                        case MessageType.LEFT_ALONE:
+                            this.Invoke((Action)(() => monitoredStatus.Visible = false));
+                            MainTabControl.SelectedTab = MessagesTab;
+                            break;
                         default:
                             break;
                     }
@@ -317,6 +329,7 @@ namespace SmartCodeLab
                 // Log unexpected errors
                 Console.WriteLine(ex);
             }
+            MessageBox.Show(this, "Connection to server lost.");
         }
 
         private void NotifyHost(NotificationType type, string result)
@@ -403,26 +416,26 @@ namespace SmartCodeLab
 
         private void LoadFolder(string path, WpfTreeViewItem parent)
         {
-            try
-            {
-                // Add subfolders
-                foreach (var dir in Directory.GetDirectories(path))
-                {
-                    var folderNode = new WpfTreeViewItem { Header = Path.GetFileName(dir) };
-                    parent.Items.Add(folderNode);
-                    LoadFolder(dir, folderNode);
-                }
+            //try
+            //{
+            //    // Add subfolders
+            //    foreach (var dir in Directory.GetDirectories(path))
+            //    {
+            //        var folderNode = new WpfTreeViewItem { Header = Path.GetFileName(dir) };
+            //        parent.Items.Add(folderNode);
+            //        LoadFolder(dir, folderNode);
+            //    }
 
-                // Add files
-                foreach (var file in Directory.GetFiles(path))
-                {
-                    parent.Items.Add(new WpfTreeViewItem { Header = Path.GetFileName(file) });
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                // Skip folders we can't access
-            }
+            //    // Add files
+            //    foreach (var file in Directory.GetFiles(path))
+            //    {
+            //        parent.Items.Add(new WpfTreeViewItem { Header = Path.GetFileName(file) });
+            //    }
+            //}
+            //catch (UnauthorizedAccessException)
+            //{
+            //    // Skip folders we can't access
+            //}
         }
 
         //private WpfTreeViewItem CreateFolderNode(string path)
@@ -516,25 +529,12 @@ namespace SmartCodeLab
             });
         }
 
-
-
         private void TempIDE_FormClosing(object sender, FormClosingEventArgs e)
         {
+            ReleaseAnything();
             _cancellationTokenSource?.Cancel();
             stream?.Close();
             SystemSingleton.Instance._loggedIn = false;
-        }
-
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void richTextBox2_KeyUp(object sender, KeyEventArgs e)
@@ -619,6 +619,10 @@ namespace SmartCodeLab
 
         }
 
-        
+        private void exitbtn_Click(object sender, EventArgs e)
+        {
+            ReleaseAnything();
+            Close();
+        }
     }
 }

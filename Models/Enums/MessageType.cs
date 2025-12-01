@@ -17,5 +17,7 @@ namespace SmartCodeLab.Models.Enums
         CODE_SUBMISSION,
         USER_MESSAGE,
         LEADERBOARDS_UPDATE,
+        MONITORED,
+        LEFT_ALONE
     }
 }

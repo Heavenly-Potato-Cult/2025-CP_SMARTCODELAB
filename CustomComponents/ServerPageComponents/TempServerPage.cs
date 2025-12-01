@@ -2,6 +2,7 @@
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.Models;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
@@ -20,19 +21,26 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private StudentCodingProgress studentProgress;
 
         private System.Threading.Timer updateStudentList;
-        private string selectedStudentId = string.Empty;
+        private string selectedStudentId;
         private Func<string, StudentCodingProgress> progressRetriever;
         private Dictionary<string, List<UserMessage>> userMessages;
-        private Func<string, UserMessage, bool> sendMessage;
+        private Func<string, UserMessage, Task<bool>> sendMessage;
+        private Func<string, bool, Task> informUserMonitor;
         private Func<string, bool> isStudentActive;
         private ChatBox chatBox;
         private List<UserProfile> displayedUsers = new List<UserProfile>();
         private bool isForLogs;
         private long searchVersion;
-        public TempServerPage(TaskModel task, Dictionary<string, UserProfile> users, Func<string,
-            StudentCodingProgress> progressRetriever, Func<string, bool> isStudentActive, Func<string, UserMessage, bool> sendMessage)
+        public TempServerPage(TaskModel task, 
+            Dictionary<string, UserProfile> users, 
+            Func<string,StudentCodingProgress> progressRetriever, 
+            Func<string, bool> isStudentActive, 
+            Func<string, UserMessage, Task<bool>> sendMessage, 
+            Func<string, bool, Task> informUserMonitor)
         {
             InitializeComponent();
+            selectedStudentId = string.Empty;
+            this.informUserMonitor = informUserMonitor;
             isForLogs = false;
             userMessages = new Dictionary<string, List<UserMessage>>();
             chatBox = null;
@@ -210,31 +218,33 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void SentBroadCaseMessage(string message)
         {
-            Task.Run(() =>
+            Task.Run(async () =>
             {
                 foreach (var item in displayedUsers)
                 {
-                    SendMessageToStudent(item._studentId, message);
+                    await SendMessageToStudent(item._studentId, message);
                 }
             });
         }
 
-        private bool SendMessageToStudent(string studentId, string message)
+        private async Task<bool> SendMessageToStudent(string studentId, string message)
         {
             if (isStudentActive(studentId))
             {
                 var messageObj = new UserMessage(message);
-                if (sendMessage(studentId, messageObj))
+                var result = await sendMessage(studentId, messageObj);
+                if (result)
                 {
                     if (!userMessages.ContainsKey(studentId))
                         userMessages[studentId] = new List<UserMessage>();
 
                     userMessages[studentId].Add(messageObj);
-
                     return true;
-                }
+                }else
+                    return false;
             }
-            return false;
+            else
+                return false;
         }
 
         public async void UpdateStudentProgressDisplay(UserProfile user, StudentCodingProgress progress, bool fromClick = false)
@@ -271,7 +281,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                                     {
                                         Dock = DockStyle.Top
                                     };
-
                                     copypastedCodes.Controls.Add(icon);
                                 }
                             }
@@ -291,13 +300,18 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             currentTask = task;
         }
 
-        private void NewUserSelected(UserProfile profile, UserIcons newSelected)
+        private async void NewUserSelected(UserProfile profile, UserIcons newSelected)
         {
             //set the icon color
             recentSelectedIcon?.LostFocusDisplay();
             recentSelectedIcon = newSelected;
 
+            if(selectedStudentId != string.Empty && selectedStudentId != profile._studentId)
+            {
+                await informUserMonitor?.Invoke(selectedStudentId, false);
+            }
             selectedStudentId = profile._studentId;
+            await informUserMonitor?.Invoke(selectedStudentId, true);
             try
             {
                 UpdateStudentProgressDisplay(profile, progressRetriever?.Invoke(profile._studentId) ?? new StudentCodingProgress(), true);
@@ -309,27 +323,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     codeTrack.Maximum = 0;
                     studentCode.Text = "No Progress";
                     copypastedCodes.Controls.Clear();
-                    //this.studentCodeRating1.UpdateStatsDisplay(progress.codeRating);
                 }));
             }
 
             studentName.Text = profile._studentName.ToUpper() + " | " + profile._computerAddress;
-            //ipaddress.Text = profile._computerAddress;
-        }
-
-        private void smartButton3_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(selectedStudentId))
-                return;
-            chatBox = new ChatBox(SendMessageToStudent, userMessages[selectedStudentId] ?? null, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
-            chatBox.ShowDialog();
-            chatBox = null;
-        }
-
-        private void customTextBox1__TextChanged(object sender, EventArgs e)
-        {
-            updateStudentList?.Change(Timeout.Infinite, Timeout.Infinite);
-            updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
         }
 
         private void smartButton1_Click(object sender, EventArgs e)
