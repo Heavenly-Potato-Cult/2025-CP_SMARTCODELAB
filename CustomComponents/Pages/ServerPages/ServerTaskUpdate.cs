@@ -212,15 +212,64 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void btn_AddTestCase_Click_1(object sender, EventArgs e)
         {
+            testContainer.SuspendLayout();
+
             var testcasecontent = new TestCase3();
             testcasecontent.RemoveRequested += (s, ev) =>
             {
                 testcasecontent.Dispose();
+                UpdateScrollMinSize(testContainer);
             };
             testcasecontent.Dock = DockStyle.Top;
             testContainer.Controls.Add(testcasecontent);
+            testContainer.Controls.SetChildIndex(testcasecontent, 0);
 
-            //spacerLabel.BringToFront();
+            testContainer.ResumeLayout(true);
+            //Point scrollPosition = new Point(
+            //    0, // X-position remains 0
+            //    testcasecontent.Location.Y + testcasecontent.Height + 5 // Scroll just past the bottom of the last item
+            //);
+
+            //testContainer.AutoScrollPosition = new Point(Math.Abs(scrollPosition.X), Math.Abs(scrollPosition.Y));
+            UpdateScrollMinSize(testContainer);
+
+        }
+        private void UpdateScrollMinSize(Panel container)
+        {
+            // A buffer value large enough to clear the bottom edge and potential scrollbar
+            const int BottomBuffer = 100;
+
+            int requiredHeight = 0;
+
+            // 1. Calculate the total required height
+            foreach (Control control in container.Controls)
+            {
+                // Only sum controls that are visible and docked Top/Bottom
+                if (control.Visible && (control.Dock == DockStyle.Top || control.Dock == DockStyle.Bottom))
+                {
+                    // Add the control's height PLUS its Margin (specifically Bottom margin)
+                    requiredHeight += control.Height + control.Margin.Bottom;
+                }
+            }
+
+            // 2. Add the guaranteed buffer
+            int finalHeight = requiredHeight + BottomBuffer;
+
+            // 3. Guard Clause: Set the minimum size
+            // We only need to worry about the vertical scroll, so the width can be 0 (or container.Width)
+            if (finalHeight > container.Height)
+            {
+                container.AutoScrollMinSize = new Size(0, finalHeight);
+            }
+            else
+            {
+                // If the content is smaller than the viewable area, reset the scroll size
+                container.AutoScrollMinSize = new Size(0, 0);
+            }
+
+            // Force the updates
+            container.PerformLayout();
+            container.Invalidate();
         }
 
         private void smartButton2_Click_1(object sender, EventArgs e)
