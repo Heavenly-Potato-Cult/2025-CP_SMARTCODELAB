@@ -383,7 +383,7 @@
             MessagesTab.Location = new Point(4, 29);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3);
-            MessagesTab.Size = new Size(611, 902);
+            MessagesTab.Size = new Size(403, 902);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -394,7 +394,7 @@
             richTextBox2.Dock = DockStyle.Top;
             richTextBox2.Location = new Point(3, 528);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(605, 104);
+            richTextBox2.Size = new Size(397, 104);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
             richTextBox2.TextChanged += richTextBox2_TextChanged;
@@ -407,7 +407,7 @@
             msgBox.Location = new Point(3, 3);
             msgBox.Name = "msgBox";
             msgBox.ReadOnly = true;
-            msgBox.Size = new Size(605, 525);
+            msgBox.Size = new Size(397, 525);
             msgBox.TabIndex = 0;
             msgBox.Text = "";
             // 
@@ -419,7 +419,7 @@
             TestCases.Location = new Point(4, 29);
             TestCases.Margin = new Padding(0);
             TestCases.Name = "TestCases";
-            TestCases.Size = new Size(611, 902);
+            TestCases.Size = new Size(403, 902);
             TestCases.TabIndex = 4;
             TestCases.Text = "TestCases";
             // 
@@ -432,7 +432,8 @@
             TestCasesPanel.Dock = DockStyle.Fill;
             TestCasesPanel.Location = new Point(0, 72);
             TestCasesPanel.Name = "TestCasesPanel";
-            TestCasesPanel.Size = new Size(611, 830);
+            TestCasesPanel.Padding = new Padding(5, 0, 5, 0);
+            TestCasesPanel.Size = new Size(403, 830);
             TestCasesPanel.TabIndex = 23;
             // 
             // customCard4
@@ -445,7 +446,7 @@
             customCard4.Dock = DockStyle.Top;
             customCard4.Location = new Point(0, 0);
             customCard4.Name = "customCard4";
-            customCard4.Size = new Size(611, 72);
+            customCard4.Size = new Size(403, 72);
             customCard4.TabIndex = 24;
             // 
             // steamLabel4
@@ -470,7 +471,7 @@
             Leaderboards.Location = new Point(4, 29);
             Leaderboards.Margin = new Padding(0);
             Leaderboards.Name = "Leaderboards";
-            Leaderboards.Size = new Size(611, 902);
+            Leaderboards.Size = new Size(403, 902);
             Leaderboards.TabIndex = 2;
             Leaderboards.Text = "Leaderboards";
             // 
@@ -483,7 +484,7 @@
             panel_leaderboards.Margin = new Padding(3, 4, 3, 4);
             panel_leaderboards.Name = "panel_leaderboards";
             panel_leaderboards.Padding = new Padding(0, 27, 0, 0);
-            panel_leaderboards.Size = new Size(611, 830);
+            panel_leaderboards.Size = new Size(403, 830);
             panel_leaderboards.TabIndex = 18;
             // 
             // customCard5
@@ -496,7 +497,7 @@
             customCard5.Dock = DockStyle.Top;
             customCard5.Location = new Point(0, 0);
             customCard5.Name = "customCard5";
-            customCard5.Size = new Size(611, 72);
+            customCard5.Size = new Size(403, 72);
             customCard5.TabIndex = 25;
             // 
             // steamLabel5
@@ -521,7 +522,7 @@
             Score.Location = new Point(4, 29);
             Score.Margin = new Padding(0);
             Score.Name = "Score";
-            Score.Size = new Size(611, 902);
+            Score.Size = new Size(403, 902);
             Score.TabIndex = 3;
             Score.Text = "Score";
             // 
@@ -535,7 +536,7 @@
             panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
             panel5.Padding = new Padding(0, 27, 0, 0);
-            panel5.Size = new Size(611, 830);
+            panel5.Size = new Size(403, 830);
             panel5.TabIndex = 81;
             // 
             // studentCodeRating
@@ -545,7 +546,7 @@
             studentCodeRating.Location = new Point(30, 31);
             studentCodeRating.Margin = new Padding(3, 4, 3, 4);
             studentCodeRating.Name = "studentCodeRating";
-            studentCodeRating.Size = new Size(555, 347);
+            studentCodeRating.Size = new Size(347, 347);
             studentCodeRating.TabIndex = 79;
             // 
             // customCard6
@@ -558,7 +559,7 @@
             customCard6.Dock = DockStyle.Top;
             customCard6.Location = new Point(0, 0);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(611, 72);
+            customCard6.Size = new Size(403, 72);
             customCard6.TabIndex = 80;
             // 
             // steamLabel6

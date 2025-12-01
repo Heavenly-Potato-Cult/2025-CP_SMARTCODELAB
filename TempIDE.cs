@@ -11,14 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-using EH = System.Windows.Forms.Integration.ElementHost;
-using WpfBrushes = System.Windows.Media.Brushes;
-using WpfColor = System.Windows.Media.Color;
-using WpfSolidColorBrush = System.Windows.Media.SolidColorBrush;
-using WpfSystemColors = System.Windows.SystemColors;
-//For WPF ;>
-using WpfTreeView = System.Windows.Controls.TreeView;
-using WpfTreeViewItem = System.Windows.Controls.TreeViewItem;
+using SmartCodeLab.CustomComponents.SteamThings;
 
 namespace SmartCodeLab
 {
@@ -200,6 +193,8 @@ namespace SmartCodeLab
 
                             testcase.Title1 = "Test Case";
                             testcase.Title2 = testCaseNumber.ToString();
+                            testcase.HeaderColor = System.Drawing.Color.FromArgb(30, 41, 57);
+                            testcase.IsExpanded= false;
 
                             testcaseview.AutoSize = false;
 
@@ -401,29 +396,29 @@ namespace SmartCodeLab
         //    panel_LeftSide_Directory.Controls.Add(host);
         //}
 
-        private void LoadFolder(string path, WpfTreeViewItem parent)
-        {
-            try
-            {
-                // Add subfolders
-                foreach (var dir in Directory.GetDirectories(path))
-                {
-                    var folderNode = new WpfTreeViewItem { Header = Path.GetFileName(dir) };
-                    parent.Items.Add(folderNode);
-                    LoadFolder(dir, folderNode);
-                }
+        //private void LoadFolder(string path, WpfTreeViewItem parent)
+        //{
+        //    try
+        //    {
+        //        // Add subfolders
+        //        foreach (var dir in Directory.GetDirectories(path))
+        //        {
+        //            var folderNode = new WpfTreeViewItem { Header = Path.GetFileName(dir) };
+        //            parent.Items.Add(folderNode);
+        //            LoadFolder(dir, folderNode);
+        //        }
 
-                // Add files
-                foreach (var file in Directory.GetFiles(path))
-                {
-                    parent.Items.Add(new WpfTreeViewItem { Header = Path.GetFileName(file) });
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                // Skip folders we can't access
-            }
-        }
+        //        // Add files
+        //        foreach (var file in Directory.GetFiles(path))
+        //        {
+        //            parent.Items.Add(new WpfTreeViewItem { Header = Path.GetFileName(file) });
+        //        }
+        //    }
+        //    catch (UnauthorizedAccessException)
+        //    {
+        //        // Skip folders we can't access
+        //    }
+        //}
 
         //private WpfTreeViewItem CreateFolderNode(string path)
         //{
