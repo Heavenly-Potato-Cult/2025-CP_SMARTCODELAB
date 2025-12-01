@@ -8,7 +8,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
 	<ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
-	
 	  <UseWPF>true</UseWPF>
 	
 	  <PlatformTarget>AnyCPU</PlatformTarget>
