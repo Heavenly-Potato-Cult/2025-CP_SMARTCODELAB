@@ -41,8 +41,8 @@
             pictureBox1 = new PictureBox();
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             pastedCount = new Label();
-            steamLabel5 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             pictureBox7 = new PictureBox();
+            steamLabel5 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             submissionCount = new Label();
             steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
@@ -138,7 +138,7 @@
             currentTime.AutoSize = true;
             currentTime.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             currentTime.ForeColor = Color.FromArgb(223, 145, 5);
-            currentTime.Location = new Point(37, 68);
+            currentTime.Location = new Point(107, 50);
             currentTime.Name = "currentTime";
             currentTime.Size = new Size(35, 41);
             currentTime.TabIndex = 5;
@@ -150,7 +150,7 @@
             steamLabel7.BackColor = Color.Transparent;
             steamLabel7.Font = new Font("Geist", 12F);
             steamLabel7.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel7.Location = new Point(100, 28);
+            steamLabel7.Location = new Point(107, 23);
             steamLabel7.Name = "steamLabel7";
             steamLabel7.Size = new Size(151, 23);
             steamLabel7.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
@@ -161,9 +161,9 @@
             // pictureBox8
             // 
             pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(24, 18);
+            pictureBox8.Location = new Point(16, 23);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(60, 43);
+            pictureBox8.Size = new Size(73, 68);
             pictureBox8.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox8.TabIndex = 0;
             pictureBox8.TabStop = false;
@@ -190,7 +190,7 @@
             activeCount.AutoSize = true;
             activeCount.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             activeCount.ForeColor = Color.FromArgb(26, 191, 32);
-            activeCount.Location = new Point(37, 68);
+            activeCount.Location = new Point(90, 50);
             activeCount.Name = "activeCount";
             activeCount.Size = new Size(35, 41);
             activeCount.TabIndex = 2;
@@ -202,7 +202,7 @@
             steamLabel1.BackColor = Color.Transparent;
             steamLabel1.Font = new Font("Geist", 12F);
             steamLabel1.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel1.Location = new Point(90, 18);
+            steamLabel1.Location = new Point(90, 23);
             steamLabel1.Name = "steamLabel1";
             steamLabel1.Size = new Size(190, 23);
             steamLabel1.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
@@ -213,9 +213,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(24, 18);
+            pictureBox1.Location = new Point(11, 23);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(60, 43);
+            pictureBox1.Size = new Size(73, 68);
             pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -228,8 +228,8 @@
             customCard6.BorderRadius = 5;
             customCard6.BorderSize = 1;
             customCard6.Controls.Add(pastedCount);
-            customCard6.Controls.Add(steamLabel5);
             customCard6.Controls.Add(pictureBox7);
+            customCard6.Controls.Add(steamLabel5);
             customCard6.Location = new Point(701, 3);
             customCard6.Name = "customCard6";
             customCard6.Padding = new Padding(5);
@@ -241,11 +241,21 @@
             pastedCount.AutoSize = true;
             pastedCount.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             pastedCount.ForeColor = Color.FromArgb(157, 107, 255);
-            pastedCount.Location = new Point(47, 68);
+            pastedCount.Location = new Point(90, 50);
             pastedCount.Name = "pastedCount";
             pastedCount.Size = new Size(35, 41);
             pastedCount.TabIndex = 4;
             pastedCount.Text = "0";
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(11, 23);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(73, 68);
+            pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox7.TabIndex = 0;
+            pictureBox7.TabStop = false;
             // 
             // steamLabel5
             // 
@@ -260,16 +270,6 @@
             steamLabel5.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel5.TabIndex = 0;
             steamLabel5.Text = "COPY PASTE DETECTED";
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(24, 18);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(60, 43);
-            pictureBox7.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox7.TabIndex = 0;
-            pictureBox7.TabStop = false;
             // 
             // customCard5
             // 
@@ -292,7 +292,7 @@
             submissionCount.AutoSize = true;
             submissionCount.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             submissionCount.ForeColor = Color.FromArgb(2, 173, 226);
-            submissionCount.Location = new Point(37, 68);
+            submissionCount.Location = new Point(95, 50);
             submissionCount.Name = "submissionCount";
             submissionCount.Size = new Size(35, 41);
             submissionCount.TabIndex = 3;
@@ -315,9 +315,9 @@
             // pictureBox6
             // 
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(24, 18);
+            pictureBox6.Location = new Point(16, 23);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(60, 43);
+            pictureBox6.Size = new Size(73, 68);
             pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox6.TabIndex = 0;
             pictureBox6.TabStop = false;
