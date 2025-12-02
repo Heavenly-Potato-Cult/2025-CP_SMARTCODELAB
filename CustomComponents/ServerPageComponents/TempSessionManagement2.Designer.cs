@@ -135,7 +135,7 @@
             tabNavigationLocked.TabIndex = 50;
             tabNavigationLocked.Text = "soloTickBox1";
             tabNavigationLocked.UseVisualStyleBackColor = true;
-            tabNavigationLocked.CheckedChanged += this.soloTickBox1_CheckedChanged;
+            tabNavigationLocked.CheckedChanged += soloTickBox1_CheckedChanged;
             // 
             // steamLabel8
             // 
@@ -257,7 +257,6 @@
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.BackColor = Color.Transparent;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
