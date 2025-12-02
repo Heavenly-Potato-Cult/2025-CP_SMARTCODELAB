@@ -34,5 +34,25 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
             };
         }
+
+        private void InitializeComponent()
+        {
+            ((System.ComponentModel.ISupportInitialize)this).BeginInit();
+            SuspendLayout();
+            // 
+            // CodeEditor
+            // 
+            AutoScrollMinSize = new Size(31, 19);
+            BackColor = SystemColors.Control;
+            CharHeight = 19;
+            Font = new Font("Courier New", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ForeColor = SystemColors.ActiveCaptionText;
+            Name = "CodeEditor";
+            ServiceLinesColor = Color.IndianRed;
+            ToolTipDelay = 200;
+            ((System.ComponentModel.ISupportInitialize)this).EndInit();
+            ResumeLayout(false);
+
+        }
     }
 }

@@ -7,6 +7,7 @@ using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,12 +40,12 @@ namespace SmartCodeLab.CustomComponents.Pages
         private TcpListener serverListener;
 
         //users related
-        private Dictionary<string, NetworkStream> connectedUsers;
+        private ConcurrentDictionary<string, NetworkStream> connectedUsers;
         private List<string> currentStudents = new List<string>();
         //will use userId as a KEY
-        private Dictionary<string, StudentCodingProgress> userProgress;
+        private ConcurrentDictionary<string, StudentCodingProgress> userProgress;
 
-        private Dictionary<string, UserProfile> users;
+        private ConcurrentDictionary<string, UserProfile> users;
         private bool isStillActive;
         public MainServerPage2(Server server)
         {
@@ -55,14 +56,32 @@ namespace SmartCodeLab.CustomComponents.Pages
             serverListener = new TcpListener(IPAddress.Any, 1901);
             currentTask = server.ServerTask;
             Task.Run(async () => await StartServerAsync());
-            connectedUsers = new Dictionary<string, NetworkStream>();
-            userProgress = new Dictionary<string, StudentCodingProgress>();
-            users = server.Users;
+            connectedUsers = new ConcurrentDictionary<string, NetworkStream>(
+                concurrencyLevel: 64,       // For 30+ concurrent connections
+                capacity: 50                // Expected max simultaneous connections
+            );
+
+            // Student progress tracking
+            userProgress = new ConcurrentDictionary<string, StudentCodingProgress>(
+                concurrencyLevel: 64,       // Same as above for consistency
+                capacity: 100               // All 50 students + room for more
+            );
+
+            // User profiles (loaded from server)
+            users = new ConcurrentDictionary<string, UserProfile>(
+                concurrencyLevel: 64,
+                capacity: 150
+            );
+
+            // Then add all users
+            foreach (var kvp in server.Users)
+            {
+                users.TryAdd(kvp.Key, kvp.Value);
+            }
             serverPage = new TempServerPage(server.ServerTask, server.Users, IdStudentProgress, isConnected, sendStudentMessage, UpdateMonitorStatus);
 
             SystemSingleton.Instance.saveSession = saveSession;
-            Action closingRemarks = new Action(() => isStillActive = false);
-            homePage = new ServerHomePage(server, displayStudentTable, saveSession, closingRemarks);
+            homePage = new ServerHomePage(server, displayStudentTable, saveSession, closeServer);
             homePage._totalStudents = server.Users.Count;
             progressSubmissionPage = new ProgressSubmissionPage();
             progressSubmissionPage.ratingFactorsWeight = currentTask.ratingFactors;
@@ -83,10 +102,10 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void displayStudentTable()
         {
-            userTable = new StudTable(users, serverPage.displayUsers, studentChangesDisplayUpdate);
+            userTable = new StudTable(users.ToDictionary(kvp => kvp.Key, kvp => kvp.Value), serverPage.displayUsers, studentChangesDisplayUpdate, NotifyStudent);
             userTable.ShowDialog();
-            users = userTable.expectedUsers;
-            server.Users = users;
+            users = new ConcurrentDictionary<string, UserProfile>(userTable.expectedUsers);
+            server.Users = users.ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             homePage.updateCountDisplay(users.Count);
         }
 
@@ -118,21 +137,31 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
             else
             {
-                MessageBox.Show("Student is not connected.");
+                NonBlockingNotification("Student is not connected.");
                 return false;
             }
         }
 
-        public async Task UpdateMonitorStatus(string userId, bool isMonitored)
+        //will be used for operations that will send a ServerMessage to the student
+        public async Task NotifyStudent(ServerMessage serverMessage, string userId)
         {
             if (connectedUsers.ContainsKey(userId))
             {
+                MessageType messageType = serverMessage._messageType;
                 NetworkStream stream = connectedUsers[userId];
-                Serializer.SerializeWithLengthPrefix<ServerMessage>(
-                    stream,
-                    new ServerMessage.Builder(isMonitored ? MessageType.MONITORED : MessageType.LEFT_ALONE).Build(),
-                    PrefixStyle.Base128);
+                Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, serverMessage, PrefixStyle.Base128);
                 await stream.FlushAsync();
+
+                if(serverMessage._messageType == MessageType.KICKED)
+                    NonBlockingNotification("Student Successfully Kicked.");
+            }
+        }
+
+        public async void UpdateMonitorStatus(string userId, bool isMonitored)
+        {
+            if (connectedUsers.ContainsKey(userId))
+            {
+                await NotifyStudent(new ServerMessage.Builder(isMonitored ? MessageType.MONITORED : MessageType.LEFT_ALONE).Build(), userId);
             }
         }
 
@@ -204,6 +233,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                 byte[] taskData = Encoding.UTF8.GetBytes(JsonFileService.GetObjectJsonText(server));
                 udpServer.Send(taskData, taskData.Length, result.RemoteEndPoint);
             }
+            udpServer.Close();
         }
 
         private async Task StartServerAsync()
@@ -220,22 +250,24 @@ namespace SmartCodeLab.CustomComponents.Pages
                     // Handle each client in a separate task
                     _ = Task.Run(() => MessageReceiverAsync(stream));
                 }
+                serverListener.Dispose();
             }
             catch (Exception ex)
             {
-                this.Invoke((MethodInvoker)delegate
-                {
-                    MessageBox.Show($"Server error: {ex.Message}");
-                });
+                //this.Invoke((MethodInvoker)delegate
+                //{
+                //    MessageBox.Show($"Server error: {ex.Message}");
+                //});
             }
         }
 
-        public void closer()
+        private void closeServer()
         {
-            serverListener.Dispose();
-            udpServer.Dispose();
+            saveSession();
+            isStillActive = false;
+            serverListener.Stop();
+            udpServer.Close();
         }
-
         private Task<TcpClient> AcceptTcpClientAsync(TcpListener listener)
         {
             return Task.Run(() => listener.AcceptTcpClient());
@@ -292,17 +324,13 @@ namespace SmartCodeLab.CustomComponents.Pages
                                 }
                                 else
                                 {
-                                    if (!userProgress.ContainsKey(userProfile._studentId))
-                                    {
-                                        userProgress.Add(userProfile._studentId, new StudentCodingProgress());
-                                    }
-
+                                    var progress = userProgress.GetOrAdd(userProfile._studentId, key => new StudentCodingProgress());
                                     currentStudents.Add(userProfile._studentName);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                         new ServerMessage.Builder(MessageType.LOG_IN_SUCCESSFUL).
                                         Task(currentTask).
                                         UserProfile(userProfile).
-                                        StudentProgress(userProgress[userProfile._studentId]).
+                                        StudentProgress(progress).
                                         Build(), PrefixStyle.Base128);
                                     didLoggedIn = true;
                                     serverPage.StudentLoggedIn(userProfile);
@@ -336,12 +364,18 @@ namespace SmartCodeLab.CustomComponents.Pages
                 }
                 catch (IOException)
                 {
-                    MessageBox.Show("all too well gar");
+                    MessageBox.Show("Server Closed");
+                    break;
+                }
+                catch (SocketException) 
+                {
+                    MessageBox.Show("Server Closed");
                     break;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("The error : " + ex.StackTrace);
+                    MessageBox.Show("Server Closed");
+                    break;
                 }
             }
             HandleUserStream(networkStream, userProfile, false, didLoggedIn);
@@ -349,9 +383,7 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void UpdateUserProgress(string studentId, StudentCodingProgress progress)
         {
-            if (!userProgress.ContainsKey(studentId))
-                userProgress.Add(studentId, progress);
-            userProgress[studentId] = progress;
+            userProgress.AddOrUpdate(studentId, progress, (key, oldValue) => progress);
         }
 
         public StudentCodingProgress IdStudentProgress(string studentId)
@@ -364,10 +396,10 @@ namespace SmartCodeLab.CustomComponents.Pages
             try
             {
                 if (isAdd)
-                    connectedUsers.Add(profile._studentId, networkStream);
+                    connectedUsers.AddOrUpdate(profile._studentId, networkStream, (k, v) => networkStream);
                 else
                 {
-                    connectedUsers.Remove(profile._studentId);
+                    connectedUsers.TryRemove(profile._studentId, out _);
                     currentStudents.Remove(profile._studentName);
                     if (didLoggedIn)
                     {
@@ -388,19 +420,22 @@ namespace SmartCodeLab.CustomComponents.Pages
                 foreach (var item in connectedUsers)
                 {
                     if(task != null)
-                        Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), PrefixStyle.Base128);
+                        NotifyStudent(new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), item.Key);
                     else if(leaderboards != null)
-                        Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.LEADERBOARDS_UPDATE).Leaderboards(leaderboards).Build(), PrefixStyle.Base128);
+                        NotifyStudent(new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(new UserMessage(msg)).Build(), item.Key);
                     else
-                        Serializer.SerializeWithLengthPrefix<ServerMessage>(item.Value, new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(new UserMessage(msg)).Build(), PrefixStyle.Base128);
-                    
-                    await item.Value.FlushAsync();
+                        NotifyStudent(new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(new UserMessage(msg)).Build(), item.Key);
                 }
 
                 string notif = task != null ? "Server Task Updated Successfully" : msg != null ? "Broadcast Message Successfully Sent to Everyone" : string.Empty;
                 if (notif != string.Empty)
-                    this.Invoke((Action)(() => MessageBox.Show(this, notif)));
+                    NonBlockingNotification(notif);
             });
+        }
+
+        private void NonBlockingNotification(string message)
+        {
+            this.BeginInvoke((Action)(() => MessageBox.Show(message)));
         }
 
         private async void saveSession()
@@ -417,11 +452,10 @@ namespace SmartCodeLab.CustomComponents.Pages
                 {
                     Serializer.SerializeWithLengthPrefix(fileStream,
                         //new ProgrammingSession(server, userProgress, homePage.notifications, progressSubmissionPage.GetAllSubmitted(), users),
-                        new ProgrammingSession(server, homePage.notifications, homePage.copyPasteDetectedCount, userProgress, progressSubmissionPage.codeSubmissions),
+                        new ProgrammingSession(server, homePage.notifications, homePage.copyPasteDetectedCount, userProgress.ToDictionary(kvp => kvp.Key, kvp => kvp.Value), progressSubmissionPage.codeSubmissions),
                         PrefixStyle.Base128);
                     await fileStream.FlushAsync();
-                    MessageBox.Show(this, "Session file saved successfully");
-                    closer();
+                    NonBlockingNotification("Session file saved successfully");
                 }
             }
             catch (Exception ex)

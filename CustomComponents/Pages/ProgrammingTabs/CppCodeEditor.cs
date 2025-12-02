@@ -26,6 +26,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private string fileExe;
         private string testerExe;
         private int standardComplexity;
+        private string testerCpp;
         public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
         {
             highlighter = new Dictionary<string, Action<int, string>>()
@@ -33,6 +34,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 { "maintainability", HighlightMaintainabilityIssue },
                 { "robustness", HighlightRobustnessIssue }
             };
+            testerCpp = Path.Combine(Path.GetDirectoryName(filePath), "Tester.cpp");
             fileExe = filePath.Replace(".cpp", ".exe");
             testerExe = Path.Combine(Path.GetDirectoryName(filePath), "Tester.exe");
 
@@ -76,10 +78,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 MessageBox.Show(this, "Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.");
                 return;
             }
+            File.WriteAllText(testerCpp, srcCode.Text);
+            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{testerCpp}\" -o \"{testerExe}\"\"");
+            await StartprocessAsyncExit(
+                process,
+                null,
+                null,
+                null);
 
-            CompileCode(testerExe);
             commandLine = $"/c \"{testerExe}\"";
-            SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Cpp, filePath, false);
+            SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Cpp, testerCpp, false);
             base.RunTest();
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
             {
@@ -192,7 +200,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         if (standardComplexity < currentComplexity)
                         {
                             violationCounts += 10;
-
                             highlighter?.Invoke(0, "Code complexity exceeds recommended limits. Reduce the number of if-statements, switch cases, and loops in your code.");
                         }
                     }

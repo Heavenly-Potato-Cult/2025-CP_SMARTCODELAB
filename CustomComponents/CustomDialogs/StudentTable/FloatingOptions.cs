@@ -14,6 +14,18 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
     {
         public Action deleteRecord;
         public Action editRecord;
+        public Action _kickStudent;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Action kickStudent
+        {
+            get;
+            set
+            {
+                _kickStudent = value;
+                button3.Visible = true;
+                Size = new Size(208, 81);
+            }
+        }
         public FloatingOptions()
         {
             InitializeComponent();
@@ -29,6 +41,9 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
             // Use Deactivate instead of LostFocus for forms
             Deactivate += (s, e) => Close();
+
+            button3.Visible = false;
+            Size = new Size(208, 55);
 
             // Also close when clicking outside
             this.MouseLeave += (s, e) => CheckForClose();
@@ -79,6 +94,11 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         private void button1_Click(object sender, EventArgs e)
         {
             editRecord?.Invoke();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            _kickStudent?.Invoke();
         }
     }
 }

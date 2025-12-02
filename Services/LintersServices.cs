@@ -16,7 +16,7 @@ namespace SmartCodeLab.Services
         {
             { "java", new List<int>() { 0, 0, 40, 10, 15 }},
             { "python",  new List<int> { 0, 0, 45, 10, 20 }},
-            { "cpp",  new List<int>() { 0, 0, 25, 20, 10}}
+            { "cpp",  new List<int>() { 0, 0, 0, 17, 18}}
         };
 
         public readonly static Dictionary<string, string> javaLinters = new Dictionary<string, string>()

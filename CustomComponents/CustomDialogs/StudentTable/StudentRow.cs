@@ -14,7 +14,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 {
     public partial class StudentRow : UserControl
     {
-        public StudentRow(string studentId, string name, Action<string> removeUser, Action<UserProfile> updateDisplay)
+        public StudentRow(string studentId, string name, Action<string> removeUser, Action<UserProfile> updateDisplay, Func<ServerMessage, string, Task> kickStudent = null)
         {
             InitializeComponent();
             this.studId.Text = studentId;
@@ -52,6 +52,14 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                             studentName = userDetails.Value;
                         }
                     });
+
+                    if(kickStudent != null)
+                    {
+                        option.kickStudent = new Action(() =>
+                        {
+                            kickStudent?.Invoke(new ServerMessage.Builder(Models.Enums.MessageType.KICKED).Build(), studentId);
+                        });
+                    }
 
                     option.Show();
                 }

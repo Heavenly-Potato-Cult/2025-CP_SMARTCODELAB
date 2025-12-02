@@ -60,17 +60,17 @@
     '\'',
     '\''
     };
-            srcCode.AutoScrollMinSize = new Size(31, 28);
+            srcCode.AutoScrollMinSize = new Size(101, 29);
             srcCode.AutoSize = true;
             srcCode.BackBrush = null;
             srcCode.BackColor = Color.FromArgb(24, 24, 27);
             srcCode.CaretColor = Color.Silver;
-            srcCode.CharHeight = 18;
+            srcCode.CharHeight = 19;
             srcCode.CharWidth = 10;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             srcCode.Dock = DockStyle.Fill;
-            srcCode.Font = new Font("Courier New", 9.75F);
-            srcCode.ForeColor = Color.Silver;
+            srcCode.Font = new Font("Courier New", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            srcCode.ForeColor = Color.White;
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IndentBackColor = Color.FromArgb(21, 28, 38);
             srcCode.IsReplaceMode = false;
@@ -83,6 +83,7 @@
             srcCode.ServiceLinesColor = Color.FromArgb(42, 71, 94);
             srcCode.Size = new Size(825, 464);
             srcCode.TabIndex = 0;
+            srcCode.Text = "testing";
             srcCode.Zoom = 100;
             // 
             // output

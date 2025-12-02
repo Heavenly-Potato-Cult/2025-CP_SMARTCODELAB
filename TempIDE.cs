@@ -315,6 +315,10 @@ namespace SmartCodeLab
                             this.Invoke((Action)(() => monitoredStatus.Visible = false));
                             MainTabControl.SelectedTab = MessagesTab;
                             break;
+                        case MessageType.KICKED:
+                            MessageBox.Show(this, "You have been kicked from the session.");
+                            this.Close();
+                            break;
                         default:
                             break;
                     }
@@ -329,7 +333,7 @@ namespace SmartCodeLab
                 // Log unexpected errors
                 Console.WriteLine(ex);
             }
-            MessageBox.Show(this, "Connection to server lost.");
+            MessageBox.Show("Connection to server lost.");
         }
 
         private void NotifyHost(NotificationType type, string result)

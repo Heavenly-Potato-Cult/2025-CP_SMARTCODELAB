@@ -395,5 +395,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         {
 
         }
+
+        private void saveSes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -21,20 +21,21 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         private Action<List<UserProfile>> updateIcons;
         private Action<UserProfile, bool> updateDisplay;
         private Dictionary<string, StudentRow> userIcons;
-
+        private Func<ServerMessage, string, Task> kickStudent;
         //right after adding the student, should add its icon to the temp server page
-        public StudTable(Dictionary<string, UserProfile> users, Action<List<UserProfile>> updateIcons = null, Action<UserProfile, bool> updateDisplay = null)
+        public StudTable(Dictionary<string, UserProfile> users, Action<List<UserProfile>> updateIcons = null, Action<UserProfile, bool> updateDisplay = null, Func<ServerMessage, string, Task> kickStudent = null)
         {
             InitializeComponent();
             this.updateDisplay = updateDisplay;
             this.updateIcons = updateIcons;
+            this.kickStudent = kickStudent;
             newlyAdded = new List<UserProfile>();
             expectedUsers = users;
             count.Text = users.Count.ToString();
             userIcons = new Dictionary<string, StudentRow>();
             foreach (var user in users.Values)
             {
-                var userRow = new StudentRow(user._studentId, user._studentName, removeUser, updateUserDisplay);
+                var userRow = new StudentRow(user._studentId, user._studentName, removeUser, updateUserDisplay, kickStudent);
                 userIcons.Add(user._studentId, userRow);
                 studtab.Controls.Add(userRow);
             }
@@ -74,7 +75,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                         return;
                     }
                     var newAddedUser = new UserProfile(newUser.Value, newUser.Key, "N/A");
-                    var newUserIcon = new StudentRow(newUser.Key, newUser.Value, removeUser, updateUserDisplay);
+                    var newUserIcon = new StudentRow(newUser.Key, newUser.Value, removeUser, updateUserDisplay, kickStudent);
                     expectedUsers.Add(newUser.Key, newAddedUser);
                     userIcons.Add(newAddedUser._studentId, newUserIcon);
                     studtab.Controls.Add(newUserIcon);
@@ -174,7 +175,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                                 if (!expectedUsers.ContainsKey(item.Key) && !item.Key.IsWhiteSpace())
                                 {
                                     var newlyAddedUser = new UserProfile(item.Value._studentName, item.Value._studentId, "N/A");
-                                    var newUserIcon = new StudentRow(item.Key, item.Value._studentName, removeUser, updateUserDisplay);
+                                    var newUserIcon = new StudentRow(item.Key, item.Value._studentName, removeUser, updateUserDisplay, kickStudent);
                                     expectedUsers.Add(item.Key, item.Value);
                                     addedUsers.Add(newlyAddedUser);
                                     newlyAdded.Add(newlyAddedUser);

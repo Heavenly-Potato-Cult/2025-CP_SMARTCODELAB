@@ -18,6 +18,7 @@ namespace SmartCodeLab.Models.Enums
         USER_MESSAGE,
         LEADERBOARDS_UPDATE,
         MONITORED,
-        LEFT_ALONE
+        LEFT_ALONE,
+        KICKED
     }
 }

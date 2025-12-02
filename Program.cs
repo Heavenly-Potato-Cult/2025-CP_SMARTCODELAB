@@ -1,6 +1,8 @@
 using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System.Diagnostics;
+using System.Net.Sockets;
 
 namespace SmartCodeLab
 {
@@ -29,9 +31,7 @@ namespace SmartCodeLab
             };
 
             ConfigureFirewallRules();
-            //var startup = new StudentStartUp();
-            Application.Run(new InstructorForm());
-            //startup.Dispose();
+            Application.Run(new InstructorForm()); //start up for instructor
         }
 
         private static void ConfigureFirewallRules()

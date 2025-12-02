@@ -261,29 +261,44 @@ class CppOperatorCounter:
         return code
     
     def _add_global_counter(self, code: str) -> str:
-        """Add global static long long TOTAL_NUMBER_OF_OPERATORS = 0; before the first function."""
+        """Add global static long long TOTAL_NUMBER_OF_OPERATORS = 0; after headers and before the first function."""
         lines = code.split('\n')
         result = []
-
-        # Find the index of the first function definition
+        
+        # Find where to insert (after the last #include or using namespace, before first function)
         insert_index = 0
+        in_header_section = True
+        
         for i, line in enumerate(lines):
-            if self._is_function_definition(line):
-                insert_index = i
-                break
-
-        # Add all lines before the first function
+            stripped = line.strip()
+            
+            if in_header_section:
+                # Check if this line ends the header section
+                if stripped and not (stripped.startswith('#include') or 
+                                    stripped.startswith('using namespace') or
+                                    stripped.startswith('//') or
+                                    stripped.startswith('/*') or
+                                    stripped == ''):
+                    in_header_section = False
+                    insert_index = i
+                    break
+            
+            # If we reach end of file while still in header section
+            if i == len(lines) - 1 and in_header_section:
+                insert_index = len(lines)
+        
+        # Add all lines up to insertion point
         result.extend(lines[:insert_index])
-
+        
         # Add a blank line and the counter variable
         if insert_index > 0:
             result.append('')
         result.append(f'static long long {self.counter_var} = 0;')
         result.append('')  # blank line after counter
-
+        
         # Add the rest of the code
         result.extend(lines[insert_index:])
-
+        
         return '\n'.join(result)
     
     def _add_operator_counting(self, code: str) -> str:

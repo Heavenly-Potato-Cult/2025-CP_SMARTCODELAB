@@ -13,7 +13,7 @@ namespace SmartCodeLab.Models
     public class ServerMessage
     {
         [ProtoMember(1)]
-        public MessageType? _messageType {  get; set; }
+        public MessageType _messageType {  get; set; }
 
         [ProtoMember(2)]
         public TaskModel? _task {  get; set; }
@@ -110,7 +110,7 @@ namespace SmartCodeLab.Models
 
             public ServerMessage Build()
             {
-                bool isContentRequired = messageTypesRequiringContent.Contains(msg._messageType.Value);
+                bool isContentRequired = messageTypesRequiringContent.Contains(msg._messageType);
                 bool hasContent = msg._task != null || msg._progress != null || msg._userProfile != null || msg.submittedCode != null;
                 if (!hasContent && isContentRequired)
                     throw new InvalidOperationException("Message Content is required");

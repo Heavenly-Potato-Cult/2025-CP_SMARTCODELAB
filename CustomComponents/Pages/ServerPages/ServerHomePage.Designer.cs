@@ -458,6 +458,7 @@
             saveSes.TabIndex = 35;
             saveSes.Text = "SAVE SESSION";
             saveSes.UseVisualStyleBackColor = false;
+            saveSes.Click += saveSes_Click;
             // 
             // viewStud
             // 

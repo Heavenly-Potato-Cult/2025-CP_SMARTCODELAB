@@ -8,7 +8,6 @@ Checks: >
   readability-else-after-return,
   readability-identifier-length,
   readability-braces-around-statements,
-  readability-identifier-naming,
   readability-math-missing-parentheses,
   readability-misleading-indentation,
   readability-redundant-casting,
@@ -25,13 +24,3 @@ CheckOptions:
       value: 1
     - key: misc-unused-parameters.StrictMode
       value: 1
-    - key: readability-identifier-naming.LocalVariableCase
-      value: "lower_case"
-    - key: readability-identifier-naming.GlobalVariableCase
-      value: "lower_case"
-    - key: readability-identifier-naming.LocalConstantCase
-      value: "UPPER_CASE"
-    - key: readability-identifier-naming.GlobalConstantCase
-      value: "UPPER_CASE"
-    - key: readability-identifier-naming.GlobalConstantCase
-      value: "CamelCase"

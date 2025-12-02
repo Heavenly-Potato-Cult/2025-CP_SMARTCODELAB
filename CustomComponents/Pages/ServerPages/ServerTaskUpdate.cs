@@ -31,9 +31,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             recentReferenceCode = task._referenceFile;
             this.Load += (s, e) => SetUpTask();
             testContainer.AutoScrollMargin = new Size(0, 50);
-
-
-
         }
         protected override CreateParams CreateParams
         {
@@ -129,12 +126,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 if (validateCode.score != task._testCases.Count)
                 {
                     validateCode.Dispose();
-                    MessageBox.Show("The reference code failed to satisfy all designated test cases. Please evaluate the failing scenarios and update your implementation as needed.");
+                    NonBlockingNotification("The reference code failed to satisfy all designated test cases. Please evaluate the failing scenarios and update your implementation as needed.");
                     return;
                 }
             }
             recentReferenceCode = task._referenceFile;
             action?.Invoke(task, null, null);
+        }
+
+        private void NonBlockingNotification(string message)
+        {
+            this.BeginInvoke((Action)(() => MessageBox.Show(message)));
         }
 
         private void UseNewTask(TaskModel newTask)
@@ -162,17 +164,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 }
             }
         }
-
-        private void smartButton2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void smartButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private Color normalcolor = Color.FromArgb(23, 26, 33);
         private Color highlightcolor = Color.FromArgb(23, 191, 32);
 
@@ -183,9 +174,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             detail_panel.BackColor = highlightcolor;
             reference_panel.BackColor = normalcolor;
             testcase_panel.BackColor = normalcolor;
-
-
-
         }
 
 
@@ -195,11 +183,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             reference_panel.BackColor = highlightcolor;
             detail_panel.BackColor = normalcolor;
             testcase_panel.BackColor = normalcolor;
-
-
         }
-
-
 
         private void smartButton5_Click_1(object sender, EventArgs e)
         {
@@ -207,7 +191,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             testcase_panel.BackColor = highlightcolor;
             detail_panel.BackColor = normalcolor;
             reference_panel.BackColor = normalcolor;
-
         }
 
         private void btn_AddTestCase_Click_1(object sender, EventArgs e)

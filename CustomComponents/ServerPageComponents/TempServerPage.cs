@@ -25,7 +25,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private Func<string, StudentCodingProgress> progressRetriever;
         private Dictionary<string, List<UserMessage>> userMessages;
         private Func<string, UserMessage, Task<bool>> sendMessage;
-        private Func<string, bool, Task> informUserMonitor;
+        private Action<string, bool> informUserMonitor;
         private Func<string, bool> isStudentActive;
         private ChatBox chatBox;
         private List<UserProfile> displayedUsers = new List<UserProfile>();
@@ -36,7 +36,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             Func<string,StudentCodingProgress> progressRetriever, 
             Func<string, bool> isStudentActive, 
             Func<string, UserMessage, Task<bool>> sendMessage, 
-            Func<string, bool, Task> informUserMonitor)
+            Action<string, bool> informUserMonitor)
         {
             InitializeComponent();
             selectedStudentId = string.Empty;
@@ -257,6 +257,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     {
                         studentProgress = progress;
                         int studentProgLength = studentProgress.CodeProgress.Count - 1;
+                        studentProgLength = studentProgLength < 0 ? 0 : studentProgLength;
                         if (fromClick)
                             codeTrack.Value = studentProgLength;
                         bool atMax = codeTrack.Maximum == codeTrack.Value;
@@ -306,12 +307,14 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             recentSelectedIcon?.LostFocusDisplay();
             recentSelectedIcon = newSelected;
 
-            if(selectedStudentId != string.Empty && selectedStudentId != profile._studentId)
-            {
-                await informUserMonitor?.Invoke(selectedStudentId, false);
-            }
+            if(selectedStudentId != string.Empty && selectedStudentId != profile._studentId && !isForLogs)
+                informUserMonitor?.Invoke(selectedStudentId, false);
+
             selectedStudentId = profile._studentId;
-            await informUserMonitor?.Invoke(selectedStudentId, true);
+
+            if(!isForLogs)
+                informUserMonitor?.Invoke(selectedStudentId, true);
+
             try
             {
                 UpdateStudentProgressDisplay(profile, progressRetriever?.Invoke(profile._studentId) ?? new StudentCodingProgress(), true);

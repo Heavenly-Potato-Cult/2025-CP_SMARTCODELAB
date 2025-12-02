@@ -61,7 +61,8 @@ namespace SmartCodeLab.Services
                 string exeFile = Path.Combine(directory, $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.exe");
                 string operatorFile = Path.Combine(directory, fileName);
                 Task.Delay(200);
-                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{operatorFile}\"\"");
+                Debug.WriteLine($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\"\"");
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\"\"");
             }
             else 
             {
