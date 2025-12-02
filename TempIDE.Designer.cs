@@ -161,7 +161,7 @@
             splitContainer1.Panel2.Controls.Add(MainTabControl);
             splitContainer1.Panel2.Controls.Add(customCard1);
             splitContainer1.Size = new Size(1602, 935);
-            splitContainer1.SplitterDistance = 1107;
+            splitContainer1.SplitterDistance = 1197;
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 10;
             // 
@@ -171,7 +171,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1106, 1);
+            panel1.Size = new Size(1196, 1);
             panel1.TabIndex = 0;
             // 
             // panel_Main
@@ -179,7 +179,7 @@
             panel_Main.Dock = DockStyle.Fill;
             panel_Main.Location = new Point(0, 54);
             panel_Main.Name = "panel_Main";
-            panel_Main.Size = new Size(1106, 881);
+            panel_Main.Size = new Size(1196, 881);
             panel_Main.TabIndex = 20;
             // 
             // customCard2
@@ -196,7 +196,7 @@
             customCard2.Dock = DockStyle.Top;
             customCard2.Location = new Point(0, 0);
             customCard2.Name = "customCard2";
-            customCard2.Size = new Size(1106, 54);
+            customCard2.Size = new Size(1196, 54);
             customCard2.TabIndex = 22;
             // 
             // exitbtn
@@ -225,7 +225,7 @@
             monitoredStatus.BackColor = Color.FromArgb(29, 7, 18);
             monitoredStatus.Font = new Font("Geist", 8F);
             monitoredStatus.ForeColor = Color.FromArgb(255, 77, 77);
-            monitoredStatus.Location = new Point(970, 9);
+            monitoredStatus.Location = new Point(1060, 9);
             monitoredStatus.Name = "monitoredStatus";
             monitoredStatus.Padding = new Padding(10);
             monitoredStatus.Size = new Size(122, 36);
@@ -295,7 +295,7 @@
             // 
             panel3.BackColor = Color.FromArgb(42, 71, 94);
             panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(1106, 0);
+            panel3.Location = new Point(1196, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(1, 935);
             panel3.TabIndex = 23;
@@ -304,7 +304,7 @@
             // 
             panel4.BackColor = Color.FromArgb(42, 71, 94);
             panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(410, 0);
+            panel4.Location = new Point(320, 0);
             panel4.Name = "panel4";
             panel4.Size = new Size(1, 935);
             panel4.TabIndex = 26;
@@ -325,7 +325,7 @@
             MainTabControl.Name = "MainTabControl";
             MainTabControl.Padding = new Point(0, 0);
             MainTabControl.SelectedIndex = 0;
-            MainTabControl.Size = new Size(411, 935);
+            MainTabControl.Size = new Size(321, 935);
             MainTabControl.TabIndex = 25;
             // 
             // ActivityTab
@@ -333,10 +333,10 @@
             ActivityTab.BackColor = Color.FromArgb(21, 28, 38);
             ActivityTab.Controls.Add(customCard8);
             ActivityTab.Controls.Add(customCard7);
-            ActivityTab.Location = new Point(4, 29);
+            ActivityTab.Location = new Point(4, 54);
             ActivityTab.Margin = new Padding(0);
             ActivityTab.Name = "ActivityTab";
-            ActivityTab.Size = new Size(403, 902);
+            ActivityTab.Size = new Size(313, 877);
             ActivityTab.TabIndex = 0;
             ActivityTab.Text = "Activity";
             // 
@@ -351,7 +351,7 @@
             customCard8.Location = new Point(0, 72);
             customCard8.Name = "customCard8";
             customCard8.Padding = new Padding(10, 0, 10, 0);
-            customCard8.Size = new Size(403, 830);
+            customCard8.Size = new Size(313, 805);
             customCard8.TabIndex = 27;
             // 
             // description
@@ -365,7 +365,7 @@
             description.PlaceholderText = "";
             description.ReadOnly = true;
             description.ScrollBars = ScrollBars.None;
-            description.Size = new Size(383, 830);
+            description.Size = new Size(293, 805);
             description.TabIndex = 0;
             description.WordWrap = true;
             // 
@@ -379,7 +379,7 @@
             customCard7.Dock = DockStyle.Top;
             customCard7.Location = new Point(0, 0);
             customCard7.Name = "customCard7";
-            customCard7.Size = new Size(403, 72);
+            customCard7.Size = new Size(313, 72);
             customCard7.TabIndex = 26;
             // 
             // session_name
@@ -400,10 +400,10 @@
             // 
             MessagesTab.Controls.Add(richTextBox2);
             MessagesTab.Controls.Add(msgBox);
-            MessagesTab.Location = new Point(4, 29);
+            MessagesTab.Location = new Point(4, 54);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3);
-            MessagesTab.Size = new Size(403, 902);
+            MessagesTab.Size = new Size(313, 877);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             MessagesTab.UseVisualStyleBackColor = true;
@@ -414,7 +414,7 @@
             richTextBox2.Dock = DockStyle.Top;
             richTextBox2.Location = new Point(3, 528);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(397, 104);
+            richTextBox2.Size = new Size(307, 104);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
             richTextBox2.KeyUp += richTextBox2_KeyUp;
@@ -426,7 +426,7 @@
             msgBox.Location = new Point(3, 3);
             msgBox.Name = "msgBox";
             msgBox.ReadOnly = true;
-            msgBox.Size = new Size(397, 525);
+            msgBox.Size = new Size(307, 525);
             msgBox.TabIndex = 0;
             msgBox.Text = "";
             // 
@@ -435,10 +435,10 @@
             TestCases.BackColor = Color.FromArgb(21, 28, 38);
             TestCases.Controls.Add(TestCasesPanel);
             TestCases.Controls.Add(customCard4);
-            TestCases.Location = new Point(4, 29);
+            TestCases.Location = new Point(4, 54);
             TestCases.Margin = new Padding(0);
             TestCases.Name = "TestCases";
-            TestCases.Size = new Size(403, 902);
+            TestCases.Size = new Size(313, 877);
             TestCases.TabIndex = 4;
             TestCases.Text = "TestCases";
             // 
@@ -451,7 +451,8 @@
             TestCasesPanel.Dock = DockStyle.Fill;
             TestCasesPanel.Location = new Point(0, 72);
             TestCasesPanel.Name = "TestCasesPanel";
-            TestCasesPanel.Size = new Size(403, 830);
+            TestCasesPanel.Padding = new Padding(5, 0, 5, 0);
+            TestCasesPanel.Size = new Size(313, 805);
             TestCasesPanel.TabIndex = 23;
             // 
             // customCard4
@@ -464,7 +465,7 @@
             customCard4.Dock = DockStyle.Top;
             customCard4.Location = new Point(0, 0);
             customCard4.Name = "customCard4";
-            customCard4.Size = new Size(403, 72);
+            customCard4.Size = new Size(313, 72);
             customCard4.TabIndex = 24;
             // 
             // steamLabel4
@@ -486,10 +487,10 @@
             Leaderboards.BackColor = Color.FromArgb(21, 28, 38);
             Leaderboards.Controls.Add(panel_leaderboards);
             Leaderboards.Controls.Add(customCard5);
-            Leaderboards.Location = new Point(4, 29);
+            Leaderboards.Location = new Point(4, 54);
             Leaderboards.Margin = new Padding(0);
             Leaderboards.Name = "Leaderboards";
-            Leaderboards.Size = new Size(403, 902);
+            Leaderboards.Size = new Size(313, 877);
             Leaderboards.TabIndex = 2;
             Leaderboards.Text = "Leaderboards";
             // 
@@ -502,7 +503,7 @@
             panel_leaderboards.Margin = new Padding(3, 4, 3, 4);
             panel_leaderboards.Name = "panel_leaderboards";
             panel_leaderboards.Padding = new Padding(0, 27, 0, 0);
-            panel_leaderboards.Size = new Size(403, 830);
+            panel_leaderboards.Size = new Size(313, 805);
             panel_leaderboards.TabIndex = 18;
             // 
             // customCard5
@@ -515,7 +516,7 @@
             customCard5.Dock = DockStyle.Top;
             customCard5.Location = new Point(0, 0);
             customCard5.Name = "customCard5";
-            customCard5.Size = new Size(403, 72);
+            customCard5.Size = new Size(313, 72);
             customCard5.TabIndex = 25;
             // 
             // steamLabel5
@@ -537,10 +538,10 @@
             Score.BackColor = Color.FromArgb(21, 28, 38);
             Score.Controls.Add(panel5);
             Score.Controls.Add(customCard6);
-            Score.Location = new Point(4, 29);
+            Score.Location = new Point(4, 54);
             Score.Margin = new Padding(0);
             Score.Name = "Score";
-            Score.Size = new Size(403, 902);
+            Score.Size = new Size(313, 877);
             Score.TabIndex = 3;
             Score.Text = "Score";
             // 
@@ -554,7 +555,7 @@
             panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
             panel5.Padding = new Padding(0, 27, 0, 0);
-            panel5.Size = new Size(403, 830);
+            panel5.Size = new Size(313, 805);
             panel5.TabIndex = 81;
             // 
             // studentCodeRating
@@ -564,7 +565,7 @@
             studentCodeRating.Location = new Point(30, 31);
             studentCodeRating.Margin = new Padding(3, 4, 3, 4);
             studentCodeRating.Name = "studentCodeRating";
-            studentCodeRating.Size = new Size(347, 347);
+            studentCodeRating.Size = new Size(257, 347);
             studentCodeRating.TabIndex = 79;
             // 
             // customCard6
@@ -577,7 +578,7 @@
             customCard6.Dock = DockStyle.Top;
             customCard6.Location = new Point(0, 0);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(403, 72);
+            customCard6.Size = new Size(313, 72);
             customCard6.TabIndex = 80;
             // 
             // steamLabel6
@@ -607,7 +608,7 @@
             customCard1.Controls.Add(pictureBox2);
             customCard1.Controls.Add(steamLabel3);
             customCard1.Dock = DockStyle.Right;
-            customCard1.Location = new Point(411, 0);
+            customCard1.Location = new Point(321, 0);
             customCard1.Name = "customCard1";
             customCard1.Size = new Size(83, 935);
             customCard1.TabIndex = 23;
@@ -615,7 +616,7 @@
             // pictureBox6
             // 
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(8, 163);
+            pictureBox6.Location = new Point(8, 158);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(66, 70);
             pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -626,7 +627,7 @@
             // pictureBox5
             // 
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(8, 323);
+            pictureBox5.Location = new Point(8, 320);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(66, 70);
             pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -637,7 +638,7 @@
             // pictureBox4
             // 
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(8, 247);
+            pictureBox4.Location = new Point(8, 239);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(66, 70);
             pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -648,7 +649,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(8, 87);
+            pictureBox3.Location = new Point(8, 77);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(66, 70);
             pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -661,7 +662,7 @@
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(8, 11);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(66, 70);
+            pictureBox2.Size = new Size(66, 55);
             pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
             pictureBox2.TabIndex = 21;
             pictureBox2.TabStop = false;

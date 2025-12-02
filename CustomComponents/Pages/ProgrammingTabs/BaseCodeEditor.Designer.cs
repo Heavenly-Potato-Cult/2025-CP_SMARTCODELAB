@@ -69,8 +69,7 @@
             srcCode.CharWidth = 10;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             srcCode.Dock = DockStyle.Fill;
-            srcCode.Font = new Font("Courier New", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            srcCode.ForeColor = Color.White;
+            srcCode.ForeColor = Color.Silver;
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IndentBackColor = Color.FromArgb(21, 28, 38);
             srcCode.IsReplaceMode = false;
@@ -81,7 +80,7 @@
             srcCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             srcCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("srcCode.ServiceColors");
             srcCode.ServiceLinesColor = Color.FromArgb(42, 71, 94);
-            srcCode.Size = new Size(825, 464);
+            srcCode.Size = new Size(825, 529);
             srcCode.TabIndex = 0;
             srcCode.Text = "testing";
             srcCode.Zoom = 100;
@@ -93,7 +92,7 @@
             output.Location = new Point(0, 45);
             output.Margin = new Padding(0);
             output.Name = "output";
-            output.Size = new Size(825, 175);
+            output.Size = new Size(825, 110);
             output.TabIndex = 0;
             // 
             // splitContainer1
@@ -117,7 +116,7 @@
             splitContainer1.Panel2.Controls.Add(customCard1);
             splitContainer1.Panel2.Controls.Add(panel1);
             splitContainer1.Size = new Size(825, 685);
-            splitContainer1.SplitterDistance = 464;
+            splitContainer1.SplitterDistance = 529;
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 17;
             // 

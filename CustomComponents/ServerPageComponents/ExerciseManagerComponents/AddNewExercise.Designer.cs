@@ -35,12 +35,12 @@
             label5 = new Label();
             btn_CancelExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_CreateExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label6 = new Label();
             panel7 = new Panel();
             testCasesContainer = new Panel();
             subject = new CustomTextBox();
             panel_temp_spacer = new Panel();
+            btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel7.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,7 +50,7 @@
             txtbox_ExerciseTitle.BackColor = Color.White;
             txtbox_ExerciseTitle.BorderColor = Color.DarkGray;
             txtbox_ExerciseTitle.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            txtbox_ExerciseTitle.BorderRadius = 10;
+            txtbox_ExerciseTitle.BorderRadius = 2;
             txtbox_ExerciseTitle.BorderSize = 1;
             txtbox_ExerciseTitle.ForeColor = SystemColors.ControlText;
             txtbox_ExerciseTitle.Location = new Point(23, 37);
@@ -119,7 +119,7 @@
             btn_CancelExercise.BackColor = Color.Transparent;
             btn_CancelExercise.BackgroundColor = Color.Transparent;
             btn_CancelExercise.BorderColor = Color.Silver;
-            btn_CancelExercise.BorderRadius = 10;
+            btn_CancelExercise.BorderRadius = 2;
             btn_CancelExercise.BorderSize = 1;
             btn_CancelExercise.FlatAppearance.BorderSize = 0;
             btn_CancelExercise.FlatStyle = FlatStyle.Flat;
@@ -138,7 +138,7 @@
             // 
             btn_CreateExercise.BackColor = Color.DodgerBlue;
             btn_CreateExercise.BackgroundColor = Color.DodgerBlue;
-            btn_CreateExercise.BorderRadius = 10;
+            btn_CreateExercise.BorderRadius = 2;
             btn_CreateExercise.FlatAppearance.BorderSize = 0;
             btn_CreateExercise.FlatStyle = FlatStyle.Flat;
             btn_CreateExercise.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -150,23 +150,6 @@
             btn_CreateExercise.Text = "Create Exercise";
             btn_CreateExercise.UseVisualStyleBackColor = false;
             btn_CreateExercise.Click += btn_CreateExercise_Click;
-            // 
-            // btn_AddTestCase
-            // 
-            btn_AddTestCase.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_AddTestCase.BackColor = Color.MediumSlateBlue;
-            btn_AddTestCase.BorderRadius = 10;
-            btn_AddTestCase.FlatAppearance.BorderSize = 0;
-            btn_AddTestCase.FlatStyle = FlatStyle.Flat;
-            btn_AddTestCase.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btn_AddTestCase.ForeColor = Color.White;
-            btn_AddTestCase.Location = new Point(910, 359);
-            btn_AddTestCase.Name = "btn_AddTestCase";
-            btn_AddTestCase.Size = new Size(107, 40);
-            btn_AddTestCase.TabIndex = 57;
-            btn_AddTestCase.Text = "Add";
-            btn_AddTestCase.UseVisualStyleBackColor = false;
-            btn_AddTestCase.Click += btn_AddTestCase_Click;
             // 
             // label6
             // 
@@ -183,13 +166,13 @@
             // 
             panel7.AutoScroll = true;
             panel7.BackColor = Color.White;
+            panel7.Controls.Add(btn_AddTestCase);
             panel7.Controls.Add(testCasesContainer);
             panel7.Controls.Add(subject);
             panel7.Controls.Add(panel_temp_spacer);
             panel7.Controls.Add(label4);
             panel7.Controls.Add(label6);
             panel7.Controls.Add(txtbox_ExerciseTitle);
-            panel7.Controls.Add(btn_AddTestCase);
             panel7.Controls.Add(label1);
             panel7.Controls.Add(label5);
             panel7.Controls.Add(btn_CancelExercise);
@@ -218,7 +201,7 @@
             subject.BackColor = Color.White;
             subject.BorderColor = Color.DarkGray;
             subject.BorderFocusColor = Color.FromArgb(64, 64, 64);
-            subject.BorderRadius = 10;
+            subject.BorderRadius = 2;
             subject.BorderSize = 1;
             subject.ForeColor = SystemColors.ControlText;
             subject.Location = new Point(590, 37);
@@ -237,6 +220,25 @@
             panel_temp_spacer.Name = "panel_temp_spacer";
             panel_temp_spacer.Size = new Size(250, 21);
             panel_temp_spacer.TabIndex = 61;
+            // 
+            // btn_AddTestCase
+            // 
+            btn_AddTestCase.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_AddTestCase.BackColor = Color.FromArgb(42, 71, 94);
+            btn_AddTestCase.BackgroundColor = Color.FromArgb(42, 71, 94);
+            btn_AddTestCase.BorderRadius = 1;
+            btn_AddTestCase.FlatAppearance.BorderSize = 0;
+            btn_AddTestCase.FlatStyle = FlatStyle.Flat;
+            btn_AddTestCase.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_AddTestCase.ForeColor = Color.FromArgb(199, 213, 224);
+            btn_AddTestCase.Location = new Point(900, 357);
+            btn_AddTestCase.Margin = new Padding(2, 4, 2, 4);
+            btn_AddTestCase.Name = "btn_AddTestCase";
+            btn_AddTestCase.Size = new Size(117, 46);
+            btn_AddTestCase.TabIndex = 67;
+            btn_AddTestCase.Text = "ADD";
+            btn_AddTestCase.TextColor = Color.FromArgb(199, 213, 224);
+            btn_AddTestCase.UseVisualStyleBackColor = false;
             // 
             // AddNewExercise
             // 
@@ -266,11 +268,11 @@
         private Label label5;
         private GeneralComponents.SmartButton btn_CancelExercise;
         private GeneralComponents.SmartButton btn_CreateExercise;
-        private GeneralComponents.SmartButton btn_AddTestCase;
         private Label label6;
         private Panel panel7;
         private Panel panel_temp_spacer;
         private CustomTextBox subject;
         private Panel testCasesContainer;
+        private GeneralComponents.SmartButton btn_AddTestCase;
     }
 }

@@ -81,4 +81,22 @@
     <Resource Include="Fonts\GeistMono-Thin.ttf" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="CustomComponents\Pages\ProgrammingTabs\TestCaseResult2 - Copy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="CustomComponents\ServerPageComponents\ExerciseManagerComponents\TestCase3.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="CustomComponents\WPFComponents\SessionNavbar2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="CustomComponents\ServerPageComponents\ExerciseManagerComponents\TestCase3.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

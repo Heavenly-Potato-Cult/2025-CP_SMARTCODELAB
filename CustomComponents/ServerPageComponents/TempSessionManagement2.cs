@@ -132,7 +132,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             if (compilationError != string.Empty)
             {
-                MessageBox.Show("Compilation error "+compilationError);
+                MessageBox.Show("Compilation error " + compilationError);
                 return false;
             }
             File.WriteAllText(tempFilePath, code);
@@ -267,6 +267,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void language_SelectedIndexChanged(object sender, EventArgs e)
         {
             codeQualityChoices21.setLanguage(language.SelectedItem.ToString());
+        }
+
+        private void soloTickBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
