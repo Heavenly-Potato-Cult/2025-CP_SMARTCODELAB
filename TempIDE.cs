@@ -104,7 +104,9 @@ namespace SmartCodeLab
 
         public TempIDE(string userName, TaskModel task, StudentCodingProgress progress, NetworkStream client)
         {
+            this.Opacity = 0;
             InitializeComponent();
+            this.SuspendLayout();
             this.DoubleBuffered = true;
             //SetDoubleBuffered(tabControl_RightSide);
             //InitializeWPFTree();
@@ -158,13 +160,29 @@ namespace SmartCodeLab
 
             _ = StreamListener();
 
-            this.Load += (s, e) =>
+            UpdateTaskDisplay(task);
+            studentCodeRating.SetStats(task.ratingFactors);
+            studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
+
+            if (!MainTabControl.IsHandleCreated) { var _ = MainTabControl.Handle; }
+            foreach (TabPage page in MainTabControl.TabPages) { var __ = page.Handle; }
+            
+           
+
+            this.ResumeLayout(true);
+            if (!this.IsHandleCreated)
             {
-                UpdateTaskDisplay(task);
-                studentCodeRating.SetStats(task.ratingFactors);
-                studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
+                IntPtr forceHandle = this.Handle;
+            }
+
+            this.Shown += (sender, e) =>
+            {
+               
+                this.Refresh();
+                this.Opacity = 1;
             };
         }
+        
 
         private void ReleaseAnything()
         {
@@ -176,50 +194,54 @@ namespace SmartCodeLab
         public void UpdateTaskDisplay(TaskModel task)
         {
             mainEditor.UpdateTask(task);
-            Task.Run(() =>
-                this.Invoke((Action)(() =>
+            session_name.Text = task._taskName;
+            description.Text = task._instructions;
+            TestCasesPanel.Controls.Clear();
+            studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
+
+            TestCasesPanel.SuspendLayout();
+            try
+            {
+
+                if (task._testCases != null && task._testCases.Count > 0)
                 {
-                    //set task description display
-                    session_name.Text = task._taskName;
-                    description.Text = task._instructions;
-                    TestCasesPanel.Controls.Clear();
-                    //testCaseContainer.Controls.Clear();
-                    studentCodeRating.maxTestScore = task._testCases != null ? task._testCases.Count : 0;
-                    if (task._testCases != null && task._testCases.Count > 0)
+                    // para ma maintain ang order sa test cases
+                    int count = 0;
+                    var testCaseList = task._testCases.ToList();
+                    for (int i = testCaseList.Count - 1; i >= 0; i--)
                     {
-                        // para ma maintain ang order sa test cases
-                        int count = 0;
-                        var testCaseList = task._testCases.ToList();
-                        for (int i = testCaseList.Count - 1; i >= 0; i--)
-                        {
-                            count++;
-                            var item = testCaseList[i];
-                            var testCaseNumber = count;
+                        count++;
+                        var item = testCaseList[i];
+                        var testCaseNumber = count;
 
-                            ExpansionPanel testcase = new ExpansionPanel();
-                            var testcaseview = new TestCaseView(testCaseNumber, item.Key, item.Value);
+                        ExpansionPanel testcase = new ExpansionPanel();
+                        var testcaseview = new TestCaseView(testCaseNumber, item.Key, item.Value);
 
-                            testcase.Title1 = "Test Case";
-                            testcase.Title2 = testCaseNumber.ToString();
-                            testcase.HeaderColor = System.Drawing.Color.FromArgb(30, 41, 57);
-                            testcase.IsExpanded= false;
+                        testcase.Title1 = "Test Case";
+                        testcase.Title2 = testCaseNumber.ToString();
+                        testcase.HeaderColor = System.Drawing.Color.FromArgb(30, 41, 57);
+                        testcase.IsExpanded= false;
 
-                            testcaseview.AutoSize = false;
+                        testcaseview.AutoSize = false;
 
-                            testcaseview.Padding = new Padding(0, 60, 0, 0);
-                            testcase.Controls.Add(testcaseview);
-                            testcaseview.Dock = DockStyle.Fill;
+                        testcaseview.Padding = new Padding(0, 60, 0, 0);
+                        testcase.Controls.Add(testcaseview);
+                        testcaseview.Dock = DockStyle.Fill;
 
-                            testcase.Dock = DockStyle.Top;
-                            TestCasesPanel.Controls.Add(testcase);
-                            if (count > 4)
-                                break;
-                        }
-
+                        testcase.Dock = DockStyle.Top;
+                        TestCasesPanel.Controls.Add(testcase);
+                        if (count > 4)
+                            break;
                     }
 
-                }))
-            );
+                }
+            }
+            finally
+            {
+                TestCasesPanel.ResumeLayout(true);
+            }
+
+              
         }
 
         private async Task ProgressSender()
@@ -276,17 +298,17 @@ namespace SmartCodeLab
                             {
                                 int myVersion = ++leaderboardUpdateVersion;
 
-                                // Use Invoke (Synchronous) or BeginInvoke to update UI
+                              
                                 this.BeginInvoke(new Action(() =>
                                 {
-                                    // 1. FREEZE the panel specifically
+                                  
                                     panel_leaderboards.SuspendLayout();
 
                                     try
                                     {
                                         panel_leaderboards.Controls.Clear();
                                         List<SubmittedCode> leaderBoards = serverMsg.leaderboards.OrderBy(s => s.placement).ToList();
-                                        // 2. Add all items
+                                        //  Add all items
                                         foreach (var sub in leaderBoards)
                                         {
 
@@ -297,7 +319,7 @@ namespace SmartCodeLab
                                     }
                                     finally
                                     {
-                                        // 3. UNFREEZE and paint once
+                                        //  UNFREEZE and paint once
                                         panel_leaderboards.ResumeLayout(true);
                                     }
                                 }));
@@ -343,164 +365,7 @@ namespace SmartCodeLab
             });
         }
 
-        //private void ResizeTabs()
-        //{
-        //    if (isResizingTabs) { return; } // Prevent recursion
-
-        //    if (tabControl_RightSide.TabPages.Count == 0) { return; }
-        //    if (tabControl_RightSide.ClientRectangle.Width <= 0) return;
-
-        //    int totalWidth = tabControl_RightSide.ClientSize.Width;
-        //    if (totalWidth <= 0) { return; }
-
-        //    isResizingTabs = true;
-
-        //    tabControl_RightSide.SuspendLayout();
-
-        //    try
-        //    {
-        //        int tabCount = tabControl_RightSide.TabPages.Count;
-        //        int tabWidth = (totalWidth / tabCount) - 2;
-
-        //        tabControl_RightSide.Font = new Font("Segoe UI", 12F);
-        //        tabControl_RightSide.SizeMode = TabSizeMode.Fixed;
-        //        tabControl_RightSide.ItemSize = new Size(Math.Max(1, tabWidth), 50); // 50 = tab height. // butang Max 1 para dili mag negative
-        //    }
-        //    finally
-        //    {
-        //        tabControl_RightSide.ResumeLayout();
-        //        isResizingTabs = false;
-        //    }
-        //}
-
-        //private void tabControl_RightSide_Resize(object sender, EventArgs e)
-        //{
-        //    ResizeTabs();
-        //}
-
-        //private void TempIDE_Shown(object sender, EventArgs e)
-        //{
-        //    ResizeTabs();
-        //    tabControl_RightSide.Invalidate();
-
-        //}
-
-        //private void InitializeWPFTree()
-        //{
-        //    if (panel_LeftSide_Directory == null) return;
-
-        //    wpfTree = new WpfTreeView
-        //    {
-        //        Background = WpfBrushes.White,
-        //        Foreground = WpfBrushes.Black,
-        //        FontSize = 14
-        //    };
-
-        //    wpfTree.Resources[WpfSystemColors.HighlightBrushKey] = new WpfSolidColorBrush(WpfColor.FromRgb(200, 230, 255));
-        //    wpfTree.Resources[WpfSystemColors.ControlBrushKey] = new WpfSolidColorBrush(WpfColor.FromRgb(220, 240, 255));
-
-
-        //    var host = new EH
-        //    {
-        //        Dock = DockStyle.Fill,
-        //        Child = wpfTree
-        //    };
-
-        //    panel_LeftSide_Directory.Controls.Add(host);
-        //}
-
-        //private void LoadFolder(string path, WpfTreeViewItem parent)
-        //{
-        //    try
-        //    {
-        //        // Add subfolders
-        //        foreach (var dir in Directory.GetDirectories(path))
-        //        {
-        //            var folderNode = new WpfTreeViewItem { Header = Path.GetFileName(dir) };
-        //            parent.Items.Add(folderNode);
-        //            LoadFolder(dir, folderNode);
-        //        }
-
-        //        // Add files
-        //        foreach (var file in Directory.GetFiles(path))
-        //        {
-        //            parent.Items.Add(new WpfTreeViewItem { Header = Path.GetFileName(file) });
-        //        }
-        //    }
-        //    catch (UnauthorizedAccessException)
-        //    {
-        //        // Skip folders we can't access
-        //    }
-        //}
-
-        //private WpfTreeViewItem CreateFolderNode(string path)
-        //{
-        //    if (string.IsNullOrWhiteSpace(path)) return null;
-        //    if (!Directory.Exists(path)) return null;
-
-        //    var folderNode = new WpfTreeViewItem { Header = Path.GetFileName(path), Tag = path };
-        //    folderNode.Expanded += FolderNode_Expanded;
-
-        //    var hasChildren = Directory.GetDirectories(path).Length > 0 || Directory.GetFiles(path).Length > 0;
-        //    if (hasChildren)
-        //        folderNode.Items.Add(null);
-
-        //    return folderNode;
-        //}
-
-        //private async void FolderNode_Expanded(object sender, System.Windows.RoutedEventArgs e)
-        //{
-        //    if (!(sender is WpfTreeViewItem node)) return;
-        //    if (node.Items.Count != 1) return;
-        //    if (node.Items[0] != null) return;
-
-        //    node.Items.Clear();
-
-        //    if (!(node.Tag is string path)) return;
-        //    if (!Directory.Exists(path)) return;
-
-        //    string[] dirs;
-        //    string[] files;
-
-        //    try
-        //    {
-        //        dirs = await Task.Run(() => Directory.GetDirectories(path));
-        //        files = await Task.Run(() => Directory.GetFiles(path));
-        //    }
-        //    catch (UnauthorizedAccessException)
-        //    {
-        //        return;
-        //    }
-
-        //    foreach (var dir in dirs)
-        //    {
-        //        var dirNode = CreateFolderNode(dir);
-        //        if (dirNode != null)
-        //            node.Items.Add(dirNode);
-        //    }
-
-        //    foreach (var file in files)
-        //    {
-        //        if (string.IsNullOrWhiteSpace(file)) continue;
-        //        var fileNode = new WpfTreeViewItem { Header = Path.GetFileName(file), Tag = file };
-        //        node.Items.Add(fileNode);
-        //    }
-        //}
-
-        //private void btn_OpenFolder_Click(object sender, EventArgs e)
-        //{
-        //    using var dialog = new FolderBrowserDialog();
-        //    if (dialog.ShowDialog() != DialogResult.OK) return;
-
-        //    if (wpfTree == null) return;
-
-        //    wpfTree.Items.Clear();
-
-        //    var rootNode = CreateFolderNode(dialog.SelectedPath);
-        //    if (rootNode == null) return;
-
-        //    wpfTree.Items.Add(rootNode);
-        //}
+       
 
         private void smartButton1_Click(object sender, EventArgs e)
         {

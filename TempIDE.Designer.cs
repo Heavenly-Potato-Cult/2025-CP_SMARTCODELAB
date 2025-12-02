@@ -161,7 +161,7 @@
             splitContainer1.Panel2.Controls.Add(MainTabControl);
             splitContainer1.Panel2.Controls.Add(customCard1);
             splitContainer1.Size = new Size(1602, 935);
-            splitContainer1.SplitterDistance = 1107;
+            splitContainer1.SplitterDistance = 1197;
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 10;
             // 
@@ -171,7 +171,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 54);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1106, 1);
+            panel1.Size = new Size(1196, 1);
             panel1.TabIndex = 0;
             // 
             // panel_Main
@@ -179,7 +179,7 @@
             panel_Main.Dock = DockStyle.Fill;
             panel_Main.Location = new Point(0, 54);
             panel_Main.Name = "panel_Main";
-            panel_Main.Size = new Size(1106, 881);
+            panel_Main.Size = new Size(1196, 881);
             panel_Main.TabIndex = 20;
             // 
             // customCard2
@@ -196,7 +196,7 @@
             customCard2.Dock = DockStyle.Top;
             customCard2.Location = new Point(0, 0);
             customCard2.Name = "customCard2";
-            customCard2.Size = new Size(1106, 54);
+            customCard2.Size = new Size(1196, 54);
             customCard2.TabIndex = 22;
             // 
             // exitbtn
@@ -225,7 +225,7 @@
             monitoredStatus.BackColor = Color.FromArgb(29, 7, 18);
             monitoredStatus.Font = new Font("Geist", 8F);
             monitoredStatus.ForeColor = Color.FromArgb(255, 77, 77);
-            monitoredStatus.Location = new Point(970, 9);
+            monitoredStatus.Location = new Point(1060, 9);
             monitoredStatus.Name = "monitoredStatus";
             monitoredStatus.Padding = new Padding(10);
             monitoredStatus.Size = new Size(122, 36);
@@ -295,7 +295,7 @@
             // 
             panel3.BackColor = Color.FromArgb(42, 71, 94);
             panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(1106, 0);
+            panel3.Location = new Point(1196, 0);
             panel3.Name = "panel3";
             panel3.Size = new Size(1, 935);
             panel3.TabIndex = 23;
@@ -304,7 +304,7 @@
             // 
             panel4.BackColor = Color.FromArgb(42, 71, 94);
             panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(410, 0);
+            panel4.Location = new Point(320, 0);
             panel4.Name = "panel4";
             panel4.Size = new Size(1, 935);
             panel4.TabIndex = 26;
@@ -325,7 +325,7 @@
             MainTabControl.Name = "MainTabControl";
             MainTabControl.Padding = new Point(0, 0);
             MainTabControl.SelectedIndex = 0;
-            MainTabControl.Size = new Size(411, 935);
+            MainTabControl.Size = new Size(321, 935);
             MainTabControl.TabIndex = 25;
             // 
             // ActivityTab
@@ -333,10 +333,10 @@
             ActivityTab.BackColor = Color.FromArgb(21, 28, 38);
             ActivityTab.Controls.Add(customCard8);
             ActivityTab.Controls.Add(customCard7);
-            ActivityTab.Location = new Point(4, 29);
+            ActivityTab.Location = new Point(4, 54);
             ActivityTab.Margin = new Padding(0);
             ActivityTab.Name = "ActivityTab";
-            ActivityTab.Size = new Size(403, 902);
+            ActivityTab.Size = new Size(313, 877);
             ActivityTab.TabIndex = 0;
             ActivityTab.Text = "Activity";
             // 
@@ -351,7 +351,7 @@
             customCard8.Location = new Point(0, 72);
             customCard8.Name = "customCard8";
             customCard8.Padding = new Padding(10, 0, 10, 0);
-            customCard8.Size = new Size(403, 830);
+            customCard8.Size = new Size(313, 805);
             customCard8.TabIndex = 27;
             // 
             // description
@@ -365,7 +365,7 @@
             description.PlaceholderText = "";
             description.ReadOnly = true;
             description.ScrollBars = ScrollBars.None;
-            description.Size = new Size(383, 830);
+            description.Size = new Size(293, 805);
             description.TabIndex = 0;
             description.WordWrap = true;
             // 
@@ -379,7 +379,7 @@
             customCard7.Dock = DockStyle.Top;
             customCard7.Location = new Point(0, 0);
             customCard7.Name = "customCard7";
-            customCard7.Size = new Size(403, 72);
+            customCard7.Size = new Size(313, 72);
             customCard7.TabIndex = 26;
             // 
             // session_name
@@ -608,7 +608,7 @@
             customCard1.Controls.Add(pictureBox2);
             customCard1.Controls.Add(steamLabel3);
             customCard1.Dock = DockStyle.Right;
-            customCard1.Location = new Point(411, 0);
+            customCard1.Location = new Point(321, 0);
             customCard1.Name = "customCard1";
             customCard1.Size = new Size(83, 935);
             customCard1.TabIndex = 23;
