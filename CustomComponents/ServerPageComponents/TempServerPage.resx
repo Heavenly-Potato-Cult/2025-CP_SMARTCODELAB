@@ -138,4 +138,27 @@
         ////CgAAAAAAAAAApAABAAH3/////P///woAAAAAAAAAAJYAAQAL
 </value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="smartButton1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAFBSURBVEhL7dTPKkVRFMdxL2CAJ2DCE4gX4AmUibkyNVTEjDLWlTAwMFCGIiGRvIGn+Whd+2af
+        0z735N4bE9/addZv/dnrnLP2Hhv7JwNLWKjrQxNF8YonXMZG9ZiBwBpu8Yj9pO1ipx7bBXMpaSeti7R6
+        9haOcI93POAMU1mNbmy18pdjNhXrYDsFRmex4jk628MBDrFarxH02yA679S0cnAfGnNKjpLWRmNOyVHS
+        2mjMKTlKWhuNOSVHSWujMec3fnKcgd6YdoNGOqZBOgvxJnGQXrKDFlfA81AHLQfrOM/sjdzO9J9dFT2w
+        jLfMno9uq1HfZJddbNR+2WEcH5jOtFNsViOrpOt6sa4XwTWOM3sFN/GfqpEDkj5T5bOkCVvLtaHAXYxl
+        Zp+MeoMZXKXC0X08T9TjhgKTaRxjzdT9f84ncw42W+mne+8AAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="btn_sendmessage.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAFOSURBVDhPnVK7TsNAEHQVISF+Idh7TkABUfAboQSkBN+eRTpExRfQpUBIIYoo6XGBqCmIxD1C
+        yx+hcYRjH8K2mMa63Z317swGwX+xvN3yQ40QVh5GTk2E4Zf+it9bNQldui8MK7L8SIanseUbsuoNTfza
+        AsIlMZnkIjI8F47vIsunpGU3/kiOyaoMTTBJhRQu0zBeqXOyfE+WZ6TVqKvH9JMvyPganmKddSYLOr1V
+        OiejFpGVkjT3S31/k7XsYp1NNht0YpMuMCo5Ptkzlzt/kfGOtDyDJuWadaFRB2T5Sjh+jgxfY0SfDOBH
+        ELbKLuHoS26TVcNY85Nw/Fom9/SYIGyVUYO8SSFWEJBTI7hTraoB2WSIdTZvnsHialUNsA40gbBwBxb7
+        NY2AsHAHFuNO/Hwj4E5ucX4nk10/3wqk04X4VA9+vD2yQQcX64eBb6ZamjV1I3b3AAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>
