@@ -74,7 +74,6 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
-            <Rectangle Width="12" Height="12" Fill="{StaticResource SteamAccent}" Margin="0,0,10,0"/>
             <TextBlock Text="SMARTCODELAB" 
                        FontWeight="Bold" 
                        Foreground="{StaticResource SteamAccent}" 
