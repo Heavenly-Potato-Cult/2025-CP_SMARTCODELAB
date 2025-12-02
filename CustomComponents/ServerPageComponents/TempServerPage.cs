@@ -2,6 +2,7 @@
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.Models;
 using System.Data;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
@@ -100,6 +101,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 userIcons[userId].Dispose();
                 userIcons.Remove(userId);
+                if (selectedStudentId == userId)
+                    recentSelectedIcon = null;
             }));
         }
 
@@ -117,9 +120,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 foreach (var user in users)
                 {
-                    userMessages[user._studentId] = new List<UserMessage>();
-                    userIcons[user._studentId] = new UserIcons(user, NewUserSelected) { Dock = DockStyle.Top};
-                    displayedUsers.Add(user);
+                    try
+                    {
+                        userMessages[user._studentId] = new List<UserMessage>();
+                        userIcons[user._studentId] = new UserIcons(user, NewUserSelected) { Dock = DockStyle.Top };
+                        displayedUsers.Add(user);
+                    }
+                    catch (ArgumentException) { }
                 }
                 displayStudents();
             });

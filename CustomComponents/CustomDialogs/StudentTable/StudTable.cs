@@ -1,9 +1,12 @@
-﻿using Microsoft.Win32;
+﻿using Microsoft.VisualBasic.FileIO;
+using Microsoft.Win32;
+using ProtoBuf.WellKnownTypes;
 using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -89,6 +92,58 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             count.Text = expectedUsers.Count.ToString();
         }
 
+        private async Task<Dictionary<string, UserProfile>?> doSomething(string filepath)
+        {
+            if (!File.Exists(filepath))
+                return null;
+
+            var users = new Dictionary<string, UserProfile>();
+            bool isFirst = true;
+            int nameIndex = -1; 
+            int studentIdIndex = -1;
+            using (TextFieldParser parse = new TextFieldParser(filepath))
+            {
+                parse.TextFieldType = FieldType.Delimited;
+                parse.SetDelimiters(",");
+
+                while(!parse.EndOfData)
+                {
+                    string[] fields = parse.ReadFields();
+                    if (isFirst)
+                    {
+                        (nameIndex, studentIdIndex) = GetColumnIndices(string.Join("/|\\", fields));
+                        if (nameIndex == -1 || studentIdIndex == -1)
+                        {
+                            NonBlockingNotification("Appropriate column names(\"Name\" and \"Student Id\") are not found in the file.");
+                            break;
+                        }
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        string studentName = string.Empty;
+                        string studentId = string.Empty;
+                        int pos = 0;
+                        foreach (var field in fields)
+                        {
+                            if(pos == nameIndex)
+                                studentName = field;
+                            else if (pos == studentIdIndex)
+                                studentId = field;
+
+                            pos++;
+                        }
+                        if (!studentId.IsWhiteSpace())
+                            users.Add(studentId, new UserProfile(studentId, studentName, true));
+                    }
+                }
+                return await Task.Run(() =>
+                {
+                    return users;
+                });
+            }
+        }
+
         private async Task<Dictionary<string, UserProfile>?> GetStudentProfiles(string filepath) //let's assume that the file is csv
         {
             if (!File.Exists(filepath))
@@ -97,15 +152,15 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             try
             {
                 stringLines = await File.ReadAllLinesAsync(filepath);
-            }catch(IOException io) { 
-                MessageBox.Show(io.Message);
+            }catch(IOException io) {
+                NonBlockingNotification(io.Message);
                 return new Dictionary<string, UserProfile>();
             }
 
             var (nameIndex, studentIdIndex) = GetColumnIndices(stringLines[0]);
             if (nameIndex == -1 || studentIdIndex == -1)
             {
-                MessageBox.Show("Appropriate column names(\"Name\" and \"Student Id\") are not found in the file.");
+                NonBlockingNotification("Appropriate column names(\"Name\" and \"Student Id\") are not found in the file.");
                 return null;
             }
 
@@ -130,19 +185,25 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                 return users;
             });
         }
-
+        private void NonBlockingNotification(string message)
+        {
+            this.BeginInvoke((Action)(() => MessageBox.Show(message)));
+        }
         private (int nameIndex, int studentIdIndex) GetColumnIndices(string firstRow)
         {
             int nameColumnIndex = -1;
             int studentColumnIndex = -1;
 
-            string[] lineTokens = firstRow.Split(",");
+            string[] lineTokens = firstRow.Split("/|\\");
             for (int i = 0; i < lineTokens.Length; i++)
             {
                 if (lineTokens[i].Trim().Equals("Name", StringComparison.OrdinalIgnoreCase))
                     nameColumnIndex = i;
                 else if (lineTokens[i].Trim().Equals("Student Id", StringComparison.OrdinalIgnoreCase))
                     studentColumnIndex = i;
+
+                if(nameColumnIndex != -1 && studentColumnIndex != -1)
+                    break;
             }
 
             return (nameColumnIndex, studentColumnIndex);
@@ -150,7 +211,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
         private async void smartButton1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Please select the CSV file containing student records with 'Name' and 'Student Id' columns.");
+            NonBlockingNotification("Please select the CSV file containing student records with 'Name' and 'Student Id' columns.");
             using (var fileDialog = new OpenFileDialog()) 
             {
                 fileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
@@ -159,14 +220,13 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
                 if(fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    var studentRecords = await GetStudentProfiles(fileDialog.FileName);
-
-                    await Task.Run(() => 
+                    var studentRecords = await doSomething(fileDialog.FileName);
+                    await Task.Run(() =>
                     {
                         if (studentRecords == null)
-                            MessageBox.Show("File is missing the required columns");
+                            NonBlockingNotification("File is missing the required columns");
                         else if (studentRecords.Count == 0)
-                            MessageBox.Show("No student record found");
+                            NonBlockingNotification("No student record found");
                         else
                         {
                             var addedUsers = new List<UserProfile>();
@@ -188,7 +248,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                             }
                             updateIcons?.Invoke(addedUsers);
                         }
-                    } );
+                    });
                 }
                 count.Text = expectedUsers.Count.ToString();
             }
