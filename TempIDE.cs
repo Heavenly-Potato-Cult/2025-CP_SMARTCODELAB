@@ -2,16 +2,17 @@
 using SmartCodeLab.CustomComponents;
 using SmartCodeLab.CustomComponents.GeneralComponents;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+using SmartCodeLab.CustomComponents.SteamThings;
 using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.CustomComponents.WPFComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System.Diagnostics;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-using SmartCodeLab.CustomComponents.SteamThings;
 
 namespace SmartCodeLab
 {
@@ -102,6 +103,8 @@ namespace SmartCodeLab
             newIcon.BringToFront();
         }
 
+        private Image _originalImage;
+
         public TempIDE(string userName, TaskModel task, StudentCodingProgress progress, NetworkStream client)
         {
             this.Opacity = 0;
@@ -181,6 +184,8 @@ namespace SmartCodeLab
                 this.Refresh();
                 this.Opacity = 1;
             };
+
+            _originalImage = pictureBox2.Image;
         }
         
 
@@ -453,6 +458,30 @@ namespace SmartCodeLab
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             MainTabControl.SelectedIndex = 0;
+            //if (sender is not PictureBox pb) return;
+            //if (_originalImage == null) _originalImage = pb.Image;
+            //if (_originalImage == null) return;
+            //if (pb.BackColor == Color.Firebrick)
+            //{
+            //    pb.BackColor = Color.FromArgb(30, 41, 57); 
+            //}
+            //else
+            //{
+            //    pb.BackColor = Color.Firebrick; 
+            //}
+
+            //if (pb.Tag?.ToString() == "bw")
+            //{
+                
+            //    pb.Image = _originalImage;
+            //    pb.Tag = "color";
+            //}
+            //else
+            //{
+            //    // Turn to Dark Gray (Dimmed)
+            //    pb.Image = ToPureBlack(_originalImage);
+            //    pb.Tag = "bw";
+            //}
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -477,6 +506,38 @@ namespace SmartCodeLab
         {
             MainTabControl.SelectedIndex = 2;
 
+        }
+
+        private Bitmap ToPureBlack(Image original)
+        {
+            if (original == null) return null;
+
+            Bitmap newBitmap = new Bitmap(original.Width, original.Height);
+
+            using (Graphics g = Graphics.FromImage(newBitmap))
+            {
+                // MATRIX EXPLANATION:
+                // The diagonals are set to 0 to "turn off" the original Red, Green, and Blue.
+                // The 4th row is set to 1 to "keep" the original Transparency (Alpha).
+                ColorMatrix colorMatrix = new ColorMatrix(new float[][]
+                {
+            new float[] {0, 0, 0, 0, 0}, // Red = 0
+            new float[] {0, 0, 0, 0, 0}, // Green = 0
+            new float[] {0, 0, 0, 0, 0}, // Blue = 0
+            new float[] {0, 0, 0, 1, 0}, // Alpha (Transparency) = 100% of original
+            new float[] {0, 0, 0, 0, 1}  // No extra color offset
+                });
+
+                using (ImageAttributes attributes = new ImageAttributes())
+                {
+                    attributes.SetColorMatrix(colorMatrix);
+                    g.DrawImage(original,
+                        new Rectangle(0, 0, original.Width, original.Height),
+                        0, 0, original.Width, original.Height,
+                        GraphicsUnit.Pixel, attributes);
+                }
+            }
+            return newBitmap;
         }
 
         private void exitbtn_Click(object sender, EventArgs e)
