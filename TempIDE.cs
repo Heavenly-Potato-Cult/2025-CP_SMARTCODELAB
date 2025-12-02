@@ -13,6 +13,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace SmartCodeLab
 {
@@ -246,7 +247,7 @@ namespace SmartCodeLab
                 TestCasesPanel.ResumeLayout(true);
             }
 
-              
+
         }
 
         private async Task ProgressSender()
@@ -292,7 +293,7 @@ namespace SmartCodeLab
                     {
                         case MessageType.TASK_UPDATE:
                             UpdateTaskDisplay(serverMsg._task);
-                            MessageBox.Show(this, "Task Updated");
+                            this.BeginInvoke((Action)(() => MessageBox.Show("Task Updated")));
                             break;
                         case MessageType.USER_MESSAGE:
                             this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}")));
@@ -303,7 +304,6 @@ namespace SmartCodeLab
                             {
                                 int myVersion = ++leaderboardUpdateVersion;
 
-                              
                                 this.BeginInvoke(new Action(() =>
                                 {
                                   
@@ -324,7 +324,6 @@ namespace SmartCodeLab
                                     }
                                     finally
                                     {
-                                        //  UNFREEZE and paint once
                                         panel_leaderboards.ResumeLayout(true);
                                     }
                                 }));

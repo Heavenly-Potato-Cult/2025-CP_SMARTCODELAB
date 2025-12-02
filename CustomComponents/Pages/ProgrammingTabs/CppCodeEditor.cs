@@ -1,6 +1,7 @@
 ﻿using FastColoredTextBoxNS;
 using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
+using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
@@ -75,7 +77,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             if (new SingleStatementBodyChecker().CheckForSingleStatementBodies(srcCode.Text).HasSingleStatementBodies)
             {
-                MessageBox.Show(this, "Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.");
+                this.BeginInvoke((Action)(() => MessageBox.Show("Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.")));
                 return;
             }
             File.WriteAllText(testerCpp, srcCode.Text);
@@ -94,6 +96,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 //await checkOperatorsCount();
                 await checkEfficiencyComparison();
             }
+        }
+
+        public override void UpdateTask(TaskModel task)
+        {
+
+            //await Task.Run(() =>
+            //{
+            if (task.ratingFactors.ContainsKey(4))
+                standardComplexity = Convert.ToInt32(task.ratingFactors[4][1]);
+
+            if (task.ratingFactors.ContainsKey(2))
+            {
+                SourceCodeInitializer.InitializeEfficiencyCode(LanguageSupported.Cpp, task._referenceFile, Path.GetDirectoryName(filePath));
+            }
+            //});
+
+            base.UpdateTask(task);
         }
 
         private Task checkEfficiencyComparison()

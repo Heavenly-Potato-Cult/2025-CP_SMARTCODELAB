@@ -422,7 +422,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                     if(task != null)
                         NotifyStudent(new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), item.Key);
                     else if(leaderboards != null)
-                        NotifyStudent(new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(new UserMessage(msg)).Build(), item.Key);
+                        NotifyStudent(new ServerMessage.Builder(MessageType.LEADERBOARDS_UPDATE).Leaderboards(leaderboards).Build(), item.Key);
                     else
                         NotifyStudent(new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(new UserMessage(msg)).Build(), item.Key);
                 }
