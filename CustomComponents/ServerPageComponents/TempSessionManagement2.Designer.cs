@@ -31,7 +31,8 @@
             panel3 = new Panel();
             steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             panel2 = new Panel();
-            tabNavigationLocked = new CheckBox();
+            customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            tabNavigationLocked = new SmartCodeLab.CustomComponents.SteamThings.SoloTickBox();
             steamLabel8 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamLabel7 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             taskView = new Panel();
@@ -46,7 +47,6 @@
             steamLabel9 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamCard3 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
             steamLabel6 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
-            steamCard2 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
             steamCard1 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
             panel5 = new Panel();
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -59,17 +59,19 @@
             serverPW = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             smartButton5 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            steamCard2 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
+            customCard2.SuspendLayout();
             customCard1.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
             steamCard4.SuspendLayout();
             steamCard3.SuspendLayout();
-            steamCard2.SuspendLayout();
             steamCard1.SuspendLayout();
             panel5.SuspendLayout();
             panel4.SuspendLayout();
+            steamCard2.SuspendLayout();
             steamGradientPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -101,7 +103,7 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            panel2.Controls.Add(tabNavigationLocked);
+            panel2.Controls.Add(customCard2);
             panel2.Controls.Add(steamLabel8);
             panel2.Controls.Add(steamLabel7);
             panel2.Location = new Point(15, 61);
@@ -111,15 +113,29 @@
             panel2.Size = new Size(540, 89);
             panel2.TabIndex = 35;
             // 
+            // customCard2
+            // 
+            customCard2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            customCard2.BackColor = Color.Transparent;
+            customCard2.BorderColor = Color.Gray;
+            customCard2.BorderRadius = 2;
+            customCard2.BorderSize = 0;
+            customCard2.Controls.Add(tabNavigationLocked);
+            customCard2.Location = new Point(465, 7);
+            customCard2.Name = "customCard2";
+            customCard2.Size = new Size(60, 67);
+            customCard2.TabIndex = 62;
+            // 
             // tabNavigationLocked
             // 
-            tabNavigationLocked.AutoSize = true;
-            tabNavigationLocked.Location = new Point(480, 42);
-            tabNavigationLocked.Margin = new Padding(3, 4, 3, 4);
+            tabNavigationLocked.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tabNavigationLocked.Location = new Point(15, 17);
             tabNavigationLocked.Name = "tabNavigationLocked";
-            tabNavigationLocked.Size = new Size(18, 17);
-            tabNavigationLocked.TabIndex = 61;
+            tabNavigationLocked.Size = new Size(30, 30);
+            tabNavigationLocked.TabIndex = 50;
+            tabNavigationLocked.Text = "soloTickBox1";
             tabNavigationLocked.UseVisualStyleBackColor = true;
+            tabNavigationLocked.CheckedChanged += this.soloTickBox1_CheckedChanged;
             // 
             // steamLabel8
             // 
@@ -249,8 +265,8 @@
             tableLayoutPanel1.Controls.Add(steamPrimaryButton1, 1, 2);
             tableLayoutPanel1.Controls.Add(steamCard4, 1, 1);
             tableLayoutPanel1.Controls.Add(steamCard3, 0, 1);
-            tableLayoutPanel1.Controls.Add(steamCard2, 1, 0);
             tableLayoutPanel1.Controls.Add(steamCard1, 0, 0);
+            tableLayoutPanel1.Controls.Add(steamCard2, 1, 0);
             tableLayoutPanel1.Location = new Point(280, 93);
             tableLayoutPanel1.Margin = new Padding(2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -332,18 +348,6 @@
             steamLabel6.TabIndex = 59;
             steamLabel6.Text = "Advance Settings";
             // 
-            // steamCard2
-            // 
-            steamCard2.BackColor = Color.Transparent;
-            steamCard2.Controls.Add(codeQualityChoices21);
-            steamCard2.Dock = DockStyle.Fill;
-            steamCard2.Location = new Point(640, 3);
-            steamCard2.Margin = new Padding(20, 3, 3, 20);
-            steamCard2.Name = "steamCard2";
-            steamCard2.Padding = new Padding(20);
-            steamCard2.Size = new Size(577, 511);
-            steamCard2.TabIndex = 50;
-            // 
             // steamCard1
             // 
             steamCard1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -403,11 +407,15 @@
             serverName.ForeColor = Color.Red;
             serverName.Location = new Point(56, 71);
             serverName.Margin = new Padding(3, 3, 3, 100);
+            serverName.Multiline = false;
             serverName.Name = "serverName";
             serverName.Padding = new Padding(10, 10, 10, 8);
             serverName.PlaceholderText = "";
+            serverName.ReadOnly = false;
+            serverName.ScrollBars = ScrollBars.None;
             serverName.Size = new Size(467, 44);
             serverName.TabIndex = 45;
+            serverName.WordWrap = true;
             // 
             // language
             // 
@@ -482,11 +490,15 @@
             serverPW.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             serverPW.BackColor = Color.FromArgb(26, 30, 36);
             serverPW.Location = new Point(0, 0);
+            serverPW.Multiline = false;
             serverPW.Name = "serverPW";
             serverPW.Padding = new Padding(10, 8, 10, 8);
             serverPW.PlaceholderText = "";
+            serverPW.ReadOnly = false;
+            serverPW.ScrollBars = ScrollBars.None;
             serverPW.Size = new Size(369, 44);
             serverPW.TabIndex = 46;
+            serverPW.WordWrap = true;
             // 
             // smartButton5
             // 
@@ -523,6 +535,18 @@
             steamLabel1.TabIndex = 2;
             steamLabel1.Text = "Session Name";
             // 
+            // steamCard2
+            // 
+            steamCard2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            steamCard2.BackColor = Color.Transparent;
+            steamCard2.Controls.Add(codeQualityChoices21);
+            steamCard2.Location = new Point(640, 3);
+            steamCard2.Margin = new Padding(20, 3, 3, 20);
+            steamCard2.Name = "steamCard2";
+            steamCard2.Padding = new Padding(20);
+            steamCard2.Size = new Size(577, 511);
+            steamCard2.TabIndex = 50;
+            // 
             // steamGradientPanel1
             // 
             steamGradientPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -550,6 +574,7 @@
             panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            customCard2.ResumeLayout(false);
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
             tableLayoutPanel1.ResumeLayout(false);
@@ -557,11 +582,11 @@
             steamCard4.PerformLayout();
             steamCard3.ResumeLayout(false);
             steamCard3.PerformLayout();
-            steamCard2.ResumeLayout(false);
             steamCard1.ResumeLayout(false);
             steamCard1.PerformLayout();
             panel5.ResumeLayout(false);
             panel4.ResumeLayout(false);
+            steamCard2.ResumeLayout(false);
             steamGradientPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -578,7 +603,6 @@
         private Label label1;
         private GeneralComponents.CodeQualityChoices2 codeQualityChoices21;
         private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
         private Panel panel2;
         private SteamThings.SteamGradientPanel steamGradientPanel1;
         private SteamThings.SteamCard steamCard1;
@@ -604,6 +628,7 @@
         private GeneralComponents.SmartButton smartButton3;
         private SteamThings.SteamPrimaryButton steamPrimaryButton1;
         private Panel panel5;
-        private CheckBox tabNavigationLocked;
+        private SteamThings.SoloTickBox tabNavigationLocked;
+        private GeneralComponents.CustomCard customCard2;
     }
 }
