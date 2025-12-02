@@ -94,6 +94,7 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -133,11 +134,14 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.White;
+            smartButton1.Image = (Image)resources.GetObject("smartButton1.Image");
             smartButton1.Location = new Point(19, 17);
             smartButton1.Name = "smartButton1";
+            smartButton1.Padding = new Padding(40, 0, 0, 0);
             smartButton1.Size = new Size(341, 44);
             smartButton1.TabIndex = 14;
             smartButton1.Text = "Broadcast Message";
+            smartButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton1.UseVisualStyleBackColor = false;
             smartButton1.Click += smartButton1_Click;
             // 
@@ -389,9 +393,12 @@
             btn_sendmessage.FlatStyle = FlatStyle.Flat;
             btn_sendmessage.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_sendmessage.ForeColor = Color.FromArgb(34, 197, 94);
+            btn_sendmessage.Image = (Image)resources.GetObject("btn_sendmessage.Image");
+            btn_sendmessage.ImageAlign = ContentAlignment.MiddleLeft;
             btn_sendmessage.Location = new Point(690, 13);
             btn_sendmessage.Margin = new Padding(2, 4, 2, 4);
             btn_sendmessage.Name = "btn_sendmessage";
+            btn_sendmessage.Padding = new Padding(20, 0, 0, 0);
             btn_sendmessage.Size = new Size(187, 37);
             btn_sendmessage.TabIndex = 67;
             btn_sendmessage.Text = "Send Message";
@@ -470,6 +477,7 @@
             searchStudent.Name = "searchStudent";
             searchStudent.Padding = new Padding(10, 8, 10, 8);
             searchStudent.PlaceholderText = "Search Student";
+            searchStudent.ReadOnly = false;
             searchStudent.ScrollBars = ScrollBars.None;
             searchStudent.Size = new Size(226, 44);
             searchStudent.TabIndex = 110;
