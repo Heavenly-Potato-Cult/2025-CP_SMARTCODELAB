@@ -1,57 +1,81 @@
 ﻿using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SmartCodeLab.CustomComponents.SteamThings;
 
 namespace SmartCodeLab.CustomComponents.CustomDialogs
 {
     public partial class ChatBox : Form
     {
         public string studentId { get; private set; }
-        public ChatBox(Func<string, string, Task<bool>> sendMessage,List<UserMessage>? messages, bool isActive, string studentName, string studentId)
+
+        public ChatBox(Func<string, string, Task<bool>> sendMessage, List<UserMessage>? messages, bool isActive, string studentName, string studentId)
         {
             InitializeComponent();
-            richTextBox1.Enabled = isActive;
+
             this.studentId = studentId;
             this.studentName.Text = studentName;
 
-            richTextBox2.KeyUp += (s, e) =>
+            if (messages != null)
+            {
+                foreach (var msg in messages)
+                {
+                    // Do not override senderName; alignment is driven by isFromMe/IsBroadcast
+                    steamChatBox1.Items.Add(msg);
+                }
+                if (steamChatBox1.Items.Count > 0)
+                    steamChatBox1.TopIndex = steamChatBox1.Items.Count - 1;
+            }
+
+            richTextBox2.KeyUp += async (s, e) =>
             {
                 if (e.KeyCode == Keys.Enter && sendMessage != null)
                 {
                     string msg = richTextBox2.Text;
-                    Task.Run(async () => 
-                    { 
-                         var result = await sendMessage(studentId, msg);
-                        if(result)
-                            this.Invoke((Action)(() => richTextBox1.AppendText($"Me : {msg}")));
-                    });
+                    if (string.IsNullOrWhiteSpace(msg)) return;
+
+                    // Outgoing (me) -> right
+                    var userMsg = new UserMessage(msg)
+                    {
+                        isFromMe = true,
+                        senderName = "Me",
+                        IsBroadcast = false
+                    };
+
+                    bool success = await sendMessage(studentId, msg);
+
+                    if (success)
+                    {
+                        this.Invoke((Action)(() =>
+                        {
+                            steamChatBox1.Items.Add(userMsg);
+                            steamChatBox1.TopIndex = steamChatBox1.Items.Count - 1;
+                        }));
+                    }
+
                     richTextBox2.Clear();
                     e.Handled = true;
                 }
             };
-
-            if(messages != null && messages.Count != 0)
-            {
-                foreach (var message in messages)
-                {
-                    string from = message.isFromMe ? "Me" : studentName;
-                    richTextBox1.AppendText($"{from} : {message.message}");
-                }
-            }
         }
 
         public void receivedMessage(string message)
         {
             this.Invoke(new Action(() =>
             {
-                richTextBox1.AppendText($"{studentName.Text} : {message}");
+                // Incoming (student) -> left
+                var incomingMsg = new UserMessage(message)
+                {
+                    isFromMe = false,
+                    senderName = studentName.Text,
+                    IsBroadcast = false
+                };
+
+                steamChatBox1.Items.Add(incomingMsg);
+                steamChatBox1.TopIndex = steamChatBox1.Items.Count - 1;
             }));
         }
     }

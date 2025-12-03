@@ -288,7 +288,7 @@ namespace SmartCodeLab
                     });
                     var serverMsg = await task;
 
-                    if (serverMsg == null) break; // End of stream or error
+                    if (serverMsg == null) break;
                     switch (serverMsg._messageType)
                     {
                         case MessageType.TASK_UPDATE:
@@ -296,7 +296,20 @@ namespace SmartCodeLab
                             this.BeginInvoke((Action)(() => MessageBox.Show("Task Updated")));
                             break;
                         case MessageType.USER_MESSAGE:
-                            this.Invoke((Action)(() => msgBox.AppendText($"Teacher : {serverMsg.userMessage.message}")));
+                            this.Invoke((Action)(() =>{
+                                var incomingMsg = serverMsg.userMessage;
+
+                                
+                                incomingMsg.isFromMe = false; 
+                                incomingMsg.senderName = "Instructor"; 
+
+                                
+                                steamChatbox1.Items.Add(incomingMsg);
+                                steamChatbox1.TopIndex = steamChatbox1.Items.Count - 1; 
+
+                                
+                                MainTabControl.SelectedTab = MessagesTab;
+                            }));
                             MainTabControl.SelectedTab = MessagesTab;
                             break;
                         case MessageType.LEADERBOARDS_UPDATE:
@@ -409,18 +422,26 @@ namespace SmartCodeLab
         {
             if (e.KeyCode == Keys.Enter)
             {
-                string msg = richTextBox2.Text.Trim() + Environment.NewLine;
+                string msg = richTextBox2.Text.Trim();
 
+                if (string.IsNullOrEmpty(msg)) return;
+                var userMsg = new UserMessage(msg, true, "Me");
+
+                this.Invoke((Action)(() =>
+                {
+                    steamChatbox1.Items.Add(userMsg);
+                    steamChatbox1.TopIndex = steamChatbox1.Items.Count - 1; // Scroll to bottom
+                }));
                 Task.Run(async () =>
                 {
                     try
                     {
                         var message = new ServerMessage.Builder(MessageType.USER_MESSAGE)
-                            .UserMessage(new UserMessage(msg))
+                            .UserMessage(userMsg)
                             .Build();
                         Serializer.SerializeWithLengthPrefix(stream, message, PrefixStyle.Base128);
                         await stream.FlushAsync();
-                        this.Invoke((Action)(() => msgBox.AppendText($"Me : {msg}")));
+                        //this.Invoke((Action)(() => msgBox.AppendText($"Me : {msg}")));
                     }
                     catch (ProtoException) { }
                 });
