@@ -16,8 +16,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         }
 
         private TaskModel currentTask { get; set; }
-        //private TcpListener _server;
-        //student ID as the key
         private Dictionary<string, UserIcons> userIcons = new Dictionary<string, UserIcons>();
         private UserIcons recentSelectedIcon;
         private StudentCodingProgress studentProgress;
@@ -25,7 +23,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private System.Threading.Timer updateStudentList;
         private string selectedStudentId;
         private Func<string, StudentCodingProgress> progressRetriever;
-        private ConcurrentDictionary<string, ConcurrentBag<UserMessage>> userMessages;
+        // CHANGE: use ConcurrentQueue to preserve message order (FIFO)
+        private ConcurrentDictionary<string, ConcurrentQueue<UserMessage>> userMessages;
         private Func<string, UserMessage, Task<bool>> sendMessage;
         private Action<string, bool> informUserMonitor;
         private Func<string, bool> isStudentActive;
@@ -44,7 +43,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             selectedStudentId = string.Empty;
             this.informUserMonitor = informUserMonitor;
             isForLogs = false;
-            userMessages = new ConcurrentDictionary<string, ConcurrentBag<UserMessage>>();
+            userMessages = new ConcurrentDictionary<string, ConcurrentQueue<UserMessage>>();
             chatBox = null;
             currentTask = task;
             this.progressRetriever = progressRetriever;
@@ -70,7 +69,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             InitializeComponent();
             isForLogs = true;
             displayedUsers = new List<UserProfile>();
-            userMessages = new ConcurrentDictionary<string, ConcurrentBag<UserMessage>>();
+            userMessages = new ConcurrentDictionary<string, ConcurrentQueue<UserMessage>>();
             progressRetriever = (student_id) => userProgress[student_id];
             studentCodeRating1.SetStats(ratingFactors);
             smartButton1.Visible = false;
@@ -123,7 +122,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     try
                     {
-                        userMessages.TryAdd(user._studentId, new ConcurrentBag<UserMessage>());
+                        // INIT QUEUE instead of BAG
+                        userMessages.TryAdd(user._studentId, new ConcurrentQueue<UserMessage>());
                         userIcons[user._studentId] = new UserIcons(user, NewUserSelected) { Dock = DockStyle.Top };
                         displayedUsers.Add(user);
                     }
@@ -149,8 +149,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                 foreach (var ids in searchedIcons)
                 {
-                    //if (currentSearchVersion != searchVersion)
-                    //    break;
                     UserIcons icon = userIcons[ids];
                     if (isForLogs || activeStatus.Equals("All") || isActiveFilter == icon.isActive)
                     {
@@ -211,12 +209,19 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         public void ReceivedStudentMessage(UserMessage message, string studentId)
         {
-            if (!userMessages.ContainsKey(studentId))
-            {
-                userMessages[studentId] = new ConcurrentBag<UserMessage>();
-            }
-            message.isFromMe = false;
-            userMessages[studentId].Add(message);
+            // Ensure dictionary entry exists
+            var queue = userMessages.GetOrAdd(studentId, _ => new ConcurrentQueue<UserMessage>());
+
+            // Normalize fields for professor view
+            message.isFromMe = false;                // Student -> Prof
+            message.IsBroadcast = false;
+            // Critical: don’t keep "Me" from the student payload
+            if (userIcons.TryGetValue(studentId, out var icon) && icon?.profile != null)
+                message.senderName = icon.profile._studentName;
+            else
+                message.senderName = "Student";
+
+            queue.Enqueue(message);
 
             if (chatBox != null && chatBox.studentId == studentId)
             {
@@ -224,35 +229,42 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
         }
 
+        // Broadcast: forward with isBroadcast = true
         private void SentBroadCaseMessage(string message)
         {
             Task.Run(async () =>
             {
                 foreach (var item in displayedUsers)
                 {
-                    await SendMessageToStudent(item._studentId, message);
+                    await SendMessageToStudent(item._studentId, message, isBroadcast: true);
                 }
             });
         }
 
-        private async Task<bool> SendMessageToStudent(string studentId, string message)
+        // Direct send: ensure isFromMe = true and (optionally) IsBroadcast
+        private async Task<bool> SendMessageToStudent(string studentId, string message, bool isBroadcast = false)
         {
             if (isStudentActive(studentId))
             {
-                var messageObj = new UserMessage(message);
+                var messageObj = new UserMessage(message)
+                {
+                    isFromMe = true,
+                    senderName = "Instructor",   // store a clear sender for the student
+                    IsBroadcast = isBroadcast
+                };
+
                 var result = await sendMessage(studentId, messageObj);
                 if (result)
                 {
-                    if (!userMessages.ContainsKey(studentId))
-                        userMessages[studentId] = new ConcurrentBag<UserMessage>();
-
-                    userMessages[studentId].Add(messageObj);
+                    var queue = userMessages.GetOrAdd(studentId, _ => new ConcurrentQueue<UserMessage>());
+                    // Locally, mark mine as "Me" for display on professor side
+                    var localCopy = new UserMessage(messageObj.message, true, "Me", isBroadcast);
+                    queue.Enqueue(localCopy);
                     return true;
-                }else
-                    return false;
-            }
-            else
+                }
                 return false;
+            }
+            return false;
         }
 
         public async void UpdateStudentProgressDisplay(UserProfile user, StudentCodingProgress progress, bool fromClick = false)
@@ -311,7 +323,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private async void NewUserSelected(UserProfile profile, UserIcons newSelected)
         {
-            //set the icon color
             recentSelectedIcon?.LostFocusDisplay();
             recentSelectedIcon = newSelected;
 
@@ -365,11 +376,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void btn_sendmessage_Click(object sender, EventArgs e)
         {
-           if (string.IsNullOrEmpty(selectedStudentId))
+            if (string.IsNullOrEmpty(selectedStudentId))
                 return;
+
             userMessages.TryGetValue(selectedStudentId, out var messagesForStudent);
-            var snapshot = messagesForStudent?.ToList() ?? new List<UserMessage>();
-            chatBox = new ChatBox(SendMessageToStudent, snapshot, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
+            // Snapshot in FIFO order
+            var snapshot = messagesForStudent != null ? messagesForStudent.ToArray().ToList() : new List<UserMessage>();
+
+            Func<string, string, Task<bool>> sendMsgDelegate = (sid, msg) => SendMessageToStudent(sid, msg, isBroadcast: false);
+
+            chatBox = new ChatBox(sendMsgDelegate, snapshot, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
             chatBox.ShowDialog();
             chatBox = null;
         }
