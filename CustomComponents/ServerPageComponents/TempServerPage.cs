@@ -1,6 +1,7 @@
 ﻿using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.Pages.ServerPages;
 using SmartCodeLab.Models;
+using System.Collections.Concurrent;
 using System.Data;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private System.Threading.Timer updateStudentList;
         private string selectedStudentId;
         private Func<string, StudentCodingProgress> progressRetriever;
-        private Dictionary<string, List<UserMessage>> userMessages;
+        private ConcurrentDictionary<string, ConcurrentBag<UserMessage>> userMessages;
         private Func<string, UserMessage, Task<bool>> sendMessage;
         private Action<string, bool> informUserMonitor;
         private Func<string, bool> isStudentActive;
@@ -43,7 +44,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             selectedStudentId = string.Empty;
             this.informUserMonitor = informUserMonitor;
             isForLogs = false;
-            userMessages = new Dictionary<string, List<UserMessage>>();
+            userMessages = new ConcurrentDictionary<string, ConcurrentBag<UserMessage>>();
             chatBox = null;
             currentTask = task;
             this.progressRetriever = progressRetriever;
@@ -69,7 +70,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             InitializeComponent();
             isForLogs = true;
             displayedUsers = new List<UserProfile>();
-            userMessages = new Dictionary<string, List<UserMessage>>();
+            userMessages = new ConcurrentDictionary<string, ConcurrentBag<UserMessage>>();
             progressRetriever = (student_id) => userProgress[student_id];
             studentCodeRating1.SetStats(ratingFactors);
             smartButton1.Visible = false;
@@ -122,7 +123,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {
                     try
                     {
-                        userMessages[user._studentId] = new List<UserMessage>();
+                        userMessages.TryAdd(user._studentId, new ConcurrentBag<UserMessage>());
                         userIcons[user._studentId] = new UserIcons(user, NewUserSelected) { Dock = DockStyle.Top };
                         displayedUsers.Add(user);
                     }
@@ -212,7 +213,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
             if (!userMessages.ContainsKey(studentId))
             {
-                userMessages[studentId] = new List<UserMessage>();
+                userMessages[studentId] = new ConcurrentBag<UserMessage>();
             }
             message.isFromMe = false;
             userMessages[studentId].Add(message);
@@ -243,7 +244,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 if (result)
                 {
                     if (!userMessages.ContainsKey(studentId))
-                        userMessages[studentId] = new List<UserMessage>();
+                        userMessages[studentId] = new ConcurrentBag<UserMessage>();
 
                     userMessages[studentId].Add(messageObj);
                     return true;
@@ -366,7 +367,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         {
            if (string.IsNullOrEmpty(selectedStudentId))
                 return;
-            chatBox = new ChatBox(SendMessageToStudent, userMessages[selectedStudentId] ?? null, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
+            userMessages.TryGetValue(selectedStudentId, out var messagesForStudent);
+            var snapshot = messagesForStudent?.ToList() ?? new List<UserMessage>();
+            chatBox = new ChatBox(SendMessageToStudent, snapshot, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
             chatBox.ShowDialog();
             chatBox = null;
         }

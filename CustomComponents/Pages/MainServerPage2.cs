@@ -40,8 +40,8 @@ namespace SmartCodeLab.CustomComponents.Pages
         private TcpListener serverListener;
 
         //users related
-        private ConcurrentDictionary<string, NetworkStream> connectedUsers;
-        private List<string> currentStudents = new List<string>();
+        private ConcurrentDictionary<string, TcpClient> connectedUsers;
+        private ConcurrentDictionary<string, bool> currentStudents = new ConcurrentDictionary<string, bool>();
         //will use userId as a KEY
         private ConcurrentDictionary<string, StudentCodingProgress> userProgress;
 
@@ -56,7 +56,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             serverListener = new TcpListener(IPAddress.Any, 1901);
             currentTask = server.ServerTask;
             Task.Run(async () => await StartServerAsync());
-            connectedUsers = new ConcurrentDictionary<string, NetworkStream>(
+            connectedUsers = new ConcurrentDictionary<string, TcpClient>(
                 concurrencyLevel: 64,       // For 30+ concurrent connections
                 capacity: 50                // Expected max simultaneous connections
             );
@@ -129,7 +129,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         {
             if (connectedUsers.ContainsKey(studentId))
             {
-                NetworkStream stream = connectedUsers[studentId];
+                NetworkStream stream = connectedUsers[studentId].GetStream();
                 Serializer.SerializeWithLengthPrefix<ServerMessage>(stream,
                     new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(message).Build(), PrefixStyle.Base128);
                 await stream.FlushAsync();
@@ -148,7 +148,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             if (connectedUsers.ContainsKey(userId))
             {
                 MessageType messageType = serverMessage._messageType;
-                NetworkStream stream = connectedUsers[userId];
+                NetworkStream stream = connectedUsers[userId].GetStream();
                 Serializer.SerializeWithLengthPrefix<ServerMessage>(stream, serverMessage, PrefixStyle.Base128);
                 await stream.FlushAsync();
 
@@ -245,10 +245,9 @@ namespace SmartCodeLab.CustomComponents.Pages
                 while (isStillActive)
                 {
                     TcpClient client = await AcceptTcpClientAsync(serverListener);
-                    NetworkStream stream = client.GetStream();
 
                     // Handle each client in a separate task
-                    _ = Task.Run(() => MessageReceiverAsync(stream));
+                    _ = Task.Run(() => MessageReceiverAsync(client));
                 }
                 serverListener.Dispose();
             }
@@ -273,8 +272,9 @@ namespace SmartCodeLab.CustomComponents.Pages
             return Task.Run(() => listener.AcceptTcpClient());
         }
 
-        private async Task MessageReceiverAsync(NetworkStream networkStream)
+        private async Task MessageReceiverAsync(TcpClient client)
         {
+            NetworkStream networkStream = client.GetStream();
             UserProfile userProfile = new UserProfile();
             bool didLoggedIn = false;
             //send the task to the new client
@@ -314,7 +314,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                             {
                                 //will retrieve the full student profile from the table using studentId
                                 userProfile = users[userProfile._studentId];
-                                if (currentStudents.Contains(userProfile._studentName))
+                                if (currentStudents.ContainsKey(userProfile._studentName))
                                 {
                                     errorMsg = "This student is already logged in";
                                 }
@@ -325,7 +325,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                                 else
                                 {
                                     var progress = userProgress.GetOrAdd(userProfile._studentId, key => new StudentCodingProgress());
-                                    currentStudents.Add(userProfile._studentName);
+                                    currentStudents.TryAdd(userProfile._studentName, true);
                                     Serializer.SerializeWithLengthPrefix<ServerMessage>(networkStream,
                                         new ServerMessage.Builder(MessageType.LOG_IN_SUCCESSFUL).
                                         Task(currentTask).
@@ -334,7 +334,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                                         Build(), PrefixStyle.Base128);
                                     didLoggedIn = true;
                                     serverPage.StudentLoggedIn(userProfile);
-                                    HandleUserStream(networkStream, userProfile, true, didLoggedIn);
+                                    HandleUserStream(client, userProfile, true, didLoggedIn);
                                     homePage.NewNotification(new Notification(NotificationType.LoggedIn, userProfile._studentName), userProfile);
                                 }
                             }
@@ -378,7 +378,7 @@ namespace SmartCodeLab.CustomComponents.Pages
                     break;
                 }
             }
-            HandleUserStream(networkStream, userProfile, false, didLoggedIn);
+            HandleUserStream(client, userProfile, false, didLoggedIn);
         }
 
         private void UpdateUserProgress(string studentId, StudentCodingProgress progress)
@@ -391,25 +391,54 @@ namespace SmartCodeLab.CustomComponents.Pages
             return userProgress[studentId];
         }
 
-        private void HandleUserStream(NetworkStream networkStream, UserProfile profile, bool isAdd, bool didLoggedIn)
+        private void HandleUserStream(TcpClient client, UserProfile profile, bool isAdd, bool didLoggedIn)
         {
             try
             {
                 if (isAdd)
-                    connectedUsers.AddOrUpdate(profile._studentId, networkStream, (k, v) => networkStream);
+                {
+                    // Add new client; if key exists, dispose old client
+                    connectedUsers.AddOrUpdate(profile._studentId, client, (k, oldClient) =>
+                    {
+                        try
+                        {
+                            oldClient?.GetStream()?.Close();
+                            oldClient?.Close();
+                        }
+                        catch { }
+                        return client;
+                    });
+                }
                 else
                 {
-                    connectedUsers.TryRemove(profile._studentId, out _);
-                    currentStudents.Remove(profile._studentName);
+                    // Safely remove client
+                    if (connectedUsers.TryRemove(profile._studentId, out TcpClient clientToClose))
+                    {
+                        try
+                        {
+                            clientToClose?.GetStream()?.Close();
+                            clientToClose?.Close();
+                        }
+                        catch { }
+                    }
+
+                    currentStudents.TryRemove(profile._studentName, out _);
+
                     if (didLoggedIn)
                     {
-                        serverPage.StudentLoggedOut(profile);
-                        homePage.NewNotification(new Notification(NotificationType.LoggedOut, profile._studentName), profile);
+                        // UI calls should be marshalled to the UI thread
+                        serverPage.Invoke((MethodInvoker)(() => serverPage.StudentLoggedOut(profile)));
+                        homePage.Invoke((MethodInvoker)(() => homePage.NewNotification(
+                            new Notification(NotificationType.LoggedOut, profile._studentName), profile)));
                     }
                 }
             }
-            catch (ArgumentNullException) { }
+            catch (Exception ex)
+            {
+                // optionally log the error
+            }
         }
+
 
         //broadcasting service
         private void UpdateServerTask(TaskModel task, List<SubmittedCode> leaderboards, string msg)
