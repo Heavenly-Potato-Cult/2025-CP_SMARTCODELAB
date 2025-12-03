@@ -51,7 +51,7 @@
             session_name = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             MessagesTab = new TabPage();
             richTextBox2 = new RichTextBox();
-            msgBox = new RichTextBox();
+            steamChatbox1 = new SmartCodeLab.CustomComponents.SteamThings.SteamChatBox();
             TestCases = new TabPage();
             TestCasesPanel = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -134,9 +134,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 10);
+            pictureBox1.Location = new Point(23, 11);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(59, 63);
+            pictureBox1.Size = new Size(60, 63);
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
             // 
@@ -398,37 +398,41 @@
             // 
             // MessagesTab
             // 
+            MessagesTab.BackColor = Color.FromArgb(21, 28, 38);
             MessagesTab.Controls.Add(richTextBox2);
-            MessagesTab.Controls.Add(msgBox);
+            MessagesTab.Controls.Add(steamChatbox1);
             MessagesTab.Location = new Point(4, 54);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3);
             MessagesTab.Size = new Size(313, 877);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
-            MessagesTab.UseVisualStyleBackColor = true;
             // 
             // richTextBox2
             // 
-            richTextBox2.BorderStyle = BorderStyle.FixedSingle;
+            richTextBox2.BackColor = Color.FromArgb(23, 26, 50);
+            richTextBox2.BorderStyle = BorderStyle.None;
             richTextBox2.Dock = DockStyle.Top;
-            richTextBox2.Location = new Point(3, 528);
+            richTextBox2.ForeColor = Color.FromArgb(224, 224, 224);
+            richTextBox2.Location = new Point(3, 352);
             richTextBox2.Name = "richTextBox2";
             richTextBox2.Size = new Size(307, 104);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
             richTextBox2.KeyUp += richTextBox2_KeyUp;
             // 
-            // msgBox
+            // steamChatbox1
             // 
-            msgBox.BorderStyle = BorderStyle.FixedSingle;
-            msgBox.Dock = DockStyle.Top;
-            msgBox.Location = new Point(3, 3);
-            msgBox.Name = "msgBox";
-            msgBox.ReadOnly = true;
-            msgBox.Size = new Size(307, 525);
-            msgBox.TabIndex = 0;
-            msgBox.Text = "";
+            steamChatbox1.BackColor = Color.FromArgb(23, 26, 33);
+            steamChatbox1.BorderStyle = BorderStyle.None;
+            steamChatbox1.Dock = DockStyle.Top;
+            steamChatbox1.DrawMode = DrawMode.OwnerDrawVariable;
+            steamChatbox1.FormattingEnabled = true;
+            steamChatbox1.IntegralHeight = false;
+            steamChatbox1.Location = new Point(3, 3);
+            steamChatbox1.Name = "steamChatbox1";
+            steamChatbox1.Size = new Size(307, 349);
+            steamChatbox1.TabIndex = 2;
             // 
             // TestCases
             // 
@@ -779,7 +783,6 @@
         private Panel panel_Main;
         private TabControl tabControl_RightSide;
         private RichTextBox richTextBox2;
-        private RichTextBox msgBox;
         private Panel panel_leaderboards;
         private CustomComponents.ServerPageComponents.StudentCodeRating studentCodeRating;
         private CustomComponents.SteamThings.SteamGradientPanel steamGradientPanel1;
@@ -822,5 +825,6 @@
         private CustomComponents.GeneralComponents.CustomCard customCard7;
         private CustomComponents.SteamThings.SteamLabel session_name;
         private CustomComponents.GeneralComponents.SmartButton exitbtn;
+        private CustomComponents.SteamThings.SteamChatBox steamChatbox1;
     }
 }
