@@ -28,7 +28,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             InitializeComponent();
         }
-
         public TestCodeForm(string command, TaskModel task)
         {
             InitializeComponent();
@@ -136,12 +135,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         testOutput = $"Error: {ex.Message}";
                     }
                 } // Process is disposed here
-
-                bool isCorrect = testOutput == item.Value + '\n';
-
+                testOutput = Normalize(testOutput.Trim());
+                string expectedOutput = Normalize(item.Value.Trim());
+                bool isCorrect = testOutput == expectedOutput;
                 // Create test case UI
                 var testcase = new ExpansionPanel();
-                var testcaseview = new TestCaseResult2(sequence, isCorrect, item.Key, item.Value, testOutput);
+                var testcaseview = new TestCaseResult2(sequence, isCorrect, item.Key, expectedOutput, testOutput);
                 testcase.Title1 = "Test Case " + sequence.ToString();
 
                 if (isCorrect)
@@ -177,6 +176,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
                 currentScore.Text = $"{score}/{totalCases}";
             }
+        }
+
+        string Normalize(string s)
+        {
+            return string.Join("\n",
+                s.Replace("\r\n", "\n")
+                 .Replace("\r", "\n")
+                 .Split('\n')
+                 .Select(line => string.Join(" ",
+                     line.Split(' ', StringSplitOptions.RemoveEmptyEntries)))
+            ).Trim();
         }
 
         // Improved process runner with better cleanup

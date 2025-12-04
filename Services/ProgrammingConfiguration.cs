@@ -61,6 +61,7 @@ namespace SmartCodeLab.Services
         public static string JAVA_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "JavaEfficiencyAnalyzer-1.0.jar");
         public static string JAVA_COUNTER_INITIALIZER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "JavaOperatorCounterInitializer.jar");
         public static string JAVA_SYNTAX_CHECKER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "SyntaxChecker.jar");
+        public static string JAVA_SYNTAX_FORMATTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "java-formatter.jar");
 
         //activity file locations
         public static string javaFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "java");

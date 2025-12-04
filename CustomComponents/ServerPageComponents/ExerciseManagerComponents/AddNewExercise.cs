@@ -56,7 +56,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             Load += (sender, e) => SetTestCases(task._testCases ?? new Dictionary<string, string>());
         }
 
-        private void setExistingSubjects() 
+        private void setExistingSubjects()
         {
             // Set up TextBox autocomplete
             subject.textBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -99,11 +99,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             }
 
             NewExercise = new TaskModel(txtbox_ExerciseTitle.Texts, subject.Texts, txtbox_ExerciseInstruction.Texts, GetTestCases());
-            if (NewExercise._testCases.Count < 10)
-            {
-                MessageBox.Show("Please put at least 10 test cases");
-                return;
-            }
             if (Directory.GetFiles(folderPath).Contains(filePath))
             {
                 MessageBox.Show(duplicateMsg, "Duplicate Exercise", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -119,13 +114,13 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             bool doNotHave = true;
             foreach (var item in autoCompleteList)
             {
-                if(item.Equals(subject.Texts, StringComparison.OrdinalIgnoreCase))
+                if (item.Equals(subject.Texts, StringComparison.OrdinalIgnoreCase))
                 {
                     doNotHave = false;
                     break;
                 }
             }
-            if (doNotHave) 
+            if (doNotHave)
             {
                 File.AppendAllLines(SystemConfigurations.SUBJECTS_FILE, new[] { subject.Texts });
             }
@@ -160,31 +155,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             this.Close();
         }
 
-        private void btn_AddTestCase_Click(object sender, EventArgs e)
-        {
-
-            var testcaseholder = new ExpansionPanel();
-            var testcasecontent= new TestCase2();
-            testcasecontent.RemoveRequested += (s, ev) =>
-            {
-                testcaseholder.Dispose();
-            };
-
-            testcaseholder.Title1 = "test case";
-            testcaseholder.Title2 = "";
-            testcaseholder.HeaderColor = Color.FromArgb(230, 240, 255);
-            //testcaseholder.BackColor = Color.Gray;
-            testcaseholder.HeaderHeight = 40;
-            testcasecontent.AutoSize = false;
-
-            testcasecontent.Dock = DockStyle.Fill;
-            testcasecontent.Padding = new Padding(20, 45, 20, 0);
-            testcaseholder.Controls.Add(testcasecontent);
-
-            testcaseholder.Dock = DockStyle.Top;
-            testCasesContainer.Controls.Add(testcaseholder);
-            
-        }
 
         private Dictionary<string, string> GetTestCases()
         {
@@ -213,7 +183,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             // Convert to a list so we can loop backward
             var testCaseList = testCases.ToList();
 
-            
+
             for (int i = testCaseList.Count - 1; i >= 0; i--)
             {
                 var testCase = testCaseList[i];
@@ -221,7 +191,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
                 var testcaseholder = new ExpansionPanel();
 
-                
+
                 var testcasecontent = new TestCase2(testCase);
 
                 testcasecontent.RemoveRequested += (s, ev) =>
@@ -242,6 +212,30 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 testcaseholder.Dock = DockStyle.Top;
                 testCasesContainer.Controls.Add(testcaseholder);
             }
+        }
+
+        private void btn_AddTestCase_Click_1(object sender, EventArgs e)
+        {
+            var testcaseholder = new ExpansionPanel();
+            var testcasecontent = new TestCase2();
+            testcasecontent.RemoveRequested += (s, ev) =>
+            {
+                testcaseholder.Dispose();
+            };
+
+            testcaseholder.Title1 = "test case";
+            testcaseholder.Title2 = "";
+            testcaseholder.HeaderColor = Color.FromArgb(230, 240, 255);
+            //testcaseholder.BackColor = Color.Gray;
+            testcaseholder.HeaderHeight = 40;
+            testcasecontent.AutoSize = false;
+
+            testcasecontent.Dock = DockStyle.Fill;
+            testcasecontent.Padding = new Padding(20, 45, 20, 0);
+            testcaseholder.Controls.Add(testcasecontent);
+
+            testcaseholder.Dock = DockStyle.Top;
+            testCasesContainer.Controls.Add(testcaseholder);
         }
     }
 }

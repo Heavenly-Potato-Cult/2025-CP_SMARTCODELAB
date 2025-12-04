@@ -37,10 +37,10 @@
             btn_CreateExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             label6 = new Label();
             panel7 = new Panel();
+            btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             testCasesContainer = new Panel();
             subject = new CustomTextBox();
             panel_temp_spacer = new Panel();
-            btn_AddTestCase = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel7.SuspendLayout();
             SuspendLayout();
             // 
@@ -184,6 +184,26 @@
             panel7.Size = new Size(1039, 819);
             panel7.TabIndex = 60;
             // 
+            // btn_AddTestCase
+            // 
+            btn_AddTestCase.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btn_AddTestCase.BackColor = Color.FromArgb(42, 71, 94);
+            btn_AddTestCase.BackgroundColor = Color.FromArgb(42, 71, 94);
+            btn_AddTestCase.BorderRadius = 1;
+            btn_AddTestCase.FlatAppearance.BorderSize = 0;
+            btn_AddTestCase.FlatStyle = FlatStyle.Flat;
+            btn_AddTestCase.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_AddTestCase.ForeColor = Color.FromArgb(199, 213, 224);
+            btn_AddTestCase.Location = new Point(900, 357);
+            btn_AddTestCase.Margin = new Padding(2, 4, 2, 4);
+            btn_AddTestCase.Name = "btn_AddTestCase";
+            btn_AddTestCase.Size = new Size(117, 46);
+            btn_AddTestCase.TabIndex = 67;
+            btn_AddTestCase.Text = "ADD";
+            btn_AddTestCase.TextColor = Color.FromArgb(199, 213, 224);
+            btn_AddTestCase.UseVisualStyleBackColor = false;
+            btn_AddTestCase.Click += btn_AddTestCase_Click_1;
+            // 
             // testCasesContainer
             // 
             testCasesContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -220,25 +240,6 @@
             panel_temp_spacer.Name = "panel_temp_spacer";
             panel_temp_spacer.Size = new Size(250, 21);
             panel_temp_spacer.TabIndex = 61;
-            // 
-            // btn_AddTestCase
-            // 
-            btn_AddTestCase.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btn_AddTestCase.BackColor = Color.FromArgb(42, 71, 94);
-            btn_AddTestCase.BackgroundColor = Color.FromArgb(42, 71, 94);
-            btn_AddTestCase.BorderRadius = 1;
-            btn_AddTestCase.FlatAppearance.BorderSize = 0;
-            btn_AddTestCase.FlatStyle = FlatStyle.Flat;
-            btn_AddTestCase.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_AddTestCase.ForeColor = Color.FromArgb(199, 213, 224);
-            btn_AddTestCase.Location = new Point(900, 357);
-            btn_AddTestCase.Margin = new Padding(2, 4, 2, 4);
-            btn_AddTestCase.Name = "btn_AddTestCase";
-            btn_AddTestCase.Size = new Size(117, 46);
-            btn_AddTestCase.TabIndex = 67;
-            btn_AddTestCase.Text = "ADD";
-            btn_AddTestCase.TextColor = Color.FromArgb(199, 213, 224);
-            btn_AddTestCase.UseVisualStyleBackColor = false;
             // 
             // AddNewExercise
             // 

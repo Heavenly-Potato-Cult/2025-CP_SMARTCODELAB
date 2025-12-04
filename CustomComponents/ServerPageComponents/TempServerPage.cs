@@ -374,11 +374,24 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             updateStudentList = new System.Threading.Timer(_ => displayStudents(), null, 500, Timeout.Infinite);
         }
 
+        private void NonBlockingNotification(string message)
+        {
+            this.BeginInvoke((Action)(() => MessageBox.Show(message)));
+        }
+
         private void btn_sendmessage_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(selectedStudentId))
+            {
+                NonBlockingNotification("No Selected User");
                 return;
+            }
 
+            if (!isStudentActive.Invoke(selectedStudentId))
+            {
+                NonBlockingNotification("Selected student is currently Inactive");
+                return;
+            }
             userMessages.TryGetValue(selectedStudentId, out var messagesForStudent);
             // Snapshot in FIFO order
             var snapshot = messagesForStudent != null ? messagesForStudent.ToArray().ToList() : new List<UserMessage>();
