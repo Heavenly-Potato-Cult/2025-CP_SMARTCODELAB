@@ -15,7 +15,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public ServerTaskUpdate()
         {
             InitializeComponent();
-            testContainer.AutoScrollMargin = new Size(0, 50);
+            //testContainer.AutoScrollMargin = new Size(0, 50);
+            this.Load += (s, e) => { SetUpTask(); ReflowItems(); };
         }
 
         private TaskModel task;
@@ -29,8 +30,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             this.action = action;
             this.reference.Text = task._referenceFile;
             recentReferenceCode = task._referenceFile;
-            this.Load += (s, e) => SetUpTask();
-            testContainer.AutoScrollMargin = new Size(0, 50);
+            
+            this.Load += (s, e) => { SetUpTask(); ReflowItems(); };
+
         }
         protected override CreateParams CreateParams
         {
@@ -52,22 +54,51 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     subject.Text = task.subject;
                     instruction.Text = task._instructions;
 
-                    testContainer.Controls.Clear();
-                    if (task._testCases != null && task._testCases.Count > 0)
+                    testContainer.SuspendLayout();
+                    try
                     {
-                        foreach (var item in task._testCases)
+                        testContainer.Controls.Clear();
+
+                        if (task._testCases != null && task._testCases.Count > 0)
                         {
-                            testContainer.Controls.Add(new TestCase3(item) { Dock = DockStyle.Top });
+                            foreach (var item in task._testCases)
+                            {
+                                var tc = new TestCase3(item)
+                                {
+                                    Dock = DockStyle.None,
+                                    AutoSize = false,
+                                    Margin = new Padding(0),
+                                    Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
+                                };
+                               
+                                tc.RemoveRequested += (s, ev) =>
+                                {
+                                    if (s is TestCase3 toRemove)
+                                    {
+                                        testContainer.Controls.Remove(toRemove);
+                                        toRemove.Dispose();
+                                        ReflowItems();
+                                    }
+                                };
+
+                                testContainer.Controls.Add(tc);
+                                
+                                testContainer.Controls.SetChildIndex(tc, 0);
+                            }
                         }
+
+                       
+                        ReflowItems();
+                    }
+                    finally
+                    {
+                        testContainer.ResumeLayout(true);
                     }
                 }));
             });
         }
 
-        private void btn_AddTestCase_Click(object sender, EventArgs e)
-        {
-            testContainer.Controls.Add(new TestCase3() { Dock = DockStyle.Top });
-        }
+      
 
         private void btn_EditExerciseDetails_Click(object sender, EventArgs e)
         {
@@ -208,31 +239,48 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
             testContainer.Controls.Add(testcasecontent);
             testContainer.Controls.SetChildIndex(testcasecontent, 0);
-
+            
             ReflowItems();
 
         }
 
         private void ReflowItems()
         {
-            int y = 0;
-
-            var ordered = testContainer.Controls
-                .Cast<Control>()
-                .OrderBy(c => testContainer.Controls.GetChildIndex(c));
-
-            foreach (Control c in ordered)
-            {
-                if (!c.Visible) continue;
-
-                c.Location = new Point(0, y);
-                c.Width = testContainer.ClientSize.Width;
-
-                y += c.Height + c.Margin.Bottom;
-            }
-
            
-            testContainer.AutoScrollMinSize = new Size(0, y + 100);
+            testContainer.SuspendLayout();
+
+            try
+            {
+                int contentHeight = 0;
+
+               
+                var scroll = testContainer.AutoScrollPosition;
+
+                var ordered = testContainer.Controls
+                    .Cast<Control>()
+                    .Where(c => c.Visible)
+                    .OrderBy(c => testContainer.Controls.GetChildIndex(c));
+
+                foreach (Control c in ordered)
+                {
+                   
+                    c.Width = testContainer.DisplayRectangle.Width;
+
+                  
+                    c.Location = new Point(scroll.X, scroll.Y + contentHeight);
+
+                   
+                    int h = c.AutoSize ? c.PreferredSize.Height : c.Height;
+                    contentHeight += h + c.Margin.Bottom;
+                }
+
+                
+                testContainer.AutoScrollMinSize = new Size(testContainer.DisplayRectangle.Width, contentHeight + 500);
+            }
+            finally
+            {
+                testContainer.ResumeLayout(true);
+            }
         }
 
 
