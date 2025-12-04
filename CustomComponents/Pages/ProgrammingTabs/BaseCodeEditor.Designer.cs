@@ -60,15 +60,17 @@
     '\'',
     '\''
     };
-            srcCode.AutoScrollMinSize = new Size(101, 29);
+            srcCode.AutoIndentChars = false;
+            srcCode.AutoScrollMinSize = new Size(101, 28);
             srcCode.AutoSize = true;
             srcCode.BackBrush = null;
             srcCode.BackColor = Color.FromArgb(24, 24, 27);
             srcCode.CaretColor = Color.Silver;
-            srcCode.CharHeight = 19;
+            srcCode.CharHeight = 18;
             srcCode.CharWidth = 10;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
             srcCode.Dock = DockStyle.Fill;
+            srcCode.Font = new Font("Courier New", 9.75F);
             srcCode.ForeColor = Color.Silver;
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
             srcCode.IndentBackColor = Color.FromArgb(21, 28, 38);

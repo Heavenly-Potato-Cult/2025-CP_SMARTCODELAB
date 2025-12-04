@@ -387,7 +387,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 return;
             }
 
-            if (isStudentActive.Invoke(selectedStudentId))
+            if (!isStudentActive.Invoke(selectedStudentId))
             {
                 NonBlockingNotification("Selected student is currently Inactive");
                 return;

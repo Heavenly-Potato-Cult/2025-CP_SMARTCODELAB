@@ -197,8 +197,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 err => MessageBox.Show(err),//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
                 null);
 
-
-            SourceCodeInitializer.InitializeEfficiencyCode2(LanguageSupported.Java, filePath, false);
+            string testFilePath = Path.Combine(directory, "Tester.java");
+            File.WriteAllText(testFilePath, srcCode.Text);
+            SourceCodeInitializer.InitializeEfficiencyCode2(LanguageSupported.Java, testFilePath, false);
             //directory = Path.GetDirectoryName(filePath);
 
             string fileName = Path.GetFileNameWithoutExtension(filePath);
@@ -248,12 +249,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     {
                         if (errors[errors.Length - 1] != standardError)
                         {
-                            string[] e = standardError.Split(':');
-                            string errorMessage = ToolTipProgrammingMessages.javaExplanations[checkstyleErrorRetriever(e[e.Length - 1])];
-                            errorsList.Add(errorMessage);
-                            base.HighlightMaintainabilityIssue(int.Parse(e[2]) - 1, errorMessage);
-                            maintainabilityCounts++;
-                            maintainabilityRules.Add(checkstyleErrorRetriever(errorMessage));
+                            try
+                            {
+                                string[] e = standardError.Split(':');
+                                string errorMessage = ToolTipProgrammingMessages.javaExplanations[checkstyleErrorRetriever(e[e.Length - 1])];
+                                errorsList.Add(errorMessage);
+                                base.HighlightMaintainabilityIssue(int.Parse(e[2]) - 1, errorMessage);
+                                maintainabilityCounts++;
+                                maintainabilityRules.Add(checkstyleErrorRetriever(errorMessage));
+                            }
+                            catch (KeyNotFoundException) { }
                         }
                     }
                     updateStats?.Invoke(4, maintainabilityCounts, "java");

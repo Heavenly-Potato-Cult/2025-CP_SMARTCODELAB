@@ -50,8 +50,9 @@ namespace SmartCodeLab.Services
             if (language == LanguageSupported.Java)
             {
                 string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.java";
-                string operatorFile = Path.Combine(directory, fileName);
+                ExecuteCommand($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_SYNTAX_FORMATTER}\" --replace --skip-removing-unused-imports \"{filePath}\"\"");
                 string compDelCommand = $" && cd \"{directory}\" && javac {fileName} && del {fileName}";
+                Debug.WriteLine($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_COUNTER_INITIALIZER}\" \"{filePath}\" \"{fromWho}\" {compDelCommand}\"");
                 ExecuteCommand($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_COUNTER_INITIALIZER}\" \"{filePath}\" \"{fromWho}\" {compDelCommand}\"");
             }
             else if (language == LanguageSupported.Cpp)
