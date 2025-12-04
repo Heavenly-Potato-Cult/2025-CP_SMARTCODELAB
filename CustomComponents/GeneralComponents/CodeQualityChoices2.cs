@@ -128,6 +128,8 @@ namespace SmartCodeLab.CustomComponents.GeneralComponents
 
         public void setLanguage(string language)
         {
+            if (language == "None")
+                return;
             this.language = language;
         }
         private void SetupTrackBar(SteamTrackBar trackBar, int defaultValue = 0)

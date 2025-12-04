@@ -81,14 +81,12 @@ namespace SmartCodeLab
 
             var newIcon = new leaderboardIcon();
 
-
             newIcon.Dock = DockStyle.Top;
             newIcon.Margin = new Padding(0, 0, 0, 5);
 
             newIcon.Ranking = ranking;
             newIcon.Name = studentName;
             newIcon.Score = score;
-
 
             if (ranking >= 1 && ranking <= 5)
             {
@@ -189,7 +187,6 @@ namespace SmartCodeLab
             _originalImage = pictureBox2.Image;
         }
         
-
         private void ReleaseAnything()
         {
             stream.Close();
@@ -208,7 +205,6 @@ namespace SmartCodeLab
             TestCasesPanel.SuspendLayout();
             try
             {
-
                 if (task._testCases != null && task._testCases.Count > 0)
                 {
                     // para ma maintain ang order sa test cases
@@ -453,7 +449,6 @@ namespace SmartCodeLab
         private void btn_run_Click(object sender, EventArgs e)
         {
             mainEditor.RunCode();
-
         }
 
         private async void btn_submit_Click(object sender, EventArgs e)

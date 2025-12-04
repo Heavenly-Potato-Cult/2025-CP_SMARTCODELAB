@@ -135,7 +135,6 @@
             tabNavigationLocked.TabIndex = 50;
             tabNavigationLocked.Text = "soloTickBox1";
             tabNavigationLocked.UseVisualStyleBackColor = true;
-            tabNavigationLocked.CheckedChanged += soloTickBox1_CheckedChanged;
             // 
             // steamLabel8
             // 
