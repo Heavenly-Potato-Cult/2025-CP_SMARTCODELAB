@@ -28,7 +28,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             InitializeComponent();
         }
-
         public TestCodeForm(string command, TaskModel task)
         {
             InitializeComponent();
