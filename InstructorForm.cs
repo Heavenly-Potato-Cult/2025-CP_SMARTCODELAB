@@ -36,7 +36,7 @@ namespace SmartCodeLab
             tabPage8.Controls.Add(new SessionLogsPage() { Dock = DockStyle.Fill });
         }
 
-        private const int BaseNavPanelHeight = 40;
+        private const int BaseNavPanelHeight = 58;
 
         private void NavigationMenu()
         {
