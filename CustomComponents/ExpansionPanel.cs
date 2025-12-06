@@ -203,6 +203,7 @@ namespace SmartCodeLab.CustomComponents
             set { this.lblTitle1.Text = value; }
         }
 
+
         [Category("Appearance")]
         [Description("The secondary title text for the panel.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -211,6 +212,25 @@ namespace SmartCodeLab.CustomComponents
             get { return this.lblTitle2.Text; }
             set { this.lblTitle2.Text = value; }
         }
+        [Category("Appearance")]
+        [Description("The main title text for the panel.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public SteamLabel.ThemeOption Title1Theme
+        {
+            get => lblTitle1.SteamTheme;
+            set => lblTitle1.SteamTheme = value;
+        }
+
+        [Category("Appearance")]
+        [Description("The secondary title text for the panel.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public SteamLabel.ThemeOption Title2Theme
+        {
+            get => lblTitle2.SteamTheme;
+            set => lblTitle2.SteamTheme = value;
+        }
+
+
 
         [Category("Appearance")]
         [Description("The text or character for the toggle icon.")]
