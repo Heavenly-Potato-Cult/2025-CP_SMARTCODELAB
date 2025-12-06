@@ -46,7 +46,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             placing.Click += SelectThisUser;
             indicator.Click += SelectThisUser;
             score.Click += SelectThisUser;
-            panel1.Click += SelectThisUser;
+
 
         }
 
