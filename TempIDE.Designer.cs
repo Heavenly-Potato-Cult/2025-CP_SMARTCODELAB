@@ -72,7 +72,6 @@
             pictureBox3 = new PictureBox();
             pictureBox2 = new PictureBox();
             steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
-            steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             panel2 = new Panel();
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -99,7 +98,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            steamGradientPanel1.SuspendLayout();
             customCard3.SuspendLayout();
             SuspendLayout();
             // 
@@ -687,20 +685,6 @@
             steamLabel3.TabIndex = 20;
             steamLabel3.Text = "Being Watched";
             // 
-            // steamGradientPanel1
-            // 
-            steamGradientPanel1.Controls.Add(panel2);
-            steamGradientPanel1.Controls.Add(splitContainer1);
-            steamGradientPanel1.Controls.Add(customCard3);
-            steamGradientPanel1.Dock = DockStyle.Fill;
-            steamGradientPanel1.GradientAngle = 90F;
-            steamGradientPanel1.GradientBottomColor = Color.FromArgb(26, 30, 36);
-            steamGradientPanel1.GradientTopColor = Color.FromArgb(11, 14, 17);
-            steamGradientPanel1.Location = new Point(0, 0);
-            steamGradientPanel1.Name = "steamGradientPanel1";
-            steamGradientPanel1.Size = new Size(1602, 1016);
-            steamGradientPanel1.TabIndex = 11;
-            // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(42, 71, 94);
@@ -729,9 +713,11 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
+            BackColor = Color.FromArgb(18, 23, 29);
             ClientSize = new Size(1602, 1016);
-            Controls.Add(steamGradientPanel1);
+            Controls.Add(panel2);
+            Controls.Add(splitContainer1);
+            Controls.Add(customCard3);
             DoubleBuffered = true;
             Name = "TempIDE";
             StartPosition = FormStartPosition.CenterScreen;
@@ -768,7 +754,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            steamGradientPanel1.ResumeLayout(false);
             customCard3.ResumeLayout(false);
             customCard3.PerformLayout();
             ResumeLayout(false);
