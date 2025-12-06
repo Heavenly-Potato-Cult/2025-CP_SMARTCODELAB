@@ -52,6 +52,8 @@
             MessagesTab = new TabPage();
             richTextBox2 = new RichTextBox();
             steamChatbox1 = new SmartCodeLab.CustomComponents.SteamThings.SteamChatBox();
+            customCard9 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             TestCases = new TabPage();
             TestCasesPanel = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -66,11 +68,11 @@
             customCard6 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             steamLabel6 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            pictureBox6 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            pictureBox3 = new PictureBox();
-            pictureBox2 = new PictureBox();
+            TestcaseIcon = new PictureBox();
+            ScoreIcon = new PictureBox();
+            LeaderboardsIcon = new PictureBox();
+            MessagesIcon = new PictureBox();
+            ActivityIcon = new PictureBox();
             steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             panel2 = new Panel();
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -85,6 +87,7 @@
             customCard8.SuspendLayout();
             customCard7.SuspendLayout();
             MessagesTab.SuspendLayout();
+            customCard9.SuspendLayout();
             TestCases.SuspendLayout();
             customCard4.SuspendLayout();
             Leaderboards.SuspendLayout();
@@ -93,11 +96,11 @@
             panel5.SuspendLayout();
             customCard6.SuspendLayout();
             customCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)TestcaseIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ScoreIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)LeaderboardsIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)MessagesIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ActivityIcon).BeginInit();
             customCard3.SuspendLayout();
             SuspendLayout();
             // 
@@ -399,6 +402,7 @@
             MessagesTab.BackColor = Color.FromArgb(21, 28, 38);
             MessagesTab.Controls.Add(richTextBox2);
             MessagesTab.Controls.Add(steamChatbox1);
+            MessagesTab.Controls.Add(customCard9);
             MessagesTab.Location = new Point(4, 54);
             MessagesTab.Name = "MessagesTab";
             MessagesTab.Padding = new Padding(3);
@@ -412,7 +416,7 @@
             richTextBox2.BorderStyle = BorderStyle.None;
             richTextBox2.Dock = DockStyle.Top;
             richTextBox2.ForeColor = Color.FromArgb(224, 224, 224);
-            richTextBox2.Location = new Point(3, 352);
+            richTextBox2.Location = new Point(3, 424);
             richTextBox2.Name = "richTextBox2";
             richTextBox2.Size = new Size(307, 104);
             richTextBox2.TabIndex = 1;
@@ -427,10 +431,38 @@
             steamChatbox1.DrawMode = DrawMode.OwnerDrawVariable;
             steamChatbox1.FormattingEnabled = true;
             steamChatbox1.IntegralHeight = false;
-            steamChatbox1.Location = new Point(3, 3);
+            steamChatbox1.Location = new Point(3, 75);
             steamChatbox1.Name = "steamChatbox1";
             steamChatbox1.Size = new Size(307, 349);
             steamChatbox1.TabIndex = 2;
+            // 
+            // customCard9
+            // 
+            customCard9.BackColor = Color.FromArgb(21, 28, 38);
+            customCard9.BorderColor = Color.FromArgb(42, 71, 94);
+            customCard9.BorderRadius = 2;
+            customCard9.BorderSize = 0;
+            customCard9.Controls.Add(steamLabel2);
+            customCard9.Dock = DockStyle.Top;
+            customCard9.Location = new Point(3, 3);
+            customCard9.Margin = new Padding(0);
+            customCard9.Name = "customCard9";
+            customCard9.Size = new Size(307, 72);
+            customCard9.TabIndex = 27;
+            // 
+            // steamLabel2
+            // 
+            steamLabel2.AutoSize = true;
+            steamLabel2.BackColor = Color.Transparent;
+            steamLabel2.Font = new Font("Geist", 12F);
+            steamLabel2.ForeColor = Color.FromArgb(139, 149, 166);
+            steamLabel2.Location = new Point(30, 25);
+            steamLabel2.Name = "steamLabel2";
+            steamLabel2.Size = new Size(101, 23);
+            steamLabel2.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Regular;
+            steamLabel2.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Muted;
+            steamLabel2.TabIndex = 20;
+            steamLabel2.Text = "Messages";
             // 
             // TestCases
             // 
@@ -603,11 +635,11 @@
             customCard1.BorderColor = Color.FromArgb(42, 71, 94);
             customCard1.BorderRadius = 2;
             customCard1.BorderSize = 0;
-            customCard1.Controls.Add(pictureBox6);
-            customCard1.Controls.Add(pictureBox5);
-            customCard1.Controls.Add(pictureBox4);
-            customCard1.Controls.Add(pictureBox3);
-            customCard1.Controls.Add(pictureBox2);
+            customCard1.Controls.Add(TestcaseIcon);
+            customCard1.Controls.Add(ScoreIcon);
+            customCard1.Controls.Add(LeaderboardsIcon);
+            customCard1.Controls.Add(MessagesIcon);
+            customCard1.Controls.Add(ActivityIcon);
             customCard1.Controls.Add(steamLabel3);
             customCard1.Dock = DockStyle.Right;
             customCard1.Location = new Point(321, 0);
@@ -615,60 +647,60 @@
             customCard1.Size = new Size(83, 935);
             customCard1.TabIndex = 23;
             // 
-            // pictureBox6
+            // TestcaseIcon
             // 
-            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(8, 158);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(66, 70);
-            pictureBox6.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox6.TabIndex = 25;
-            pictureBox6.TabStop = false;
-            pictureBox6.Click += pictureBox6_Click;
+            TestcaseIcon.Image = (Image)resources.GetObject("TestcaseIcon.Image");
+            TestcaseIcon.Location = new Point(8, 158);
+            TestcaseIcon.Name = "TestcaseIcon";
+            TestcaseIcon.Size = new Size(66, 70);
+            TestcaseIcon.SizeMode = PictureBoxSizeMode.CenterImage;
+            TestcaseIcon.TabIndex = 25;
+            TestcaseIcon.TabStop = false;
+            TestcaseIcon.Click += pictureBox6_Click;
             // 
-            // pictureBox5
+            // ScoreIcon
             // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(8, 320);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(66, 70);
-            pictureBox5.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox5.TabIndex = 24;
-            pictureBox5.TabStop = false;
-            pictureBox5.Click += pictureBox5_Click;
+            ScoreIcon.Image = (Image)resources.GetObject("ScoreIcon.Image");
+            ScoreIcon.Location = new Point(8, 320);
+            ScoreIcon.Name = "ScoreIcon";
+            ScoreIcon.Size = new Size(66, 70);
+            ScoreIcon.SizeMode = PictureBoxSizeMode.CenterImage;
+            ScoreIcon.TabIndex = 24;
+            ScoreIcon.TabStop = false;
+            ScoreIcon.Click += pictureBox5_Click;
             // 
-            // pictureBox4
+            // LeaderboardsIcon
             // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(8, 239);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(66, 70);
-            pictureBox4.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox4.TabIndex = 23;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
+            LeaderboardsIcon.Image = (Image)resources.GetObject("LeaderboardsIcon.Image");
+            LeaderboardsIcon.Location = new Point(8, 239);
+            LeaderboardsIcon.Name = "LeaderboardsIcon";
+            LeaderboardsIcon.Size = new Size(66, 70);
+            LeaderboardsIcon.SizeMode = PictureBoxSizeMode.CenterImage;
+            LeaderboardsIcon.TabIndex = 23;
+            LeaderboardsIcon.TabStop = false;
+            LeaderboardsIcon.Click += pictureBox4_Click;
             // 
-            // pictureBox3
+            // MessagesIcon
             // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(8, 77);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(66, 70);
-            pictureBox3.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox3.TabIndex = 22;
-            pictureBox3.TabStop = false;
-            pictureBox3.Click += pictureBox3_Click;
+            MessagesIcon.Image = (Image)resources.GetObject("MessagesIcon.Image");
+            MessagesIcon.Location = new Point(8, 77);
+            MessagesIcon.Name = "MessagesIcon";
+            MessagesIcon.Size = new Size(66, 70);
+            MessagesIcon.SizeMode = PictureBoxSizeMode.CenterImage;
+            MessagesIcon.TabIndex = 22;
+            MessagesIcon.TabStop = false;
+            MessagesIcon.Click += pictureBox3_Click;
             // 
-            // pictureBox2
+            // ActivityIcon
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(8, 11);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(66, 55);
-            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox2.TabIndex = 21;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
+            ActivityIcon.Image = (Image)resources.GetObject("ActivityIcon.Image");
+            ActivityIcon.Location = new Point(8, 11);
+            ActivityIcon.Name = "ActivityIcon";
+            ActivityIcon.Size = new Size(66, 55);
+            ActivityIcon.SizeMode = PictureBoxSizeMode.CenterImage;
+            ActivityIcon.TabIndex = 21;
+            ActivityIcon.TabStop = false;
+            ActivityIcon.Click += pictureBox2_Click;
             // 
             // steamLabel3
             // 
@@ -737,6 +769,8 @@
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             MessagesTab.ResumeLayout(false);
+            customCard9.ResumeLayout(false);
+            customCard9.PerformLayout();
             TestCases.ResumeLayout(false);
             customCard4.ResumeLayout(false);
             customCard4.PerformLayout();
@@ -749,11 +783,11 @@
             customCard6.PerformLayout();
             customCard1.ResumeLayout(false);
             customCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)TestcaseIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ScoreIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)LeaderboardsIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)MessagesIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ActivityIcon).EndInit();
             customCard3.ResumeLayout(false);
             customCard3.PerformLayout();
             ResumeLayout(false);
@@ -781,10 +815,10 @@
         private Panel panel1;
         private CustomComponents.SteamThings.SteamLabel monitoredStatus;
         private CustomComponents.SteamThings.SteamLabel steamLabel3;
-        private PictureBox pictureBox4;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox5;
+        private PictureBox LeaderboardsIcon;
+        private PictureBox MessagesIcon;
+        private PictureBox ActivityIcon;
+        private PictureBox ScoreIcon;
         private CustomComponents.GeneralComponents.SmoothTabControl MainTabControl;
         private TabPage ActivityTab;
         private TabPage MessagesTab;
@@ -792,7 +826,7 @@
         private TabPage Score;
         private CustomComponents.SteamThings.SteamTextBox description;
         private TabPage TestCases;
-        private PictureBox pictureBox6;
+        private PictureBox TestcaseIcon;
         private CustomComponents.GeneralComponents.CustomCard customCard3;
         private Button button1;
         private CustomComponents.GeneralComponents.CustomCard TestCasesPanel;
@@ -811,5 +845,7 @@
         private CustomComponents.SteamThings.SteamLabel session_name;
         private CustomComponents.GeneralComponents.SmartButton exitbtn;
         private CustomComponents.SteamThings.SteamChatBox steamChatbox1;
+        private CustomComponents.GeneralComponents.CustomCard customCard9;
+        private CustomComponents.SteamThings.SteamLabel steamLabel2;
     }
 }
