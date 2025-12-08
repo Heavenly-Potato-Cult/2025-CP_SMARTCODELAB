@@ -135,7 +135,7 @@
             searchBox.Multiline = false;
             searchBox.Name = "searchBox";
             searchBox.Padding = new Padding(10, 8, 10, 8);
-            searchBox.PlaceholderText = "Search Student";
+            searchBox.PlaceholderText = "Search student...";
             searchBox.ReadOnly = false;
             searchBox.ScrollBars = ScrollBars.None;
             searchBox.Size = new Size(190, 44);
@@ -255,6 +255,7 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
