@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.CustomComponents.TaskPageComponents;
+﻿using SmartCodeLab.CustomComponents.SteamThings;
+using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
 using System;
 using System.Collections.Generic;
@@ -142,21 +143,26 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 var testcase = new ExpansionPanel();
                 var testcaseview = new TestCaseResult2(sequence, isCorrect, item.Key, expectedOutput, testOutput);
                 testcase.Title1 = "Test Case " + sequence.ToString();
+                
 
                 if (isCorrect)
                 {
-                    testcase.HeaderColor = Color.LightGreen;
+                    testcase.HeaderColor = Color.FromArgb(40, 0, 255, 100);
                     testcase.Title2 = "Correct";
+                    testcase.Title1Theme = SteamLabel.ThemeOption.Accent;
+                    testcase.Title2Theme = SteamLabel.ThemeOption.Accent;
                 }
                 else
                 {
-                    testcase.HeaderColor = Color.Red;
+                    testcase.HeaderColor = Color.FromArgb(40, 255, 50, 50);
                     testcase.Title2 = "Incorrect";
+                    testcase.Title1Theme = SteamLabel.ThemeOption.Error;
+                    testcase.Title2Theme = SteamLabel.ThemeOption.Error;
                 }
 
                 testcase.BackColor = Color.White;
                 testcaseview.AutoSize = false;
-                testcaseview.Padding = new Padding(0, 60, 0, 0);
+                testcaseview.Padding = new Padding(3, 60, 0, 0);
                 testcase.Controls.Add(testcaseview);
                 testcaseview.Dock = DockStyle.Fill;
                 testcase.Dock = DockStyle.Top;
@@ -293,9 +299,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return newProcess;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        
     }
 }

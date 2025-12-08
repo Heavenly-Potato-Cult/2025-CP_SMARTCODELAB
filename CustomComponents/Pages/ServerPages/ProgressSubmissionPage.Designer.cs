@@ -136,6 +136,7 @@
             searchBox.Name = "searchBox";
             searchBox.Padding = new Padding(10, 8, 10, 8);
             searchBox.PlaceholderText = "Search Student";
+            searchBox.ReadOnly = false;
             searchBox.ScrollBars = ScrollBars.None;
             searchBox.Size = new Size(190, 44);
             searchBox.TabIndex = 110;
@@ -254,7 +255,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -407,11 +407,11 @@
             steamLabel2.ForeColor = Color.FromArgb(199, 213, 224);
             steamLabel2.Location = new Point(136, 28);
             steamLabel2.Name = "steamLabel2";
-            steamLabel2.Size = new Size(119, 23);
+            steamLabel2.Size = new Size(55, 23);
             steamLabel2.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel2.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             steamLabel2.TabIndex = 72;
-            steamLabel2.Text = "Angelo Bello";
+            steamLabel2.Text = "None";
             // 
             // steamLabel3
             // 

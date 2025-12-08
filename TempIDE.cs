@@ -39,6 +39,23 @@ namespace SmartCodeLab
             return CallNextHookEx(_hookPtr, code, wParam, lParam);
         }
 
+        private void ToolTipInit()
+        {
+            ToolTip infoTip = new ToolTip();
+
+            infoTip.AutoPopDelay = 5000; 
+            infoTip.InitialDelay = 500; 
+            infoTip.ReshowDelay = 500;   
+            infoTip.ShowAlways = true;
+
+            infoTip.SetToolTip(this.ActivityIcon, "Activiy Instruction");
+            infoTip.SetToolTip(this.MessagesIcon, "Messages");
+            infoTip.SetToolTip(this.TestcaseIcon, "Test Cases");
+            infoTip.SetToolTip(this.LeaderboardsIcon, "Leaderboards");
+            infoTip.SetToolTip(this.ScoreIcon, "Scores");
+
+        }
+
         private delegate int HookProc(int code, IntPtr wParam, IntPtr lParam);
 
         [DllImport("user32.dll")]
@@ -184,7 +201,9 @@ namespace SmartCodeLab
                 this.Opacity = 1;
             };
 
-            _originalImage = pictureBox2.Image;
+            _originalImage = ActivityIcon.Image;
+
+            ToolTipInit();
         }
         
         private void ReleaseAnything()

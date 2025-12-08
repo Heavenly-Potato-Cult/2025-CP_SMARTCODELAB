@@ -33,11 +33,9 @@
             placing = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             name = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             indicator = new Panel();
-            panel1 = new Panel();
             score = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard3.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // customCard3
@@ -52,7 +50,7 @@
             customCard3.Margin = new Padding(0);
             customCard3.Name = "customCard3";
             customCard3.Padding = new Padding(2, 2, 2, 0);
-            customCard3.Size = new Size(520, 58);
+            customCard3.Size = new Size(350, 58);
             customCard3.TabIndex = 10;
             // 
             // tableLayoutPanel1
@@ -60,18 +58,18 @@
             tableLayoutPanel1.ColumnCount = 4;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 5F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 50F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.0233841F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.97661F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80.72247F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 19.2775249F));
             tableLayoutPanel1.Controls.Add(placing, 1, 0);
             tableLayoutPanel1.Controls.Add(name, 2, 0);
             tableLayoutPanel1.Controls.Add(indicator, 0, 0);
-            tableLayoutPanel1.Controls.Add(panel1, 3, 0);
+            tableLayoutPanel1.Controls.Add(score, 3, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(2, 2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(516, 56);
+            tableLayoutPanel1.Size = new Size(346, 56);
             tableLayoutPanel1.TabIndex = 11;
             // 
             // placing
@@ -101,7 +99,7 @@
             name.Location = new Point(55, 0);
             name.Margin = new Padding(0);
             name.Name = "name";
-            name.Size = new Size(401, 56);
+            name.Size = new Size(234, 56);
             name.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             name.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             name.TabIndex = 11;
@@ -116,25 +114,16 @@
             indicator.Size = new Size(1, 50);
             indicator.TabIndex = 12;
             // 
-            // panel1
-            // 
-            panel1.Controls.Add(score);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(459, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(54, 50);
-            panel1.TabIndex = 15;
-            // 
             // score
             // 
-            score.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             score.AutoSize = true;
             score.BackColor = Color.FromArgb(17, 42, 30);
+            score.Dock = DockStyle.Fill;
             score.Font = new Font("Geist", 12F);
             score.ForeColor = Color.FromArgb(26, 191, 32);
-            score.Location = new Point(6, 14);
+            score.Location = new Point(292, 0);
             score.Name = "score";
-            score.Size = new Size(43, 23);
+            score.Size = new Size(51, 56);
             score.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             score.SteamTheme = SteamThings.SteamLabel.ThemeOption.Accent;
             score.TabIndex = 14;
@@ -149,12 +138,10 @@
             BorderRadius = 2;
             Controls.Add(customCard3);
             Name = "StudentSubmittedIcon";
-            Size = new Size(520, 63);
+            Size = new Size(350, 63);
             customCard3.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -167,6 +154,5 @@
         private Panel indicator;
         private SteamThings.SteamLabel name;
         private TableLayoutPanel tableLayoutPanel1;
-        private Panel panel1;
     }
 }
