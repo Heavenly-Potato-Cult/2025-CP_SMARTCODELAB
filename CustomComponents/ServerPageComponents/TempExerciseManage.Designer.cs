@@ -125,11 +125,15 @@
             // 
             customTextBox1.BackColor = Color.FromArgb(26, 30, 36);
             customTextBox1.Location = new Point(349, 145);
+            customTextBox1.Multiline = false;
             customTextBox1.Name = "customTextBox1";
             customTextBox1.Padding = new Padding(10, 8, 10, 8);
             customTextBox1.PlaceholderText = "";
+            customTextBox1.ReadOnly = false;
+            customTextBox1.ScrollBars = ScrollBars.None;
             customTextBox1.Size = new Size(331, 44);
             customTextBox1.TabIndex = 66;
+            customTextBox1.WordWrap = true;
             // 
             // TempExerciseManage
             // 
