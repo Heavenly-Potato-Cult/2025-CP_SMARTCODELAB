@@ -376,7 +376,7 @@
             studentName.Multiline = false;
             studentName.Name = "studentName";
             studentName.Padding = new Padding(10, 8, 10, 8);
-            studentName.PlaceholderText = "";
+            studentName.PlaceholderText = "Search";
             studentName.ReadOnly = false;
             studentName.ScrollBars = ScrollBars.None;
             studentName.Size = new Size(280, 36);

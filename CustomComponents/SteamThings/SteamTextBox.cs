@@ -78,8 +78,19 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             set => innerTextBox.Text = value;
         }
 
+        [Category("Steam Behavior")]
+        [Description("The text that is displayed when the control has no text.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        public string PlaceholderText { get; set; } = "";
+        public string PlaceholderText
+        {
+            
+            get => innerTextBox.PlaceholderText;
+            set
+            {
+                innerTextBox.PlaceholderText = value;
+                this.Invalidate(); 
+            }
+        }
 
         // --- CONSTRUCTOR ---
         public SteamTextBox()
