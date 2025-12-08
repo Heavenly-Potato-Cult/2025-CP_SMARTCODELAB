@@ -11,12 +11,35 @@ namespace SmartCodeLab.CustomComponents.SteamThings
     {
         public TextBox innerTextBox;
         private bool isFocused = false;
+        private bool isPlaceholderActive = false;
+        private string _placeholderText = "";
+        private Color _realForeColor;
+
+        // New: configurable placeholder color
+        private Color _placeholderColor = Color.DarkGray;
+
+        [Category("Steam Appearance")]
+        [Description("The color used to render placeholder text.")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Color PlaceholderColor
+        {
+            get => _placeholderColor;
+            set
+            {
+                _placeholderColor = value;
+                if (isPlaceholderActive)
+                {
+                    // Re-apply to reflect the new color immediately
+                    innerTextBox.ForeColor = _placeholderColor;
+                }
+            }
+        }
 
         // --- NEW PROPERTIES FOR MULTILINE SUPPORT ---
 
         [Category("Steam Behavior")]
         [Description("Controls whether the text can span more than one line.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool Multiline
         {
             get => innerTextBox.Multiline;
@@ -25,7 +48,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
         [Category("Steam Behavior")]
         [Description("Indicates whether a multiline text box automatically wraps words.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool WordWrap
         {
             get => innerTextBox.WordWrap;
@@ -34,7 +57,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
         [Category("Steam Behavior")]
         [Description("Specifies which scroll bars should appear.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public ScrollBars ScrollBars
         {
             get => innerTextBox.ScrollBars;
@@ -43,28 +66,25 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
         [Category("Steam Behavior")]
         [Description("Controls whether the text in the edit control can be changed.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool ReadOnly
         {
             get => innerTextBox.ReadOnly;
             set
             {
                 innerTextBox.ReadOnly = value;
-
-                // Optional: Visually dim the background if ReadOnly
                 if (value)
                 {
-                    innerTextBox.BackColor = Color.FromArgb(20, 22, 26); // Slightly darker
+                    innerTextBox.BackColor = Color.FromArgb(20, 22, 26);
                     this.BackColor = Color.FromArgb(20, 22, 26);
-                    innerTextBox.ForeColor = Color.Gray; // Dimmed Text
+                    innerTextBox.ForeColor = isPlaceholderActive ? _placeholderColor : Color.Gray;
                 }
                 else
                 {
                     innerTextBox.BackColor = SteamColors.InputBg;
                     this.BackColor = SteamColors.InputBg;
-                    innerTextBox.ForeColor = SteamColors.TextMain;
+                    innerTextBox.ForeColor = isPlaceholderActive ? _placeholderColor : _realForeColor;
                 }
-
                 this.Invalidate();
             }
         }
@@ -74,8 +94,23 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         [Browsable(true)]
         public override string Text
         {
-            get => innerTextBox.Text;
-            set => innerTextBox.Text = value;
+            get => isPlaceholderActive ? "" : innerTextBox.Text;
+            set
+            {
+                RemovePlaceholder();
+                innerTextBox.Text = value;
+                // If the text is set to empty, re-apply the placeholder on losing focus
+                if (string.IsNullOrEmpty(innerTextBox.Text))
+                {
+                   ApplyPlaceholder();
+                   // Since it's now a placeholder, we shouldn't have focus.
+                   // This handles the edge case of setting Text = "" programmatically.
+                   if(this.ActiveControl == innerTextBox)
+                   {
+                       this.ActiveControl = null;
+                   }
+                }
+            }
         }
 
         [Category("Steam Behavior")]
@@ -83,12 +118,16 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string PlaceholderText
         {
-            
-            get => innerTextBox.PlaceholderText;
+            get => _placeholderText;
             set
             {
-                innerTextBox.PlaceholderText = value;
-                this.Invalidate(); 
+                _placeholderText = value;
+                // If placeholder is currently active, update its text and keep placeholder color
+                if (isPlaceholderActive)
+                {
+                    innerTextBox.Text = value;
+                    innerTextBox.ForeColor = _placeholderColor;
+                }
             }
         }
 
@@ -98,8 +137,6 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             this.DoubleBuffered = true;
             this.BackColor = SteamColors.InputBg;
             this.Size = new Size(250, 35);
-            // Default padding: Top/Bottom 8px centers single line text nicely.
-            // It also looks good for multi-line as a margin.
             this.Padding = new Padding(10, 8, 10, 8);
             this.Cursor = Cursors.IBeam;
 
@@ -111,33 +148,66 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             innerTextBox = new TextBox();
             innerTextBox.BorderStyle = BorderStyle.None;
             innerTextBox.BackColor = SteamColors.InputBg;
-            innerTextBox.ForeColor = SteamColors.TextMain; // Ensure text color is visible
-            innerTextBox.Font = SteamFont.GetFont(10F, FontStyle.Regular); // Use Helper
+            _realForeColor = innerTextBox.ForeColor = SteamColors.TextMain;
+            innerTextBox.Font = SteamFont.GetFont(10F, FontStyle.Regular);
             innerTextBox.Dock = DockStyle.Fill;
-
+            
             // Event Wiring
-            innerTextBox.Enter += (s, e) => { isFocused = true; this.Invalidate(); };
-            innerTextBox.Leave += (s, e) => { isFocused = false; this.Invalidate(); };
+            innerTextBox.GotFocus += InnerTextBox_GotFocus;
+            innerTextBox.LostFocus += InnerTextBox_LostFocus;
             innerTextBox.Click += (s, e) => { this.OnClick(e); };
-            innerTextBox.TextChanged += (s, e) => { this.OnTextChanged(e); }; // Bubble up text change
+            innerTextBox.TextChanged += (s, e) => { this.OnTextChanged(e); };
 
             this.Controls.Add(innerTextBox);
+
+            // Set initial state
+            ApplyPlaceholder();
+        }
+
+        private void InnerTextBox_LostFocus(object sender, EventArgs e)
+        {
+            isFocused = false;
+            if (string.IsNullOrEmpty(innerTextBox.Text))
+            {
+                ApplyPlaceholder();
+            }
+            this.Invalidate(); // Redraw border
+        }
+
+        private void InnerTextBox_GotFocus(object sender, EventArgs e)
+        {
+            isFocused = true;
+            if (isPlaceholderActive)
+            {
+                RemovePlaceholder();
+            }
+            this.Invalidate(); // Redraw border
+        }
+
+        private void ApplyPlaceholder()
+        {
+            if (string.IsNullOrEmpty(innerTextBox.Text))
+            {
+                isPlaceholderActive = true;
+                innerTextBox.Text = _placeholderText;
+                innerTextBox.ForeColor = _placeholderColor;
+            }
+        }
+
+        private void RemovePlaceholder()
+        {
+            if (!isPlaceholderActive) return;
+            isPlaceholderActive = false;
+            innerTextBox.Text = "";
+            innerTextBox.ForeColor = _realForeColor;
         }
 
         // --- PAINTING ---
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-            // 1. Draw Background
-            using (SolidBrush bgBrush = new SolidBrush(SteamColors.InputBg))
-            {
-                e.Graphics.FillRectangle(bgBrush, this.ClientRectangle);
-            }
-
-            // 2. Draw Border (Green focus / Grey normal)
+            
             Color borderColor = isFocused ? SteamColors.Accent : SteamColors.Border;
-
             using (Pen borderPen = new Pen(borderColor, 1))
             {
                 Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
