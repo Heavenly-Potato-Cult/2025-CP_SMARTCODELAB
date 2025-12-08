@@ -94,7 +94,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -476,7 +475,7 @@
             searchStudent.Multiline = false;
             searchStudent.Name = "searchStudent";
             searchStudent.Padding = new Padding(10, 8, 10, 8);
-            searchStudent.PlaceholderText = "Search Student";
+            searchStudent.PlaceholderText = "Search student...";
             searchStudent.ReadOnly = false;
             searchStudent.ScrollBars = ScrollBars.None;
             searchStudent.Size = new Size(226, 44);

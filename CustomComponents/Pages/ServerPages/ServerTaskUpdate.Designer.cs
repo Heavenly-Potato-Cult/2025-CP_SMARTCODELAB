@@ -59,12 +59,12 @@
             steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             panel7 = new Panel();
             panel1 = new Panel();
+            smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customCard1 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             ((System.ComponentModel.ISupportInitialize)reference).BeginInit();
             panel2.SuspendLayout();
             testcase_panel.SuspendLayout();
@@ -103,6 +103,7 @@
             reference.CharHeight = 18;
             reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            reference.Font = new Font("Courier New", 9.75F);
             reference.ForeColor = Color.FromArgb(224, 224, 224);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IndentBackColor = Color.Transparent;
@@ -289,7 +290,8 @@
             instruction.Multiline = true;
             instruction.Name = "instruction";
             instruction.Padding = new Padding(10, 8, 10, 8);
-            instruction.PlaceholderText = "";
+            instruction.PlaceholderText = "Enter exercise instructions...";
+            instruction.ReadOnly = false;
             instruction.ScrollBars = ScrollBars.None;
             instruction.Size = new Size(1113, 337);
             instruction.TabIndex = 63;
@@ -318,6 +320,7 @@
             subject.Name = "subject";
             subject.Padding = new Padding(10, 8, 10, 8);
             subject.PlaceholderText = "";
+            subject.ReadOnly = false;
             subject.ScrollBars = ScrollBars.None;
             subject.Size = new Size(311, 44);
             subject.TabIndex = 61;
@@ -345,7 +348,8 @@
             exerciseName.Multiline = false;
             exerciseName.Name = "exerciseName";
             exerciseName.Padding = new Padding(10, 8, 10, 8);
-            exerciseName.PlaceholderText = "";
+            exerciseName.PlaceholderText = "Enter exercise name";
+            exerciseName.ReadOnly = false;
             exerciseName.ScrollBars = ScrollBars.None;
             exerciseName.Size = new Size(311, 44);
             exerciseName.TabIndex = 59;
@@ -518,6 +522,24 @@
             panel1.Size = new Size(1550, 143);
             panel1.TabIndex = 59;
             // 
+            // smartButton2
+            // 
+            smartButton2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            smartButton2.BackColor = Color.FromArgb(42, 71, 94);
+            smartButton2.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton2.BorderRadius = 5;
+            smartButton2.FlatAppearance.BorderSize = 0;
+            smartButton2.FlatStyle = FlatStyle.Flat;
+            smartButton2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton2.ForeColor = Color.White;
+            smartButton2.Location = new Point(883, 41);
+            smartButton2.Name = "smartButton2";
+            smartButton2.Size = new Size(222, 51);
+            smartButton2.TabIndex = 36;
+            smartButton2.Text = "Change Exercise";
+            smartButton2.UseVisualStyleBackColor = false;
+            smartButton2.Click += smartButton2_Click_1;
+            // 
             // customCard1
             // 
             customCard1.BackColor = Color.FromArgb(11, 14, 17);
@@ -585,24 +607,6 @@
             customCard5.Name = "customCard5";
             customCard5.Size = new Size(1550, 1);
             customCard5.TabIndex = 112;
-            // 
-            // smartButton2
-            // 
-            smartButton2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            smartButton2.BackColor = Color.FromArgb(42, 71, 94);
-            smartButton2.BackgroundColor = Color.FromArgb(42, 71, 94);
-            smartButton2.BorderRadius = 5;
-            smartButton2.FlatAppearance.BorderSize = 0;
-            smartButton2.FlatStyle = FlatStyle.Flat;
-            smartButton2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton2.ForeColor = Color.White;
-            smartButton2.Location = new Point(883, 41);
-            smartButton2.Name = "smartButton2";
-            smartButton2.Size = new Size(222, 51);
-            smartButton2.TabIndex = 36;
-            smartButton2.Text = "Change Exercise";
-            smartButton2.UseVisualStyleBackColor = false;
-            smartButton2.Click += smartButton2_Click_1;
             // 
             // ServerTaskUpdate
             // 
