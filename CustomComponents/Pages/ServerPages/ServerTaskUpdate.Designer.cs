@@ -49,6 +49,7 @@
             exerciseName = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             tabPage5 = new TabPage();
+            smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             steamLabel5 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             tabPage6 = new TabPage();
             testContainer = new Panel();
@@ -63,7 +64,6 @@
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             ((System.ComponentModel.ISupportInitialize)reference).BeginInit();
             panel2.SuspendLayout();
             testcase_panel.SuspendLayout();
@@ -95,13 +95,14 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(31, 18);
+            reference.AutoScrollMinSize = new Size(2, 18);
             reference.BackBrush = null;
             reference.BackColor = Color.Transparent;
             reference.BorderStyle = BorderStyle.FixedSingle;
             reference.CharHeight = 18;
             reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            reference.Font = new Font("Courier New", 9.75F);
             reference.ForeColor = Color.FromArgb(224, 224, 224);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IndentBackColor = Color.Transparent;
@@ -288,9 +289,10 @@
             instruction.Multiline = true;
             instruction.Name = "instruction";
             instruction.Padding = new Padding(10, 8, 10, 8);
+            instruction.PlaceholderColor = Color.DarkGray;
             instruction.PlaceholderText = "Enter exercise instructions...";
             instruction.ReadOnly = false;
-            instruction.ScrollBars = ScrollBars.None;
+            instruction.ScrollBars = ScrollBars.Vertical;
             instruction.Size = new Size(1113, 337);
             instruction.TabIndex = 63;
             instruction.WordWrap = true;
@@ -317,6 +319,7 @@
             subject.Multiline = false;
             subject.Name = "subject";
             subject.Padding = new Padding(10, 8, 10, 8);
+            subject.PlaceholderColor = Color.DarkGray;
             subject.PlaceholderText = "";
             subject.ReadOnly = false;
             subject.ScrollBars = ScrollBars.None;
@@ -346,6 +349,7 @@
             exerciseName.Multiline = false;
             exerciseName.Name = "exerciseName";
             exerciseName.Padding = new Padding(10, 8, 10, 8);
+            exerciseName.PlaceholderColor = Color.DarkGray;
             exerciseName.PlaceholderText = "Enter exercise name";
             exerciseName.ReadOnly = false;
             exerciseName.ScrollBars = ScrollBars.None;
@@ -379,6 +383,24 @@
             tabPage5.Size = new Size(1442, 656);
             tabPage5.TabIndex = 1;
             tabPage5.Text = "tabPage5";
+            // 
+            // smartButton6
+            // 
+            smartButton6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            smartButton6.BackColor = Color.FromArgb(42, 71, 94);
+            smartButton6.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton6.BorderRadius = 5;
+            smartButton6.FlatAppearance.BorderSize = 0;
+            smartButton6.FlatStyle = FlatStyle.Flat;
+            smartButton6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton6.ForeColor = Color.White;
+            smartButton6.Location = new Point(1227, 6);
+            smartButton6.Name = "smartButton6";
+            smartButton6.Size = new Size(161, 42);
+            smartButton6.TabIndex = 60;
+            smartButton6.Text = "Upload Code";
+            smartButton6.UseVisualStyleBackColor = false;
+            smartButton6.Click += smartButton6_Click;
             // 
             // steamLabel5
             // 
@@ -570,24 +592,6 @@
             customCard5.Name = "customCard5";
             customCard5.Size = new Size(1550, 1);
             customCard5.TabIndex = 112;
-            // 
-            // smartButton6
-            // 
-            smartButton6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            smartButton6.BackColor = Color.FromArgb(42, 71, 94);
-            smartButton6.BackgroundColor = Color.FromArgb(42, 71, 94);
-            smartButton6.BorderRadius = 5;
-            smartButton6.FlatAppearance.BorderSize = 0;
-            smartButton6.FlatStyle = FlatStyle.Flat;
-            smartButton6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton6.ForeColor = Color.White;
-            smartButton6.Location = new Point(1227, 6);
-            smartButton6.Name = "smartButton6";
-            smartButton6.Size = new Size(161, 42);
-            smartButton6.TabIndex = 60;
-            smartButton6.Text = "Upload Code";
-            smartButton6.UseVisualStyleBackColor = false;
-            smartButton6.Click += smartButton6_Click;
             // 
             // ServerTaskUpdate
             // 

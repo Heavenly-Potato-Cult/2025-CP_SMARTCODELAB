@@ -365,9 +365,10 @@
             description.Multiline = true;
             description.Name = "description";
             description.Padding = new Padding(10, 8, 10, 8);
+            description.PlaceholderColor = Color.DarkGray;
             description.PlaceholderText = "";
-            description.ReadOnly = true;
-            description.ScrollBars = ScrollBars.None;
+            description.ReadOnly = false;
+            description.ScrollBars = ScrollBars.Vertical;
             description.Size = new Size(293, 805);
             description.TabIndex = 0;
             description.WordWrap = true;
