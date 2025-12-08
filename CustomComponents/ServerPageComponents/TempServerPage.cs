@@ -226,6 +226,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             if (chatBox != null && chatBox.studentId == studentId)
             {
                 chatBox.receivedMessage(message.message);
+            }else if(chatBox == null || chatBox.studentId == studentId)
+            {
+                userIcons[studentId].HaveUnreadMessages();
             }
         }
 
@@ -347,7 +350,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     copypastedCodes.Controls.Clear();
                 }));
             }
-
             studentName.Text = profile._studentName.ToUpper() + " | " + profile._computerAddress;
         }
 
@@ -386,18 +388,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 NonBlockingNotification("No Selected User");
                 return;
             }
-
-            if (!isStudentActive.Invoke(selectedStudentId))
-            {
-                NonBlockingNotification("Selected student is currently Inactive");
-                return;
-            }
             userMessages.TryGetValue(selectedStudentId, out var messagesForStudent);
             // Snapshot in FIFO order
             var snapshot = messagesForStudent != null ? messagesForStudent.ToArray().ToList() : new List<UserMessage>();
 
             Func<string, string, Task<bool>> sendMsgDelegate = (sid, msg) => SendMessageToStudent(sid, msg, isBroadcast: false);
-
+            userIcons[selectedStudentId].ClearUnreadMessages();
             chatBox = new ChatBox(sendMsgDelegate, snapshot, isStudentActive(selectedStudentId), studentName.Text, selectedStudentId);
             chatBox.ShowDialog();
             chatBox = null;

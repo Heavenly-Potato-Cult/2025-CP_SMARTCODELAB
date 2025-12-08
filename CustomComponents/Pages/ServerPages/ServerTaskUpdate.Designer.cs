@@ -49,8 +49,6 @@
             exerciseName = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             tabPage5 = new TabPage();
-            smartButton7 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
-            smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             steamLabel5 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             tabPage6 = new TabPage();
             testContainer = new Panel();
@@ -65,6 +63,7 @@
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard4 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
+            smartButton6 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             ((System.ComponentModel.ISupportInitialize)reference).BeginInit();
             panel2.SuspendLayout();
             testcase_panel.SuspendLayout();
@@ -96,14 +95,13 @@
     '\'',
     '\''
     };
-            reference.AutoScrollMinSize = new Size(2, 18);
+            reference.AutoScrollMinSize = new Size(31, 18);
             reference.BackBrush = null;
             reference.BackColor = Color.Transparent;
             reference.BorderStyle = BorderStyle.FixedSingle;
             reference.CharHeight = 18;
             reference.CharWidth = 10;
             reference.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            reference.Font = new Font("Courier New", 9.75F);
             reference.ForeColor = Color.FromArgb(224, 224, 224);
             reference.Hotkeys = resources.GetString("reference.Hotkeys");
             reference.IndentBackColor = Color.Transparent;
@@ -285,7 +283,7 @@
             // 
             instruction.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             instruction.AutoScroll = true;
-            instruction.BackColor = Color.FromArgb(11, 14, 17);
+            instruction.BackColor = Color.FromArgb(26, 30, 36);
             instruction.Location = new Point(22, 208);
             instruction.Multiline = true;
             instruction.Name = "instruction";
@@ -314,7 +312,7 @@
             // subject
             // 
             subject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            subject.BackColor = Color.FromArgb(11, 14, 17);
+            subject.BackColor = Color.FromArgb(26, 30, 36);
             subject.Location = new Point(824, 74);
             subject.Multiline = false;
             subject.Name = "subject";
@@ -343,7 +341,7 @@
             // exerciseName
             // 
             exerciseName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            exerciseName.BackColor = Color.FromArgb(11, 14, 17);
+            exerciseName.BackColor = Color.FromArgb(26, 30, 36);
             exerciseName.Location = new Point(22, 74);
             exerciseName.Multiline = false;
             exerciseName.Name = "exerciseName";
@@ -372,7 +370,6 @@
             // tabPage5
             // 
             tabPage5.BackColor = Color.FromArgb(19, 27, 36);
-            tabPage5.Controls.Add(smartButton7);
             tabPage5.Controls.Add(smartButton6);
             tabPage5.Controls.Add(steamLabel5);
             tabPage5.Controls.Add(reference);
@@ -382,40 +379,6 @@
             tabPage5.Size = new Size(1442, 656);
             tabPage5.TabIndex = 1;
             tabPage5.Text = "tabPage5";
-            // 
-            // smartButton7
-            // 
-            smartButton7.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            smartButton7.BackColor = Color.FromArgb(42, 71, 94);
-            smartButton7.BackgroundColor = Color.FromArgb(42, 71, 94);
-            smartButton7.BorderRadius = 5;
-            smartButton7.FlatAppearance.BorderSize = 0;
-            smartButton7.FlatStyle = FlatStyle.Flat;
-            smartButton7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton7.ForeColor = Color.White;
-            smartButton7.Location = new Point(1215, 9);
-            smartButton7.Name = "smartButton7";
-            smartButton7.Size = new Size(162, 42);
-            smartButton7.TabIndex = 61;
-            smartButton7.Text = "Copy";
-            smartButton7.UseVisualStyleBackColor = false;
-            // 
-            // smartButton6
-            // 
-            smartButton6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            smartButton6.BackColor = Color.FromArgb(42, 71, 94);
-            smartButton6.BackgroundColor = Color.FromArgb(42, 71, 94);
-            smartButton6.BorderRadius = 5;
-            smartButton6.FlatAppearance.BorderSize = 0;
-            smartButton6.FlatStyle = FlatStyle.Flat;
-            smartButton6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            smartButton6.ForeColor = Color.White;
-            smartButton6.Location = new Point(1048, 9);
-            smartButton6.Name = "smartButton6";
-            smartButton6.Size = new Size(161, 42);
-            smartButton6.TabIndex = 60;
-            smartButton6.Text = "Upload Code";
-            smartButton6.UseVisualStyleBackColor = false;
             // 
             // steamLabel5
             // 
@@ -608,6 +571,24 @@
             customCard5.Size = new Size(1550, 1);
             customCard5.TabIndex = 112;
             // 
+            // smartButton6
+            // 
+            smartButton6.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            smartButton6.BackColor = Color.FromArgb(42, 71, 94);
+            smartButton6.BackgroundColor = Color.FromArgb(42, 71, 94);
+            smartButton6.BorderRadius = 5;
+            smartButton6.FlatAppearance.BorderSize = 0;
+            smartButton6.FlatStyle = FlatStyle.Flat;
+            smartButton6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            smartButton6.ForeColor = Color.White;
+            smartButton6.Location = new Point(1227, 6);
+            smartButton6.Name = "smartButton6";
+            smartButton6.Size = new Size(161, 42);
+            smartButton6.TabIndex = 60;
+            smartButton6.Text = "Upload Code";
+            smartButton6.UseVisualStyleBackColor = false;
+            smartButton6.Click += smartButton6_Click;
+            // 
             // ServerTaskUpdate
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -680,8 +661,6 @@
         private GeneralComponents.CustomCard customCard4;
         private GeneralComponents.CustomCard customCard5;
         private SteamThings.SteamLabel steamLabel5;
-        private GeneralComponents.SmartButton smartButton7;
-        private GeneralComponents.SmartButton smartButton6;
         private GeneralComponents.SmartButton btn_details;
         private GeneralComponents.SmoothTabControl task_tabcontrol;
         private GeneralComponents.SmartButton smartButton1;
@@ -690,5 +669,6 @@
         private Panel panel3;
         private SteamThings.SteamLabel steamLabel7;
         private GeneralComponents.SmartButton smartButton2;
+        private GeneralComponents.SmartButton smartButton6;
     }
 }

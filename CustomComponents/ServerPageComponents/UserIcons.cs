@@ -13,6 +13,7 @@ namespace SmartCodeLab.CustomComponents
         public bool isActive { get; private set; }
 
         private Color DefaultColor = Color.FromArgb(11, 14, 17);
+        private Color OriginaltBackColor;
         private Color SelectedColor = Color.FromArgb(27, 40, 56);
         private Color SelectedIndicator = Color.FromArgb(26, 191, 32);
         public UserIcons(UserProfile profile, Action<UserProfile, UserIcons> setSelectedUserId)
@@ -21,7 +22,7 @@ namespace SmartCodeLab.CustomComponents
             this.profile = profile;
             this._onSelectCallback = setSelectedUserId;
             username.Text = profile._studentName;
-
+            OriginaltBackColor = this.BackColor;
             if (!string.IsNullOrEmpty(profile._studentName))
             {
                 initialsLetter.Text = profile._studentName.Substring(0, 1).ToUpper();
@@ -76,6 +77,16 @@ namespace SmartCodeLab.CustomComponents
         public void LostFocusDisplay()
         {
             this.Invoke((Action)(() => { customCard3.BackColor = DefaultColor; indicator.BackColor = DefaultColor; }));
+        }
+
+        public void HaveUnreadMessages()
+        {
+            this.Invoke((Action)(() => { this.BackColor = Color.FromArgb(26, 191, 32); }));
+        }
+
+        public void ClearUnreadMessages()
+        {
+            this.Invoke((Action)(() => { this.BackColor = OriginaltBackColor; }));
         }
 
         public void setNameText(string newName)

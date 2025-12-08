@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SmartCodeLab.CustomComponents.SteamThings;
+using System.Diagnostics;
 
 namespace SmartCodeLab.CustomComponents.CustomDialogs
 {
@@ -24,12 +25,17 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 foreach (var msg in messages)
                 {
                     // Do not override senderName; alignment is driven by isFromMe/IsBroadcast
+                    msg.isFromMe = msg.senderName.Equals("Me", StringComparison.OrdinalIgnoreCase);
                     steamChatBox1.Items.Add(msg);
                 }
                 if (steamChatBox1.Items.Count > 0)
                     steamChatBox1.TopIndex = steamChatBox1.Items.Count - 1;
             }
-
+            richTextBox2.Enabled = isActive;
+            if(!isActive)
+            {
+                richTextBox2.Text = "Chat disabled for inactive students.";
+            }
             richTextBox2.KeyUp += async (s, e) =>
             {
                 if (e.KeyCode == Keys.Enter && sendMessage != null)

@@ -30,7 +30,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             this.action = action;
             this.reference.Text = task._referenceFile;
             recentReferenceCode = task._referenceFile;
-            
+
             this.Load += (s, e) => { SetUpTask(); ReflowItems(); };
 
         }
@@ -70,7 +70,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                                     Margin = new Padding(0),
                                     Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top
                                 };
-                               
+
                                 tc.RemoveRequested += (s, ev) =>
                                 {
                                     if (s is TestCase3 toRemove)
@@ -82,12 +82,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                                 };
 
                                 testContainer.Controls.Add(tc);
-                                
+
                                 testContainer.Controls.SetChildIndex(tc, 0);
                             }
                         }
 
-                       
+
                         ReflowItems();
                     }
                     finally
@@ -98,7 +98,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             });
         }
 
-      
+
 
         private void btn_EditExerciseDetails_Click(object sender, EventArgs e)
         {
@@ -239,21 +239,21 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
             testContainer.Controls.Add(testcasecontent);
             testContainer.Controls.SetChildIndex(testcasecontent, 0);
-            
+
             ReflowItems();
 
         }
 
         private void ReflowItems()
         {
-           
+
             testContainer.SuspendLayout();
 
             try
             {
                 int contentHeight = 0;
 
-               
+
                 var scroll = testContainer.AutoScrollPosition;
 
                 var ordered = testContainer.Controls
@@ -263,18 +263,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
                 foreach (Control c in ordered)
                 {
-                   
+
                     c.Width = testContainer.DisplayRectangle.Width;
 
-                  
+
                     c.Location = new Point(scroll.X, scroll.Y + contentHeight);
 
-                   
+
                     int h = c.AutoSize ? c.PreferredSize.Height : c.Height;
                     contentHeight += h + c.Margin.Bottom;
                 }
 
-                
+
                 testContainer.AutoScrollMinSize = new Size(testContainer.DisplayRectangle.Width, contentHeight + 500);
             }
             finally
@@ -297,6 +297,48 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 finally
                 {
                     this.ResumeLayout();
+                }
+            }
+        }
+
+        private void smartButton6_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                // Set dialog properties
+                openFileDialog.Title = "Select Source File";
+                openFileDialog.Filter = "Source Files (*.java;*.cpp;*.py)|*.java;*.cpp;*.py|" +
+                                       "Java Files (*.java)|*.java|" +
+                                       "C++ Files (*.cpp;*.cc;*.cxx;*.h;*.hpp)|*.cpp;*.cc;*.cxx;*.h;*.hpp|" +
+                                       "Python Files (*.py)|*.py|" +
+                                       "All Files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1; // Default to first filter
+                openFileDialog.Multiselect = false; // Allow only single file selection
+                openFileDialog.CheckFileExists = true;
+                openFileDialog.CheckPathExists = true;
+
+                // Set initial directory (optional)
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                // Show dialog
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Get the selected file path
+                        string filePath = openFileDialog.FileName;
+
+                        // Read all text from the file
+                        string fileContent = File.ReadAllText(filePath);
+                        reference.Text = fileContent;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error reading file:\n{ex.Message}",
+                                      "Error",
+                                      MessageBoxButtons.OK,
+                                      MessageBoxIcon.Error);
+                    }
                 }
             }
         }

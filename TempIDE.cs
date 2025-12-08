@@ -441,9 +441,9 @@ namespace SmartCodeLab
 
                 if (string.IsNullOrEmpty(msg)) return;
                 var userMsg = new UserMessage(msg, true, "Me");
-
                 this.Invoke((Action)(() =>
                 {
+                    userMsg.isFromMe = true;
                     steamChatbox1.Items.Add(userMsg);
                     steamChatbox1.TopIndex = steamChatbox1.Items.Count - 1; // Scroll to bottom
                 }));

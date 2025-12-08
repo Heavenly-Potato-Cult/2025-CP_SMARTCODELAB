@@ -128,7 +128,7 @@
             customTextBox1.Multiline = false;
             customTextBox1.Name = "customTextBox1";
             customTextBox1.Padding = new Padding(10, 8, 10, 8);
-            customTextBox1.PlaceholderText = "Search exercise";
+            customTextBox1.PlaceholderText = "Search Exercise";
             customTextBox1.ReadOnly = false;
             customTextBox1.ScrollBars = ScrollBars.None;
             customTextBox1.Size = new Size(331, 44);

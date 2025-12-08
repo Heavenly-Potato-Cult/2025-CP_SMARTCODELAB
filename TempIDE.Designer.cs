@@ -357,8 +357,10 @@
             // 
             // description
             // 
+            description.AutoScroll = true;
             description.BackColor = Color.FromArgb(20, 22, 26);
             description.Dock = DockStyle.Fill;
+            description.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             description.Location = new Point(10, 0);
             description.Multiline = true;
             description.Name = "description";

@@ -19,16 +19,24 @@ namespace SmartCodeLab.CustomComponents.Pages.SessionViewing
         private System.Threading.Timer searchTimer;
         private List<Notification> notifications;
         private long searchVersion = 0;
-        public SessionDisplayHome(Server server, List<Notification> notifications, DateTime endTime, int copyPasteCount)
+        public SessionDisplayHome(ProgrammingSession session, List<Notification> notifications, DateTime endTime, int copyPasteCount)
         {
             InitializeComponent();
             searchVersion = 0;
+            Server server = session.server;
             this.notifications = notifications;
             serverName.Text = server.ServerName;
-            submissionCount.Text = $"{server.submittedCount}/{server.Users.Count}";
+            submissionCount.Text = $"{session.codeSubmission.Count}/{server.Users.Count}";
             duration.Text = $"{server.createdAt.ToString("g")} - {endTime.ToString("h:mm tt")}";
             pastedCount.Text = copyPasteCount.ToString();
             timeLength.Text = (endTime - server.createdAt).ToString(@"hh\:mm\:ss");
+
+            double averageTimeScore = 0;
+            if (session.codeSubmission.Count > 0)
+            {
+                averageTimeScore = session.codeSubmission.Values.Average(up => up.score);
+            }
+            avg.Text = averageTimeScore.ToString("F2");
             this.Load += (sender, e) =>
             {
                 PopulateLogBox(this.notifications);

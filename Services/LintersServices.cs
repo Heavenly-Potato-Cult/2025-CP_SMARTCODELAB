@@ -14,8 +14,8 @@ namespace SmartCodeLab.Services
 
         public readonly static Dictionary<string, List<int>> totalLanguageChecks = new Dictionary<string, List<int>>() 
         {
-            { "java", new List<int>() { 0, 0, 40, 10, 15 }},
-            { "python",  new List<int> { 0, 0, 45, 10, 20 }},
+            { "java", new List<int>() { 0, 0, 0, 25, 15 }},
+            { "python",  new List<int> { 0, 0, 0, 10, 60 }},
             { "cpp",  new List<int>() { 0, 0, 0, 17, 18}}
         };
 
@@ -180,23 +180,73 @@ namespace SmartCodeLab.Services
             {ProgrammingConfiguration.pmdRobustness,
                 """
                 <?xml version="1.0"?>
-                <ruleset name="Performance Rules"
-                    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
-                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+                <!DOCTYPE module PUBLIC
+                    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+                    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+                <module name="Checker">
+                	<module name="TreeWalker">
+                        <module name="EqualsHashCode"/>
 
-                    <description>
-                        SmartCodeLab Robustness rules
-                    </description>
+                        <module name="CovariantEquals"/>
 
-                    <rule ref="category/java/errorprone.xml/BrokenNullCheck" />
-                    <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals" />
-                    <rule ref="category/java/errorprone.xml/EqualsNull" />
-                    <rule ref="category/java/errorprone.xml/MisplacedNullCheck" />
-                    <rule ref="category/java/errorprone.xml/UnusedNullCheckInEquals" />
-                    <rule ref="category/java/errorprone.xml/ReturnEmptyCollectionRatherThanNull" />
-                    <rule ref="category/java/errorprone.xml/UseEqualsToCompareStrings" />
-                </ruleset>
+                        <!-- Control flow and switch statement rules -->
+                        <module name="MissingSwitchDefault"/>
+
+                        <module name="FallThrough"/>
+
+                        <!-- String and object comparison rules -->
+                        <module name="EqualsAvoidNull"/>
+
+                        <module name="StringLiteralEquality"/>
+
+                        <!-- Exception handling rules -->
+                        <module name="IllegalCatch"/>
+
+                        <module name="IllegalThrows"/>
+
+                        <!-- Instantiation and initialization rules -->
+                        <module name="IllegalInstantiation"/>
+
+                        <module name="AvoidDoubleBraceInitialization"/>
+
+                        <module name="AvoidInlineConditionals"/>
+
+                        <!-- Type usage rules -->
+                        <module name="IllegalType"/>
+
+                        <!-- Variable and reference rules -->
+                        <module name="RequireThis"/>
+
+                        <module name="ModifiedControlVariable"/>
+
+                        <module name="InnerAssignment"/>
+
+                        <!-- Code structure and block rules -->
+                        <module name="AvoidNestedBlocks"/>
+
+                        <module name="EmptyStatement"/>
+
+                        <module name="EmptyBlock"/>
+
+                        <module name="EmptyCatchBlock"/>
+
+                        <!-- Initialization and simplification rules -->
+                        <module name="ExplicitInitialization"/>
+
+                        <module name="SimplifyBooleanExpression"/>
+
+                        <module name="SimplifyBooleanReturn"/>
+
+                        <!-- Switch statement ordering -->
+                        <module name="DefaultComesLast"/>
+
+                        <!-- Array style rules -->
+                        <module name="ArrayTypeStyle"/>
+
+                        <!-- Modifier ordering rules -->
+                        <module name="ModifierOrder"/>
+                  	</module>
+                </module>
                 """}
         };
         public readonly static Dictionary<string, string> pythonLinters = new Dictionary<string, string>()

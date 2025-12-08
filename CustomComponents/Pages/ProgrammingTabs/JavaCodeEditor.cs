@@ -20,12 +20,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class JavaCodeEditor : BaseCodeEditor
     {
-        TextStyle BlueStyle = new TextStyle(Brushes.Blue, null, FontStyle.Regular);
+        TextStyle BlueStyle = new TextStyle(new SolidBrush(Color.FromArgb(77, 163, 255)), null, FontStyle.Regular);
         TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
-        TextStyle GrayStyle = new TextStyle(Brushes.Gray, null, FontStyle.Regular);
-        TextStyle MagentaStyle = new TextStyle(Brushes.Magenta, null, FontStyle.Regular);
-        TextStyle GreenStyle = new TextStyle(Brushes.Green, null, FontStyle.Italic);
-        TextStyle BrownStyle = new TextStyle(Brushes.Brown, null, FontStyle.Italic);
+        TextStyle GrayStyle = new TextStyle(new SolidBrush(Color.FromArgb(208, 208, 208)), null, FontStyle.Regular);
+        TextStyle MagentaStyle = new TextStyle(new SolidBrush(Color.FromArgb(255, 77, 255)), null, FontStyle.Regular);
+        TextStyle GreenStyle = new TextStyle(new SolidBrush(Color.FromArgb(124, 255, 107)), null, FontStyle.Italic);
+        TextStyle BrownStyle = new TextStyle(new SolidBrush(Color.FromArgb(255, 176, 66)), null, FontStyle.Italic);
         //TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
         //MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
         private readonly List<string> linters = new List<string>() {ProgrammingConfiguration.checkstyleMaintainability};
@@ -174,9 +174,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
             else
             {
-                await checkMaintainability();
-                await checkRobustness();
-                //await checkOperatorsCount();
+                for(int i = 3; i<=4; i++)
+                {
+                    if (i == 3 && !File.Exists(ProgrammingConfiguration.pmdRobustness))
+                        LintersServices.initializeLinter(ProgrammingConfiguration.pmdRobustness, LintersServices.javaLinters[ProgrammingConfiguration.pmdRobustness]);
+                    else if (i == 3 && !File.Exists(ProgrammingConfiguration.checkstyleMaintainability))
+                        LintersServices.initializeLinter(ProgrammingConfiguration.checkstyleMaintainability, maintainabilityCheck);
+                    await runLinters(i);
+                }
             }
         }
 
@@ -226,80 +231,48 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             return Task.CompletedTask;
         }
 
-        private async Task checkMaintainability()
+        private async Task runLinters(int checkCode)
         {
-            maintainabilityWarning.Clear();
-            int maintainabilityCounts = 0;
-            string maintainabilityErrors = "";
-
-            if (!File.Exists(ProgrammingConfiguration.checkstyleMaintainability))
-                LintersServices.initializeLinter(ProgrammingConfiguration.checkstyleMaintainability, maintainabilityCheck);
-
-            process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.checkStylePath}\" -c \"{ProgrammingConfiguration.checkstyleMaintainability}\" \"{filePath}\"\"");
-            maintainabilityRules.Clear();
+            string standardErrors = "";
+            string configFile = checkCode == 3 ? ProgrammingConfiguration.pmdRobustness : ProgrammingConfiguration.checkstyleMaintainability;
+            process = CommandRunner($"/c \"java -jar \"{ProgrammingConfiguration.checkStylePath}\" -c \"{configFile}\" \"{filePath}\"\"");
             await StartprocessAsyncExit(
                 process,
-                outp => { maintainabilityErrors += (outp + Environment.NewLine); },
-                null,
-                () =>
-                {
-                    List<string> errorsList = new List<string>();
-                    string[] errors = (maintainabilityErrors.Replace("Starting audit..." + Environment.NewLine, "").Replace("Audit done." + Environment.NewLine, "")).Split(Environment.NewLine);
-                    foreach (string standardError in errors)
-                    {
-                        if (errors[errors.Length - 1] != standardError)
-                        {
-                            try
-                            {
-                                string[] e = standardError.Split(':');
-                                string errorMessage = ToolTipProgrammingMessages.javaExplanations[checkstyleErrorRetriever(e[e.Length - 1])];
-                                errorsList.Add(errorMessage);
-                                base.HighlightMaintainabilityIssue(int.Parse(e[2]) - 1, errorMessage);
-                                maintainabilityCounts++;
-                                maintainabilityRules.Add(checkstyleErrorRetriever(errorMessage));
-                            }
-                            catch (KeyNotFoundException) { }
-                        }
-                    }
-                    updateStats?.Invoke(4, maintainabilityCounts, "java");
-                });
-        }
-
-        private async Task checkRobustness()
-        {
-            robustnessRules.Clear();
-            robustnessWarning.Clear();
-            int robustnessCounts = 0;
-            string robustnessErrors = "";
-
-            if (!File.Exists(ProgrammingConfiguration.pmdRobustness))
-                LintersServices.initializeLinter(ProgrammingConfiguration.pmdRobustness, LintersServices.javaLinters[ProgrammingConfiguration.pmdRobustness]);
-
-            process = CommandRunner($"/c \"\"{ProgrammingConfiguration.pmdPath}\" check --cache ./pmd-cache -d \"{filePath}\" -R \"{ProgrammingConfiguration.pmdRobustness}\" -f text\"");
-            await StartprocessAsyncExit(
-                process,
-                outp => { 
-                    robustnessErrors += (outp + Environment.NewLine); 
+                outp => {
+                    if (outp.Contains($"[ERROR] {filePath}"))
+                        standardErrors += ((outp.Replace($"[ERROR] {filePath}:", "")) + Environment.NewLine);
                 },
                 null,
                 () =>
                 {
-                    List<string> errorsList = new List<string>();
-                    string[] errors = robustnessErrors.Split(Environment.NewLine);
-                    foreach (string standardError in errors)
+                    string[] standardErr = standardErrors.Split(
+                                            new[] { Environment.NewLine },
+                                            StringSplitOptions.RemoveEmptyEntries);
+
+                    foreach (var item in standardErr)
                     {
-                        try
-                        {
-                            string[] errorSliced = standardError.Replace(filePath + ":", "").Split(':');
-                            int errorLine = int.Parse(errorSliced[0]);
-                            string errorMessage = errorSliced[2].Trim();
-                            base.HighlightRobustnessIssue(errorLine - 1, errorMessage);
-                            robustnessRules.Add(errorSliced[1].Trim());
-                        }
-                        catch (FormatException) { }
+                        (int lineLoc, string msg) = checkStyleLineMsgRetriever(item);
+                        if(checkCode == 3)
+                            base.HighlightRobustnessIssue(lineLoc - 1, msg);
+                        else
+                            base.HighlightMaintainabilityIssue(lineLoc - 1, msg);
                     }
-                    updateStats?.Invoke(3, robustnessCounts, "java");
+                    updateStats?.Invoke(checkCode, standardErr.Length, "java");
                 });
+        }
+
+        private (int,string) checkStyleLineMsgRetriever(string line)
+        {
+            string remainingLine = line;
+            int errorline = 0;
+            string msg = string.Empty;
+            //get the line first
+            errorline = int.Parse(remainingLine.Substring(0, line.IndexOf(':')));
+
+            //now remove the column
+            remainingLine = remainingLine.Substring(line.IndexOf(':') + 1).Substring(remainingLine.IndexOf(':') + 2);
+            msg = (remainingLine.Substring(0, remainingLine.LastIndexOf('[')));
+            return (errorline, msg);
         }
 
         private string checkstyleErrorRetriever(string errorMsg)

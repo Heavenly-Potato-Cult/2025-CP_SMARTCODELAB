@@ -31,9 +31,9 @@
             customCard3 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             status = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             initialsPanel = new Panel();
-            initialsLetter = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             indicator = new Panel();
             username = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            initialsLetter = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard3.SuspendLayout();
             initialsPanel.SuspendLayout();
             SuspendLayout();
@@ -80,20 +80,6 @@
             initialsPanel.Size = new Size(40, 40);
             initialsPanel.TabIndex = 13;
             // 
-            // initialsLetter
-            // 
-            initialsLetter.AutoSize = true;
-            initialsLetter.BackColor = Color.Transparent;
-            initialsLetter.Font = new Font("Geist", 12F);
-            initialsLetter.ForeColor = Color.FromArgb(199, 213, 224);
-            initialsLetter.Location = new Point(10, 9);
-            initialsLetter.Name = "initialsLetter";
-            initialsLetter.Size = new Size(20, 23);
-            initialsLetter.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
-            initialsLetter.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
-            initialsLetter.TabIndex = 14;
-            initialsLetter.Text = "J";
-            // 
             // indicator
             // 
             indicator.Dock = DockStyle.Left;
@@ -115,6 +101,20 @@
             username.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             username.TabIndex = 11;
             username.Text = "John Doe";
+            // 
+            // initialsLetter
+            // 
+            initialsLetter.AutoSize = true;
+            initialsLetter.BackColor = Color.Transparent;
+            initialsLetter.Font = new Font("Geist", 12F);
+            initialsLetter.ForeColor = Color.FromArgb(199, 213, 224);
+            initialsLetter.Location = new Point(10, 9);
+            initialsLetter.Name = "initialsLetter";
+            initialsLetter.Size = new Size(20, 23);
+            initialsLetter.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            initialsLetter.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            initialsLetter.TabIndex = 14;
+            initialsLetter.Text = "J";
             // 
             // UserIcons
             // 
@@ -139,7 +139,7 @@
         private SteamThings.SteamLabel username;
         private Panel indicator;
         private Panel initialsPanel;
-        private SteamThings.SteamLabel initialsLetter;
         private SteamThings.SteamLabel status;
+        private SteamThings.SteamLabel initialsLetter;
     }
 }

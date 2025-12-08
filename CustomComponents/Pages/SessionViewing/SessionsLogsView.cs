@@ -27,7 +27,7 @@ namespace SmartCodeLab.CustomComponents.Pages
         public SessionsLogsView(ProgrammingSession session)
         {
             InitializeComponent();
-            DashboardPage.Controls.Add(new SessionDisplayHome(session.server, session.notifications, session.lastModified, session.copyPasteCount) { Dock = DockStyle.Fill });
+            DashboardPage.Controls.Add(new SessionDisplayHome(session, session.notifications, session.lastModified, session.copyPasteCount) { Dock = DockStyle.Fill });
             //DashboardPage.Controls.Add(new ServerHomePage() { Dock = DockStyle.Fill });
             
             List<string> withProgressStudentsIds = session.userProgress.Select(s => s.Key).ToList();

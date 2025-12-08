@@ -59,7 +59,7 @@ namespace SmartCodeLab.Services
         public static string namingConventionChecker = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "defaultNamingConvention.xml");
         public static string checkstyleReadability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java","checkstyle_rules", "readability_rules.xml");
         public static string checkstyleMaintainability = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "checkstyle_rules", "maintainability_rules.xml");
-        public static string pmdRobustness = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "pmd_rules", "robustness_rules.xml");
+        public static string pmdRobustness = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "checkstyle_rules", "robustness_rules.xml");
         public static string JAVA_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "JavaEfficiencyAnalyzer-1.0.jar");
         public static string JAVA_COUNTER_INITIALIZER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "JavaOperatorCounterInitializer.jar");
         public static string JAVA_SYNTAX_CHECKER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "SyntaxChecker.jar");

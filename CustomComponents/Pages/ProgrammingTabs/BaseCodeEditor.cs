@@ -21,9 +21,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         //different highlight styles
         protected readonly WavyLineStyle syntaxErrorHighlight = new WavyLineStyle(255, Color.FromArgb(255, 255, 100, 100)); // Bright Red
-        protected readonly WavyLineStyle readabilityHighlight = new WavyLineStyle(255, Color.FromArgb(255, 255, 165, 0));   // Bright Orange
-        protected readonly WavyLineStyle robustnessHighlight = new WavyLineStyle(255, Color.FromArgb(255, 50, 205, 50));    // Lime Green
-        protected readonly WavyLineStyle maintainabilityHighlight = new WavyLineStyle(255, Color.FromArgb(255, 30, 144, 255));
+        protected readonly WavyLineStyle robustnessHighlight = new WavyLineStyle(255, Color.FromArgb(0, 122, 255));    // Lime Green
+        protected readonly WavyLineStyle maintainabilityHighlight = new WavyLineStyle(255, Color.FromArgb(255, 255, 165, 0));
 
         //stores the different errors and warnings, the error line is the key, message is the value
         protected Dictionary<int, string> standardError;
@@ -310,7 +309,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             if (errorMsg != "")
             {
-                MessageBox.Show("Code contains syntax errors");
+                NonBlockingNotification("Code contains syntax errors");
                 return;
             }
             process.Start();
@@ -363,13 +362,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             if (errorMsg != "")
             {
-                MessageBox.Show("Code contains syntax errors");
+                NonBlockingNotification("Code contains syntax errors");
                 return;
             }
             SaveCode();
             if (task._testCases.Count == 0)
             {
-                MessageBox.Show("No available test cases");
+                NonBlockingNotification("No available test cases");
             }
             else
             {
@@ -496,7 +495,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 string stderr = proc.StandardError.ReadToEnd();
 
                 proc.WaitForExit();
-                MessageBox.Show(stdout);
                 // Combine outputs (stdout first, then stderr). Adjust formatting as you prefer.
                 if (string.IsNullOrEmpty(stderr))
                     return stdout.Substring(stdout.LastIndexOf(':')+1);
@@ -540,6 +538,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             await process.WaitForExitAsync();
         }
 
+        private void NonBlockingNotification(string message)
+        {
+            this.BeginInvoke((Action)(() => MessageBox.Show(message)));
+        }
+
         public virtual async Task RunLinting() { }
 
         protected void HighlightError(int errorLine, string errorMsg)
@@ -581,7 +584,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             errorMsg = "";
             srcCode.Range.ClearStyle(syntaxErrorHighlight);
-            srcCode.Range.ClearStyle(readabilityHighlight);
             srcCode.Range.ClearStyle(maintainabilityHighlight);
             srcCode.Range.ClearStyle(robustnessHighlight);
             lineErrorAndMessage?.Clear();

@@ -61,8 +61,8 @@ namespace SmartCodeLab.Services
                 string exeFile = Path.Combine(directory, $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.exe");
                 string operatorFile = Path.Combine(directory, fileName);
                 Task.Delay(200);
-                //turn the cpp file into exe and delete the cpp file after that                              && del \"{operatorFile}\"
-                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\"\"");
+                //turn the cpp file into exe and delete the cpp file after that                              
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{operatorFile}\"\"");
             }
             else 
             {
@@ -134,11 +134,11 @@ namespace SmartCodeLab.Services
                     default:
                         srcCode = """
                     #include <iostream>
-
+                    using namespace std;
                     int main() {
-                        std::cout << "Hello, World!" << std::endl;
+                      cout << "Hello, World!" << endl;
 
-                        return 0;
+                      return 0;
                     }
                     """;
                         break;
