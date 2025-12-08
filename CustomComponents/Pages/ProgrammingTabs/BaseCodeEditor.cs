@@ -148,8 +148,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 srcCode.ToolTip.Hide(srcCode);
                 e.ToolTipText = string.Join("\n",
                                     lineErrorAndMessage
-                                    .Where(kv => kv.Key == e.Place.iLine)
-                                    .Select(kv => kv.Value)
+                                        .Where(kv => kv.Key == e.Place.iLine)
+                                        .Select(kv => kv.Value)
+                                        .Distinct()  // Removes duplicates
                                 );
             };
             int i = 0;

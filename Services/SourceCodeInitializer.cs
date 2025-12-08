@@ -52,22 +52,22 @@ namespace SmartCodeLab.Services
                 string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.java";
                 ExecuteCommand($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_SYNTAX_FORMATTER}\" --replace --skip-removing-unused-imports \"{filePath}\"\"");
                 string compDelCommand = $" && cd \"{directory}\" && javac {fileName} && del {fileName}";
-                Debug.WriteLine($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_COUNTER_INITIALIZER}\" \"{filePath}\" \"{fromWho}\" {compDelCommand}\"");
                 ExecuteCommand($"/c \"java -jar \"{ProgrammingConfiguration.JAVA_COUNTER_INITIALIZER}\" \"{filePath}\" \"{fromWho}\" {compDelCommand}\"");
             }
             else if (language == LanguageSupported.Cpp)
             {
-                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
+                ExecuteCommand($"/c \" \"{ProgrammingConfiguration.CLANG_FORMAT_EXE}\" -i \"{filePath}\" && \"{ProgrammingConfiguration.pythonExe}\" \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
                 string fileName = $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.cpp";
                 string exeFile = Path.Combine(directory, $"{(isBestCode ? "BestOperatorsCounter" : "OperatorsCounter")}.exe");
                 string operatorFile = Path.Combine(directory, fileName);
                 Task.Delay(200);
-                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{operatorFile}\"\"");
+                //turn the cpp file into exe and delete the cpp file after that                              && del \"{operatorFile}\"
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\"\"");
             }
             else 
             {
-                Task.Delay(100);
-                ExecuteCommand($"/c \"\"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
+                Task.Delay(200);
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.blackExe}\" \"{filePath}\" && \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
             }
         }
 

@@ -131,7 +131,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
                 int finalValue = 0;
 
-
                 if (i == 1)
                 {
                     testScore = value;
@@ -174,6 +173,16 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         //Weighted Violation-Based Scoring System
         private int getTotalDeduction(int factor, int totalViolations, string language)
         {
+            /*(factor_weight / total_language_checks) * total_violations
+             * Applicable only for Robustness and Maintainability
+             * Example:
+             *  25% for maintainability
+             *  10 maintainability violations found
+             *  20 total maintainability checks for the language
+             *  (25 / 20) * 10 = 12.5 -> 13 points will be deducted from the score bar
+             *  so 87(score bar)
+             *  25(maintainability weight) * .87(final score bar percentage) = 21.75 points added to total score
+             */
             decimal factorWeight = statsWeight[factor];
             int totalChecks = LintersServices.totalLanguageChecks[language][factor];
             return Convert.ToInt32(Math.Ceiling((factorWeight / totalChecks) * totalViolations));

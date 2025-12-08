@@ -173,7 +173,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 try
                 {
                     selectExercise.ShowDialog();
-
                 }
                 finally
                 {
@@ -196,7 +195,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
             foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
             {
-                if (Path.GetFileNameWithoutExtension(file).Trim() == serverName.Text.Trim())
+                if (Path.GetFileNameWithoutExtension(file).Trim().ToLower() == serverName.Text.Trim().ToLower())
                 {
                     MessageBox.Show("Session Name is Already Used");
                     return;
@@ -237,8 +236,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 return;
             }
 
-            if (selectedTask == null)
-                selectedTask = new TaskModel();
+            selectedTask = selectedTask ?? new TaskModel();
 
             selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
             selectedTask.isTabLocked = tabNavigationLocked.Checked;

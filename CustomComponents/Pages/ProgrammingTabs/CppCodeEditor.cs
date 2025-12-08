@@ -186,7 +186,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private async Task checkStandards(string check, Action<int, string> highlighter, int updateStatsNum)
         {
             string errors = string.Empty;
-            commandLine = $"-Command \"& \\\"{ProgrammingConfiguration.CLANG_TIDY_EXE}\\\" \\\"{filePath}\\\" -config (Get-Content \\\"{clang_tidy_checks[check]}\\\" -Raw)\"";
+            string checkToAdd = string.Empty;
+            string tidyCommand = $"& '{ProgrammingConfiguration.CLANG_TIDY_EXE}' '{filePath}' -config (Get-Content '{clang_tidy_checks[check]}' -Raw)";
+            string formatCommand = $"& '{ProgrammingConfiguration.CLANG_FORMAT_EXE}' --style=LLVM -verbose -dry-run '{filePath}'";
+
+            string powerShellScript;
+            if (check == "maintainability")
+            {
+                powerShellScript = $"{tidyCommand}; {formatCommand}";
+            }
+            else
+            {
+                powerShellScript = tidyCommand;
+            }
+
+            byte[] encodedCommand = Encoding.Unicode.GetBytes(powerShellScript);
+            string encoded = Convert.ToBase64String(encodedCommand);
+            commandLine = $"-EncodedCommand {encoded}";
             process = PowerShellCommandRunner(commandLine);
             await StartprocessAsyncExit(
                 process,
@@ -197,13 +213,16 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         errors += output.Replace(filePath + ":", "") + Environment.NewLine;
                     }
                 },
-                null,
+                err =>
+                {
+                    if (err.StartsWith(filePath) && err.Contains(" warning:"))
+                        errors += err.Replace(filePath + ":", "") + Environment.NewLine;
+                },
                 () =>
                 {
                     int violationCounts = 0;
                     foreach (var item in errors.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
                     {
-                        Debug.WriteLine(item);
                         if (item != string.Empty && !item.Contains("clang-diagnostic-error"))
                         {
                             (int line, string msg) = GetErrorLineMessage(item);
@@ -222,7 +241,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             highlighter?.Invoke(0, "Code complexity exceeds recommended limits. Reduce the number of if-statements, switch cases, and loops in your code.");
                         }
                     }
-
                     updateStats?.Invoke(updateStatsNum, violationCounts, "cpp");
                 }
             );
@@ -262,9 +280,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private string GetErrorType(string lineError)
         {
+            if (lineError.Contains("code should be clang-formatted", StringComparison.OrdinalIgnoreCase))
+                return "Apply consistent formatting for better readability.";
             try
             {
-                Debug.WriteLine(lineError);
                 int startIndex = lineError.LastIndexOf("[");
                 return lineError.Substring(9, startIndex - 9);
             }

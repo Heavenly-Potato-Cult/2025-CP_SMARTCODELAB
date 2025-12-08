@@ -471,7 +471,6 @@ namespace SmartCodeLab
         private void btn_test_Click(object sender, EventArgs e)
         {
             mainEditor.RunTest();
-
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)

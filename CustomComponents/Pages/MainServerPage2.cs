@@ -253,10 +253,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
             catch (Exception ex)
             {
-                //this.Invoke((MethodInvoker)delegate
-                //{
-                //    MessageBox.Show($"Server error: {ex.Message}");
-                //});
             }
         }
 
@@ -364,17 +360,14 @@ namespace SmartCodeLab.CustomComponents.Pages
                 }
                 catch (IOException)
                 {
-                    MessageBox.Show("Server Closed");
                     break;
                 }
                 catch (SocketException) 
                 {
-                    MessageBox.Show("Server Closed");
                     break;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Server Closed");
                     break;
                 }
             }

@@ -18,6 +18,7 @@ namespace SmartCodeLab.Services
 
         public static string lizardExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "lizard_portable.exe");
         public static string pylintExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "pylint_portable.exe");
+        public static string blackExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "black_portable.exe");
         public static string readabilityConfig = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "readabilityConfig.pylintrc");
         public static string SYNTAX_CHECKER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "SyntaxChecker.py");
         public static string PYTHON_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "python", "operator_counter.py");
@@ -33,6 +34,7 @@ namespace SmartCodeLab.Services
         public static string gccExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "C++", "MinGW64", "bin","g++");
         public static string gccBin = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "languageRunners", "C++", "MinGW64", "bin");
         public static string CLANG_TIDY_EXE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "LLVM", "bin", "clang-tidy.exe");
+        public static string CLANG_FORMAT_EXE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "LLVM", "bin", "clang-format.exe");
         public static string CPPLINT_EXE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "cpplint_wrapper.exe");
         public static string CPPLINT_CONFIG = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "syntax_checker.cpplintrc");
         public static string CPP_OPERATOR_COUNTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "cpp", "operator_counter.py");

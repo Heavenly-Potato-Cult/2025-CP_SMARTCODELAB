@@ -68,9 +68,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                             }
                         }
                     }
-                    catch { /* Handle individual file errors here */ }
+                    catch {}
                 }
-                //ilagay ang mga subjects sa lists, i uppercase pra sure no duplicate
                 if (this.IsHandleCreated)
                 {
                     this.Invoke((Action)(() =>

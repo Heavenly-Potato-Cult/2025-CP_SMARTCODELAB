@@ -22,6 +22,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
     public partial class AddNewExercise : Form
     {
         public TaskModel NewExercise { get; private set; }
+        private TaskModel currentExercise;
         private bool isEditMode;
         private string folderPath;
         private string duplicateMsg = "An exercise with the same title already exists. Please choose a different title.";
@@ -44,7 +45,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             InitializeComponent();
             isEditMode = true;
-            NewExercise = task;
+            currentExercise = task;
             folderPath = SystemConfigurations.TASK_FOLDER;
             txtbox_ExerciseTitle.Texts = task._taskName;
             txtbox_ExerciseInstruction.Texts = task._instructions;
@@ -77,8 +78,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             if (InputsAreInvalid())
                 return;
-
-            if (InvalidCharsRegex.IsMatch(txtbox_ExerciseTitle.Texts))
+            else if (InvalidCharsRegex.IsMatch(txtbox_ExerciseTitle.Texts))
             {
                 MessageBox.Show("The exercise title contains invalid characters. Please avoid using the following characters: < > : \" / \\ | ? *", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -87,23 +87,21 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             string filePath = Path.Combine(SystemConfigurations.TASK_FOLDER, txtbox_ExerciseTitle.Texts.Trim() + ".task");
             if (isEditMode)
             {
-                if (Directory.GetFiles(folderPath).Contains(filePath) && NewExercise.filePath != filePath)
+                if (Directory.GetFiles(folderPath).Contains(filePath) && currentExercise.filePath != filePath)
                 {
                     MessageBox.Show(duplicateMsg, "Duplicate Exercise", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else
                 {
-                    File.Delete(NewExercise.filePath);
+                    filePath = currentExercise.filePath;
                 }
-            }
-
-            NewExercise = new TaskModel(txtbox_ExerciseTitle.Texts, subject.Texts, txtbox_ExerciseInstruction.Texts, GetTestCases());
-            if (Directory.GetFiles(folderPath).Contains(filePath))
+            }else if (Directory.GetFiles(folderPath).Contains(filePath))
             {
                 MessageBox.Show(duplicateMsg, "Duplicate Exercise", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            NewExercise = new TaskModel(txtbox_ExerciseTitle.Texts, subject.Texts, txtbox_ExerciseInstruction.Texts, GetTestCases());
             using (var createdFile = File.Create(filePath))
             {
                 NewExercise.filePath = filePath;
@@ -124,6 +122,11 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             {
                 File.AppendAllLines(SystemConfigurations.SUBJECTS_FILE, new[] { subject.Texts });
             }
+
+            if (isEditMode)
+                MessageBox.Show("Task updated successfully");
+            else
+                MessageBox.Show("Task added successfully");
             ConfirmAndCloseForm();
         }
 
