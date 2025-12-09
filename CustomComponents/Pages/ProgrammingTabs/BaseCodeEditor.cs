@@ -131,9 +131,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             //will initialize first, incase it is new
             StudentProgress = progress;
 
-            srcCode.ToolTip.InitialDelay = 100;
-            srcCode.ToolTip.ReshowDelay = 50;
-            srcCode.ToolTip.AutoPopDelay = 10000;
+            srcCode.ToolTip.InitialDelay = 0;
+            srcCode.ToolTip.ReshowDelay = 0;
             srcCode.ToolTipNeeded += (s, e) =>
             {
                 string msg = "";
@@ -144,7 +143,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 {
                     msg += (item + Environment.NewLine);
                 }
-                srcCode.ToolTip.Hide(srcCode);
                 e.ToolTipText = string.Join("\n",
                                     lineErrorAndMessage
                                         .Where(kv => kv.Key == e.Place.iLine)
@@ -511,8 +509,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             }
         }
 
-        protected async Task StartprocessAsyncExit(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
+        protected async Task StartprocessAsyncExit(
+            Process process,
+            Action<string> onOutput,
+            Action<string> onError,
+            Action onExit = null)
         {
+            // Validate early to avoid null/invalid errors
+            if (process == null)
+                throw new ArgumentNullException(nameof(process));
+
+            // IMPORTANT: enable Exited BEFORE Start()
+            process.EnableRaisingEvents = true;
+
+            // Attach events before starting
             process.OutputDataReceived += (sender, e) =>
             {
                 if (!string.IsNullOrEmpty(e.Data))
@@ -527,16 +537,52 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             process.Exited += (s, e) =>
             {
-                compiledSuccess = process.ExitCode == 0;
+                // Avoid null process reference
+                try
+                {
+                    compiledSuccess = process.ExitCode == 0;
+                }
+                catch { }
+
                 onExit?.Invoke();
             };
 
-            process.EnableRaisingEvents = true;
-            process.Start();
+            bool started = false;
+
+            try
+            {
+                started = process.Start();
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke("Failed to start process: " + ex.Message);
+                return;
+            }
+
+            if (!started)
+            {
+                onError?.Invoke("Process failed to start.");
+                return;
+            }
+
             process.BeginOutputReadLine();
             process.BeginErrorReadLine();
-            await process.WaitForExitAsync();
+
+            try
+            {
+                await process.WaitForExitAsync();
+            }
+            catch (InvalidOperationException)
+            {
+                // FIX: ignore error thrown when process exits too early
+                // "No process is associated with this object"
+            }
+            catch (Exception ex)
+            {
+                onError?.Invoke("Error waiting for process: " + ex.Message);
+            }
         }
+
 
         private void NonBlockingNotification(string message)
         {

@@ -87,6 +87,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             progressSubmissionPage.ratingFactorsWeight = currentTask.ratingFactors;
             progressSubmissionPage.setTheStats();
             progressSubmissionPage.leaderboardsUpdate = UpdateServerTask;
+            progressSubmissionPage.progressGetter = IdStudentProgress;
             var taskUpdatePage = new ServerTaskUpdate(currentTask, UpdateServerTask);
 
             homePage.Dock = DockStyle.Fill;
@@ -358,11 +359,11 @@ namespace SmartCodeLab.CustomComponents.Pages
                             break;
                     }
                 }
-                catch (IOException)
+                catch (IOException ie)
                 {
                     break;
                 }
-                catch (SocketException) 
+                catch (SocketException se)
                 {
                     break;
                 }
@@ -381,11 +382,12 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         public StudentCodingProgress IdStudentProgress(string studentId)
         {
-            return userProgress[studentId];
+             return userProgress[studentId];
         }
 
         private void HandleUserStream(TcpClient client, UserProfile profile, bool isAdd, bool didLoggedIn)
         {
+            Debug.WriteLine(profile._studentName + " Closed");
             try
             {
                 if (isAdd)

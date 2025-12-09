@@ -139,6 +139,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 long currentSearchVersion = ++searchVersion;
                 string search = searchStudent.innerTextBox.Text.ToLower();
+                search = search.Contains("Search student...",StringComparison.OrdinalIgnoreCase) ? string.Empty : search;
                 var searchedUserIds = displayedUsers.
                     Where(user => user._studentName.ToLower().Contains(search)).
                     Select(user => user._studentId).ToList();

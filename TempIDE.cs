@@ -53,7 +53,6 @@ namespace SmartCodeLab
             infoTip.SetToolTip(this.TestcaseIcon, "Test Cases");
             infoTip.SetToolTip(this.LeaderboardsIcon, "Leaderboards");
             infoTip.SetToolTip(this.ScoreIcon, "Scores");
-
         }
 
         private delegate int HookProc(int code, IntPtr wParam, IntPtr lParam);
@@ -463,7 +462,6 @@ namespace SmartCodeLab
                 richTextBox2.Clear();
             }
         }
-
 
         private void btn_run_Click(object sender, EventArgs e)
         {

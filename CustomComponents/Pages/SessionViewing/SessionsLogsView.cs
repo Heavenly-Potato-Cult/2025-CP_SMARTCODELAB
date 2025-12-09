@@ -33,7 +33,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             List<string> withProgressStudentsIds = session.userProgress.Select(s => s.Key).ToList();
             Dictionary<string, UserProfile> withProgressStudents = session.server.Users.Where(user => withProgressStudentsIds.Contains(user.Key)).ToDictionary();
             MonitoringPage.Controls.Add(new TempServerPage(session.userProgress, withProgressStudents, session.server.ServerTask.ratingFactors) { Dock = DockStyle.Fill });
-            SubmissionPage.Controls.Add(new ProgressSubmissionPage(session.codeSubmission, session.server.ServerTask.ratingFactors, session.server.ProgrammingLanguage) { Dock = DockStyle.Fill });
+            SubmissionPage.Controls.Add(new ProgressSubmissionPage(session.codeSubmission, session.server.ServerTask.ratingFactors, session.server.ProgrammingLanguage, session.userProgress) { Dock = DockStyle.Fill });
             SessionNavigationMenu();
         }
 

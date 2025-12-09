@@ -26,6 +26,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         private List<UserProfile> submittedStudents;
         public Dictionary<string, SubmittedCode> codeSubmissions { get; private set; }
         private System.Threading.Timer displayIcons;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Func<string,StudentCodingProgress> progressGetter { get; set; }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Dictionary<int, decimal[]> ratingFactorsWeight { get; set; }
@@ -40,9 +42,22 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         }
 
         string language;
-        public ProgressSubmissionPage(Dictionary<string, SubmittedCode> codeSubmissions, Dictionary<int, decimal[]> ratingFactorsWeight, LanguageSupported languageSupported)
+        public ProgressSubmissionPage(Dictionary<string, SubmittedCode> codeSubmissions,
+            Dictionary<int, decimal[]> ratingFactorsWeight, 
+            LanguageSupported languageSupported,
+            Dictionary<string, StudentCodingProgress> userProgress)
         {
             InitializeComponent();
+            progressGetter = (string id) =>
+            {
+                // return something based on id
+                try
+                {
+                    return userProgress[id];
+                }
+                catch (KeyNotFoundException) { return new StudentCodingProgress(); }
+            };
+
             language = languageSupported.ToString().ToLower();
             this.ratingFactorsWeight = ratingFactorsWeight;
             setTheStats();
@@ -162,6 +177,31 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             score.Text = submittedCode.score.ToString();
             studentCode.Text = submittedCode.sourceCode;
             studentCodeRating1.setSubmissionScores(submittedCode.statsGrade, language);
+
+
+            var studentProgress = progressGetter.Invoke(submittedCode.user._studentId);
+            copypastedCodes.Controls.Clear();
+            if (studentProgress.pastedCode != null)
+            {
+
+                try
+                {
+                    copypastedCodes.SuspendLayout();
+
+                    foreach (var item in studentProgress.pastedCode)
+                    {
+                        var icon = new PastedCodeIcon(item)
+                        {
+                            Dock = DockStyle.Top
+                        };
+                        copypastedCodes.Controls.Add(icon);
+                    }
+                }
+                finally
+                {
+                    copypastedCodes.ResumeLayout();
+                }
+            }
         }
 
         private void customComboBox2_SelectedIndexChanged(object sender, EventArgs e)
