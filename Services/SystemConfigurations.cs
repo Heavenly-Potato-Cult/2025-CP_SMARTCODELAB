@@ -18,5 +18,8 @@ namespace SmartCodeLab.Services
         public static readonly string REMOVE_FIREWALL_PORTS_BAT = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabconfig", "cleanup_firewall.bat");
 
         public static readonly string JAVA_BROADCASTEXTRACT_CLASS = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabconfig", "NetworkAddressExtractor");
+
+        public static readonly string MONITORED_MUSIC = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabconfig", "akatsuki.wav");
+        public static readonly string MSG_NOTIFICATION = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabconfig", "messaged.wav");
     }
 }

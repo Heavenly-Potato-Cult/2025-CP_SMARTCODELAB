@@ -67,7 +67,7 @@ namespace SmartCodeLab.Services
             else 
             {
                 Task.Delay(200);
-                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.blackExe}\" \"{filePath}\" && \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.blackExe}\" \"{filePath}\" && py \"{runnerFile}\" \"{filePath}\" \"{fromWho}\"\"");
             }
         }
 

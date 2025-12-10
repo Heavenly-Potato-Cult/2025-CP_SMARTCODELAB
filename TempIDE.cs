@@ -11,6 +11,7 @@ using SmartCodeLab.Services;
 using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Media;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -119,7 +120,7 @@ namespace SmartCodeLab
         }
 
         private Image _originalImage;
-
+        private bool isPlaying;
         public TempIDE(string userName, TaskModel task, StudentCodingProgress progress, NetworkStream client)
         {
             this.Opacity = 0;
@@ -128,6 +129,7 @@ namespace SmartCodeLab
             this.DoubleBuffered = true;
             //SetDoubleBuffered(tabControl_RightSide);
             //InitializeWPFTree();
+            isPlaying = false;
             studentIdentity.Text = userName;
             monitoredStatus.Visible = false;
             if (task.isTabLocked)
@@ -275,7 +277,7 @@ namespace SmartCodeLab
             catch (ArgumentException) { }
             catch (IOException)
             {
-                NonBlockingNotification("Connection Closed");
+                BlockingNotification("Connection Closed");
                 this.Close();
             }
         }
@@ -322,6 +324,7 @@ namespace SmartCodeLab
                                 MainTabControl.SelectedTab = MessagesTab;
                             }));
                             MainTabControl.SelectedTab = MessagesTab;
+                            playMessagedSound();
                             break;
                         case MessageType.LEADERBOARDS_UPDATE:
                             _ = Task.Run(() =>
@@ -355,17 +358,19 @@ namespace SmartCodeLab
                             break;
                         case MessageType.MONITORED:
                             this.Invoke((Action)(() => monitoredStatus.Visible = true));
+                            playBeingWatchedSound();
                             break;
                         case MessageType.LEFT_ALONE:
                             this.Invoke((Action)(() => monitoredStatus.Visible = false));
                             MainTabControl.SelectedTab = MessagesTab;
+                            isPlaying = false; // stop the sound
                             break;
                         case MessageType.KICKED:
-                            NonBlockingNotification("You have been kicked from the session.");
+                            BlockingNotification("You have been kicked from the session.");
                             this.Close();
                             break;
                         case MessageType.SERVER_SHUTDOWN:
-                            NonBlockingNotification("Server is shutting down. The application will close now.");
+                            BlockingNotification("Server is shutting down. The application will close now.");
                             this.Close();
                             break;
                         default:
@@ -384,6 +389,39 @@ namespace SmartCodeLab
             }
             BlockingNotification("Connection to server lost.");
             this.Close();
+        }
+
+        private void playBeingWatchedSound()
+        {
+            isPlaying = false;
+            Task.Delay(100);
+            isPlaying = true;
+
+            Thread playDreadfullSound = new Thread(() =>
+            {
+                SoundPlayer player = new SoundPlayer(SystemConfigurations.MONITORED_MUSIC);
+                player.PlayLooping();   // 🔊 plays until you stop it
+
+                // Your loop
+                while (isPlaying)
+                {
+                    Thread.Sleep(50);
+                }
+
+                // When condition becomes false:
+                player.Stop();
+            });
+            playDreadfullSound.Start();
+        }
+
+        private void playMessagedSound()
+        {
+            new Thread(() =>
+            {
+                SoundPlayer player = new SoundPlayer(SystemConfigurations.MSG_NOTIFICATION);
+                player.PlaySync();
+                playBeingWatchedSound();
+            }).Start();
         }
 
         private void NotifyHost(NotificationType type, string result)
@@ -429,6 +467,7 @@ namespace SmartCodeLab
         private void TempIDE_FormClosing(object sender, FormClosingEventArgs e)
         {
             ReleaseAnything();
+            isPlaying = false;
             _cancellationTokenSource?.Cancel();
             stream?.Close();
             SystemSingleton.Instance._loggedIn = false;
