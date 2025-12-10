@@ -142,7 +142,7 @@ namespace SmartCodeLab
 
                 if (_hookPtr == IntPtr.Zero)
                 {
-                    MessageBox.Show("Failed to install keyboard hook!");
+                    NonBlockingNotification("Failed to install keyboard hook!");
                 }
 
                 this.FormClosed += (s, e) =>
@@ -275,14 +275,8 @@ namespace SmartCodeLab
             catch (ArgumentException) { }
             catch (IOException)
             {
-                MessageBox.Show(
-                                "Connection Closed",
-                                "Notice",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information,
-                                MessageBoxDefaultButton.Button1,
-                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
-                            );
+                NonBlockingNotification("Connection Closed");
+                this.Close();
             }
         }
 
@@ -312,14 +306,7 @@ namespace SmartCodeLab
                     {
                         case MessageType.TASK_UPDATE:
                             UpdateTaskDisplay(serverMsg._task);
-                            this.BeginInvoke((Action)(() => MessageBox.Show(
-                                                "Task Updated",
-                                                "Update",
-                                                MessageBoxButtons.OK,
-                                                MessageBoxIcon.Information,
-                                                MessageBoxDefaultButton.Button1,
-                                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
-                                            )));
+                            NonBlockingNotification("Task Updated");
                             break;
                         case MessageType.USER_MESSAGE:
                             this.Invoke((Action)(() =>{
@@ -374,7 +361,11 @@ namespace SmartCodeLab
                             MainTabControl.SelectedTab = MessagesTab;
                             break;
                         case MessageType.KICKED:
-                            MessageBox.Show(this, "You have been kicked from the session.");
+                            NonBlockingNotification("You have been kicked from the session.");
+                            this.Close();
+                            break;
+                        case MessageType.SERVER_SHUTDOWN:
+                            NonBlockingNotification("Server is shutting down. The application will close now.");
                             this.Close();
                             break;
                         default:
@@ -391,7 +382,8 @@ namespace SmartCodeLab
                 // Log unexpected errors
                 Console.WriteLine(ex);
             }
-            MessageBox.Show("Connection to server lost.");
+            BlockingNotification("Connection to server lost.");
+            this.Close();
         }
 
         private void NotifyHost(NotificationType type, string result)
@@ -428,7 +420,7 @@ namespace SmartCodeLab
                             SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, studentCodeRating.GetStats(), (int)studentCodeRating.GetScore())).Build(),
                         PrefixStyle.Base128);
                     await stream.FlushAsync();
-                    this.Invoke(new Action(() => MessageBox.Show("Code submitted successfully")));
+                    NonBlockingNotification("Code submitted successfully");
                 }
                 catch (FormatException e) { Debug.WriteLine(e.Message); }
             });
@@ -478,6 +470,29 @@ namespace SmartCodeLab
             mainEditor.RunCode();
         }
 
+        private void NonBlockingNotification(string message)
+        {
+            this.BeginInvoke((Action)(() => MessageBox.Show(
+                                message,
+                                "Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
+                            )));
+        }
+
+        private void BlockingNotification(string message)
+        {
+            MessageBox.Show(message,
+                            "Notice",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
+                            );
+        }
+
         private async void btn_submit_Click(object sender, EventArgs e)
         {
             await Task.Run(async () =>
@@ -489,7 +504,7 @@ namespace SmartCodeLab
                             SubmittedCode(new SubmittedCode(mainEditor.srcCode.Text, studentCodeRating.GetStats(), (int)studentCodeRating.GetScore())).Build(),
                         PrefixStyle.Base128);
                     await stream.FlushAsync();
-                    this.Invoke(new Action(() => MessageBox.Show("Code submitted successfully")));
+                    NonBlockingNotification("Code submitted successfully");
                 }
                 catch (FormatException e) { Debug.WriteLine(e.Message); }
             });

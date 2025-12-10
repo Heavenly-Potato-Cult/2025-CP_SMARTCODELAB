@@ -258,8 +258,13 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
         }
 
-        private void closeServer()
+        private async void closeServer()
         {
+            //tell all students goodbye T_T
+            foreach (var user in connectedUsers)
+            {
+                await NotifyStudent(new ServerMessage.Builder(MessageType.SERVER_SHUTDOWN).Build(), user.Key);
+            }
             saveSession();
             isStillActive = false;
             serverListener.Stop();

@@ -19,6 +19,7 @@ namespace SmartCodeLab.Models.Enums
         LEADERBOARDS_UPDATE,
         MONITORED,
         LEFT_ALONE,
-        KICKED
+        KICKED,
+        SERVER_SHUTDOWN
     }
 }
