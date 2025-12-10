@@ -137,7 +137,6 @@
             searchBox.Location = new Point(15, 17);
             searchBox.Name = "searchBox";
             searchBox.Padding = new Padding(10, 8, 10, 8);
-            searchBox.PlaceholderColor = Color.DarkGray;
             searchBox.PlaceholderText = "Search student...";
             searchBox.Size = new Size(190, 44);
             searchBox.TabIndex = 110;
@@ -314,7 +313,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -354,7 +352,7 @@
             steamLabel2.BackColor = Color.Transparent;
             steamLabel2.Font = new Font("Geist", 12F);
             steamLabel2.ForeColor = Color.FromArgb(199, 213, 224);
-            steamLabel2.Location = new Point(199, 26);
+            steamLabel2.Location = new Point(129, 28);
             steamLabel2.Name = "steamLabel2";
             steamLabel2.Size = new Size(55, 23);
             steamLabel2.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
@@ -370,11 +368,11 @@
             steamLabel6.ForeColor = Color.FromArgb(199, 213, 224);
             steamLabel6.Location = new Point(30, 30);
             steamLabel6.Name = "steamLabel6";
-            steamLabel6.Size = new Size(163, 19);
+            steamLabel6.Size = new Size(93, 19);
             steamLabel6.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
             steamLabel6.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             steamLabel6.TabIndex = 1;
-            steamLabel6.Text = "SUBMITTED CODE :";
+            steamLabel6.Text = "STUDENT :";
             // 
             // customCard5
             // 
@@ -415,11 +413,11 @@
             score.ForeColor = Color.FromArgb(139, 149, 166);
             score.Location = new Point(101, 26);
             score.Name = "score";
-            score.Size = new Size(32, 23);
+            score.Size = new Size(21, 23);
             score.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             score.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             score.TabIndex = 74;
-            score.Text = "85";
+            score.Text = "0";
             // 
             // steamLabel4
             // 

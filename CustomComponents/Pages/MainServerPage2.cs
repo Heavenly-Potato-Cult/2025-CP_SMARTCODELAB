@@ -110,7 +110,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             homePage.updateCountDisplay(users.Count);
         }
 
-        private void studentChangesDisplayUpdate(UserProfile user, bool isUpdate)
+        private async void studentChangesDisplayUpdate(UserProfile user, bool isUpdate)
         {
             if (user == null)
                 return;
@@ -123,6 +123,7 @@ namespace SmartCodeLab.CustomComponents.Pages
             else 
             {
                 _ = serverPage.removeUserIcon(user._studentId);
+                _ = NotifyStudent(new ServerMessage.Builder(MessageType.KICKED).Build(), user._studentId);
             }
         }
 
@@ -387,7 +388,6 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private void HandleUserStream(TcpClient client, UserProfile profile, bool isAdd, bool didLoggedIn)
         {
-            Debug.WriteLine(profile._studentName + " Closed");
             try
             {
                 if (isAdd)
@@ -418,11 +418,14 @@ namespace SmartCodeLab.CustomComponents.Pages
                     }
 
                     currentStudents.TryRemove(profile._studentName, out _);
-
                     if (didLoggedIn)
                     {
                         // UI calls should be marshalled to the UI thread
-                        serverPage.Invoke((MethodInvoker)(() => serverPage.StudentLoggedOut(profile)));
+                        try
+                        {
+                            serverPage.Invoke((MethodInvoker)(() => serverPage.StudentLoggedOut(profile)));
+                        }
+                        catch (KeyNotFoundException) { }
                         homePage.Invoke((MethodInvoker)(() => homePage.NewNotification(
                             new Notification(NotificationType.LoggedOut, profile._studentName), profile)));
                     }
@@ -434,7 +437,6 @@ namespace SmartCodeLab.CustomComponents.Pages
             }
         }
 
-
         //broadcasting service
         private void UpdateServerTask(TaskModel task, List<SubmittedCode> leaderboards, string msg)
         {
@@ -444,11 +446,11 @@ namespace SmartCodeLab.CustomComponents.Pages
                 foreach (var item in connectedUsers)
                 {
                     if(task != null)
-                        NotifyStudent(new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), item.Key);
+                        await NotifyStudent(new ServerMessage.Builder(MessageType.TASK_UPDATE).Task(task).Build(), item.Key);
                     else if(leaderboards != null)
-                        NotifyStudent(new ServerMessage.Builder(MessageType.LEADERBOARDS_UPDATE).Leaderboards(leaderboards).Build(), item.Key);
+                        await NotifyStudent(new ServerMessage.Builder(MessageType.LEADERBOARDS_UPDATE).Leaderboards(leaderboards).Build(), item.Key);
                     else
-                        NotifyStudent(new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(new UserMessage(msg)).Build(), item.Key);
+                        await NotifyStudent(new ServerMessage.Builder(MessageType.USER_MESSAGE).UserMessage(new UserMessage(msg)).Build(), item.Key);
                 }
 
                 string notif = task != null ? "Server Task Updated Successfully" : msg != null ? "Broadcast Message Successfully Sent to Everyone" : string.Empty;
@@ -474,12 +476,15 @@ namespace SmartCodeLab.CustomComponents.Pages
                                             FileShare.None              // don't allow other processes to open it simultaneously
                                         ))
                 {
-                    Serializer.SerializeWithLengthPrefix(fileStream,
-                        //new ProgrammingSession(server, userProgress, homePage.notifications, progressSubmissionPage.GetAllSubmitted(), users),
-                        new ProgrammingSession(server, homePage.notifications, homePage.copyPasteDetectedCount, userProgress.ToDictionary(kvp => kvp.Key, kvp => kvp.Value), progressSubmissionPage.codeSubmissions),
-                        PrefixStyle.Base128);
+                    var newProgrammingSession = new ProgrammingSession(server, homePage.notifications, 
+                        homePage.copyPasteDetectedCount, 
+                        userProgress.ToDictionary(kvp => kvp.Key, kvp => kvp.Value), 
+                        progressSubmissionPage.codeSubmissions);
+
+                    Serializer.SerializeWithLengthPrefix(fileStream, newProgrammingSession, PrefixStyle.Base128);
                     await fileStream.FlushAsync();
                     NonBlockingNotification("Session file saved successfully");
+                    SystemSingleton.Instance.addSession?.Invoke(newProgrammingSession);
                 }
             }
             catch (Exception ex)

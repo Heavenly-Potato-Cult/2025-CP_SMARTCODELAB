@@ -19,6 +19,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected string filePath;
         protected TaskModel task;
 
+        //text highlighting styles
+        protected TextStyle BlueStyle = new TextStyle(new SolidBrush(Color.FromArgb(77, 163, 255)), null, FontStyle.Regular);
+        protected TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
+        protected TextStyle GrayStyle = new TextStyle(new SolidBrush(Color.FromArgb(208, 208, 208)), null, FontStyle.Regular);
+        protected TextStyle MagentaStyle = new TextStyle(new SolidBrush(Color.FromArgb(255, 77, 255)), null, FontStyle.Regular);
+        protected TextStyle GreenStyle = new TextStyle(new SolidBrush(Color.FromArgb(124, 255, 107)), null, FontStyle.Italic);
+        protected TextStyle BrownStyle = new TextStyle(new SolidBrush(Color.FromArgb(255, 176, 66)), null, FontStyle.Italic);
+
         //different highlight styles
         protected readonly WavyLineStyle syntaxErrorHighlight = new WavyLineStyle(255, Color.FromArgb(255, 255, 100, 100)); // Bright Red
         protected readonly WavyLineStyle robustnessHighlight = new WavyLineStyle(255, Color.FromArgb(0, 122, 255));    // Lime Green
@@ -586,7 +594,14 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private void NonBlockingNotification(string message)
         {
-            this.BeginInvoke((Action)(() => MessageBox.Show(message)));
+            this.BeginInvoke((Action)(() => MessageBox.Show(
+                                message,
+                                "Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
+                            )));
         }
 
         public virtual async Task RunLinting() { }

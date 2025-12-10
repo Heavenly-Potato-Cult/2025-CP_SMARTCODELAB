@@ -256,7 +256,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             page1.Controls.Clear();
             page1.AutoScroll = true;
             MainServerPage2 serverPage = new MainServerPage2(server);
-
             serverPage.Dock = DockStyle.Fill;
 
             page1.Controls.Add(serverPage);

@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            sessionsContainer = new SmartCodeLab.CustomComponents.SteamThings.SteamFlowPanel();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
-            sessionsContainer = new SmartCodeLab.CustomComponents.SteamThings.SteamFlowPanel();
+            searchSess = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             panel1.SuspendLayout();
             steamGradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -47,8 +48,21 @@
             panel1.Size = new Size(885, 799);
             panel1.TabIndex = 20;
             // 
+            // sessionsContainer
+            // 
+            sessionsContainer.AutoScroll = true;
+            sessionsContainer.BackColor = Color.Transparent;
+            sessionsContainer.Dock = DockStyle.Fill;
+            sessionsContainer.FlowDirection = FlowDirection.TopDown;
+            sessionsContainer.Location = new Point(0, 0);
+            sessionsContainer.Name = "sessionsContainer";
+            sessionsContainer.Size = new Size(885, 799);
+            sessionsContainer.TabIndex = 22;
+            sessionsContainer.WrapContents = false;
+            // 
             // steamGradientPanel1
             // 
+            steamGradientPanel1.Controls.Add(searchSess);
             steamGradientPanel1.Controls.Add(steamLabel1);
             steamGradientPanel1.Controls.Add(panel1);
             steamGradientPanel1.Dock = DockStyle.Fill;
@@ -66,7 +80,7 @@
             steamLabel1.BackColor = Color.Transparent;
             steamLabel1.Font = new Font("Geist", 16F, FontStyle.Bold);
             steamLabel1.ForeColor = Color.FromArgb(199, 213, 224);
-            steamLabel1.Location = new Point(458, 42);
+            steamLabel1.Location = new Point(458, 14);
             steamLabel1.Name = "steamLabel1";
             steamLabel1.Size = new Size(193, 32);
             steamLabel1.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
@@ -74,17 +88,15 @@
             steamLabel1.TabIndex = 21;
             steamLabel1.Text = "Session Logs";
             // 
-            // sessionsContainer
+            // searchSess
             // 
-            sessionsContainer.AutoScroll = true;
-            sessionsContainer.BackColor = Color.Transparent;
-            sessionsContainer.Dock = DockStyle.Fill;
-            sessionsContainer.FlowDirection = FlowDirection.TopDown;
-            sessionsContainer.Location = new Point(0, 0);
-            sessionsContainer.Name = "sessionsContainer";
-            sessionsContainer.Size = new Size(885, 799);
-            sessionsContainer.TabIndex = 22;
-            sessionsContainer.WrapContents = false;
+            searchSess.BackColor = Color.FromArgb(26, 30, 36);
+            searchSess.Location = new Point(458, 60);
+            searchSess.Name = "searchSess";
+            searchSess.Padding = new Padding(10, 8, 10, 8);
+            searchSess.PlaceholderText = "Search Session";
+            searchSess.Size = new Size(312, 44);
+            searchSess.TabIndex = 22;
             // 
             // SessionLogsPage
             // 
@@ -105,5 +117,6 @@
         private SteamThings.SteamGradientPanel steamGradientPanel1;
         private SteamThings.SteamLabel steamLabel1;
         private SteamThings.SteamFlowPanel sessionsContainer;
+        private SteamThings.SteamTextBox searchSess;
     }
 }

@@ -60,7 +60,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                             kickStudent?.Invoke(new ServerMessage.Builder(Models.Enums.MessageType.KICKED).Build(), studentId);
                         });
                     }
-
                     option.Show();
                 }
             };

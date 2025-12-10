@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -69,7 +70,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         public static int CodeComplexityCounter(string filePath, bool willDeleteAfter = false)
         {
-            int totalComplexity = 0;
+            int totalComplexity = 1;
             using (var process = getProcess($"/c \"\"{ProgrammingConfiguration.lizardExe}\" \"{filePath}\"\""))
             {
                 string allOutput = string.Empty;
@@ -80,6 +81,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                     try
                     {
                         totalComplexity = cycComplexityOutputExtractor(allOutput);
+                        Debug.WriteLine(allOutput);
                     }
                     catch (IndexOutOfRangeException) { totalComplexity = 1; }
                     if (willDeleteAfter)
@@ -104,25 +106,44 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             for (int i = 3; i < outputs.Length; i++)
             {
                 if (outputs[i].ToLower().Contains("file analyzed."))
+                {
                     break;
+                }
                 else
+                {
                     complexitiesCounted.Add(outputs[i]);
-                lastIndex++;
+                    lastIndex++;
+                }
             }
-
             if (lastIndex == 0 || complexitiesCounted.Count == 0)
                 return 1;
 
             int totalCycComplexity = 0;
             foreach (var line in complexitiesCounted)
             {
-                string[] arr = (line.Split("      ")[1])
-                    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
-                    .Where(num => num.All(char.IsDigit))
-                    .ToArray();
-                totalCycComplexity += int.Parse(arr[1]);
+                totalCycComplexity += ExtractSecondNumber(line);
             }
             return totalCycComplexity;
+        }
+
+        public static int ExtractSecondNumber(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return -1;
+
+            // Match one or more digits separated by whitespace
+            var matches = Regex.Matches(input, @"\b\d+\b");
+
+            // Get the second match (index 1)
+            if (matches.Count >= 2)
+            {
+                if (int.TryParse(matches[1].Value, out int result))
+                {
+                    return result;
+                }
+            }
+
+            return -1;
         }
 
         public int CountOperators()

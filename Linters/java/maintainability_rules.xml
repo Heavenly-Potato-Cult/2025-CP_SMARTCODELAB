@@ -7,7 +7,7 @@
     		<module name="BooleanExpressionComplexity"/>
 		<module name="UnusedLocalVariable"/>
 		<module name="ParameterNumber">
-			<property name="max" value="4"/>
+			<property name="max" value="7"/>
 		</module>
 		<module name="NestedForDepth">
 			<property name="max" value="2"/>

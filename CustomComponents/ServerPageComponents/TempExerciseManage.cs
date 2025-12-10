@@ -5,6 +5,7 @@ using System.Data;
 using System.IO;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using ProtoBuf;
+using System.Diagnostics;
 
 namespace SmartCodeLab.CustomComponents.ServerPageComponents
 {
@@ -96,6 +97,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 long currentVersion = ++searchVersion;
                 string search = customTextBox1.innerTextBox.Text;
+                search = search.Contains("Search exercise", StringComparison.OrdinalIgnoreCase) ? "" : search;
                 string subjectFilter = subjects.SelectedItem?.ToString() ?? "All";
                 bool searchForAll = subjectFilter == "All";
                 var filteredSearch = loadedExercises.Where(ex =>

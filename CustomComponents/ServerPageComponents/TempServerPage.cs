@@ -32,11 +32,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private List<UserProfile> displayedUsers = new List<UserProfile>();
         private bool isForLogs;
         private long searchVersion;
-        public TempServerPage(TaskModel task, 
-            Dictionary<string, UserProfile> users, 
-            Func<string,StudentCodingProgress> progressRetriever, 
-            Func<string, bool> isStudentActive, 
-            Func<string, UserMessage, Task<bool>> sendMessage, 
+        public TempServerPage(TaskModel task,
+            Dictionary<string, UserProfile> users,
+            Func<string, StudentCodingProgress> progressRetriever,
+            Func<string, bool> isStudentActive,
+            Func<string, UserMessage, Task<bool>> sendMessage,
             Action<string, bool> informUserMonitor)
         {
             InitializeComponent();
@@ -139,7 +139,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
                 long currentSearchVersion = ++searchVersion;
                 string search = searchStudent.innerTextBox.Text.ToLower();
-                search = search.Contains("Search student...",StringComparison.OrdinalIgnoreCase) ? string.Empty : search;
+                search = search.Contains("Search student...", StringComparison.OrdinalIgnoreCase) ? string.Empty : search;
                 var searchedUserIds = displayedUsers.
                     Where(user => user._studentName.ToLower().Contains(search)).
                     Select(user => user._studentId).ToList();
@@ -227,7 +227,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             if (chatBox != null && chatBox.studentId == studentId)
             {
                 chatBox.receivedMessage(message.message);
-            }else if(chatBox == null || chatBox.studentId == studentId)
+            }
+            else if (chatBox == null || chatBox.studentId == studentId)
             {
                 userIcons[studentId].HaveUnreadMessages();
             }
@@ -330,12 +331,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             recentSelectedIcon?.LostFocusDisplay();
             recentSelectedIcon = newSelected;
 
-            if(selectedStudentId != string.Empty && selectedStudentId != profile._studentId && !isForLogs)
+            if (selectedStudentId != string.Empty && selectedStudentId != profile._studentId && !isForLogs)
                 informUserMonitor?.Invoke(selectedStudentId, false);
 
             selectedStudentId = profile._studentId;
 
-            if(!isForLogs)
+            if (!isForLogs)
                 informUserMonitor?.Invoke(selectedStudentId, true);
 
             try
@@ -401,6 +402,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         }
 
         private void steamGradientPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void steamLabel6_Click(object sender, EventArgs e)
         {
 
         }

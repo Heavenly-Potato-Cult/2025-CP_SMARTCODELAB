@@ -25,7 +25,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         * 3 - Efficiency
         * 4 - Complexity
         */
-
         private List<int> recordedStats = new List<int>();
         private Dictionary<int, SteamStatRow> statsRows;
         private int standardCycComplexity;

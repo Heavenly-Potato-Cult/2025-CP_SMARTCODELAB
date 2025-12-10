@@ -260,8 +260,6 @@ namespace SmartCodeLab
             {
                 TestCasesPanel.ResumeLayout(true);
             }
-
-
         }
 
         private async Task ProgressSender()
@@ -277,7 +275,14 @@ namespace SmartCodeLab
             catch (ArgumentException) { }
             catch (IOException)
             {
-                MessageBox.Show("Connection Closed");
+                MessageBox.Show(
+                                "Connection Closed",
+                                "Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
+                            );
             }
         }
 
@@ -307,16 +312,21 @@ namespace SmartCodeLab
                     {
                         case MessageType.TASK_UPDATE:
                             UpdateTaskDisplay(serverMsg._task);
-                            this.BeginInvoke((Action)(() => MessageBox.Show("Task Updated")));
+                            this.BeginInvoke((Action)(() => MessageBox.Show(
+                                                "Task Updated",
+                                                "Update",
+                                                MessageBoxButtons.OK,
+                                                MessageBoxIcon.Information,
+                                                MessageBoxDefaultButton.Button1,
+                                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
+                                            )));
                             break;
                         case MessageType.USER_MESSAGE:
                             this.Invoke((Action)(() =>{
                                 var incomingMsg = serverMsg.userMessage;
 
-                                
                                 incomingMsg.isFromMe = false; 
                                 incomingMsg.senderName = "Instructor"; 
-
                                 
                                 steamChatbox1.Items.Add(incomingMsg);
                                 steamChatbox1.TopIndex = steamChatbox1.Items.Count - 1; 

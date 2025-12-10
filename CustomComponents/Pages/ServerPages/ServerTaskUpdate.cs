@@ -1,4 +1,5 @@
-﻿using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+﻿using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
 using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using SmartCodeLab.CustomComponents.TaskPageComponents;
@@ -114,9 +115,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 catch (ArgumentException) { }
             }
             string command;
-            string tempFilePath;
             string exeFilePath = string.Empty;
             string rootDirectory = SystemConfigurations.TASK_FOLDER;
+            string tempFilePath = Path.Combine(rootDirectory, "Main.py");
             //now validate the new reference code
             if ((task.ratingFactors.ContainsKey(2) || task.ratingFactors.ContainsKey(4)) && task._testCases.Count > 0)
             {
@@ -140,7 +141,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     string compilationResult = TempSessionManagement2.compileCode(command);
                     if (compilationResult != string.Empty)
                     {
-                        MessageBox.Show(compilationResult);
+                        NonBlockingNotification(compilationResult);
                         return;
                     }
                     //if no error during code compilation, will now proceed to testing the code
@@ -151,7 +152,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 command = task.language == LanguageSupported.Python.ToString() ? $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{Path.Combine(rootDirectory, "Main.py")}\"\"" :
                             task.language == LanguageSupported.Java.ToString() ? $"/c \"cd \"{rootDirectory}\" && \"{ProgrammingConfiguration.javaExe}\" Main\"" :
                                                                                 $"/c \"{exeFilePath}\"";
-                MessageBox.Show(command);
                 var validateCode = new TestCodeForm(command, task);
                 validateCode.ShowDialog();
                 if (validateCode.score != task._testCases.Count)
@@ -159,8 +159,15 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     validateCode.Dispose();
                     NonBlockingNotification("The reference code failed to satisfy all designated test cases. Please evaluate the failing scenarios and update your implementation as needed.");
                     return;
+                }            
+                if (task.ratingFactors.ContainsKey(4))
+                {
+                    File.WriteAllText(tempFilePath, task._referenceFile);
+                    task.ratingFactors[4][1] = CodeComplexityReference.CodeComplexityCounter(tempFilePath);
                 }
             }
+
+
             recentReferenceCode = task._referenceFile;
             action?.Invoke(task, null, null);
         }
@@ -253,7 +260,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             {
                 int contentHeight = 0;
 
-
                 var scroll = testContainer.AutoScrollPosition;
 
                 var ordered = testContainer.Controls
@@ -282,7 +288,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 testContainer.ResumeLayout(true);
             }
         }
-
 
         private void smartButton2_Click_1(object sender, EventArgs e)
         {

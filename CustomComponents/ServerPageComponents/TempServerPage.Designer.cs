@@ -94,7 +94,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -376,11 +375,12 @@
             steamLabel6.ForeColor = Color.FromArgb(199, 213, 224);
             steamLabel6.Location = new Point(30, 30);
             steamLabel6.Name = "steamLabel6";
-            steamLabel6.Size = new Size(163, 19);
+            steamLabel6.Size = new Size(93, 19);
             steamLabel6.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
             steamLabel6.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             steamLabel6.TabIndex = 68;
-            steamLabel6.Text = "SUBMITTED CODE :";
+            steamLabel6.Text = "STUDENT :";
+            steamLabel6.Click += steamLabel6_Click;
             // 
             // studentName
             // 
@@ -388,7 +388,7 @@
             studentName.BackColor = Color.Transparent;
             studentName.Font = new Font("Geist", 12F);
             studentName.ForeColor = Color.FromArgb(199, 213, 224);
-            studentName.Location = new Point(199, 26);
+            studentName.Location = new Point(129, 27);
             studentName.Name = "studentName";
             studentName.Size = new Size(55, 23);
             studentName.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
@@ -475,7 +475,6 @@
             searchStudent.Location = new Point(26, 17);
             searchStudent.Name = "searchStudent";
             searchStudent.Padding = new Padding(10, 8, 10, 8);
-            searchStudent.PlaceholderColor = Color.DarkGray;
             searchStudent.PlaceholderText = "Search student...";
             searchStudent.Size = new Size(226, 44);
             searchStudent.TabIndex = 110;

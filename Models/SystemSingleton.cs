@@ -27,5 +27,6 @@ namespace SmartCodeLab.Models
         public TabPage sessionLogsPage { get; set; }
 
         public Action saveSession { get; set; }
+        public Action<ProgrammingSession> addSession;
     }
 }

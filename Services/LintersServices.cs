@@ -14,8 +14,8 @@ namespace SmartCodeLab.Services
 
         public readonly static Dictionary<string, List<int>> totalLanguageChecks = new Dictionary<string, List<int>>() 
         {
-            { "java", new List<int>() { 0, 0, 0, 25, 15 }},
-            { "python",  new List<int> { 0, 0, 0, 10, 60 }},
+            { "java", new List<int>() { 0, 0, 0, 25, 49 }},
+            { "python",  new List<int> { 0, 0, 0, 24, 60 }},
             { "cpp",  new List<int>() { 0, 0, 0, 17, 18}}
         };
 
@@ -107,7 +107,7 @@ namespace SmartCodeLab.Services
                     	<module name="BooleanExpressionComplexity"/>
                 	    <module name="UnusedLocalVariable"/>
                 	    <module name="ParameterNumber">
-                		    <property name="max" value="4"/>
+                		    <property name="max" value="7"/>
                 	    </module>
                 	    <module name="NestedForDepth">
                 		    <property name="max" value="2"/>
@@ -263,7 +263,6 @@ namespace SmartCodeLab.Services
                 	"PLE0241",
                 	"PLR0913", "PLR0911", "PLR0915", "PLR2004",
                 	"ARG001", "ARG002", "ARG003", "ARG004", "ARG005",
-                    "C901",
                     #NAMING CONVENTIONS
                 	"N801", "N802", "N803", "N804", "N805", "N806", "N807", 
                     "N811", "N812", "N813", "N814", "N815", "N816", "N817", 
@@ -287,7 +286,6 @@ namespace SmartCodeLab.Services
                 ]
                 line-length = 100
                 target-version = "py310"
-                lint.mccabe.max-complexity = 999999
                 [format]
                 quote-style = "double"
                 """},
@@ -303,12 +301,27 @@ namespace SmartCodeLab.Services
                 "TRY004",
                 "TRY201",
                 "TRY002",
-                "TRY003",
                 "TRY203",
                 "TRY300",
-                "TRY301"
+                "TRY301",
+                "BLE001",
+                "B004",
+                "B006",
+                "B008",
+                "B012",
+                "B017",
+                "B013",
+                "B014",
+                "B016",
+                "B029",
+                "B030",
+                "RSE102",
+                "PLE0116",
+                "PLE0643",
+                "PLE0704"
                 ]
                 target-version = "py310"
+                
                 """}
         };
         public readonly static Dictionary<string, string> cppLinterClangTidy = new Dictionary<string, string>()

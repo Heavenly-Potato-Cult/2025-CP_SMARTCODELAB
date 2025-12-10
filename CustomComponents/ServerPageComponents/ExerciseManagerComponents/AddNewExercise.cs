@@ -108,7 +108,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 Serializer.SerializeWithLengthPrefix<TaskModel>(createdFile, NewExercise, PrefixStyle.Base128);
                 createdFile.Close();
             }
-            //add the subject if it do not exist
+            
+            if(NewExercise._testCases.Count < 10)
+            {
+                MessageBox.Show("Warning: It is recommended to have at least 10 test cases for better assessment.", "Insufficient Test Cases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             bool doNotHave = true;
             foreach (var item in autoCompleteList)
             {

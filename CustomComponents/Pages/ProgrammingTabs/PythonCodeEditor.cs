@@ -3,15 +3,9 @@ using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
-using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 
 namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
@@ -20,19 +14,116 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
     {
         private string[] checksToRun = [string.Empty, string.Empty, string.Empty, ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability];
         private List<string> linters = new List<string>() {ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability};
+        private int standardComplexity;
         public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
+            standardComplexity = 9999;
             foreach (var item in linters)
             {
                 string content = LintersServices.pythonLinters[item];
 
                 if(item == ProgrammingConfiguration.ruffMaintainability && task.ratingFactors.ContainsKey(4))
                 {
-                    maintainabilityCheck = content.Replace("999999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
-                    content = maintainabilityCheck;
+                    standardComplexity = Convert.ToInt32(task.ratingFactors[4][1]);
                 }
                 LintersServices.initializeLinter(item, content);
             }
+
+            srcCode.TextChanged += (s, e) =>
+            {
+                PythonSyntaxHighlight(e);
+            };
+            this.Load += (s, e) =>
+            {
+                PythonSyntaxHighlight(new TextChangedEventArgs(srcCode.Range));
+            };
+        }
+
+
+        private void PythonSyntaxHighlight(TextChangedEventArgs e)
+        {
+            // Set brackets for Python (parentheses, brackets, braces)
+            srcCode.LeftBracket = '(';
+            srcCode.RightBracket = ')';
+            srcCode.LeftBracket2 = '[';
+            srcCode.RightBracket2 = ']';
+            // Could add third bracket for braces if needed
+
+            // Clear styles of changed range
+            e.ChangedRange.ClearStyle(BlueStyle, BoldStyle, GrayStyle, MagentaStyle, GreenStyle, BrownStyle);
+
+            // String highlighting - Python strings
+            // Single quotes: '...', Triple single quotes: '''...'''
+            // Double quotes: "...", Triple double quotes: """..."""
+            // f-strings: f'...', f"...", f'''...''', f"""..."""
+            e.ChangedRange.SetStyle(BrownStyle,
+                @"(?<range>('''[\s\S]*?'''))|" +  // Triple single quotes
+                @"(?<range>(\""""""[\s\S]*?\""""""))|" +  // Triple double quotes  
+                @"(?<range>(f?r?b?u?f?'([^'\\]|\\.)*'))|" +  // Single quotes with optional prefixes
+                @"(?<range>(f?r?b?u?f?\""([^\""\\]|\\.)*\""))"  // Double quotes with optional prefixes
+            );
+
+            // Comment highlighting
+            e.ChangedRange.SetStyle(GreenStyle, @"#.*$", RegexOptions.Multiline);
+
+            // Number highlighting - Python numbers
+            e.ChangedRange.SetStyle(MagentaStyle,
+                @"\b\d+\.?\d*([eE][+-]?\d+)?\b|" +  // Decimal, float, scientific notation
+                @"\b0x[0-9a-fA-F]+\b|" +  // Hex
+                @"\b0o[0-7]+\b|" +  // Octal
+                @"\b0b[01]+\b"  // Binary
+            );
+
+            // Decorator highlighting (like attributes)
+            e.ChangedRange.SetStyle(GrayStyle, @"^\s*(?<range>@\w+(\.\w+)*)", RegexOptions.Multiline);
+
+            // Class/Function definition highlighting
+            // Class names
+            e.ChangedRange.SetStyle(BoldStyle,
+                @"\b(class)\s+(?<range>\w+?)(?:\([\w\s,]*\))?\s*:"  // class MyClass:
+            );
+
+            // Function/def names (including async)
+            e.ChangedRange.SetStyle(BoldStyle,
+                @"\b(async\s+)?def\s+(?<range>\w+?)\s*(?=\()"  // def my_function, async def my_func
+            );
+
+            // Keyword highlighting - Python keywords
+            e.ChangedRange.SetStyle(BlueStyle,
+                @"\b(False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|" +
+                @"else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|" +
+                @"raise|return|try|while|with|yield)\b"
+            );
+
+            // Special literals highlighting (self, cls, etc.)
+            e.ChangedRange.SetStyle(GrayStyle,
+                @"\b(self|cls|super)\b"
+            );
+
+            // Built-in functions and types
+            e.ChangedRange.SetStyle(BrownStyle,  // Different color for built-ins
+                @"\b(abs|all|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|" +
+                @"classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|" +
+                @"filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|" +
+                @"input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|" +
+                @"min|next|object|oct|open|ord|pow|print|property|range|repr|reversed|" +
+                @"round|set|setattr|slice|sorted|staticmethod|str|sum|tuple|type|vars|zip)\b(?=\()"
+            );
+
+            // Clear folding markers
+            e.ChangedRange.ClearFoldingMarkers();
+
+            // Set folding markers for Python
+            e.ChangedRange.SetFoldingMarkers(@"'''", @"'''");  // Triple quote strings
+            e.ChangedRange.SetFoldingMarkers(@"\""""""", @"\""""""");  // Triple double quote strings
+            e.ChangedRange.SetFoldingMarkers(@"^\s*#region\b", @"^\s*#endregion\b", RegexOptions.Multiline);  // Custom regions
+            e.ChangedRange.SetFoldingMarkers(@"^\s*class\s+\w+.*:", @"^\s*$", RegexOptions.Multiline);  // Class blocks
+            e.ChangedRange.SetFoldingMarkers(@"^\s*def\s+\w+.*:", @"^\s*$", RegexOptions.Multiline);  // Function blocks
+
+            // Multi-line parentheses/brackets/braces folding
+            e.ChangedRange.SetFoldingMarkers(@"\[", @"\]");
+            e.ChangedRange.SetFoldingMarkers(@"\(", @"\)");
+            e.ChangedRange.SetFoldingMarkers(@"\{", @"\}");
         }
 
         public override async Task RunCode()
@@ -70,10 +161,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string directory = Path.GetDirectoryName(filePath);
             int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"py \"{Path.Combine(directory,"OperatorsCounter.py")}\"\"", testIntput));
             int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"py \"{Path.Combine(directory, "BestOperatorsCounter.py")}\"\"", testIntput));
-            MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
-            updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "java");
+            NonBlockingNotification($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
+            updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "python");
 
             return Task.CompletedTask;
+        }
+
+        void NonBlockingNotification(string msg)
+        {
+            this.BeginInvoke((Action)(() =>
+                                MessageBox.Show(
+                                msg,
+                                "Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
+                            )));
         }
 
         public override async Task RunLinting()
@@ -121,7 +225,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 string item = ProgrammingConfiguration.ruffMaintainability;
                 if (task.ratingFactors.ContainsKey(4))
-                    maintainabilityCheck = LintersServices.pythonLinters[item].Replace("999999", Convert.ToInt32(task.ratingFactors[4][1]).ToString());
+                    standardComplexity = Convert.ToInt32(task.ratingFactors[4][1]);
 
                 LintersServices.initializeLinter(item, maintainabilityCheck);
             }
@@ -135,7 +239,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private async Task checkStandards(string ruffFilePath, Action warningClearer, Action<int, string> highlighter, int updateStatsNum)
         {
             warningClearer?.Invoke();
-
             if (!File.Exists(ruffFilePath) && ruffFilePath == ProgrammingConfiguration.ruffMaintainability)
                 LintersServices.initializeLinter(ruffFilePath, maintainabilityCheck);
             else if(!File.Exists(ruffFilePath))
@@ -158,26 +261,43 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     int violationCounts = 0;
                     if (checksViolations != "")
                     {
-                        foreach (var item in checksViolations.Split(Environment.NewLine))
+                        foreach (var item in checksViolations.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
                         {
                             try
                             {
                                 string[] slicedViolation = item.Split(':');
                                 int errorLine = int.Parse(slicedViolation[0]);
-                                string errorMessage = ToolTipProgrammingMessages.pythonRuffRules[ruffCodeRetriever(slicedViolation[2])];
+                                string violatedRule = ruffCodeRetriever(slicedViolation[2]);
+                                string violationMessage = item.Substring(item.IndexOf(violatedRule) + violatedRule.Length);
 
-                                highlighter.Invoke(errorLine - 1, errorMessage);
-                                violationCounts++;
+                                if (errorLine > 0)
+                                {
+                                    highlighter.Invoke(errorLine - 1, violationMessage);
+                                    violationCounts++;
+                                }
                             }
                             catch (ArgumentOutOfRangeException) { }
                             catch (FormatException) { }
                             catch (TypeInitializationException) { }
-                            catch (KeyNotFoundException knfe) 
+                            catch (IndexOutOfRangeException) { }
+                            catch (KeyNotFoundException knfe)
                             {
                                 Debug.WriteLine(knfe.Message);
                             }
                         }
+
                     }
+                    //if (updateStatsNum == 4 && standardComplexity < 9999)
+                    //{
+                    //    int totalCC = CodeComplexityReference.CodeComplexityCounter(filePath);
+                    //    Debug.WriteLine($"{totalCC} && {standardComplexity}");
+                    //    if (totalCC > standardComplexity)
+                    //    {
+                    //        highlighter.Invoke(0, $"Cyclomatic complexity too high ({totalCC} > {standardComplexity}). Simplify your code by reducing nested conditions, loops, and branch points.");
+
+                    //        violationCounts++;
+                    //    }
+                    //}
                     updateStats?.Invoke(updateStatsNum, violationCounts, "python");
                 }
             );

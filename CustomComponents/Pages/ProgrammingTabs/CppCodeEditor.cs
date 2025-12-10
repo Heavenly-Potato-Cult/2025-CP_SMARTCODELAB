@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -42,6 +43,112 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             if (task.ratingFactors.ContainsKey(4))
                 standardComplexity = Convert.ToInt16(task.ratingFactors[4][1]);
+
+            srcCode.TextChanged += (s, e) =>
+            {
+                CppSyntaxHighlight(e);
+            };
+            this.Load += (s, e) =>
+            {
+                CppSyntaxHighlight(new TextChangedEventArgs(srcCode.Range));
+            };
+        }
+
+        private void CppSyntaxHighlight(TextChangedEventArgs e)
+        {
+            // Set brackets for C++ (parentheses, brackets, braces, angle brackets)
+            srcCode.LeftBracket = '(';
+            srcCode.RightBracket = ')';
+            srcCode.LeftBracket2 = '[';
+            srcCode.RightBracket2 = ']';
+            // Could add third bracket for braces: { }
+
+            // Clear styles of changed range
+            e.ChangedRange.ClearStyle(BlueStyle, BoldStyle, GrayStyle, MagentaStyle, GreenStyle, BrownStyle);
+
+            // String highlighting - C++ strings and characters
+            e.ChangedRange.SetStyle(BrownStyle,
+                @"(?<range>L?""\""([^\""\\]|\\.)*\"")|" +  // Strings: "", L""
+                @"(?<range>@\""(\""\""|[^\""])*\@"")|" +  // Verbatim strings: @""
+                @"(?<range>'\\.'|'[^\\]')"  // Character literals: 'a', '\n'
+            );
+
+            // Comment highlighting
+            e.ChangedRange.SetStyle(GreenStyle, @"//.*$", RegexOptions.Multiline);  // Line comments
+            e.ChangedRange.SetStyle(GreenStyle, @"/\*.*?\*/", RegexOptions.Singleline);  // Block comments
+
+            // C++14 digit separators and C++17 hex floats
+            e.ChangedRange.SetStyle(MagentaStyle,
+                @"\b\d+(?:'\d+)*\.?\d*(?:[eE][+-]?\d+)?[fFlL]?\b|" +  // Decimal with digit separators
+                @"\b0x[0-9a-fA-F]+(?:'[0-9a-fA-F]+)*\.?[0-9a-fA-F]*(?:[pP][+-]?\d+)?[fFlL]?\b|" +  // Hex
+                @"\b0[0-7]+(?:'[0-7]+)*[lL]?\b|" +  // Octal
+                @"\b0b[01]+(?:'[01]+)*[lL]?\b"  // Binary
+            );
+
+            // Preprocessor directives
+            e.ChangedRange.SetStyle(GrayStyle,
+                @"^\s*(?<range>#\s*(include|define|undef|if|ifdef|ifndef|elif|else|endif|line|error|pragma|warning|import|using))",
+                RegexOptions.Multiline | RegexOptions.IgnoreCase
+            );
+
+            // Class/Struct/Enum/Union/Namespace definition highlighting
+            e.ChangedRange.SetStyle(BoldStyle,
+                @"\b(class|struct|enum(?:\s+class)?|union|namespace)\s+(?<range>\w+)(?:<[^>]*>)?(?:\s*:\s*[^{;]+)?\s*(?=[{;])"
+            );
+
+            // Keyword highlighting - C++ keywords
+            e.ChangedRange.SetStyle(BlueStyle,
+                @"\b(alignas|alignof|and|and_eq|asm|atomic_cancel|atomic_commit|atomic_noexcept|auto|bitand|bitor|" +
+                @"bool|break|case|catch|char|char8_t|char16_t|char32_t|class|compl|concept|const|consteval|" +
+                @"constexpr|constinit|const_cast|continue|co_await|co_return|co_yield|decltype|default|delete|" +
+                @"do|double|dynamic_cast|else|enum|explicit|export|extern|false|float|for|friend|goto|if|" +
+                @"inline|int|long|mutable|namespace|new|noexcept|not|not_eq|nullptr|operator|or|or_eq|private|" +
+                @"protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|" +
+                @"static_assert|static_cast|struct|switch|synchronized|template|this|thread_local|throw|true|" +
+                @"try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while|xor|xor_eq)\b"
+            );
+
+            // Type highlighting - Standard types
+            e.ChangedRange.SetStyle(MagentaStyle,
+                @"\b(int8_t|int16_t|int32_t|int64_t|uint8_t|uint16_t|uint32_t|uint64_t|" +
+                @"size_t|ptrdiff_t|intptr_t|uintptr_t|max_align_t|" +
+                @"nullptr_t|byte|string|wstring|u16string|u32string|" +
+                @"vector|list|deque|array|forward_list|set|multiset|map|multimap|" +
+                @"unordered_set|unordered_multiset|unordered_map|unordered_multimap|" +
+                @"stack|queue|priority_queue|pair|tuple|optional|variant|any|" +
+                @"function|shared_ptr|unique_ptr|weak_ptr|enable_shared_from_this|" +
+                @"istream|ostream|iostream|ifstream|ofstream|fstream|" +
+                @"stringstream|istringstream|ostringstream|" +
+                @"cin|cout|cerr|clog|endl|ends|flush)\b"
+            );
+
+            // Function highlighting
+            e.ChangedRange.SetStyle(BoldStyle,
+                @"\b(\w+)\s*(?=\()(?!\b(if|while|for|switch|catch|sizeof|alignof|typeof|decltype|noexcept)\b)"
+            );
+
+            // Template angle brackets (special handling)
+            e.ChangedRange.SetStyle(GrayStyle, @"<(?![<=])|(?<!>>)>");
+
+            // User-defined literals (C++14+)
+            e.ChangedRange.SetStyle(MagentaStyle, @"\b\d+(\.\d+)?(?:_\w+)\b");
+
+            // Clear folding markers
+            e.ChangedRange.ClearFoldingMarkers();
+
+            // Set folding markers for C++
+            e.ChangedRange.SetFoldingMarkers("{", "}");  // Code blocks
+            e.ChangedRange.SetFoldingMarkers(@"/\*", @"\*/");  // Comment blocks
+            e.ChangedRange.SetFoldingMarkers(@"#region\b", @"#endregion\b");  // Custom regions
+            e.ChangedRange.SetFoldingMarkers(@"#if\b", @"#endif\b");  // Preprocessor blocks
+            e.ChangedRange.SetFoldingMarkers(@"#ifdef\b", @"#endif\b");
+            e.ChangedRange.SetFoldingMarkers(@"#ifndef\b", @"#endif\b");
+
+            // Namespace and class blocks
+            e.ChangedRange.SetFoldingMarkers(@"^\s*(namespace|class|struct|union|enum)\s+\w+.*\{", @"^\s*\}", RegexOptions.Multiline);
+
+            // Template folding
+            e.ChangedRange.SetFoldingMarkers(@"template\s*<", @">");
         }
 
         public override async Task RunCode()
@@ -77,7 +184,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             if (new SingleStatementBodyChecker().CheckForSingleStatementBodies(srcCode.Text).HasSingleStatementBodies)
             {
-                this.BeginInvoke((Action)(() => MessageBox.Show("Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.")));
+                NonBlockingNotification("Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.");
                 return;
             }
             File.WriteAllText(testerCpp, srcCode.Text);
@@ -122,9 +229,22 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string directory = Path.GetDirectoryName(filePath);
             int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{Path.Combine(directory, "OperatorsCounter.exe")}\"\"", testIntput));
             int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{Path.Combine(directory, "BestOperatorsCounter.exe")}\"\"", testIntput));
-            MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
+            NonBlockingNotification($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
             updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "cpp");
             return Task.CompletedTask;
+        }
+
+        void NonBlockingNotification(string msg)
+        {
+            this.BeginInvoke((Action)(() =>
+                                MessageBox.Show(
+                                msg,
+                                "Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
+                            )));
         }
 
         public override async Task RunLinting()

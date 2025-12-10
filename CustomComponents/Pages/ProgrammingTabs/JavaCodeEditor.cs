@@ -20,12 +20,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 {
     public class JavaCodeEditor : BaseCodeEditor
     {
-        TextStyle BlueStyle = new TextStyle(new SolidBrush(Color.FromArgb(77, 163, 255)), null, FontStyle.Regular);
-        TextStyle BoldStyle = new TextStyle(null, null, FontStyle.Bold | FontStyle.Underline);
-        TextStyle GrayStyle = new TextStyle(new SolidBrush(Color.FromArgb(208, 208, 208)), null, FontStyle.Regular);
-        TextStyle MagentaStyle = new TextStyle(new SolidBrush(Color.FromArgb(255, 77, 255)), null, FontStyle.Regular);
-        TextStyle GreenStyle = new TextStyle(new SolidBrush(Color.FromArgb(124, 255, 107)), null, FontStyle.Italic);
-        TextStyle BrownStyle = new TextStyle(new SolidBrush(Color.FromArgb(255, 176, 66)), null, FontStyle.Italic);
         //TextStyle MaroonStyle = new TextStyle(Brushes.Maroon, null, FontStyle.Regular);
         //MarkerStyle SameWordsStyle = new MarkerStyle(new SolidBrush(Color.FromArgb(40, Color.Gray)));
         private readonly List<string> linters = new List<string>() {ProgrammingConfiguration.checkstyleMaintainability};
@@ -139,7 +133,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             await StartprocessAsyncExit(
                 process,
                 null,
-                err => MessageBox.Show(err),//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
+                err => NonBlockingNotification(err),//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
                 null);
         }
 
@@ -189,7 +183,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         {
             if (new SingleStatementBodyChecker().CheckForSingleStatementBodies(srcCode.Text).HasSingleStatementBodies)
             {
-                MessageBox.Show(this, "Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.");
+                NonBlockingNotification("Unbraced statements should be avoided because they can cause ambiguity and lead to inaccurate code analysis or operation counting. Always use braces to ensure clarity and prevent evaluation errors.");
                 return;
             }
 
@@ -199,7 +193,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             StartprocessAsyncExit(
                 process,
                 null,
-                err => MessageBox.Show(err),//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
+                err => NonBlockingNotification(err),//withError => { this.Invoke((Action)(() => output.AppendText(withError + Environment.NewLine))); },
                 null);
 
             string testFilePath = Path.Combine(directory, "Tester.java");
@@ -225,10 +219,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string directory = Path.GetDirectoryName(filePath);
             int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"cd \"{directory}\" && java OperatorsCounter\"", testIntput));
             int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"cd \"{directory}\" && java BestOperatorsCounter\"", testIntput));
-            MessageBox.Show($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}\nScore:{computeEfficiency(studentsGrowth, bestGrowth)}");
+            NonBlockingNotification($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}\nScore:{computeEfficiency(studentsGrowth, bestGrowth)}");
             updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "java");
 
             return Task.CompletedTask;
+        }
+
+        void NonBlockingNotification(string msg)
+        {
+            this.BeginInvoke((Action)(() =>
+                                MessageBox.Show(
+                                msg,
+                                "Notice",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly | MessageBoxOptions.ServiceNotification
+                            )));
         }
 
         private async Task runLinters(int checkCode)

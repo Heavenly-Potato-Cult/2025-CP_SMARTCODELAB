@@ -207,7 +207,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         private void customComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
-
             displayIcons = new System.Threading.Timer((e) =>
             {
                 DisplayIcons();
