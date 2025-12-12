@@ -44,5 +44,13 @@ namespace SmartCodeLab.CustomComponents.WPFComponents
             OnNavigationClicked?.Invoke(2);
 
         }
+
+        private void nav_class_Click(object sender, RoutedEventArgs e)
+        {
+            OnNavigationClicked?.Invoke(3);
+
+        }
+
+
     }
 }

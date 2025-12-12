@@ -69,11 +69,11 @@
     <Grid Background="{StaticResource SteamBg}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto" MinWidth="139.253"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0">
+        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,20,0" Height="22">
             <TextBlock Text="SMARTCODELAB" 
                        FontWeight="Bold" 
                        Foreground="{StaticResource SteamAccent}" 
@@ -82,7 +82,7 @@
                        />
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Width="529">
 
             <RadioButton Content="SESSION" 
                          Style="{StaticResource SteamTabStyle}"
@@ -99,20 +99,16 @@
                          Style="{StaticResource SteamTabStyle}"
                          GroupName="MainNav"
                          Click="nav_sessionlogs_Click"/>
+            <RadioButton Content="CLASS" 
+                         Style="{StaticResource SteamTabStyle}"
+                         GroupName="MainNav"
+                         Click="nav_class_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Column="2" 
                     Orientation="Horizontal" 
-                    Margin="20,0" 
-                    VerticalAlignment="Center">
-            <TextBlock Text="⚙" 
-                       Foreground="{StaticResource SteamTextIdle}" 
-                       FontSize="18" 
-                       Margin="0,0,15,0" 
-                       Cursor="Hand"
-                       VerticalAlignment="Center"/>
-
-        </StackPanel>
+                    Margin="20,0,20,0" 
+                    VerticalAlignment="Center" Height="0"/>
 
         <Border Grid.ColumnSpan="3" VerticalAlignment="Bottom" Height="1" Background="#000000" Opacity="0.3"/>
     </Grid>
