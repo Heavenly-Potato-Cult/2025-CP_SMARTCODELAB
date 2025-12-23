@@ -156,7 +156,6 @@ class PythonOperationTransformer:
             # Check if this is a control statement (if, elif, while, for)
             if self._is_control_statement_with_condition(stripped):
                 # Add the control statement line
-                result.append(line)
                 
                 # Count operations in the condition
                 op_count = self._count_operations_in_condition(line)
@@ -164,7 +163,12 @@ class PythonOperationTransformer:
                 if op_count > 0:
                     # Add counter on the next line (inside the block)
                     indent = self._get_indent_string(self._get_indent_level(line) + 1)
-                    result.append(f'{indent}{self.operation_count_var} += {op_count}')
+                    if("return" in line.lower()):
+                        result.append(f'{indent}{self.operation_count_var} += {op_count}')
+                        result.append(line)
+                    else:
+                        result.append(line)
+                        result.append(f'{indent}{self.operation_count_var} += {op_count}')
                 
                 continue
             
@@ -180,9 +184,13 @@ class PythonOperationTransformer:
                 result.append(line)
             else:
                 # Add counter after the line
-                result.append(line)
                 indent = self._get_indent_string(self._get_indent_level(line))
-                result.append(f'{indent}{self.operation_count_var} += {op_count}')
+                if("return" in line.lower()):
+                    result.append(f'{indent}{self.operation_count_var} += {op_count}')
+                    result.append(line)
+                else:
+                    result.append(line)
+                    result.append(f'{indent}{self.operation_count_var} += {op_count}')
         
         return result
     
@@ -199,8 +207,9 @@ class PythonOperationTransformer:
                 line.startswith('with ') or
                 line.startswith('try:') or
                 line.startswith('except') or
-                line.startswith('finally:') or
-                line.startswith('return'))
+                line.startswith('finally:') #or
+                #line.startswith('return')
+                )
     
     def _count_operations_in_condition(self, line: str) -> int:
         """Count operations in a control statement condition using patterns"""
@@ -274,7 +283,6 @@ class PythonOperationTransformer:
         """Count operations in a line"""
         # Remove strings and comments
         cleaned = self._remove_strings_and_comments(line)
-        
         count = 0
         
         # Count each operator (order matters - compound before simple)
@@ -286,6 +294,7 @@ class PythonOperationTransformer:
             # Remove matched operators to avoid double counting
             temp_line = re.sub(escaped_op, ' ', temp_line)
         
+        print(f"{count} : {line}")
         return count
     
     def _remove_strings_and_comments(self, line: str) -> str:
@@ -331,7 +340,7 @@ class PythonOperationTransformer:
                 break
         
         result.insert(insert_index, '')
-        result.insert(insert_index + 1, f'print(f"Total Operators: {{{self.operation_count_var}}}")')
+        result.insert(insert_index + 1, f'print(f"\\nTotal Operators Counted By This Code: {{{self.operation_count_var}}}")')
         
         return result
 

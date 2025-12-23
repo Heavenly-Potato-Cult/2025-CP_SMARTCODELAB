@@ -103,7 +103,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         };
 
         //validate the accuracy of the reference code, which will be used for the efficiency
-        private bool ValidateCode(string code, LanguageSupported language, TaskModel task)
+        private (bool, Dictionary<string, int>?) ValidateCode(string code, LanguageSupported language, TaskModel task)
         {
             string tempFilePath = string.Empty;
             string command = string.Empty;
@@ -111,36 +111,36 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             string compilationError = string.Empty;
             if (language == LanguageSupported.Cpp)
             {
-                tempFilePath = Path.Combine(rootDirectory, "bestCode.cpp");
+                tempFilePath = Path.Combine(rootDirectory, "BestOperatorsCounter.cpp");
                 File.WriteAllText(tempFilePath, code);
-                string exeFile = Path.Combine(rootDirectory, "bestCode.exe");
+                string exeFile = Path.Combine(rootDirectory, "BestOperatorsCounter.exe");
                 compilationError = compileCode($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{tempFilePath}\" -o \"{exeFile}\" && del \"{tempFilePath}\"\"");
                 command = $"/c \"\"{exeFile}\"\"";
             }
             else if (language == LanguageSupported.Python)
             {
-                tempFilePath = Path.Combine(rootDirectory, "bestCode.py");
+                tempFilePath = Path.Combine(rootDirectory, "BestOperatorsCounter.py");
+                File.WriteAllText(tempFilePath, code);
                 command = $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{tempFilePath}\"\"";
             }
             else
             {
                 tempFilePath = Path.Combine(rootDirectory, "Main.java");
-                command = $"/c \"cd \"{rootDirectory}\" && \"{ProgrammingConfiguration.javaExe}\" Main\"";
+                command = $"/c \"cd \"{rootDirectory}\" && java BestOperatorsCounter\"";
                 File.WriteAllText(tempFilePath, code);
-                compilationError = compileCode($"/c \"\"{ProgrammingConfiguration.javac}\" \"{Path.Combine(SystemConfigurations.TASK_FOLDER, "Main.java")}\"\"");
+                compilationError = compileCode($"/c \"javac \"{Path.Combine(SystemConfigurations.TASK_FOLDER, "Main.java")}\"\"");
             }
-
             if (compilationError != string.Empty)
             {
                 MessageBox.Show("Compilation error " + compilationError);
-                return false;
+                return (false, null);
             }
-            File.WriteAllText(tempFilePath, code);
-            var validateCode = new TestCodeForm(command, task);
+            SourceCodeInitializer.InitializeEfficiencyCode(language, code, rootDirectory);
+            var validateCode = new TestCodeForm(command, task, true);
             validateCode.ShowDialog();
             bool isPerfect = validateCode.score == task._testCases.Count;
             validateCode.Dispose();
-            return isPerfect;
+            return (isPerfect, validateCode.inputOperatorsCount);
         }
 
         public static string compileCode(string command)
@@ -237,19 +237,22 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             }
 
             selectedTask = selectedTask ?? new TaskModel();
-
             selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
             selectedTask.isTabLocked = tabNavigationLocked.Checked;
             selectedTask._referenceFile = codeQualityChoices21.bestSourceCode;
+            selectedTask.efficiencyMetrics = new Dictionary<string, int>();
+
             Server server = new Server(serverName.Text.Trim(), serverPW.Text, selectedTask, language.SelectedItem.ToString(), userProfiles);
 
             if (codeQualityChoices21.GetRatingFactors().ContainsKey(2) && selectedTask._testCases.Count > 0)
             {
-                if (!ValidateCode(codeQualityChoices21.bestSourceCode, server.ProgrammingLanguage, selectedTask))
+                (bool isPerfect, Dictionary<string, int>? inputTotalOperators) = ValidateCode(codeQualityChoices21.bestSourceCode, server.ProgrammingLanguage, selectedTask);
+                if (!isPerfect)
                 {
                     MessageBox.Show("The code you provided as a reference for efficiency is not accurate.");
                     return;
                 }
+                server.ServerTask.efficiencyMetrics = inputTotalOperators ?? new Dictionary<string, int>();
             }
             //to fit the mainserverpage to the page1
             var page1 = SystemSingleton.Instance.page1;

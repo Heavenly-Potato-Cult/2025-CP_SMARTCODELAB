@@ -52,7 +52,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             {
 
                 loadedExercises = new Dictionary<int, TaskModel>();
-
+                if(!Directory.Exists(SystemConfigurations.TASK_FOLDER))
+                {
+                    Directory.CreateDirectory(SystemConfigurations.TASK_FOLDER);
+                }
                 var exerciseFiles = Directory.GetFiles(SystemConfigurations.TASK_FOLDER, "*.task");
 
                 foreach (var file in exerciseFiles)

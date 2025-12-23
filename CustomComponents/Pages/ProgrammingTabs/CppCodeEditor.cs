@@ -196,7 +196,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 null);
 
             commandLine = $"/c \"{testerExe}\"";
-            SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Cpp, testerCpp, false);
+            SourceCodeInitializer.InitializeEfficiencyCode2(LanguageSupported.Cpp, testerCpp, false);
             base.RunTest();
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
             {
@@ -228,7 +228,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string testIntput = mgaGinawangTama[luckyNumber].Key;
             string directory = Path.GetDirectoryName(filePath);
             int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{Path.Combine(directory, "OperatorsCounter.exe")}\"\"", testIntput));
-            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"\"{Path.Combine(directory, "BestOperatorsCounter.exe")}\"\"", testIntput));
+            int bestGrowth = task.efficiencyMetrics[testIntput];
             NonBlockingNotification($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
             updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "cpp");
             return Task.CompletedTask;

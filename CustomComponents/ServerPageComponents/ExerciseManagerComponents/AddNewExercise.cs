@@ -109,7 +109,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 createdFile.Close();
             }
             
-            if(NewExercise._testCases.Count < 10)
+            if(NewExercise._testCases.Count < 3)
             {
                 MessageBox.Show("Warning: It is recommended to have at least 10 test cases for better assessment.", "Insufficient Test Cases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

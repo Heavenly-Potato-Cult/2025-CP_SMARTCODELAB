@@ -2,6 +2,7 @@ using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
 using System.Diagnostics;
+using System.IO;
 using System.Net.Sockets;
 
 namespace SmartCodeLab
@@ -29,6 +30,23 @@ namespace SmartCodeLab
                 MessageBox.Show($"Global non-UI exception: {(e.ExceptionObject as Exception)?.Message}");
                 // Log the exception
             };
+
+            List<string> requiredFolders = new List<string>
+            {
+                SystemConfigurations.TASK_FOLDER,
+                SystemConfigurations.SESSIONS_FOLDER,
+                SystemConfigurations.javaFolder,
+                SystemConfigurations.pythonFolder,
+                SystemConfigurations.cppFolder
+            };
+
+            requiredFolders.ForEach(folder =>
+            {
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                }
+            });
 
             ConfigureFirewallRules();
             Application.Run(new InstructorForm()); //start up for instructor

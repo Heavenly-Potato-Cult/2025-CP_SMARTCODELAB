@@ -163,7 +163,10 @@ namespace SmartCodeLab
                 Thread.Sleep(1000);
                 SystemSingleton.Instance._loggedIn = true;
             }).Start();
-
+            foreach (var item in task.efficiencyMetrics)
+            {
+                Debug.WriteLine($"{item.Key} : {item.Value}");
+            }
             //create the activity directory then return the file path of the main file
             string mainFile = SourceCodeInitializer.InitializeActivityDirectory(task._language, userName, task._taskName, progress.sourceCode ?? "");
 

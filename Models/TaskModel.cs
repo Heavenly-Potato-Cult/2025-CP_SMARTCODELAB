@@ -54,6 +54,9 @@ namespace SmartCodeLab.Models
         [ProtoMember(10)]
         public DateTime lastModified { get; private set; }
 
+        [ProtoMember(11)]
+        public Dictionary<string, int> efficiencyMetrics { get; set; }
+
         [ProtoIgnore]
         public string filePath { get; set; }
         public TaskModel() {

@@ -160,8 +160,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             string testIntput = mgaGinawangTama[luckyNumber].Key;
             string directory = Path.GetDirectoryName(filePath);
             int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"py \"{Path.Combine(directory,"OperatorsCounter.py")}\"\"", testIntput));
-            int bestGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"py \"{Path.Combine(directory, "BestOperatorsCounter.py")}\"\"", testIntput));
-            //NonBlockingNotification($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
+            int bestGrowth = task.efficiencyMetrics[testIntput];
+            NonBlockingNotification($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
             updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "python");
 
             return Task.CompletedTask;

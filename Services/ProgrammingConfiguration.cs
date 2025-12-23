@@ -66,9 +66,6 @@ namespace SmartCodeLab.Services
         public static string JAVA_SYNTAX_FORMATTER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "java", "java-formatter.jar");
 
         //activity file locations
-        public static string javaFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "java");
-        public static string pythonFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "python");
-        public static string cppFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabactivities", "cpp");
         public static string COUNTER_FOLDER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "linters", "counter");
 
     }

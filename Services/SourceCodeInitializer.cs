@@ -21,9 +21,9 @@ namespace SmartCodeLab.Services
 
         public static readonly Dictionary<LanguageSupported, string> activityLocation = new Dictionary<LanguageSupported, string>()
         {
-            {LanguageSupported.Java,ProgrammingConfiguration.javaFolder },
-            {LanguageSupported.Python,ProgrammingConfiguration.pythonFolder },
-            {LanguageSupported.Cpp, ProgrammingConfiguration.cppFolder }
+            {LanguageSupported.Java,SystemConfigurations.javaFolder },
+            {LanguageSupported.Python,SystemConfigurations.pythonFolder },
+            {LanguageSupported.Cpp, SystemConfigurations.cppFolder }
         };
 
         public static string ValidName(string fileName)
@@ -62,7 +62,7 @@ namespace SmartCodeLab.Services
                 string operatorFile = Path.Combine(directory, fileName);
                 Task.Delay(200);
                 //turn the cpp file into exe and delete the cpp file after that                              
-                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\" && del \"{operatorFile}\"\"");
+                ExecuteCommand($"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{operatorFile}\" -o \"{exeFile}\"\"");
             }
             else 
             {

@@ -24,14 +24,18 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private string command;
         private TaskModel task;
         private Process process;
+        private bool isFromHost;
         private CancellationTokenSource processCts;
+        public Dictionary<string, int> inputOperatorsCount;
         public TestCodeForm()
         {
             InitializeComponent();
         }
-        public TestCodeForm(string command, TaskModel task)
+        public TestCodeForm(string command, TaskModel task, bool isFromHost = false)
         {
             InitializeComponent();
+            this.isFromHost = isFromHost;
+            inputOperatorsCount = new Dictionary<string, int>();
             corrects = new List<KeyValuePair<string, string>>();
             score = 0;
             this.command = command;
@@ -39,6 +43,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             totalCases = task?._testCases?.Count ?? 0;
             this.Load += (s, e) => RunTest();
             this.FormClosing += TestCodeForm_FormClosing;
+            this.isFromHost = isFromHost;
         }
 
         private void TestCodeForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -114,7 +119,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                     {
                         await StartprocessAsyncExit(
                             process,
-                            output => testOutput += (output + '\n'),
+                            output => {
+                                if(!output.Contains("Total Operators Counted By This Code", StringComparison.OrdinalIgnoreCase))
+                                    testOutput += (output + '\n');
+                                else if(isFromHost)
+                                {
+                                    // Extract operator count
+                                    var parts = output.Split(':');
+                                    if (parts.Length == 2 && int.TryParse(parts[1].Trim(), out int count))
+                                    {
+                                        inputOperatorsCount[input] = count;
+                                    }
+                                }
+                            },
                             error => testOutput += (error),
                             input,
                             null,
@@ -136,6 +153,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                         testOutput = $"Error: {ex.Message}";
                     }
                 } // Process is disposed here
+                if(isFromHost)
+                    Debug.WriteLine($"Input: {input}, Operators Count: {inputOperatorsCount.GetValueOrDefault(input, -1)}");
                 testOutput = Normalize(testOutput.Trim());
                 string expectedOutput = Normalize(item.Value.Trim());
                 bool isCorrect = testOutput == expectedOutput;

@@ -267,12 +267,14 @@
             // 
             // button1
             // 
-            button1.Location = new Point(271, -1);
+            button1.BackColor = Color.Black;
+            button1.ForeColor = Color.FromArgb(199, 213, 224);
+            button1.Location = new Point(271, 31);
             button1.Name = "button1";
             button1.Size = new Size(177, 29);
             button1.TabIndex = 67;
             button1.Text = "Change Reference Code";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // CodeQualityChoices2

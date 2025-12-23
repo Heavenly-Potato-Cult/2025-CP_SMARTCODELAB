@@ -61,8 +61,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 return;
             }
             this.DialogResult = DialogResult.OK;
-            File.WriteAllText(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity." + extensions[language]), referenceCode.Text);
-            total_cyclomatic_complexity = CodeComplexityCounter(Path.Combine(ProgrammingConfiguration.javaFolder, "CountComplexity." + extensions[language]), true);
+            File.WriteAllText(Path.Combine(SystemConfigurations.javaFolder, "CountComplexity." + extensions[language]), referenceCode.Text);
+            total_cyclomatic_complexity = CodeComplexityCounter(Path.Combine(SystemConfigurations.javaFolder, "CountComplexity." + extensions[language]), true);
             total_operator_count = CountOperators();
             sourceCode = referenceCode.Text;
             Close();
@@ -160,7 +160,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
                 process.ErrorDataReceived += (s, e) => Debug.WriteLine("count err" + e.Data);
                 process.Exited += (s, e) =>
                 {
-                    Debug.WriteLine(allOutput);
                     ; totalOperators = int.Parse(allOutput);
                 };
                 process.Start();

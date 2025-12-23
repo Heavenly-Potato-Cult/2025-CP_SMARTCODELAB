@@ -601,7 +601,7 @@ class CppOperatorCounter:
         last_line = lines_before[-1] if lines_before else ''
         indent = self._get_indent_string(self._get_indent_level(last_line))
 
-        output_stmt = f'{indent}std::cout << "Operation Count:" << {self.counter_var} << std::endl;\n'
+        output_stmt = f'{indent}std::cout << "\\nTotal Operators Counted By This Code:" << {self.counter_var} << std::endl;\n'
 
         # Insert output before each return, processing in reverse order
         new_body = main_body
