@@ -27,6 +27,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private bool isFromHost;
         private CancellationTokenSource processCts;
         public Dictionary<string, int> inputOperatorsCount;
+        bool isOpen;
         public TestCodeForm()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public TestCodeForm(string command, TaskModel task, bool isFromHost = false)
         {
             InitializeComponent();
+            isOpen = true;
             this.isFromHost = isFromHost;
             inputOperatorsCount = new Dictionary<string, int>();
             corrects = new List<KeyValuePair<string, string>>();
@@ -48,6 +50,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         private void TestCodeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            isOpen = false;
             processCts?.Cancel();
             try
             {
@@ -96,6 +99,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             foreach (var item in task._testCases)
             {
+                if (!isOpen)
+                    break;
                 if (task._language == Models.Enums.LanguageSupported.Cpp)
                 {
                     // Give Windows time to release the file lock

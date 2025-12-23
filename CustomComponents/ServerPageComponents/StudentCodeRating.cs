@@ -28,21 +28,17 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private List<int> recordedStats = new List<int>();
         private Dictionary<int, SteamStatRow> statsRows;
         private int standardCycComplexity;
-        private int standardOperatorsCount;
+        private int percentageAccuracy;
         private int testScore;
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int maxTestScore { get; set; }
 
-        private Func<List<HashSet<string>>> violations { get; set; }
-
         public Dictionary<int, decimal> statsWeight;
         public Dictionary<int, float> statsGrade;
 
-        private List<string> standardViolations;
         public StudentCodeRating()
         {
             InitializeComponent();
-            standardViolations = new List<string>();
             maxTestScore = 0;
             testScore = 0;
             statsGrade = new Dictionary<int, float>()
@@ -59,8 +55,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 {3, rowRobustness },
                 {4, rowMaintainability },
             };
-
-
         }
 
         public void SetStats(Dictionary<int, decimal[]> stats)
@@ -84,9 +78,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                         statsRows[key].Visible = false;
                     }
                 }
-
-                if (stats.ContainsKey(2))
-                    standardOperatorsCount = Convert.ToInt32(stats[2][1]);
 
                 if (stats.ContainsKey(4))
                     standardCycComplexity = Convert.ToInt32(stats[4][1]);
@@ -135,23 +126,24 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     testScore = value;
                     //accuracy.ChangeValue((int)((value / (double)maxTestScore) * 100));
                     finalValue = (int)((value / (double)maxTestScore) * 100);
+                    percentageAccuracy = finalValue;
                 }
                 else if (i == 2)//efficiency
                 {
                     //efficiency.ChangeValue(Math.Min(value, accuracy.Value));
-                    finalValue = Math.Min(value, rowAccuracy.Value);
+                    finalValue = Math.Min(value, percentageAccuracy);
                 }
                 else if (i == 3)//robustness
                 {
                     int scoreRobustness = Math.Max(0, 100 - getTotalDeduction(i, value, language));
                     //robustness.ChangeValue(Math.Min(scoreRobustness, accuracy.Value));
-                    finalValue = Math.Min(scoreRobustness, rowAccuracy.Value);
+                    finalValue = Math.Min(scoreRobustness, percentageAccuracy);
                 }
                 else if (i == 4)//maintainability
                 {
                     int difference = Math.Max(0, 100 - getTotalDeduction(i, value, language));
                     //maintainability.ChangeValue(Math.Min(difference, accuracy.Value));
-                    finalValue = Math.Min(difference, rowAccuracy.Value);
+                    finalValue = Math.Min(difference, percentageAccuracy);
                 }
                 //statsGrade[i] = (statsRows[i].theValue / 100f) * Convert.ToSingle(statsWeight[i]);
                 statsGrade[i] = (finalValue / 100f) * Convert.ToSingle(statsWeight[i]);
@@ -222,7 +214,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 .WithTotalRating(GetScore())
                 .WithTestScore(testScore)
                 .WithMaxTestScore(maxTestScore)
-                .WithReadabilityViolations(standardViolations)
                 .WithRecommendedCycComplexity(standardCycComplexity)
                 .WithActualCycComplexity(Convert.ToInt32(10))
                 .WithStatsGrade(GetStats())

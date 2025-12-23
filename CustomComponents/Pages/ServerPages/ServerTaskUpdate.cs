@@ -100,7 +100,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         }
 
 
-
         private void btn_EditExerciseDetails_Click(object sender, EventArgs e)
         {
             task._instructions = instruction.Text;
@@ -121,52 +120,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             //now validate the new reference code
             if ((task.ratingFactors.ContainsKey(2) || task.ratingFactors.ContainsKey(4)) && task._testCases.Count > 0)
             {
-                //Java and Cpp needs to be compiled first
-                if (task.language != LanguageSupported.Python.ToString())
+                (bool isCodeValid, Dictionary<string, int>? inputTotalOperators) = TempSessionManagement2.ValidateCode(reference.Text, task._language, task);
+                if (!isCodeValid)
                 {
-                    if (task.language == LanguageSupported.Java.ToString())
-                    {
-                        tempFilePath = Path.Combine(rootDirectory, "Main.java");
-                        exeFilePath = Path.Combine(rootDirectory, "Main");
-                        command = $"/c \"\"{ProgrammingConfiguration.javac}\" \"{tempFilePath}\" && del \"{tempFilePath}\"\"";
-                    }
-                    else
-                    {
-                        tempFilePath = Path.Combine(rootDirectory, "Main.cpp");
-                        exeFilePath = Path.Combine(rootDirectory, "Main.exe");
-                        command = $"/c \"\"{ProgrammingConfiguration.gccExe}\" -std=c++11 \"{tempFilePath}\" -o \"{exeFilePath}\" && del \"{tempFilePath}\"\"";
-                    }
-
-                    File.WriteAllText(tempFilePath, task._referenceFile);
-                    string compilationResult = TempSessionManagement2.compileCode(command);
-                    if (compilationResult != string.Empty)
-                    {
-                        NonBlockingNotification(compilationResult);
-                        return;
-                    }
-                    //if no error during code compilation, will now proceed to testing the code
-                }
-                else
-                    File.WriteAllText(Path.Combine(rootDirectory, "Main.py"), task._referenceFile);
-
-                command = task.language == LanguageSupported.Python.ToString() ? $"/c \"\"{ProgrammingConfiguration.pythonExe}\" \"{Path.Combine(rootDirectory, "Main.py")}\"\"" :
-                            task.language == LanguageSupported.Java.ToString() ? $"/c \"cd \"{rootDirectory}\" && \"{ProgrammingConfiguration.javaExe}\" Main\"" :
-                                                                                $"/c \"{exeFilePath}\"";
-                var validateCode = new TestCodeForm(command, task);
-                validateCode.ShowDialog();
-                if (validateCode.score != task._testCases.Count)
-                {
-                    validateCode.Dispose();
                     NonBlockingNotification("The reference code failed to satisfy all designated test cases. Please evaluate the failing scenarios and update your implementation as needed.");
                     return;
-                }            
+                }
+                task.efficiencyMetrics = inputTotalOperators;
+                //getting the standard cyclomatic complexity
                 if (task.ratingFactors.ContainsKey(4))
                 {
                     File.WriteAllText(tempFilePath, task._referenceFile);
                     task.ratingFactors[4][1] = CodeComplexityReference.CodeComplexityCounter(tempFilePath);
                 }
             }
-
 
             recentReferenceCode = task._referenceFile;
             action?.Invoke(task, null, null);

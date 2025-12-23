@@ -49,7 +49,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected List<KeyValuePair<string, string>> mgaGinawangTama;
 
         private Func<Task> sendProgress;
-        private string acceptedCode;
         private string errorMsg = "";
         private System.Threading.Timer? _debounceTimer;
         private System.Threading.Timer? inputTimer;
@@ -130,11 +129,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             maintainabilityRules = new HashSet<string>();
             robustnessRules = new HashSet<string>();
 
-            acceptedCode = "";
             this.task = task;
             this.filePath = filePath;
             srcCode.Text = File.ReadAllText(filePath);
-            codeHistory[0] = srcCode.Text;
+            //codeHistory[0] = srcCode.Text;
 
             //will initialize first, incase it is new
             StudentProgress = progress;
@@ -168,23 +166,21 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 _debounceTimer = new System.Threading.Timer(async _ =>
                 {
                     await RunLinting();
-                    //await CountComplexity1();
                     await this.sendProgress.Invoke();
+                    //add the new source code to the code history
+                    codeHistory[i++ % 20] = srcCode.Text;
                 }, null, 1000, Timeout.Infinite);
-
-                //add the new source code to the code history
-                codeHistory[i++ % 20] = srcCode.Text;
             };
+
             srcCode.KeyUp += (s, e) =>
             {
-                if (e.KeyCode == Keys.S && e.Control)
-                    SaveCode();
-                else if (e.KeyCode == Keys.V && e.Control)
+                if (e.KeyCode == Keys.V && e.Control)
                 {
                     if (Clipboard.ContainsText())
                     {
                         string pasted = Clipboard.GetText();
                         Task.Run(() => GetPastedCode(pasted, srcCode.Text, codeHistory));
+                        this.sendProgress.Invoke();
                     }
                 }
             };
@@ -400,10 +396,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 }
                 mgaGinawangTama = testCodeForm.corrects;
                 updateStats?.Invoke(1, testCodeForm.score, null);
-                if (task._testCases.Count == testCodeForm.score)
-                {
-                    acceptedCode = srcCode.Text;
-                }
+
                 testCodeForm.Dispose();
                 await RunLinting();
                 await sendProgress.Invoke();

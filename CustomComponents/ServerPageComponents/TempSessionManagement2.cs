@@ -103,7 +103,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         };
 
         //validate the accuracy of the reference code, which will be used for the efficiency
-        private (bool, Dictionary<string, int>?) ValidateCode(string code, LanguageSupported language, TaskModel task)
+        public static (bool, Dictionary<string, int>?) ValidateCode(string code, LanguageSupported language, TaskModel task)
         {
             string tempFilePath = string.Empty;
             string command = string.Empty;
