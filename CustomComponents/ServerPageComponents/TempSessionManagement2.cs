@@ -7,6 +7,7 @@ using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponen
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
+using SmartCodeLab.Services.ModelServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,10 +28,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private TaskModel selectedTask;
         private Dictionary<string, UserProfile> userProfiles;
         private SelectedExercise selectedExercise;
-        private readonly Regex InvalidCharsRegex = new Regex(
-            @"[<>:""/\\|?*\x00-\x1F]",
-            RegexOptions.Compiled
-        );
+
         public TempSessionManagement2()
         {
             InitializeComponent();
@@ -192,75 +190,26 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void steamPrimaryButton1_Click(object sender, EventArgs e)
         {
             codeQualityChoices21.putUnallocatedToAccuracy();
+            (Server? server, string msg) = ServerServices.getServer(serverName.Text.Trim(),
+                serverPW.Text,
+                language.SelectedItem,
+                codeQualityChoices21,
+                selectedTask,
+                userProfiles);
 
-            foreach (var file in Directory.EnumerateFiles(SystemConfigurations.SESSIONS_FOLDER))
+            if(server == null)
             {
-                if (Path.GetFileNameWithoutExtension(file).Trim().ToLower() == serverName.Text.Trim().ToLower())
-                {
-                    MessageBox.Show("Session Name is Already Used");
-                    return;
-                }
-            }
-            //check the coding stats to see if some rating have 0 weight
-            List<int> haveZeroRating = new List<int>();
-            foreach (var item in codeQualityChoices21.GetRatingFactors())
-                if (item.Value[0] == 0)
-                    haveZeroRating.Add(item.Key);
-
-            if (serverName.Text.IsWhiteSpace())
-            {
-                MessageBox.Show("Invalid Server Name");
+                MessageBox.Show(msg);
                 return;
             }
-            else if (InvalidCharsRegex.IsMatch(serverName.Text))
-            {
-                MessageBox.Show("The server name contains invalid characters. Please avoid using the following characters: < > : \" / \\ | ? *", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            else if (language.SelectedItem == null || language.SelectedItem.ToString() == "")
-            {
-                MessageBox.Show("No language Selected");
-                return;
-            }
-            else if (serverPW.Text.IsWhiteSpace())
-            {
-                MessageBox.Show("Server Password is Required");
-                return;
-            }
-            else if (haveZeroRating.Count > 0)
-            {
-                string[] statsName = { "", "", "Efficiency", "Robustness", "Maintainability" };
-                string withZero = string.Join('\n',
-                    haveZeroRating.Select(num => statsName[num]).ToArray());
-                MessageBox.Show("The following have 0 stats weight, better remove or update weight: \n" + withZero);
-                return;
-            }
+            server.ServerTask.isTabLocked = tabNavigationLocked.Checked;
 
-            selectedTask = selectedTask ?? new TaskModel();
-            selectedTask.ratingFactors = codeQualityChoices21.GetRatingFactors();
-            selectedTask.isTabLocked = tabNavigationLocked.Checked;
-            selectedTask._referenceFile = codeQualityChoices21.bestSourceCode;
-            selectedTask.efficiencyMetrics = new Dictionary<string, int>();
-
-            Server server = new Server(serverName.Text.Trim(), serverPW.Text, selectedTask, language.SelectedItem.ToString(), userProfiles);
-
-            if (codeQualityChoices21.GetRatingFactors().ContainsKey(2) && selectedTask._testCases.Count > 0)
-            {
-                (bool isPerfect, Dictionary<string, int>? inputTotalOperators) = ValidateCode(codeQualityChoices21.bestSourceCode, server.ProgrammingLanguage, selectedTask);
-                if (!isPerfect)
-                {
-                    MessageBox.Show("The code you provided as a reference for efficiency is not accurate.");
-                    return;
-                }
-                server.ServerTask.efficiencyMetrics = inputTotalOperators ?? new Dictionary<string, int>();
-            }
             //to fit the mainserverpage to the page1
             var page1 = SystemSingleton.Instance.page1;
             page1.Controls.Clear();
             page1.AutoScroll = true;
             MainServerPage2 serverPage = new MainServerPage2(server);
             serverPage.Dock = DockStyle.Fill;
-
             page1.Controls.Add(serverPage);
         }
 

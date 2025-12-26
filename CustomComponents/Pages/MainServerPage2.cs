@@ -6,21 +6,12 @@ using SmartCodeLab.CustomComponents.WPFComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
 using SmartCodeLab.Services;
-using System;
+using SmartCodeLab.Services.ModelServices;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 
 namespace SmartCodeLab.CustomComponents.Pages
@@ -471,33 +462,15 @@ namespace SmartCodeLab.CustomComponents.Pages
 
         private async void saveSession()
         {
-            try
-            {
-                string filePath = Path.Combine(SystemConfigurations.SESSIONS_FOLDER, server.ServerName + ".session");
-                using (var fileStream = new FileStream(
-                                            filePath,
-                                            FileMode.Create,            // always create or overwrite file
-                                            FileAccess.Write,           // write-only access
-                                            FileShare.None              // don't allow other processes to open it simultaneously
-                                        ))
-                {
-                    var newProgrammingSession = new ProgrammingSession(server, homePage.notifications, 
-                        homePage.copyPasteDetectedCount, 
-                        userProgress.ToDictionary(kvp => kvp.Key, kvp => kvp.Value), 
-                        progressSubmissionPage.codeSubmissions);
+            var newProgrammingSession = new ProgrammingSession(server, homePage.notifications,
+                homePage.copyPasteDetectedCount,
+                userProgress.ToDictionary(kvp => kvp.Key, kvp => kvp.Value),
+                progressSubmissionPage.codeSubmissions);
 
-                    Serializer.SerializeWithLengthPrefix(fileStream, newProgrammingSession, PrefixStyle.Base128);
-                    await fileStream.FlushAsync();
-                    NonBlockingNotification("Session file saved successfully");
-                    SystemSingleton.Instance.addSession?.Invoke(newProgrammingSession);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log the error instead of crashing the timer
-                Console.WriteLine($"Failed to save session: {ex.Message}");
-                // Or use your logging framework
-            }
+            if (ServerServices.saveSession(server.ServerName, newProgrammingSession).Result)
+                NonBlockingNotification("Session saved successfully.");
+            else
+                NonBlockingNotification("Failed to save session.");
         }
     }
 }

@@ -19,19 +19,21 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
 
         private int index;
         private TaskModel _task;
+        Func<List<string>> existingTasks;
         Func<List<string>> existingSubjects;
         private Action<int, TaskModel> updateTask;
-        public ExerciseCard(int index, TaskModel task, Action<int> taskRemover, Func<List<string>> existingSubjects, Action<int, TaskModel> updateTask)
+        public ExerciseCard(KeyValuePair<int, TaskModel> taskModel, Action<int> taskRemover, Func<List<string>> existingSubjects, Action<int, TaskModel> updateTask, Func<List<string>> existingTasks)
         {
             InitializeComponent();
-            this.index = index;
+            _task = taskModel.Value;
+            index = taskModel.Key;
+            this.existingTasks = existingTasks;
             this.updateTask = updateTask;
             this.existingSubjects = existingSubjects;
-            lbl_ExerciseTitle.Text = task._taskName;
-            subject.Text = task.subject;
-            testCounts.Text = task._testCases?.Count.ToString() ?? "0";
-            _task = task;
-            dateModified.Text = GetSteamDate(task.lastModified);
+            lbl_ExerciseTitle.Text = _task._taskName;
+            subject.Text = _task.subject;
+            testCounts.Text = _task._testCases?.Count.ToString() ?? "0";
+            dateModified.Text = GetSteamDate(_task.lastModified);
 
             smartButton9.Click += (s, e) =>
             {
@@ -47,7 +49,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
 
         private void btn_editcard_Click(object sender, EventArgs e)
         {
-            using (var exerciseForm = new CustomDialogs.AddNewExercise(_task, existingSubjects.Invoke()))
+            using (var exerciseForm = new CustomDialogs.AddNewExercise(_task, existingSubjects.Invoke(), existingTasks.Invoke()))
             {
                 var dialogResult = exerciseForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)

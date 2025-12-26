@@ -16,6 +16,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private ISet<string> taskSubjects;
         private long searchVersion;
         private int totalLoadedCount;
+        private List<string> existingTasks;
         public TempExerciseManage()
         {
             InitializeComponent();
@@ -74,6 +75,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     }
                     catch {}
                 }
+                existingTasks = loadedExercises.Values.Select(ex => ex.filePath).ToList();
                 if (this.IsHandleCreated)
                 {
                     this.Invoke((Action)(() =>
@@ -89,10 +91,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             });
         }
 
-        private List<string> getSubjects()
-        {
-            return taskSubjects.ToList();
-        }
 
         private async Task displayTasks()
         {
@@ -107,20 +105,36 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     ex.Value._taskName.Contains(search, StringComparison.OrdinalIgnoreCase) &&
                     (searchForAll || ex.Value.subject.Equals(subjectFilter, StringComparison.OrdinalIgnoreCase))
                 ).ToList();
+
                 Task.Delay(200);
                 flowLayoutPanel_Exercises.Controls.Clear();
                 foreach (var exercise in filteredSearch)
                 {
                     if (currentVersion != searchVersion)
                         break;
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise.Key, exercise.Value, removeExervice, getSubjects, updateSubjectsLists));
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(exercise, removeExervice, getSubjects, updateSubjectsLists, getExistingTasks));
                 }
             }));
         }
 
+        private List<string> getExistingTasks()
+        {
+            return existingTasks;
+        }
+
+        private List<string> getSubjects()
+        {
+            return taskSubjects.ToList();
+        }
+
         private void updateSubjectsLists(int index, TaskModel updatedTask)
         {
+            string oldFilePath =  loadedExercises[index].filePath;
+            existingTasks.Remove(oldFilePath);
+
             loadedExercises[index] = updatedTask;
+            existingTasks.Add(updatedTask.filePath);
+
             string potentialNewSubject = updatedTask.subject.Trim().ToUpper();
             if (!taskSubjects.Contains(potentialNewSubject))
             {
@@ -132,11 +146,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void removeExervice(int index)
         {
             loadedExercises.Remove(index);
+            existingTasks.Remove(loadedExercises[index].filePath);
         }
 
         private void btn_AddNewExercise_Click_1(object sender, EventArgs e)
         {
-            using (var exerciseForm = new AddNewExercise(getSubjects()))
+            using (var exerciseForm = new AddNewExercise(getSubjects(), existingTasks))
             {
                 var dialogResult = exerciseForm.ShowDialog();
                 if (dialogResult == DialogResult.OK)
@@ -144,7 +159,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                     var newExerciser = exerciseForm.NewExercise;
                     int index = totalLoadedCount++;
                     loadedExercises.Add(index, newExerciser);
-                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(index, newExerciser, removeExervice, getSubjects, updateSubjectsLists));
+                    existingTasks.Add(newExerciser.filePath);
+                    flowLayoutPanel_Exercises.Controls.Add(new ExerciseCard(new KeyValuePair<int,TaskModel>(index, newExerciser), removeExervice, getSubjects, updateSubjectsLists, getExistingTasks));
                     updateSubjectsLists(index, newExerciser);
                 }
             }

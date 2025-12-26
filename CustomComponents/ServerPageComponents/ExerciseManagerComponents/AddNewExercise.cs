@@ -3,6 +3,7 @@ using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponen
 using SmartCodeLab.CustomComponents.TaskPageComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Services;
+using SmartCodeLab.Services.ModelServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,16 +25,13 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         public TaskModel NewExercise { get; private set; }
         private TaskModel currentExercise;
         private bool isEditMode;
-        private string folderPath;
-        private string duplicateMsg = "An exercise with the same title already exists. Please choose a different title.";
-        private readonly Regex InvalidCharsRegex = new Regex(
-            @"[<>:""/\\|?*\x00-\x1F]",
-            RegexOptions.Compiled
-        );
+
         private List<string> autoCompleteList;
-        public AddNewExercise(List<string> existingSubjects)
+        private List<string> existingTasks;
+        public AddNewExercise(List<string> existingSubjects, List<string> existingTasks)
         {
             InitializeComponent();
+            this.existingTasks = existingTasks;
             folderPath = SystemConfigurations.TASK_FOLDER;
             isEditMode = false;
             Dictionary<string, string> testCases = new Dictionary<string, string>();
@@ -41,9 +39,10 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             setExistingSubjects();
         }
 
-        public AddNewExercise(TaskModel task, List<string> existingSubjects)
+        public AddNewExercise(TaskModel task, List<string> existingSubjects, List<string> existingTasks)
         {
             InitializeComponent();
+            this.existingTasks = existingTasks;
             isEditMode = true;
             currentExercise = task;
             folderPath = SystemConfigurations.TASK_FOLDER;
@@ -76,44 +75,22 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
 
         private void btn_CreateExercise_Click(object sender, EventArgs e)
         {
-            if (InputsAreInvalid())
-                return;
-            else if (InvalidCharsRegex.IsMatch(txtbox_ExerciseTitle.Texts))
+            string filePath = Path.Combine(SystemConfigurations.TASK_FOLDER, txtbox_ExerciseTitle.Texts.Trim() + ".task");
+
+            bool isValid = false;
+            string validationMsg = "";
+            NewExercise = new TaskModel(txtbox_ExerciseTitle.Texts, subject.Texts, txtbox_ExerciseInstruction.Texts, GetTestCases());
+            if (isEditMode)
+                (isValid, validationMsg) = TaskModelServices.updateTaskModel(NewExercise, currentExercise, existingTasks);
+            else
+                (isValid, validationMsg) = TaskModelServices.createTaskModel(NewExercise, existingTasks);
+
+            if (!isValid)
             {
-                MessageBox.Show("The exercise title contains invalid characters. Please avoid using the following characters: < > : \" / \\ | ? *", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(validationMsg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string filePath = Path.Combine(SystemConfigurations.TASK_FOLDER, txtbox_ExerciseTitle.Texts.Trim() + ".task");
-            if (isEditMode)
-            {
-                if (Directory.GetFiles(folderPath).Contains(filePath) && currentExercise.filePath != filePath)
-                {
-                    MessageBox.Show(duplicateMsg, "Duplicate Exercise", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                else
-                {
-                    filePath = currentExercise.filePath;
-                }
-            }else if (Directory.GetFiles(folderPath).Contains(filePath))
-            {
-                MessageBox.Show(duplicateMsg, "Duplicate Exercise", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            NewExercise = new TaskModel(txtbox_ExerciseTitle.Texts, subject.Texts, txtbox_ExerciseInstruction.Texts, GetTestCases());
-            using (var createdFile = File.Create(filePath))
-            {
-                NewExercise.filePath = filePath;
-                Serializer.SerializeWithLengthPrefix<TaskModel>(createdFile, NewExercise, PrefixStyle.Base128);
-                createdFile.Close();
-            }
-            
-            if(NewExercise._testCases.Count < 3)
-            {
-                MessageBox.Show("Warning: It is recommended to have at least 10 test cases for better assessment.", "Insufficient Test Cases", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
             bool doNotHave = true;
             foreach (var item in autoCompleteList)
             {
@@ -127,29 +104,8 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             {
                 File.AppendAllLines(SystemConfigurations.SUBJECTS_FILE, new[] { subject.Texts });
             }
-
-            if (isEditMode)
-                MessageBox.Show("Task updated successfully");
-            else
-                MessageBox.Show("Task added successfully");
+            MessageBox.Show(validationMsg);
             ConfirmAndCloseForm();
-        }
-
-        private bool InputsAreInvalid()
-        {
-            if (string.IsNullOrWhiteSpace(txtbox_ExerciseTitle.Texts))
-            {
-                MessageBox.Show("Title cannot be empty.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
-            }
-
-
-            if (string.IsNullOrWhiteSpace(subject.Texts))
-            {
-                MessageBox.Show("Please provide the exercise subject.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return true;
-            }
-            return false;
         }
 
         private void ConfirmAndCloseForm()
@@ -162,7 +118,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         {
             this.Close();
         }
-
 
         private Dictionary<string, string> GetTestCases()
         {
