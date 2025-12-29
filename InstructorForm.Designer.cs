@@ -38,6 +38,7 @@ namespace SmartCodeLab
             tabPage7 = new TabPage();
             tempExerciseManage1 = new TempExerciseManage();
             tabPage8 = new TabPage();
+            tabPage1 = new TabPage();
             tabcontrol_MainNav.SuspendLayout();
             tabPage10.SuspendLayout();
             tabPage7.SuspendLayout();
@@ -59,6 +60,7 @@ namespace SmartCodeLab
             tabcontrol_MainNav.Controls.Add(tabPage10);
             tabcontrol_MainNav.Controls.Add(tabPage7);
             tabcontrol_MainNav.Controls.Add(tabPage8);
+            tabcontrol_MainNav.Controls.Add(tabPage1);
             tabcontrol_MainNav.Depth = 0;
             tabcontrol_MainNav.Dock = DockStyle.Fill;
             tabcontrol_MainNav.Location = new Point(0, 58);
@@ -124,6 +126,16 @@ namespace SmartCodeLab
             tabPage8.Text = "tabPage8";
             tabPage8.Enter += tabPage8_Enter;
             // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 29);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(1916, 964);
+            tabPage1.TabIndex = 4;
+            tabPage1.Text = "tabPage1";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
             // InstructorForm
             // 
             AutoScaleDimensions = new SizeF(120F, 120F);
@@ -154,5 +166,6 @@ namespace SmartCodeLab
         private CustomComponents.Pages.ServerPages.StudentTable2 studenTable21;
         private TabPage tabPage10;
         private CustomComponents.ServerPageComponents.TempSessionManagement2 tempSessionManagement21;
+        private TabPage tabPage1;
     }
 }

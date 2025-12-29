@@ -14,11 +14,17 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 {
     public partial class StudentRow : UserControl
     {
-        public StudentRow(string studentId, string name, Action<string> removeUser, Action<UserProfile> updateDisplay, Func<ServerMessage, string, Task> kickStudent = null)
+        public StudentRow(string studentId, 
+            string name, 
+            Action<string> removeUser, 
+            Action<UserProfile>? updateDisplay, 
+            Func<ServerMessage, string, Task> kickStudent = null)
         {
             InitializeComponent();
             this.studId.Text = studentId;
             this.studName.Text = name;
+            this.studId.ForeColor = Color.Black;
+            studName.ForeColor = Color.Black;
             string studentName = name;
 
             this.MouseEnter += (s, e) =>
@@ -50,6 +56,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                             KeyValuePair<string, string> userDetails = studForm.NewUser();
                             updateDisplay?.Invoke(new UserProfile(userDetails.Value, userDetails.Key, "N/A"));
                             studentName = userDetails.Value;
+                            this.studName.Text = userDetails.Value;
                         }
                     });
 
@@ -63,11 +70,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
                     option.Show();
                 }
             };
-        }
-
-        public void setNameText(string name)
-        {
-            studName.Text = name;
         }
     }
 }

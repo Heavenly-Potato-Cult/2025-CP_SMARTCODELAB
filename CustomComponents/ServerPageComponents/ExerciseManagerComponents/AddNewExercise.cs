@@ -25,14 +25,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
         public TaskModel NewExercise { get; private set; }
         private TaskModel currentExercise;
         private bool isEditMode;
-
         private List<string> autoCompleteList;
         private List<string> existingTasks;
         public AddNewExercise(List<string> existingSubjects, List<string> existingTasks)
         {
             InitializeComponent();
             this.existingTasks = existingTasks;
-            folderPath = SystemConfigurations.TASK_FOLDER;
             isEditMode = false;
             Dictionary<string, string> testCases = new Dictionary<string, string>();
             autoCompleteList = existingSubjects;
@@ -45,7 +43,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs
             this.existingTasks = existingTasks;
             isEditMode = true;
             currentExercise = task;
-            folderPath = SystemConfigurations.TASK_FOLDER;
             txtbox_ExerciseTitle.Texts = task._taskName;
             txtbox_ExerciseInstruction.Texts = task._instructions;
             subject.Texts = task.subject;

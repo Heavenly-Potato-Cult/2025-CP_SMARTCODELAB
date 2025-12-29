@@ -26,6 +26,15 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         private Dictionary<string, StudentRow> userIcons;
         private Func<ServerMessage, string, Task> kickStudent;
         //right after adding the student, should add its icon to the temp server page
+
+        public StudTable()
+        {
+            InitializeComponent();
+            newlyAdded = new List<UserProfile>();
+            expectedUsers = new Dictionary<string, UserProfile>();
+            userIcons = new Dictionary<string, StudentRow>();
+        }
+
         public StudTable(Dictionary<string, UserProfile> users, Action<List<UserProfile>> updateIcons = null, Action<UserProfile, bool> updateDisplay = null, Func<ServerMessage, string, Task> kickStudent = null)
         {
             InitializeComponent();
@@ -47,7 +56,6 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
         private void updateUserDisplay(UserProfile user)
         {
             expectedUsers[user._studentId] = user;
-            userIcons[user._studentId].setNameText(user._studentName);
             updateDisplay?.Invoke(user, true);
         }
 
@@ -92,7 +100,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
             count.Text = expectedUsers.Count.ToString();
         }
 
-        private async Task<Dictionary<string, UserProfile>?> doSomething(string filepath)
+        public async Task<Dictionary<string, UserProfile>?> getStudentsFromCSV(string filepath)
         {
             if (!File.Exists(filepath))
                 return null;
@@ -220,7 +228,7 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
                 if(fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    var studentRecords = await doSomething(fileDialog.FileName);
+                    var studentRecords = await getStudentsFromCSV(fileDialog.FileName);
                     await Task.Run(() =>
                     {
                         if (studentRecords == null)

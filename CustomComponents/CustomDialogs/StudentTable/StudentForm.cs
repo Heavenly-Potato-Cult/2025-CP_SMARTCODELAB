@@ -28,12 +28,12 @@ namespace SmartCodeLab.CustomComponents.CustomDialogs.StudentTable
 
         private void smartButton2_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
             if (string.IsNullOrWhiteSpace(studId.Texts) || string.IsNullOrWhiteSpace(studName.Texts))
             {
-                MessageBox.Show("Please fill all fields");
+                MessageBox.Show("Please fill all fields a");
                 return;
             }
+            this.DialogResult = DialogResult.OK;
             Visible = false;
         }
 

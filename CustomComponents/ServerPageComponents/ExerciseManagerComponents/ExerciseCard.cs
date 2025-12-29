@@ -30,7 +30,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
             this.existingTasks = existingTasks;
             this.updateTask = updateTask;
             this.existingSubjects = existingSubjects;
-            lbl_ExerciseTitle.Text = _task._taskName;
+            subjectCode.Text = _task._taskName;
             subject.Text = _task.subject;
             testCounts.Text = _task._testCases?.Count.ToString() ?? "0";
             dateModified.Text = GetSteamDate(_task.lastModified);
@@ -55,7 +55,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComp
                 if (dialogResult == DialogResult.OK)
                 {
                     _task = exerciseForm.NewExercise;
-                    lbl_ExerciseTitle.Text = _task._taskName;
+                    subjectCode.Text = _task._taskName;
                     subject.Text = _task.subject;
                     dateModified.Text = _task.lastModified.ToString("MMM dd, yyyy hh:mm tt");
                     testCounts.Text = _task._testCases?.Count.ToString() ?? "0";

@@ -1,5 +1,6 @@
 ﻿using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs;
+using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.CustomComponents.Pages.SessionViewing;
 using SmartCodeLab.CustomComponents.ServerPageComponents;
 using SmartCodeLab.CustomComponents.WPFComponents;
@@ -36,6 +37,7 @@ namespace SmartCodeLab
             SessionLogsPage slp = new SessionLogsPage() { Dock = DockStyle.Fill };
             SystemSingleton.Instance.addSession = slp.AddNewSession;
             tabPage8.Controls.Add(slp);
+            tabPage1.Controls.Add(new ClassManagement() { Dock = DockStyle.Fill });
         }
 
         private const int BaseNavPanelHeight = 58;

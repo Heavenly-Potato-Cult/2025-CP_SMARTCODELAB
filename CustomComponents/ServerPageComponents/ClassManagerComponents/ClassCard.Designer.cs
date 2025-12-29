@@ -1,6 +1,6 @@
-﻿namespace SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents
+﻿namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerComponents
 {
-    partial class ExerciseCard
+    partial class ClassCard
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExerciseCard));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClassCard));
             smartButton9 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             steamCard21 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard2();
             tableLayoutPanel1 = new TableLayoutPanel();
             steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamLabel2 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
-            dateModified = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            SYSem = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
-            testCounts = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            courseYearSec = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             subject = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             btn_editcard = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             subjectCode = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
@@ -83,13 +83,13 @@
             // 
             tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 46.5465469F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 53.4534531F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.Controls.Add(steamLabel1, 0, 0);
             tableLayoutPanel1.Controls.Add(steamLabel2, 0, 1);
-            tableLayoutPanel1.Controls.Add(dateModified, 1, 2);
+            tableLayoutPanel1.Controls.Add(SYSem, 1, 2);
             tableLayoutPanel1.Controls.Add(steamLabel3, 0, 2);
-            tableLayoutPanel1.Controls.Add(testCounts, 1, 1);
+            tableLayoutPanel1.Controls.Add(courseYearSec, 1, 1);
             tableLayoutPanel1.Controls.Add(subject, 1, 0);
             tableLayoutPanel1.Location = new Point(32, 96);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -122,27 +122,27 @@
             steamLabel2.ForeColor = Color.FromArgb(139, 149, 166);
             steamLabel2.Location = new Point(3, 26);
             steamLabel2.Name = "steamLabel2";
-            steamLabel2.Size = new Size(97, 19);
+            steamLabel2.Size = new Size(133, 19);
             steamLabel2.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
             steamLabel2.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel2.TabIndex = 69;
-            steamLabel2.Text = "Total Cases:";
+            steamLabel2.Text = "Course - Section";
             // 
-            // dateModified
+            // SYSem
             // 
-            dateModified.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            dateModified.AutoSize = true;
-            dateModified.BackColor = Color.Transparent;
-            dateModified.Font = new Font("Geist", 10F);
-            dateModified.ForeColor = Color.FromArgb(199, 213, 224);
-            dateModified.Location = new Point(312, 52);
-            dateModified.Name = "dateModified";
-            dateModified.Size = new Size(18, 19);
-            dateModified.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
-            dateModified.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
-            dateModified.TabIndex = 73;
-            dateModified.Text = "2";
-            dateModified.TextAlign = ContentAlignment.MiddleRight;
+            SYSem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            SYSem.AutoSize = true;
+            SYSem.BackColor = Color.Transparent;
+            SYSem.Font = new Font("Geist", 10F);
+            SYSem.ForeColor = Color.FromArgb(199, 213, 224);
+            SYSem.Location = new Point(312, 52);
+            SYSem.Name = "SYSem";
+            SYSem.Size = new Size(18, 19);
+            SYSem.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
+            SYSem.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            SYSem.TabIndex = 73;
+            SYSem.Text = "2";
+            SYSem.TextAlign = ContentAlignment.MiddleRight;
             // 
             // steamLabel3
             // 
@@ -152,27 +152,27 @@
             steamLabel3.ForeColor = Color.FromArgb(139, 149, 166);
             steamLabel3.Location = new Point(3, 52);
             steamLabel3.Name = "steamLabel3";
-            steamLabel3.Size = new Size(71, 19);
+            steamLabel3.Size = new Size(116, 19);
             steamLabel3.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
             steamLabel3.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel3.TabIndex = 70;
-            steamLabel3.Text = "Modified";
+            steamLabel3.Text = "SY - Semester";
             // 
-            // testCounts
+            // courseYearSec
             // 
-            testCounts.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            testCounts.AutoSize = true;
-            testCounts.BackColor = Color.Transparent;
-            testCounts.Font = new Font("Geist", 10F);
-            testCounts.ForeColor = Color.FromArgb(199, 213, 224);
-            testCounts.Location = new Point(312, 26);
-            testCounts.Name = "testCounts";
-            testCounts.Size = new Size(18, 19);
-            testCounts.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
-            testCounts.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
-            testCounts.TabIndex = 72;
-            testCounts.Text = "5";
-            testCounts.TextAlign = ContentAlignment.MiddleRight;
+            courseYearSec.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            courseYearSec.AutoSize = true;
+            courseYearSec.BackColor = Color.Transparent;
+            courseYearSec.Font = new Font("Geist", 10F);
+            courseYearSec.ForeColor = Color.FromArgb(199, 213, 224);
+            courseYearSec.Location = new Point(312, 26);
+            courseYearSec.Name = "courseYearSec";
+            courseYearSec.Size = new Size(18, 19);
+            courseYearSec.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
+            courseYearSec.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
+            courseYearSec.TabIndex = 72;
+            courseYearSec.Text = "5";
+            courseYearSec.TextAlign = ContentAlignment.MiddleRight;
             // 
             // subject
             // 
@@ -208,7 +208,6 @@
             btn_editcard.Text = "Edit";
             btn_editcard.TextColor = Color.FromArgb(199, 213, 224);
             btn_editcard.UseVisualStyleBackColor = false;
-            btn_editcard.Click += btn_editcard_Click;
             // 
             // subjectCode
             // 
@@ -224,13 +223,13 @@
             subjectCode.TabIndex = 67;
             subjectCode.Text = "Hello World";
             // 
-            // ExerciseCard
+            // ClassCard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
             Controls.Add(steamCard21);
-            Name = "ExerciseCard";
+            Name = "ClassCard";
             Size = new Size(397, 271);
             steamCard21.ResumeLayout(false);
             steamCard21.PerformLayout();
@@ -246,8 +245,8 @@
         private SteamThings.SteamLabel steamLabel1;
         private SteamThings.SteamLabel steamLabel2;
         private SteamThings.SteamLabel steamLabel3;
-        private SteamThings.SteamLabel dateModified;
-        private SteamThings.SteamLabel testCounts;
+        private SteamThings.SteamLabel SYSem;
+        private SteamThings.SteamLabel courseYearSec;
         private SteamThings.SteamLabel subject;
         private GeneralComponents.SmartButton btn_editcard;
         private TableLayoutPanel tableLayoutPanel1;

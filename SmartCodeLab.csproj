@@ -85,6 +85,12 @@
     <Compile Update="CustomComponents\Pages\ProgrammingTabs\TestCaseResult2 - Copy.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="CustomComponents\ServerPageComponents\ClassManagerComponents\AddClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CustomComponents\ServerPageComponents\ClassManagerComponents\ClassCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="CustomComponents\ServerPageComponents\ExerciseManagerComponents\TestCase3.cs">
       <SubType>UserControl</SubType>
     </Compile>

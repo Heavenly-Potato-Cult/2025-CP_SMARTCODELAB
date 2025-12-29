@@ -35,6 +35,7 @@ namespace SmartCodeLab
             {
                 SystemConfigurations.TASK_FOLDER,
                 SystemConfigurations.SESSIONS_FOLDER,
+                SystemConfigurations.CLASSES_DIRECTORY,
                 SystemConfigurations.javaFolder,
                 SystemConfigurations.pythonFolder,
                 SystemConfigurations.cppFolder

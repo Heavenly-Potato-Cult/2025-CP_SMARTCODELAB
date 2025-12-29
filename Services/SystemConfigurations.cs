@@ -18,6 +18,7 @@ namespace SmartCodeLab.Services
         public static readonly string CONFIGURATION_FOLDER = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabconfig");
         public static readonly string SUBJECTS_FILE = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tasks","Subjects.txt");
         public static string SESSIONS_FOLDER = Path.Combine(APP_LOCAL_DATA_FOLDER_NAME, "SessionsFolder");
+        public static readonly string CLASSES_DIRECTORY = Path.Combine(APP_LOCAL_DATA_FOLDER_NAME, "Classes");
 
         public static readonly string OPEN_FIREWALL_PORTS_BAT = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabconfig", "setup_firewall.bat");
         public static readonly string REMOVE_FIREWALL_PORTS_BAT = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smartcodelabconfig", "cleanup_firewall.bat");
