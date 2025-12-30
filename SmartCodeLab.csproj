@@ -91,6 +91,12 @@
     <Compile Update="CustomComponents\ServerPageComponents\ClassManagerComponents\ClassCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="CustomComponents\ServerPageComponents\ClassManagerComponents\ClassSelection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="CustomComponents\ServerPageComponents\ClassManagerComponents\SelectClass.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="CustomComponents\ServerPageComponents\ExerciseManagerComponents\TestCase3.cs">
       <SubType>UserControl</SubType>
     </Compile>

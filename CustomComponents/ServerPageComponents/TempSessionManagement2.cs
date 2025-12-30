@@ -3,6 +3,7 @@ using ProtoBuf;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;
+using SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerComponents;
 using SmartCodeLab.CustomComponents.ServerPageComponents.ExerciseManagerComponents;
 using SmartCodeLab.Models;
 using SmartCodeLab.Models.Enums;
@@ -197,7 +198,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
                 selectedTask,
                 userProfiles);
 
-            if(server == null)
+            if (server == null)
             {
                 MessageBox.Show(msg);
                 return;
@@ -216,6 +217,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private void language_SelectedIndexChanged(object sender, EventArgs e)
         {
             codeQualityChoices21.setLanguage(language.SelectedItem.ToString() ?? "None");
+        }
+
+        private void smartButton1_Click(object sender, EventArgs e)
+        {
+            new SelectClass().ShowDialog();
         }
     }
 }
