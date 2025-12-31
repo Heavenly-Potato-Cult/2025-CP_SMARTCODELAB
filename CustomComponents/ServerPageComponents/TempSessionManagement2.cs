@@ -29,11 +29,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
         private TaskModel selectedTask;
         private Dictionary<string, UserProfile> userProfiles;
         private SelectedExercise selectedExercise;
+        private HashSet<string> selectedClasses;
 
         public TempSessionManagement2()
         {
             InitializeComponent();
             userProfiles = new Dictionary<string, UserProfile>();
+            selectedClasses = new HashSet<string>();
             SetupDynamicLayout();
 
         }
@@ -221,7 +223,36 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
 
         private void smartButton1_Click(object sender, EventArgs e)
         {
-            new SelectClass().ShowDialog();
+            var classSelection = new SelectClass(selectedClasses);
+            classSelection.ShowDialog();
+            var classesInfo = classSelection.loadedClasses;
+
+            foreach (var item in classSelection.newlySelectedClasses)
+            {
+                selectedClasses.Add(item);
+                try
+                {
+                    foreach (var student in classesInfo[item].students)
+                    {
+                        if (!userProfiles.ContainsKey(student._studentId))
+                        {
+                            userProfiles[student._studentId] = student;
+                        }
+                    }
+                }
+                catch (KeyNotFoundException) { }
+            }
+            foreach (var c in classSelection.removedClasses)
+            {
+                selectedClasses.Remove(c);
+                userProfiles.Remove(c);
+                foreach (var student in classesInfo[c].students)
+                {
+                    userProfiles.Remove(student._studentId);
+                }
+            }
+            classesCount.Text = classSelection.newlySelectedClasses.Count.ToString();
+            studentsCount.Text = userProfiles.Count.ToString();
         }
     }
 }

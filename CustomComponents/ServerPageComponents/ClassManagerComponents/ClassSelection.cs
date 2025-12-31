@@ -18,10 +18,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             InitializeComponent();
         }
 
-        public ClassSelection(ClassInformation classInfo)
+        public ClassSelection(ClassInformation classInfo, bool isChecked, Action<bool, string> action)
         {
             InitializeComponent();
 
+            selected.Checked = isChecked;
             subCode.Text = classInfo.subjectCode;
             subject.Text = classInfo.subjectDesc;
             studCount.Text = classInfo.students?.Count.ToString() ?? "0";
@@ -31,6 +32,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             this.Cursor = Cursors.Hand;
             this.Click += clickAction;
             WireAllControls(this, clickAction);
+
+            selected.CheckedChanged += (s, e) => action(selected.Checked, classInfo.subjectCode);
         }
 
         /// <summary>

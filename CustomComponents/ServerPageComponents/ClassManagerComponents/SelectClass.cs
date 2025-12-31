@@ -21,8 +21,12 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
         private System.Threading.Timer displayTimer;
         private Action<ClassInformation> onExerciseSelected;
         private Dictionary<string, ClassSelection> iconsDictionary;
+        public Dictionary<string, ClassInformation> loadedClasses { get; private set; }
         private List<ClassInformation> classInformationList;
         private long searchVersion;
+        private ISet<string> checkedClasses;
+        public ISet<string> removedClasses { get; private set; }
+        public ISet<string> newlySelectedClasses { get; private set; }
         public Dictionary<string, ClassInformation> selectedClasses { get; private set; }
         //protected override CreateParams CreateParams
         //{
@@ -34,9 +38,13 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
         //    }
         //}
 
-        public SelectClass()
+        public SelectClass(HashSet<string> checkedClasses)
         {
             InitializeComponent();
+            loadedClasses = new Dictionary<string, ClassInformation>();
+            newlySelectedClasses = new HashSet<string>();
+            removedClasses = new HashSet<string>();
+            this.checkedClasses = checkedClasses;
             selectedClasses = new Dictionary<string, ClassInformation>();
             iconsDictionary = new Dictionary<string, ClassSelection>();
             classInformationList = new List<ClassInformation>();
@@ -47,8 +55,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
                 using(var readFile = File.OpenRead(item))
                 {
                     var classInfo = Serializer.DeserializeWithLengthPrefix<ClassInformation>(readFile, PrefixStyle.Base128);
-                    iconsDictionary[classInfo.subjectCode] = new ClassSelection(classInfo);
+                    iconsDictionary[classInfo.subjectCode] = new ClassSelection(classInfo, checkedClasses.Contains(classInfo.subjectCode), addRemoveClassSelected);
                     classInformationList.Add(classInfo);
+                    loadedClasses[classInfo.subjectCode] = classInfo;
                 }
             }
             Load += (s,e) => displayIcons();
@@ -81,7 +90,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             return Task.CompletedTask;
         }
 
-
         private void searchBox__TextChanged(object sender, EventArgs e)
         {
             displayTimer?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -91,6 +99,23 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             }, null, 300, Timeout.Infinite);
         }
 
+        private void addRemoveClassSelected(bool isSelected, string subjectId)
+        {
+            if (isSelected)
+            {
+                if (!checkedClasses.Contains(subjectId))
+                    newlySelectedClasses.Add(subjectId);
+                else
+                    removedClasses.Remove(subjectId);
+            }
+            else
+            {
+                if (checkedClasses.Contains(subjectId))
+                    removedClasses.Add(subjectId);
+
+                newlySelectedClasses.Remove(subjectId);
+            }
+        }
         private Action<ClassInformation> classSelected => (task) =>
         {
             onExerciseSelected?.Invoke(task);
