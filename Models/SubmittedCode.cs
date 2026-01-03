@@ -58,9 +58,14 @@ namespace SmartCodeLab.Models
         [ProtoMember(6)]
         public string username { get; set; }
 
+        [ProtoMember(7)]
+        public bool isEdited { get; set; }
+
         public SubmittedCode getPlacement() 
         {
-            return new SubmittedCode(placement, user, score);
+            var toReturn = this;
+            toReturn.isEdited = this.isEdited;
+            return toReturn;
         }
     }
 }

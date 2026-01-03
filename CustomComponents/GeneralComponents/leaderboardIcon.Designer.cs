@@ -112,7 +112,7 @@
 
         private Label ranking;
         private Label name;
-        private Label studscore;
+        public Label studscore;
         private TableLayoutPanel tableLayoutPanel1;
     }
 }

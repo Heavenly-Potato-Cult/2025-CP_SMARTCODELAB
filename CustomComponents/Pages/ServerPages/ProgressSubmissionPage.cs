@@ -20,7 +20,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
     public partial class ProgressSubmissionPage : UserControl
     {
         //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        //public Dictionary<string, StudentSubmittedIcon> codeSubmission { get; private set; }
+        public Dictionary<string, StudentSubmittedIcon> codeSubmissionIcon { get; private set; }
         private Int32 leaderboardsVersion;
         private int submittedCount;
         private List<UserProfile> submittedStudents;
@@ -31,6 +31,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Dictionary<int, decimal[]> ratingFactorsWeight { get; set; }
+        private string selectedStudentId;
         protected override CreateParams CreateParams
         {
             get
@@ -48,6 +49,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             Dictionary<string, StudentCodingProgress> userProgress)
         {
             InitializeComponent();
+            codeSubmissionIcon = new Dictionary<string, StudentSubmittedIcon>();
+            score.innerTextBox.Enabled = false;
             progressGetter = (string id) =>
             {
                 // return something based on id
@@ -68,6 +71,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             this.codeSubmissions = this.codeSubmissions.OrderBy(cs => cs.Value.placement).ToDictionary();
             if (this.codeSubmissions != null)
                 submitCount.Text = this.codeSubmissions.Count.ToString();
+
+
             Load += (sender, e) =>
             {
                 DisplayIcons();
@@ -83,15 +88,17 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 }, null, 500, Timeout.Infinite);
             };
         }
-
         public Action<TaskModel, List<SubmittedCode>, string> leaderboardsUpdate;
         public ProgressSubmissionPage()
         {
             InitializeComponent();
+            score.innerTextBox.Enabled = false;
+            selectedStudentId = string.Empty;
             leaderboardsVersion = 0;
             submittedStudents = new List<UserProfile>();
             submittedCount = 0;
             codeSubmissions = new Dictionary<string, SubmittedCode>();
+            codeSubmissionIcon = new Dictionary<string, StudentSubmittedIcon>();
             searchBox.innerTextBox.TextChanged += (sender, e) =>
             {
                 displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -101,6 +108,41 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     DisplayIcons();
                 }, null, 500, Timeout.Infinite);
             };
+
+            score.innerTextBox.KeyUp += (sender, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (int.TryParse(score.innerTextBox.Text, out int newScore))
+                    {
+                        if(newScore == codeSubmissions[selectedStudentId].score)
+                            return;
+
+                        newScore = Math.Max(0, newScore);
+                        newScore = Math.Min(100, newScore);
+
+                        score.innerTextBox.Text = newScore.ToString();
+                        codeSubmissions[selectedStudentId].score = newScore;
+                        codeSubmissions[selectedStudentId].isEdited = true;
+                        codeSubmissionIcon[selectedStudentId].updateScore(newScore);
+                        nonBlockingotif("Score updated successfully.");
+                    }
+                    else
+                    {
+                        nonBlockingotif("Invalid score input. Please enter a valid integer.");
+                        score.innerTextBox.Text = codeSubmissions[selectedStudentId].score.ToString();
+                    }
+                }
+            };
+        }
+
+        private Task nonBlockingotif(string msg)
+        {
+            string message = msg;
+            return Task.Run(() =>
+            {
+                this.BeginInvoke((Action)(() => MessageBox.Show(message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)));
+            });
         }
 
         public async void StudentSubmitted(SubmittedCode submitted)
@@ -124,6 +166,12 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     submittedStudents.Add(submitted.user);
                     this.Invoke((Action)(() => submitCount.Text = submittedCount.ToString()));
                 }
+
+                if(selectedStudentId == submitted.user._studentId)
+                    this.Invoke((Action)(() =>
+                    {
+                        UpdateDisplaySync(submitted);
+                    }));
 
                 displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
                 displayIcons = new System.Threading.Timer((e) =>
@@ -160,7 +208,9 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     {
                         if (currentVersion != leaderboardsVersion)
                             break;
-                        submittedContainer.Controls.Add(new StudentSubmittedIcon(studentSubmission, UpdateDisplaySync) { Dock = DockStyle.Top });
+                        var studentSubmittedIcon = new StudentSubmittedIcon(studentSubmission, UpdateDisplaySync) { Dock = DockStyle.Top };
+                        codeSubmissionIcon[studentSubmission.user._studentId] = studentSubmittedIcon;
+                        submittedContainer.Controls.Add(studentSubmittedIcon);
                     }
                 }));
             });
@@ -173,21 +223,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void UpdateDisplaySync(SubmittedCode submittedCode)
         {
+            score.innerTextBox.Enabled = true;
+            selectedStudentId = submittedCode.user._studentId;
             steamLabel2.Text = submittedCode.user._studentName;
-            score.Text = submittedCode.score.ToString();
+            score.innerTextBox.Text = submittedCode.score.ToString();
             studentCode.Text = submittedCode.sourceCode;
             studentCodeRating1.setSubmissionScores(submittedCode.statsGrade, language);
-
 
             var studentProgress = progressGetter.Invoke(submittedCode.user._studentId);
             copypastedCodes.Controls.Clear();
             if (studentProgress.pastedCode != null)
             {
-
                 try
                 {
                     copypastedCodes.SuspendLayout();
-
                     foreach (var item in studentProgress.pastedCode)
                     {
                         var icon = new PastedCodeIcon(item)

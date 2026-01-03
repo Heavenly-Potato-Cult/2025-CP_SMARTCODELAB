@@ -51,7 +51,7 @@
             steamLabel6 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard10 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            score = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
+            score = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             steamLabel4 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard11 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             studentCodeRating1 = new SmartCodeLab.CustomComponents.ServerPageComponents.StudentCodeRating();
@@ -313,6 +313,7 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
+            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -407,17 +408,12 @@
             // 
             // score
             // 
-            score.AutoSize = true;
-            score.BackColor = Color.Transparent;
-            score.Font = new Font("Geist", 12F);
-            score.ForeColor = Color.FromArgb(139, 149, 166);
-            score.Location = new Point(101, 26);
+            score.BackColor = Color.FromArgb(26, 30, 36);
+            score.Location = new Point(88, 20);
             score.Name = "score";
-            score.Size = new Size(21, 23);
-            score.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
-            score.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
-            score.TabIndex = 74;
-            score.Text = "0";
+            score.Padding = new Padding(10, 8, 10, 8);
+            score.Size = new Size(44, 29);
+            score.TabIndex = 75;
             // 
             // steamLabel4
             // 
@@ -501,7 +497,6 @@
         private SteamThings.SteamGradientPanel steamGradientPanel1;
         private SteamThings.SteamLabel steamLabel2;
         private SteamThings.SteamLabel steamLabel4;
-        private SteamThings.SteamLabel score;
         private GeneralComponents.CustomCard customCard2;
         private ProgrammingTabs.CodeEditor studentCode;
         private GeneralComponents.CustomCard customCard4;
@@ -515,5 +510,6 @@
         private GeneralComponents.CustomCard customCard1;
         private SteamThings.SteamLabel steamLabel3;
         private GeneralComponents.CustomCard copypastedCodes;
+        private SteamThings.SteamTextBox score;
     }
 }

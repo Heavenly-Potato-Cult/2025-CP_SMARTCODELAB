@@ -93,7 +93,7 @@ namespace SmartCodeLab
         //        null, control, new object[] { true });
         //}
 
-        private void AddLeaderboardIcon(int ranking, string studentName, int score)
+        private void AddLeaderboardIcon(int ranking, string studentName, int score, bool isEdited)
         {
 
             var newIcon = new leaderboardIcon();
@@ -104,14 +104,15 @@ namespace SmartCodeLab
             newIcon.Ranking = ranking;
             newIcon.Name = studentName;
             newIcon.Score = score;
-
+            newIcon.studscore.ForeColor = isEdited ? Color.Green : newIcon.studscore.ForeColor;
+            Debug.WriteLine(isEdited);
             if (ranking >= 1 && ranking <= 5)
             {
-                newIcon.BackColor = System.Drawing.Color.Gold;
+                newIcon.BackColor = Color.Gold;
             }
             else
             {
-                newIcon.BackColor = System.Drawing.Color.Silver;
+                newIcon.BackColor = Color.Silver;
             }
             panel_leaderboards.Controls.Add(newIcon);
 
@@ -341,7 +342,7 @@ namespace SmartCodeLab
 
                                             if (myVersion != leaderboardUpdateVersion) break;
 
-                                            AddLeaderboardIcon(sub.placement, sub.username, sub.score);
+                                            AddLeaderboardIcon(sub.placement, sub.username, sub.score, sub.isEdited);
                                         }
                                     }
                                     finally

@@ -41,19 +41,27 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
             name.Text = submittedCode.user._studentName;
             score.Text = submittedCode.score.ToString();
 
+            if(submittedCode.isEdited)
+                score.ForeColor = Color.Violet;
+
             customCard3.Click += SelectThisUser;
             name.Click += SelectThisUser;
             placing.Click += SelectThisUser;
             indicator.Click += SelectThisUser;
             score.Click += SelectThisUser;
-
-
         }
 
         private void SelectThisUser(object sender, EventArgs e)
         {
             updateDisplayClick?.Invoke(this.submittedCode);
             indicator.BackColor = SelectedIndicator;
+        }
+
+        public void updateScore(int newScore)
+        {
+            score.Text = newScore.ToString();
+            score.ForeColor = Color.Violet;
+            submittedCode.score = newScore;
         }
     }
 }
