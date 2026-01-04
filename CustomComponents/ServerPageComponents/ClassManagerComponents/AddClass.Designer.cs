@@ -73,7 +73,7 @@
             subCode.PlaceHolderColor = Color.DarkGray;
             subCode.PlaceholderText = "";
             subCode.ScrollBars = ScrollBars.None;
-            subCode.Size = new Size(288, 41);
+            subCode.Size = new Size(187, 41);
             subCode.TabIndex = 40;
             // 
             // label
@@ -92,7 +92,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(403, 11);
+            label1.Location = new Point(340, 11);
             label1.Name = "label1";
             label1.Size = new Size(157, 23);
             label1.TabIndex = 41;
@@ -172,9 +172,10 @@
             panel7.Controls.Add(label5);
             panel7.Controls.Add(btn_CancelExercise);
             panel7.Controls.Add(btn_CreateExercise);
+            panel7.Dock = DockStyle.Fill;
             panel7.Location = new Point(0, 0);
             panel7.Name = "panel7";
-            panel7.Size = new Size(1037, 934);
+            panel7.Size = new Size(673, 940);
             panel7.TabIndex = 60;
             // 
             // search
@@ -290,7 +291,7 @@
             course.PlaceHolderColor = Color.DarkGray;
             course.PlaceholderText = "";
             course.ScrollBars = ScrollBars.None;
-            course.Size = new Size(288, 41);
+            course.Size = new Size(183, 41);
             course.TabIndex = 77;
             // 
             // section
@@ -302,7 +303,7 @@
             section.BorderRadius = 2;
             section.BorderSize = 1;
             section.ForeColor = SystemColors.ControlText;
-            section.Location = new Point(635, 225);
+            section.Location = new Point(521, 228);
             section.Name = "section";
             section.Padding = new Padding(10, 7, 10, 7);
             section.PlaceHolderColor = Color.DarkGray;
@@ -316,7 +317,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(635, 199);
+            label7.Location = new Point(521, 202);
             label7.Name = "label7";
             label7.Size = new Size(66, 23);
             label7.TabIndex = 75;
@@ -327,7 +328,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(403, 199);
+            label4.Location = new Point(340, 199);
             label4.Name = "label4";
             label4.Size = new Size(86, 23);
             label4.TabIndex = 74;
@@ -338,10 +339,10 @@
             yearLvl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             yearLvl.BackColor = Color.FromArgb(26, 30, 36);
             yearLvl.Items.AddRange(new object[] { "1", "2", "3", "4" });
-            yearLvl.Location = new Point(403, 225);
+            yearLvl.Location = new Point(340, 228);
             yearLvl.Name = "yearLvl";
             yearLvl.Padding = new Padding(10, 0, 10, 0);
-            yearLvl.Size = new Size(212, 44);
+            yearLvl.Size = new Size(119, 44);
             yearLvl.TabIndex = 73;
             // 
             // label3
@@ -360,7 +361,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(403, 96);
+            label2.Location = new Point(340, 96);
             label2.Name = "label2";
             label2.Size = new Size(80, 23);
             label2.TabIndex = 70;
@@ -371,10 +372,10 @@
             semester.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             semester.BackColor = Color.FromArgb(26, 30, 36);
             semester.Items.AddRange(new object[] { "First", "Second", "Summer" });
-            semester.Location = new Point(403, 122);
+            semester.Location = new Point(340, 125);
             semester.Name = "semester";
             semester.Padding = new Padding(10, 0, 10, 0);
-            semester.Size = new Size(212, 44);
+            semester.Size = new Size(186, 44);
             semester.TabIndex = 69;
             // 
             // schoolYear
@@ -392,7 +393,7 @@
             schoolYear.PlaceHolderColor = Color.DarkGray;
             schoolYear.PlaceholderText = "";
             schoolYear.ScrollBars = ScrollBars.None;
-            schoolYear.Size = new Size(288, 41);
+            schoolYear.Size = new Size(187, 41);
             schoolYear.TabIndex = 68;
             // 
             // subDesc
@@ -404,13 +405,13 @@
             subDesc.BorderRadius = 2;
             subDesc.BorderSize = 1;
             subDesc.ForeColor = SystemColors.ControlText;
-            subDesc.Location = new Point(403, 37);
+            subDesc.Location = new Point(340, 37);
             subDesc.Name = "subDesc";
             subDesc.Padding = new Padding(10, 7, 10, 7);
             subDesc.PlaceHolderColor = Color.DarkGray;
             subDesc.PlaceholderText = "";
             subDesc.ScrollBars = ScrollBars.None;
-            subDesc.Size = new Size(318, 41);
+            subDesc.Size = new Size(314, 41);
             subDesc.TabIndex = 62;
             // 
             // panel_temp_spacer
@@ -427,7 +428,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.White;
-            ClientSize = new Size(1039, 940);
+            ClientSize = new Size(673, 940);
             Controls.Add(panel7);
             DoubleBuffered = true;
             ForeColor = Color.White;

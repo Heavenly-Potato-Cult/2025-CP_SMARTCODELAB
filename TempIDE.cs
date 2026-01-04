@@ -105,7 +105,7 @@ namespace SmartCodeLab
             newIcon.Name = studentName;
             newIcon.Score = score;
             newIcon.studscore.ForeColor = isEdited ? Color.Green : newIcon.studscore.ForeColor;
-            Debug.WriteLine(isEdited);
+
             if (ranking >= 1 && ranking <= 5)
             {
                 newIcon.BackColor = Color.Gold;

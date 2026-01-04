@@ -118,7 +118,7 @@
             smartButton1.Name = "smartButton1";
             smartButton1.Size = new Size(213, 52);
             smartButton1.TabIndex = 67;
-            smartButton1.Text = "ADD NEW EXERCISE";
+            smartButton1.Text = "CREATE CLASS";
             smartButton1.TextColor = Color.FromArgb(199, 213, 224);
             smartButton1.UseVisualStyleBackColor = false;
             smartButton1.Click += smartButton1_Click;
