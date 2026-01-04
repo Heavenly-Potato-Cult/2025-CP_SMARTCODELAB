@@ -254,5 +254,10 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents
             classesCount.Text = classSelection.newlySelectedClasses.Count.ToString();
             studentsCount.Text = userProfiles.Count.ToString();
         }
+
+        private void steamLabel5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
