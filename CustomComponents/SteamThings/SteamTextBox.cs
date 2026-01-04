@@ -5,22 +5,44 @@ using System.ComponentModel;
 
 namespace SmartCodeLab.CustomComponents.SteamThings
 {
+    // The Enum 'SteamTheme' is already defined in SteamComboBox.cs, 
+    // so we don't define it here to avoid CS0101.
+
     [DefaultEvent("TextChanged")]
     public class SteamTextBox : UserControl
     {
+        private struct SteamLightColors
+        {
+            public static readonly Color InputBg = Color.FromArgb(242, 242, 242);
+            public static readonly Color TextMain = Color.FromArgb(45, 45, 45);
+            public static readonly Color TextMuted = Color.FromArgb(120, 120, 120);
+            public static readonly Color Border = Color.FromArgb(210, 210, 210);
+            public static readonly Color ReadOnlyBg = Color.FromArgb(225, 225, 225);
+        }
+
         public TextBox innerTextBox;
         private bool isFocused = false;
         private bool isPlaceholderActive = false;
         private string _placeholderText = "";
         private Color _realForeColor;
-
-        // Placeholder color (configurable)
+        private SteamTheme _theme = SteamTheme.Dark;
         private Color _placeholderColor = Color.DarkGray;
 
         [Category("Steam Appearance")]
-        [Description("The color used to render placeholder text.")]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-        [DefaultValue(typeof(Color), "DarkGray")]
+        public SteamTheme Theme
+        {
+            get => _theme;
+            set
+            {
+                if (_theme == value) return;
+                _theme = value;
+                ApplyThemeStyles();
+            }
+        }
+
+        [Category("Steam Appearance")]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color PlaceholderColor
         {
             get => _placeholderColor;
@@ -32,69 +54,42 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             }
         }
 
-        // Auto-manage scrollbars
         private bool _autoScrollBars = true;
         private ScrollBars _requestedScrollBars = ScrollBars.None;
 
         [Category("Steam Behavior")]
-        [Description("When true, shows/hides scrollbars automatically based on content.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(true)]
         public bool AutoScrollBars
         {
             get => _autoScrollBars;
-            set
-            {
-                _autoScrollBars = value;
-                UpdateAutoScrollBars();
-            }
+            set { _autoScrollBars = value; UpdateAutoScrollBars(); }
         }
 
         [Category("Steam Behavior")]
-        [Description("Controls whether the text can span more than one line.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(false)]
         public bool Multiline
         {
             get => innerTextBox.Multiline;
-            set
-            {
-                innerTextBox.Multiline = value;
-                UpdateAutoScrollBars();
-            }
+            set { innerTextBox.Multiline = value; UpdateAutoScrollBars(); }
         }
 
         [Category("Steam Behavior")]
-        [Description("Indicates whether a multiline text box automatically wraps words.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(true)]
         public bool WordWrap
         {
             get => innerTextBox.WordWrap;
-            set
-            {
-                innerTextBox.WordWrap = value;
-                UpdateAutoScrollBars();
-            }
+            set { innerTextBox.WordWrap = value; UpdateAutoScrollBars(); }
         }
 
         [Category("Steam Behavior")]
-        [Description("Specifies which scroll bars are allowed to appear (Vertical/Horizontal/Both).")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(ScrollBars.None)]
         public ScrollBars ScrollBars
         {
             get => _requestedScrollBars;
-            set
-            {
-                _requestedScrollBars = value;
-                UpdateAutoScrollBars();
-            }
+            set { _requestedScrollBars = value; UpdateAutoScrollBars(); }
         }
 
         [Category("Steam Behavior")]
-        [Description("Controls whether the text in the edit control can be changed.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue(false)]
         public bool ReadOnly
         {
@@ -102,19 +97,7 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             set
             {
                 innerTextBox.ReadOnly = value;
-                if (value)
-                {
-                    innerTextBox.BackColor = Color.FromArgb(20, 22, 26);
-                    this.BackColor = Color.FromArgb(20, 22, 26);
-                    innerTextBox.ForeColor = isPlaceholderActive ? _placeholderColor : Color.Gray;
-                }
-                else
-                {
-                    innerTextBox.BackColor = SteamColors.InputBg;
-                    this.BackColor = SteamColors.InputBg;
-                    innerTextBox.ForeColor = isPlaceholderActive ? _placeholderColor : _realForeColor;
-                }
-                this.Invalidate();
+                ApplyThemeStyles();
             }
         }
 
@@ -137,8 +120,6 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         }
 
         [Category("Steam Behavior")]
-        [Description("The text that is displayed when the control has no text.")]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [DefaultValue("")]
         public string PlaceholderText
         {
@@ -158,20 +139,18 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         public SteamTextBox()
         {
             this.DoubleBuffered = true;
-            this.BackColor = SteamColors.InputBg;
             this.Size = new Size(250, 35);
             this.Padding = new Padding(10, 8, 10, 8);
             this.Cursor = Cursors.IBeam;
 
             InitializeInnerTextBox();
+            ApplyThemeStyles();
         }
 
         private void InitializeInnerTextBox()
         {
             innerTextBox = new TextBox();
             innerTextBox.BorderStyle = BorderStyle.None;
-            innerTextBox.BackColor = SteamColors.InputBg;
-            _realForeColor = innerTextBox.ForeColor = SteamColors.TextMain;
             innerTextBox.Font = SteamFont.GetFont(10F, FontStyle.Regular);
             innerTextBox.Dock = DockStyle.Fill;
 
@@ -189,6 +168,31 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             ApplyPlaceholder();
             UpdateAutoScrollBars();
         }
+
+        private void ApplyThemeStyles()
+        {
+            if (innerTextBox == null) return;
+
+            Color defaultBg = GetThemedColor(SteamColors.InputBg, SteamLightColors.InputBg);
+            Color readOnlyBg = GetThemedColor(Color.FromArgb(20, 22, 26), SteamLightColors.ReadOnlyBg);
+            Color activeBg = ReadOnly ? readOnlyBg : defaultBg;
+
+            _realForeColor = GetThemedColor(SteamColors.TextMain, SteamLightColors.TextMain);
+            Color activeFg = ReadOnly ? Color.Gray : _realForeColor;
+
+            this.BackColor = activeBg;
+            innerTextBox.BackColor = activeBg;
+
+            if (!isPlaceholderActive)
+            {
+                innerTextBox.ForeColor = activeFg;
+            }
+
+            this.Invalidate();
+        }
+
+        private Color GetThemedColor(Color dark, Color light)
+            => _theme == SteamTheme.Dark ? dark : light;
 
         private void InnerTextBox_LostFocus(object sender, EventArgs e)
         {
@@ -226,9 +230,10 @@ namespace SmartCodeLab.CustomComponents.SteamThings
             innerTextBox.ForeColor = _realForeColor;
         }
 
-        // Auto scrollbar logic
         private void UpdateAutoScrollBars()
         {
+            if (innerTextBox == null) return;
+
             if (!_autoScrollBars)
             {
                 innerTextBox.ScrollBars = _requestedScrollBars;
@@ -237,18 +242,14 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
             ScrollBars applied = ScrollBars.None;
 
-            // Vertical
-            if (( _requestedScrollBars == ScrollBars.Vertical || _requestedScrollBars == ScrollBars.Both ) && innerTextBox.Multiline)
+            if ((_requestedScrollBars == ScrollBars.Vertical || _requestedScrollBars == ScrollBars.Both) && innerTextBox.Multiline)
             {
-                if (NeedsVerticalScrollbar())
-                    applied |= ScrollBars.Vertical;
+                if (NeedsVerticalScrollbar()) applied |= ScrollBars.Vertical;
             }
 
-            // Horizontal (only meaningful when WordWrap is false)
-            if (( _requestedScrollBars == ScrollBars.Horizontal || _requestedScrollBars == ScrollBars.Both ) && !innerTextBox.WordWrap)
+            if ((_requestedScrollBars == ScrollBars.Horizontal || _requestedScrollBars == ScrollBars.Both) && !innerTextBox.WordWrap)
             {
-                if (NeedsHorizontalScrollbar())
-                    applied |= ScrollBars.Horizontal;
+                if (NeedsHorizontalScrollbar()) applied |= ScrollBars.Horizontal;
             }
 
             innerTextBox.ScrollBars = applied;
@@ -256,7 +257,6 @@ namespace SmartCodeLab.CustomComponents.SteamThings
 
         private bool NeedsVerticalScrollbar()
         {
-            // Estimate visible lines
             int lineCount = innerTextBox.GetLineFromCharIndex(Math.Max(0, innerTextBox.TextLength - 1)) + 1;
             int lineHeight = innerTextBox.Font.Height;
             int visibleLines = Math.Max(1, innerTextBox.ClientSize.Height / Math.Max(1, lineHeight));
@@ -267,7 +267,6 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         {
             if (innerTextBox.WordWrap) return false;
 
-            // Check widest line width
             int maxWidth = 0;
             var lines = innerTextBox.Text.Split(new[] { "\r\n" }, StringSplitOptions.None);
             foreach (var line in lines)
@@ -275,7 +274,6 @@ namespace SmartCodeLab.CustomComponents.SteamThings
                 var size = TextRenderer.MeasureText(line + " ", innerTextBox.Font, new Size(int.MaxValue, int.MaxValue), TextFormatFlags.NoPadding);
                 if (size.Width > maxWidth) maxWidth = size.Width;
             }
-            // Account for internal padding/margins of TextBox
             int clientWidth = Math.Max(0, innerTextBox.ClientSize.Width - 4);
             return maxWidth > clientWidth;
         }
@@ -284,7 +282,9 @@ namespace SmartCodeLab.CustomComponents.SteamThings
         {
             base.OnPaint(e);
 
-            Color borderColor = isFocused ? SteamColors.Accent : SteamColors.Border;
+            Color borderBase = GetThemedColor(SteamColors.Border, SteamLightColors.Border);
+            Color borderColor = isFocused ? SteamColors.Accent : borderBase;
+
             using (Pen borderPen = new Pen(borderColor, 1))
             {
                 Rectangle rect = new Rectangle(0, 0, this.Width - 1, this.Height - 1);
