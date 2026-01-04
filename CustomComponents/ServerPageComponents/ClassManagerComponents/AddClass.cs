@@ -232,7 +232,9 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
 
                     try
                     {
-                        studtab.Controls.Add(userIcons[item._studentId]);
+                        var icon = userIcons[item._studentId];
+                        icon.Dock = DockStyle.Top;
+                        studtab.Controls.Add(icon);
                     }catch(KeyNotFoundException)
                     {
                         // Ignore missing user icons

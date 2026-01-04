@@ -34,13 +34,15 @@
             steamLabel3 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             panel3 = new Panel();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
+            steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
             panel3.SuspendLayout();
+            steamGradientPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // search
             // 
             search.BackColor = Color.FromArgb(26, 30, 36);
-            search.Location = new Point(292, 172);
+            search.Location = new Point(349, 145);
             search.Name = "search";
             search.Padding = new Padding(10, 8, 10, 8);
             search.PlaceholderText = "Search Class";
@@ -52,7 +54,7 @@
             classesContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             classesContainer.AutoScroll = true;
             classesContainer.BackColor = Color.Transparent;
-            classesContainer.Location = new Point(292, 248);
+            classesContainer.Location = new Point(349, 221);
             classesContainer.Name = "classesContainer";
             classesContainer.Padding = new Padding(0, 0, 0, 100);
             classesContainer.Size = new Size(1217, 629);
@@ -85,11 +87,11 @@
             steamLabel3.ForeColor = Color.FromArgb(199, 213, 224);
             steamLabel3.Location = new Point(349, 25);
             steamLabel3.Name = "steamLabel3";
-            steamLabel3.Size = new Size(310, 32);
+            steamLabel3.Size = new Size(309, 32);
             steamLabel3.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
             steamLabel3.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             steamLabel3.TabIndex = 66;
-            steamLabel3.Text = "EXERCISE EXPLORER";
+            steamLabel3.Text = "CLASS MANAGEMENT";
             // 
             // panel3
             // 
@@ -123,18 +125,31 @@
             smartButton1.UseVisualStyleBackColor = false;
             smartButton1.Click += smartButton1_Click;
             // 
+            // steamGradientPanel1
+            // 
+            steamGradientPanel1.Controls.Add(search);
+            steamGradientPanel1.Controls.Add(classesContainer);
+            steamGradientPanel1.Controls.Add(panel3);
+            steamGradientPanel1.Dock = DockStyle.Fill;
+            steamGradientPanel1.GradientAngle = 90F;
+            steamGradientPanel1.GradientBottomColor = Color.FromArgb(26, 30, 36);
+            steamGradientPanel1.GradientTopColor = Color.FromArgb(11, 14, 17);
+            steamGradientPanel1.Location = new Point(0, 0);
+            steamGradientPanel1.Name = "steamGradientPanel1";
+            steamGradientPanel1.Size = new Size(1801, 1049);
+            steamGradientPanel1.TabIndex = 71;
+            // 
             // ClassManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            Controls.Add(panel3);
-            Controls.Add(search);
-            Controls.Add(classesContainer);
+            Controls.Add(steamGradientPanel1);
             Name = "ClassManagement";
             Size = new Size(1801, 1049);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            steamGradientPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -145,5 +160,6 @@
         private SteamThings.SteamLabel steamLabel3;
         private Panel panel3;
         private GeneralComponents.SmartButton smartButton1;
+        private SteamThings.SteamGradientPanel steamGradientPanel1;
     }
 }

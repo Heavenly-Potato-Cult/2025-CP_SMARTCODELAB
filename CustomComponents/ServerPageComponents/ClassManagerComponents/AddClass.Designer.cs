@@ -36,13 +36,13 @@
             btn_CancelExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_CreateExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel7 = new Panel();
+            studtab = new Panel();
             search = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             smartButton2 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             customCard7 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             label6 = new Label();
             label14 = new Label();
-            studtab = new FlowLayoutPanel();
             course = new CustomTextBox();
             section = new CustomTextBox();
             label7 = new Label();
@@ -73,7 +73,7 @@
             subCode.PlaceHolderColor = Color.DarkGray;
             subCode.PlaceholderText = "";
             subCode.ScrollBars = ScrollBars.None;
-            subCode.Size = new Size(187, 41);
+            subCode.Size = new Size(206, 41);
             subCode.TabIndex = 40;
             // 
             // label
@@ -92,7 +92,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(340, 11);
+            label1.Location = new Point(292, 12);
             label1.Name = "label1";
             label1.Size = new Size(157, 23);
             label1.TabIndex = 41;
@@ -120,7 +120,7 @@
             btn_CancelExercise.FlatStyle = FlatStyle.Flat;
             btn_CancelExercise.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn_CancelExercise.ForeColor = Color.Black;
-            btn_CancelExercise.Location = new Point(133, 854);
+            btn_CancelExercise.Location = new Point(100, 727);
             btn_CancelExercise.Name = "btn_CancelExercise";
             btn_CancelExercise.Size = new Size(227, 51);
             btn_CancelExercise.TabIndex = 49;
@@ -138,7 +138,7 @@
             btn_CreateExercise.FlatStyle = FlatStyle.Flat;
             btn_CreateExercise.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_CreateExercise.ForeColor = Color.White;
-            btn_CreateExercise.Location = new Point(386, 854);
+            btn_CreateExercise.Location = new Point(353, 727);
             btn_CreateExercise.Name = "btn_CreateExercise";
             btn_CreateExercise.Size = new Size(219, 51);
             btn_CreateExercise.TabIndex = 48;
@@ -150,11 +150,11 @@
             // 
             panel7.AutoScroll = true;
             panel7.BackColor = Color.White;
+            panel7.Controls.Add(studtab);
             panel7.Controls.Add(search);
             panel7.Controls.Add(smartButton1);
             panel7.Controls.Add(smartButton2);
             panel7.Controls.Add(customCard7);
-            panel7.Controls.Add(studtab);
             panel7.Controls.Add(course);
             panel7.Controls.Add(section);
             panel7.Controls.Add(label7);
@@ -175,18 +175,28 @@
             panel7.Dock = DockStyle.Fill;
             panel7.Location = new Point(0, 0);
             panel7.Name = "panel7";
-            panel7.Size = new Size(673, 940);
+            panel7.Size = new Size(673, 827);
             panel7.TabIndex = 60;
+            // 
+            // studtab
+            // 
+            studtab.BorderStyle = BorderStyle.FixedSingle;
+            studtab.Location = new Point(25, 422);
+            studtab.Name = "studtab";
+            studtab.Size = new Size(629, 240);
+            studtab.TabIndex = 83;
             // 
             // search
             // 
-            search.BackColor = Color.FromArgb(26, 30, 36);
+            search.BackColor = Color.FromArgb(242, 242, 242);
             search.Location = new Point(25, 339);
             search.Name = "search";
             search.Padding = new Padding(10, 8, 10, 8);
+            search.PlaceholderColor = Color.DarkGray;
             search.PlaceholderText = "Search Name";
             search.Size = new Size(290, 44);
             search.TabIndex = 82;
+            search.Theme = SteamThings.SteamTheme.Light;
             // 
             // smartButton1
             // 
@@ -199,12 +209,12 @@
             smartButton1.ForeColor = Color.White;
             smartButton1.Image = (Image)resources.GetObject("smartButton1.Image");
             smartButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton1.Location = new Point(490, 332);
+            smartButton1.Location = new Point(519, 339);
             smartButton1.Name = "smartButton1";
             smartButton1.Padding = new Padding(10, 0, 0, 0);
-            smartButton1.Size = new Size(164, 51);
+            smartButton1.Size = new Size(135, 44);
             smartButton1.TabIndex = 81;
-            smartButton1.Text = " Import Students";
+            smartButton1.Text = " Import Files";
             smartButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
             smartButton1.UseVisualStyleBackColor = false;
             smartButton1.Click += smartButton1_Click;
@@ -220,10 +230,10 @@
             smartButton2.ForeColor = Color.White;
             smartButton2.Image = (Image)resources.GetObject("smartButton2.Image");
             smartButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            smartButton2.Location = new Point(340, 332);
+            smartButton2.Location = new Point(369, 339);
             smartButton2.Name = "smartButton2";
             smartButton2.Padding = new Padding(10, 0, 0, 0);
-            smartButton2.Size = new Size(144, 51);
+            smartButton2.Size = new Size(144, 44);
             smartButton2.TabIndex = 80;
             smartButton2.Text = " Add Student";
             smartButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -248,7 +258,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.DimGray;
-            label6.Location = new Point(359, 5);
+            label6.Location = new Point(298, 5);
             label6.Name = "label6";
             label6.Size = new Size(142, 25);
             label6.TabIndex = 19;
@@ -265,17 +275,6 @@
             label14.TabIndex = 18;
             label14.Text = "STUDENT ID";
             // 
-            // studtab
-            // 
-            studtab.AutoScroll = true;
-            studtab.BorderStyle = BorderStyle.FixedSingle;
-            studtab.FlowDirection = FlowDirection.TopDown;
-            studtab.Location = new Point(25, 422);
-            studtab.Name = "studtab";
-            studtab.Size = new Size(629, 414);
-            studtab.TabIndex = 78;
-            studtab.WrapContents = false;
-            // 
             // course
             // 
             course.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
@@ -291,7 +290,7 @@
             course.PlaceHolderColor = Color.DarkGray;
             course.PlaceholderText = "";
             course.ScrollBars = ScrollBars.None;
-            course.Size = new Size(183, 41);
+            course.Size = new Size(202, 41);
             course.TabIndex = 77;
             // 
             // section
@@ -303,13 +302,13 @@
             section.BorderRadius = 2;
             section.BorderSize = 1;
             section.ForeColor = SystemColors.ControlText;
-            section.Location = new Point(521, 228);
+            section.Location = new Point(466, 226);
             section.Name = "section";
             section.Padding = new Padding(10, 7, 10, 7);
             section.PlaceHolderColor = Color.DarkGray;
             section.PlaceholderText = "";
             section.ScrollBars = ScrollBars.None;
-            section.Size = new Size(133, 41);
+            section.Size = new Size(152, 41);
             section.TabIndex = 76;
             // 
             // label7
@@ -317,7 +316,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label7.ForeColor = Color.Black;
-            label7.Location = new Point(521, 202);
+            label7.Location = new Point(466, 199);
             label7.Name = "label7";
             label7.Size = new Size(66, 23);
             label7.TabIndex = 75;
@@ -328,7 +327,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(340, 199);
+            label4.Location = new Point(292, 200);
             label4.Name = "label4";
             label4.Size = new Size(86, 23);
             label4.TabIndex = 74;
@@ -337,13 +336,14 @@
             // yearLvl
             // 
             yearLvl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            yearLvl.BackColor = Color.FromArgb(26, 30, 36);
+            yearLvl.BackColor = Color.FromArgb(242, 242, 242);
             yearLvl.Items.AddRange(new object[] { "1", "2", "3", "4" });
-            yearLvl.Location = new Point(340, 228);
+            yearLvl.Location = new Point(292, 226);
             yearLvl.Name = "yearLvl";
             yearLvl.Padding = new Padding(10, 0, 10, 0);
-            yearLvl.Size = new Size(119, 44);
+            yearLvl.Size = new Size(138, 41);
             yearLvl.TabIndex = 73;
+            yearLvl.Theme = SteamThings.SteamTheme.Light;
             // 
             // label3
             // 
@@ -361,7 +361,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(340, 96);
+            label2.Location = new Point(292, 97);
             label2.Name = "label2";
             label2.Size = new Size(80, 23);
             label2.TabIndex = 70;
@@ -370,13 +370,14 @@
             // semester
             // 
             semester.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            semester.BackColor = Color.FromArgb(26, 30, 36);
+            semester.BackColor = Color.FromArgb(242, 242, 242);
             semester.Items.AddRange(new object[] { "First", "Second", "Summer" });
-            semester.Location = new Point(340, 125);
+            semester.Location = new Point(292, 123);
             semester.Name = "semester";
             semester.Padding = new Padding(10, 0, 10, 0);
-            semester.Size = new Size(186, 44);
+            semester.Size = new Size(205, 43);
             semester.TabIndex = 69;
+            semester.Theme = SteamThings.SteamTheme.Light;
             // 
             // schoolYear
             // 
@@ -393,7 +394,7 @@
             schoolYear.PlaceHolderColor = Color.DarkGray;
             schoolYear.PlaceholderText = "";
             schoolYear.ScrollBars = ScrollBars.None;
-            schoolYear.Size = new Size(187, 41);
+            schoolYear.Size = new Size(206, 41);
             schoolYear.TabIndex = 68;
             // 
             // subDesc
@@ -405,19 +406,19 @@
             subDesc.BorderRadius = 2;
             subDesc.BorderSize = 1;
             subDesc.ForeColor = SystemColors.ControlText;
-            subDesc.Location = new Point(340, 37);
+            subDesc.Location = new Point(292, 38);
             subDesc.Name = "subDesc";
             subDesc.Padding = new Padding(10, 7, 10, 7);
             subDesc.PlaceHolderColor = Color.DarkGray;
             subDesc.PlaceholderText = "";
             subDesc.ScrollBars = ScrollBars.None;
-            subDesc.Size = new Size(314, 41);
+            subDesc.Size = new Size(282, 41);
             subDesc.TabIndex = 62;
             // 
             // panel_temp_spacer
             // 
             panel_temp_spacer.BackColor = Color.Black;
-            panel_temp_spacer.Location = new Point(248, 910);
+            panel_temp_spacer.Location = new Point(215, 783);
             panel_temp_spacer.Name = "panel_temp_spacer";
             panel_temp_spacer.Size = new Size(250, 21);
             panel_temp_spacer.TabIndex = 61;
@@ -428,7 +429,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.White;
-            ClientSize = new Size(673, 940);
+            ClientSize = new Size(673, 827);
             Controls.Add(panel7);
             DoubleBuffered = true;
             ForeColor = Color.White;
@@ -466,9 +467,9 @@
         private GeneralComponents.CustomCard customCard7;
         private Label label6;
         private Label label14;
-        private FlowLayoutPanel studtab;
         private GeneralComponents.SmartButton smartButton2;
         private GeneralComponents.SmartButton smartButton1;
         private SteamThings.SteamTextBox search;
+        private Panel studtab;
     }
 }

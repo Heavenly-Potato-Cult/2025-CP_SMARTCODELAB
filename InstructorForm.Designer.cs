@@ -130,7 +130,6 @@ namespace SmartCodeLab
             // 
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
             tabPage1.Size = new Size(1916, 964);
             tabPage1.TabIndex = 4;
             tabPage1.Text = "tabPage1";
