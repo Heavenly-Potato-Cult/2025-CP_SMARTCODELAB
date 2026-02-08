@@ -36,6 +36,7 @@
             btn_CancelExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             btn_CreateExercise = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel7 = new Panel();
+            numericUpDown = new NumericUpDown();
             studtab = new Panel();
             search = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
             smartButton1 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
@@ -55,6 +56,7 @@
             subDesc = new CustomTextBox();
             panel_temp_spacer = new Panel();
             panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown).BeginInit();
             customCard7.SuspendLayout();
             SuspendLayout();
             // 
@@ -150,6 +152,7 @@
             // 
             panel7.AutoScroll = true;
             panel7.BackColor = Color.White;
+            panel7.Controls.Add(numericUpDown);
             panel7.Controls.Add(studtab);
             panel7.Controls.Add(search);
             panel7.Controls.Add(smartButton1);
@@ -177,6 +180,15 @@
             panel7.Name = "panel7";
             panel7.Size = new Size(673, 827);
             panel7.TabIndex = 60;
+            // 
+            // numericUpDown
+            // 
+            numericUpDown.Location = new Point(207, 132);
+            numericUpDown.Minimum = new decimal(new int[] { 10, 0, 0, int.MinValue });
+            numericUpDown.Name = "numericUpDown";
+            numericUpDown.Size = new Size(22, 27);
+            numericUpDown.TabIndex = 84;
+            numericUpDown.ValueChanged += numericUpDown_ValueChanged;
             // 
             // studtab
             // 
@@ -394,7 +406,7 @@
             schoolYear.PlaceHolderColor = Color.DarkGray;
             schoolYear.PlaceholderText = "";
             schoolYear.ScrollBars = ScrollBars.None;
-            schoolYear.Size = new Size(206, 41);
+            schoolYear.Size = new Size(180, 41);
             schoolYear.TabIndex = 68;
             // 
             // subDesc
@@ -440,6 +452,7 @@
             Load += AddNewExercise_Load;
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown).EndInit();
             customCard7.ResumeLayout(false);
             customCard7.PerformLayout();
             ResumeLayout(false);
@@ -471,5 +484,6 @@
         private GeneralComponents.SmartButton smartButton1;
         private SteamThings.SteamTextBox search;
         private Panel studtab;
+        private NumericUpDown numericUpDown;
     }
 }

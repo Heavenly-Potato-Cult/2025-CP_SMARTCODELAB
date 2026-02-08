@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             searchBox = new CustomTextBox();
-            holder = new Panel();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
+            holder = new FlowLayoutPanel();
             steamGradientPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,19 +51,10 @@
             searchBox.UnderlinedStyle = true;
             searchBox._TextChanged += searchBox__TextChanged;
             // 
-            // holder
-            // 
-            holder.AutoScroll = true;
-            holder.BackColor = Color.Transparent;
-            holder.Location = new Point(7, 96);
-            holder.Name = "holder";
-            holder.Size = new Size(454, 488);
-            holder.TabIndex = 2;
-            // 
             // steamGradientPanel1
             // 
-            steamGradientPanel1.Controls.Add(searchBox);
             steamGradientPanel1.Controls.Add(holder);
+            steamGradientPanel1.Controls.Add(searchBox);
             steamGradientPanel1.Dock = DockStyle.Fill;
             steamGradientPanel1.GradientAngle = 90F;
             steamGradientPanel1.GradientBottomColor = Color.FromArgb(26, 30, 36);
@@ -73,13 +64,23 @@
             steamGradientPanel1.Size = new Size(469, 596);
             steamGradientPanel1.TabIndex = 3;
             // 
-            // SelectExercise
+            // holder
+            // 
+            holder.AutoScroll = true;
+            holder.BackColor = Color.Transparent;
+            holder.FlowDirection = FlowDirection.TopDown;
+            holder.Location = new Point(3, 92);
+            holder.Name = "holder";
+            holder.Size = new Size(463, 492);
+            holder.TabIndex = 2;
+            // 
+            // SelectClass
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(469, 596);
             Controls.Add(steamGradientPanel1);
-            Name = "SelectExercise";
+            Name = "SelectClass";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SelectExercise";
             steamGradientPanel1.ResumeLayout(false);
@@ -88,7 +89,7 @@
 
         #endregion
         private CustomTextBox searchBox;
-        private Panel holder;
         private SteamThings.SteamGradientPanel steamGradientPanel1;
+        private FlowLayoutPanel holder;
     }
 }

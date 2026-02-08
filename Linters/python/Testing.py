@@ -277,7 +277,6 @@ class PythonOperationTransformer:
         
         count = 0
         
-        # Count each operator (order matters - compound before simple)
         temp_line = cleaned
         for op in self.operators:
             escaped_op = re.escape(op)

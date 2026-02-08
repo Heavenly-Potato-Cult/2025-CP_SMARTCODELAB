@@ -50,7 +50,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         {
             InitializeComponent();
             codeSubmissionIcon = new Dictionary<string, StudentSubmittedIcon>();
-            score.innerTextBox.Enabled = false;
             progressGetter = (string id) =>
             {
                 // return something based on id
@@ -92,13 +91,13 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
         public ProgressSubmissionPage()
         {
             InitializeComponent();
-            score.innerTextBox.Enabled = false;
             selectedStudentId = string.Empty;
             leaderboardsVersion = 0;
             submittedStudents = new List<UserProfile>();
             submittedCount = 0;
             codeSubmissions = new Dictionary<string, SubmittedCode>();
             codeSubmissionIcon = new Dictionary<string, StudentSubmittedIcon>();
+            studentCodeRating1.gradeEdited = updateScores;
             searchBox.innerTextBox.TextChanged += (sender, e) =>
             {
                 displayIcons?.Change(Timeout.Infinite, Timeout.Infinite);
@@ -107,32 +106,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                 {
                     DisplayIcons();
                 }, null, 500, Timeout.Infinite);
-            };
-
-            score.innerTextBox.KeyUp += (sender, e) =>
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (int.TryParse(score.innerTextBox.Text, out int newScore))
-                    {
-                        if(newScore == codeSubmissions[selectedStudentId].score)
-                            return;
-
-                        newScore = Math.Max(0, newScore);
-                        newScore = Math.Min(100, newScore);
-
-                        score.innerTextBox.Text = newScore.ToString();
-                        codeSubmissions[selectedStudentId].score = newScore;
-                        codeSubmissions[selectedStudentId].isEdited = true;
-                        codeSubmissionIcon[selectedStudentId].updateScore(newScore);
-                        nonBlockingotif("Score updated successfully.");
-                    }
-                    else
-                    {
-                        nonBlockingotif("Invalid score input. Please enter a valid integer.");
-                        score.innerTextBox.Text = codeSubmissions[selectedStudentId].score.ToString();
-                    }
-                }
             };
         }
 
@@ -223,12 +196,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
 
         private void UpdateDisplaySync(SubmittedCode submittedCode)
         {
-            score.innerTextBox.Enabled = true;
             selectedStudentId = submittedCode.user._studentId;
             steamLabel2.Text = submittedCode.user._studentName;
-            score.innerTextBox.Text = submittedCode.score.ToString();
+            score.Text = submittedCode.score.ToString();
             studentCode.Text = submittedCode.sourceCode;
-            studentCodeRating1.setSubmissionScores(submittedCode.statsGrade, language);
+            studentCodeRating1.setSubmissionScores(submittedCode.statsGrade);
 
             var studentProgress = progressGetter.Invoke(submittedCode.user._studentId);
             copypastedCodes.Controls.Clear();
@@ -251,6 +223,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ServerPages
                     copypastedCodes.ResumeLayout();
                 }
             }
+        }
+
+        private void updateScores()
+        {
+            if (selectedStudentId == null || selectedStudentId == "") return;
+            codeSubmissions[selectedStudentId].isEdited = true;
+            codeSubmissions[selectedStudentId].statsGrade = studentCodeRating1.GetStats();
+            codeSubmissions[selectedStudentId].score = studentCodeRating1.totalScore();
+            this.Invoke(new Action(() => 
+            { 
+                score.Text = codeSubmissions[selectedStudentId].score.ToString();
+                codeSubmissionIcon[selectedStudentId].updateScore(codeSubmissions[selectedStudentId].score);
+            }));
         }
 
         private void customComboBox2_SelectedIndexChanged(object sender, EventArgs e)

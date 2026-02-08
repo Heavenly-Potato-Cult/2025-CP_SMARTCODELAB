@@ -26,9 +26,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
         public AddClass(List<string> existingClasses)
         {
             InitializeComponent();
+            setSchoolYear();
             userIcons = new Dictionary<string, StudentRow>();
             expectedUsers = new Dictionary<string, UserProfile>();
             existingClassFiles = new List<string>();
+            schoolYear.textBox1.ReadOnly = true;
             existingClassFiles.AddRange(existingClasses);
             setUpSearchBox();
         }
@@ -36,6 +38,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
         public AddClass(ClassInformation classInfo, List<string> existingClasses)
         {
             InitializeComponent();
+            schoolYear.textBox1.ReadOnly = true;
             currentClassInfo = classInfo;
             isEditMode = true;
             userIcons = new Dictionary<string, StudentRow>();
@@ -52,7 +55,27 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             setUpSearchBox();
 
             var userDict = classInfo.students.ToDictionary(user => user._studentId, user => user);
-            this.Load += (s,e) => addUsers(userDict);
+            this.Load += (s, e) => addUsers(userDict);
+        }
+
+        private void setSchoolYear()
+        {
+            int schoolYearStart = 0;
+
+            DateTime now = DateTime.Now;
+
+            int schoolStartMonth = 8;
+
+            if (now.Month < schoolStartMonth)
+            {
+                schoolYearStart = now.Year - 1;
+            }
+            else
+            {
+                schoolYearStart = now.Year;
+            }
+            schoolYearStart += (int)numericUpDown.Value;
+            schoolYear.Texts = $"{schoolYearStart}-{schoolYearStart + 1}";
         }
 
         private void setUpSearchBox()
@@ -80,7 +103,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             {
                 MessageBox.Show(validationMessage, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }            
+            }
             string filePath = Path.Combine(SystemConfigurations.CLASSES_DIRECTORY, $"{subCode.Texts.Trim()}.dat");
             var classInfo = new ClassInformation.Builder()
                 .WithSubjectCode(subCode.Texts.Trim())
@@ -115,7 +138,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
         {
             foreach (var item in existingClassFiles)
             {
-                if(item.Equals(classInformation.subjectCode.Trim(), StringComparison.OrdinalIgnoreCase))
+                if (item.Equals(classInformation.subjectCode.Trim(), StringComparison.OrdinalIgnoreCase))
                     return (false, "A class with the same Subject Code already exists.");
             }
 
@@ -214,7 +237,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             displayUsers();
         }
 
-        private Task displayUsers() 
+        private Task displayUsers()
         {
             long currentVersion = ++searchVersion;
             string searchText = search.innerTextBox.Text.Trim();
@@ -235,7 +258,8 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
                         var icon = userIcons[item._studentId];
                         icon.Dock = DockStyle.Top;
                         studtab.Controls.Add(icon);
-                    }catch(KeyNotFoundException)
+                    }
+                    catch (KeyNotFoundException)
                     {
                         // Ignore missing user icons
                     }
@@ -297,6 +321,11 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
                 return (false, "Year Level is required.");
 
             return (true, "All inputs are valid.");
+        }
+
+        private void numericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            setSchoolYear();
         }
     }
 }

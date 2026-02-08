@@ -52,7 +52,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             var exerciseFiles = Directory.GetFiles(SystemConfigurations.CLASSES_DIRECTORY, "*.dat");
             foreach (var item in exerciseFiles)
             {
-                using(var readFile = File.OpenRead(item))
+                using (var readFile = File.OpenRead(item))
                 {
                     var classInfo = Serializer.DeserializeWithLengthPrefix<ClassInformation>(readFile, PrefixStyle.Base128);
                     iconsDictionary[classInfo.subjectCode] = new ClassSelection(classInfo, checkedClasses.Contains(classInfo.subjectCode), addRemoveClassSelected);
@@ -68,7 +68,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
             long curentCount = ++searchVersion;
             string searchText = searchBox.Texts.ToLower();
             searchText = searchText.Equals("Search Class", StringComparison.OrdinalIgnoreCase) ? string.Empty : searchText;
-
             List<ClassSelection> filteredClassCards = classInformationList
                 .Where(c => c.subjectCode.ToLower().Contains(searchText) ||
                             c.subjectDesc.ToLower().Contains(searchText) ||
@@ -77,7 +76,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
                             c.schoolYear.ToLower().Contains(searchText))
                 .Select(c => iconsDictionary[c.subjectCode])
                 .ToList();
-
             this.Invoke(new Action(() =>
             {
                 holder.Controls.Clear();
@@ -86,7 +84,6 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
                     holder.Controls.Add(item);
                 }
             }));
-
             return Task.CompletedTask;
         }
 

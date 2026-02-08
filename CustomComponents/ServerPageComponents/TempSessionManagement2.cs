@@ -1,5 +1,6 @@
 ﻿using FastColoredTextBoxNS;
 using ProtoBuf;
+using SmartCodeLab.CustomComponents.CustomDialogs;
 using SmartCodeLab.CustomComponents.CustomDialogs.StudentTable;
 using SmartCodeLab.CustomComponents.Pages;
 using SmartCodeLab.CustomComponents.Pages.ProgrammingTabs;

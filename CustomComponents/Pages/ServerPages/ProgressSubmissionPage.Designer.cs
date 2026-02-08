@@ -51,10 +51,10 @@
             steamLabel6 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard5 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             customCard10 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            score = new SmartCodeLab.CustomComponents.SteamThings.SteamTextBox();
+            score = new Label();
             steamLabel4 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             customCard11 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
-            studentCodeRating1 = new SmartCodeLab.CustomComponents.ServerPageComponents.StudentCodeRating();
+            studentCodeRating1 = new SmartCodeLab.CustomComponents.ServerPageComponents.CodeRatingUI();
             customCard6.SuspendLayout();
             customCard9.SuspendLayout();
             customCard8.SuspendLayout();
@@ -80,6 +80,7 @@
             customComboBox2.Padding = new Padding(1);
             customComboBox2.Size = new Size(139, 44);
             customComboBox2.TabIndex = 95;
+            customComboBox2.Theme = SteamThings.SteamTheme.Dark;
             customComboBox2.SelectedIndexChanged += customComboBox2_SelectedIndexChanged;
             // 
             // customCard6
@@ -137,9 +138,11 @@
             searchBox.Location = new Point(15, 17);
             searchBox.Name = "searchBox";
             searchBox.Padding = new Padding(10, 8, 10, 8);
+            searchBox.PlaceholderColor = Color.DarkGray;
             searchBox.PlaceholderText = "Search student...";
             searchBox.Size = new Size(190, 44);
             searchBox.TabIndex = 110;
+            searchBox.Theme = SteamThings.SteamTheme.Dark;
             // 
             // customCard8
             // 
@@ -313,7 +316,6 @@
             studentCode.CharHeight = 18;
             studentCode.CharWidth = 10;
             studentCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            studentCode.Font = new Font("Courier New", 9.75F);
             studentCode.ForeColor = Color.LightGray;
             studentCode.Hotkeys = resources.GetString("studentCode.Hotkeys");
             studentCode.IndentBackColor = Color.Transparent;
@@ -408,12 +410,14 @@
             // 
             // score
             // 
-            score.BackColor = Color.FromArgb(26, 30, 36);
-            score.Location = new Point(88, 20);
+            score.AutoSize = true;
+            score.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            score.ForeColor = SystemColors.ButtonFace;
+            score.Location = new Point(90, 21);
             score.Name = "score";
-            score.Padding = new Padding(10, 8, 10, 8);
-            score.Size = new Size(44, 29);
-            score.TabIndex = 75;
+            score.Size = new Size(24, 28);
+            score.TabIndex = 76;
+            score.Text = "0";
             // 
             // steamLabel4
             // 
@@ -446,12 +450,11 @@
             // 
             // studentCodeRating1
             // 
-            studentCodeRating1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             studentCodeRating1.BackColor = Color.Transparent;
-            studentCodeRating1.Location = new Point(10, 10);
+            studentCodeRating1.Location = new Point(3, 13);
             studentCodeRating1.Name = "studentCodeRating1";
-            studentCodeRating1.Size = new Size(419, 226);
-            studentCodeRating1.TabIndex = 110;
+            studentCodeRating1.Size = new Size(439, 238);
+            studentCodeRating1.TabIndex = 0;
             // 
             // ProgressSubmissionPage
             // 
@@ -484,7 +487,7 @@
         private GeneralComponents.CustomCard customCard7;
         private Label label6;
         private Label label14;
-        private Label label1;
+        private Label score;
         private Label studentName;
         private SteamThings.SteamComboBox customComboBox2;
         private GeneralComponents.CustomCard customCard6;
@@ -503,13 +506,12 @@
         private SteamThings.SteamLabel steamLabel6;
         private GeneralComponents.CustomCard customCard5;
         private GeneralComponents.CustomCard customCard11;
-        private ServerPageComponents.StudentCodeRating studentCodeRating1;
         private GeneralComponents.CustomCard customCard10;
         private TableLayoutPanel tableLayoutPanel1;
         private GeneralComponents.CustomCard customCard3;
         private GeneralComponents.CustomCard customCard1;
         private SteamThings.SteamLabel steamLabel3;
         private GeneralComponents.CustomCard copypastedCodes;
-        private SteamThings.SteamTextBox score;
+        private ServerPageComponents.CodeRatingUI studentCodeRating1;
     }
 }
