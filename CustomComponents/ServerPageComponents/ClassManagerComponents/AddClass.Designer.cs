@@ -192,6 +192,7 @@
             // 
             // studtab
             // 
+            studtab.AutoScroll = true;
             studtab.BorderStyle = BorderStyle.FixedSingle;
             studtab.Location = new Point(25, 422);
             studtab.Name = "studtab";
