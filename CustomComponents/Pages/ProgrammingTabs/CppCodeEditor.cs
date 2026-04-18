@@ -159,12 +159,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = $"\"{fileExe}\"",
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
+                    FileName = "cmd.exe",
+                    Arguments = $"/C \"\"{fileExe}\" & pause\"",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
                 }
             };
             await base.RunCode();

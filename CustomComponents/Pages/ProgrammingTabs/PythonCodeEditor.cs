@@ -15,9 +15,11 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private string[] checksToRun = [string.Empty, string.Empty, string.Empty, ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability];
         private List<string> linters = new List<string>() {ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability};
         private int standardComplexity;
+        private string pythonRunner;
         public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
         {
             standardComplexity = 9999;
+            pythonRunner = DetectPythonRunner();
             foreach (var item in linters)
             {
                 string content = LintersServices.pythonLinters[item];
@@ -37,6 +39,49 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 PythonSyntaxHighlight(new TextChangedEventArgs(srcCode.Range));
             };
+        }
+
+        private string DetectPythonRunner()
+        {
+            if (IsCommandAvailable("py"))
+                return "py";
+
+            if (IsCommandAvailable("python"))
+                return "python";
+
+            MessageBox.Show(
+                "Python was not found. Please install Python and add it to PATH.",
+                "Python Not Found",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+            );
+            return null;
+        }
+
+        private bool IsCommandAvailable(string command)
+        {
+            try
+            {
+                Process process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = command,
+                        Arguments = "--version",
+                        RedirectStandardOutput = true,
+                        RedirectStandardError = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    }
+                };
+                process.Start();
+                process.WaitForExit();
+                return process.ExitCode == 0;
+            }
+            catch
+            {
+                return false; // command not found
+            }
         }
 
 
@@ -128,18 +173,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         public override async Task RunCode()
         {
+            string batContent = $"""
+                @echo off
+                {pythonRunner} "{filePath}"
+                pause
+                """;
+
+            string batPath = Path.Combine(Path.GetTempPath(), "run_python.bat");
+            File.WriteAllText(batPath, batContent);
             process?.Dispose();
             process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "py",
-                    Arguments = $"\"{filePath}\"",
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
+                    FileName = "cmd.exe",
+                    Arguments = $"/C \"{batPath}\"",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
                 }
             };
             await base.RunCode();
@@ -148,7 +198,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public override async void RunTest()
         {
             SourceCodeInitializer.InitializeEfficiencyCode2(Models.Enums.LanguageSupported.Python, filePath, false);
-            commandLine = $"/c \"py \"{filePath}\"\"";
+            commandLine = $"/c \"{pythonRunner} \"{filePath}\"\"";
             base.RunTest();
             if (task.ratingFactors.ContainsKey(2) && mgaGinawangTama.Count > 0)
                 await checkEfficiencyComparison();
@@ -159,7 +209,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             int luckyNumber = new Random().Next(0, mgaGinawangTama.Count - 1);
             string testIntput = mgaGinawangTama[luckyNumber].Key;
             string directory = Path.GetDirectoryName(filePath);
-            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"py \"{Path.Combine(directory,"OperatorsCounter.py")}\"\"", testIntput));
+            int studentsGrowth = int.Parse(ExecuteCommandCaptureOutput($"/c \"{pythonRunner} \"{Path.Combine(directory,"OperatorsCounter.py")}\"\"", testIntput));
             int bestGrowth = task.efficiencyMetrics[testIntput];
             NonBlockingNotification($"Sayo : {studentsGrowth} \nTeacher : {bestGrowth}");
             updateStats?.Invoke(2, computeEfficiency(studentsGrowth, bestGrowth), "python");
@@ -185,7 +235,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             SaveCode();
             NoError();
             //for error checking
-            process = CommandRunner($"/c \"py \"{ProgrammingConfiguration.SYNTAX_CHECKER}\" \"{filePath}\"\"");
+            process = CommandRunner($"/c \"{pythonRunner} \"{ProgrammingConfiguration.SYNTAX_CHECKER}\" \"{filePath}\"\"");
             string errorOutput = "";
             await StartprocessAsync(
                 process,

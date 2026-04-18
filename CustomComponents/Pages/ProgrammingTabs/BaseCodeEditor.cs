@@ -37,7 +37,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected Dictionary<int, string> readabilityWarning;
         protected Dictionary<int, string> maintainabilityWarning;
         protected Dictionary<int, string> robustnessWarning;
-        private List<KeyValuePair<int,string>> lineErrorAndMessage;
+        private List<KeyValuePair<int, string>> lineErrorAndMessage;
 
         //detected violated rules
         protected HashSet<string> readabilityRules;
@@ -116,7 +116,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress)
         {
             InitializeComponent();
-            output.thrownException = ExtractThrownExceptions;
             this.updateStats = updateStats;
             standardError = new Dictionary<int, string>();
             readabilityWarning = new Dictionary<int, string>();
@@ -208,7 +207,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
             for (int i = 0; i < wholeCodeLines.Length; i++)
             {
-                if(pastedCodeLines.Length == 1)
+                if (pastedCodeLines.Length == 1)
                 {
                     if (wholeCodeLines[i].Trim().Contains(pastedCodeLines[0].Trim()))
                     {
@@ -315,7 +314,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 return;
             }
             process.Start();
-            output.AttachProcess(process);
+            //output.AttachProcess(process);
         }
 
         protected void ExtractThrownExceptions(string allExceptions)
@@ -348,7 +347,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                             notifAction?.Invoke(NotificationType.ExceptionThrown, exceptionMsg);
                         }
                     }
-                    else if(filePath.EndsWith(".py"))
+                    else if (filePath.EndsWith(".py"))
                     {
                         //most likely the exception type is in the last line
                         //as last line contains two messages separated by colon {Exception}: {exceptionMessage}
@@ -415,9 +414,6 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
 
         protected Task StartprocessAsync(Process process, Action<string> onOutput, Action<string> onError, Action onExit = null)
         {
-            Invoker(() => output.Text = "Process Started" + Environment.NewLine);
-            latestoutput = output.Text;
-
             process.ErrorDataReceived += (sender, e) =>
             {
                 if (!string.IsNullOrEmpty(e.Data))
@@ -496,7 +492,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 proc.WaitForExit();
                 // Combine outputs (stdout first, then stderr). Adjust formatting as you prefer.
                 if (string.IsNullOrEmpty(stderr))
-                    return stdout.Substring(stdout.LastIndexOf(':')+1);
+                    return stdout.Substring(stdout.LastIndexOf(':') + 1);
                 if (string.IsNullOrEmpty(stdout))
                     return stderr;
 
@@ -653,15 +649,23 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 return new PythonCodeEditor(filePath, task, progress, updateStats, sendProgress);
             }
-            else
-            {
-                return new CppCodeEditor(filePath, task, progress, updateStats, sendProgress);
-            }
+
+            return new CppCodeEditor(filePath, task, progress, updateStats, sendProgress);
         }
 
-        protected void Invoker(Action action) 
+        protected void Invoker(Action action)
         {
             this.Invoke(action);
+        }
+
+        private void srcCode_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

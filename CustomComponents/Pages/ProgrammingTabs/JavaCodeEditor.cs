@@ -40,18 +40,19 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public override async Task RunCode()
         {
             await CompileCode2();
-            process?.Dispose();
+            process?.Dispose(); 
+            
+            string directory = Path.GetDirectoryName(filePath);
+            string className = Path.GetFileNameWithoutExtension(filePath);
+            
             process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "java",
-                    Arguments = $"\"{filePath}\"",
-                    RedirectStandardInput = true,
-                    RedirectStandardOutput = true,
-                    RedirectStandardError = true,
-                    UseShellExecute = false,
-                    CreateNoWindow = true
+                    FileName = "cmd.exe",
+                    Arguments = $"/C \"javac \"{filePath}\" && java -cp \"{directory}\" {className} & pause\"",
+                    UseShellExecute = true,
+                    CreateNoWindow = false
                 }
             };
             await base.RunCode();

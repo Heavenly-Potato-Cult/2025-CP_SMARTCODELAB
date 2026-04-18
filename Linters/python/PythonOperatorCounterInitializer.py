@@ -137,12 +137,12 @@ class PythonOperationTransformer:
     def _add_counters_beside_operations(self, lines: List[str]) -> List[str]:
         """Add operation counters beside each operation"""
         result = []
-        
+
         for i, line in enumerate(lines):
             stripped = line.strip()
-            
+
             # Skip empty lines, comments, imports, function defs, class defs
-            if (not stripped or 
+            if (not stripped or
                 stripped.startswith('#') or
                 stripped.startswith('import ') or
                 stripped.startswith('from ') or
@@ -152,46 +152,40 @@ class PythonOperationTransformer:
                 stripped.startswith('global ')):
                 result.append(line)
                 continue
-            
+
             # Check if this is a control statement (if, elif, while, for)
             if self._is_control_statement_with_condition(stripped):
-                # Add the control statement line
-                
-                # Count operations in the condition
+                # Always emit the control statement line first
+                result.append(line)
+
+                # Count operations in the condition (0 for 'for' loops)
                 op_count = self._count_operations_in_condition(line)
-                
+
                 if op_count > 0:
-                    # Add counter on the next line (inside the block)
                     indent = self._get_indent_string(self._get_indent_level(line) + 1)
-                    if("return" in line.lower()):
-                        result.append(f'{indent}{self.operation_count_var} += {op_count}')
-                        result.append(line)
-                    else:
-                        result.append(line)
-                        result.append(f'{indent}{self.operation_count_var} += {op_count}')
-                
+                    result.append(f'{indent}{self.operation_count_var} += {op_count}')
+
                 continue
-            
+
             # Skip other control keywords
             if self._is_simple_control_keyword(stripped):
                 result.append(line)
                 continue
-            
+
             # Count operations in this line
             op_count = self._count_operations_in_line(line)
-            
+
             if op_count == 0:
                 result.append(line)
             else:
-                # Add counter after the line
                 indent = self._get_indent_string(self._get_indent_level(line))
-                if("return" in line.lower()):
+                if "return" in line.lower():
                     result.append(f'{indent}{self.operation_count_var} += {op_count}')
                     result.append(line)
                 else:
                     result.append(line)
                     result.append(f'{indent}{self.operation_count_var} += {op_count}')
-        
+
         return result
     
     def _is_control_statement_with_condition(self, line: str) -> bool:
@@ -207,20 +201,19 @@ class PythonOperationTransformer:
                 line.startswith('with ') or
                 line.startswith('try:') or
                 line.startswith('except') or
-                line.startswith('finally:') #or
-                #line.startswith('return')
+                line.startswith('finally:')
                 )
     
     def _count_operations_in_condition(self, line: str) -> int:
         """Count operations in a control statement condition using patterns"""
         stripped = line.strip()
 
-        # Only handle if, elif, while
+        # Only handle if, elif, while — 'for' loops don't have comparison operators
         if not stripped.startswith(('if ', 'elif ', 'while ')):
             return 0
 
         # Extract the condition part (between keyword and colon)
-        colon_idx = stripped.find(':')
+        colon_idx = stripped.rfind(':')
         if colon_idx == -1:
             return 0
 
@@ -234,19 +227,18 @@ class PythonOperationTransformer:
             return 0
 
         count = 0
-        # Define patterns for conditions
         patterns = [
-                r'==',
-                r'!=',
-                r'<=',
-                r'>=',
-                r'(?<![<>=])<(?![=])',  # < not part of <=
-                r'(?<![<>=])>(?![=])',  # > not part of >=
-                r'\bis not\b',           # 'is not' as whole words
-                r'\bis\b',               # 'is' as whole word
-                r'\bin\b',               # 'in' as whole word
-                r'\bnot\s+in\b',         # 'not in' as whole words
-            ]
+            r'==',
+            r'!=',
+            r'<=',
+            r'>=',
+            r'(?<![<>=])<(?![=])',   # < not part of <=
+            r'(?<![<>=])>(?![=])',   # > not part of >=
+            r'\bis not\b',
+            r'\bis\b',
+            r'\bin\b',
+            r'\bnot\s+in\b',
+        ]
 
         for pat in patterns:
             matches = re.findall(pat, condition)

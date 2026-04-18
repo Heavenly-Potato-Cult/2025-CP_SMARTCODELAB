@@ -95,7 +95,7 @@ namespace SmartCodeLab.Services.ModelServices
                                         ))
                 {
                     Serializer.SerializeWithLengthPrefix(fileStream, session, PrefixStyle.Base128);
-                    await fileStream.FlushAsync();
+                    fileStream.Flush();
                     //NonBlockingNotification("Session file saved successfully");
                     SystemSingleton.Instance.addSession?.Invoke(session);
                 }

@@ -42,7 +42,7 @@ namespace SmartCodeLab.CustomComponents.ServerPageComponents.ClassManagerCompone
         {
             InitializeComponent();
             loadedClasses = new Dictionary<string, ClassInformation>();
-            newlySelectedClasses = new HashSet<string>();
+            newlySelectedClasses = checkedClasses;
             removedClasses = new HashSet<string>();
             this.checkedClasses = checkedClasses;
             selectedClasses = new Dictionary<string, ClassInformation>();

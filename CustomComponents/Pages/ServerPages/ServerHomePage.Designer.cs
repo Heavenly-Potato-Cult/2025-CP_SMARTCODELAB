@@ -439,7 +439,6 @@
             exit.Text = "EXIT";
             exit.TextColor = Color.FromArgb(219, 61, 55);
             exit.UseVisualStyleBackColor = false;
-            exit.Click += exit_Click;
             // 
             // saveSes
             // 
@@ -458,7 +457,6 @@
             saveSes.TabIndex = 35;
             saveSes.Text = "SAVE SESSION";
             saveSes.UseVisualStyleBackColor = false;
-            saveSes.Click += saveSes_Click;
             // 
             // viewStud
             // 
