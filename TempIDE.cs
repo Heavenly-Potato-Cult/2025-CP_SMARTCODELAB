@@ -109,7 +109,6 @@ namespace SmartCodeLab
         private async void LaunchEmbeddedTerminal(Process cmdProcess)
         {
             cmdProcess.Start();
-
             IntPtr handle = IntPtr.Zero;
             for (int i = 0; i < 20; i++)
             {
@@ -173,7 +172,7 @@ namespace SmartCodeLab
                     {
                         System.Text.StringBuilder sb = new System.Text.StringBuilder(length + 1);
                         GetWindowText(hWnd, sb, sb.Capacity);
-                        if (sb.ToString().Contains(titleContains))
+                        if (sb.ToString().Contains(titleContains) || sb.ToString().Contains("conhost"))
                         {
                             result = hWnd;
                             return false;

@@ -154,13 +154,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         public override async Task RunCode()
         {
             await CompileCode(fileExe);
+            string batContent = $"""
+                @echo off
+                "{fileExe}"
+                pause
+                """;
+            string batPath = Path.Combine(Path.GetTempPath(), "run_cpp.bat");
+            File.WriteAllText(batPath, batContent);
             process?.Dispose();
             process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "cmd.exe",
-                    Arguments = $"/C \"\"{fileExe}\" & pause\"",
+                    FileName = @"C:\Windows\System32\conhost.exe",
+                    Arguments = $@"C:\Windows\System32\cmd.exe /C ""{batPath}""",
                     UseShellExecute = true,
                     CreateNoWindow = false
                 }

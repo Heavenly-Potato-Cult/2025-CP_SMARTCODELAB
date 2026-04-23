@@ -186,8 +186,8 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             {
                 StartInfo = new ProcessStartInfo
                 {
-                    FileName = "cmd.exe",
-                    Arguments = $"/C \"{batPath}\"",
+                    FileName = @"C:\Windows\System32\conhost.exe",
+                    Arguments = $@"C:\Windows\System32\cmd.exe /C ""{batPath}""",
                     UseShellExecute = true,
                     CreateNoWindow = false
                 }
