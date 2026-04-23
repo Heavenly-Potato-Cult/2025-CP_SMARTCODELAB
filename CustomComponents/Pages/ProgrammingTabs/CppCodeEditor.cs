@@ -30,7 +30,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private string testerExe;
         private int standardComplexity;
         private string testerCpp;
-        public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress)
+        public CppCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress, Action<Process> launchTerminal) : base(filePath, task, progress, updateStats, sendProgress, launchTerminal)
         {
             highlighter = new Dictionary<string, Action<int, string>>()
             {

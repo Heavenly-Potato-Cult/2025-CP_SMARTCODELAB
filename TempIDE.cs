@@ -29,12 +29,27 @@ namespace SmartCodeLab
             if (code >= 0)
             {
                 int vkCode = Marshal.ReadInt32(lParam);
+                Keys key = (Keys)vkCode;
 
-                // Block Windows keys
-                if (vkCode == 91 || vkCode == 92) // LWin or RWin
-                {
-                    return 1; // Block
-                }
+                // block Windows keys
+                if (vkCode == 91 || vkCode == 92)
+                    return 1;
+
+                // block Alt+Tab
+                if (key == Keys.Tab && (Control.ModifierKeys & Keys.Alt) != 0)
+                    return 1;
+
+                // block Ctrl+Esc (Start menu)
+                if (key == Keys.Escape && (Control.ModifierKeys & Keys.Control) != 0)
+                    return 1;
+
+                // block Alt+F4
+                if (key == Keys.F4 && (Control.ModifierKeys & Keys.Alt) != 0)
+                    return 1;
+
+                // block Ctrl+Tab
+                if (key == Keys.Tab && (Control.ModifierKeys & Keys.Control) != 0)
+                    return 1;
             }
 
             return CallNextHookEx(_hookPtr, code, wParam, lParam);
@@ -68,6 +83,109 @@ namespace SmartCodeLab
         [DllImport("user32.dll")]
         private static extern int CallNextHookEx(IntPtr hhk, int nCode,
             IntPtr wParam, IntPtr lParam);
+
+        //===============================================
+        private delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        private static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        private static extern bool IsWindowVisible(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowThreadProcessId(IntPtr hWnd, out int lpdwProcessId);
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+        [DllImport("user32.dll")]
+        private static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+        private const int GWL_STYLE = -16;
+        private const int WS_VISIBLE = 0x10000000;
+        private async void LaunchEmbeddedTerminal(Process cmdProcess)
+        {
+            cmdProcess.Start();
+
+            IntPtr handle = IntPtr.Zero;
+            for (int i = 0; i < 20; i++)
+            {
+                await Task.Delay(300);
+                handle = GetWindowHandleByTitle("cmd.exe");
+                Console.WriteLine($"Attempt {i}: handle = {handle}");
+                if (handle != IntPtr.Zero) break;
+            }
+
+            if (handle != IntPtr.Zero)
+            {
+                SetParent(handle, terminal.Handle);
+                SetWindowLong(handle, GWL_STYLE, WS_VISIBLE);
+                MoveWindow(handle, 0, 0, terminal.Width, terminal.Height, true);
+            }
+        }
+        [DllImport("user32.dll")]
+        private static extern int GetWindowTextLength(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowText(IntPtr hWnd, System.Text.StringBuilder lpString, int nMaxCount);
+        private IntPtr GetWindowHandleByProcessId(int processId)
+        {
+            IntPtr result = IntPtr.Zero;
+
+            EnumWindows((hWnd, lParam) =>
+            {
+                GetWindowThreadProcessId(hWnd, out int pid);
+                if (IsWindowVisible(hWnd))
+                {
+                    int length = GetWindowTextLength(hWnd);
+                    if (length > 0)
+                    {
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder(length + 1);
+                        GetWindowText(hWnd, sb, sb.Capacity);
+                        Debug.WriteLine($"pid: {pid}, title: {sb}, handle: {hWnd}");
+                    }
+                }
+
+                if (pid == processId && IsWindowVisible(hWnd))
+                {
+                    result = hWnd;
+                    return false;
+                }
+                return true;
+            }, IntPtr.Zero);
+
+            return result;
+        }
+
+        private IntPtr GetWindowHandleByTitle(string titleContains)
+        {
+            IntPtr result = IntPtr.Zero;
+
+            EnumWindows((hWnd, lParam) =>
+            {
+                if (IsWindowVisible(hWnd))
+                {
+                    int length = GetWindowTextLength(hWnd);
+                    if (length > 0)
+                    {
+                        System.Text.StringBuilder sb = new System.Text.StringBuilder(length + 1);
+                        GetWindowText(hWnd, sb, sb.Capacity);
+                        if (sb.ToString().Contains(titleContains))
+                        {
+                            result = hWnd;
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }, IntPtr.Zero);
+
+            return result;
+        }
+
         //=================================================================================================
 
 
@@ -169,7 +287,7 @@ namespace SmartCodeLab
 
             //deciding which BaseCodeEditor to use base on the file that the user will provide, pili lang sa tatlong child class ng BaseCodeEditor
             //the code editor will also be resposible in initializing the StudentCodingProgress, since it will already have the filepath, task and student name
-            mainEditor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender);
+            mainEditor = BaseCodeEditor.BaseCodeEditorFactory(mainFile, task, progress, studentCodeRating.UpdateStats, ProgressSender, task.isTabLocked ? LaunchEmbeddedTerminal : null);
             mainEditor.notifAction = NotifyHost;
             mainEditor.Dock = DockStyle.Fill;
             panel_Main.Controls.Add(mainEditor);
@@ -202,7 +320,7 @@ namespace SmartCodeLab
 
             ToolTipInit();
         }
-        
+
         private void ReleaseAnything()
         {
             stream.Close();

@@ -67,6 +67,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         protected string commandLine = string.Empty;
         protected string latestoutput = string.Empty;
         protected string testerFile = string.Empty;
+        private Action<Process> _launchTerminal;
 
         public BaseCodeEditor()
         {
@@ -113,9 +114,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             };
         }
 
-        protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress)
+        protected BaseCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress, Action<Process> launchTerminal)
         {
             InitializeComponent();
+            _launchTerminal = launchTerminal;
             this.updateStats = updateStats;
             standardError = new Dictionary<int, string>();
             readabilityWarning = new Dictionary<int, string>();
@@ -313,7 +315,10 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
                 NonBlockingNotification("Code contains syntax errors");
                 return;
             }
-            process.Start();
+            if (_launchTerminal != null)
+                _launchTerminal.Invoke(process); // ← embedded mode
+            else
+                process.Start();
             //output.AttachProcess(process);
         }
 
@@ -639,18 +644,20 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
             lineErrorAndMessage?.Clear();
         }
 
-        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress)
+        public static BaseCodeEditor BaseCodeEditorFactory(string filePath, TaskModel task, 
+            StudentCodingProgress progress, Action<int, int, string> updateStats, 
+            Func<Task> sendProgress, Action<Process> launchTerminal)
         {
             if (filePath.EndsWith(".java"))
             {
-                return new JavaCodeEditor(filePath, task, progress, updateStats, sendProgress);
+                return new JavaCodeEditor(filePath, task, progress, updateStats, sendProgress, launchTerminal);
             }
             else if (filePath.EndsWith(".py"))
             {
-                return new PythonCodeEditor(filePath, task, progress, updateStats, sendProgress);
+                return new PythonCodeEditor(filePath, task, progress, updateStats, sendProgress, launchTerminal);
             }
 
-            return new CppCodeEditor(filePath, task, progress, updateStats, sendProgress);
+            return new CppCodeEditor(filePath, task, progress, updateStats, sendProgress, launchTerminal);
         }
 
         protected void Invoker(Action action)

@@ -33,6 +33,7 @@
             steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             pictureBox1 = new PictureBox();
             splitContainer1 = new SplitContainer();
+            terminal = new Panel();
             panel1 = new Panel();
             panel_Main = new Panel();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
@@ -151,6 +152,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            splitContainer1.Panel1.Controls.Add(terminal);
             splitContainer1.Panel1.Controls.Add(panel1);
             splitContainer1.Panel1.Controls.Add(panel_Main);
             splitContainer1.Panel1.Controls.Add(customCard2);
@@ -166,6 +168,14 @@
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 10;
             // 
+            // terminal
+            // 
+            terminal.BackColor = Color.DimGray;
+            terminal.Location = new Point(3, 775);
+            terminal.Name = "terminal";
+            terminal.Size = new Size(1192, 156);
+            terminal.TabIndex = 24;
+            // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(42, 71, 94);
@@ -177,10 +187,9 @@
             // 
             // panel_Main
             // 
-            panel_Main.Dock = DockStyle.Fill;
             panel_Main.Location = new Point(0, 54);
             panel_Main.Name = "panel_Main";
-            panel_Main.Size = new Size(1196, 881);
+            panel_Main.Size = new Size(1196, 715);
             panel_Main.TabIndex = 20;
             // 
             // customCard2
@@ -358,7 +367,7 @@
             // description
             // 
             description.AutoScroll = true;
-            description.BackColor = Color.FromArgb(20, 22, 26);
+            description.BackColor = Color.FromArgb(26, 30, 36);
             description.Dock = DockStyle.Fill;
             description.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             description.Location = new Point(10, 0);
@@ -366,12 +375,10 @@
             description.Name = "description";
             description.Padding = new Padding(10, 8, 10, 8);
             description.PlaceholderColor = Color.DarkGray;
-            description.PlaceholderText = "";
-            description.ReadOnly = false;
             description.ScrollBars = ScrollBars.Vertical;
             description.Size = new Size(293, 805);
             description.TabIndex = 0;
-            description.WordWrap = true;
+            description.Theme = CustomComponents.SteamThings.SteamTheme.Dark;
             // 
             // customCard7
             // 
@@ -850,5 +857,6 @@
         private CustomComponents.SteamThings.SteamChatBox steamChatbox1;
         private CustomComponents.GeneralComponents.CustomCard customCard9;
         private CustomComponents.SteamThings.SteamLabel steamLabel2;
+        private Panel terminal;
     }
 }

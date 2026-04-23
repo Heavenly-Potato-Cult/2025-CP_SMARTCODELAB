@@ -16,7 +16,7 @@ namespace SmartCodeLab.CustomComponents.Pages.ProgrammingTabs
         private List<string> linters = new List<string>() {ProgrammingConfiguration.ruffRobustness, ProgrammingConfiguration.ruffMaintainability};
         private int standardComplexity;
         private string pythonRunner;
-        public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress) : base(filePath, task, progress, updateStats, sendProgress) 
+        public PythonCodeEditor(string filePath, TaskModel task, StudentCodingProgress progress, Action<int, int, string> updateStats, Func<Task> sendProgress, Action<Process> launchTerminal) : base(filePath, task, progress, updateStats, sendProgress, launchTerminal) 
         {
             standardComplexity = 9999;
             pythonRunner = DetectPythonRunner();
