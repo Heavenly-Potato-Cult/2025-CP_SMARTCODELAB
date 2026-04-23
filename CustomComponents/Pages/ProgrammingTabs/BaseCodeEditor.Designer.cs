@@ -50,21 +50,26 @@
     '\''
     };
             srcCode.AutoScrollMinSize = new Size(141, 18);
+            srcCode.AutoSize = true;
             srcCode.BackBrush = null;
+            srcCode.BackColor = Color.FromArgb(24, 24, 27);
+            srcCode.CaretColor = Color.Silver;
             srcCode.CharHeight = 18;
             srcCode.CharWidth = 10;
             srcCode.DisabledColor = Color.FromArgb(100, 180, 180, 180);
-            srcCode.Font = new Font("Courier New", 9.75F);
+            srcCode.ForeColor = Color.Silver;
             srcCode.Hotkeys = resources.GetString("srcCode.Hotkeys");
+            srcCode.IndentBackColor = Color.FromArgb(21, 28, 38);
             srcCode.IsReplaceMode = false;
-            srcCode.Location = new Point(3, 3);
+            srcCode.LineNumberColor = Color.Silver;
+            srcCode.Location = new Point(0, 0);
             srcCode.Name = "srcCode";
-            srcCode.Paddings = new Padding(0);
+            srcCode.Paddings = new Padding(0, 0, 0, 10);
             srcCode.SelectionColor = Color.FromArgb(60, 0, 0, 255);
             srcCode.ServiceColors = (FastColoredTextBoxNS.ServiceColors)resources.GetObject("srcCode.ServiceColors");
             srcCode.ServiceLinesColor = Color.FromArgb(42, 71, 94);
-            srcCode.Size = new Size(822, 679);
-            srcCode.TabIndex = 18;
+            srcCode.Dock = DockStyle.Fill;
+            srcCode.TabIndex = 0;
             srcCode.Text = "codeEditor1";
             srcCode.Zoom = 100;
             // 
@@ -72,10 +77,10 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Gray;
+            BackColor = Color.Transparent;
             Controls.Add(srcCode);
             Name = "BaseCodeEditor";
-            Size = new Size(825, 685);
+            Size = new Size(825, 529);
             ((System.ComponentModel.ISupportInitialize)srcCode).EndInit();
             ResumeLayout(false);
         }
