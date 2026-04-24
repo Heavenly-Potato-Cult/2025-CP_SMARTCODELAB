@@ -48,6 +48,7 @@
             steamCard3 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
             steamLabel6 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamCard1 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
+            steamLabel5 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             panel5 = new Panel();
             smartButton4 = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             panel1 = new Panel();
@@ -64,7 +65,6 @@
             steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             steamCard2 = new SmartCodeLab.CustomComponents.SteamThings.SteamCard();
             steamGradientPanel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamGradientPanel();
-            steamLabel5 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             customCard2.SuspendLayout();
@@ -88,7 +88,7 @@
             panel3.Location = new Point(0, 0);
             panel3.Margin = new Padding(2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1801, 82);
+            panel3.Size = new Size(1441, 66);
             panel3.TabIndex = 26;
             // 
             // steamLabel3
@@ -97,9 +97,10 @@
             steamLabel3.BackColor = Color.Transparent;
             steamLabel3.Font = new Font("Geist", 16F, FontStyle.Bold);
             steamLabel3.ForeColor = Color.FromArgb(199, 213, 224);
-            steamLabel3.Location = new Point(302, 25);
+            steamLabel3.Location = new Point(242, 20);
+            steamLabel3.Margin = new Padding(2, 0, 2, 0);
             steamLabel3.Name = "steamLabel3";
-            steamLabel3.Size = new Size(338, 32);
+            steamLabel3.Size = new Size(274, 26);
             steamLabel3.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
             steamLabel3.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             steamLabel3.TabIndex = 41;
@@ -111,11 +112,10 @@
             panel2.Controls.Add(customCard2);
             panel2.Controls.Add(steamLabel8);
             panel2.Controls.Add(steamLabel7);
-            panel2.Location = new Point(15, 61);
-            panel2.Margin = new Padding(4);
+            panel2.Location = new Point(12, 49);
             panel2.Name = "panel2";
-            panel2.Padding = new Padding(0, 12, 12, 12);
-            panel2.Size = new Size(540, 89);
+            panel2.Padding = new Padding(0, 10, 10, 10);
+            panel2.Size = new Size(432, 71);
             panel2.TabIndex = 35;
             // 
             // customCard2
@@ -126,17 +126,19 @@
             customCard2.BorderRadius = 2;
             customCard2.BorderSize = 0;
             customCard2.Controls.Add(tabNavigationLocked);
-            customCard2.Location = new Point(465, 7);
+            customCard2.Location = new Point(372, 6);
+            customCard2.Margin = new Padding(2);
             customCard2.Name = "customCard2";
-            customCard2.Size = new Size(60, 67);
+            customCard2.Size = new Size(48, 54);
             customCard2.TabIndex = 62;
             // 
             // tabNavigationLocked
             // 
             tabNavigationLocked.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tabNavigationLocked.Location = new Point(15, 17);
+            tabNavigationLocked.Location = new Point(12, 14);
+            tabNavigationLocked.Margin = new Padding(2);
             tabNavigationLocked.Name = "tabNavigationLocked";
-            tabNavigationLocked.Size = new Size(30, 30);
+            tabNavigationLocked.Size = new Size(24, 24);
             tabNavigationLocked.TabIndex = 50;
             tabNavigationLocked.Text = "soloTickBox1";
             tabNavigationLocked.UseVisualStyleBackColor = true;
@@ -147,10 +149,10 @@
             steamLabel8.BackColor = Color.Transparent;
             steamLabel8.Font = new Font("Geist", 10F);
             steamLabel8.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel8.Location = new Point(8, 40);
-            steamLabel8.Margin = new Padding(0, 0, 0, 5);
+            steamLabel8.Location = new Point(6, 32);
+            steamLabel8.Margin = new Padding(0, 0, 0, 4);
             steamLabel8.Name = "steamLabel8";
-            steamLabel8.Size = new Size(413, 19);
+            steamLabel8.Size = new Size(359, 16);
             steamLabel8.SteamSize = SteamThings.SteamLabel.SizeOption.Small;
             steamLabel8.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel8.TabIndex = 44;
@@ -162,10 +164,10 @@
             steamLabel7.BackColor = Color.Transparent;
             steamLabel7.Font = new Font("Geist", 12F);
             steamLabel7.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel7.Location = new Point(8, 12);
-            steamLabel7.Margin = new Padding(0, 0, 0, 5);
+            steamLabel7.Location = new Point(6, 10);
+            steamLabel7.Margin = new Padding(0, 0, 0, 4);
             steamLabel7.Name = "steamLabel7";
-            steamLabel7.Size = new Size(122, 23);
+            steamLabel7.Size = new Size(94, 18);
             steamLabel7.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel7.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel7.TabIndex = 43;
@@ -177,9 +179,9 @@
             taskView.Dock = DockStyle.Left;
             taskView.Location = new Point(0, 0);
             taskView.Margin = new Padding(2);
-            taskView.MinimumSize = new Size(100, 42);
+            taskView.MinimumSize = new Size(80, 34);
             taskView.Name = "taskView";
-            taskView.Size = new Size(100, 42);
+            taskView.Size = new Size(80, 34);
             taskView.TabIndex = 37;
             // 
             // customCard1
@@ -192,10 +194,10 @@
             customCard1.Controls.Add(smartButton3);
             customCard1.Controls.Add(studentsCount);
             customCard1.Controls.Add(steamLabel10);
-            customCard1.Location = new Point(22, 68);
-            customCard1.Margin = new Padding(2, 4, 2, 4);
+            customCard1.Location = new Point(18, 54);
+            customCard1.Margin = new Padding(2, 3, 2, 3);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(534, 48);
+            customCard1.Size = new Size(427, 38);
             customCard1.TabIndex = 43;
             // 
             // smartButton3
@@ -208,10 +210,10 @@
             smartButton3.FlatStyle = FlatStyle.Flat;
             smartButton3.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton3.ForeColor = Color.FromArgb(199, 213, 224);
-            smartButton3.Location = new Point(445, 0);
-            smartButton3.Margin = new Padding(2, 4, 2, 4);
+            smartButton3.Location = new Point(356, 0);
+            smartButton3.Margin = new Padding(2, 3, 2, 3);
             smartButton3.Name = "smartButton3";
-            smartButton3.Size = new Size(89, 48);
+            smartButton3.Size = new Size(71, 38);
             smartButton3.TabIndex = 61;
             smartButton3.Text = "VIEW";
             smartButton3.TextColor = Color.FromArgb(199, 213, 224);
@@ -224,10 +226,10 @@
             studentsCount.BackColor = Color.Transparent;
             studentsCount.Font = new Font("Geist", 12F);
             studentsCount.ForeColor = Color.FromArgb(139, 149, 166);
-            studentsCount.Location = new Point(100, 13);
-            studentsCount.Margin = new Padding(0, 0, 0, 5);
+            studentsCount.Location = new Point(80, 10);
+            studentsCount.Margin = new Padding(0, 0, 0, 4);
             studentsCount.Name = "studentsCount";
-            studentsCount.Size = new Size(21, 23);
+            studentsCount.Size = new Size(17, 18);
             studentsCount.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             studentsCount.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             studentsCount.TabIndex = 46;
@@ -239,10 +241,10 @@
             steamLabel10.BackColor = Color.Transparent;
             steamLabel10.Font = new Font("Geist", 12F);
             steamLabel10.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel10.Location = new Point(13, 13);
-            steamLabel10.Margin = new Padding(0, 0, 0, 5);
+            steamLabel10.Location = new Point(10, 10);
+            steamLabel10.Margin = new Padding(0, 0, 0, 4);
             steamLabel10.Name = "steamLabel10";
-            steamLabel10.Size = new Size(87, 23);
+            steamLabel10.Size = new Size(69, 18);
             steamLabel10.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel10.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel10.TabIndex = 45;
@@ -253,14 +255,15 @@
             codeQualityChoices21.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             codeQualityChoices21.BackColor = Color.Transparent;
             codeQualityChoices21.Dock = DockStyle.Fill;
-            codeQualityChoices21.Location = new Point(20, 20);
+            codeQualityChoices21.Location = new Point(16, 16);
             codeQualityChoices21.Margin = new Padding(0);
             codeQualityChoices21.Name = "codeQualityChoices21";
-            codeQualityChoices21.Size = new Size(537, 471);
+            codeQualityChoices21.Size = new Size(430, 377);
             codeQualityChoices21.TabIndex = 48;
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.BackColor = Color.Transparent;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
@@ -270,15 +273,15 @@
             tableLayoutPanel1.Controls.Add(steamCard3, 0, 1);
             tableLayoutPanel1.Controls.Add(steamCard1, 0, 0);
             tableLayoutPanel1.Controls.Add(steamCard2, 1, 0);
-            tableLayoutPanel1.Location = new Point(280, 93);
+            tableLayoutPanel1.Location = new Point(224, 74);
             tableLayoutPanel1.Margin = new Padding(2);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.Padding = new Padding(20, 0, 20, 0);
+            tableLayoutPanel1.Padding = new Padding(16, 0, 16, 0);
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
             tableLayoutPanel1.RowStyles.Add(new RowStyle());
-            tableLayoutPanel1.Size = new Size(1240, 811);
+            tableLayoutPanel1.Size = new Size(992, 649);
             tableLayoutPanel1.TabIndex = 49;
             // 
             // steamPrimaryButton1
@@ -287,10 +290,10 @@
             steamPrimaryButton1.FlatAppearance.BorderSize = 0;
             steamPrimaryButton1.FlatStyle = FlatStyle.Flat;
             steamPrimaryButton1.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold);
-            steamPrimaryButton1.Location = new Point(640, 724);
-            steamPrimaryButton1.Margin = new Padding(20, 3, 3, 3);
+            steamPrimaryButton1.Location = new Point(512, 579);
+            steamPrimaryButton1.Margin = new Padding(16, 2, 2, 2);
             steamPrimaryButton1.Name = "steamPrimaryButton1";
-            steamPrimaryButton1.Size = new Size(577, 62);
+            steamPrimaryButton1.Size = new Size(462, 50);
             steamPrimaryButton1.TabIndex = 50;
             steamPrimaryButton1.Text = "Start Session";
             steamPrimaryButton1.UseVisualStyleBackColor = true;
@@ -302,11 +305,11 @@
             steamCard4.BackColor = Color.Transparent;
             steamCard4.Controls.Add(steamLabel9);
             steamCard4.Controls.Add(customCard1);
-            steamCard4.Location = new Point(640, 536);
-            steamCard4.Margin = new Padding(20, 2, 2, 2);
+            steamCard4.Location = new Point(512, 429);
+            steamCard4.Margin = new Padding(16, 2, 2, 2);
             steamCard4.Name = "steamCard4";
-            steamCard4.Padding = new Padding(20);
-            steamCard4.Size = new Size(578, 164);
+            steamCard4.Padding = new Padding(16);
+            steamCard4.Size = new Size(462, 131);
             steamCard4.TabIndex = 51;
             // 
             // steamLabel9
@@ -315,9 +318,10 @@
             steamLabel9.BackColor = Color.Transparent;
             steamLabel9.Font = new Font("Geist", 16F, FontStyle.Bold);
             steamLabel9.ForeColor = Color.FromArgb(199, 213, 224);
-            steamLabel9.Location = new Point(23, 20);
+            steamLabel9.Location = new Point(18, 16);
+            steamLabel9.Margin = new Padding(2, 0, 2, 0);
             steamLabel9.Name = "steamLabel9";
-            steamLabel9.Size = new Size(146, 32);
+            steamLabel9.Size = new Size(113, 26);
             steamLabel9.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
             steamLabel9.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             steamLabel9.TabIndex = 60;
@@ -329,12 +333,12 @@
             steamCard3.BackColor = Color.Transparent;
             steamCard3.Controls.Add(panel2);
             steamCard3.Controls.Add(steamLabel6);
-            steamCard3.Location = new Point(22, 536);
-            steamCard3.Margin = new Padding(2, 2, 20, 20);
-            steamCard3.MinimumSize = new Size(416, 165);
+            steamCard3.Location = new Point(18, 429);
+            steamCard3.Margin = new Padding(2, 2, 16, 16);
+            steamCard3.MinimumSize = new Size(333, 132);
             steamCard3.Name = "steamCard3";
-            steamCard3.Padding = new Padding(20);
-            steamCard3.Size = new Size(578, 165);
+            steamCard3.Padding = new Padding(16);
+            steamCard3.Size = new Size(462, 132);
             steamCard3.TabIndex = 60;
             // 
             // steamLabel6
@@ -343,9 +347,10 @@
             steamLabel6.BackColor = Color.Transparent;
             steamLabel6.Font = new Font("Geist", 16F, FontStyle.Bold);
             steamLabel6.ForeColor = Color.FromArgb(199, 213, 224);
-            steamLabel6.Location = new Point(15, 20);
+            steamLabel6.Location = new Point(12, 16);
+            steamLabel6.Margin = new Padding(2, 0, 2, 0);
             steamLabel6.Name = "steamLabel6";
-            steamLabel6.Size = new Size(243, 32);
+            steamLabel6.Size = new Size(192, 26);
             steamLabel6.SteamSize = SteamThings.SteamLabel.SizeOption.Medium;
             steamLabel6.SteamTheme = SteamThings.SteamLabel.ThemeOption.Standard;
             steamLabel6.TabIndex = 59;
@@ -364,22 +369,39 @@
             steamCard1.Controls.Add(steamLabel2);
             steamCard1.Controls.Add(panel4);
             steamCard1.Controls.Add(steamLabel1);
-            steamCard1.Location = new Point(23, 3);
-            steamCard1.Margin = new Padding(3, 3, 20, 3);
-            steamCard1.MinimumSize = new Size(416, 511);
+            steamCard1.Location = new Point(18, 2);
+            steamCard1.Margin = new Padding(2, 2, 16, 2);
+            steamCard1.MinimumSize = new Size(333, 409);
             steamCard1.Name = "steamCard1";
-            steamCard1.Padding = new Padding(20);
-            steamCard1.Size = new Size(577, 511);
+            steamCard1.Padding = new Padding(16);
+            steamCard1.Size = new Size(462, 409);
             steamCard1.TabIndex = 50;
+            // 
+            // steamLabel5
+            // 
+            steamLabel5.AutoSize = true;
+            steamLabel5.BackColor = Color.Transparent;
+            steamLabel5.Font = new Font("Geist", 12F);
+            steamLabel5.ForeColor = Color.FromArgb(139, 149, 166);
+            steamLabel5.Location = new Point(47, 339);
+            steamLabel5.Margin = new Padding(0, 0, 0, 4);
+            steamLabel5.Name = "steamLabel5";
+            steamLabel5.Size = new Size(69, 18);
+            steamLabel5.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
+            steamLabel5.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
+            steamLabel5.TabIndex = 43;
+            steamLabel5.Text = "Exercise";
+            steamLabel5.Click += steamLabel5_Click;
             // 
             // panel5
             // 
             panel5.Controls.Add(smartButton4);
             panel5.Controls.Add(taskView);
-            panel5.Location = new Point(59, 455);
-            panel5.MinimumSize = new Size(266, 42);
+            panel5.Location = new Point(47, 364);
+            panel5.Margin = new Padding(2);
+            panel5.MinimumSize = new Size(213, 34);
             panel5.Name = "panel5";
-            panel5.Size = new Size(266, 42);
+            panel5.Size = new Size(213, 34);
             panel5.TabIndex = 47;
             // 
             // smartButton4
@@ -392,10 +414,10 @@
             smartButton4.FlatStyle = FlatStyle.Flat;
             smartButton4.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton4.ForeColor = Color.FromArgb(199, 213, 224);
-            smartButton4.Location = new Point(177, 0);
-            smartButton4.Margin = new Padding(2, 4, 2, 4);
+            smartButton4.Location = new Point(142, 0);
+            smartButton4.Margin = new Padding(2, 3, 2, 3);
             smartButton4.Name = "smartButton4";
-            smartButton4.Size = new Size(89, 42);
+            smartButton4.Size = new Size(71, 34);
             smartButton4.TabIndex = 46;
             smartButton4.Text = "SELECT";
             smartButton4.TextColor = Color.FromArgb(199, 213, 224);
@@ -408,10 +430,11 @@
             panel1.Controls.Add(classesCount);
             panel1.Controls.Add(steamLabel13);
             panel1.Controls.Add(smartButton1);
-            panel1.Location = new Point(59, 357);
-            panel1.MinimumSize = new Size(266, 42);
+            panel1.Location = new Point(47, 286);
+            panel1.Margin = new Padding(2);
+            panel1.MinimumSize = new Size(213, 34);
             panel1.Name = "panel1";
-            panel1.Size = new Size(298, 42);
+            panel1.Size = new Size(238, 34);
             panel1.TabIndex = 49;
             // 
             // classesCount
@@ -420,10 +443,10 @@
             classesCount.BackColor = Color.Transparent;
             classesCount.Font = new Font("Geist", 12F);
             classesCount.ForeColor = Color.FromArgb(139, 149, 166);
-            classesCount.Location = new Point(163, 8);
-            classesCount.Margin = new Padding(0, 0, 0, 5);
+            classesCount.Location = new Point(130, 6);
+            classesCount.Margin = new Padding(0, 0, 0, 4);
             classesCount.Name = "classesCount";
-            classesCount.Size = new Size(21, 23);
+            classesCount.Size = new Size(17, 18);
             classesCount.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             classesCount.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             classesCount.TabIndex = 48;
@@ -435,10 +458,10 @@
             steamLabel13.BackColor = Color.Transparent;
             steamLabel13.Font = new Font("Geist", 12F);
             steamLabel13.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel13.Location = new Point(0, 8);
-            steamLabel13.Margin = new Padding(0, 0, 0, 5);
+            steamLabel13.Location = new Point(0, 6);
+            steamLabel13.Margin = new Padding(0, 0, 0, 4);
             steamLabel13.Name = "steamLabel13";
-            steamLabel13.Size = new Size(163, 23);
+            steamLabel13.Size = new Size(131, 18);
             steamLabel13.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel13.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel13.TabIndex = 47;
@@ -454,10 +477,10 @@
             smartButton1.FlatStyle = FlatStyle.Flat;
             smartButton1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton1.ForeColor = Color.FromArgb(199, 213, 224);
-            smartButton1.Location = new Point(209, 0);
-            smartButton1.Margin = new Padding(2, 4, 2, 4);
+            smartButton1.Location = new Point(167, 0);
+            smartButton1.Margin = new Padding(2, 3, 2, 3);
             smartButton1.Name = "smartButton1";
-            smartButton1.Size = new Size(89, 42);
+            smartButton1.Size = new Size(71, 34);
             smartButton1.TabIndex = 46;
             smartButton1.Text = "SELECT";
             smartButton1.TextColor = Color.FromArgb(199, 213, 224);
@@ -470,12 +493,12 @@
             serverName.BackColor = Color.FromArgb(26, 30, 36);
             serverName.Font = new Font("Showcard Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             serverName.ForeColor = Color.Red;
-            serverName.Location = new Point(56, 71);
-            serverName.Margin = new Padding(3, 3, 3, 100);
+            serverName.Location = new Point(45, 57);
+            serverName.Margin = new Padding(2, 2, 2, 80);
             serverName.Name = "serverName";
-            serverName.Padding = new Padding(10, 10, 10, 8);
+            serverName.Padding = new Padding(8, 8, 8, 6);
             serverName.PlaceholderColor = Color.DarkGray;
-            serverName.Size = new Size(467, 44);
+            serverName.Size = new Size(374, 35);
             serverName.TabIndex = 45;
             serverName.Theme = SteamThings.SteamTheme.Dark;
             // 
@@ -484,10 +507,11 @@
             language.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             language.BackColor = Color.FromArgb(26, 30, 36);
             language.Items.AddRange(new object[] { "C++", "Java", "Python" });
-            language.Location = new Point(56, 293);
+            language.Location = new Point(45, 234);
+            language.Margin = new Padding(2);
             language.Name = "language";
-            language.Padding = new Padding(10, 0, 10, 0);
-            language.Size = new Size(467, 44);
+            language.Padding = new Padding(8, 0, 8, 0);
+            language.Size = new Size(374, 35);
             language.TabIndex = 44;
             language.Theme = SteamThings.SteamTheme.Dark;
             language.SelectedIndexChanged += language_SelectedIndexChanged;
@@ -498,10 +522,10 @@
             steamLabel4.BackColor = Color.Transparent;
             steamLabel4.Font = new Font("Geist", 12F);
             steamLabel4.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel4.Location = new Point(56, 266);
-            steamLabel4.Margin = new Padding(0, 0, 0, 5);
+            steamLabel4.Location = new Point(45, 213);
+            steamLabel4.Margin = new Padding(0, 0, 0, 4);
             steamLabel4.Name = "steamLabel4";
-            steamLabel4.Size = new Size(219, 23);
+            steamLabel4.Size = new Size(177, 18);
             steamLabel4.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel4.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel4.TabIndex = 42;
@@ -513,10 +537,10 @@
             steamLabel2.BackColor = Color.Transparent;
             steamLabel2.Font = new Font("Geist", 12F);
             steamLabel2.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel2.Location = new Point(56, 152);
-            steamLabel2.Margin = new Padding(0, 0, 0, 5);
+            steamLabel2.Location = new Point(45, 122);
+            steamLabel2.Margin = new Padding(0, 0, 0, 4);
             steamLabel2.Name = "steamLabel2";
-            steamLabel2.Size = new Size(132, 23);
+            steamLabel2.Size = new Size(108, 18);
             steamLabel2.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel2.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel2.TabIndex = 40;
@@ -527,10 +551,10 @@
             panel4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             panel4.Controls.Add(serverPW);
             panel4.Controls.Add(smartButton5);
-            panel4.Location = new Point(56, 182);
+            panel4.Location = new Point(45, 146);
             panel4.Margin = new Padding(2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(467, 44);
+            panel4.Size = new Size(374, 35);
             panel4.TabIndex = 39;
             // 
             // serverPW
@@ -538,10 +562,11 @@
             serverPW.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             serverPW.BackColor = Color.FromArgb(26, 30, 36);
             serverPW.Location = new Point(0, 0);
+            serverPW.Margin = new Padding(2);
             serverPW.Name = "serverPW";
-            serverPW.Padding = new Padding(10, 8, 10, 8);
+            serverPW.Padding = new Padding(8, 6, 8, 6);
             serverPW.PlaceholderColor = Color.DarkGray;
-            serverPW.Size = new Size(369, 44);
+            serverPW.Size = new Size(295, 35);
             serverPW.TabIndex = 46;
             serverPW.Theme = SteamThings.SteamTheme.Dark;
             // 
@@ -555,10 +580,10 @@
             smartButton5.FlatStyle = FlatStyle.Flat;
             smartButton5.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             smartButton5.ForeColor = Color.FromArgb(199, 213, 224);
-            smartButton5.Location = new Point(378, 0);
-            smartButton5.Margin = new Padding(2, 4, 2, 4);
+            smartButton5.Location = new Point(303, 0);
+            smartButton5.Margin = new Padding(2, 3, 2, 3);
             smartButton5.Name = "smartButton5";
-            smartButton5.Size = new Size(89, 44);
+            smartButton5.Size = new Size(71, 35);
             smartButton5.TabIndex = 33;
             smartButton5.Text = "GENERATE";
             smartButton5.TextColor = Color.FromArgb(199, 213, 224);
@@ -571,10 +596,10 @@
             steamLabel1.BackColor = Color.Transparent;
             steamLabel1.Font = new Font("Geist", 12F);
             steamLabel1.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel1.Location = new Point(56, 40);
-            steamLabel1.Margin = new Padding(0, 0, 0, 5);
+            steamLabel1.Location = new Point(45, 32);
+            steamLabel1.Margin = new Padding(0, 0, 0, 4);
             steamLabel1.Name = "steamLabel1";
-            steamLabel1.Size = new Size(136, 23);
+            steamLabel1.Size = new Size(111, 18);
             steamLabel1.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel1.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel1.TabIndex = 2;
@@ -585,52 +610,36 @@
             steamCard2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             steamCard2.BackColor = Color.Transparent;
             steamCard2.Controls.Add(codeQualityChoices21);
-            steamCard2.Location = new Point(640, 3);
-            steamCard2.Margin = new Padding(20, 3, 3, 20);
+            steamCard2.Location = new Point(512, 2);
+            steamCard2.Margin = new Padding(16, 2, 2, 16);
             steamCard2.Name = "steamCard2";
-            steamCard2.Padding = new Padding(20);
-            steamCard2.Size = new Size(577, 511);
+            steamCard2.Padding = new Padding(16);
+            steamCard2.Size = new Size(462, 409);
             steamCard2.TabIndex = 50;
             // 
             // steamGradientPanel1
             // 
-            steamGradientPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             steamGradientPanel1.Controls.Add(tableLayoutPanel1);
             steamGradientPanel1.Controls.Add(panel3);
+            steamGradientPanel1.Dock = DockStyle.Fill;
             steamGradientPanel1.GradientAngle = 90F;
             steamGradientPanel1.GradientBottomColor = Color.FromArgb(26, 30, 36);
             steamGradientPanel1.GradientTopColor = Color.FromArgb(11, 14, 17);
             steamGradientPanel1.Location = new Point(0, 0);
             steamGradientPanel1.Margin = new Padding(2);
             steamGradientPanel1.Name = "steamGradientPanel1";
-            steamGradientPanel1.Size = new Size(1801, 1049);
+            steamGradientPanel1.Size = new Size(1441, 839);
             steamGradientPanel1.TabIndex = 50;
-            // 
-            // steamLabel5
-            // 
-            steamLabel5.AutoSize = true;
-            steamLabel5.BackColor = Color.Transparent;
-            steamLabel5.Font = new Font("Geist", 12F);
-            steamLabel5.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel5.Location = new Point(59, 424);
-            steamLabel5.Margin = new Padding(0, 0, 0, 5);
-            steamLabel5.Name = "steamLabel5";
-            steamLabel5.Size = new Size(85, 23);
-            steamLabel5.SteamSize = SteamThings.SteamLabel.SizeOption.Regular;
-            steamLabel5.SteamTheme = SteamThings.SteamLabel.ThemeOption.Muted;
-            steamLabel5.TabIndex = 43;
-            steamLabel5.Text = "Exercise";
-            steamLabel5.Click += steamLabel5_Click;
             // 
             // TempSessionManagement2
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = SystemColors.Control;
             Controls.Add(steamGradientPanel1);
             Margin = new Padding(2);
             Name = "TempSessionManagement2";
-            Size = new Size(1801, 1049);
+            Size = new Size(1441, 839);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             panel2.ResumeLayout(false);

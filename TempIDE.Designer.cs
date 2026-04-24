@@ -33,9 +33,10 @@
             steamLabel1 = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
             pictureBox1 = new PictureBox();
             splitContainer1 = new SplitContainer();
+            splitContainer2 = new SplitContainer();
+            panel_Main = new Panel();
             terminal = new Panel();
             panel1 = new Panel();
-            panel_Main = new Panel();
             customCard2 = new SmartCodeLab.CustomComponents.GeneralComponents.CustomCard();
             exitbtn = new SmartCodeLab.CustomComponents.GeneralComponents.SmartButton();
             monitoredStatus = new SmartCodeLab.CustomComponents.SteamThings.SteamLabel();
@@ -82,6 +83,10 @@
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
+            splitContainer2.Panel1.SuspendLayout();
+            splitContainer2.Panel2.SuspendLayout();
+            splitContainer2.SuspendLayout();
             customCard2.SuspendLayout();
             MainTabControl.SuspendLayout();
             ActivityTab.SuspendLayout();
@@ -111,9 +116,9 @@
             studentIdentity.BackColor = Color.Transparent;
             studentIdentity.Font = new Font("Geist", 12F);
             studentIdentity.ForeColor = Color.FromArgb(139, 149, 166);
-            studentIdentity.Location = new Point(89, 45);
+            studentIdentity.Location = new Point(78, 34);
             studentIdentity.Name = "studentIdentity";
-            studentIdentity.Size = new Size(309, 23);
+            studentIdentity.Size = new Size(246, 18);
             studentIdentity.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Regular;
             studentIdentity.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Muted;
             studentIdentity.TabIndex = 19;
@@ -125,9 +130,9 @@
             steamLabel1.BackColor = Color.Transparent;
             steamLabel1.Font = new Font("Geist", 16F, FontStyle.Bold);
             steamLabel1.ForeColor = Color.FromArgb(199, 213, 224);
-            steamLabel1.Location = new Point(89, 13);
+            steamLabel1.Location = new Point(78, 10);
             steamLabel1.Name = "steamLabel1";
-            steamLabel1.Size = new Size(211, 32);
+            steamLabel1.Size = new Size(165, 26);
             steamLabel1.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Medium;
             steamLabel1.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Standard;
             steamLabel1.TabIndex = 18;
@@ -136,9 +141,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(23, 11);
+            pictureBox1.Location = new Point(20, 8);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(60, 63);
+            pictureBox1.Size = new Size(52, 47);
             pictureBox1.TabIndex = 12;
             pictureBox1.TabStop = false;
             // 
@@ -146,15 +152,13 @@
             // 
             splitContainer1.BackColor = Color.Transparent;
             splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 81);
-            splitContainer1.Margin = new Padding(3, 4, 3, 4);
+            splitContainer1.Location = new Point(0, 61);
             splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(terminal);
+            splitContainer1.Panel1.Controls.Add(splitContainer2);
             splitContainer1.Panel1.Controls.Add(panel1);
-            splitContainer1.Panel1.Controls.Add(panel_Main);
             splitContainer1.Panel1.Controls.Add(customCard2);
             splitContainer1.Panel1.Controls.Add(panel3);
             // 
@@ -163,34 +167,60 @@
             splitContainer1.Panel2.Controls.Add(panel4);
             splitContainer1.Panel2.Controls.Add(MainTabControl);
             splitContainer1.Panel2.Controls.Add(customCard1);
-            splitContainer1.Size = new Size(1602, 935);
-            splitContainer1.SplitterDistance = 1197;
+            splitContainer1.Size = new Size(1402, 701);
+            splitContainer1.SplitterDistance = 1047;
             splitContainer1.SplitterWidth = 1;
             splitContainer1.TabIndex = 10;
             // 
+            // splitContainer2
+            // 
+            splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.Location = new Point(0, 41);
+            splitContainer2.Name = "splitContainer2";
+            splitContainer2.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            splitContainer2.Panel1.Controls.Add(panel_Main);
+            // 
+            // splitContainer2.Panel2
+            // 
+            splitContainer2.Panel2.Controls.Add(terminal);
+            splitContainer2.Panel2.Padding = new Padding(10, 5, 0, 0);
+            splitContainer2.Size = new Size(1046, 660);
+            splitContainer2.SplitterDistance = 526;
+            splitContainer2.TabIndex = 20;
+            // 
+            // panel_Main
+            // 
+            panel_Main.Dock = DockStyle.Fill;
+            panel_Main.Location = new Point(0, 0);
+            panel_Main.Margin = new Padding(3, 2, 3, 2);
+            panel_Main.Name = "panel_Main";
+            panel_Main.Size = new Size(1046, 526);
+            panel_Main.TabIndex = 20;
+            // 
             // terminal
             // 
-            terminal.BackColor = Color.DimGray;
-            terminal.Location = new Point(3, 775);
+            terminal.BackColor = Color.Transparent;
+            terminal.Dock = DockStyle.Fill;
+            terminal.ForeColor = SystemColors.ControlLight;
+            terminal.Location = new Point(10, 5);
+            terminal.Margin = new Padding(3, 2, 3, 2);
             terminal.Name = "terminal";
-            terminal.Size = new Size(1192, 156);
+            terminal.Padding = new Padding(20, 10, 0, 0);
+            terminal.Size = new Size(1036, 125);
             terminal.TabIndex = 24;
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(42, 71, 94);
             panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 54);
+            panel1.Location = new Point(0, 40);
+            panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1196, 1);
+            panel1.Size = new Size(1046, 1);
             panel1.TabIndex = 0;
-            // 
-            // panel_Main
-            // 
-            panel_Main.Location = new Point(0, 54);
-            panel_Main.Name = "panel_Main";
-            panel_Main.Size = new Size(1196, 715);
-            panel_Main.TabIndex = 20;
             // 
             // customCard2
             // 
@@ -205,8 +235,9 @@
             customCard2.Controls.Add(btn_run);
             customCard2.Dock = DockStyle.Top;
             customCard2.Location = new Point(0, 0);
+            customCard2.Margin = new Padding(3, 2, 3, 2);
             customCard2.Name = "customCard2";
-            customCard2.Size = new Size(1196, 54);
+            customCard2.Size = new Size(1046, 40);
             customCard2.TabIndex = 22;
             // 
             // exitbtn
@@ -218,10 +249,10 @@
             exitbtn.FlatStyle = FlatStyle.Flat;
             exitbtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             exitbtn.ForeColor = Color.FromArgb(199, 213, 224);
-            exitbtn.Location = new Point(352, 11);
-            exitbtn.Margin = new Padding(2, 4, 2, 4);
+            exitbtn.Location = new Point(308, 8);
+            exitbtn.Margin = new Padding(2, 3, 2, 3);
             exitbtn.Name = "exitbtn";
-            exitbtn.Size = new Size(89, 32);
+            exitbtn.Size = new Size(78, 24);
             exitbtn.TabIndex = 38;
             exitbtn.Text = "Exit";
             exitbtn.TextColor = Color.FromArgb(199, 213, 224);
@@ -235,10 +266,10 @@
             monitoredStatus.BackColor = Color.FromArgb(29, 7, 18);
             monitoredStatus.Font = new Font("Geist", 8F);
             monitoredStatus.ForeColor = Color.FromArgb(255, 77, 77);
-            monitoredStatus.Location = new Point(1060, 9);
+            monitoredStatus.Location = new Point(928, 7);
             monitoredStatus.Name = "monitoredStatus";
-            monitoredStatus.Padding = new Padding(10);
-            monitoredStatus.Size = new Size(122, 36);
+            monitoredStatus.Padding = new Padding(9, 8, 9, 8);
+            monitoredStatus.Size = new Size(98, 30);
             monitoredStatus.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Tiny;
             monitoredStatus.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Error;
             monitoredStatus.TabIndex = 20;
@@ -253,10 +284,10 @@
             btn_test.FlatStyle = FlatStyle.Flat;
             btn_test.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_test.ForeColor = Color.FromArgb(199, 213, 224);
-            btn_test.Location = new Point(241, 11);
-            btn_test.Margin = new Padding(2, 4, 2, 4);
+            btn_test.Location = new Point(211, 8);
+            btn_test.Margin = new Padding(2, 3, 2, 3);
             btn_test.Name = "btn_test";
-            btn_test.Size = new Size(89, 32);
+            btn_test.Size = new Size(78, 24);
             btn_test.TabIndex = 37;
             btn_test.Text = "Test";
             btn_test.TextColor = Color.FromArgb(199, 213, 224);
@@ -272,10 +303,10 @@
             btn_submit.FlatStyle = FlatStyle.Flat;
             btn_submit.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_submit.ForeColor = Color.FromArgb(199, 213, 224);
-            btn_submit.Location = new Point(132, 11);
-            btn_submit.Margin = new Padding(2, 4, 2, 4);
+            btn_submit.Location = new Point(116, 8);
+            btn_submit.Margin = new Padding(2, 3, 2, 3);
             btn_submit.Name = "btn_submit";
-            btn_submit.Size = new Size(89, 32);
+            btn_submit.Size = new Size(78, 24);
             btn_submit.TabIndex = 36;
             btn_submit.Text = "Submit";
             btn_submit.TextColor = Color.FromArgb(199, 213, 224);
@@ -291,10 +322,10 @@
             btn_run.FlatStyle = FlatStyle.Flat;
             btn_run.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_run.ForeColor = Color.FromArgb(199, 213, 224);
-            btn_run.Location = new Point(23, 11);
-            btn_run.Margin = new Padding(2, 4, 2, 4);
+            btn_run.Location = new Point(20, 8);
+            btn_run.Margin = new Padding(2, 3, 2, 3);
             btn_run.Name = "btn_run";
-            btn_run.Size = new Size(89, 32);
+            btn_run.Size = new Size(78, 24);
             btn_run.TabIndex = 35;
             btn_run.Text = "Run Code";
             btn_run.TextColor = Color.FromArgb(199, 213, 224);
@@ -305,18 +336,20 @@
             // 
             panel3.BackColor = Color.FromArgb(42, 71, 94);
             panel3.Dock = DockStyle.Right;
-            panel3.Location = new Point(1196, 0);
+            panel3.Location = new Point(1046, 0);
+            panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1, 935);
+            panel3.Size = new Size(1, 701);
             panel3.TabIndex = 23;
             // 
             // panel4
             // 
             panel4.BackColor = Color.FromArgb(42, 71, 94);
             panel4.Dock = DockStyle.Right;
-            panel4.Location = new Point(320, 0);
+            panel4.Location = new Point(280, 0);
+            panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1, 935);
+            panel4.Size = new Size(1, 701);
             panel4.TabIndex = 26;
             // 
             // MainTabControl
@@ -335,7 +368,7 @@
             MainTabControl.Name = "MainTabControl";
             MainTabControl.Padding = new Point(0, 0);
             MainTabControl.SelectedIndex = 0;
-            MainTabControl.Size = new Size(321, 935);
+            MainTabControl.Size = new Size(281, 701);
             MainTabControl.TabIndex = 25;
             // 
             // ActivityTab
@@ -343,10 +376,10 @@
             ActivityTab.BackColor = Color.FromArgb(21, 28, 38);
             ActivityTab.Controls.Add(customCard8);
             ActivityTab.Controls.Add(customCard7);
-            ActivityTab.Location = new Point(4, 54);
+            ActivityTab.Location = new Point(4, 44);
             ActivityTab.Margin = new Padding(0);
             ActivityTab.Name = "ActivityTab";
-            ActivityTab.Size = new Size(313, 877);
+            ActivityTab.Size = new Size(273, 653);
             ActivityTab.TabIndex = 0;
             ActivityTab.Text = "Activity";
             // 
@@ -358,10 +391,11 @@
             customCard8.BorderSize = 0;
             customCard8.Controls.Add(description);
             customCard8.Dock = DockStyle.Fill;
-            customCard8.Location = new Point(0, 72);
+            customCard8.Location = new Point(0, 54);
+            customCard8.Margin = new Padding(3, 2, 3, 2);
             customCard8.Name = "customCard8";
-            customCard8.Padding = new Padding(10, 0, 10, 0);
-            customCard8.Size = new Size(313, 805);
+            customCard8.Padding = new Padding(9, 0, 9, 0);
+            customCard8.Size = new Size(273, 599);
             customCard8.TabIndex = 27;
             // 
             // description
@@ -370,13 +404,14 @@
             description.BackColor = Color.FromArgb(26, 30, 36);
             description.Dock = DockStyle.Fill;
             description.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            description.Location = new Point(10, 0);
+            description.Location = new Point(9, 0);
+            description.Margin = new Padding(3, 2, 3, 2);
             description.Multiline = true;
             description.Name = "description";
-            description.Padding = new Padding(10, 8, 10, 8);
+            description.Padding = new Padding(9, 6, 9, 6);
             description.PlaceholderColor = Color.DarkGray;
             description.ScrollBars = ScrollBars.Vertical;
-            description.Size = new Size(293, 805);
+            description.Size = new Size(255, 599);
             description.TabIndex = 0;
             description.Theme = CustomComponents.SteamThings.SteamTheme.Dark;
             // 
@@ -389,8 +424,9 @@
             customCard7.Controls.Add(session_name);
             customCard7.Dock = DockStyle.Top;
             customCard7.Location = new Point(0, 0);
+            customCard7.Margin = new Padding(3, 2, 3, 2);
             customCard7.Name = "customCard7";
-            customCard7.Size = new Size(313, 72);
+            customCard7.Size = new Size(273, 54);
             customCard7.TabIndex = 26;
             // 
             // session_name
@@ -399,9 +435,9 @@
             session_name.BackColor = Color.Transparent;
             session_name.Font = new Font("Geist", 12F);
             session_name.ForeColor = Color.FromArgb(139, 149, 166);
-            session_name.Location = new Point(30, 25);
+            session_name.Location = new Point(26, 19);
             session_name.Name = "session_name";
-            session_name.Size = new Size(129, 23);
+            session_name.Size = new Size(103, 18);
             session_name.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Regular;
             session_name.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Muted;
             session_name.TabIndex = 20;
@@ -413,10 +449,11 @@
             MessagesTab.Controls.Add(richTextBox2);
             MessagesTab.Controls.Add(steamChatbox1);
             MessagesTab.Controls.Add(customCard9);
-            MessagesTab.Location = new Point(4, 54);
+            MessagesTab.Location = new Point(4, 44);
+            MessagesTab.Margin = new Padding(3, 2, 3, 2);
             MessagesTab.Name = "MessagesTab";
-            MessagesTab.Padding = new Padding(3);
-            MessagesTab.Size = new Size(313, 877);
+            MessagesTab.Padding = new Padding(3, 2, 3, 2);
+            MessagesTab.Size = new Size(273, 653);
             MessagesTab.TabIndex = 1;
             MessagesTab.Text = "Messages";
             // 
@@ -426,9 +463,10 @@
             richTextBox2.BorderStyle = BorderStyle.None;
             richTextBox2.Dock = DockStyle.Top;
             richTextBox2.ForeColor = Color.FromArgb(224, 224, 224);
-            richTextBox2.Location = new Point(3, 424);
+            richTextBox2.Location = new Point(3, 318);
+            richTextBox2.Margin = new Padding(3, 2, 3, 2);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(307, 104);
+            richTextBox2.Size = new Size(267, 78);
             richTextBox2.TabIndex = 1;
             richTextBox2.Text = "";
             richTextBox2.KeyUp += richTextBox2_KeyUp;
@@ -441,9 +479,10 @@
             steamChatbox1.DrawMode = DrawMode.OwnerDrawVariable;
             steamChatbox1.FormattingEnabled = true;
             steamChatbox1.IntegralHeight = false;
-            steamChatbox1.Location = new Point(3, 75);
+            steamChatbox1.Location = new Point(3, 56);
+            steamChatbox1.Margin = new Padding(3, 2, 3, 2);
             steamChatbox1.Name = "steamChatbox1";
-            steamChatbox1.Size = new Size(307, 349);
+            steamChatbox1.Size = new Size(267, 262);
             steamChatbox1.TabIndex = 2;
             // 
             // customCard9
@@ -454,10 +493,10 @@
             customCard9.BorderSize = 0;
             customCard9.Controls.Add(steamLabel2);
             customCard9.Dock = DockStyle.Top;
-            customCard9.Location = new Point(3, 3);
+            customCard9.Location = new Point(3, 2);
             customCard9.Margin = new Padding(0);
             customCard9.Name = "customCard9";
-            customCard9.Size = new Size(307, 72);
+            customCard9.Size = new Size(267, 54);
             customCard9.TabIndex = 27;
             // 
             // steamLabel2
@@ -466,9 +505,9 @@
             steamLabel2.BackColor = Color.Transparent;
             steamLabel2.Font = new Font("Geist", 12F);
             steamLabel2.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel2.Location = new Point(30, 25);
+            steamLabel2.Location = new Point(26, 19);
             steamLabel2.Name = "steamLabel2";
-            steamLabel2.Size = new Size(101, 23);
+            steamLabel2.Size = new Size(81, 18);
             steamLabel2.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel2.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel2.TabIndex = 20;
@@ -479,10 +518,10 @@
             TestCases.BackColor = Color.FromArgb(21, 28, 38);
             TestCases.Controls.Add(TestCasesPanel);
             TestCases.Controls.Add(customCard4);
-            TestCases.Location = new Point(4, 54);
+            TestCases.Location = new Point(4, 44);
             TestCases.Margin = new Padding(0);
             TestCases.Name = "TestCases";
-            TestCases.Size = new Size(313, 877);
+            TestCases.Size = new Size(273, 653);
             TestCases.TabIndex = 4;
             TestCases.Text = "TestCases";
             // 
@@ -493,10 +532,11 @@
             TestCasesPanel.BorderRadius = 2;
             TestCasesPanel.BorderSize = 0;
             TestCasesPanel.Dock = DockStyle.Fill;
-            TestCasesPanel.Location = new Point(0, 72);
+            TestCasesPanel.Location = new Point(0, 54);
+            TestCasesPanel.Margin = new Padding(3, 2, 3, 2);
             TestCasesPanel.Name = "TestCasesPanel";
-            TestCasesPanel.Padding = new Padding(5, 0, 5, 0);
-            TestCasesPanel.Size = new Size(313, 805);
+            TestCasesPanel.Padding = new Padding(4, 0, 4, 0);
+            TestCasesPanel.Size = new Size(273, 599);
             TestCasesPanel.TabIndex = 23;
             // 
             // customCard4
@@ -508,8 +548,9 @@
             customCard4.Controls.Add(steamLabel4);
             customCard4.Dock = DockStyle.Top;
             customCard4.Location = new Point(0, 0);
+            customCard4.Margin = new Padding(3, 2, 3, 2);
             customCard4.Name = "customCard4";
-            customCard4.Size = new Size(313, 72);
+            customCard4.Size = new Size(273, 54);
             customCard4.TabIndex = 24;
             // 
             // steamLabel4
@@ -518,9 +559,9 @@
             steamLabel4.BackColor = Color.Transparent;
             steamLabel4.Font = new Font("Geist", 12F);
             steamLabel4.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel4.Location = new Point(30, 25);
+            steamLabel4.Location = new Point(26, 19);
             steamLabel4.Name = "steamLabel4";
-            steamLabel4.Size = new Size(109, 23);
+            steamLabel4.Size = new Size(86, 18);
             steamLabel4.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel4.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel4.TabIndex = 20;
@@ -531,10 +572,10 @@
             Leaderboards.BackColor = Color.FromArgb(21, 28, 38);
             Leaderboards.Controls.Add(panel_leaderboards);
             Leaderboards.Controls.Add(customCard5);
-            Leaderboards.Location = new Point(4, 54);
+            Leaderboards.Location = new Point(4, 44);
             Leaderboards.Margin = new Padding(0);
             Leaderboards.Name = "Leaderboards";
-            Leaderboards.Size = new Size(313, 877);
+            Leaderboards.Size = new Size(273, 653);
             Leaderboards.TabIndex = 2;
             Leaderboards.Text = "Leaderboards";
             // 
@@ -543,11 +584,10 @@
             panel_leaderboards.AutoScroll = true;
             panel_leaderboards.BackColor = Color.FromArgb(21, 28, 38);
             panel_leaderboards.Dock = DockStyle.Fill;
-            panel_leaderboards.Location = new Point(0, 72);
-            panel_leaderboards.Margin = new Padding(3, 4, 3, 4);
+            panel_leaderboards.Location = new Point(0, 54);
             panel_leaderboards.Name = "panel_leaderboards";
-            panel_leaderboards.Padding = new Padding(0, 27, 0, 0);
-            panel_leaderboards.Size = new Size(313, 805);
+            panel_leaderboards.Padding = new Padding(0, 20, 0, 0);
+            panel_leaderboards.Size = new Size(273, 599);
             panel_leaderboards.TabIndex = 18;
             // 
             // customCard5
@@ -559,8 +599,9 @@
             customCard5.Controls.Add(steamLabel5);
             customCard5.Dock = DockStyle.Top;
             customCard5.Location = new Point(0, 0);
+            customCard5.Margin = new Padding(3, 2, 3, 2);
             customCard5.Name = "customCard5";
-            customCard5.Size = new Size(313, 72);
+            customCard5.Size = new Size(273, 54);
             customCard5.TabIndex = 25;
             // 
             // steamLabel5
@@ -569,9 +610,9 @@
             steamLabel5.BackColor = Color.Transparent;
             steamLabel5.Font = new Font("Geist", 12F);
             steamLabel5.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel5.Location = new Point(30, 25);
+            steamLabel5.Location = new Point(26, 19);
             steamLabel5.Name = "steamLabel5";
-            steamLabel5.Size = new Size(123, 23);
+            steamLabel5.Size = new Size(99, 18);
             steamLabel5.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel5.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel5.TabIndex = 20;
@@ -582,10 +623,10 @@
             Score.BackColor = Color.FromArgb(21, 28, 38);
             Score.Controls.Add(panel5);
             Score.Controls.Add(customCard6);
-            Score.Location = new Point(4, 54);
+            Score.Location = new Point(4, 44);
             Score.Margin = new Padding(0);
             Score.Name = "Score";
-            Score.Size = new Size(313, 877);
+            Score.Size = new Size(273, 653);
             Score.TabIndex = 3;
             Score.Text = "Score";
             // 
@@ -595,21 +636,20 @@
             panel5.BackColor = Color.FromArgb(21, 28, 38);
             panel5.Controls.Add(studentCodeRating);
             panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(0, 72);
-            panel5.Margin = new Padding(3, 4, 3, 4);
+            panel5.Location = new Point(0, 54);
             panel5.Name = "panel5";
-            panel5.Padding = new Padding(0, 27, 0, 0);
-            panel5.Size = new Size(313, 805);
+            panel5.Padding = new Padding(0, 20, 0, 0);
+            panel5.Size = new Size(273, 599);
             panel5.TabIndex = 81;
             // 
             // studentCodeRating
             // 
             studentCodeRating.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             studentCodeRating.BackColor = Color.Transparent;
-            studentCodeRating.Location = new Point(30, 31);
-            studentCodeRating.Margin = new Padding(3, 4, 3, 4);
+            studentCodeRating.Location = new Point(26, 23);
+            studentCodeRating.Margin = new Padding(3, 2, 3, 2);
             studentCodeRating.Name = "studentCodeRating";
-            studentCodeRating.Size = new Size(257, 347);
+            studentCodeRating.Size = new Size(224, 260);
             studentCodeRating.TabIndex = 79;
             // 
             // customCard6
@@ -621,8 +661,9 @@
             customCard6.Controls.Add(steamLabel6);
             customCard6.Dock = DockStyle.Top;
             customCard6.Location = new Point(0, 0);
+            customCard6.Margin = new Padding(3, 2, 3, 2);
             customCard6.Name = "customCard6";
-            customCard6.Size = new Size(313, 72);
+            customCard6.Size = new Size(273, 54);
             customCard6.TabIndex = 80;
             // 
             // steamLabel6
@@ -631,9 +672,9 @@
             steamLabel6.BackColor = Color.Transparent;
             steamLabel6.Font = new Font("Geist", 12F);
             steamLabel6.ForeColor = Color.FromArgb(139, 149, 166);
-            steamLabel6.Location = new Point(30, 25);
+            steamLabel6.Location = new Point(26, 19);
             steamLabel6.Name = "steamLabel6";
-            steamLabel6.Size = new Size(62, 23);
+            steamLabel6.Size = new Size(50, 18);
             steamLabel6.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Regular;
             steamLabel6.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Muted;
             steamLabel6.TabIndex = 20;
@@ -652,17 +693,19 @@
             customCard1.Controls.Add(ActivityIcon);
             customCard1.Controls.Add(steamLabel3);
             customCard1.Dock = DockStyle.Right;
-            customCard1.Location = new Point(321, 0);
+            customCard1.Location = new Point(281, 0);
+            customCard1.Margin = new Padding(3, 2, 3, 2);
             customCard1.Name = "customCard1";
-            customCard1.Size = new Size(83, 935);
+            customCard1.Size = new Size(73, 701);
             customCard1.TabIndex = 23;
             // 
             // TestcaseIcon
             // 
             TestcaseIcon.Image = (Image)resources.GetObject("TestcaseIcon.Image");
-            TestcaseIcon.Location = new Point(8, 158);
+            TestcaseIcon.Location = new Point(7, 118);
+            TestcaseIcon.Margin = new Padding(3, 2, 3, 2);
             TestcaseIcon.Name = "TestcaseIcon";
-            TestcaseIcon.Size = new Size(66, 70);
+            TestcaseIcon.Size = new Size(58, 52);
             TestcaseIcon.SizeMode = PictureBoxSizeMode.CenterImage;
             TestcaseIcon.TabIndex = 25;
             TestcaseIcon.TabStop = false;
@@ -671,9 +714,10 @@
             // ScoreIcon
             // 
             ScoreIcon.Image = (Image)resources.GetObject("ScoreIcon.Image");
-            ScoreIcon.Location = new Point(8, 320);
+            ScoreIcon.Location = new Point(7, 240);
+            ScoreIcon.Margin = new Padding(3, 2, 3, 2);
             ScoreIcon.Name = "ScoreIcon";
-            ScoreIcon.Size = new Size(66, 70);
+            ScoreIcon.Size = new Size(58, 52);
             ScoreIcon.SizeMode = PictureBoxSizeMode.CenterImage;
             ScoreIcon.TabIndex = 24;
             ScoreIcon.TabStop = false;
@@ -682,9 +726,10 @@
             // LeaderboardsIcon
             // 
             LeaderboardsIcon.Image = (Image)resources.GetObject("LeaderboardsIcon.Image");
-            LeaderboardsIcon.Location = new Point(8, 239);
+            LeaderboardsIcon.Location = new Point(7, 179);
+            LeaderboardsIcon.Margin = new Padding(3, 2, 3, 2);
             LeaderboardsIcon.Name = "LeaderboardsIcon";
-            LeaderboardsIcon.Size = new Size(66, 70);
+            LeaderboardsIcon.Size = new Size(58, 52);
             LeaderboardsIcon.SizeMode = PictureBoxSizeMode.CenterImage;
             LeaderboardsIcon.TabIndex = 23;
             LeaderboardsIcon.TabStop = false;
@@ -693,9 +738,10 @@
             // MessagesIcon
             // 
             MessagesIcon.Image = (Image)resources.GetObject("MessagesIcon.Image");
-            MessagesIcon.Location = new Point(8, 77);
+            MessagesIcon.Location = new Point(7, 58);
+            MessagesIcon.Margin = new Padding(3, 2, 3, 2);
             MessagesIcon.Name = "MessagesIcon";
-            MessagesIcon.Size = new Size(66, 70);
+            MessagesIcon.Size = new Size(58, 52);
             MessagesIcon.SizeMode = PictureBoxSizeMode.CenterImage;
             MessagesIcon.TabIndex = 22;
             MessagesIcon.TabStop = false;
@@ -704,9 +750,10 @@
             // ActivityIcon
             // 
             ActivityIcon.Image = (Image)resources.GetObject("ActivityIcon.Image");
-            ActivityIcon.Location = new Point(8, 11);
+            ActivityIcon.Location = new Point(7, 8);
+            ActivityIcon.Margin = new Padding(3, 2, 3, 2);
             ActivityIcon.Name = "ActivityIcon";
-            ActivityIcon.Size = new Size(66, 55);
+            ActivityIcon.Size = new Size(58, 41);
             ActivityIcon.SizeMode = PictureBoxSizeMode.CenterImage;
             ActivityIcon.TabIndex = 21;
             ActivityIcon.TabStop = false;
@@ -718,10 +765,10 @@
             steamLabel3.BackColor = Color.FromArgb(29, 7, 18);
             steamLabel3.Font = new Font("Geist", 8F);
             steamLabel3.ForeColor = Color.FromArgb(255, 77, 77);
-            steamLabel3.Location = new Point(1101, 9);
+            steamLabel3.Location = new Point(963, 7);
             steamLabel3.Name = "steamLabel3";
-            steamLabel3.Padding = new Padding(10);
-            steamLabel3.Size = new Size(122, 36);
+            steamLabel3.Padding = new Padding(9, 8, 9, 8);
+            steamLabel3.Size = new Size(98, 30);
             steamLabel3.SteamSize = CustomComponents.SteamThings.SteamLabel.SizeOption.Tiny;
             steamLabel3.SteamTheme = CustomComponents.SteamThings.SteamLabel.ThemeOption.Error;
             steamLabel3.TabIndex = 20;
@@ -731,9 +778,10 @@
             // 
             panel2.BackColor = Color.FromArgb(42, 71, 94);
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(0, 81);
+            panel2.Location = new Point(0, 61);
+            panel2.Margin = new Padding(3, 2, 3, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1602, 1);
+            panel2.Size = new Size(1402, 1);
             panel2.TabIndex = 24;
             // 
             // customCard3
@@ -747,20 +795,22 @@
             customCard3.Controls.Add(steamLabel1);
             customCard3.Dock = DockStyle.Top;
             customCard3.Location = new Point(0, 0);
+            customCard3.Margin = new Padding(3, 2, 3, 2);
             customCard3.Name = "customCard3";
-            customCard3.Size = new Size(1602, 81);
+            customCard3.Size = new Size(1402, 61);
             customCard3.TabIndex = 23;
             // 
             // TempIDE
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(18, 23, 29);
-            ClientSize = new Size(1602, 1016);
+            ClientSize = new Size(1402, 762);
             Controls.Add(panel2);
             Controls.Add(splitContainer1);
             Controls.Add(customCard3);
             DoubleBuffered = true;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "TempIDE";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TempIDE";
@@ -771,6 +821,10 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            splitContainer2.Panel1.ResumeLayout(false);
+            splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
+            splitContainer2.ResumeLayout(false);
             customCard2.ResumeLayout(false);
             customCard2.PerformLayout();
             MainTabControl.ResumeLayout(false);
@@ -858,5 +912,6 @@
         private CustomComponents.GeneralComponents.CustomCard customCard9;
         private CustomComponents.SteamThings.SteamLabel steamLabel2;
         private Panel terminal;
+        private SplitContainer splitContainer2;
     }
 }
